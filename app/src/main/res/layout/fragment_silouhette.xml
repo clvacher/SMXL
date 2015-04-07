@@ -1,0 +1,229 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/DefaultBackgroundColor"
+    tools:context="com.aerolitec.SMXL.ui.fragment.SihouetteFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:gravity="left"
+            android:text="@string/mesurer"
+            android:textColor="@color/SectionTitle"
+            android:textSize="@dimen/textSizeIdentity"
+            android:padding="10dp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:layout_alignParentRight="true">
+
+
+            <TextView
+                android:id="@+id/man"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:gravity="left"
+                android:text="@string/texteHomme"
+                android:textColor="@color/EditTextBorder"
+                android:textSize="@dimen/textSizeIdentity"
+                android:padding="10dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:gravity="left"
+                android:text="/"
+                android:textColor="@color/SectionTitle"
+                android:textSize="@dimen/textSizeIdentity"
+                android:padding="10dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/woman"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:gravity="left"
+                android:text="@string/texteFemme"
+                android:textColor="@color/SectionTitle"
+                android:textSize="@dimen/textSizeIdentity"
+                android:padding="10dp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
+        android:background="@android:color/white">
+
+
+    <ImageView
+        android:id="@+id/fond"
+        android:layout_width="@dimen/width_silouhette"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/femme_pastilles"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/fond"
+        android:layout_marginLeft="25dp"
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:divider="@drawable/white_divider"
+            android:orientation="vertical"
+            android:showDividers="middle"
+            android:layout_gravity="center_vertical"
+            >
+
+            <TextView
+                android:id="@+id/textTete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/pastille_a"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:text="Tête"
+                android:visibility="gone"
+                android:textSize="@dimen/firstname_list" />
+
+            <TextView
+                android:id="@+id/textHauteur"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/pastille_b"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:text="Hauteur"
+                android:textSize="@dimen/firstname_list" />
+
+            <TextView
+                android:id="@+id/textCou"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/pastille_c"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:text="Cou"
+                android:textSize="@dimen/firstname_list" />
+
+            <TextView
+                android:id="@+id/textEpaules"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/pastille_d"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:text="Epaules"
+                android:visibility="gone"
+                android:textSize="@dimen/firstname_list" />
+
+            <TextView
+                android:id="@+id/textPoitrine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/pastille_e"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:text="Poitrine"
+                android:textSize="@dimen/firstname_list" />
+
+            <TextView
+                android:id="@+id/textBras"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/pastille_f"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:text="Bras"
+                android:textSize="@dimen/firstname_list" />
+
+            <TextView
+                android:id="@+id/textTaille"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/pastille_g"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:text="Taille"
+                android:textSize="@dimen/firstname_list" />
+
+            <TextView
+                android:id="@+id/textHanches"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/pastille_h"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:text="Hanches"
+                android:textSize="@dimen/firstname_list" />
+
+            <TextView
+                android:id="@+id/textCuisses"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/pastille_i"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:text="Cuisses"
+                android:visibility="gone"
+                android:textSize="@dimen/firstname_list" />
+
+            <TextView
+                android:id="@+id/textJambes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/pastille_j"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:text="Jambes"
+                android:textSize="@dimen/firstname_list" />
+
+            <TextView
+                android:id="@+id/textPieds"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/pastille_k"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:text="Pieds"
+                android:textSize="@dimen/firstname_list" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

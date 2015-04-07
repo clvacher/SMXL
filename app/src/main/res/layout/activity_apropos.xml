@@ -1,0 +1,21 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/DefaultBackgroundColor"
+    tools:context="com.aerolitec.SMXL.app.ui.activity.AProposActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/tvAPropos"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/aPropos"
+        android:textColor="@color/SectionTitle"
+        android:textSize="@dimen/section_text_size"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:gravity="center"
+        />
+
+</LinearLayout>

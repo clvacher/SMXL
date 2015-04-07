@@ -1,0 +1,23 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.aerolitec.SMXL.ui.activity.ProfilActivity" >
+    <item
+        android:id="@+id/action_apropos"
+        android:title="@string/aPropos"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/importProfile"
+        android:title="@string/importProfile"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_exit"
+        android:title="@string/action_exit"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/addProfile"
+        android:icon="@drawable/ic_action_add_person"
+        android:title=""
+        android:showAsAction="always"
+        />
+</menu>

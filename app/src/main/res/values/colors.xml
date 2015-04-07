@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="DefaultBackgroundColor">#efe9d9</color>
+    <color name="SectionTitle">#ee511a</color>
+    <color name="SectionSeparator">#ffa1a29e</color>
+    <color name="MainText">#000000</color>
+    <color name="SubTitleText">#555555</color>
+    <color name="SelectTexte">#ff000000</color>
+    <color name="backgroundEditTextProfile">#ffdcdcdc</color>
+    <color name="backgroundSelectMeasure">#fff2ffee</color>
+    <color name="EditTextBorder">#c2c2c2</color>
+    <color name="ColorEditText">#77ffffff</color>
+    <color name="SpinnerItem">#ff555ad3</color>
+    <color name="SpinnerItemList">#ff08454b</color>
+    <color name="LastName">#671a10</color>
+    <color name="separator">#d7d2ce</color>
+    <color name="text_green">#48A288</color>
+</resources>

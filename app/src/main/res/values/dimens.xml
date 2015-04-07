@@ -1,0 +1,26 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="separator_horizontal_margin">5dp</dimen>
+    <dimen name="separator_vertical_margin">5dp</dimen>
+    <dimen name="section_text_size">20sp</dimen>
+    <dimen name="listview_padding_vertical">10dp</dimen>
+    <dimen name="listview_padding_horizontal">10dp</dimen>
+    <dimen name="size_avatar_list_profile">70dp</dimen>
+    <dimen name="size_avatar_detail">80dp</dimen>
+    <dimen name="name_list">22sp</dimen>
+    <dimen name="firstname_list">18sp</dimen>
+    <dimen name="textCreateProfile">14sp</dimen>
+    <dimen name="textSizeIdentity">16sp</dimen>
+    <dimen name="textSizeMeasure">20sp</dimen>
+    <dimen name="favoriteColorSize">40dp</dimen>
+    <!--
+    <dimen name="divider_silhouette">22.5dp</dimen>
+    -->
+    <dimen name="divider_silhouette">17.5dp</dimen>
+    <dimen name="padding_silhouette">5dp</dimen>
+
+    <dimen name="width_silouhette">180dp</dimen>
+
+</resources>

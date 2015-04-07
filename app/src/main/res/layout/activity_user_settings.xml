@@ -1,0 +1,123 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/DefaultBackgroundColor"
+    tools:context="com.aerolitec.SMXL.app.ui.fragment.ProfileFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_weight="0.8"
+            android:text="@string/settings"
+            android:textColor="@color/SectionTitle"
+            android:textSize="@dimen/section_text_size"
+            android:textStyle="bold" />
+
+        <View
+            android:id="@+id/separator"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginLeft="@dimen/separator_horizontal_margin"
+            android:layout_marginRight="@dimen/separator_horizontal_margin"
+            android:layout_marginTop="@dimen/separator_vertical_margin"
+            android:background="@color/SectionSeparator" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/libUnit"
+        android:gravity="center"
+        android:textSize="@dimen/section_text_size"/>
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal"
+     >
+        <RadioGroup
+            android:id="@+id/rgSettingLength"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal">
+
+            <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Inch"
+            android:checked="false"
+            android:id="@+id/radioInch"
+            android:layout_gravity="center_horizontal" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Centimètre"
+                android:layout_marginLeft="100dp"
+                android:checked="true"
+                android:id="@+id/radioCm"
+                android:layout_gravity="right" />
+        </RadioGroup>
+</LinearLayout>
+<LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal"
+        >
+        <RadioGroup
+            android:id="@+id/rgSettingWeight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pounds"
+                android:checked="false"
+                android:id="@+id/radioPounds"
+                android:layout_gravity="center_horizontal" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kilogramme"
+                android:layout_marginLeft="77dp"
+                android:checked="true"
+                android:id="@+id/radioKilo"
+                android:layout_gravity="center_horizontal" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <!--
+    <Button
+        android:id="@+id/butAccept"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="@string/saveGarment" />
+
+        -->
+
+</LinearLayout>

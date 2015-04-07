@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="divider_silhouette">69dp</dimen>
+    <dimen name="padding_silhouette">10dp</dimen>
+</resources>

@@ -1,0 +1,53 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.aerolitec.SMXL.ui.activity.MainActivity" >
+    <item
+        android:id="@+id/addProfile"
+        android:icon="@drawable/ic_action_add_person"
+        android:title=""
+        android:showAsAction="always"
+        />
+
+    <item
+        android:id="@+id/share"
+        android:icon="@drawable/ic_action_share"
+        android:title=""
+        android:showAsAction="always"
+        />
+    <item
+        android:id="@+id/validate"
+        android:icon="@drawable/ic_action_accept"
+        android:title=""
+        android:showAsAction="always"
+        />
+    <item
+        android:id="@+id/newPicture"
+        android:icon="@drawable/ic_action_new_picture"
+        android:title=""
+        android:showAsAction="always"
+        />
+    <item
+        android:id="@+id/menu"
+        android:icon="@drawable/ic_action_overflow"
+        android:title=""
+        android:showAsAction="always"
+        >
+        <menu>
+            <item
+                android:id="@+id/action_apropos"
+                android:title="@string/aPropos"
+                android:showAsAction="never" />
+            <item
+                android:id="@+id/action_settings"
+                android:title="@string/action_settings"
+                android:orderInCategory="100"
+                android:showAsAction="never" />
+            <item
+                android:id="@+id/action_exit"
+                android:title="@string/action_exit"
+                android:orderInCategory="200"
+                android:showAsAction="never" />
+        </menu>
+    </item>
+
+</menu>

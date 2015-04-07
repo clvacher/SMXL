@@ -1,0 +1,66 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/DefaultBackgroundColor"
+    tools:context="com.aerolitec.SMXL.app.ui.fragment.ProfileFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title_section_profiles"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:textColor="@color/SectionTitle"
+        android:textSize="@dimen/section_text_size"
+        android:textStyle="bold"
+        />
+<!--
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="@dimen/separator_vertical_margin"
+        android:layout_marginLeft="@dimen/separator_horizontal_margin"
+        android:layout_marginRight="@dimen/separator_horizontal_margin"
+        android:background="@color/SectionSeparator"
+        />
+
+        -->
+
+    <GridView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/listViewProfiles"
+        android:numColumns="3"
+        android:gravity="center"
+        android:padding="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@android:color/white"
+        android:stretchMode="columnWidth"
+        android:layout_gravity="center_horizontal"
+        android:verticalSpacing="20dp"
+        android:horizontalSpacing="10dp" />
+    <!--
+        <ListView
+            android:id="@+id/listViewProfiles"
+            android:paddingTop="@dimen/listview_padding_vertical"
+            android:paddingRight="@dimen/listview_padding_horizontal"
+            android:paddingLeft="@dimen/listview_padding_horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:dividerHeight="0.1dp"
+            android:divider="#0000CC"
+            android:footerDividersEnabled="false"
+            android:clipToPadding="false"
+            android:scrollbarStyle="outsideOverlay"
+            />
+            -->
+
+</LinearLayout>
