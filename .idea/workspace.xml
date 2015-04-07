@@ -18,7 +18,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bcedc9f4-a278-4245-beda-299f3891aad9" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/model/BaseObjects.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/model/BaseObjects.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="smlx.iws" />
@@ -1303,7 +1302,11 @@
       <created>1428412213301</created>
       <updated>1428412213301</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="test">
+      <created>1428417461470</created>
+      <updated>1428417461470</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
