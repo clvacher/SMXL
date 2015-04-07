@@ -2,88 +2,88 @@
 <items version="2" >
 
     <item
-        jar="/Users/Jerome/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.2.4/a60a5e993c98c864010053cb901b7eab25306568/gson-2.2.4.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="a60a5e993c98c864010053cb901b7eab25306568">
-        <dex dex="/Users/Jerome/Documents/StageSMXL/smxl/app/build/intermediates/pre-dexed/debug/gson-2.2.4-4168a72ad5c68a2397e52f2b88efd55912b97ddc.jar" />
-    </item>
-    <item
-        jar="/Users/Jerome/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.2.0/74137f8d9aac26dd9463efe32271f2be8d41cda9/picasso-2.2.0.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="74137f8d9aac26dd9463efe32271f2be8d41cda9">
-        <dex dex="/Users/Jerome/Documents/StageSMXL/smxl/app/build/intermediates/pre-dexed/debug/picasso-2.2.0-e55bfb3da53b5b6e3fb5d0322e8eda70efd0fe15.jar" />
-    </item>
-    <item
-        jar="/Users/Jerome/.gradle/caches/modules-2/files-2.1/com.crashlytics.android/crashlytics/1.1.13/e821eafa1bf489a26bdb71f95078c26785b37a1/crashlytics-1.1.13.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="0e821eafa1bf489a26bdb71f95078c26785b37a1">
-        <dex dex="/Users/Jerome/Documents/StageSMXL/smxl/app/build/intermediates/pre-dexed/debug/crashlytics-1.1.13-1783d1e69f1e5c7453f1fadc1e3f8752f2b6eb7e.jar" />
-    </item>
-    <item
-        jar="/Users/Jerome/Documents/android-sdk-macosx/extras/android/m2repository/com/android/support/support-annotations/22.0.0/support-annotations-22.0.0.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
-        <dex dex="/Users/Jerome/Documents/StageSMXL/smxl/app/build/intermediates/pre-dexed/debug/support-annotations-22.0.0-32aee9f0c987e2986dfb27dc430905a5c1a0112d.jar" />
-    </item>
-    <item
-        jar="/Users/Jerome/.gradle/caches/modules-2/files-2.1/joda-time/joda-time/2.3/56498efd17752898cfcc3868c1b6211a07b12b8f/joda-time-2.3.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="56498efd17752898cfcc3868c1b6211a07b12b8f">
-        <dex dex="/Users/Jerome/Documents/StageSMXL/smxl/app/build/intermediates/pre-dexed/debug/joda-time-2.3-f0951608056774ea5653a5710c5a06119bfca566.jar" />
-    </item>
-    <item
-        jar="/Users/Jerome/Documents/StageSMXL/smxl/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/classes.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="3499ceba05ca1f6037c6a2fad73df8f636224a28">
-        <dex dex="/Users/Jerome/Documents/StageSMXL/smxl/app/build/intermediates/pre-dexed/debug/classes-35017ee2744b7d8293ec56a59c293fea137d2132.jar" />
-    </item>
-    <item
-        jar="/Users/Jerome/.gradle/caches/modules-2/files-2.1/net.sf.opencsv/opencsv/2.3/c23708cdb9e80a144db433e23344a788a1fd6599/opencsv-2.3.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="c23708cdb9e80a144db433e23344a788a1fd6599">
-        <dex dex="/Users/Jerome/Documents/StageSMXL/smxl/app/build/intermediates/pre-dexed/debug/opencsv-2.3-ed413234bc69952dc5a06e32ab6a16b4140f7b32.jar" />
-    </item>
-    <item
-        jar="/Users/Jerome/Documents/StageSMXL/smxl/app/build/intermediates/exploded-aar/com.android.support/support-v13/22.0.0/classes.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="7f9cca1caa023a880b00c382bcc5c90245ae4895">
-        <dex dex="/Users/Jerome/Documents/StageSMXL/smxl/app/build/intermediates/pre-dexed/debug/classes-d383be6ccac2aef26f9af96a80c38bebc844cdef.jar" />
-    </item>
-    <item
-        jar="/Users/Jerome/Documents/StageSMXL/smxl/app/build/intermediates/exploded-aar/com.makeramen/roundedimageview/1.3.1/classes.jar"
+        jar="C:\Users\Clément\Documents\GitHub\SMXL\app\build\intermediates\exploded-aar\com.makeramen\roundedimageview\1.3.1\classes.jar"
         jumboMode="false"
         revision="19.1.0"
         sha1="27c070617982dd4452712bf43c731a1cfbf5b17c">
-        <dex dex="/Users/Jerome/Documents/StageSMXL/smxl/app/build/intermediates/pre-dexed/debug/classes-e4457fe470117b56195d5a25c1a81e72c1ce7a4f.jar" />
+        <dex dex="C:\Users\Clément\Documents\GitHub\SMXL\app\build\intermediates\pre-dexed\debug\classes-fa6e449ebe1dfae2636f8d9b23ab30816ae03a9e.jar" />
     </item>
     <item
-        jar="/Users/Jerome/Documents/StageSMXL/smxl/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/classes.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
-        <dex dex="/Users/Jerome/Documents/StageSMXL/smxl/app/build/intermediates/pre-dexed/debug/classes-495d844f31b89642604f872ca198070e3e3d063f.jar" />
-    </item>
-    <item
-        jar="/Users/Jerome/Documents/StageSMXL/smxl/app/build/intermediates/exploded-aar/com.android.support/support-v13/22.0.0/libs/internal_impl-22.0.0.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="def3eff2b7b4774d96ae15b07b3fc0111edbfe24">
-        <dex dex="/Users/Jerome/Documents/StageSMXL/smxl/app/build/intermediates/pre-dexed/debug/internal_impl-22.0.0-892361e40550ef25f33fae2834c0cca4ed9883cf.jar" />
-    </item>
-    <item
-        jar="/Users/Jerome/Documents/StageSMXL/smxl/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/libs/internal_impl-22.0.0.jar"
+        jar="C:\Users\Clément\Documents\GitHub\SMXL\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\libs\internal_impl-22.0.0.jar"
         jumboMode="false"
         revision="19.1.0"
         sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
-        <dex dex="/Users/Jerome/Documents/StageSMXL/smxl/app/build/intermediates/pre-dexed/debug/internal_impl-22.0.0-7fba2e020b6a640aee413fc79fd1a5d4ea99e46a.jar" />
+        <dex dex="C:\Users\Clément\Documents\GitHub\SMXL\app\build\intermediates\pre-dexed\debug\internal_impl-22.0.0-3120ae17b0b786ae5281e597fa576d72429a3d3e.jar" />
+    </item>
+    <item
+        jar="C:\Users\Clément\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.0.0\support-annotations-22.0.0.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
+        <dex dex="C:\Users\Clément\Documents\GitHub\SMXL\app\build\intermediates\pre-dexed\debug\support-annotations-22.0.0-6c563e1ced579b6c79ab983dbc3c5266266c574b.jar" />
+    </item>
+    <item
+        jar="C:\Users\Clément\.gradle\caches\modules-2\files-2.1\net.sf.opencsv\opencsv\2.3\c23708cdb9e80a144db433e23344a788a1fd6599\opencsv-2.3.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="c23708cdb9e80a144db433e23344a788a1fd6599">
+        <dex dex="C:\Users\Clément\Documents\GitHub\SMXL\app\build\intermediates\pre-dexed\debug\opencsv-2.3-ec0cf5c91a7bf784f7e7f055e1d618e29eda4939.jar" />
+    </item>
+    <item
+        jar="C:\Users\Clément\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.2.4\a60a5e993c98c864010053cb901b7eab25306568\gson-2.2.4.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="a60a5e993c98c864010053cb901b7eab25306568">
+        <dex dex="C:\Users\Clément\Documents\GitHub\SMXL\app\build\intermediates\pre-dexed\debug\gson-2.2.4-881dc4bf286f388d0aeac9af9de3036a2657bb51.jar" />
+    </item>
+    <item
+        jar="C:\Users\Clément\Documents\GitHub\SMXL\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\classes.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
+        <dex dex="C:\Users\Clément\Documents\GitHub\SMXL\app\build\intermediates\pre-dexed\debug\classes-cb51cd2f4a5a93af0d74038be88c116d5e9f71da.jar" />
+    </item>
+    <item
+        jar="C:\Users\Clément\Documents\GitHub\SMXL\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\19.1.0\classes.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="3499ceba05ca1f6037c6a2fad73df8f636224a28">
+        <dex dex="C:\Users\Clément\Documents\GitHub\SMXL\app\build\intermediates\pre-dexed\debug\classes-c7367d05fe9272d99707b9972b6f48c38ed4c3c0.jar" />
+    </item>
+    <item
+        jar="C:\Users\Clément\Documents\GitHub\SMXL\app\build\intermediates\exploded-aar\com.android.support\support-v13\22.0.0\classes.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="7f9cca1caa023a880b00c382bcc5c90245ae4895">
+        <dex dex="C:\Users\Clément\Documents\GitHub\SMXL\app\build\intermediates\pre-dexed\debug\classes-3d473065770b43f69f7ddc0a51f077e17e52c13d.jar" />
+    </item>
+    <item
+        jar="C:\Users\Clément\Documents\GitHub\SMXL\app\build\intermediates\exploded-aar\com.android.support\support-v13\22.0.0\libs\internal_impl-22.0.0.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="def3eff2b7b4774d96ae15b07b3fc0111edbfe24">
+        <dex dex="C:\Users\Clément\Documents\GitHub\SMXL\app\build\intermediates\pre-dexed\debug\internal_impl-22.0.0-6eda182a7d2169e1578ae0cb75620f2ba726aba7.jar" />
+    </item>
+    <item
+        jar="C:\Users\Clément\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.2.0\74137f8d9aac26dd9463efe32271f2be8d41cda9\picasso-2.2.0.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="74137f8d9aac26dd9463efe32271f2be8d41cda9">
+        <dex dex="C:\Users\Clément\Documents\GitHub\SMXL\app\build\intermediates\pre-dexed\debug\picasso-2.2.0-4ee7120c17703b1bc2275f1063f9760438d4b693.jar" />
+    </item>
+    <item
+        jar="C:\Users\Clément\.gradle\caches\modules-2\files-2.1\joda-time\joda-time\2.3\56498efd17752898cfcc3868c1b6211a07b12b8f\joda-time-2.3.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="56498efd17752898cfcc3868c1b6211a07b12b8f">
+        <dex dex="C:\Users\Clément\Documents\GitHub\SMXL\app\build\intermediates\pre-dexed\debug\joda-time-2.3-5f8ff09d85ff63d564ab4a5d0101e660d021d609.jar" />
+    </item>
+    <item
+        jar="C:\Users\Clément\.gradle\caches\modules-2\files-2.1\com.crashlytics.android\crashlytics\1.1.13\e821eafa1bf489a26bdb71f95078c26785b37a1\crashlytics-1.1.13.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="0e821eafa1bf489a26bdb71f95078c26785b37a1">
+        <dex dex="C:\Users\Clément\Documents\GitHub\SMXL\app\build\intermediates\pre-dexed\debug\crashlytics-1.1.13-13e858fd99c709b0ef5fc8e84b1a39326dc12653.jar" />
     </item>
 
 </items>
