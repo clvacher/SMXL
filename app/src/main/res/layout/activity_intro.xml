@@ -9,14 +9,34 @@
         android:layout_height="match_parent"
         android:id="@+id/rlIntro"
         android:layout_centerInParent="true"
+        android:background="#E84E1B"
         >
+
     <ImageView
         android:id="@+id/imgLogo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:src="@drawable/ic_launcher"
-        android:layout_centerVertical="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp" />
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="120dp"
+        android:src="@drawable/groslogo"
+        android:id="@+id/imageTxtLogo"
+        android:layout_below="@+id/imgLogo"
         android:layout_centerHorizontal="true" />
 
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/progressBar"
+            android:layout_below="@+id/imageTxtLogo"
+            android:layout_centerHorizontal="true" />
+
     </RelativeLayout>
+
 </RelativeLayout>
