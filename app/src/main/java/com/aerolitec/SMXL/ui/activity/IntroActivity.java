@@ -2,27 +2,20 @@ package com.aerolitec.SMXL.ui.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.Display;
 import android.view.Window;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.AnimationSet;
-import android.view.animation.ScaleAnimation;
-import android.view.animation.TranslateAnimation;
 import android.widget.RelativeLayout;
 import android.widget.ImageView;
 
 import com.aerolitec.SMXL.R;
-import com.crashlytics.android.Crashlytics;
 
 
 public class IntroActivity extends Activity {
     // Splash screen timerS
-    private static int SPLASH_TIME_OUT = 6000;
+    private static int SPLASH_TIME_OUT = 2000;
     RelativeLayout rlIntro;
     ImageView iconelaunch;
 
@@ -39,7 +32,10 @@ public class IntroActivity extends Activity {
 
         AnimationSet scal1 = new AnimationSet(true);
 
-        scal1.addAnimation(AnimationUtils.loadAnimation(this, R.anim.zoom_launch));
+        scal1.addAnimation(AnimationUtils.loadAnimation(this, R.anim.zoom_0_85));
+        scal1.addAnimation(AnimationUtils.loadAnimation(this, R.anim.zoom_85_75));
+        scal1.addAnimation(AnimationUtils.loadAnimation(this, R.anim.zoom_75_100));
+
         iconelaunch.setAnimation(scal1);
 
         iconelaunch.startAnimation(scal1);
