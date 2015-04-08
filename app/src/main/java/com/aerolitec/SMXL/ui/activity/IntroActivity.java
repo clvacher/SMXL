@@ -16,7 +16,7 @@ import com.crashlytics.android.Crashlytics;
 
 public class IntroActivity extends Activity {
     // Splash screen timerS
-    private static int SPLASH_TIME_OUT = 5000;
+    private static int SPLASH_TIME_OUT = 1500;
     RelativeLayout rlIntro;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
