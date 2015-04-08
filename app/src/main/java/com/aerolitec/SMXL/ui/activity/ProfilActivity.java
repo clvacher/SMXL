@@ -125,8 +125,7 @@ public class ProfilActivity extends Activity implements OnProfileSelected {
 
 
     @Override
-         protected void onResume() {
-        Log.d("Lol", "Lol");
+        protected void onResume() {
         getFragmentManager().beginTransaction()
                 .add(R.id.container, new ProfilesFragment())
                 .commit();
