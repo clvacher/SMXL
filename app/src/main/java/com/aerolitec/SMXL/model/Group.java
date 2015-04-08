@@ -16,6 +16,7 @@ public class Group {
         this.title = title;
         children = new ArrayList<Child>();
         this.isChecked = false;
+        //ta gueule
     }
 
     public void setChecked(boolean isChecked) {
