@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Window;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.TranslateAnimation;
 import android.widget.RelativeLayout;
@@ -14,14 +15,18 @@ import com.crashlytics.android.Crashlytics;
 
 public class IntroActivity extends Activity {
     // Splash screen timerS
-    private static int SPLASH_TIME_OUT = 1000;
+    private static int SPLASH_TIME_OUT = 10000;
     RelativeLayout rlIntro;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //Crashlytics.start(this);
 
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         setContentView(R.layout.activity_intro);
+
+
         rlIntro = (RelativeLayout) findViewById(R.id.rlIntro);
         //TranslateAnimation trans = new TranslateAnimation(0, 0, 0, -250);
         //trans.setDuration(1000);
