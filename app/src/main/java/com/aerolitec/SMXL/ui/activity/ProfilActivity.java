@@ -43,18 +43,9 @@ public class ProfilActivity extends Activity implements OnProfileSelected {
         user = smxl.getUser();
 
         if (savedInstanceState == null) {
-
-            if(user == null){
-                getFragmentManager().beginTransaction()
-                        .add(R.id.container, new NoUsersFragment())
-                        .commit();
-            }
-            else{
-                getFragmentManager().beginTransaction()
-                        .add(R.id.container, new ProfilesFragment())
-                        .commit();
-            }
-
+            getFragmentManager().beginTransaction()
+                    .add(R.id.container, new ProfilesFragment())
+                    .commit();
         }
     }
 
@@ -126,16 +117,11 @@ public class ProfilActivity extends Activity implements OnProfileSelected {
 
     @Override
         protected void onResume() {
-        if(user == null){
-            getFragmentManager().beginTransaction()
-                    .add(R.id.container, new NoUsersFragment())
-                    .commit();
-        }
-        else{
+
             getFragmentManager().beginTransaction()
                     .add(R.id.container, new ProfilesFragment())
                     .commit();
-        }
+
         super.onResume();
     }
 }
