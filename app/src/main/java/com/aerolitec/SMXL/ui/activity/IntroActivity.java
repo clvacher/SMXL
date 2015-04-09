@@ -17,7 +17,7 @@ public class IntroActivity extends Activity {
     // Splash screen timerS
     private static int SPLASH_TIME_OUT = 2000;
     RelativeLayout rlIntro;
-    ImageView iconelaunch;
+    ImageView launchIcon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,7 @@ public class IntroActivity extends Activity {
 
         setContentView(R.layout.activity_intro);
 
-        iconelaunch = (ImageView)findViewById(R.id.imgLogo);
+        launchIcon = (ImageView)findViewById(R.id.imgLogo);
 
         AnimationSet scal1 = new AnimationSet(true);
 
@@ -36,19 +36,19 @@ public class IntroActivity extends Activity {
         scal1.addAnimation(AnimationUtils.loadAnimation(this, R.anim.zoom_85_75));
         scal1.addAnimation(AnimationUtils.loadAnimation(this, R.anim.zoom_75_100));
 
-        iconelaunch.setAnimation(scal1);
+        launchIcon.setAnimation(scal1);
 
-        iconelaunch.startAnimation(scal1);
+        launchIcon.startAnimation(scal1);
 
         //Animation scal1 = new ScaleAnimation(0, 0.75f, 0.1f, 0.75f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
 
 //        ScaleAnimation scal2 = new ScaleAnimation(0.75f, 0.50f, 0.75f, 0.50f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
 //        scal2.setDuration(1000);
-//        iconelaunch.startAnimation(scal2);
+//        launchIcon.startAnimation(scal2);
 //
 //        ScaleAnimation scal3 = new ScaleAnimation(0.50f, 1.0f, 0.50f, 1.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
 //        scal3.setDuration(1000);
-//        iconelaunch.startAnimation(scal3);
+//        launchIcon.startAnimation(scal3);
         //TranslateAnimation trans = new TranslateAnimation(0, 0, 0, -(getWindowManager().getDefaultDisplay().getHeight()));
         //trans.setDuration(5000);
 

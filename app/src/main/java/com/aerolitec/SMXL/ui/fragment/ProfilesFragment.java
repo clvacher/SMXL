@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.User;
@@ -31,7 +32,7 @@ public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private GridView gridViewProfiles;
+    private View view;
     private ArrayList<ProfileItem> profileItem;
     private ProfilesAdapter adapter;
 
@@ -71,8 +72,8 @@ public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_profiles, container, false);
-        gridViewProfiles = (GridView)view.findViewById(R.id.listViewProfiles);
+        view = inflater.inflate(R.layout.fragment_profiles, container, false);
+        GridView gridViewProfiles = (GridView)view.findViewById(R.id.listViewProfiles);
         profileItem = new ArrayList<>();
 
         adapter = new ProfilesAdapter(getActivity().getApplicationContext(),profileItem);
@@ -135,10 +136,16 @@ public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.
         // load all the profiles from the database
 
         ArrayList<User> users = SMXL.get().getDataBase().getAllUser();
-        for (User u : users){
-            profileItem.add(new ProfileItem(u.getUserid(),u.getLastname(),u.getFirstname(),u.getAvatar()));
+        if(!users.isEmpty()) {
+            for (User u : users) {
+                profileItem.add(new ProfileItem(u.getUserid(), u.getLastname(), u.getFirstname(), u.getAvatar()));
+            }
+            adapter.notifyDataSetChanged();
         }
-        adapter.notifyDataSetChanged();
+        else{
+            (view.findViewById(R.id.listViewProfiles)).setVisibility(View.INVISIBLE);
+            (view.findViewById(R.id.TextNoProfile)).setVisibility(View.VISIBLE);
+        }
     }
 
     private AdapterView.OnItemClickListener selectProfile = new AdapterView.OnItemClickListener() {

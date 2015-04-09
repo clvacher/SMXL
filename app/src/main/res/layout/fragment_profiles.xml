@@ -1,4 +1,4 @@
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/DefaultBackgroundColor"
@@ -38,14 +38,22 @@
         android:numColumns="3"
         android:gravity="center"
         android:padding="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="10dp"
         android:background="@color/DefaultBackgroundColor"
         android:stretchMode="columnWidth"
         android:layout_gravity="center_horizontal"
         android:verticalSpacing="20dp"
-        android:horizontalSpacing="10dp" />
+        android:horizontalSpacing="10dp"
+        android:layout_below="@+id/title"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/TextNoProfile"
+        android:visibility="invisible"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:text="Ceci est un test" />
     <!--
         <ListView
             android:id="@+id/listViewProfiles"
@@ -63,4 +71,4 @@
             />
             -->
 
-</LinearLayout>
+</RelativeLayout>
