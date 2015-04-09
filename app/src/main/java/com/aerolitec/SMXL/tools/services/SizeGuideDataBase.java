@@ -77,18 +77,12 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
         // Creation user table
         try {
             statement = "CREATE TABLE IF NOT EXISTS user (userid INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    "nickname VARCHAR(32), " +
                     "firstname VARCHAR(32), " +
                     "lastname VARCHAR(32), " +
                     "birthday VARCHAR(32), " +
                     "sexe VARCHAR(1), " +
                     "avatar VARCHAR(128), " +
                     "pictureDressingRoom VARCHAR(128), " +
-                    "description VARCHAR(256)," +
-                    "favoriteColor1 INTEGER," +
-                    "favoriteColor2 INTEGER," +
-                    "favoriteColor3 INTEGER," +
-                    "favoriteColor4 INTEGER," +
                     "size REAL, " +
                     "weight REAL, " +
                     "chest REAL, " +
@@ -1916,11 +1910,11 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
     }
 
     // C.R.U.D User
-        public User createUser(String nickname, String firstName, String lastName, String birthday,
-                               String sexe, String avatar, String description, int favoriteColor1, int favoriteColor2,
-                               int favoriteColor3, int favoriteColor4){
+        public User createUser(String firstName, String lastName, String birthday,
+                               String sexe, String avatar, String description){
             SQLiteDatabase db = this.getWritableDatabase();
             User user;
+            String nickname = firstName+lastName+birthday;
             try {
                 ContentValues values = new ContentValues(19);
                 values.put("nickname", nickname);
@@ -1931,10 +1925,6 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
                 values.put("avatar", avatar);
                 values.put("pictureDressingRoom", "");
                 values.put("description", description);
-                values.put("favoriteColor1", favoriteColor1);
-                values.put("favoriteColor2", favoriteColor2);
-                values.put("favoriteColor3", favoriteColor3);
-                values.put("favoriteColor4", favoriteColor4);
                 values.put("size", 0);
                 values.put("weight", 0);
                 values.put("chest", 0);

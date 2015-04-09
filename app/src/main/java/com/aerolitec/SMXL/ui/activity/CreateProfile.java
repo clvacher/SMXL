@@ -55,14 +55,12 @@ import java.util.Calendar;
 public class CreateProfile extends Activity {
     private static final int CROP_IMAGE = 2;
 
-    EditText etPseudo, etFirstName, etLastName, etDescription;
+    EditText etFirstName, etLastName, etNotes;
     RadioGroup radioSexe;
     RoundedImageView imgProfil;
     Button datePickerButton;
-    RelativeLayout addColor;
     private String picturePath;
     String birthday;
-    ArrayList<Integer> listColors;
     private Uri cropImagePath;
 
     @Override
@@ -73,30 +71,18 @@ public class CreateProfile extends Activity {
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setDisplayShowTitleEnabled(false);
 
-        listColors = new ArrayList<>();
-
-        etPseudo = (EditText) findViewById(R.id.etPseudo);
         etFirstName = (EditText) findViewById(R.id.etFirstName);
         etLastName = (EditText) findViewById(R.id.etLastName);
-        etDescription = (EditText) findViewById(R.id.etDescriptionProfil);
+        etNotes = (EditText) findViewById(R.id.etNotesProfil);
         datePickerButton = (Button) findViewById(R.id.buttonBirthday);
-        addColor = (RelativeLayout) findViewById(R.id.addColor);
+
         datePickerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openDatePickerDialog();
             }
         });
-        addColor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (listColors.size() < 4)
-                    openColorPickerDialog();
-                else
-                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.too_many_color), Toast.LENGTH_LONG)
-                            .show();
-            }
-        });
+
         radioSexe = (RadioGroup) findViewById(R.id.radioSexe);
         imgProfil = (RoundedImageView) findViewById(R.id.imgProfil);
         imgProfil.setOnClickListener(new View.OnClickListener() {
@@ -106,76 +92,8 @@ public class CreateProfile extends Activity {
             }
         });
 
-        if(listColors.size() == 0){
-            ((LinearLayout) findViewById(R.id.layoutColorChooser)).setVisibility(View.GONE);
-        }
 
     }
-
-    private void openColorPickerDialog() {
-        int[] mColors = Constants.ColorUtils.colorChoice(this);
-        ColorPickerDialog colorcalendar = ColorPickerDialog.newInstance(
-                R.string.color_picker_default_title, mColors,
-                listColors, 4,
-                Constants.isTablet(this) ? ColorPickerDialog.SIZE_LARGE
-                        : ColorPickerDialog.SIZE_SMALL
-        );
-
-        colorcalendar.setOnColorSelectedListener(colorcalendarListener);
-        colorcalendar.show(getFragmentManager(), "cal");
-
-    }
-
-    // Implement listener to get selected color value
-    ColorPickerSwatch.OnColorSelectedListener colorcalendarListener = new ColorPickerSwatch.OnColorSelectedListener() {
-
-        @Override
-        public void onColorSelected(int color) {
-            if(!listColors.contains(color) && listColors.size() < 4) {
-                listColors.add((Integer) color);
-            } else if(listColors.contains(color)) {
-                listColors.remove((Integer) color);
-            } else {
-                Toast.makeText(getApplicationContext(), getResources().getString(R.string.too_many_color), Toast.LENGTH_SHORT).show();
-            }
-
-            updateUI();
-        }
-    };
-
-    private void updateUI() {
-
-        ((LinearLayout) findViewById(R.id.layoutColorChooser)).setVisibility(View.VISIBLE);
-        ((LinearLayout) findViewById(R.id.layoutColorChooser)).removeAllViews();
-        ((LinearLayout) findViewById(R.id.layoutColorChooser)).removeAllViewsInLayout();
-
-
-
-        for (int i = 0; i < listColors.size(); i++) {
-
-            final View viewToLoad = LayoutInflater.from(
-                    getApplicationContext()).inflate(
-                    R.layout.item_layout_color, null);
-            final ImageView color = (ImageView) viewToLoad.findViewById(R.id.circleColor);
-            color.setBackgroundColor(listColors.get(i));
-            ((LinearLayout) findViewById(R.id.layoutColorChooser))
-                    .addView(viewToLoad);
-            final int position = i;
-            viewToLoad.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    openColorPickerDialog();
-                }
-            });
-        }
-
-        if(listColors.size() >=  4){
-            addColor.setVisibility(View.GONE);
-        } else
-            addColor.setVisibility(View.VISIBLE);
-    }
-
-
 
 
     private void openDatePickerDialog() {
@@ -206,7 +124,8 @@ public class CreateProfile extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
 
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.create_profil, menu);
+
+        //getMenuInflater().inflate(R.menu.create_profil, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -216,11 +135,11 @@ public class CreateProfile extends Activity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+
         if (id == R.id.validate) {
 
             /// Add Profile in DataBase ///
-            if (etPseudo.getText().toString().length() < 2 ||
-                    etFirstName.getText().toString().length() < 2 ||
+            if (etFirstName.getText().toString().length() < 2 ||
                     etLastName.getText().toString().length() < 2) {
                 Toast.makeText(this, getResources().getString(R.string.incompleteProfile), Toast.LENGTH_LONG).show();
             } else {
@@ -233,14 +152,11 @@ public class CreateProfile extends Activity {
                         sexe = "H";
                     }
                 }
-                while(listColors.size() != 4){
-                    listColors.add(0);
-                }
+
                 User user = null;
                 try {
-                    user = SMXL.get().getDataBase().createUser(etPseudo.getText().toString(), etFirstName.getText().toString(),
-                            etLastName.getText().toString(), birthday, sexe, picturePath, etDescription.getText().toString(),
-                            listColors.get(0), listColors.get(1), listColors.get(2), listColors.get(3));
+                    user = SMXL.get().getDataBase().createUser(etFirstName.getText().toString(),
+                            etLastName.getText().toString(), birthday, sexe, picturePath, etNotes.getText().toString());
                     Log.d(Constants.TAG, "New profile created : " + user.toString());
                 } catch (Exception e) {
                     Log.d(Constants.TAG, "Create user with error : " + e.getMessage());
@@ -256,6 +172,39 @@ public class CreateProfile extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onActionCreateProfile (View v){
+
+        /// Add Profile in DataBase ///
+        if (etFirstName.getText().toString().length() < 2 ||
+                etLastName.getText().toString().length() < 2) {
+            Toast.makeText(this, getResources().getString(R.string.incompleteProfile), Toast.LENGTH_LONG).show();
+        } else {
+            String sexe = "F";
+            int idRadioButton = radioSexe.getCheckedRadioButtonId();
+            if (idRadioButton == -1) {
+                //no item selected
+            } else {
+                if (idRadioButton == R.id.radioMale) {
+                    sexe = "H";
+                }
+            }
+
+            User user = null;
+            try {
+                user = SMXL.get().getDataBase().createUser(etFirstName.getText().toString(),
+                        etLastName.getText().toString(), birthday, sexe, picturePath, etNotes.getText().toString());
+                Log.d(Constants.TAG, "New profile created : " + user.toString());
+            } catch (Exception e) {
+                Log.d(Constants.TAG, "Create user with error : " + e.getMessage());
+            }
+            if (user != null)
+                setResult(user.getUserid());
+            else
+                setResult(0);
+            finish();
+        }
     }
 
     private void selectProfilPicture() {

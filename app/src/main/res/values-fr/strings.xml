@@ -55,7 +55,7 @@
     <string name="importProfile">Importer Profile</string>
     <string name="remove">Supprimer</string>
     <string name="message_delete_garment">Voulez vous supprimer ce vêtement ?</string>
-    <string name="incompleteProfile">Vous devez indiquer pseudo, prénom et nom</string>
+    <string name="incompleteProfile">Vous devez indiquer prénom et nom</string>
     <string name="firstname">Prénom</string>
     <string name="surname">Nom</string>
     <string name="dateOfBirth">Date de naissance</string>

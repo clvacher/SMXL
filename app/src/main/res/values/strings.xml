@@ -54,7 +54,7 @@
     <string name="importProfile">Import Profile</string>
     <string name="remove">Remove</string>
     <string name="message_delete_garment">Do you want to remove this garment ?</string>
-    <string name="incompleteProfile">You must enter pseudo, first and last name</string>
+    <string name="incompleteProfile">You must enter first and last name</string>
     <string name="firstname">Firstname</string>
     <string name="surname">Lastname</string>
     <string name="dateOfBirth">Date of birth</string>
@@ -83,5 +83,8 @@
     <string name="title_activity_display_garment">My garment</string>
     <string name="remove_garment">Delete this garment ?</string>
     <string name="no_user">Create your profile !</string>
+    <string name="notes">Notes</string>
+    <string name="buttonValidation">Validate</string>
+
 
 </resources>

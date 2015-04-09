@@ -32,13 +32,9 @@ import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.ImageHelper;
-import com.aerolitec.SMXL.tools.colorPicker.ColorPickerDialog;
-import com.aerolitec.SMXL.tools.colorPicker.ColorPickerSwatch;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
-import com.aerolitec.SMXL.widget.RoundedTransformation;
 import com.makeramen.RoundedImageView;
-import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.io.IOException;
@@ -51,7 +47,7 @@ import java.util.Calendar;
 public class UpdateProfile extends Activity {
     private static final int CROP_IMAGE = 2;
 
-    EditText etPseudo, etFirstName, etLastName, etDescription;
+    EditText etFirstName, etLastName, etNotes;
     //DatePicker dpBirthday;
     RadioGroup radioSexe;
     RoundedImageView imgProfil;
@@ -59,8 +55,6 @@ public class UpdateProfile extends Activity {
     private User user;
     Button datePickerButton;
     String birthday;
-    RelativeLayout addColor;
-    ArrayList<Integer> listColors;
     private Uri cropImagePath;
 
 
@@ -84,47 +78,35 @@ public class UpdateProfile extends Activity {
         getActionBar().setDisplayShowTitleEnabled(true);
         getActionBar().setDisplayUseLogoEnabled(false);
 
-        listColors = new ArrayList<>();
-
-        etPseudo = (EditText)findViewById(R.id.etPseudo);
         etFirstName = (EditText) findViewById(R.id.etFirstName);
         etLastName = (EditText) findViewById(R.id.etLastName);
-        etDescription = (EditText) findViewById(R.id.etDescriptionProfil);
+        etNotes = (EditText) findViewById(R.id.etNotesProfil);
         radioSexe = (RadioGroup) findViewById(R.id.radioSexe);
         RadioButton radioH = (RadioButton) findViewById(R.id.radioMale);
         RadioButton radioF = (RadioButton) findViewById(R.id.radioFemale);
         imgProfil = (RoundedImageView) findViewById(R.id.imgProfil);
         datePickerButton = (Button) findViewById(R.id.buttonBirthday);
-        addColor = (RelativeLayout) findViewById(R.id.addColor);
+
         datePickerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openDatePickerDialog();
             }
         });
-        addColor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (listColors.size() < 4)
-                    openColorPickerDialog();
-                else
-                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.too_many_color), Toast.LENGTH_LONG)
-                            .show();
-            }
-        });
+
         birthday = user.getBirthday();
         datePickerButton.setText(birthday);
-        etDescription.setText(user.getDescription());
-        etPseudo.setText(user.getNickname());
+        etNotes.setText(user.getDescription());
         etFirstName.setText(user.getFirstname());
         etLastName.setText(user.getLastname());
-        addColorToList();
+
         if (user.getSexe().startsWith("H")){
             radioH.setChecked(true);
         }
         else {
             radioF.setChecked(true);
         }
+
         picturePath = user.getAvatar();
         int width = imgProfil.getLayoutParams().width;
         try {
@@ -152,38 +134,8 @@ public class UpdateProfile extends Activity {
                 selectProfilPicture();
             }
         });
-
-        /*
-        if(listColors.size() == 0){
-            ((LinearLayout) findViewById(R.id.layoutColorChooser)).setVisibility(View.GONE);
-        } else {
-            updateUI();
-        }
-        */
-
-        for(int i = 0 ; i < listColors.size(); i++){
-            if(!listColors.get(i).equals(0)){
-                ((LinearLayout) findViewById(R.id.layoutColorChooser)).setVisibility(View.VISIBLE);
-                updateUI();
-            }
-        }
-
     }
 
-    private void addColorToList() {
-        if(user.getFavoriteColor1() != 0) {
-            listColors.add(user.getFavoriteColor1());
-        }
-        if(user.getFavoriteColor2() != 0) {
-            listColors.add(user.getFavoriteColor2());
-        }
-        if(user.getFavoriteColor3() != 0) {
-            listColors.add(user.getFavoriteColor3());
-        }
-        if(user.getFavoriteColor4() != 0) {
-            listColors.add(user.getFavoriteColor4());
-        }
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -202,8 +154,7 @@ public class UpdateProfile extends Activity {
         if (id == R.id.validate) {
 
         /// Add Profile in DataBase ///
-            if (etPseudo.getText().toString().length()<2 ||
-                etFirstName.getText().toString().length() < 2 ||
+            if (etFirstName.getText().toString().length() < 2 ||
                 etLastName.getText().toString().length() < 2){
                 Toast.makeText(this,"Vous devez indiquer pseudo, prénom et nom",Toast.LENGTH_LONG).show();
             }
@@ -218,19 +169,14 @@ public class UpdateProfile extends Activity {
                         sexe = "H";
                     }
                 }
-                while(listColors.size() != 4){
-                    listColors.add(0);
-                }
+
                 user.setAvatar(picturePath);
                 user.setBirthday(birthday);
                 user.setFirstname(etFirstName.getText().toString());
                 user.setLastname(etLastName.getText().toString());
-                user.setNickname(etPseudo.getText().toString());
-                user.setDescription(etDescription.getText().toString());
-                user.setFavoriteColor1(listColors.get(0));
-                user.setFavoriteColor2(listColors.get(1));
-                user.setFavoriteColor3(listColors.get(2));
-                user.setFavoriteColor4(listColors.get(3));
+
+                user.setDescription(etNotes.getText().toString());
+
                 user.setSexe(sexe);
 
                 try {
@@ -249,67 +195,6 @@ public class UpdateProfile extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    private void openColorPickerDialog() {
-        int[] mColors = Constants.ColorUtils.colorChoice(this);
-        ColorPickerDialog colorcalendar = ColorPickerDialog.newInstance(
-                R.string.color_picker_default_title, mColors,
-                listColors, 4,
-                Constants.isTablet(this) ? ColorPickerDialog.SIZE_LARGE
-                        : ColorPickerDialog.SIZE_SMALL
-        );
-
-        colorcalendar.setOnColorSelectedListener(colorcalendarListener);
-        colorcalendar.show(getFragmentManager(), "cal");
-
-    }
-
-    // Implement listener to get selected color value
-    ColorPickerSwatch.OnColorSelectedListener colorcalendarListener = new ColorPickerSwatch.OnColorSelectedListener() {
-
-        @Override
-        public void onColorSelected(int color) {
-            if(!listColors.contains(color) && listColors.size() < 4) {
-                listColors.add((Integer) color);
-            } else if(listColors.contains(color)) {
-                listColors.remove((Integer) color);
-            } else {
-                Toast.makeText(getApplicationContext(), getResources().getString(R.string.too_many_color), Toast.LENGTH_SHORT).show();
-            }
-
-            updateUI();
-        }
-    };
-
-    private void updateUI() {
-
-        ((LinearLayout) findViewById(R.id.layoutColorChooser)).setVisibility(View.VISIBLE);
-        ((LinearLayout) findViewById(R.id.layoutColorChooser)).removeAllViews();
-        ((LinearLayout) findViewById(R.id.layoutColorChooser)).removeAllViewsInLayout();
-
-        for (int i = 0; i < listColors.size(); i++) {
-
-            final View viewToLoad = LayoutInflater.from(
-                    getApplicationContext()).inflate(
-                    R.layout.item_layout_color, null);
-            final ImageView color = (ImageView) viewToLoad.findViewById(R.id.circleColor);
-            color.setBackgroundColor(listColors.get(i));
-            ((LinearLayout) findViewById(R.id.layoutColorChooser))
-                    .addView(viewToLoad);
-            final int position = i;
-            viewToLoad.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    openColorPickerDialog();
-                }
-            });
-        }
-
-        if(listColors.size() >=  4){
-            addColor.setVisibility(View.GONE);
-        } else
-            addColor.setVisibility(View.VISIBLE);
     }
 
     private void openDatePickerDialog(){
