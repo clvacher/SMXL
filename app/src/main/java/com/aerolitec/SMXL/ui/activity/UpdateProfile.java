@@ -197,6 +197,46 @@ public class UpdateProfile extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void onActionCreateProfile (View v){
+
+
+        /// Add Profile in DataBase ///
+        if (etFirstName.getText().toString().length() < 2 ||
+                etLastName.getText().toString().length() < 2){
+            Toast.makeText(this,"Vous devez indiquer pseudo, prénom et nom",Toast.LENGTH_LONG).show();
+        }
+        else {
+            String sexe = "F";
+            int idRadioButton = radioSexe.getCheckedRadioButtonId();
+            if (idRadioButton == -1){
+                //no item selected
+            }
+            else{
+                if (idRadioButton == R.id.radioMale){
+                    sexe = "H";
+                }
+            }
+
+            user.setAvatar(picturePath);
+            user.setBirthday(birthday);
+            user.setFirstname(etFirstName.getText().toString());
+            user.setLastname(etLastName.getText().toString());
+
+            user.setDescription(etNotes.getText().toString());
+
+            user.setSexe(sexe);
+
+            try {
+                SMXL.get().getDataBase().updateUser(user);
+                Log.d(Constants.TAG, "Profile updated");
+            }
+            catch (Exception e) {
+                Log.d(Constants.TAG,"Update user with error : " + e.getMessage());
+            }
+            finish();
+        }
+    }
+
     private void openDatePickerDialog(){
         final Calendar c = Calendar.getInstance();
         int birthdayYear = c.get(Calendar.YEAR);

@@ -2,51 +2,35 @@ package com.aerolitec.SMXL.ui.activity;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.app.DialogFragment;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.util.TypedValue;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RadioGroup;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aerolitec.SMXL.R;
-import com.aerolitec.SMXL.model.ColorPicker;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.ImageHelper;
-import com.aerolitec.SMXL.tools.colorPicker.ColorPickerDialog;
-import com.aerolitec.SMXL.tools.colorPicker.ColorPickerSwatch;
 import com.aerolitec.SMXL.ui.SMXL;
-import com.aerolitec.SMXL.ui.adapter.ColorPickerAdapter;
-import com.aerolitec.SMXL.widget.RoundedTransformation;
 import com.makeramen.RoundedImageView;
-import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
@@ -125,7 +109,7 @@ public class CreateProfile extends Activity {
 
         // Inflate the menu; this adds items to the action bar if it is present.
 
-        //getMenuInflater().inflate(R.menu.create_profil, menu);
+        getMenuInflater().inflate(R.menu.create_profil, menu);
         return super.onCreateOptionsMenu(menu);
     }
 

@@ -68,7 +68,7 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
         }
 
 
-        db.execSQL("DROP TABLE IF EXISTS user");
+        //db.execSQL("DROP TABLE IF EXISTS user");
         db.execSQL("DROP TABLE IF EXISTS brands");
         db.execSQL("DROP TABLE IF EXISTS clothe_type");
         db.execSQL("DROP TABLE IF EXISTS brand_size_guide");
@@ -1992,8 +1992,7 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
     */
 
     public User importUser(String nickname, String firstName, String lastName, String birthday, String sexe,
-                String avatar, String pictureDressingRoom, String description, String favoriteColor1, String favoriteColor2,
-                String favoriteColor3, String favoriteColor4, String size, String weight, String bust,
+                String avatar, String pictureDressingRoom, String description, String size, String weight, String bust,
                 String chest, String collar, String waist, String hips, String sleeve, String inseam,
                 String feet, String unitL, String unitW, String pointure){
 
@@ -2010,10 +2009,6 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
             values.put("avatar", avatar);
             values.put("pictureDressingRoom", "");
             values.put("description", description);
-            values.put("favoriteColor1", favoriteColor1);
-            values.put("favoriteColor2", favoriteColor2);
-            values.put("favoriteColor3", favoriteColor3);
-            values.put("favoriteColor4", favoriteColor4);
             values.put("size", size);
             values.put("weight", weight);
             //values.put("imc", imc);
@@ -2132,23 +2127,19 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
             user.setAvatar(c.getString(6));
             user.setPictureDressingRoom(c.getString(7));
             user.setDescription(c.getString(8));
-            user.setFavoriteColor1(c.getInt(9));
-            user.setFavoriteColor2(c.getInt(10));
-            user.setFavoriteColor3(c.getInt(11));
-            user.setFavoriteColor4(c.getInt(12));
-            user.setSize(c.getDouble(13));
-            user.setWeight(c.getDouble(14));
-            user.setChest(c.getDouble(15));
-            user.setCollar(c.getDouble(16));
-            user.setBust(c.getDouble(17));
-            user.setWaist(c.getDouble(18));
-            user.setHips(c.getDouble(19));
-            user.setSleeve(c.getDouble(20));
-            user.setInseam(c.getDouble(21));
-            user.setFeet(c.getDouble(22));
-            user.setUnitLength(c.getInt(23));
-            user.setUnitWeight(c.getInt(24));
-            user.setPointure(c.getInt(25));
+            user.setSize(c.getDouble(9));
+            user.setWeight(c.getDouble(10));
+            user.setChest(c.getDouble(11));
+            user.setCollar(c.getDouble(12));
+            user.setBust(c.getDouble(13));
+            user.setWaist(c.getDouble(14));
+            user.setHips(c.getDouble(15));
+            user.setSleeve(c.getDouble(16));
+            user.setInseam(c.getDouble(17));
+            user.setFeet(c.getDouble(18));
+            user.setUnitLength(c.getInt(19));
+            user.setUnitWeight(c.getInt(20));
+            user.setPointure(c.getInt(21));
             c.close();
             }
         catch (SQLiteException e) {
@@ -2174,24 +2165,19 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
             user.setSexe(c.getString(5));
             user.setAvatar(c.getString(6));
             user.setPictureDressingRoom(c.getString(7));
-            user.setDescription(c.getString(8));
-            user.setFavoriteColor1(c.getInt(9));
-            user.setFavoriteColor2(c.getInt(10));
-            user.setFavoriteColor3(c.getInt(11));
-            user.setFavoriteColor4(c.getInt(12));
-            user.setSize(c.getDouble(13));
-            user.setWeight(c.getDouble(14));
-            user.setChest(c.getDouble(15));
-            user.setCollar(c.getDouble(16));
-            user.setBust(c.getDouble(17));
-            user.setWaist(c.getDouble(18));
-            user.setHips(c.getDouble(19));
-            user.setSleeve(c.getDouble(20));
-            user.setInseam(c.getDouble(21));
-            user.setFeet(c.getDouble(22));
-            user.setUnitLength(c.getInt(23));
-            user.setUnitWeight(c.getInt(24));
-            user.setPointure(c.getInt(25));
+            user.setSize(c.getDouble(8));
+            user.setWeight(c.getDouble(9));
+            user.setChest(c.getDouble(10));
+            user.setCollar(c.getDouble(11));
+            user.setBust(c.getDouble(12));
+            user.setWaist(c.getDouble(13));
+            user.setHips(c.getDouble(14));
+            user.setSleeve(c.getDouble(15));
+            user.setInseam(c.getDouble(16));
+            user.setFeet(c.getDouble(17));
+            user.setUnitLength(c.getInt(18));
+            user.setUnitWeight(c.getInt(19));
+            user.setPointure(c.getInt(20));
             c.close();
         }
         catch (SQLiteException e) {
@@ -2214,10 +2200,6 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
             values.put("avatar", user.getAvatar());
             values.put("pictureDressingRoom", user.getPictureDressingRoom());
             values.put("description", user.getDescription());
-            values.put("favoriteColor1", user.getFavoriteColor1());
-            values.put("favoriteColor2", user.getFavoriteColor2());
-            values.put("favoriteColor3", user.getFavoriteColor3());
-            values.put("favoriteColor4", user.getFavoriteColor4());
             values.put("size", user.getSize());
             values.put("weight", user.getWeight());
             values.put("chest", user.getChest());
@@ -2260,23 +2242,19 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
                 user.setAvatar(c.getString(6));
                 user.setPictureDressingRoom(c.getString(7));
                 user.setDescription(c.getString(8));
-                user.setFavoriteColor1(c.getInt(9));
-                user.setFavoriteColor2(c.getInt(10));
-                user.setFavoriteColor3(c.getInt(11));
-                user.setFavoriteColor4(c.getInt(12));
-                user.setSize(c.getDouble(13));
-                user.setWeight(c.getDouble(14));
-                user.setChest(c.getDouble(15));
-                user.setCollar(c.getDouble(16));
-                user.setBust(c.getDouble(17));
-                user.setWaist(c.getDouble(18));
-                user.setHips(c.getDouble(19));
-                user.setSleeve(c.getDouble(20));
-                user.setInseam(c.getDouble(21));
-                user.setFeet(c.getDouble(22));
-                user.setUnitLength(c.getInt(23));
-                user.setUnitWeight(c.getInt(24));
-                user.setPointure(c.getInt(25));
+                user.setSize(c.getDouble(9));
+                user.setWeight(c.getDouble(10));
+                user.setChest(c.getDouble(11));
+                user.setCollar(c.getDouble(12));
+                user.setBust(c.getDouble(13));
+                user.setWaist(c.getDouble(14));
+                user.setHips(c.getDouble(15));
+                user.setSleeve(c.getDouble(16));
+                user.setInseam(c.getDouble(17));
+                user.setFeet(c.getDouble(18));
+                user.setUnitLength(c.getInt(19));
+                user.setUnitWeight(c.getInt(20));
+                user.setPointure(c.getInt(21));
                 users.add(user);
                 eof = c.moveToNext();
             }

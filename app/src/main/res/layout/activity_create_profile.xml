@@ -250,12 +250,16 @@
         android:layout_weight="0.30" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:text="@string/buttonValidation"
         android:id="@+id/buttonValidation"
         android:layout_gravity="center_horizontal"
-        android:onClick="onActionCreateProfile"/>
+        android:onClick="onActionCreateProfile"
+        android:background="#E84E1B"
+        android:padding="10dp"
+        android:textColor="#FFF"
+        android:layout_margin="20dp" />
 
 
     <!--

@@ -21,13 +21,12 @@
         android:layout_centerHorizontal="true" />
 
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="160dp"
+        android:layout_height="80dp"
         android:src="@drawable/groslogo"
         android:id="@+id/imageTxtLogo"
         android:layout_below="@+id/imgLogo"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp" />
+        android:layout_centerHorizontal="true" />
 
         <ProgressBar
             style="?android:attr/progressBarStyleLarge"
