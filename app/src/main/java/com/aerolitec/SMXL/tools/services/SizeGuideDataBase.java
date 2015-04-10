@@ -68,7 +68,7 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
         }
 
 
-        //db.execSQL("DROP TABLE IF EXISTS user");
+        db.execSQL("DROP TABLE IF EXISTS user");
         db.execSQL("DROP TABLE IF EXISTS brands");
         db.execSQL("DROP TABLE IF EXISTS clothe_type");
         db.execSQL("DROP TABLE IF EXISTS brand_size_guide");
@@ -77,12 +77,14 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
         // Creation user table
         try {
             statement = "CREATE TABLE IF NOT EXISTS user (userid INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "nickname VARCHAR(32), " +
                     "firstname VARCHAR(32), " +
                     "lastname VARCHAR(32), " +
                     "birthday VARCHAR(32), " +
                     "sexe VARCHAR(1), " +
                     "avatar VARCHAR(128), " +
                     "pictureDressingRoom VARCHAR(128), " +
+                    "description VARCHAR(256), " +
                     "size REAL, " +
                     "weight REAL, " +
                     "chest REAL, " +
