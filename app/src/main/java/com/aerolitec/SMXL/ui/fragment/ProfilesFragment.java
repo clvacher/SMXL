@@ -134,7 +134,6 @@ public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.
 
     private void loadProfiles(){
         // load all the profiles from the database
-
         ArrayList<User> users = SMXL.get().getDataBase().getAllUser();
         if(!users.isEmpty()) {
             for (User u : users) {

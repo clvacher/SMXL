@@ -40,24 +40,24 @@ public class IntroActivity extends Activity {
 
         launchIcon.startAnimation(scal1);
 
-        //Animation scal1 = new ScaleAnimation(0, 0.75f, 0.1f, 0.75f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        /*Animation scal1 = new ScaleAnimation(0, 0.75f, 0.1f, 0.75f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
 
-//        ScaleAnimation scal2 = new ScaleAnimation(0.75f, 0.50f, 0.75f, 0.50f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-//        scal2.setDuration(1000);
-//        launchIcon.startAnimation(scal2);
-//
-//        ScaleAnimation scal3 = new ScaleAnimation(0.50f, 1.0f, 0.50f, 1.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-//        scal3.setDuration(1000);
-//        launchIcon.startAnimation(scal3);
-        //TranslateAnimation trans = new TranslateAnimation(0, 0, 0, -(getWindowManager().getDefaultDisplay().getHeight()));
-        //trans.setDuration(5000);
+        ScaleAnimation scal2 = new ScaleAnimation(0.75f, 0.50f, 0.75f, 0.50f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        scal2.setDuration(1000);
+        launchIcon.startAnimation(scal2);
+
+        ScaleAnimation scal3 = new ScaleAnimation(0.50f, 1.0f, 0.50f, 1.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        scal3.setDuration(1000);
+        launchIcon.startAnimation(scal3);
+        TranslateAnimation trans = new TranslateAnimation(0, 0, 0, -(getWindowManager().getDefaultDisplay().getHeight()));
+        trans.setDuration(5000);
 
 
-        //rlIntro = (RelativeLayout) findViewById(R.id.rlIntro);
-        //TranslateAnimation trans = new TranslateAnimation(0, 0, 0, -(getWindowManager().getDefaultDisplay().getHeight()));
-        //trans.setDuration(5000);
-        //trans.setInterpolator(new AccelerateInterpolator(1.0f));
-        //rlIntro.startAnimation(trans);
+        rlIntro = (RelativeLayout) findViewById(R.id.rlIntro);
+        TranslateAnimation trans = new TranslateAnimation(0, 0, 0, -(getWindowManager().getDefaultDisplay().getHeight()));
+        trans.setDuration(5000);
+        trans.setInterpolator(new AccelerateInterpolator(1.0f));
+        rlIntro.startAnimation(trans);*/
 
         new Handler().postDelayed(new Runnable() {
 

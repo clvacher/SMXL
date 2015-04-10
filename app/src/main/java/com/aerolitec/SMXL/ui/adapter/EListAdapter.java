@@ -62,7 +62,7 @@ public class EListAdapter extends BaseExpandableListAdapter implements Expandabl
         return true;
     }
 
-    /** 設定 Group 資料 */
+    /**  Group  **/
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         Group group = (Group) getGroup(groupPosition);
 
@@ -156,7 +156,7 @@ public class EListAdapter extends BaseExpandableListAdapter implements Expandabl
 
         groups.get(groupPosition).setChecked(childrenAllIsChecked);
 
-        // 注意，一定要通知 ExpandableListView 資料已經改變，ExpandableListView 會重新產生畫面
+        // 注意，一定要通知 ExpandableListView 資料已經改變，ExpandableListView
         notifyDataSetChanged();
     }
 
