@@ -16,7 +16,6 @@ import com.aerolitec.SMXL.tools.services.OnProfileSelected;
 import com.aerolitec.SMXL.tools.services.SizeGuideDataBase;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.adapter.ProfileItem;
-import com.aerolitec.SMXL.ui.fragment.NoUsersFragment;
 import com.aerolitec.SMXL.ui.fragment.ProfilesFragment;
 
 import java.io.File;

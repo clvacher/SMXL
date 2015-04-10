@@ -45,15 +45,31 @@
         android:horizontalSpacing="10dp"
         android:layout_below="@+id/title"
         android:layout_centerHorizontal="true" />
+    <RelativeLayout
+        android:id="@+id/NoProfileLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_user"
+            android:layout_alignBottom="@+id/arrow"
+            android:layout_toLeftOf="@+id/arrow"
+            android:layout_toStartOf="@+id/arrow"
+            android:textColor="@color/SectionTitle"
+            android:textSize="@dimen/section_text_size"
+            android:textStyle="bold"/>
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/TextNoProfile"
-        android:visibility="invisible"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:text="Ceci est un test" />
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="200dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/new_profile_arrow"
+            android:id="@+id/arrow" />
+    </RelativeLayout>
     <!--
         <ListView
             android:id="@+id/listViewProfiles"

@@ -82,6 +82,8 @@
     <string name="my_clothes">My clothes</string>
     <string name="title_activity_display_garment">My garment</string>
     <string name="remove_garment">Delete this garment ?</string>
+
+
     <string name="no_user">Create your profile !</string>
     <string name="notes">Notes</string>
     <string name="buttonValidation">Validate</string>

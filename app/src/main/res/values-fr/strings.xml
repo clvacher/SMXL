@@ -75,4 +75,7 @@
     <string name="my_clothes">Mes vêtements</string>
     <string name="remove_garment">Supprimer ce vêtement ?</string>
 
+
+    <string name="no_user">Créez votre profil !</string>
+
 </resources>
