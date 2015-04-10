@@ -3,6 +3,7 @@ package com.aerolitec.SMXL.ui.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.util.Log;
 import android.util.TypedValue;
@@ -60,26 +61,34 @@ public class ProfilesAdapter extends ArrayAdapter<ProfileItem> {
 
         holder.lastName.setText(item.getLastName());
         holder.firstName.setText(item.getFirstName());
+
+
         String urlImage = item.getAvatar();
 
-        try {
-            File file = new File(urlImage);
-            if (file.exists()) {
-                final BitmapFactory.Options options = new BitmapFactory.Options();
-                options.inJustDecodeBounds = true;
-                BitmapFactory.decodeFile(file.getAbsolutePath(), options);
+        if(urlImage != null) {
+            try {
+                File file = new File(urlImage);
 
-                // Calculate inSampleSize
-                options.inSampleSize = ImageHelper.calculateInSampleSize(options, width, width);
+                if (file.exists()) {
+                    final BitmapFactory.Options options = new BitmapFactory.Options();
+                    options.inJustDecodeBounds = true;
+                    BitmapFactory.decodeFile(file.getAbsolutePath(), options);
 
-                // Decode bitmap with inSampleSize set
-                options.inJustDecodeBounds = false;
-                holder.avatar.setImageBitmap(ImageHelper.getCorrectBitmap(BitmapFactory.decodeFile(file.getAbsolutePath(), options), file.getAbsolutePath()));
+                    // Calculate inSampleSize
+                    options.inSampleSize = ImageHelper.calculateInSampleSize(options, width, width);
+
+                    // Decode bitmap with inSampleSize set
+                    options.inJustDecodeBounds = false;
+                    holder.avatar.setImageBitmap(ImageHelper.getCorrectBitmap(BitmapFactory.decodeFile(file.getAbsolutePath(), options), file.getAbsolutePath()));
+                }
+            } catch (Exception e) {
+                Log.e("coucou", "coucou");
+                Log.e(Constants.TAG, "Error converting picture to file : " + e.getMessage());
             }
         }
-        catch (Exception e) {
-                Log.e(Constants.TAG,"Error converting picture to file : " + e.getMessage());
-            }
+        else{
+            holder.avatar.setImageResource(R.drawable.avatar);
+        }
 
 
         return convertView;

@@ -175,6 +175,10 @@ public class CreateProfile extends Activity {
                 }
             }
 
+/*            if(picturePath==null){
+                picturePath= v.getContext().getResources().getDrawable(R.drawable.avatar).toString();
+            }*/
+
             User user = null;
             try {
                 user = SMXL.get().getDataBase().createUser(etFirstName.getText().toString(),
@@ -197,6 +201,7 @@ public class CreateProfile extends Activity {
         startActivityForResult(i, 77);
     }
 
+
     @Override
     public void onActivityResult(int request_code, int result_code, Intent datas) {
         if (request_code == 77) {    // Pick a picture in gallery
@@ -210,6 +215,10 @@ public class CreateProfile extends Activity {
                 int columnIndex = c.getColumnIndex(fpCol[0]);
                 picturePath = c.getString(columnIndex);
             }
+            else{
+                picturePath="toto";
+            }
+            Log.d("Teeeeeest", picturePath.toString());
             c.close();
 
             try {
@@ -244,6 +253,9 @@ public class CreateProfile extends Activity {
             }
         }
     }
+
+
+
 
     private boolean performCropImage(Uri selectedImageUri) {
         try {

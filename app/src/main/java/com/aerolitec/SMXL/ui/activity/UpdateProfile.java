@@ -3,7 +3,6 @@ package com.aerolitec.SMXL.ui.activity;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.ActivityNotFoundException;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
@@ -12,20 +11,14 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.util.TypedValue;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aerolitec.SMXL.R;
@@ -38,7 +31,6 @@ import com.makeramen.RoundedImageView;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
@@ -70,7 +62,7 @@ public class UpdateProfile extends Activity {
             return;
         }
 
-        getActionBar().setTitle(user.getNickname());
+        getActionBar().setTitle("");
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
         getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -156,7 +148,7 @@ public class UpdateProfile extends Activity {
         /// Add Profile in DataBase ///
             if (etFirstName.getText().toString().length() < 2 ||
                 etLastName.getText().toString().length() < 2){
-                Toast.makeText(this,"Vous devez indiquer pseudo, prénom et nom",Toast.LENGTH_LONG).show();
+                Toast.makeText(this,"Vous devez indiquer prénom et nom",Toast.LENGTH_LONG).show();
             }
             else {
                 String sexe = "F";
@@ -174,6 +166,8 @@ public class UpdateProfile extends Activity {
                 user.setBirthday(birthday);
                 user.setFirstname(etFirstName.getText().toString());
                 user.setLastname(etLastName.getText().toString());
+
+                user.setNickname(etFirstName.getText().toString()+etLastName.getText().toString()+birthday);
 
                 user.setDescription(etNotes.getText().toString());
 
