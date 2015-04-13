@@ -337,6 +337,7 @@ public class UpdateProfile extends Activity {
                 }
 
                 cropImagePath = Uri.fromFile(f);
+                picturePath=cropImagePath.getPath();
                 cropIntent.putExtra(MediaStore.EXTRA_OUTPUT, cropImagePath);
                 //start the activity - we handle returning in onActivityResult
                 startActivityForResult(cropIntent, CROP_IMAGE);

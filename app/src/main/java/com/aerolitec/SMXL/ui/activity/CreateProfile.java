@@ -204,7 +204,7 @@ public class CreateProfile extends Activity {
 
     @Override
     public void onActivityResult(int request_code, int result_code, Intent datas) {
-        if (request_code == 77) {    // Pick a picture in gallery
+        if (request_code == 77) {
             if (result_code != RESULT_OK)
                 return;
             Uri selectedImage = datas.getData();
@@ -215,10 +215,7 @@ public class CreateProfile extends Activity {
                 int columnIndex = c.getColumnIndex(fpCol[0]);
                 picturePath = c.getString(columnIndex);
             }
-            else{
-                picturePath="toto";
-            }
-            Log.d("Teeeeeest", picturePath.toString());
+
             c.close();
 
             try {
@@ -286,6 +283,7 @@ public class CreateProfile extends Activity {
                 }
 
                 cropImagePath = Uri.fromFile(f);
+                picturePath=cropImagePath.getPath();
                 cropIntent.putExtra(MediaStore.EXTRA_OUTPUT, cropImagePath);
                 //start the activity - we handle returning in onActivityResult
                 startActivityForResult(cropIntent, CROP_IMAGE);
@@ -311,6 +309,18 @@ public class CreateProfile extends Activity {
 
     public int getPixelsFromDip(int dip, Context context) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dip, context.getResources().getDisplayMetrics());
+    }
+
+    @Override
+    public void onBackPressed(){
+        if(etFirstName.getText().toString().length() > 2 || etLastName.getText().toString().length() > 2 || picturePath!=null) {
+            onActionCreateProfile(findViewById(R.id.activity_create_profile));
+            String savedProfile = "Profile saved";
+            Toast toast = Toast.makeText(this, savedProfile, Toast.LENGTH_SHORT);
+        }
+        else {
+            super.onBackPressed();
+        }
     }
 
 }
