@@ -78,6 +78,7 @@ public class IntroActivity extends Activity {
             }
         }, SPLASH_TIME_OUT);
 
+
     }
 
 }

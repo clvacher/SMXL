@@ -192,7 +192,6 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
     //
     private void updateTableClotheType(SQLiteDatabase db){
         // "NOMENCLATURE VETEMENTS" + SEXE/AGE CONCERNE : Femme, Homme, Girl, Boy, Child, babY, All (F,H,G,B,C,Y,A)
-        createRecordClotheType(db,"BAGUE","A");
         createRecordClotheType(db,"BLOUSON","F");
         createRecordClotheType(db,"BLOUSON","H");
         createRecordClotheType(db,"BLOUSON","G");
@@ -2275,7 +2274,12 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
         SQLiteDatabase db = this.getReadableDatabase();
         try {
             Cursor c;
-            c = db.rawQuery("SELECT * FROM clothe_type where sexe = ? ", new String[]{sexe});
+            if(sexe==null) {
+                c = db.rawQuery("SELECT * FROM clothe_type ", new String[]{sexe});
+            }
+            else {
+                c = db.rawQuery("SELECT * FROM clothe_type where sexe = ? ", new String[]{sexe});
+            }
             boolean eof = c.moveToFirst();
             while (eof) {
                 GarmentType g = new GarmentType();
@@ -2295,6 +2299,7 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
         db.close();
         return null;
     }
+
 
     public ArrayList<BrandsSizeGuide> getAllGarmentsByBrand(String brand){
         ArrayList<BrandsSizeGuide> garments = new ArrayList<>();
