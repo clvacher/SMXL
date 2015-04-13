@@ -8,6 +8,11 @@
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <uses-permission
+        android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18" />
 
     <application
         android:name=".ui.SMXL"
@@ -46,7 +51,6 @@
         <activity
             android:name=".ui.activity.ProfilDetailActivity"
             android:label="@string/title_activity_profil_detail" />
-
         <activity
             android:name=".ui.activity.CSVCreationActivity"
             android:label="@string/title_activity_csvcreation" >
@@ -92,6 +96,10 @@
         <activity
             android:name=".ui.activity.DisplayGarmentActivity"
             android:label="@string/title_activity_display_garment" >
+        </activity>
+        <activity
+            android:name=".ui.activity.SizeGuideActivity"
+            android:label="@string/title_activity_size_guide" >
         </activity>
     </application>
 

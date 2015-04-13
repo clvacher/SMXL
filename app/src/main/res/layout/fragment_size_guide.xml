@@ -1,0 +1,83 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context="com.aerolitec.SMXL.ui.fragment.SizeGuideFragment"
+    android:orientation="vertical"
+    android:id="@+id/size_guide_content"
+    android:background="@color/DefaultBackgroundColor"
+    >
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:stretchColumns="1">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tvGarmentType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_section_profiles"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:textColor="@color/SectionTitle"
+                android:textSize="@dimen/section_text_size"
+                android:textStyle="bold"
+                />
+
+
+        </TableRow>
+
+        <TableRow>
+
+
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/tableSize"
+                android:stretchColumns="5">
+
+
+                <TableRow
+                    android:layout_width="match_parent">
+                    <TextView android:text="UE"
+                        android:layout_width="30dp"
+                        android:layout_column="0"
+                        android:layout_weight="1"/>
+                    <TextView android:text="US"
+                        android:layout_width="30dp"
+                        android:layout_column="1"
+                        android:layout_weight="1">
+                    </TextView>
+                    <TextView android:text="UK"
+                        android:layout_width="30dp"
+                        android:layout_column="2"
+                        android:layout_weight="1">
+                    </TextView>
+                    <TextView android:text="FR"
+                        android:layout_width="30dp"
+                        android:layout_column="3"
+                        android:layout_weight="1">
+                    </TextView>
+                    <TextView android:text="Universal"
+                        android:layout_width="100dp"
+                        android:layout_column="4"
+                        android:layout_weight="1">
+                    </TextView>
+                </TableRow>
+
+
+            </TableLayout>
+
+
+        </TableRow>
+
+    </TableLayout>
+
+
+</ScrollView>

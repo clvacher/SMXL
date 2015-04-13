@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.aerolitec.SMXL.R;
@@ -84,6 +85,7 @@ public class ProfilActivity extends Activity implements OnProfileSelected {
                 finish();
             }
         }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -122,5 +124,10 @@ public class ProfilActivity extends Activity implements OnProfileSelected {
                     .commit();
 
         super.onResume();
+    }
+
+    public void onClickSizeGuide (View v){
+            Intent intent = new Intent(getApplicationContext(), SizeGuideActivity.class);
+            startActivity(intent);
     }
 }

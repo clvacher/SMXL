@@ -2274,12 +2274,9 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
         SQLiteDatabase db = this.getReadableDatabase();
         try {
             Cursor c;
-            if(sexe==null) {
-                c = db.rawQuery("SELECT * FROM clothe_type ", new String[]{sexe});
-            }
-            else {
-                c = db.rawQuery("SELECT * FROM clothe_type where sexe = ? ", new String[]{sexe});
-            }
+
+            c = db.rawQuery("SELECT * FROM clothe_type where sexe = ? ", new String[]{sexe});
+
             boolean eof = c.moveToFirst();
             while (eof) {
                 GarmentType g = new GarmentType();
@@ -2485,6 +2482,31 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
         return sizes;
     }
 
+
+    public ArrayList<GarmentType> getGarmentsSizeGuide(){
+        ArrayList<GarmentType> garments = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        try {
+            Cursor c;
+            c = db.rawQuery("SELECT id, type FROM size_convert GROUP BY type", new String[]{});
+            boolean eof = c.moveToFirst();
+            while (eof) {
+                GarmentType gt = new GarmentType();
+                gt.setId(c.getInt(0));
+                gt.setType(c.getString(1));
+
+                garments.add(gt);
+                eof = c.moveToNext();
+            }
+            c.close();
+        }
+        catch (SQLiteException e){
+            Log.d(Constants.TAG,"ERROR Getting Garments for size guide : " + e.getMessage());
+            garments = null;
+        }
+        db.close();
+        return garments;
+    }
 
     public boolean AddUserGarments(UserClothes uc){
         Gson gson = new Gson();

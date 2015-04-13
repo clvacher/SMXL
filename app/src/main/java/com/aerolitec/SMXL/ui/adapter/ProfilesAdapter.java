@@ -82,7 +82,6 @@ public class ProfilesAdapter extends ArrayAdapter<ProfileItem> {
                     holder.avatar.setImageBitmap(ImageHelper.getCorrectBitmap(BitmapFactory.decodeFile(file.getAbsolutePath(), options), file.getAbsolutePath()));
                 }
             } catch (Exception e) {
-                Log.e("coucou", "coucou");
                 Log.e(Constants.TAG, "Error converting picture to file : " + e.getMessage());
             }
         }
