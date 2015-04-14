@@ -1,8 +1,11 @@
 package com.aerolitec.SMXL.ui.fragment;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.ColorRes;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +17,7 @@ import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.GarmentType;
 import com.aerolitec.SMXL.model.SizeConvert;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 
@@ -67,36 +71,63 @@ public class SizeGuideFragment extends Fragment {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_size_guide, container, false);
         ((TextView)rootView.findViewById(R.id.tvGarmentType)).setText(garment.getType());
 
-        TableLayout tableSizeConvert = ((TableLayout)rootView.findViewById(R.id.tableSize));
+        TableLayout tableSizeConvert = ((TableLayout)rootView.findViewById(R.id.tableSizeGarment));
 
+        int i=0;
         for(SizeConvert sc : al_size ){
+
             TableRow tableRow = new TableRow(getActivity());
+
+            if(i%2==0)
+                tableRow.setBackgroundColor(Color.WHITE);
+            i++;
+
 
             TextView textViewUE = new TextView(getActivity());
             TextView textViewUS = new TextView(getActivity());
             TextView textViewUK = new TextView(getActivity());
             TextView textViewFR = new TextView(getActivity());
-            TextView textViewUniversal = new TextView(getActivity());
+            TextView textViewJAP = new TextView(getActivity());
+            TextView textViewITA = new TextView(getActivity());
+            TextView textViewSMXL = new TextView(getActivity());
 
             textViewUE.setText(sc.getValueUE());
             textViewUS.setText(sc.getValueUS());
             textViewUK.setText(sc.getValueUK());
             textViewFR.setText(sc.getValueFR());
-            textViewUniversal.setText(sc.getType());
+            textViewJAP.setText(sc.getValueJAP());
+            textViewITA.setText(sc.getValueITA());
+            textViewSMXL.setText(sc.getValueAUS());
 
+            textViewUE.setGravity(Gravity.CENTER);
+            textViewUS.setGravity(Gravity.CENTER);
+            textViewUK.setGravity(Gravity.CENTER);
+            textViewFR.setGravity(Gravity.CENTER);
+            textViewJAP.setGravity(Gravity.CENTER);
+            textViewITA.setGravity(Gravity.CENTER);
+            textViewSMXL.setGravity(Gravity.CENTER);
+
+            textViewUE.setTextSize(20);
+            textViewUS.setTextSize(20);
+            textViewUK.setTextSize(20);
+            textViewFR.setTextSize(20);
+            textViewJAP.setTextSize(20);
+            textViewITA.setTextSize(20);
+            textViewSMXL.setTextSize(20);
 
             tableRow.addView(textViewUE);
             tableRow.addView(textViewUS);
             tableRow.addView(textViewUK);
             tableRow.addView(textViewFR);
-            tableRow.addView(textViewUniversal);
+            tableRow.addView(textViewJAP);
+            tableRow.addView(textViewITA);
+            tableRow.addView(textViewSMXL);
 
             tableSizeConvert.addView(tableRow);
         }
 
         return rootView;
     }
-
 
 
     @Override
