@@ -6,6 +6,7 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.tools.DepthPageTransformer;
@@ -30,6 +31,8 @@ public class SizeGuideActivity extends FragmentActivity{
 
         setContentView(R.layout.activity_size_guide);
 
+        getActionBar().setTitle("Size Guide");
+
         // Instantiate a ViewPager and a PagerAdapter.
         mPager = (ViewPager) findViewById(R.id.viewPagerSizeGuide);
         mPagerAdapter = new SizeGuideAdapter(getSupportFragmentManager());
@@ -47,7 +50,6 @@ public class SizeGuideActivity extends FragmentActivity{
             super.onBackPressed();
 
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
