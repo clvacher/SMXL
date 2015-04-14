@@ -1,5 +1,7 @@
 package com.aerolitec.SMXL.model;
 
+import android.util.Log;
+
 import org.joda.time.LocalDate;
 import org.joda.time.Years;
 
@@ -17,12 +19,7 @@ public class User extends BaseObjects implements Serializable {
     private String birthday;
     private String sexe;
     private String avatar;
-    private String pictureDressingRoom;
     private String description;
-    private int favoriteColor1;
-    private int favoriteColor2;
-    private int favoriteColor3;
-    private int favoriteColor4;
     private double size;
     private double weight;
     private double imc;
@@ -51,7 +48,6 @@ public class User extends BaseObjects implements Serializable {
      * @param birthday
      * @param sexe                [M/W/B/G] = Man, Woman, Boy, Girl
      * @param avatar              (File name)
-     * @param pictureDressingRoom (File name)
      * @param description
      * @param size                (cm)
      * @param weight              (cm)
@@ -67,8 +63,7 @@ public class User extends BaseObjects implements Serializable {
      * @param pointure            (taille)
      */
     public User(int userid, String nickname, String firstname, String lastname, String birthday, String sexe,
-                String avatar, String pictureDressingRoom, String description, int favoriteColor1, int favoriteColor2,
-                int favoriteColor3, int favoriteColor4, double size, double weight, double bust,
+                String avatar, String description, double size, double weight, double bust,
                 double chest, double collar, double waist, double hips, double sleeve, double inseam,
                 double feet, int unitL, int unitW, double pointure) {
 
@@ -79,12 +74,7 @@ public class User extends BaseObjects implements Serializable {
         this.birthday = birthday;
         this.sexe = sexe;
         this.avatar = avatar;
-        this.pictureDressingRoom = pictureDressingRoom;
         this.description = description;
-        this.favoriteColor1 = favoriteColor1;
-        this.favoriteColor2 = favoriteColor2;
-        this.favoriteColor3 = favoriteColor3;
-        this.favoriteColor4 = favoriteColor4;
         this.size = size;
         this.weight = weight;
         this.bust = bust;
@@ -101,8 +91,7 @@ public class User extends BaseObjects implements Serializable {
     }
 
     public User(String userid, String nickname, String firstname, String lastname, String birthday, String sexe,
-                String avatar, String pictureDressingRoom, String description, String favoriteColor1, String favoriteColor2,
-                String favoriteColor3, String favoriteColor4, String size, String weight, String bust,
+                String avatar, String description, String size, String weight, String bust,
                 String chest, String collar, String waist, String hips, String sleeve, String inseam,
                 String feet, String unitL, String unitW, String pointure) {
 
@@ -114,12 +103,7 @@ public class User extends BaseObjects implements Serializable {
         this.birthday = birthday;
         this.sexe = sexe;
         this.avatar = avatar;
-        this.pictureDressingRoom = pictureDressingRoom;
         this.description = description;
-        this.favoriteColor1 = convertToInt(favoriteColor1);
-        this.favoriteColor2 = convertToInt(favoriteColor2);
-        this.favoriteColor3 = convertToInt(favoriteColor3);
-        this.favoriteColor4 = convertToInt(favoriteColor4);
         this.size = convertToDouble(size);
         this.weight = convertToDouble(weight);
         this.bust = convertToDouble(bust);
@@ -151,37 +135,6 @@ public class User extends BaseObjects implements Serializable {
         }
     }
 
-    public int getFavoriteColor1() {
-        return favoriteColor1;
-    }
-
-    public void setFavoriteColor1(int favoriteColor1) {
-        this.favoriteColor1 = favoriteColor1;
-    }
-
-    public int getFavoriteColor2() {
-        return favoriteColor2;
-    }
-
-    public void setFavoriteColor2(int favoriteColor2) {
-        this.favoriteColor2 = favoriteColor2;
-    }
-
-    public int getFavoriteColor3() {
-        return favoriteColor3;
-    }
-
-    public void setFavoriteColor3(int favoriteColor3) {
-        this.favoriteColor3 = favoriteColor3;
-    }
-
-    public int getFavoriteColor4() {
-        return favoriteColor4;
-    }
-
-    public void setFavoriteColor4(int favoriteColor4) {
-        this.favoriteColor4 = favoriteColor4;
-    }
 
     public int getUserid() {
         return userid;
@@ -239,19 +192,12 @@ public class User extends BaseObjects implements Serializable {
         this.avatar = avatar;
     }
 
-    public String getPictureDressingRoom() {
-        return pictureDressingRoom;
-    }
-
-    public void setPictureDressingRoom(String pictureDressingRoom) {
-        this.pictureDressingRoom = pictureDressingRoom;
-    }
-
     public String getDescription() {
         return description;
     }
 
     public void setDescription(String description) {
+        Log.d("testSetDescription","changement!"+description);
         this.description = description;
     }
 
@@ -379,7 +325,7 @@ public class User extends BaseObjects implements Serializable {
                         ", '" + birthday + '\'' +
                         ", '" + sexe + '\'' +
                         ", '" + avatar + '\'' +
-                        ", '" + pictureDressingRoom + '\'' +
+                        ", '" + description + '\'' +
                         ", " + size +
                         ", " + weight +
                         ", " + imc +
@@ -393,7 +339,8 @@ public class User extends BaseObjects implements Serializable {
                         ", " + inseam +
                         ", " + feet +
                         ", " + unitLength +
-                        ", " + unitWeight;
+                        ", " + unitWeight +
+                        ", " + pointure;
     }
 
     /**

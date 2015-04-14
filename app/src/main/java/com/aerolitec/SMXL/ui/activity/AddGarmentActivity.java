@@ -2,6 +2,7 @@ package com.aerolitec.SMXL.ui.activity;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -150,16 +151,16 @@ public class AddGarmentActivity extends Activity {
         }
 
         private void getCategories() {
-            categories.add(new CategoryGarment(1, R.drawable.robe, "Robes / Jupes"));
-            categories.add(new CategoryGarment(2, R.drawable.tshirt, "T-shirts / Sweats"));
-            categories.add(new CategoryGarment(3, R.drawable.pantalon, "Pantalons / Shorts"));
-            categories.add(new CategoryGarment(4, R.drawable.chemise, "Chemises / Blouses"));
-            categories.add(new CategoryGarment(5, R.drawable.blouson, "Manteaux / Blousons"));
-            categories.add(new CategoryGarment(6, R.drawable.pull, "Pulls / Gilets"));
-            categories.add(new CategoryGarment(7, R.drawable.veste, "Vestes"));
-            categories.add(new CategoryGarment(8, R.drawable.chaussure, "Chaussures"));
-            categories.add(new CategoryGarment(9, R.drawable.costume, "Costumes"));
-            categories.add(new CategoryGarment(10, R.drawable.sousvet, "Sous-vêtements"));
+            categories.add(new CategoryGarment(getActivity(),1, R.drawable.robe, "Robes / Jupes"));
+            categories.add(new CategoryGarment(getActivity(),2, R.drawable.tshirt, "T-shirts / Sweats"));
+            categories.add(new CategoryGarment(getActivity(),3, R.drawable.pantalon, "Pantalons / Shorts"));
+            categories.add(new CategoryGarment(getActivity(),4, R.drawable.chemise, "Chemises / Blouses"));
+            categories.add(new CategoryGarment(getActivity(),5, R.drawable.blouson, "Manteaux / Blousons"));
+            categories.add(new CategoryGarment(getActivity(),6, R.drawable.pull, "Pulls / Gilets"));
+            categories.add(new CategoryGarment(getActivity(),7, R.drawable.veste, "Vestes"));
+            categories.add(new CategoryGarment(getActivity(),8, R.drawable.chaussure, "Chaussures"));
+            categories.add(new CategoryGarment(getActivity(),9, R.drawable.costume, "Costumes"));
+            categories.add(new CategoryGarment(getActivity(),10, R.drawable.sousvet, "Sous-vêtements"));
         }
     }
 

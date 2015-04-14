@@ -48,6 +48,14 @@
                 android:layout_toStartOf="@+id/button">
 
                 <TextView
+                    android:id="@+id/tvFirstName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Prenom"
+                    android:textColor="@color/MainText"
+                    android:textSize="@dimen/textSizeIdentity" />
+
+                <TextView
                     android:id="@+id/tvLastName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -55,13 +63,6 @@
                     android:textColor="@color/MainText"
                     android:textSize="@dimen/textSizeIdentity" />
 
-                <TextView
-                    android:id="@+id/tvFirstName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Prenom"
-                    android:textColor="@color/MainText"
-                    android:textSize="@dimen/textSizeIdentity" />
 
                 <TextView
                     android:id="@+id/tvAgeSexe"

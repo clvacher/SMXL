@@ -169,6 +169,7 @@ public class UpdateProfile extends Activity {
 
                 user.setNickname(etFirstName.getText().toString()+etLastName.getText().toString()+birthday);
 
+                Log.d("test Update",etNotes.getText().toString());
                 user.setDescription(etNotes.getText().toString());
 
                 user.setSexe(sexe);

@@ -59,7 +59,6 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
     private ArrayList<UserClothes> listGarments;
     private GarmentAdapter adapterGarments;
     private RoundedImageView imgAvatar;
-    private ImageView favColor1, favColor2, favColor3, favColor4;
     private LinearLayout layoutGarment, layoutMeasure, layoutRemarque;
     private RelativeLayout infosProfile;
     private AddGarmentListener garmentListener;
@@ -99,6 +98,8 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
         setHasOptionsMenu(true);
         Bundle args = getArguments();
         user = UserManager.get().getUser();
+        if(user==null)
+            Log.d("TestOnCreate","user null");
     }
 
     @Override
@@ -142,6 +143,7 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
         layoutHeaderRemarques = (RelativeLayout) view.findViewById(R.id.layoutHeaderRemarque);
         layoutGarment = (LinearLayout) view.findViewById(R.id.layoutViewGarments);
         layoutMeasure = (LinearLayout) view.findViewById(R.id.layoutViewMeasure);
+        layoutRemarque= (LinearLayout) view.findViewById(R.id.layoutRemarque);
         indexSize = SMXL.getDataBase().getIndexMeasureNotNull(user);
         userClothes = SMXL.getDataBase().getAllUserGarments(user);
 
@@ -218,12 +220,12 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
         tvFirstName.setText(user.getFirstname());
         tvLastName.setText(user.getLastname());
         String profileDescription = user.getDescription();
-        if (profileDescription != "") {
+        Log.d("testProfileDetail",user.toString());
+        if (profileDescription != null) {
             description.setVisibility(View.VISIBLE);
             description.setText(profileDescription);
         }
         //tvTitle.setText(user.getLastname() + " " + user.getFirstname());
-        //etDescriptionProfil.setText(user.getDescription());
         int age = user.getAge(user.getBirthday());
         String sexe = "Femme";
         if (user.getSexe().startsWith("H")) {
@@ -506,25 +508,7 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
         }
         */
 
-        listColors = new ArrayList<>();
-        listColors.add(user.getFavoriteColor1());
-        listColors.add(user.getFavoriteColor2());
-        listColors.add(user.getFavoriteColor3());
-        listColors.add(user.getFavoriteColor4());
 
-        ((LinearLayout) getView().findViewById(R.id.layoutFavoriteColor)).removeAllViews();
-
-        for (int i = 0; i < listColors.size(); i++) {
-            if (listColors.get(i) != 0) {
-                final View viewToLoad = LayoutInflater.from(
-                        getActivity().getApplicationContext()).inflate(
-                        R.layout.item_layout_color_profile, null);
-                final ImageView color = (ImageView) viewToLoad.findViewById(R.id.circleColor);
-                color.setBackgroundColor(listColors.get(i));
-                ((LinearLayout) getView().findViewById(R.id.layoutFavoriteColor))
-                        .addView(viewToLoad);
-            }
-        }
 
     }
 

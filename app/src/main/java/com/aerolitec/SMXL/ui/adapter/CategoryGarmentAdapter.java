@@ -1,6 +1,7 @@
 package com.aerolitec.SMXL.ui.adapter;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,7 +47,12 @@ public class CategoryGarmentAdapter extends ArrayAdapter<CategoryGarment> {
 
         holder.textCategory.setText(category.getName());
 
-        holder.image.setImageResource(category.getIcon());
+        try {
+            holder.image.setImageResource(category.getIcon());
+        }
+        catch (Exception e){
+            holder.image.setImageResource(R.drawable.avatar);
+        }
 
         return convertView;
     }

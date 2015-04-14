@@ -68,7 +68,7 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
         }
 
 
-        //db.execSQL("DROP TABLE IF EXISTS user");
+        db.execSQL("DROP TABLE IF EXISTS user");
         db.execSQL("DROP TABLE IF EXISTS brands");
         db.execSQL("DROP TABLE IF EXISTS clothe_type");
         db.execSQL("DROP TABLE IF EXISTS brand_size_guide");
@@ -83,8 +83,7 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
                     "birthday VARCHAR(32), " +
                     "sexe VARCHAR(1), " +
                     "avatar VARCHAR(128), " +
-                    "pictureDressingRoom VARCHAR(128), " +
-                    "description VARCHAR(256), " +
+                    "description VARCHAR(128), " +
                     "size REAL, " +
                     "weight REAL, " +
                     "chest REAL, " +
@@ -1924,7 +1923,6 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
                 values.put("birthday", birthday);
                 values.put("sexe", sexe);
                 values.put("avatar", avatar);
-                values.put("pictureDressingRoom", "");
                 values.put("description", description);
                 values.put("size", 0);
                 values.put("weight", 0);
@@ -1964,7 +1962,6 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
             values.put("birthday", birthday);
             values.put("sexe", sexe);
             values.put("avatar", avatar);
-            values.put("pictureDressingRoom", "");
             values.put("size", size);
             values.put("weight", weight);
             values.put("imc", imc);
@@ -1991,7 +1988,7 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
     */
 
     public User importUser(String nickname, String firstName, String lastName, String birthday, String sexe,
-                String avatar, String pictureDressingRoom, String description, String size, String weight, String bust,
+                String avatar, String description, String size, String weight, String bust,
                 String chest, String collar, String waist, String hips, String sleeve, String inseam,
                 String feet, String unitL, String unitW, String pointure){
 
@@ -2006,7 +2003,6 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
             values.put("birthday", birthday);
             values.put("sexe", sexe);
             values.put("avatar", avatar);
-            values.put("pictureDressingRoom", "");
             values.put("description", description);
             values.put("size", size);
             values.put("weight", weight);
@@ -2040,7 +2036,6 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
         this.birthday = birthday;
         this.sexe = sexe;
         this.avatar = avatar;
-        this.pictureDressingRoom = pictureDressingRoom;
         this.size = convertToDouble(size);
         this.weight = convertToDouble(weight);
         this.bust = convertToDouble(bust);
@@ -2124,21 +2119,20 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
             user.setBirthday(c.getString(4));
             user.setSexe(c.getString(5));
             user.setAvatar(c.getString(6));
-            user.setPictureDressingRoom(c.getString(7));
-            user.setDescription(c.getString(8));
-            user.setSize(c.getDouble(9));
-            user.setWeight(c.getDouble(10));
-            user.setChest(c.getDouble(11));
-            user.setCollar(c.getDouble(12));
-            user.setBust(c.getDouble(13));
-            user.setWaist(c.getDouble(14));
-            user.setHips(c.getDouble(15));
-            user.setSleeve(c.getDouble(16));
-            user.setInseam(c.getDouble(17));
-            user.setFeet(c.getDouble(18));
-            user.setUnitLength(c.getInt(19));
-            user.setUnitWeight(c.getInt(20));
-            user.setPointure(c.getInt(21));
+            user.setDescription(c.getString(7));
+            user.setSize(c.getDouble(8));
+            user.setWeight(c.getDouble(9));
+            user.setChest(c.getDouble(10));
+            user.setCollar(c.getDouble(11));
+            user.setBust(c.getDouble(12));
+            user.setWaist(c.getDouble(13));
+            user.setHips(c.getDouble(14));
+            user.setSleeve(c.getDouble(15));
+            user.setInseam(c.getDouble(16));
+            user.setFeet(c.getDouble(17));
+            user.setUnitLength(c.getInt(18));
+            user.setUnitWeight(c.getInt(19));
+            user.setPointure(c.getDouble(20));
             c.close();
             }
         catch (SQLiteException e) {
@@ -2163,7 +2157,7 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
             user.setBirthday(c.getString(4));
             user.setSexe(c.getString(5));
             user.setAvatar(c.getString(6));
-            user.setPictureDressingRoom(c.getString(7));
+            user.setDescription(c.getString(7));
             user.setSize(c.getDouble(8));
             user.setWeight(c.getDouble(9));
             user.setChest(c.getDouble(10));
@@ -2197,7 +2191,6 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
             values.put("birthday", user.getBirthday());
             values.put("sexe", user.getSexe());
             values.put("avatar", user.getAvatar());
-            values.put("pictureDressingRoom", user.getPictureDressingRoom());
             values.put("description", user.getDescription());
             values.put("size", user.getSize());
             values.put("weight", user.getWeight());
@@ -2239,21 +2232,20 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
                 user.setBirthday(c.getString(4));
                 user.setSexe(c.getString(5));
                 user.setAvatar(c.getString(6));
-                user.setPictureDressingRoom(c.getString(7));
-                user.setDescription(c.getString(8));
-                user.setSize(c.getDouble(9));
-                user.setWeight(c.getDouble(10));
-                user.setChest(c.getDouble(11));
-                user.setCollar(c.getDouble(12));
-                user.setBust(c.getDouble(13));
-                user.setWaist(c.getDouble(14));
-                user.setHips(c.getDouble(15));
-                user.setSleeve(c.getDouble(16));
-                user.setInseam(c.getDouble(17));
-                user.setFeet(c.getDouble(18));
-                user.setUnitLength(c.getInt(19));
-                user.setUnitWeight(c.getInt(20));
-                user.setPointure(c.getInt(21));
+                user.setDescription(c.getString(7));
+                user.setSize(c.getDouble(8));
+                user.setWeight(c.getDouble(9));
+                user.setChest(c.getDouble(10));
+                user.setCollar(c.getDouble(11));
+                user.setBust(c.getDouble(12));
+                user.setWaist(c.getDouble(13));
+                user.setHips(c.getDouble(14));
+                user.setSleeve(c.getDouble(15));
+                user.setInseam(c.getDouble(16));
+                user.setFeet(c.getDouble(17));
+                user.setUnitLength(c.getInt(18));
+                user.setUnitWeight(c.getInt(19));
+                user.setPointure(c.getDouble(20));
                 users.add(user);
                 eof = c.moveToNext();
             }

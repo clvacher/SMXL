@@ -142,8 +142,8 @@ public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.
             adapter.notifyDataSetChanged();
         }
         else{
-            (view.findViewById(R.id.listViewProfiles)).setVisibility(View.INVISIBLE);
-            (view.findViewById(R.id.title)).setVisibility(View.INVISIBLE);
+            (view.findViewById(R.id.listViewProfiles)).setVisibility(View.GONE);
+            (view.findViewById(R.id.title)).setVisibility(View.GONE);
             (view.findViewById(R.id.NoProfileLayout)).setVisibility(View.VISIBLE);
         }
     }
