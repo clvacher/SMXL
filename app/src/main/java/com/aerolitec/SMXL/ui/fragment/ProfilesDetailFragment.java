@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -49,8 +50,8 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
 
     // TODO: Rename and change types of parameters
     private static User user;
-    private String mParam2;
-    private TextView tvFirstName, tvLastName, tvAgeSexe, tvMeasureItem;
+    private TextView tvFirstName, tvLastName, tvAgeSexe;
+    private EditText eTDescription;
     private RelativeLayout addMeasure, addGarment;
     //private ListView listViewMeasures;
     private ArrayList<MeasureItem> listMeasures;
@@ -61,15 +62,13 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
     private RoundedImageView imgAvatar;
     private LinearLayout layoutGarment, layoutMeasure, layoutRemarque;
     private RelativeLayout infosProfile;
-    private AddGarmentListener garmentListener;
+    //private AddGarmentListener garmentListener;
     //private EditText etDescriptionProfil;
     private ArrayList<UserClothes> userClothes;
     private ArrayList<Integer> indexSize;
-    private TextView description;
-    private ArrayList<Integer> listColors;
-    private LinearLayout layoutViewGarments;
-    private RelativeLayout layoutHeaderGarments, layoutHeaderMeasures, layoutHeaderRemarques;
-    int position;
+    //private LinearLayout layoutViewGarments;
+    private RelativeLayout layoutHeaderGarments, layoutHeaderMeasures;
+    //int position;
 
     private final static int DELETE_GARMENT = 1;
 
@@ -130,7 +129,7 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
         tvFirstName = (TextView) view.findViewById(R.id.tvFirstName);
         tvLastName = (TextView) view.findViewById(R.id.tvLastName);
         tvAgeSexe = (TextView) view.findViewById(R.id.tvAgeSexe);
-        description = (TextView) view.findViewById(R.id.description);
+        layoutRemarque = (LinearLayout) view.findViewById(R.id.layoutRemarque);
         //tvTitle = (TextView) view.findViewById(R.id.title);
         //etDescriptionProfil = (EditText) view.findViewById(R.id.etDescriptionProfil);
         //etDescriptionProfil.setSelected(false);
@@ -140,12 +139,10 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
         layoutGarment = (LinearLayout) view.findViewById(R.id.layoutViewGarments);
         layoutHeaderGarments = (RelativeLayout) view.findViewById(R.id.layoutHeaderGarments);
         layoutHeaderMeasures = (RelativeLayout) view.findViewById(R.id.layoutHeaderMeasures);
-        layoutHeaderRemarques = (RelativeLayout) view.findViewById(R.id.layoutHeaderRemarque);
-        layoutGarment = (LinearLayout) view.findViewById(R.id.layoutViewGarments);
         layoutMeasure = (LinearLayout) view.findViewById(R.id.layoutViewMeasure);
-        layoutRemarque= (LinearLayout) view.findViewById(R.id.layoutRemarque);
         indexSize = SMXL.getDataBase().getIndexMeasureNotNull(user);
         userClothes = SMXL.getDataBase().getAllUserGarments(user);
+        eTDescription = (EditText) view.findViewById(R.id.description);
 
         addGarment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -201,29 +198,12 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
             }
         });
 
-        layoutHeaderRemarques.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (description.getVisibility() == View.GONE) {
-                    description.setVisibility(View.VISIBLE);
-                    ImageView collapse = (ImageView) view.findViewById(R.id.collapseRemarque);
-                    collapse.setImageResource(R.drawable.navigation_expand);
-                } else {
-                    description.setVisibility(View.GONE);
-                    ImageView collapse = (ImageView) view.findViewById(R.id.collapseRemarque);
-                    collapse.setImageResource(R.drawable.navigation_collapse);
-                }
-            }
-        });
-
-
         tvFirstName.setText(user.getFirstname());
         tvLastName.setText(user.getLastname());
         String profileDescription = user.getDescription();
-        Log.d("testProfileDetail",user.toString());
-        if (profileDescription != null) {
-            description.setVisibility(View.VISIBLE);
-            description.setText(profileDescription);
+        if (!profileDescription.equals("")) {
+            layoutRemarque.setVisibility(View.VISIBLE);
+            eTDescription.setText(profileDescription);
         }
         //tvTitle.setText(user.getLastname() + " " + user.getFirstname());
         int age = user.getAge(user.getBirthday());
@@ -729,6 +709,17 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
         if (confirmed) {
             deleteGarment(positionItem);
         }
+    }
+
+    @Override
+    public void onPause(){
+        String desc=eTDescription.getText().toString();
+        if(!desc.equals(user.getDescription())){
+            user.setDescription(desc);
+            SMXL.getDataBase().updateUser(user);
+        }
+
+        super.onPause();
     }
 
     @Override

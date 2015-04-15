@@ -11,7 +11,7 @@
     <string name="texteFemme">Woman</string>
     <string name="sectionProfileDetail">File</string>
     <string name="measure">Measures</string>
-    <string name="garments">Garments</string>
+    <string name="garments">My wardrobe</string>
     <string name="title_section_measures">Measures</string>
     <string name="libBust">Bust size</string>
     <string name="libSize">Size</string>
@@ -66,7 +66,7 @@
     <string name="too_many_color">You already have 4 favorite colors</string>
     <string name="addColor">Add color</string>
     <string name="libPointure">Pointure</string>
-    <string name="remarque">Remarques</string>
+    <string name="remarque">Notes</string>
     <string name="mesurer">Comment mesurer</string>
     <string name="title_activity_add_garment">Add garment</string>
     <string name="title_choose_category">Choose a category of garment</string>

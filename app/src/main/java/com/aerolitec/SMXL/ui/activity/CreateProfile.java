@@ -53,8 +53,8 @@ public class CreateProfile extends Activity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_create_profile);
-        getActionBar().setHomeButtonEnabled(true);
         getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setHomeButtonEnabled(true);
         getActionBar().setDisplayShowTitleEnabled(false);
 
         etFirstName = (EditText) findViewById(R.id.etFirstName);
@@ -180,7 +180,6 @@ public class CreateProfile extends Activity {
 
             User user = null;
             try {
-                Log.d("testCreate", etNotes.getText().toString());
                 user = SMXL.get().getDataBase().createUser(etFirstName.getText().toString(),
                         etLastName.getText().toString(), birthday, sexe, picturePath, etNotes.getText().toString());
                 Log.d(Constants.TAG, "New profile created : " + user.toString());

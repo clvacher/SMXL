@@ -71,7 +71,7 @@
                 android:maxLines="1"
                 android:paddingLeft="10dp"
                 android:textColor="@color/SectionTitle"
-                android:textSize="@dimen/textCreateProfile" />
+                android:textSize="@dimen/textCreateProfile"/>
 
             <ImageView
                 android:layout_width="wrap_content"

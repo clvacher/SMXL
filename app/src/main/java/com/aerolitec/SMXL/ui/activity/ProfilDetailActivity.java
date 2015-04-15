@@ -33,7 +33,7 @@ public class ProfilDetailActivity extends Activity {
                     .commit();
         }
 
-        getActionBar().setTitle("");
+        getActionBar().setTitle(" ");
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
         getActionBar().setDisplayHomeAsUpEnabled(true);

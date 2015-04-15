@@ -193,11 +193,10 @@ public class User extends BaseObjects implements Serializable {
     }
 
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     public void setDescription(String description) {
-        Log.d("testSetDescription","changement!"+description);
         this.description = description;
     }
 
