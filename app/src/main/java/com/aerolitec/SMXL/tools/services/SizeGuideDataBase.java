@@ -68,7 +68,7 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
         }
 
 
-        db.execSQL("DROP TABLE IF EXISTS user");
+        //db.execSQL("DROP TABLE IF EXISTS user");
         db.execSQL("DROP TABLE IF EXISTS brands");
         db.execSQL("DROP TABLE IF EXISTS clothe_type");
         db.execSQL("DROP TABLE IF EXISTS brand_size_guide");

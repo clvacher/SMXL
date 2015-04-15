@@ -2,6 +2,7 @@ package com.aerolitec.SMXL.ui.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -18,6 +19,8 @@ import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.ImageHelper;
 import com.aerolitec.SMXL.ui.SMXL;
+import com.aerolitec.SMXL.ui.activity.CreateProfile;
+import com.aerolitec.SMXL.ui.activity.SizeGuideActivity;
 import com.aerolitec.SMXL.widget.RoundedTransformation;
 import com.makeramen.RoundedImageView;
 import com.squareup.picasso.Picasso;
@@ -65,7 +68,11 @@ public class ProfilesAdapter extends ArrayAdapter<ProfileItem> {
 
         String urlImage = item.getAvatar();
 
-        if(urlImage != null) {
+
+        if(urlImage == "createNewProfile"){
+            holder.avatar.setImageResource(R.drawable.ic_menu_btn_add);
+        }
+        else if(urlImage != null) {
             try {
                 File file = new File(urlImage);
 
@@ -98,7 +105,6 @@ public class ProfilesAdapter extends ArrayAdapter<ProfileItem> {
         TextView lastName;
         TextView firstName;
     }
-
 
 }
 

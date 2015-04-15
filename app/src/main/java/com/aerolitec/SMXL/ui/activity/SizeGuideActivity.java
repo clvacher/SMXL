@@ -1,5 +1,6 @@
 package com.aerolitec.SMXL.ui.activity;
 
+import android.app.ActivityOptions;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -29,9 +30,24 @@ public class SizeGuideActivity extends FragmentActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+
+        getActionBar().setTitle(" ");
+        getActionBar().setHomeButtonEnabled(true);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setDisplayShowHomeEnabled(false);
+        getActionBar().setDisplayShowTitleEnabled(true);
+        getActionBar().setDisplayUseLogoEnabled(false);
+
+
+
+        overridePendingTransition(R.anim.bottom_up, R.anim.fadeout);
+
         setContentView(R.layout.activity_size_guide);
 
-        getActionBar().setTitle("Size Guide");
+
+
+        getActionBar().setTitle("");
 
         // Instantiate a ViewPager and a PagerAdapter.
         mPager = (ViewPager) findViewById(R.id.viewPagerSizeGuide);
@@ -42,6 +58,7 @@ public class SizeGuideActivity extends FragmentActivity{
         //mPager.setPageTransformer(true, new ZoomOutPageTransformer());
         // Ou lui
         mPager.setPageTransformer(true, new DepthPageTransformer());
+
     }
 
 
@@ -55,7 +72,7 @@ public class SizeGuideActivity extends FragmentActivity{
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_size_guide, menu);
-        return true;
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override

@@ -47,19 +47,23 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="50dp" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/size_guide"
-        android:id="@+id/buttonSizeGuide"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:background="#E84E1B"
-        android:textColor="#FFF"
-        android:onClick="onClickSizeGuide"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/size_guide"
+            android:id="@+id/buttonSizeGuide"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/button_size_guide"
+            android:textColor="#FFF"
+            android:onClick="onClickSizeGuide"/>
 
     <RelativeLayout
         android:id="@+id/NoProfileLayout"
@@ -75,20 +79,22 @@
             android:layout_toStartOf="@+id/arrow"
             android:textColor="@color/SectionTitle"
             android:textSize="@dimen/section_text_size"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:id="@+id/textView2" />
 
         <ImageView
-            android:layout_width="120dp"
+            android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:src="@drawable/new_profile_arrow"
+            android:src="@drawable/ic_action_add_person"
             android:id="@+id/arrow"
             android:layout_marginRight="25dp"
             android:layout_marginTop="60dp" />
 
     </RelativeLayout>
+
     <!--
         <ListView
             android:id="@+id/listViewProfiles"

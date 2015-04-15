@@ -2,9 +2,11 @@ package com.aerolitec.SMXL.ui.fragment;
 
 import android.app.Activity;
 import android.app.DialogFragment;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,7 @@ import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.services.OnProfileSelected;
 import com.aerolitec.SMXL.ui.SMXL;
+import com.aerolitec.SMXL.ui.activity.CreateProfile;
 import com.aerolitec.SMXL.ui.adapter.ProfileItem;
 import com.aerolitec.SMXL.ui.adapter.ProfilesAdapter;
 import com.aerolitec.SMXL.ui.fragment.dialog.ConfirmDialogFragment;
@@ -73,6 +76,7 @@ public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_profiles, container, false);
+
         GridView gridViewProfiles = (GridView)view.findViewById(R.id.listViewProfiles);
         profileItem = new ArrayList<>();
 
@@ -136,6 +140,11 @@ public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.
         // load all the profiles from the database
         ArrayList<User> users = SMXL.get().getDataBase().getAllUser();
         if(!users.isEmpty()) {
+
+            ProfileItem createNewProfile = new ProfileItem(0, "Profil", "Nouveau", "createNewProfile");
+            profileItem.add(createNewProfile);
+
+
             for (User u : users) {
                 profileItem.add(new ProfileItem(u.getUserid(), u.getLastname(), u.getFirstname(), u.getAvatar()));
             }
@@ -152,7 +161,13 @@ public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.
         @Override
         public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
                                 long arg3) {
-            itemProfileListener.profileSelect(profileItem.get(arg2));
+            if(arg2>0) {
+                itemProfileListener.profileSelect(profileItem.get(arg2));
+            }
+            else{
+                Intent intent = new Intent(getActivity().getApplicationContext(), CreateProfile.class);
+                startActivity(intent);
+            }
         }
     };
 
