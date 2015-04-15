@@ -23,6 +23,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.aerolitec.SMXL.R;
+import com.aerolitec.SMXL.SelectBrandsActivity;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.ImageHelper;
@@ -176,9 +177,6 @@ public class CreateProfile extends Activity {
                 }
             }
 
-/*            if(picturePath==null){
-                picturePath= v.getContext().getResources().getDrawable(R.drawable.avatar).toString();
-            }*/
 
             User user = null;
             try {
@@ -193,7 +191,10 @@ public class CreateProfile extends Activity {
                 setResult(user.getUserid());
             else
                 setResult(0);
+
             finish();
+            //Intent intent = new Intent(getApplicationContext(), SelectBrandsActivity.class);
+            //startActivity(intent);
         }
     }
 

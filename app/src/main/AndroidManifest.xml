@@ -7,13 +7,10 @@
         android:targetSdkVersion="19" />
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
-    <uses-permission
-        android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="18" />
-
 
     <application
         android:name=".ui.SMXL"
@@ -101,6 +98,10 @@
         <activity
             android:name=".ui.activity.SizeGuideActivity"
             android:label="@string/title_activity_size_guide" >
+        </activity>
+        <activity
+            android:name=".SelectBrandsActivity"
+            android:label="@string/title_activity_select_brands" >
         </activity>
     </application>
 

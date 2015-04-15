@@ -89,6 +89,7 @@
     <string name="buttonValidation">Validate</string>
     <string name="size_guide">Size Guide</string>
     <string name="title_activity_size_guide">SizeGuideActivity</string>
+    <string name="title_activity_select_brands">SelectBrandsActivity</string>
 
 
 </resources>

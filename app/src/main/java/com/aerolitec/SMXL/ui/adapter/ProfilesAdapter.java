@@ -69,7 +69,7 @@ public class ProfilesAdapter extends ArrayAdapter<ProfileItem> {
         String urlImage = item.getAvatar();
 
 
-        if(urlImage == "createNewProfile"){
+        if(urlImage=="createNewProfile"){
             holder.avatar.setImageResource(R.drawable.ic_menu_btn_add);
         }
         else if(urlImage != null) {

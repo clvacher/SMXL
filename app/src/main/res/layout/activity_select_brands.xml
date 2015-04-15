@@ -1,0 +1,57 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activty_select_brands"
+    android:padding="10dp"
+    tools:context="com.aerolitec.SMXL.SelectBrandsActivity"
+    android:background="@color/DefaultBackgroundColor"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title_section_profiles"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:textColor="@color/SectionTitle"
+        android:textSize="@dimen/section_text_size"
+        android:textStyle="bold"
+        />
+
+
+    <GridView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/listViewProfiles"
+        android:numColumns="3"
+        android:gravity="center"
+        android:padding="10dp"
+        android:background="@color/DefaultBackgroundColor"
+        android:stretchMode="columnWidth"
+        android:layout_gravity="center_horizontal"
+        android:verticalSpacing="20dp"
+        android:horizontalSpacing="10dp"
+        android:layout_below="@+id/title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp" />
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="@string/buttonValidation"
+        android:id="@+id/buttonValidationBrands"
+        android:background="#E84E1B"
+        android:padding="10dp"
+        android:textColor="#FFF"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"/>
+
+
+
+</RelativeLayout>

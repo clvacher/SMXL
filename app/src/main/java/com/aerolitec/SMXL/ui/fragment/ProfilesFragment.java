@@ -87,6 +87,9 @@ public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.
         gridViewProfiles.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 0)
+                    return false;
+
                 DialogFragment confirmDialog = new ConfirmDialogFragment();
                 Bundle args = new Bundle();
                 args.putString("confirm", getResources().getString(R.string.remove));
@@ -139,22 +142,16 @@ public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.
     private void loadProfiles(){
         // load all the profiles from the database
         ArrayList<User> users = SMXL.get().getDataBase().getAllUser();
-        if(!users.isEmpty()) {
 
-            ProfileItem createNewProfile = new ProfileItem(0, "Profil", "Nouveau", "createNewProfile");
-            profileItem.add(createNewProfile);
+        ProfileItem createNewProfile = new ProfileItem(0, "Profil", "Nouveau", "createNewProfile");
+        profileItem.add(createNewProfile);
 
 
-            for (User u : users) {
-                profileItem.add(new ProfileItem(u.getUserid(), u.getLastname(), u.getFirstname(), u.getAvatar()));
-            }
-            adapter.notifyDataSetChanged();
+        for (User u : users) {
+            profileItem.add(new ProfileItem(u.getUserid(), u.getLastname(), u.getFirstname(), u.getAvatar()));
         }
-        else{
-            (view.findViewById(R.id.listViewProfiles)).setVisibility(View.GONE);
-            (view.findViewById(R.id.title)).setVisibility(View.GONE);
-            (view.findViewById(R.id.NoProfileLayout)).setVisibility(View.VISIBLE);
-        }
+        adapter.notifyDataSetChanged();
+
     }
 
     private AdapterView.OnItemClickListener selectProfile = new AdapterView.OnItemClickListener() {
