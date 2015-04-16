@@ -201,10 +201,13 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
         tvFirstName.setText(user.getFirstname());
         tvLastName.setText(user.getLastname());
         String profileDescription = user.getDescription();
-        if (!profileDescription.equals("")) {
+
+        if (profileDescription.length()>0) {
+
             layoutRemarque.setVisibility(View.VISIBLE);
             eTDescription.setText(profileDescription);
         }
+
         //tvTitle.setText(user.getLastname() + " " + user.getFirstname());
         int age = user.getAge(user.getBirthday());
         String sexe = "Femme";

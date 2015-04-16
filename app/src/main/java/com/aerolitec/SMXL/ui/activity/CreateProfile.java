@@ -191,9 +191,9 @@ public class CreateProfile extends Activity {
             else
                 setResult(0);
 
-            finish();
-            //Intent intent = new Intent(getApplicationContext(), SelectBrandsActivity.class);
-            //startActivity(intent);
+            //finish();
+            Intent intent = new Intent(getApplicationContext(), SelectBrandsActivity.class);
+            startActivity(intent);
         }
     }
 

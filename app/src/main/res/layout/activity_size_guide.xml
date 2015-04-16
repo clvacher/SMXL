@@ -1,4 +1,4 @@
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,22 +9,16 @@
     >
 
 
-    <android.support.v4.view.ViewPager
+    <Button
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/viewPagerSizeGuide">
+        android:layout_height="wrap_content"
+        android:text="@string/size_guide"
+        android:id="@+id/buttonSizeGuide"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/button_size_guide"
+        android:textColor="#FFF"
+        android:onClick="onClickSizeGuide"/>
 
-        <android.support.v4.view.PagerTitleStrip
-            android:id="@+id/pager_title_strip"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:background="#888"
-            android:textColor="#fff"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:textSize="@dimen/section_text_size"/>
 
-    </android.support.v4.view.ViewPager>
 
-</RelativeLayout>
+</LinearLayout>

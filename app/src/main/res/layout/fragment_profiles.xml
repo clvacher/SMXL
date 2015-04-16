@@ -48,23 +48,6 @@
         android:layout_marginBottom="50dp" />
 
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/size_guide"
-            android:id="@+id/buttonSizeGuide"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/button_size_guide"
-            android:textColor="#FFF"
-            android:onClick="onClickSizeGuide"/>
-
 
     <!--
         <ListView

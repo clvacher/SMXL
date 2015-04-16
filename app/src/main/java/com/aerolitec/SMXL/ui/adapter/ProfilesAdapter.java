@@ -2,28 +2,18 @@ package com.aerolitec.SMXL.ui.adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.ImageHelper;
-import com.aerolitec.SMXL.ui.SMXL;
-import com.aerolitec.SMXL.ui.activity.CreateProfile;
-import com.aerolitec.SMXL.ui.activity.SizeGuideActivity;
-import com.aerolitec.SMXL.widget.RoundedTransformation;
 import com.makeramen.RoundedImageView;
-import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.util.ArrayList;

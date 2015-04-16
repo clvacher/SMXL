@@ -16,7 +16,6 @@ import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.GarmentType;
 import com.aerolitec.SMXL.model.SizeConvert;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 

@@ -5,36 +5,51 @@ import android.app.ActivityOptions;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.TranslateAnimation;
 import android.widget.Toast;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.User;
+import com.aerolitec.SMXL.tools.DepthPageTransformer;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.tools.services.OnProfileSelected;
 import com.aerolitec.SMXL.tools.services.SizeGuideDataBase;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.adapter.ProfileItem;
+import com.aerolitec.SMXL.ui.adapter.SizeGuideAdapter;
 import com.aerolitec.SMXL.ui.fragment.ProfilesFragment;
+import com.wunderlist.slidinglayer.SlidingLayer;
 
 import java.io.File;
 
-public class ProfilActivity extends Activity implements OnProfileSelected {
+public class ProfilActivity extends FragmentActivity implements OnProfileSelected {
 
     private User user;
     private SMXL smxl;
     private static final int PICKFILE_RESULT_CODE = 1;
 
+
+    private ViewPager mPager;
+    private PagerAdapter mPagerAdapter;
+    private SlidingLayer slidingLayer;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profil);
-        if (smxl == null)
+        if (smxl == null) {
             smxl = SMXL.get();
+        }
 
         getActionBar().setDisplayShowTitleEnabled(false);
 
@@ -49,6 +64,68 @@ public class ProfilActivity extends Activity implements OnProfileSelected {
                     .add(R.id.container, new ProfilesFragment())
                     .commit();
         }
+
+        slidingLayer = (SlidingLayer)findViewById(R.id.slidingLayerSizeGuide);
+        slidingLayer.setSlidingFromShadowEnabled(false);
+
+
+        // Instantiate a ViewPager and a PagerAdapter.
+        mPager = (ViewPager) findViewById(R.id.viewPagerSizeGuide);
+        mPagerAdapter = new SizeGuideAdapter(getSupportFragmentManager());
+        mPager.setAdapter(mPagerAdapter);
+        //mPager.setPageTransformer(true, new DepthPageTransformer());
+
+        slidingLayer.setOnInteractListener(new SlidingLayer.OnInteractListener() {
+            @Override
+            public void onOpen() {
+                slidingLayer.setSlidingEnabled(false);
+            }
+
+            @Override
+            public void onShowPreview() {
+
+            }
+
+            @Override
+            public void onClose() {
+                slidingLayer.setSlidingEnabled(true);
+            }
+
+            @Override
+            public void onOpened() {
+
+            }
+
+            @Override
+            public void onPreviewShowed() {
+
+            }
+
+            @Override
+            public void onClosed() {
+
+            }
+        });
+
+
+
+/*        mPager.setOnTouchListener(new View.OnTouchListener(){
+
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                    case MotionEvent.ACTION_SCROLL:
+                        slidingLayer.setSlidingEnabled(false);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_CANCEL:
+                        slidingLayer.setSlidingEnabled(true);
+                        break;
+                }
+                return false;            }
+        });*/
+
     }
 
 
@@ -128,8 +205,13 @@ public class ProfilActivity extends Activity implements OnProfileSelected {
         super.onResume();
     }
 
-    public void onClickSizeGuide (View v){
-            Intent intent = new Intent(getApplicationContext(), SizeGuideActivity.class);
-            startActivity(intent);
+    public void onClickButtonSizeGuide (View v){
+        if(slidingLayer.isOpened()){
+            slidingLayer.closeLayer(true);
+        }
+        else{
+            slidingLayer.openLayer(true);
+        }
+
     }
 }

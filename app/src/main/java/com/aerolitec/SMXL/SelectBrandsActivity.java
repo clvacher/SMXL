@@ -5,6 +5,19 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import com.aerolitec.SMXL.model.Brands;
+import com.aerolitec.SMXL.model.BrandsSizeGuide;
+import com.aerolitec.SMXL.ui.SMXL;
+
+import java.util.ArrayList;
 
 
 public class SelectBrandsActivity extends Activity {
@@ -17,7 +30,23 @@ public class SelectBrandsActivity extends Activity {
         getActionBar().setHomeButtonEnabled(true);
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setDisplayShowTitleEnabled(false);
+
+        GridView gridViewBrands;
+        ArrayList<String> brandstring = new ArrayList<>();
+
+        ArrayList<Brands> brands = SMXL.get().getDataBase().getAllBrands();
+
+        for(Brands b : brands){
+            brandstring.add(b.getBrand());
+        }
+
+        gridViewBrands = (GridView) this.findViewById(R.id.gridViewBrands);
+
+        ArrayAdapter<String> adapterBrands = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, brandstring);
+        gridViewBrands.setAdapter(adapterBrands);
+
     }
+
 
 
     @Override
