@@ -203,11 +203,8 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
         String profileDescription = user.getDescription();
 
         if (profileDescription.length()>0) {
-
-            layoutRemarque.setVisibility(View.VISIBLE);
             eTDescription.setText(profileDescription);
         }
-
         //tvTitle.setText(user.getLastname() + " " + user.getFirstname());
         int age = user.getAge(user.getBirthday());
         String sexe = "Femme";
@@ -335,7 +332,7 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
     private void updateUI() {
 
         ((LinearLayout) getView().findViewById(R.id.layoutViewMeasure)).removeAllViews();
-        //TODO Utiliser des des strings
+        //TODO Utiliser des strings
         String[] listSize = {getResources().getString(R.string.libSize), getResources().getString(R.string.libWeight),
                 getResources().getString(R.string.libBust), getResources().getString(R.string.libChest),
                 getResources().getString(R.string.libCollar), getResources().getString(R.string.libWaist),
@@ -446,74 +443,7 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
             sexe = "Homme";
         }
         tvAgeSexe.setText(age + " ans / " + sexe);
-
-        String fnAvatar = user.getAvatar();
-        /*if (fnAvatar != null) {
-            int width = imgAvatar.getLayoutParams().width;
-            try {
-                File file = new File(fnAvatar);
-                if (file.exists()) {
-                    Uri uri = Uri.fromFile(file);
-                    Picasso.with(getActivity().getApplicationContext())
-                            .load(uri)
-                            .resize(width, width)
-                            .transform(new RoundedTransformation(width, 0))
-                            .into(imgAvatar);
-                }
-            } catch (Exception e) {
-                Log.e(Constants.TAG, "Error converting Picture to File : " + e.getMessage());
-            }
-        }*/
-
-        //POUR LES COULEURS :
-
-        /*
-        for (int i = 0 ; i < listColors.size() ; i ++){
-            if(listColors.get(i) == 0){
-                switch (i) {
-                    case 1:
-
-                        break;
-                    case 2:
-                        break;
-                    case 3:
-                        break;
-                    case 4:
-                        break;
-                }
-            }
-            else {
-                favColor1.setBackgroundColor(user.getFavoriteColor1());
-                favColor2.setBackgroundColor(user.getFavoriteColor2());
-                favColor3.setBackgroundColor(user.getFavoriteColor3());
-                favColor4.setBackgroundColor(user.getFavoriteColor4());
-            }
-        }
-        */
-
-
-
     }
-
-    /*
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.profil_detail, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                getActivity().finish();
-                break;
-        }
-        return false;
-    }
-
-*/
 
 
     public void loadMeasures() {
@@ -614,41 +544,6 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
         }
     };
 
-    /*
-    private AdapterView.OnClickListener selectGarment = new AdapterView.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            final String garmentBrand = listGarments.get((Integer) v.getTag(position)).getTypeGarment() + " - " +
-                    listGarments.get((Integer) v.getTag(position)).getBrand();
-            final String notes = listGarments.get((Integer) v.getTag(position)).getComment();
-            final String size = listGarments.get((Integer) v.getTag(position)).getSize();
-            final String country = listGarments.get((Integer) v.getTag(position)).getCountry();
-            final String libSizeCountry = "Taille " + size + " - " + country.toUpperCase();
-            LayoutInflater li = LayoutInflater.from(getActivity());
-            View garmentInfoDialog = li.inflate(R.layout.garment_info_dialog, null);
-            TextView tvTypeAndBrand = (TextView) garmentInfoDialog.findViewById(R.id.tvTypeAndBrand);
-            TextView tvComments = (TextView) garmentInfoDialog.findViewById(R.id.tvComments);
-            TextView tvSizeCountry = (TextView) garmentInfoDialog.findViewById(R.id.tvSizeCountry);
-
-            tvTypeAndBrand.setText(garmentBrand);
-            tvComments.setText(notes);
-            tvSizeCountry.setText(libSizeCountry);
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setView(garmentInfoDialog);
-            builder.setCancelable(true);
-            builder.setPositiveButton(getResources().getString(R.string.libBoutonRetour),
-                    new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.dismiss();
-                        }
-                    }
-            );
-            final AlertDialog dialog = builder.create();
-            dialog.show();
-        }
-    };
-    */
 
     private AdapterView.OnItemLongClickListener clickListenerDeleteGarment = new AdapterView.OnItemLongClickListener() {
         @Override

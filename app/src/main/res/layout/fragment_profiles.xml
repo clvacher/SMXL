@@ -7,6 +7,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:alpha="0.5"
+        android:layout_margin="40dp"
+        android:src="@drawable/cintre_inverse_hd"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:paddingBottom="80dp"/>
 
     <TextView
         android:id="@+id/title"
@@ -38,7 +48,6 @@
         android:numColumns="3"
         android:gravity="center"
         android:padding="10dp"
-        android:background="@color/DefaultBackgroundColor"
         android:stretchMode="columnWidth"
         android:layout_gravity="center_horizontal"
         android:verticalSpacing="20dp"
@@ -48,22 +57,5 @@
         android:layout_marginBottom="50dp" />
 
 
-
-    <!--
-        <ListView
-            android:id="@+id/listViewProfiles"
-            android:paddingTop="@dimen/listview_padding_vertical"
-            android:paddingRight="@dimen/listview_padding_horizontal"
-            android:paddingLeft="@dimen/listview_padding_horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:dividerHeight="0.1dp"
-            android:divider="#0000CC"
-            android:footerDividersEnabled="false"
-            android:clipToPadding="false"
-            android:scrollbarStyle="outsideOverlay"
-            />
-            -->
 
 </RelativeLayout>

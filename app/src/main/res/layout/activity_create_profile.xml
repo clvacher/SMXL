@@ -129,7 +129,7 @@
                     android:paddingRight="20dp"
                     android:gravity="center"
                     android:hint="@string/dateOfBirth"
-                    android:background="@drawable/button_orange_border"
+                    android:background="@drawable/button_white_grey_shadow"
                     android:textColor="@color/SectionTitle"
                     android:textSize="@dimen/textCreateProfile" />
 

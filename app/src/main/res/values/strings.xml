@@ -11,7 +11,8 @@
     <string name="texteFemme">Woman</string>
     <string name="sectionProfileDetail">File</string>
     <string name="measure">Measures</string>
-    <string name="garments">My wardrobe</string>
+    <string name="garments">Wardrobe</string>
+    <string name="profile">Profile</string>
     <string name="title_section_measures">Measures</string>
     <string name="libBust">Bust size</string>
     <string name="libSize">Size</string>
@@ -19,6 +20,7 @@
     <string name="libChest">Chest size</string>
     <string name="libWaist">Waist size</string>
     <string name="libHips">Hips size</string>
+    <string name="measurements">Measurements</string>
     <string name="libCollar">Collar size</string>
     <string name="libSleeve">Sleeve height</string>
     <string name="libInseam">Leg height</string>
@@ -38,8 +40,8 @@
     <string name="libUnit">Unit</string>
     <string name="majProfile">Profile update</string>
     <string name="libImc">BMI</string>
-    <string name="unimplemented">Developing ...</string>
-    <string name="labelCommentaire">Add a description, a comment...</string>
+    <string name="unimplemented">Developing&#8230;</string>
+    <string name="addNote">Add a description, a comment&#8230;</string>
     <string name="ShoeSize">Shoe size</string>
     <string name="title_activity_profil">ProfilActivity</string>
     <string name="hello_world">Hello world!</string>
@@ -90,6 +92,12 @@
     <string name="size_guide">Size Guide</string>
     <string name="title_activity_size_guide">SizeGuideActivity</string>
     <string name="title_activity_select_brands">SelectBrandsActivity</string>
+    <string name="title_activity_test">TestActivity</string>
+
+
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
 
 
 </resources>

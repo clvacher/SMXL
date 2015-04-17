@@ -11,7 +11,9 @@
     <string name="texteFemme">Femme</string>
     <string name="sectionProfileDetail">Fiche</string>
     <string name="measure">Mesures</string>
-    <string name="garments">Ma garde-robe</string>
+    <string name="garments">Garde-robe</string>
+    <string name="profile">Profil</string>
+    <string name="measurements">Mesures</string>
     <string name="title_section_measures">Mesures</string>
     <string name="libBust">Tour de poitrine</string>
     <string name="libSize">Taille</string>
@@ -40,7 +42,7 @@
     <string name="majProfile">Mise à jour du profil</string>
     <string name="libImc">IMC</string>
     <string name="unimplemented">Fonctionnalité en cours de développement</string>
-    <string name="labelCommentaire">Ajouter un descriptif, des commentaires...</string>
+    <string name="addNote">Ajouter un descriptif, des commentaires&#8230;</string>
     <string name="ShoeSize">Pointure</string>
     <string name="title_activity_profil">ProfilActivity</string>
     <string name="hello_world">Hello world!</string>

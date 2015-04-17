@@ -96,11 +96,7 @@
             android:label="@string/title_activity_display_garment" >
         </activity>
         <activity
-            android:name=".ui.activity.SizeGuideActivity"
-            android:label="@string/title_activity_size_guide" >
-        </activity>
-        <activity
-            android:name=".SelectBrandsActivity"
+            android:name=".ui.activity.SelectBrandsActivity"
             android:label="@string/title_activity_select_brands" >
         </activity>
     </application>

@@ -3,12 +3,14 @@ package com.aerolitec.SMXL.ui.activity;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-
-import com.aerolitec.SMXL.model.User;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.tools.manager.UserManager;
@@ -16,6 +18,7 @@ import com.aerolitec.SMXL.ui.fragment.ProfilesDetailFragment;
 
 public class ProfilDetailActivity extends Activity {
 
+    private LinearLayout tab1,tab2,tab3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +43,45 @@ public class ProfilDetailActivity extends Activity {
         getActionBar().setDisplayShowHomeEnabled(false);
         getActionBar().setDisplayShowTitleEnabled(true);
         getActionBar().setDisplayUseLogoEnabled(false);
+
+        tab1= (LinearLayout) findViewById(R.id.profile);
+        tab2= (LinearLayout) findViewById(R.id.wardrobe);
+        tab3= (LinearLayout) findViewById(R.id.measurements);
+        tab1.setBackgroundResource(R.drawable.button_fawn);
+
+        tab1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tab1.setBackgroundResource(R.drawable.button_fawn);
+                ((TextView)findViewById(R.id.textView1)).setTextColor(getResources().getColor(R.color.SectionTitle));
+                tab2.setBackgroundResource(R.drawable.button_orange_border);
+                ((TextView)findViewById(R.id.textView2)).setTextColor(Color.parseColor("#FFFFFF"));
+                tab3.setBackgroundResource(R.drawable.button_orange_border);
+                ((TextView)findViewById(R.id.textView3)).setTextColor(Color.parseColor("#FFFFFF"));
+            }
+        });
+        tab2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tab1.setBackgroundResource(R.drawable.button_orange_border);
+                ((TextView)findViewById(R.id.textView1)).setTextColor(Color.parseColor("#FFFFFF"));
+                tab2.setBackgroundResource(R.drawable.button_fawn);
+                ((TextView)findViewById(R.id.textView2)).setTextColor(getResources().getColor(R.color.SectionTitle));
+                tab3.setBackgroundResource(R.drawable.button_orange_border);
+                ((TextView)findViewById(R.id.textView3)).setTextColor(Color.parseColor("#FFFFFF"));
+            }
+        });
+        tab3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tab1.setBackgroundResource(R.drawable.button_orange_border);
+                ((TextView)findViewById(R.id.textView1)).setTextColor(Color.parseColor("#FFFFFF"));
+                tab2.setBackgroundResource(R.drawable.button_orange_border);
+                ((TextView)findViewById(R.id.textView2)).setTextColor(Color.parseColor("#FFFFFF"));
+                tab3.setBackgroundResource(R.drawable.button_fawn);
+                ((TextView)findViewById(R.id.textView3)).setTextColor(getResources().getColor(R.color.SectionTitle));
+            }
+        });
     }
 
     @Override

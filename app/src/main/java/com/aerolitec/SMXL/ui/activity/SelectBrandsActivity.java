@@ -1,4 +1,4 @@
-package com.aerolitec.SMXL;
+package com.aerolitec.SMXL.ui.activity;
 
 import android.app.Activity;
 import android.support.v7.app.ActionBarActivity;
@@ -18,6 +18,8 @@ import com.aerolitec.SMXL.model.BrandsSizeGuide;
 import com.aerolitec.SMXL.ui.SMXL;
 
 import java.util.ArrayList;
+
+import com.aerolitec.SMXL.R;
 
 
 public class SelectBrandsActivity extends Activity {

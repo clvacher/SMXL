@@ -1,7 +1,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/scrollView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="fill_parent"
     android:background="@color/DefaultBackgroundColor"
     android:scrollbars="none"
     android:clipToPadding="false"
@@ -102,8 +102,7 @@
             android:layout_alignParentStart="true"
             android:layout_below="@+id/profilLayout"
             android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:visibility="gone">
+            android:paddingRight="10dp">
 
 
             <EditText
@@ -113,6 +112,7 @@
                 android:padding="6dp"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/textSizeIdentity"
+                android:hint="@string/addNote"
                 android:background="#989898"
                 android:layout_marginBottom="10dp"/>
 

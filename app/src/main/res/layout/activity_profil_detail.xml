@@ -1,27 +1,82 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.aerolitec.SMXL.ui.activity.ProfilDetailActivity"
-    tools:ignore="MergeRootFrame">
+    android:layout_height="match_parent">
 
-
-    <android.support.v4.view.ViewPager
+    <FrameLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/viewPagerSizeGuide">
-
-        <android.support.v4.view.PagerTitleStrip
-            android:id="@+id/pager_title_strip"
+        tools:context="com.aerolitec.SMXL.ui.activity.ProfilDetailActivity"
+        tools:ignore="MergeRootFrame"
+        android:layout_below="@+id/tableLayout">
+    </FrameLayout>
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tableLayout">
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:background="#888"
-            android:textColor="#fff"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:textSize="@dimen/section_text_size"/>
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@+id/profile"
+                android:layout_height="40dp"
+                android:layout_width="0dp"
+                android:layout_column="0"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:clickable="true"
+                android:background="@drawable/button_fawn">
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="@string/profile"
+                    android:textColor="@color/SectionTitle"
+                    android:textStyle="bold"
+                    android:textSize="17sp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/wardrobe"
+                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_column="1"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:clickable="true"
+                android:background="@drawable/button_orange_border">
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="@string/garments"
+                    android:textColor="#fff"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:textSize="17sp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/measurements"
+                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_column="2"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:clickable="true"
+                android:background="@drawable/button_orange_border">
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="Measurements"
+                    android:textColor="#fff"
+                    android:textStyle="bold"
+                    android:textSize="17sp"/>
+            </LinearLayout>
+        </TableRow>
+    </TableLayout>
 
-    </android.support.v4.view.ViewPager>
-</FrameLayout>
+</RelativeLayout>

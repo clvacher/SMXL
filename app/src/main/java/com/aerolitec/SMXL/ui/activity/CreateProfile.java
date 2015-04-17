@@ -23,7 +23,6 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.aerolitec.SMXL.R;
-import com.aerolitec.SMXL.SelectBrandsActivity;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.ImageHelper;
