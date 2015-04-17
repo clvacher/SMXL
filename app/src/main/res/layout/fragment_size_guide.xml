@@ -11,6 +11,7 @@
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:stretchColumns="*"
         android:shrinkColumns="*"
         android:layout_margin="20dp"
@@ -19,27 +20,8 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
-
-            <TextView
-                android:id="@+id/tvGarmentType"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/title_section_profiles"
-                android:textColor="@color/SectionTitle"
-                android:textSize="@dimen/section_text_size"
-                android:textStyle="bold|italic"
-                android:layout_span="5"
-                android:layout_marginBottom="10dp"
-                />
-
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
             android:background="@color/SectionTitle"
+            android:showDividers="middle"
             >
 
             <TextView android:text="UE"
@@ -66,7 +48,7 @@
                 android:textSize="@dimen/section_text_size"
                 android:textStyle="bold"/>
 
-            <TextView android:text="FR"
+            <TextView android:text="CH"
                 android:layout_column="3"
                 android:layout_weight="1"
                 android:layout_gravity="center"
@@ -82,7 +64,7 @@
                 android:textSize="@dimen/section_text_size"
                 android:textStyle="bold"/>
 
-            <TextView android:text="ITA"
+            <TextView android:text="RUS"
                 android:layout_column="5"
                 android:layout_weight="1"
                 android:layout_gravity="center"

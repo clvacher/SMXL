@@ -8,6 +8,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -67,7 +68,6 @@ public class SizeGuideFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_size_guide, container, false);
-        ((TextView)rootView.findViewById(R.id.tvGarmentType)).setText(garment.getType());
 
         TableLayout tableSizeConvert = ((TableLayout)rootView.findViewById(R.id.tableSizeGarment));
 
@@ -81,44 +81,45 @@ public class SizeGuideFragment extends Fragment {
             i++;
 
 
+
             TextView textViewUE = new TextView(getActivity());
             TextView textViewUS = new TextView(getActivity());
             TextView textViewUK = new TextView(getActivity());
-            TextView textViewFR = new TextView(getActivity());
+            TextView textViewCH = new TextView(getActivity());
             TextView textViewJAP = new TextView(getActivity());
-            TextView textViewITA = new TextView(getActivity());
+            TextView textViewRUS = new TextView(getActivity());
             TextView textViewSMXL = new TextView(getActivity());
 
             textViewUE.setText(sc.getValueUE());
             textViewUS.setText(sc.getValueUS());
             textViewUK.setText(sc.getValueUK());
-            textViewFR.setText(sc.getValueFR());
+            //textViewCH.setText(sc.getValueCH());
             textViewJAP.setText(sc.getValueJAP());
-            textViewITA.setText(sc.getValueITA());
+            //textViewRUS.setText(sc.getValueRUS());
             textViewSMXL.setText(sc.getValueAUS());
 
             textViewUE.setGravity(Gravity.CENTER);
             textViewUS.setGravity(Gravity.CENTER);
             textViewUK.setGravity(Gravity.CENTER);
-            textViewFR.setGravity(Gravity.CENTER);
+            textViewCH.setGravity(Gravity.CENTER);
             textViewJAP.setGravity(Gravity.CENTER);
-            textViewITA.setGravity(Gravity.CENTER);
+            textViewRUS.setGravity(Gravity.CENTER);
             textViewSMXL.setGravity(Gravity.CENTER);
 
             textViewUE.setTextSize(20);
             textViewUS.setTextSize(20);
             textViewUK.setTextSize(20);
-            textViewFR.setTextSize(20);
+            textViewCH.setTextSize(20);
             textViewJAP.setTextSize(20);
-            textViewITA.setTextSize(20);
+            textViewRUS.setTextSize(20);
             textViewSMXL.setTextSize(20);
 
             tableRow.addView(textViewUE);
             tableRow.addView(textViewUS);
             tableRow.addView(textViewUK);
-            tableRow.addView(textViewFR);
+            tableRow.addView(textViewCH);
             tableRow.addView(textViewJAP);
-            tableRow.addView(textViewITA);
+            tableRow.addView(textViewRUS);
             tableRow.addView(textViewSMXL);
 
             tableSizeConvert.addView(tableRow);

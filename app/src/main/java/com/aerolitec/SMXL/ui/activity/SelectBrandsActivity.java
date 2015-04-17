@@ -44,6 +44,7 @@ public class SelectBrandsActivity extends Activity {
 
         gridViewBrands = (GridView) this.findViewById(R.id.gridViewBrands);
 
+
         ArrayAdapter<String> adapterBrands = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, brandstring);
         gridViewBrands.setAdapter(adapterBrands);
 
@@ -67,6 +68,11 @@ public class SelectBrandsActivity extends Activity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            return true;
+        }
+
+        if (id == R.id.home){
+            finish();
             return true;
         }
 

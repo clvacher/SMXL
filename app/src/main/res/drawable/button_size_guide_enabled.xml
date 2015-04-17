@@ -7,6 +7,12 @@
         android:top="15dp"
         android:bottom="15dp"/>
 
+    <gradient
+        android:startColor="@color/SectionTitle"
+        android:angle="-90"
+        android:endColor="#C43D0A"
+        android:gradientRadius="20"/>
+
     <corners
         android:topLeftRadius="15dp"
         android:topRightRadius="15dp"/>

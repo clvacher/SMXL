@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.TranslateAnimation;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.aerolitec.SMXL.R;
@@ -42,7 +43,6 @@ public class ProfilActivity extends FragmentActivity implements OnProfileSelecte
     private SlidingLayer slidingLayer;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,64 +67,17 @@ public class ProfilActivity extends FragmentActivity implements OnProfileSelecte
 
         slidingLayer = (SlidingLayer)findViewById(R.id.slidingLayerSizeGuide);
         slidingLayer.setSlidingFromShadowEnabled(false);
+        slidingLayer.setSlidingEnabled(false);
 
 
         // Instantiate a ViewPager and a PagerAdapter.
         mPager = (ViewPager) findViewById(R.id.viewPagerSizeGuide);
         mPagerAdapter = new SizeGuideAdapter(getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
+
         //mPager.setPageTransformer(true, new DepthPageTransformer());
 
-        slidingLayer.setOnInteractListener(new SlidingLayer.OnInteractListener() {
-            @Override
-            public void onOpen() {
-                slidingLayer.setSlidingEnabled(false);
-            }
 
-            @Override
-            public void onShowPreview() {
-
-            }
-
-            @Override
-            public void onClose() {
-                slidingLayer.setSlidingEnabled(true);
-            }
-
-            @Override
-            public void onOpened() {
-
-            }
-
-            @Override
-            public void onPreviewShowed() {
-
-            }
-
-            @Override
-            public void onClosed() {
-
-            }
-        });
-
-
-
-/*        mPager.setOnTouchListener(new View.OnTouchListener(){
-
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                switch (motionEvent.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                    case MotionEvent.ACTION_SCROLL:
-                        slidingLayer.setSlidingEnabled(false);
-                        break;
-                    case MotionEvent.ACTION_UP:
-                    case MotionEvent.ACTION_CANCEL:
-                        slidingLayer.setSlidingEnabled(true);
-                        break;
-                }
-                return false;            }
-        });*/
 
     }
 

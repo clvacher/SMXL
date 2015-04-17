@@ -17,7 +17,7 @@
         android:id="@+id/slidingLayerSizeGuide"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        slidingLayer:shadowSize="0dp"
+        slidingLayer:shadowSize="5dp"
         slidingLayer:offsetDistance="50dp"
         slidingLayer:previewOffsetDistance="50dp"
         slidingLayer:stickTo="bottom"
@@ -26,7 +26,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            >
 
 
 
@@ -45,21 +46,25 @@
                     android:textColor="#fff"
                     android:paddingTop="5dp"
                     android:paddingBottom="5dp"
-                    android:textSize="@dimen/section_text_size"/>
+                    android:textSize="@dimen/section_text_size"
+                    />
 
             </android.support.v4.view.ViewPager>
 
+
             <Button
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:text="@string/size_guide"
-                android:layout_marginLeft="0dp"
-                android:layout_marginRight="0dp"
-                android:layout_marginTop="5dp"
                 android:background="@drawable/button_size_guide"
                 android:id="@+id/buttonSizeGuide"
                 android:onClick="onClickButtonSizeGuide"
-                android:textColor="#FFF"/>
+                android:padding="10dp"
+                android:textColor="#FFF"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                />
 
         </RelativeLayout>
 

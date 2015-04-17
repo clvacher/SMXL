@@ -91,13 +91,7 @@
     <string name="buttonValidation">Validate</string>
     <string name="size_guide">Size Guide</string>
     <string name="title_activity_size_guide">SizeGuideActivity</string>
-    <string name="title_activity_select_brands">SelectBrandsActivity</string>
-    <string name="title_activity_test">TestActivity</string>
-
-
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
+    <string name="title_activity_select_brands">Select your favorite brands</string>
 
 
 </resources>
