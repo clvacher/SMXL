@@ -167,4 +167,13 @@ public class ProfilActivity extends FragmentActivity implements OnProfileSelecte
         }
 
     }
+
+    @Override
+    public void onBackPressed(){
+        if(slidingLayer.isOpened()){
+            slidingLayer.closeLayer(true);
+            return;
+        }
+        super.onBackPressed();
+    }
 }

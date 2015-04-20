@@ -6,6 +6,7 @@ import org.joda.time.LocalDate;
 import org.joda.time.Years;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Created by stephaneL on 20/03/14.
@@ -34,6 +35,9 @@ public class User extends BaseObjects implements Serializable {
     private int unitLength;
     private int unitWeight;
     private double pointure;
+
+    private ArrayList<Brands> brands = new ArrayList<>();
+
 
     public User() {
     }
@@ -296,6 +300,18 @@ public class User extends BaseObjects implements Serializable {
         this.unitWeight = unitWeight;
     }
 
+    public ArrayList<Brands> getBrands() {
+        return brands;
+    }
+
+    public void setBrands(ArrayList<Brands> brands) {
+        this.brands = brands;
+    }
+
+    public void addBrands (ArrayList<Brands> brands){
+        this.brands.addAll(brands);
+    }
+
     public double getImc() {
         if (this.size > 0 && this.weight > 0) {
             double imcD = weight / ((size / 100) * (size / 100));
@@ -339,7 +355,8 @@ public class User extends BaseObjects implements Serializable {
                         ", " + feet +
                         ", " + unitLength +
                         ", " + unitWeight +
-                        ", " + pointure;
+                        ", " + pointure +
+                        ", " + brands;
     }
 
     /**
@@ -356,6 +373,8 @@ public class User extends BaseObjects implements Serializable {
             int day = Integer.valueOf(birthday.substring(0, 2));
             LocalDate birthDate = new LocalDate(year, month, day);
             LocalDate now = new LocalDate();
+            Log.d("birth", birthDate.toString());
+            Log.d("now", now.toString());
             Years years = Years.yearsBetween(birthDate, now);
             age = years.getYears();
         } catch (Exception e) {

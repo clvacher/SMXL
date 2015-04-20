@@ -52,7 +52,8 @@
         android:textColor="#FFF"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_margin="20dp"/>
+        android:layout_margin="20dp"
+        android:onClick="onClickAddBrandsUser"/>
 
 
 

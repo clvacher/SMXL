@@ -1,53 +1,78 @@
 package com.aerolitec.SMXL.ui.activity;
 
 import android.app.Activity;
-import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import com.aerolitec.SMXL.model.Brands;
-import com.aerolitec.SMXL.model.BrandsSizeGuide;
+import com.aerolitec.SMXL.model.User;
+import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
 
 import java.util.ArrayList;
 
 import com.aerolitec.SMXL.R;
+import com.aerolitec.SMXL.ui.adapter.FavoriteBrandAdapter;
+import com.aerolitec.SMXL.ui.customLayout.CheckableBrandLayout;
 
 
 public class SelectBrandsActivity extends Activity {
 
+    private static User user;
+    private ArrayList<Brands> brands;
+    private ArrayList<Brands> selectedBrands;
+    GridView gridViewBrands;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        brands=new ArrayList<>();
+        selectedBrands=new ArrayList<>();
+
+
+        user = UserManager.get().getUser();
+        if(user == null){
+            Log.d("TestOnCreate", "user null");
+        }
+
+
+
+        Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
+        mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+
         setContentView(R.layout.activity_select_brands);
 
         getActionBar().setHomeButtonEnabled(true);
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setDisplayShowTitleEnabled(false);
 
-        GridView gridViewBrands;
-        ArrayList<String> brandstring = new ArrayList<>();
-
         ArrayList<Brands> brands = SMXL.get().getDataBase().getAllBrands();
-
-        for(Brands b : brands){
-            brandstring.add(b.getBrand());
-        }
 
         gridViewBrands = (GridView) this.findViewById(R.id.gridViewBrands);
 
+        gridViewBrands.setAdapter(new FavoriteBrandAdapter(brands));
+        gridViewBrands.setChoiceMode(GridView.CHOICE_MODE_MULTIPLE);
 
-        ArrayAdapter<String> adapterBrands = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, brandstring);
-        gridViewBrands.setAdapter(adapterBrands);
 
+        //gridViewBrands.setMultiChoiceModeListener(new MultiChoiceModeListener(gridViewBrands));
+
+
+
+    }
+
+    public void onClickAddBrandsUser(View view){
+        selectedBrands = CheckableBrandLayout.selectedBrands;
+        user.addBrands(selectedBrands);
+        //Intent intent = new Intent(getApplicationContext(), ProfilActivity.class);
+        //startActivity(intent);
+        finish();
     }
 
 
@@ -68,11 +93,6 @@ public class SelectBrandsActivity extends Activity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
-        }
-
-        if (id == R.id.home){
-            finish();
             return true;
         }
 
