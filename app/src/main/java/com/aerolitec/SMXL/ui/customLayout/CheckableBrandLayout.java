@@ -25,7 +25,8 @@ public class CheckableBrandLayout extends FrameLayout implements Checkable {
     public CheckableBrandLayout(Context context, TextView tv, Brands brand) {
         super(context);
         textView=tv;
-        tv.setText(brand.getBrand());
+        this.brand=brand;
+        tv.setText(this.brand.getBrand());
     }
 
     @SuppressWarnings("deprecation")
@@ -35,7 +36,9 @@ public class CheckableBrandLayout extends FrameLayout implements Checkable {
         if(checked){
             setBackgroundResource(R.drawable.item_brand_checkable_check);
             textView.setTextColor(Color.parseColor("#FFFFFF"));
-            selectedBrands.add(brand);
+            if(!selectedBrands.contains(brand)) {
+                selectedBrands.add(brand);
+            }
         }
         else{
             setBackgroundResource(R.drawable.item_brand_checkable);

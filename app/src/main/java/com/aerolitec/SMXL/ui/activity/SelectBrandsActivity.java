@@ -72,6 +72,7 @@ public class SelectBrandsActivity extends Activity {
         user.addBrands(selectedBrands);
         //Intent intent = new Intent(getApplicationContext(), ProfilActivity.class);
         //startActivity(intent);
+        Log.d("user ", UserManager.get().getUser().toString());
         finish();
     }
 

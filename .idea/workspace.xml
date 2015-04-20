@@ -17,36 +17,10 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: com.aerolitec.SMXL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bcedc9f4-a278-4245-beda-299f3891aad9" name="Default" comment="Sélectiond es marques lors de la création du profil + factorisation code update et create profile">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/customLayout/CheckableBrandLayout.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/adapter/FavoriteBrandAdapter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Library/Library.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LibrarySLidingLayer/LibrarySLidingLayer.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/listener/MultiChoiceModeListener.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/SuperCreateUpdateProfileActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/item_brand_checkable.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/item_brand_checkable_check.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/item_brand_checkable_enabled.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_favorite_brand.xml" />
+    <list default="true" id="bcedc9f4-a278-4245-beda-299f3891aad9" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/customLayout/CheckableBrandLayout.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/customLayout/CheckableBrandLayout.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/CreateProfile.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/CreateProfile.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/ProfilActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/ProfilActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/SelectBrandsActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/SelectBrandsActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/UpdateProfile.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/UpdateProfile.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/model/User.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/model/User.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_select_brands.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_select_brands.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/gson_2_2_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/gson_2_2_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/joda_time_2_3.xml" afterPath="$PROJECT_DIR$/.idea/libraries/joda_time_2_3.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local.properties" afterPath="$PROJECT_DIR$/local.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/opencsv_2_3.xml" afterPath="$PROJECT_DIR$/.idea/libraries/opencsv_2_3.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/picasso_2_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/picasso_2_2_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/settings.gradle" afterPath="$PROJECT_DIR$/settings.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_annotations_22_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_annotations_22_0_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_v13_22_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_v13_22_0_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_22_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_22_0_0.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="smlx.iws" />
@@ -73,8 +47,8 @@
       <file leaf-file-name="CreateProfile.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/CreateProfile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="859" max-vertical-offset="2040">
-              <caret line="155" column="6" selection-start-line="155" selection-start-column="6" selection-end-line="155" selection-end-column="6" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="904" max-vertical-offset="2040">
+              <caret line="134" column="12" selection-start-line="134" selection-start-column="12" selection-end-line="134" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -83,8 +57,8 @@
       <file leaf-file-name="SelectBrandsActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/SelectBrandsActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6511628" vertical-offset="349" max-vertical-offset="1320">
-              <caret line="74" column="17" selection-start-line="74" selection-start-column="17" selection-end-line="74" selection-end-column="17" />
+            <state vertical-scroll-proportion="0.56005585" vertical-offset="379" max-vertical-offset="1335">
+              <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -93,7 +67,7 @@
       <file leaf-file-name="User.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/model/User.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3484" max-vertical-offset="4440">
+            <state vertical-scroll-proportion="0.0" vertical-offset="3019" max-vertical-offset="4440">
               <caret line="358" column="35" selection-start-line="358" selection-start-column="35" selection-end-line="358" selection-end-column="35" />
               <folding>
                 <element signature="e#7493#7494#0" expanded="true" />
@@ -106,11 +80,23 @@
       <file leaf-file-name="CheckableBrandLayout.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/customLayout/CheckableBrandLayout.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="184" max-vertical-offset="930">
-              <caret line="58" column="5" selection-start-line="58" selection-start-column="5" selection-end-line="58" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="184" max-vertical-offset="1005">
+              <caret line="38" column="24" selection-start-line="38" selection-start-column="24" selection-end-line="38" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1708#1709#0" expanded="true" />
+                <element signature="e#1745#1746#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UpdateProfile.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/UpdateProfile.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="339" max-vertical-offset="2430">
+              <caret line="85" column="19" selection-start-line="85" selection-start-column="19" selection-end-line="85" selection-end-column="19" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -1923,10 +1909,10 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/IProfile.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/UpdateProfile.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/SuperCreateUpdateProfileActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/CreateProfile.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/adapter/FavoriteBrandAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/customLayout/CheckableBrandLayout.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/model/User.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/CreateProfile.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/customLayout/CheckableBrandLayout.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/SelectBrandsActivity.java" />
       </list>
     </option>
@@ -2511,6 +2497,10 @@
               <option name="myItemId" value="SMXL" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -2841,7 +2831,11 @@
       <created>1429264807097</created>
       <updated>1429264807097</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Sélection des marques lors de la création du profil + factorisation code update et create profile">
+      <created>1429535296705</created>
+      <updated>1429535296706</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2861,12 +2855,12 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32770607" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3286004" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296146" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24627607" sideWeight="0.88445157" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2454361" sideWeight="0.88445157" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.525355" sideWeight="0.115548454" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2172524" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Memory Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2636917" sideWeight="0.5" order="13" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296146" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3356998" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960597" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24973376" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3995943" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -2909,7 +2903,8 @@
     <MESSAGE value="Bouton add profile sur le mur" />
     <MESSAGE value="Modification du guide des tailles en sliding layer, plus cool !" />
     <MESSAGE value="Amélioration du guide des tailles et début de la sélection des marques" />
-    <option name="LAST_COMMIT_MESSAGE" value="Amélioration du guide des tailles et début de la sélection des marques" />
+    <MESSAGE value="Sélection des marques lors de la création du profil + factorisation code update et create profile" />
+    <option name="LAST_COMMIT_MESSAGE" value="Sélection des marques lors de la création du profil + factorisation code update et create profile" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3077,6 +3072,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.17937219" vertical-offset="0" max-vertical-offset="2160">
           <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -3230,25 +3226,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/UpdateProfile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0259918" vertical-offset="1575" max-vertical-offset="2505">
-          <caret line="191" column="0" selection-start-line="191" selection-start-column="0" selection-end-line="191" selection-end-column="0" />
-          <folding>
-            <element signature="e#2431#2587#0" expanded="true" />
-            <element signature="e#2576#2577#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/model/Brands.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14363885" vertical-offset="0" max-vertical-offset="731">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/ProfilActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1474" max-vertical-offset="2340">
@@ -3268,18 +3245,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/tools/services/SizeGuideDataBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.038462" vertical-offset="3695" max-vertical-offset="38565">
-          <caret line="283" column="39" selection-start-line="283" selection-start-column="32" selection-end-line="283" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/adapter/FavoriteBrandAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="915">
           <caret line="57" column="86" selection-start-line="57" selection-start-column="86" selection-end-line="57" selection-end-column="86" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/tools/services/SizeGuideDataBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.038462" vertical-offset="3695" max-vertical-offset="38565">
+          <caret line="283" column="39" selection-start-line="283" selection-start-column="32" selection-end-line="283" selection-end-column="39" />
           <folding />
         </state>
       </provider>
@@ -3297,26 +3274,44 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/CreateProfile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1234" max-vertical-offset="2040">
-          <caret line="155" column="6" selection-start-line="155" selection-start-column="6" selection-end-line="155" selection-end-column="6" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="904" max-vertical-offset="2040">
+          <caret line="134" column="12" selection-start-line="134" selection-start-column="12" selection-end-line="134" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/model/Brands.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5129959" vertical-offset="0" max-vertical-offset="731">
+          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="41" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/UpdateProfile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="339" max-vertical-offset="2430">
+          <caret line="85" column="19" selection-start-line="85" selection-start-column="19" selection-end-line="85" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/customLayout/CheckableBrandLayout.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="184" max-vertical-offset="930">
-          <caret line="58" column="5" selection-start-line="58" selection-start-column="5" selection-end-line="58" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="184" max-vertical-offset="1005">
+          <caret line="38" column="24" selection-start-line="38" selection-start-column="24" selection-end-line="38" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1708#1709#0" expanded="true" />
+            <element signature="e#1745#1746#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/SelectBrandsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6511628" vertical-offset="349" max-vertical-offset="1320">
-          <caret line="74" column="17" selection-start-line="74" selection-start-column="17" selection-end-line="74" selection-end-column="17" />
+        <state vertical-scroll-proportion="0.56005585" vertical-offset="379" max-vertical-offset="1335">
+          <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
           <folding />
         </state>
       </provider>

@@ -132,7 +132,7 @@ public class CreateProfile extends SuperCreateUpdateProfileActivity{
             else
                 setResult(0);
 
-            //finish();
+            finish();
             UserManager.get().setUser(user);
             Intent intent = new Intent(getApplicationContext(), SelectBrandsActivity.class);
             startActivity(intent);
