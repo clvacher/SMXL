@@ -416,6 +416,7 @@ public class AddMeasureActivity extends Activity {
             user.setFeet(getItemFromId(ID_FOOT).getValueMeasure() * coeff);
             user.setPointure(getItemFromId(ID_SHOE_SIZE).getValueMeasure() * coeff);
             SMXL.get().getDataBase().updateUser(user);
+            UserManager.get().setUser(user);
         }
 
         private int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight){

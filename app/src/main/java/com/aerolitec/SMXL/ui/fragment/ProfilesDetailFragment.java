@@ -51,7 +51,7 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
     // TODO: Rename and change types of parameters
     private static User user;
     private TextView tvFirstName, tvLastName, tvAgeSexe;
-    private EditText eTDescription;
+    private EditText etDescription;
     private RelativeLayout addMeasure, addGarment;
     //private ListView listViewMeasures;
     private ArrayList<MeasureItem> listMeasures;
@@ -72,14 +72,6 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
 
     private final static int DELETE_GARMENT = 1;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProfilesFragment.
-     */
     // TODO: Rename and change types and number of parameters
     public static ProfilesDetailFragment newInstance(User param1, String param2) {
         ProfilesDetailFragment fragment = new ProfilesDetailFragment();
@@ -142,7 +134,7 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
         layoutMeasure = (LinearLayout) view.findViewById(R.id.layoutViewMeasure);
         indexSize = SMXL.getDataBase().getIndexMeasureNotNull(user);
         userClothes = SMXL.getDataBase().getAllUserGarments(user);
-        eTDescription = (EditText) view.findViewById(R.id.description);
+        etDescription = (EditText) view.findViewById(R.id.description);
 
         addGarment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -203,7 +195,7 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
         String profileDescription = user.getDescription();
 
         if (profileDescription.length()>0) {
-            eTDescription.setText(profileDescription);
+            etDescription.setText(profileDescription);
         }
         //tvTitle.setText(user.getLastname() + " " + user.getFirstname());
         int age = user.getAge(user.getBirthday());
@@ -436,13 +428,32 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
         tvFirstName.setText(user.getFirstname());
         tvLastName.setText(user.getLastname());
         //tvTitle.setText(user.getLastname() + " " + user.getFirstname());
-        //etDescriptionProfil.setText(user.getDescription());
+        etDescription.setText(user.getDescription());
+
         int age = user.getAge(user.getBirthday());
         String sexe = "Femme";
         if (user.getSexe().startsWith("H")) {
             sexe = "Homme";
         }
         tvAgeSexe.setText(age + " ans / " + sexe);
+
+        String fnAvatar = user.getAvatar();
+        if (fnAvatar != null) {
+            int width = getPixelsFromDip(80, getActivity());
+            try {
+                File file = new File(fnAvatar);
+                if (file.exists()) {
+                    final BitmapFactory.Options options = new BitmapFactory.Options();
+                    options.inJustDecodeBounds = true;
+                    BitmapFactory.decodeFile(file.getAbsolutePath(), options);
+                    options.inSampleSize = ImageHelper.calculateInSampleSize(options, width, width);
+                    options.inJustDecodeBounds = false;
+                    imgAvatar.setImageBitmap(ImageHelper.getCorrectBitmap(BitmapFactory.decodeFile(file.getAbsolutePath(), options), file.getAbsolutePath()));
+                }
+            } catch (Exception e) {
+                Log.e(Constants.TAG, "Error converting Picture to File : " + e.getMessage());
+            }
+        }
     }
 
 
@@ -611,9 +622,10 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
 
     @Override
     public void onPause(){
-        String desc=eTDescription.getText().toString();
+        String desc= etDescription.getText().toString();
         if(!desc.equals(user.getDescription())){
             user.setDescription(desc);
+            UserManager.get().setUser(user);
             SMXL.getDataBase().updateUser(user);
         }
 
@@ -624,8 +636,9 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
     public void onResume() {
         super.onResume();
         if (user != null) {
-            //updateMesures();
-            //updateGarments();
+            Log.d("toto",user.getDescription());
+            user=UserManager.get().getUser();
+            Log.d("toto",user.getDescription());
             updateUI();
         }
     }

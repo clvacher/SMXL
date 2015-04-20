@@ -18,6 +18,7 @@ import com.aerolitec.SMXL.model.TabSizes;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.model.UserClothes;
 import com.aerolitec.SMXL.tools.Constants;
+import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 

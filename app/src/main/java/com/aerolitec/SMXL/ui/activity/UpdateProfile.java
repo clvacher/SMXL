@@ -166,7 +166,8 @@ public class UpdateProfile extends SuperCreateUpdateProfileActivity{
 
                 try {
                     SMXL.get().getDataBase().updateUser(user);
-                    Log.d(Constants.TAG, "Profile updated");
+                    UserManager.get().setUser(user);
+                    Log.d(Constants.TAG, "Profile updated "+UserManager.get().getUser().getDescription());
                 }
                 catch (Exception e) {
                    Log.d(Constants.TAG,"Update user with error : " + e.getMessage());
@@ -182,6 +183,45 @@ public class UpdateProfile extends SuperCreateUpdateProfileActivity{
         return super.onOptionsItemSelected(item);
     }
 
+    public void onActionCreateProfile (View v){
+
+
+        /// Add Profile in DataBase ///
+        if (etFirstName.getText().toString().length() < 2 ||
+                etLastName.getText().toString().length() < 2){
+            Toast.makeText(this,"Vous devez indiquer pseudo, prénom et nom",Toast.LENGTH_LONG).show();
+        }
+        else {
+            String sexe = "F";
+            int idRadioButton = radioSexe.getCheckedRadioButtonId();
+            if (idRadioButton == -1){
+                //no item selected
+            }
+            else{
+                if (idRadioButton == R.id.radioMale){
+                    sexe = "H";
+                }
+            }
+
+            user.setAvatar(picturePath);
+            user.setBirthday(birthday);
+            user.setFirstname(etFirstName.getText().toString());
+            user.setLastname(etLastName.getText().toString());
+
+            user.setDescription(etNotes.getText().toString());
+
+            user.setSexe(sexe);
+
+            try {
+                SMXL.get().getDataBase().updateUser(user);
+                Log.d(Constants.TAG, "Profile updated");
+            }
+            catch (Exception e) {
+                Log.d(Constants.TAG,"Update user with error : " + e.getMessage());
+            }
+            finish();
+        }
+    }
 
     private void selectProfilPicture(){
         Intent i = new Intent(Intent.ACTION_PICK);

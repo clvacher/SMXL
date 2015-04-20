@@ -1,10 +1,12 @@
 package com.aerolitec.SMXL.ui.activity;
 
-import android.app.Activity;
+
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -15,8 +17,9 @@ import android.widget.TextView;
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.fragment.ProfilesDetailFragment;
+import com.aerolitec.SMXL.ui.fragment.WardrobeDetailFragment;
 
-public class ProfilDetailActivity extends Activity {
+public class ProfilDetailActivity extends FragmentActivity implements WardrobeDetailFragment.OnFragmentInteractionListener{
 
     private LinearLayout tab1,tab2,tab3;
     @Override
@@ -58,6 +61,7 @@ public class ProfilDetailActivity extends Activity {
                 ((TextView)findViewById(R.id.textView2)).setTextColor(Color.parseColor("#FFFFFF"));
                 tab3.setBackgroundResource(R.drawable.button_orange_border);
                 ((TextView)findViewById(R.id.textView3)).setTextColor(Color.parseColor("#FFFFFF"));
+                getFragmentManager().beginTransaction().replace(R.id.container, new ProfilesDetailFragment()).commit();
             }
         });
         tab2.setOnClickListener(new View.OnClickListener() {
@@ -69,6 +73,7 @@ public class ProfilDetailActivity extends Activity {
                 ((TextView)findViewById(R.id.textView2)).setTextColor(getResources().getColor(R.color.SectionTitle));
                 tab3.setBackgroundResource(R.drawable.button_orange_border);
                 ((TextView)findViewById(R.id.textView3)).setTextColor(Color.parseColor("#FFFFFF"));
+                getFragmentManager().beginTransaction().replace(R.id.container, new WardrobeDetailFragment()).commit();
             }
         });
         tab3.setOnClickListener(new View.OnClickListener() {
@@ -90,6 +95,7 @@ public class ProfilDetailActivity extends Activity {
         inflater.inflate(R.menu.profil_detail, menu);
         return true;
     }
+    
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -132,4 +138,10 @@ public class ProfilDetailActivity extends Activity {
     protected void onResume() {
         super.onResume();
     }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
 }
+
