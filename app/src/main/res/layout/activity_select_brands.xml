@@ -34,7 +34,7 @@
         android:background="@color/DefaultBackgroundColor"
         android:stretchMode="columnWidth"
         android:layout_gravity="center_horizontal"
-        android:verticalSpacing="20dp"
+        android:verticalSpacing="10dp"
         android:horizontalSpacing="10dp"
         android:layout_below="@+id/title"
         android:layout_centerHorizontal="true"
@@ -50,10 +50,9 @@
         android:background="#E84E1B"
         android:padding="10dp"
         android:textColor="#FFF"
+        android:onClick="onClickAddBrandsUser"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="20dp"
-        android:onClick="onClickAddBrandsUser"/>
+        android:layout_centerHorizontal="true" />
 
 
 

@@ -27,6 +27,7 @@ public class CheckableBrandLayout extends FrameLayout implements Checkable {
         textView=tv;
         this.brand=brand;
         tv.setText(this.brand.getBrand());
+        setBackgroundResource(R.drawable.cintre_inverse_hd);
     }
 
     @SuppressWarnings("deprecation")

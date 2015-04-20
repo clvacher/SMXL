@@ -92,6 +92,9 @@
     <string name="size_guide">Size Guide</string>
     <string name="title_activity_size_guide">SizeGuideActivity</string>
     <string name="title_activity_select_brands">Select your favorite brands</string>
+    <string name="favoritebrands">Favorite brands</string>
+    <string name="add_favorite_brands">Add a favorite brand</string>
+
 
 
 </resources>

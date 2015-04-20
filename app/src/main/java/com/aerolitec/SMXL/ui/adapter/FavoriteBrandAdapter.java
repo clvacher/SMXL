@@ -1,8 +1,11 @@
 package com.aerolitec.SMXL.ui.adapter;
 
+import android.graphics.Typeface;
+import android.text.style.StyleSpan;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.TextView;
@@ -48,17 +51,20 @@ public class FavoriteBrandAdapter extends BaseAdapter {
 
         if (convertView == null) {
             tv = new TextView(parent.getContext());
-            tv.setPadding(5, 10, 5, 10);
+            tv.setPadding(5, 30, 5, 30);
+            tv.setSingleLine(true);
             tv.setGravity(Gravity.CENTER);
-            tv.setLayoutParams(new ViewGroup.LayoutParams(100,50));
+            tv.setTextSize(17);
+            //tv.setLayoutParams(new ViewGroup.LayoutParams(100,50));
+            tv.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
             //tv.setBackgroundResource(R.drawable.item_brand_checkable);
 
 
             l = new CheckableBrandLayout(parent.getContext(), tv, brands.get(position));
             l.setLayoutParams(new GridView.LayoutParams(
-                    GridView.LayoutParams.WRAP_CONTENT,
-                    GridView.LayoutParams.WRAP_CONTENT));
+                    GridView.LayoutParams.MATCH_PARENT,
+                    GridView.LayoutParams.MATCH_PARENT));
 
             l.addView(tv);
 

@@ -282,7 +282,7 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
 
     private void updateTableBrands(SQLiteDatabase db){
         // Definir toutes les marques utilisees dans l'application, quel que soit le type de vetement
-        createRecordBrands(db, "DEFAULT");
+        //createRecordBrands(db, "DEFAULT");
         createRecordBrands(db, "ASOS");
         createRecordBrands(db, "KIABI");
         createRecordBrands(db, "ADIDAS");
@@ -290,6 +290,27 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
         createRecordBrands(db, "H&M");
         createRecordBrands(db, "ZARA");
         createRecordBrands(db, "DESIGUAL");
+        createRecordBrands(db, "MANGO");
+        createRecordBrands(db, "DESIGUAL");
+        createRecordBrands(db, "DESIGUAL");
+        createRecordBrands(db, "DESIGUAL");
+        createRecordBrands(db, "DESIGUAL");
+        createRecordBrands(db, "DESIGUAL");
+        createRecordBrands(db, "DESIGUAL");
+        createRecordBrands(db, "DESIGUAL");
+        createRecordBrands(db, "DESIGUAL");
+        createRecordBrands(db, "DESIGUAL");
+        createRecordBrands(db, "MANGO");
+        createRecordBrands(db, "MANGO");
+        createRecordBrands(db, "MANGO");
+        createRecordBrands(db, "MANGO");
+        createRecordBrands(db, "MANGO");
+        createRecordBrands(db, "MANGO");
+        createRecordBrands(db, "MANGO");
+        createRecordBrands(db, "MANGO");
+        createRecordBrands(db, "MANGO");
+        createRecordBrands(db, "MANGO");
+        createRecordBrands(db, "AUYZIADKLJAKLSY");
         createRecordBrands(db, "MANGO");
         createRecordBrands(db, "KOOKAI");
         createRecordBrands(db, "KOOPLES");

@@ -37,6 +37,7 @@ public class SelectBrandsActivity extends Activity {
         selectedBrands=new ArrayList<>();
 
 
+
         user = UserManager.get().getUser();
         if(user == null){
             Log.d("TestOnCreate", "user null");

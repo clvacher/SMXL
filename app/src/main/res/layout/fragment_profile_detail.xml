@@ -5,7 +5,8 @@
     android:background="@color/DefaultBackgroundColor"
     android:scrollbars="none"
     android:clipToPadding="false"
-    android:padding="10dp">
+    android:padding="10dp"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -13,8 +14,7 @@
         android:background="@color/DefaultBackgroundColor"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:orientation="vertical">
-
+        >
         <RelativeLayout
             android:id="@+id/profilLayout"
             android:layout_width="match_parent"
