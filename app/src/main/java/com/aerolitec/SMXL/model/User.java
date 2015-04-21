@@ -8,9 +8,7 @@ import org.joda.time.Years;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-/**
- * Created by stephaneL on 20/03/14.
- */
+
 public class User extends BaseObjects implements Serializable {
 
     private int userid;
@@ -36,7 +34,7 @@ public class User extends BaseObjects implements Serializable {
     private int unitWeight;
     private double pointure;
 
-    private ArrayList<Brands> brands = new ArrayList<>();
+    private ArrayList<Brand> brands = new ArrayList<>();
 
 
     public User() {
@@ -300,15 +298,15 @@ public class User extends BaseObjects implements Serializable {
         this.unitWeight = unitWeight;
     }
 
-    public ArrayList<Brands> getBrands() {
+    public ArrayList<Brand> getBrands() {
         return brands;
     }
 
-    public void setBrands(ArrayList<Brands> brands) {
+    public void setBrands(ArrayList<Brand> brands) {
         this.brands = brands;
     }
 
-    public void addBrands (ArrayList<Brands> brands){
+    public void addBrands (ArrayList<Brand> brands){
         this.brands.addAll(brands);
     }
 

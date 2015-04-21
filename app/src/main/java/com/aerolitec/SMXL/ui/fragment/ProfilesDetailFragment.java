@@ -22,6 +22,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
+import com.aerolitec.SMXL.model.Brand;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.model.UserClothes;
 import com.aerolitec.SMXL.tools.Constants;
@@ -32,7 +33,10 @@ import com.aerolitec.SMXL.ui.activity.AddGarmentActivity;
 import com.aerolitec.SMXL.ui.activity.AddMeasureActivity;
 import com.aerolitec.SMXL.ui.activity.DisplayGarmentActivity;
 import com.aerolitec.SMXL.ui.activity.ListGarmentActivity;
+import com.aerolitec.SMXL.ui.activity.SelectBrandsActivity;
 import com.aerolitec.SMXL.ui.activity.UpdateProfile;
+import com.aerolitec.SMXL.ui.adapter.BrandItem;
+import com.aerolitec.SMXL.ui.adapter.FavoriteBrandAdapter;
 import com.aerolitec.SMXL.ui.adapter.GarmentAdapter;
 import com.aerolitec.SMXL.ui.adapter.GarmentItem;
 import com.aerolitec.SMXL.ui.adapter.MeasureAdapter;
@@ -52,23 +56,31 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
     private static User user;
     private TextView tvFirstName, tvLastName, tvAgeSexe;
     private EditText etDescription;
-    private RelativeLayout addMeasure, addGarment;
+    private RelativeLayout addMeasure, addGarment, addBrand;
     //private ListView listViewMeasures;
-    private ArrayList<MeasureItem> listMeasures;
-    private MeasureAdapter adapterMeasure;
     //private ListView listViewGarments;
-    private ArrayList<UserClothes> listGarments;
-    private GarmentAdapter adapterGarments;
     private RoundedImageView imgAvatar;
-    private LinearLayout layoutGarment, layoutMeasure, layoutRemarque;
+    private LinearLayout layoutGarment, layoutMeasure, layoutRemarque, layoutBrand;
     private RelativeLayout infosProfile;
     //private AddGarmentListener garmentListener;
     //private EditText etDescriptionProfil;
+
+
+    //private LinearLayout layoutViewGarments;
+    private RelativeLayout layoutHeaderGarments, layoutHeaderMeasures, layoutHeaderBrands;
+    //int position;
+
     private ArrayList<UserClothes> userClothes;
     private ArrayList<Integer> indexSize;
-    //private LinearLayout layoutViewGarments;
-    private RelativeLayout layoutHeaderGarments, layoutHeaderMeasures;
-    //int position;
+    private ArrayList<Brand> userBrands;
+
+    private ArrayList<UserClothes> listGarments;
+    private ArrayList<MeasureItem> listMeasures;
+    private ArrayList<String> listBrandsItems;
+
+    private GarmentAdapter adapterGarments;
+    private MeasureAdapter adapterMeasure;
+    private FavoriteBrandAdapter adapterBrand;
 
     private final static int DELETE_GARMENT = 1;
 
@@ -91,6 +103,7 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
         user = UserManager.get().getUser();
         if(user==null)
             Log.d("TestOnCreate","user null");
+        Log.d("User", user.toString());
     }
 
     @Override
@@ -117,6 +130,13 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
         //listViewGarments.setOnItemClickListener(selectGarment);
         //listViewGarments.setOnItemLongClickListener(clickListenerDeleteGarment);
 
+        listBrandsItems = new ArrayList<>();
+        ArrayList<Brand> brands = SMXL.get().getDataBase().getAllBrands();
+        for (Brand b : brands){
+            listBrandsItems.add(b.getBrand());
+        }
+        adapterBrand = new FavoriteBrandAdapter(getActivity().getApplicationContext(), listBrandsItems);
+
 
         tvFirstName = (TextView) view.findViewById(R.id.tvFirstName);
         tvLastName = (TextView) view.findViewById(R.id.tvLastName);
@@ -128,10 +148,18 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
 
         addGarment = (RelativeLayout) view.findViewById(R.id.layoutAddGarment);
         addMeasure = (RelativeLayout) view.findViewById(R.id.layoutAddMeasure);
-        layoutGarment = (LinearLayout) view.findViewById(R.id.layoutViewGarments);
+        addBrand = (RelativeLayout) view.findViewById(R.id.layoutAddBrand);
+
         layoutHeaderGarments = (RelativeLayout) view.findViewById(R.id.layoutHeaderGarments);
+        layoutGarment = (LinearLayout) view.findViewById(R.id.layoutViewGarments);
+
         layoutHeaderMeasures = (RelativeLayout) view.findViewById(R.id.layoutHeaderMeasures);
         layoutMeasure = (LinearLayout) view.findViewById(R.id.layoutViewMeasure);
+
+        layoutHeaderBrands = (RelativeLayout) view.findViewById(R.id.layoutHeaderBrands);
+        layoutBrand = (LinearLayout) view.findViewById(R.id.layoutViewBrand);
+
+
         indexSize = SMXL.getDataBase().getIndexMeasureNotNull(user);
         userClothes = SMXL.getDataBase().getAllUserGarments(user);
         etDescription = (EditText) view.findViewById(R.id.description);
@@ -152,10 +180,20 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
             }
         });
 
+
         addMeasure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), AddMeasureActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        addBrand.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), SelectBrandsActivity.class);
                 startActivity(intent);
             }
         });
@@ -166,11 +204,11 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
                 if (layoutGarment.getVisibility() == View.GONE) {
                     layoutGarment.setVisibility(View.VISIBLE);
                     ImageView collapse = (ImageView) view.findViewById(R.id.collapseGarment);
-                    collapse.setImageResource(R.drawable.navigation_expand);
+                    collapse.setImageResource(R.drawable.navigation_collapse);
                 } else {
                     layoutGarment.setVisibility(View.GONE);
                     ImageView collapse = (ImageView) view.findViewById(R.id.collapseGarment);
-                    collapse.setImageResource(R.drawable.navigation_collapse);
+                    collapse.setImageResource(R.drawable.navigation_expand);
                 }
             }
         });
@@ -181,11 +219,26 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
                 if (layoutMeasure.getVisibility() == View.GONE) {
                     layoutMeasure.setVisibility(View.VISIBLE);
                     ImageView collapse = (ImageView) view.findViewById(R.id.collapseMeasure);
-                    collapse.setImageResource(R.drawable.navigation_expand);
+                    collapse.setImageResource(R.drawable.navigation_collapse);
                 } else {
                     layoutMeasure.setVisibility(View.GONE);
                     ImageView collapse = (ImageView) view.findViewById(R.id.collapseMeasure);
+                    collapse.setImageResource(R.drawable.navigation_expand);
+                }
+            }
+        });
+
+        layoutHeaderBrands.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (layoutBrand.getVisibility() == View.GONE) {
+                    layoutBrand.setVisibility(View.VISIBLE);
+                    ImageView collapse = (ImageView) view.findViewById(R.id.collapseBrand);
                     collapse.setImageResource(R.drawable.navigation_collapse);
+                } else {
+                    layoutBrand.setVisibility(View.GONE);
+                    ImageView collapse = (ImageView) view.findViewById(R.id.collapseBrand);
+                    collapse.setImageResource(R.drawable.navigation_expand);
                 }
             }
         });
@@ -294,10 +347,13 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
 
         ArrayList<MeasureItem> localMeasure = null;
         ArrayList<GarmentItem> localGarment = null;
+        ArrayList<BrandItem> localBrand = null;
+
 
         if (savedInstanceState != null) {
             localMeasure = (ArrayList<MeasureItem>) savedInstanceState.getSerializable("measures");
             localGarment = (ArrayList<GarmentItem>) savedInstanceState.getSerializable("garments");
+            localBrand =   (ArrayList<BrandItem>) savedInstanceState.getSerializable("brands");
 
         }
 
@@ -319,6 +375,8 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
 
         loadGarments();
 
+        loadBrands();
+
     }
 
     private void updateUI() {
@@ -335,6 +393,9 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
 
         indexSize = SMXL.getDataBase().getIndexMeasureNotNull(user);
         userClothes = SMXL.getDataBase().getAllUserGarments(user);
+        //FIXME
+        //userBrands = SMXL.getDataBase().getAllUserBrands(user);
+        userBrands = user.getBrands();
 
         //POUR LES MESURES :
         for (int i = 0; i < indexSize.size(); i++) {
@@ -421,6 +482,29 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
                     .addView(separator);
 
 
+        }
+
+        //POUR LES MARQUES :
+        for (int i = 0; i < userBrands.size(); i++) {
+            View viewToLoad = LayoutInflater.from(
+                    getActivity().getApplicationContext()).inflate(
+                    R.layout.brand_item, null);
+            View separator = LayoutInflater.from(
+                    getActivity().getApplicationContext()).inflate(
+                    R.layout.separator_list, null);
+
+
+            TextView item = (TextView) viewToLoad.findViewById(R.id.tvBrandName);
+
+            item.setText(userBrands.get(i).getBrand());
+
+            ((LinearLayout) getView().findViewById(R.id.layoutViewBrand))
+                    .addView(viewToLoad);
+            //Pas de separator pour le dernier item
+            if (i != userBrands.size() - 1) {
+                ((LinearLayout) getView().findViewById(R.id.layoutViewBrand))
+                        .addView(separator);
+            }
         }
 
 
@@ -519,13 +603,26 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
     public void loadGarments() {
         // user : Get all the user's garments
         listGarments.clear();
-        ArrayList<UserClothes> userClothes = SMXL.get().getDataBase().getAllUserGarments(user);
+        userClothes = SMXL.get().getDataBase().getAllUserGarments(user);
         for (UserClothes uc : userClothes) {
             adapterGarments.add(uc);
         }
         adapterGarments.notifyDataSetChanged();
     }
 
+    public void loadBrands() {
+        // user : Get all the user's favorite brands
+        listBrandsItems.clear();
+
+        //FIXME
+        userBrands = SMXL.get().getDataBase().getAllUserBrands(user);
+        Log.d("brandsuser", userBrands.toString());
+        //userBrands = UserManager.get().getUser().getBrands();
+        for (Brand b : userBrands) {
+            adapterBrand.add(b.getBrand());
+        }
+        adapterBrand.notifyDataSetChanged();
+    }
 
     private AdapterView.OnItemClickListener selectMeasure = new AdapterView.OnItemClickListener() {
         @Override

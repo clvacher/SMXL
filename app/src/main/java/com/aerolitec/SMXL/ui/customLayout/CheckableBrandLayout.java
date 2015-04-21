@@ -2,13 +2,12 @@ package com.aerolitec.SMXL.ui.customLayout;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.util.Log;
 import android.widget.Checkable;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
-import com.aerolitec.SMXL.model.Brands;
+import com.aerolitec.SMXL.model.Brand;
 
 import java.util.ArrayList;
 
@@ -17,12 +16,12 @@ import java.util.ArrayList;
  */
 public class CheckableBrandLayout extends FrameLayout implements Checkable {
 
-    public static ArrayList<Brands> selectedBrands = new ArrayList<>();
+    public static ArrayList<Brand> selectedBrands = new ArrayList<>();
     private boolean mChecked;
     private TextView textView;
-    private Brands brand;
+    private Brand brand;
 
-    public CheckableBrandLayout(Context context, TextView tv, Brands brand) {
+    public CheckableBrandLayout(Context context, TextView tv, Brand brand) {
         super(context);
         textView=tv;
         this.brand=brand;

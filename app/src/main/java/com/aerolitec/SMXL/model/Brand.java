@@ -5,13 +5,13 @@ import java.io.Serializable;
 /**
  * Created by stephaneL on 20/03/14.
  */
-public class Brands implements Serializable {
+public class Brand implements Serializable {
     int id;
     String brand;
 
-    public Brands() {}
+    public Brand() {}
 
-    public Brands(int id, String brand){
+    public Brand(int id, String brand){
         this.id = id;
         this.brand = brand;
     }
@@ -34,7 +34,7 @@ public class Brands implements Serializable {
 
     @Override
     public String toString() {
-        return "Brands{" +
+        return "Brand{" +
                 "id=" + id +
                 ", Brand='" + brand + '\'' +
                 '}';

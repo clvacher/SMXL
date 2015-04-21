@@ -1,80 +1,49 @@
 package com.aerolitec.SMXL.ui.adapter;
 
-import android.graphics.Typeface;
-import android.text.style.StyleSpan;
-import android.view.Gravity;
+import android.app.Activity;
+import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.BaseAdapter;
-import android.widget.GridView;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
-import com.aerolitec.SMXL.model.Brands;
-import com.aerolitec.SMXL.ui.customLayout.CheckableBrandLayout;
 
 import java.util.ArrayList;
 
-/**
- * Created by Jerome on 17/04/2015.
- */
-public class FavoriteBrandAdapter extends BaseAdapter {
 
-    private ArrayList<Brands> brands;
+public class FavoriteBrandAdapter extends ArrayAdapter<String> {
 
-    public FavoriteBrandAdapter(ArrayList<Brands> brands) {
-        this.brands = brands;
-    }
+    private Context context;
 
-
-    @Override
-    public int getCount() {
-        return brands.size();
-    }
-
-    @Override
-    public Object getItem(int position) {
-        return brands.get(position);
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
+    public FavoriteBrandAdapter(Context context, ArrayList<String> brands){
+        super(context, 0 , brands);
+        this.context = context;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
-        CheckableBrandLayout l;
-        TextView tv;
-
-        if (convertView == null) {
-            tv = new TextView(parent.getContext());
-            tv.setPadding(5, 30, 5, 30);
-            tv.setSingleLine(true);
-            tv.setGravity(Gravity.CENTER);
-            tv.setTextSize(17);
-            //tv.setLayoutParams(new ViewGroup.LayoutParams(100,50));
-            tv.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-
-            //tv.setBackgroundResource(R.drawable.item_brand_checkable);
-
-
-            l = new CheckableBrandLayout(parent.getContext(), tv, brands.get(position));
-            l.setLayoutParams(new GridView.LayoutParams(
-                    GridView.LayoutParams.MATCH_PARENT,
-                    GridView.LayoutParams.MATCH_PARENT));
-
-            l.addView(tv);
-
+        ViewHolder holder;
+        if (convertView == null){
+            LayoutInflater mInflater = (LayoutInflater)
+                    context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+            convertView = mInflater.inflate(R.layout.brand_item, null);
+            holder = new ViewHolder();
+            convertView.setTag(holder);
+            holder.tvBrandName = (TextView) convertView.findViewById(R.id.tvBrandName);
         } else {
-            l = (CheckableBrandLayout) convertView;
-            tv = (TextView) l.getChildAt(0);
+            holder = (ViewHolder) convertView.getTag();
         }
 
+        String brand = getItem(position);
 
-        return l;
+        holder.tvBrandName.setText(brand);
+
+        return convertView;
     }
 
+    public static class ViewHolder {
+        TextView tvBrandName;
+    }
 }

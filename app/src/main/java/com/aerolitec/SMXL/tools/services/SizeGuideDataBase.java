@@ -7,9 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import android.view.MenuInflater;
 
-import com.aerolitec.SMXL.model.Brands;
+import com.aerolitec.SMXL.model.Brand;
 import com.aerolitec.SMXL.model.BrandsSizeGuide;
 import com.aerolitec.SMXL.model.CategoryGarment;
 import com.aerolitec.SMXL.model.GarmentType;
@@ -18,7 +17,6 @@ import com.aerolitec.SMXL.model.TabSizes;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.model.UserClothes;
 import com.aerolitec.SMXL.tools.Constants;
-import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -70,9 +68,11 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
 
 
         //db.execSQL("DROP TABLE IF EXISTS user");
-        db.execSQL("DROP TABLE IF EXISTS brands");
+        db.execSQL("DROP TABLE IF EXISTS brand");
         db.execSQL("DROP TABLE IF EXISTS clothe_type");
         db.execSQL("DROP TABLE IF EXISTS brand_size_guide");
+        db.execSQL("DROP TABLE IF EXISTS User_Brand");
+
 
 
         // Creation user table
@@ -116,8 +116,8 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
                     "sexe VARCHAR(8)); ";
             db.execSQL(statement);
 
-            statement = "CREATE TABLE IF NOT EXISTS brands ( id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    "brand VARCHAR(32)); ";
+            statement = "CREATE TABLE IF NOT EXISTS brand ( id_brand INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "brandName VARCHAR(32)); ";
             db.execSQL(statement);
 
             statement = "CREATE TABLE IF NOT EXISTS size_convert ( id INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -139,6 +139,12 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
                     "dim3 REAL, " +
                     "size VARCHAR(8)); ";
             db.execSQL(statement);
+
+
+            statement = "CREATE TABLE IF NOT EXISTS User_Brand ( id_user_brand INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "id_user INTEGER," +
+                    "id_brand INTEGER); ";
+            db.execSQL(statement);
         }
         catch (Exception e){
             Log.d(Constants.TAG,"Erreur Sql : "+e.getMessage());
@@ -152,8 +158,8 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
         }
         c.close();
 
-        // Update table brands if empty
-        c = db.rawQuery("select * from brands",null);
+        // Update table brand if empty
+        c = db.rawQuery("select * from brand",null);
         if (c.getCount() < 2){
             updateTableBrands(db);
         }
@@ -172,6 +178,7 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
             updateTableBrandSizeGuide(db);
         }
         c.close();
+
 
 /**        try {
             if (db.isOpen())
@@ -282,7 +289,6 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
 
     private void updateTableBrands(SQLiteDatabase db){
         // Definir toutes les marques utilisees dans l'application, quel que soit le type de vetement
-        //createRecordBrands(db, "DEFAULT");
         createRecordBrands(db, "ASOS");
         createRecordBrands(db, "KIABI");
         createRecordBrands(db, "ADIDAS");
@@ -290,25 +296,6 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
         createRecordBrands(db, "H&M");
         createRecordBrands(db, "ZARA");
         createRecordBrands(db, "DESIGUAL");
-        createRecordBrands(db, "MANGO");
-        createRecordBrands(db, "DESIGUAL");
-        createRecordBrands(db, "DESIGUAL");
-        createRecordBrands(db, "DESIGUAL");
-        createRecordBrands(db, "DESIGUAL");
-        createRecordBrands(db, "DESIGUAL");
-        createRecordBrands(db, "DESIGUAL");
-        createRecordBrands(db, "DESIGUAL");
-        createRecordBrands(db, "DESIGUAL");
-        createRecordBrands(db, "DESIGUAL");
-        createRecordBrands(db, "MANGO");
-        createRecordBrands(db, "MANGO");
-        createRecordBrands(db, "MANGO");
-        createRecordBrands(db, "MANGO");
-        createRecordBrands(db, "MANGO");
-        createRecordBrands(db, "MANGO");
-        createRecordBrands(db, "MANGO");
-        createRecordBrands(db, "MANGO");
-        createRecordBrands(db, "MANGO");
         createRecordBrands(db, "MANGO");
         createRecordBrands(db, "AUYZIADKLJAKLSY");
         createRecordBrands(db, "MANGO");
@@ -1894,11 +1881,11 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
     private void createRecordBrands(SQLiteDatabase db, String brand){
         ContentValues values = new ContentValues(1);
         try {
-            values.put("brand", brand);
-            db.insert("brands", "id", values);
+            values.put("brandName", brand);
+            db.insert("brand", "id", values);
         }
         catch (SQLiteException e) {
-            Log.d(Constants.TAG,"Error init table 'brands' : " + e.getMessage());
+            Log.d(Constants.TAG,"Error init table 'brand' : " + e.getMessage());
         }
     }
 
@@ -1930,6 +1917,7 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
         db.insert("brand_size_guide", "id", values);
 
     }
+
 
     // C.R.U.D User
         public User createUser(String firstName, String lastName, String birthday,
@@ -2155,6 +2143,8 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
             user.setUnitLength(c.getInt(18));
             user.setUnitWeight(c.getInt(19));
             user.setPointure(c.getDouble(20));
+
+            user.setBrands(getAllUserBrands(user));
             c.close();
             }
         catch (SQLiteException e) {
@@ -2193,6 +2183,8 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
             user.setUnitLength(c.getInt(18));
             user.setUnitWeight(c.getInt(19));
             user.setPointure(c.getInt(20));
+
+            user.setBrands(getAllUserBrands(user));
             c.close();
         }
         catch (SQLiteException e) {
@@ -2202,6 +2194,28 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
         db.close();
         return user;
     }
+
+    public Brand getBrandById(int brandid){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Brand brand = new Brand();
+        Cursor c;
+        try {
+            c = db.rawQuery("SELECT * FROM brand WHERE id_brand = ?",new String[] {String.valueOf(brandid)} );
+            boolean eof = c.moveToFirst();
+            brand.setId(c.getInt(0));
+            brand.setBrand(c.getString(1));
+
+            c.close();
+        }
+        catch (SQLiteException e) {
+            Log.d(Constants.TAG,"error getting brand " + brandid + " : " + e.getMessage());
+            brand = null;
+        }
+        db.close();
+        return brand;
+    }
+
+
 
     public boolean updateUser(User user){
         SQLiteDatabase db = this.getReadableDatabase();
@@ -2268,6 +2282,9 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
                 user.setUnitLength(c.getInt(18));
                 user.setUnitWeight(c.getInt(19));
                 user.setPointure(c.getDouble(20));
+
+                user.setBrands(getAllUserBrands(user));
+
                 users.add(user);
                 eof = c.moveToNext();
             }
@@ -2402,17 +2419,17 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
         return sizes;
     }
 
-    // Brands
+    // Brand
 
-    public ArrayList<Brands> getAllBrands(){
-        ArrayList<Brands> brands = new ArrayList<>();
+    public ArrayList<Brand> getAllBrands(){
+        ArrayList<Brand> brands = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
         try {
             Cursor c;
-            c = db.rawQuery("SELECT * FROM brands", null);
+            c = db.rawQuery("SELECT * FROM brand", null);
             boolean eof = c.moveToFirst();
             while (eof) {
-                Brands b = new Brands();
+                Brand b = new Brand();
                 b.setId(c.getInt(0));
                 b.setBrand(c.getString(1));
                 brands.add(b);
@@ -2463,6 +2480,36 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
         db.close();
         return garments;
     }
+
+    // UserBrands
+
+    public ArrayList<Brand> getAllUserBrands(User user){
+        ArrayList<Brand> brands = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        try {
+            Cursor c;
+            c = db.rawQuery("SELECT * FROM User_Brand WHERE id_user = ?", new String[]{String.valueOf(user.getUserid())});
+            boolean eof = c.moveToFirst();
+            while (eof) {
+                Brand b = getBrandById(c.getInt(1));
+                b.setId(c.getInt(0));
+                b.setBrand(c.getString(1));
+
+                brands.add(b);
+                eof = c.moveToNext();
+            }
+            c.close();
+        }
+        catch (SQLiteException e) {
+            Log.d(Constants.TAG,"error getting user brand : " + e.getMessage());
+            brands = null;
+        }
+        db.close();
+        Log.d("return db user selected", user.toString());
+        Log.d("return db user brands", brands.toString());
+        return brands;
+    }
+
 
     // getSizeConvert
     public ArrayList<SizeConvert> getConvertSizesByGarment(String garment){
@@ -2546,6 +2593,25 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
         }
         catch (SQLiteException e) {
             Log.d(Constants.TAG, "Error adding user garment : " + e.getMessage());
+            db.close();
+            return false;
+        }
+        db.close();
+        return true;
+    }
+
+    public boolean AddUserBrand(User user, Brand brand){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        ContentValues values = new ContentValues(6);
+        values.put("id_user", user.getUserid());
+        values.put("id_brand", brand.getBrand());
+
+        try {
+            db.insert("User_Brand", "id_user_brand", values);
+        }
+        catch (SQLiteException e) {
+            Log.d(Constants.TAG, "Error adding user brand : " + e.getMessage());
             db.close();
             return false;
         }

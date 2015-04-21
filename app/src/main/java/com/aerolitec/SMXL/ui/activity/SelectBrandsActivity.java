@@ -7,10 +7,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.GridView;
 
-import com.aerolitec.SMXL.model.Brands;
+import com.aerolitec.SMXL.model.Brand;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
@@ -18,15 +17,15 @@ import com.aerolitec.SMXL.ui.SMXL;
 import java.util.ArrayList;
 
 import com.aerolitec.SMXL.R;
-import com.aerolitec.SMXL.ui.adapter.FavoriteBrandAdapter;
+import com.aerolitec.SMXL.ui.adapter.FavoriteCheckableBrandAdapter;
 import com.aerolitec.SMXL.ui.customLayout.CheckableBrandLayout;
 
 
 public class SelectBrandsActivity extends Activity {
 
     private static User user;
-    private ArrayList<Brands> brands;
-    private ArrayList<Brands> selectedBrands;
+    private ArrayList<Brand> brands;
+    private ArrayList<Brand> selectedBrands;
     GridView gridViewBrands;
 
     @Override
@@ -54,11 +53,11 @@ public class SelectBrandsActivity extends Activity {
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setDisplayShowTitleEnabled(false);
 
-        ArrayList<Brands> brands = SMXL.get().getDataBase().getAllBrands();
+        ArrayList<Brand> brands = SMXL.get().getDataBase().getAllBrands();
 
         gridViewBrands = (GridView) this.findViewById(R.id.gridViewBrands);
 
-        gridViewBrands.setAdapter(new FavoriteBrandAdapter(brands));
+        gridViewBrands.setAdapter(new FavoriteCheckableBrandAdapter(brands));
         gridViewBrands.setChoiceMode(GridView.CHOICE_MODE_MULTIPLE);
 
 
@@ -71,6 +70,10 @@ public class SelectBrandsActivity extends Activity {
     public void onClickAddBrandsUser(View view){
         selectedBrands = CheckableBrandLayout.selectedBrands;
         user.addBrands(selectedBrands);
+
+        for(Brand b : selectedBrands){
+            SMXL.getDataBase().AddUserBrand(user, b);
+        }
         //Intent intent = new Intent(getApplicationContext(), ProfilActivity.class);
         //startActivity(intent);
         Log.d("user ", UserManager.get().getUser().toString());
