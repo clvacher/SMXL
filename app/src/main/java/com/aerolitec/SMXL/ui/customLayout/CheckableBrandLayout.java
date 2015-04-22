@@ -17,6 +17,8 @@ import java.util.ArrayList;
 public class CheckableBrandLayout extends FrameLayout implements Checkable {
 
     public static ArrayList<Brand> selectedBrands = new ArrayList<>();
+    public static ArrayList<CheckableBrandLayout> checkableBrands = new ArrayList<>();
+
     private boolean mChecked;
     private TextView textView;
     private Brand brand;
@@ -27,6 +29,7 @@ public class CheckableBrandLayout extends FrameLayout implements Checkable {
         this.brand=brand;
         tv.setText(this.brand.getBrand());
         setBackgroundResource(R.drawable.cintre_inverse_hd);
+        checkableBrands.add(this);
     }
 
     @SuppressWarnings("deprecation")

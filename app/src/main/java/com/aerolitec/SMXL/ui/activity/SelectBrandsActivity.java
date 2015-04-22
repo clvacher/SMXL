@@ -26,6 +26,7 @@ public class SelectBrandsActivity extends Activity {
     private static User user;
     private ArrayList<Brand> brands;
     private ArrayList<Brand> selectedBrands;
+    private ArrayList<CheckableBrandLayout> checkableBrand;
     GridView gridViewBrands;
 
     @Override
@@ -34,7 +35,7 @@ public class SelectBrandsActivity extends Activity {
 
         brands=new ArrayList<>();
         selectedBrands=new ArrayList<>();
-
+        CheckableBrandLayout.selectedBrands.clear();
 
 
         user = UserManager.get().getUser();
@@ -42,7 +43,8 @@ public class SelectBrandsActivity extends Activity {
             Log.d("TestOnCreate", "user null");
         }
 
-
+        selectedBrands=user.getBrands();
+        CheckableBrandLayout.selectedBrands = selectedBrands;
 
         Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
         mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
@@ -57,8 +59,14 @@ public class SelectBrandsActivity extends Activity {
 
         gridViewBrands = (GridView) this.findViewById(R.id.gridViewBrands);
 
+
+
         gridViewBrands.setAdapter(new FavoriteCheckableBrandAdapter(brands));
         gridViewBrands.setChoiceMode(GridView.CHOICE_MODE_MULTIPLE);
+
+        for(Brand b : selectedBrands){
+            //((FavoriteCheckableBrandAdapter)gridViewBrands.getAdapter()).getCheckableLayoutByBrand(b).setChecked(true);
+        }
 
 
         //gridViewBrands.setMultiChoiceModeListener(new MultiChoiceModeListener(gridViewBrands));
@@ -69,14 +77,17 @@ public class SelectBrandsActivity extends Activity {
 
     public void onClickAddBrandsUser(View view){
         selectedBrands = CheckableBrandLayout.selectedBrands;
-        user.addBrands(selectedBrands);
+
+        Log.d("Selected brands", selectedBrands.toString());
+
+        //user.setBrands(selectedBrands);
 
         for(Brand b : selectedBrands){
-            SMXL.getDataBase().AddUserBrand(user, b);
+            SMXL.getDataBase().addUserBrand(user, b);
         }
         //Intent intent = new Intent(getApplicationContext(), ProfilActivity.class);
         //startActivity(intent);
-        Log.d("user ", UserManager.get().getUser().toString());
+        Log.d("user onClickAddBrandUse", UserManager.get().getUser().toString());
         finish();
     }
 

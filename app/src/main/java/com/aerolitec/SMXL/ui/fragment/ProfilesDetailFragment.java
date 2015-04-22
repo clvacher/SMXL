@@ -42,14 +42,12 @@ import com.aerolitec.SMXL.ui.adapter.GarmentItem;
 import com.aerolitec.SMXL.ui.adapter.MeasureAdapter;
 import com.aerolitec.SMXL.ui.adapter.MeasureItem;
 import com.aerolitec.SMXL.ui.fragment.dialog.ConfirmDialogFragment;
-import com.aerolitec.SMXL.ui.listener.AddGarmentListener;
-import com.aerolitec.SMXL.ui.listener.MesureChangeListener;
 import com.makeramen.RoundedImageView;
 
 import java.io.File;
 import java.util.ArrayList;
 
-public class ProfilesDetailFragment extends Fragment implements MesureChangeListener, AddGarmentListener, ConfirmDialogFragment.ConfirmDialogListener {
+public class ProfilesDetailFragment extends Fragment implements ConfirmDialogFragment.ConfirmDialogListener {
 
 
     // TODO: Rename and change types of parameters
@@ -62,7 +60,6 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
     private RoundedImageView imgAvatar;
     private LinearLayout layoutGarment, layoutMeasure, layoutRemarque, layoutBrand;
     private RelativeLayout infosProfile;
-    //private AddGarmentListener garmentListener;
     //private EditText etDescriptionProfil;
 
 
@@ -118,7 +115,7 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
         }
 
         //listViewMeasures = (ListView)view.findViewById(R.id.listViewMeasures);
-        listMeasures = new ArrayList<MeasureItem>();
+        listMeasures = new ArrayList<>();
         adapterMeasure = new MeasureAdapter(getActivity().getApplicationContext(), listMeasures);
         //listViewMeasures.setAdapter(adapterMeasure);
         //listViewMeasures.setOnItemClickListener(selectMeasure);
@@ -142,9 +139,6 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
         tvLastName = (TextView) view.findViewById(R.id.tvLastName);
         tvAgeSexe = (TextView) view.findViewById(R.id.tvAgeSexe);
         layoutRemarque = (LinearLayout) view.findViewById(R.id.layoutRemarque);
-        //tvTitle = (TextView) view.findViewById(R.id.title);
-        //etDescriptionProfil = (EditText) view.findViewById(R.id.etDescriptionProfil);
-        //etDescriptionProfil.setSelected(false);
 
         addGarment = (RelativeLayout) view.findViewById(R.id.layoutAddGarment);
         addMeasure = (RelativeLayout) view.findViewById(R.id.layoutAddMeasure);
@@ -190,6 +184,7 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
         });
 
 
+
         addBrand.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -197,6 +192,7 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
                 startActivity(intent);
             }
         });
+
 
         layoutHeaderGarments.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -381,7 +377,6 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
 
     private void updateUI() {
 
-        ((LinearLayout) getView().findViewById(R.id.layoutViewMeasure)).removeAllViews();
         //TODO Utiliser des strings
         String[] listSize = {getResources().getString(R.string.libSize), getResources().getString(R.string.libWeight),
                 getResources().getString(R.string.libBust), getResources().getString(R.string.libChest),
@@ -393,11 +388,11 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
 
         indexSize = SMXL.getDataBase().getIndexMeasureNotNull(user);
         userClothes = SMXL.getDataBase().getAllUserGarments(user);
-        //FIXME
-        //userBrands = SMXL.getDataBase().getAllUserBrands(user);
-        userBrands = user.getBrands();
+        userBrands = SMXL.getDataBase().getAllUserBrands(user);
 
         //POUR LES MESURES :
+        ((LinearLayout) getView().findViewById(R.id.layoutViewMeasure)).removeAllViews();
+
         for (int i = 0; i < indexSize.size(); i++) {
             ArrayList<String> sizes = SMXL.getDataBase().getUserSizes(user);
             View viewToLoad = LayoutInflater.from(
@@ -427,10 +422,12 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
             }
         }
 
-        ((LinearLayout) getView().findViewById(R.id.layoutViewGarments)).removeAllViews();
-        RelativeLayout viewMore = (RelativeLayout) getView().findViewById(R.id.layoutViewMore);
         //POUR LES VETEMENTS
         //On affiche que les 4 premiers vêtement sinon "Voir plus" pour voir tt la liste
+
+        ((LinearLayout) getView().findViewById(R.id.layoutViewGarments)).removeAllViews();
+        RelativeLayout viewMore = (RelativeLayout) getView().findViewById(R.id.layoutViewMore);
+
         if (userClothes.size() <= 4) {
             viewMore.setVisibility(View.GONE);
         } else {
@@ -485,6 +482,8 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
         }
 
         //POUR LES MARQUES :
+        ((LinearLayout) getView().findViewById(R.id.layoutViewBrand)).removeAllViews();
+
         for (int i = 0; i < userBrands.size(); i++) {
             View viewToLoad = LayoutInflater.from(
                     getActivity().getApplicationContext()).inflate(
@@ -613,11 +612,8 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
     public void loadBrands() {
         // user : Get all the user's favorite brands
         listBrandsItems.clear();
-
-        //FIXME
         userBrands = SMXL.get().getDataBase().getAllUserBrands(user);
         Log.d("brandsuser", userBrands.toString());
-        //userBrands = UserManager.get().getUser().getBrands();
         for (Brand b : userBrands) {
             adapterBrand.add(b.getBrand());
         }
@@ -693,6 +689,7 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
 
         outState.putSerializable("measures", listMeasures);
         outState.putSerializable("garments", listGarments);
+        outState.putSerializable("brands", listBrandsItems);
     }
 
 
@@ -700,15 +697,6 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dip, context.getResources().getDisplayMetrics());
     }
 
-    @Override
-    public void updateMesures() {
-        loadMeasures();
-    }
-
-    @Override
-    public void updateGarments() {
-        loadGarments();
-    }
 
     @Override
     public void onConfirm(boolean confirmed, int positionItem) {
@@ -733,9 +721,7 @@ public class ProfilesDetailFragment extends Fragment implements MesureChangeList
     public void onResume() {
         super.onResume();
         if (user != null) {
-            Log.d("toto",user.getDescription());
             user=UserManager.get().getUser();
-            Log.d("toto",user.getDescription());
             updateUI();
         }
     }

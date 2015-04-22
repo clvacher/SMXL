@@ -141,11 +141,22 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
             db.execSQL(statement);
 
 
-            statement = "CREATE TABLE IF NOT EXISTS User_Brand ( id_user_brand INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            /*statement = "CREATE TABLE IF NOT EXISTS User_Brand ( id_user_brand INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     "id_user INTEGER," +
                     "id_brand INTEGER); ";
+            db.execSQL(statement);*/
+
+            statement = "CREATE TABLE IF NOT EXISTS User_Brand (" +
+                    "id_user INTEGER NOT NULL," +
+                    "id_brand INTEGER NOT NULL,"+
+                    "PRIMARY KEY(id_user, id_brand));";
+                    //"CONSTRAINT u_user_brand UNIQUE (id_user, id_brand),"+
+                    //"FOREIGN KEY (id_user) REFERENCES user(userid)," +
+                    //"FOREIGN KEY (id_brand) REFERENCES brand(id_brand)); ";
+
             db.execSQL(statement);
         }
+
         catch (Exception e){
             Log.d(Constants.TAG,"Erreur Sql : "+e.getMessage());
         }
@@ -2198,10 +2209,13 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
     public Brand getBrandById(int brandid){
         SQLiteDatabase db = this.getReadableDatabase();
         Brand brand = new Brand();
+        Log.d("brandid paramgetBrandId", Integer.toString(brandid));
         Cursor c;
         try {
             c = db.rawQuery("SELECT * FROM brand WHERE id_brand = ?",new String[] {String.valueOf(brandid)} );
+
             boolean eof = c.moveToFirst();
+
             brand.setId(c.getInt(0));
             brand.setBrand(c.getString(1));
 
@@ -2491,9 +2505,8 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
             c = db.rawQuery("SELECT * FROM User_Brand WHERE id_user = ?", new String[]{String.valueOf(user.getUserid())});
             boolean eof = c.moveToFirst();
             while (eof) {
+                //Brand b = getBrandById(c.getInt(2));
                 Brand b = getBrandById(c.getInt(1));
-                b.setId(c.getInt(0));
-                b.setBrand(c.getString(1));
 
                 brands.add(b);
                 eof = c.moveToNext();
@@ -2600,18 +2613,48 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
         return true;
     }
 
-    public boolean AddUserBrand(User user, Brand brand){
+    public boolean addUserBrand(User user, Brand brand){
         SQLiteDatabase db = this.getReadableDatabase();
 
-        ContentValues values = new ContentValues(6);
+        ContentValues values = new ContentValues(2);
         values.put("id_user", user.getUserid());
-        values.put("id_brand", brand.getBrand());
+        values.put("id_brand", brand.getId());
 
         try {
-            db.insert("User_Brand", "id_user_brand", values);
+            //db.insert("User_Brand", "id_user_brand", values);
+            db.insert("User_Brand", null, values);
+
         }
         catch (SQLiteException e) {
             Log.d(Constants.TAG, "Error adding user brand : " + e.getMessage());
+            db.close();
+            return false;
+        }
+        db.close();
+        return true;
+    }
+
+    public boolean removeUserBrand(User user, Brand brandToRemove){
+        SQLiteDatabase db = this.getReadableDatabase();
+        try {
+            db.execSQL("DELETE * FROM User_Brand WHERE user_id="+user.getUserid()+" AND brand_id="+brandToRemove.getId()+";");
+        }
+        catch (SQLiteException e) {
+            Log.d(Constants.TAG, "delete brand user with error : " + e.getMessage());
+            db.close();
+            return false;
+        }
+        db.close();
+        return true;
+    }
+
+    public boolean removeAllUserBrand(User user){
+        SQLiteDatabase db = this.getReadableDatabase();
+        try {
+            db.execSQL("DELETE * FROM User_Brand WHERE user_id="+user.getUserid()+";");
+        }
+        catch (SQLiteException e) {
+            Log.d(Constants.TAG, "delete all brand user with error : " + e.getMessage());
             db.close();
             return false;
         }

@@ -1,5 +1,6 @@
 package com.aerolitec.SMXL.ui.adapter;
 
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,7 +68,6 @@ public class FavoriteCheckableBrandAdapter extends BaseAdapter {
             l = (CheckableBrandLayout) convertView;
             tv = (TextView) l.getChildAt(0);
         }
-
 
         return l;
     }
