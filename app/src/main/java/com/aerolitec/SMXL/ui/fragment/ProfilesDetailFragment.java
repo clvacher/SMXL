@@ -155,6 +155,7 @@ public class ProfilesDetailFragment extends Fragment implements ConfirmDialogFra
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), SelectBrandsActivity.class);
+                //intent.putExtra("user_brands", user.getBrands());
                 startActivity(intent);
             }
         });
@@ -352,6 +353,7 @@ public class ProfilesDetailFragment extends Fragment implements ConfirmDialogFra
                     getActivity().getApplicationContext()).inflate(
                     R.layout.separator_list, null);
             LinearLayout clickItem = (LinearLayout) viewToLoad.findViewById(R.id.layoutItemMeasure);
+
             clickItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -359,6 +361,7 @@ public class ProfilesDetailFragment extends Fragment implements ConfirmDialogFra
                     startActivity(intent);
                 }
             });
+
             TextView item = (TextView) viewToLoad.findViewById(R.id.tvNameMeasure);
             TextView value = (TextView) viewToLoad.findViewById(R.id.tvValueMeasure);
             item.setText(listSize[indexSize.get(i)]);

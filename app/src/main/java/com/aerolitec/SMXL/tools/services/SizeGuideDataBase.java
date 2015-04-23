@@ -2226,7 +2226,7 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
     public Brand getBrandById(int brandid){
         SQLiteDatabase db = this.getReadableDatabase();
         Brand brand = new Brand();
-        Log.d("brandid paramgetBrandId", Integer.toString(brandid));
+        //Log.d("brandid paramgetBrandId", Integer.toString(brandid));
         Cursor c;
         try {
             c = db.rawQuery("SELECT * FROM brand WHERE id_brand = ?",new String[] {String.valueOf(brandid)} );
@@ -2533,8 +2533,8 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
             brands = null;
         }
         db.close();
-        Log.d("return db user selected", user.toString());
-        Log.d("return db user brands", brands.toString());
+        //Log.d("return db user selected", user.toString());
+        //Log.d("return db user brands", brands.toString());
         return brands;
     }
 
@@ -2652,7 +2652,7 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
     public boolean removeUserBrand(User user, Brand brandToRemove){
         SQLiteDatabase db = this.getReadableDatabase();
         try {
-            db.execSQL("DELETE * FROM User_Brand WHERE user_id="+user.getUserid()+" AND brand_id="+brandToRemove.getId()+";");
+            db.execSQL("DELETE * FROM User_Brand WHERE id_user="+user.getUserid()+" AND id_brand="+brandToRemove.getId()+";");
         }
         catch (SQLiteException e) {
             Log.d(Constants.TAG, "delete brand user with error : " + e.getMessage());
@@ -2729,4 +2729,20 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
         return nbElement;
     }
 
+    public boolean alreadyExistUserBrand(User user, Brand b) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        boolean found = false;
+        try {
+            Cursor c;
+            c = db.rawQuery("SELECT * FROM User_Brand WHERE id_user="+user.getUserid()+" AND id_brand="+b.getId()+";", new String[]{});
+            boolean eof = c.moveToFirst();
+            found = eof;
+            c.close();
+        }
+        catch (SQLiteException e){
+            Log.d(Constants.TAG,"ERROR alreadyExistUserBrand db : " + e.getMessage());
+        }
+        db.close();
+        return found;
+    }
 }

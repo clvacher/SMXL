@@ -1,5 +1,7 @@
 package com.aerolitec.SMXL.model;
 
+import android.util.Log;
+
 import java.io.Serializable;
 
 /**
@@ -10,6 +12,17 @@ public class Brand implements Serializable {
     String brand;
 
     public Brand() {}
+
+    @Override
+    public boolean equals(Object o) {
+        if(o instanceof Brand){
+            if( ((Brand) o).getBrand().equals(brand)){
+                //Log.d("BRAND O IDENTIQUE", "");
+                return true;
+            }
+        }
+        return super.equals(o);
+    }
 
     public Brand(int id, String brand){
         this.id = id;

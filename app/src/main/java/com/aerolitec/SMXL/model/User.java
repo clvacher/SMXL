@@ -371,8 +371,6 @@ public class User extends BaseObjects implements Serializable {
             int day = Integer.valueOf(birthday.substring(0, 2));
             LocalDate birthDate = new LocalDate(year, month, day);
             LocalDate now = new LocalDate();
-            Log.d("birth", birthDate.toString());
-            Log.d("now", now.toString());
             Years years = Years.yearsBetween(birthDate, now);
             age = years.getYears();
         } catch (Exception e) {

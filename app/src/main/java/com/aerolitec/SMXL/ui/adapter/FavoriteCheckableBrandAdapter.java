@@ -9,8 +9,10 @@ import android.widget.GridView;
 import android.widget.TextView;
 
 import com.aerolitec.SMXL.model.Brand;
+import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.customLayout.CheckableBrandLayout;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -20,10 +22,13 @@ public class FavoriteCheckableBrandAdapter extends BaseAdapter {
 
     private ArrayList<Brand> brands;
 
+    public static ArrayList<CheckableBrandLayout> checkableBrands = new ArrayList<>();
+
+
+
     public FavoriteCheckableBrandAdapter(ArrayList<Brand> brands) {
         this.brands = brands;
     }
-
 
     @Override
     public int getCount() {
@@ -44,32 +49,40 @@ public class FavoriteCheckableBrandAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         CheckableBrandLayout l;
-        TextView tv;
 
         if (convertView == null) {
-            tv = new TextView(parent.getContext());
-            tv.setPadding(5, 30, 5, 30);
-            tv.setSingleLine(true);
-            tv.setGravity(Gravity.CENTER);
-            tv.setTextSize(17);
-            tv.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            l = new CheckableBrandLayout(parent.getContext(), brands.get(position));
 
-            //tv.setBackgroundResource(R.drawable.item_brand_checkable);
-
-
-            l = new CheckableBrandLayout(parent.getContext(), tv, brands.get(position));
             l.setLayoutParams(new GridView.LayoutParams(
                     GridView.LayoutParams.MATCH_PARENT,
                     GridView.LayoutParams.MATCH_PARENT));
 
-            l.addView(tv);
-
         } else {
             l = (CheckableBrandLayout) convertView;
-            tv = (TextView) l.getChildAt(0);
+        }
+
+        //Log.d("l dans les checkable", "oui oui oui");
+        //Log.d("checkablebrand after l", checkableBrands.toString());
+
+        if (!checkableBrands.contains(l)){
+            checkableBrands.add(l);
         }
 
         return l;
+    }
+
+    public void checkBrand (Brand b){
+        Log.d("List brands fcbadapt", brands.toString());
+        Log.d("Brand b", b.toString());
+        Log.d("Brand b contains", Boolean.toString(brands.contains(b)));
+        Log.d("index of b in brands", Integer.toString(brands.indexOf(b)));
+        Log.d("checkablebrands", checkableBrands.toString());
+        Log.d("checkable item at index", checkableBrands.get(brands.indexOf(b)).toString());
+
+        Log.d("checkable size", Integer.toString(checkableBrands.size()));
+
+        checkableBrands.get(brands.indexOf(b)).setChecked(true);
+        Log.d("is checked", Boolean.toString(checkableBrands.get(brands.indexOf(b)).isChecked()));
     }
 
 }
