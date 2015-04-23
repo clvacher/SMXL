@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -32,12 +33,15 @@ import com.makeramen.RoundedImageView;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.HttpURLConnection;
 import java.util.Calendar;
 
 /**
  * Created by stephaneL on 21/03/14.
  */
 public class CreateProfile extends SuperCreateUpdateProfileActivity{
+
+    private boolean confirmExit=false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -153,20 +157,28 @@ public class CreateProfile extends SuperCreateUpdateProfileActivity{
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dip, context.getResources().getDisplayMetrics());
     }
 
-    /*
+
     @Override
-    public void onBackPressed(){
-
-        if(etFirstName.getText().toString().length() > 2 || etLastName.getText().toString().length() > 2 || picturePath!=null) {
-            onActionCreateProfile(findViewById(R.id.activity_create_profile));
-            String savedProfile = "Profile saved";
-            Toast toast = Toast.makeText(this, savedProfile, Toast.LENGTH_SHORT);
+    public void onBackPressed() {
+        if (confirmExit == true) {
+            super.onBackPressed();
+        } else {
+            confirmExit = true;
+            Toast toast = Toast.makeText(this, getResources().getText(R.string.returnCreate), Toast.LENGTH_SHORT);
+            AsyncTask task = new AsyncTask() {
+                @Override
+                protected Object doInBackground(Object[] objects) {
+                    try {
+                        Thread.sleep(2500);
+                    } catch (InterruptedException e) {
+                        Log.d("catchCreateProfile", "InterruptedException");
+                    }
+                    confirmExit = false;
+                    return null;
+                }
+            };
+            toast.show();
+            task.execute();
         }
-        else {
-            Intent intent = new Intent(getApplicationContext(), ProfilActivity.class);
-            startActivity(intent);
-        }
-
-    }*/
-
+    }
 }

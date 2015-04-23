@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.tools.manager.UserManager;
+import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.fragment.ProfilesDetailFragment;
 import com.aerolitec.SMXL.ui.fragment.WardrobeDetailFragment;
 
@@ -59,6 +61,7 @@ public class ProfilDetailActivity extends FragmentActivity implements WardrobeDe
                 ((TextView)findViewById(R.id.textView1)).setTextColor(getResources().getColor(R.color.SectionTitle));
                 tab2.setBackgroundResource(R.drawable.button_orange_border);
                 ((TextView)findViewById(R.id.textView2)).setTextColor(Color.parseColor("#FFFFFF"));
+                ((TextView)findViewById(R.id.tvNbGarments)).setTextColor(Color.parseColor("#FFFFFF"));
                 tab3.setBackgroundResource(R.drawable.button_orange_border);
                 ((TextView)findViewById(R.id.textView3)).setTextColor(Color.parseColor("#FFFFFF"));
                 getFragmentManager().beginTransaction().replace(R.id.container, new ProfilesDetailFragment()).commit();
@@ -71,6 +74,7 @@ public class ProfilDetailActivity extends FragmentActivity implements WardrobeDe
                 ((TextView)findViewById(R.id.textView1)).setTextColor(Color.parseColor("#FFFFFF"));
                 tab2.setBackgroundResource(R.drawable.button_fawn);
                 ((TextView)findViewById(R.id.textView2)).setTextColor(getResources().getColor(R.color.SectionTitle));
+                ((TextView)findViewById(R.id.tvNbGarments)).setTextColor(getResources().getColor(R.color.SectionTitle));
                 tab3.setBackgroundResource(R.drawable.button_orange_border);
                 ((TextView)findViewById(R.id.textView3)).setTextColor(Color.parseColor("#FFFFFF"));
                 getFragmentManager().beginTransaction().replace(R.id.container, new WardrobeDetailFragment()).commit();
@@ -83,6 +87,7 @@ public class ProfilDetailActivity extends FragmentActivity implements WardrobeDe
                 ((TextView)findViewById(R.id.textView1)).setTextColor(Color.parseColor("#FFFFFF"));
                 tab2.setBackgroundResource(R.drawable.button_orange_border);
                 ((TextView)findViewById(R.id.textView2)).setTextColor(Color.parseColor("#FFFFFF"));
+                ((TextView)findViewById(R.id.tvNbGarments)).setTextColor(Color.parseColor("#FFFFFF"));
                 tab3.setBackgroundResource(R.drawable.button_fawn);
                 ((TextView)findViewById(R.id.textView3)).setTextColor(getResources().getColor(R.color.SectionTitle));
             }
@@ -107,11 +112,11 @@ public class ProfilDetailActivity extends FragmentActivity implements WardrobeDe
                 } else {
                     finish();
                 }
-                return true;
+                return true;/*
             case R.id.share :
                 Intent share = new Intent(getApplicationContext(), CSVCreationActivity.class);
                 startActivity(share);
-                return true;
+                return true;*/
             case R.id.setting :
                 showEditDialog();
 
@@ -137,6 +142,7 @@ public class ProfilDetailActivity extends FragmentActivity implements WardrobeDe
     @Override
     protected void onResume() {
         super.onResume();
+                ((TextView) findViewById(R.id.tvNbGarments)).setText(" ("+SMXL.getDataBase().getAllUserGarments(UserManager.get().getUser()).size()+")");
     }
 
     @Override

@@ -54,28 +54,25 @@ public class ProfilesDetailFragment extends Fragment implements ConfirmDialogFra
     private static User user;
     private TextView tvFirstName, tvLastName, tvAgeSexe;
     private EditText etDescription;
-    private RelativeLayout addMeasure, addGarment, addBrand;
+    private RelativeLayout addMeasure, addBrand;
     //private ListView listViewMeasures;
     //private ListView listViewGarments;
     private RoundedImageView imgAvatar;
-    private LinearLayout layoutGarment, layoutMeasure, layoutRemarque, layoutBrand;
+    private LinearLayout layoutMeasure, layoutRemarque, layoutBrand;
     private RelativeLayout infosProfile;
     //private EditText etDescriptionProfil;
 
 
     //private LinearLayout layoutViewGarments;
-    private RelativeLayout layoutHeaderGarments, layoutHeaderMeasures, layoutHeaderBrands;
+    private RelativeLayout layoutHeaderMeasures, layoutHeaderBrands;
     //int position;
 
-    private ArrayList<UserClothes> userClothes;
     private ArrayList<Integer> indexSize;
     private ArrayList<Brand> userBrands;
 
-    private ArrayList<UserClothes> listGarments;
     private ArrayList<MeasureItem> listMeasures;
     private ArrayList<String> listBrandsItems;
 
-    private GarmentAdapter adapterGarments;
     private MeasureAdapter adapterMeasure;
     private FavoriteBrandAdapter adapterBrand;
 
@@ -114,18 +111,8 @@ public class ProfilesDetailFragment extends Fragment implements ConfirmDialogFra
             return null;
         }
 
-        //listViewMeasures = (ListView)view.findViewById(R.id.listViewMeasures);
         listMeasures = new ArrayList<>();
         adapterMeasure = new MeasureAdapter(getActivity().getApplicationContext(), listMeasures);
-        //listViewMeasures.setAdapter(adapterMeasure);
-        //listViewMeasures.setOnItemClickListener(selectMeasure);
-
-        //listViewGarments = (ListView)view.findViewById(R.id.listViewGarments);
-        listGarments = new ArrayList<>();
-        adapterGarments = new GarmentAdapter(getActivity().getApplicationContext(), listGarments);
-        //listViewGarments.setAdapter(adapterGarments);
-        //listViewGarments.setOnItemClickListener(selectGarment);
-        //listViewGarments.setOnItemLongClickListener(clickListenerDeleteGarment);
 
         listBrandsItems = new ArrayList<>();
         ArrayList<Brand> brands = SMXL.get().getDataBase().getAllBrands();
@@ -140,12 +127,8 @@ public class ProfilesDetailFragment extends Fragment implements ConfirmDialogFra
         tvAgeSexe = (TextView) view.findViewById(R.id.tvAgeSexe);
         layoutRemarque = (LinearLayout) view.findViewById(R.id.layoutRemarque);
 
-        addGarment = (RelativeLayout) view.findViewById(R.id.layoutAddGarment);
         addMeasure = (RelativeLayout) view.findViewById(R.id.layoutAddMeasure);
         addBrand = (RelativeLayout) view.findViewById(R.id.layoutAddBrand);
-
-        layoutHeaderGarments = (RelativeLayout) view.findViewById(R.id.layoutHeaderGarments);
-        layoutGarment = (LinearLayout) view.findViewById(R.id.layoutViewGarments);
 
         layoutHeaderMeasures = (RelativeLayout) view.findViewById(R.id.layoutHeaderMeasures);
         layoutMeasure = (LinearLayout) view.findViewById(R.id.layoutViewMeasure);
@@ -155,24 +138,7 @@ public class ProfilesDetailFragment extends Fragment implements ConfirmDialogFra
 
 
         indexSize = SMXL.getDataBase().getIndexMeasureNotNull(user);
-        userClothes = SMXL.getDataBase().getAllUserGarments(user);
         etDescription = (EditText) view.findViewById(R.id.description);
-
-        addGarment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                /*
-                Fragment fragment = AddGarmentFragment.newInstance(user, "");
-                fragment.setTargetFragment(ProfilesDetailFragment.this, 42);
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.container, fragment, "addGarment")
-                        .addToBackStack(null)
-                        .commit();
-                        */
-                Intent intent = new Intent(getActivity(), AddGarmentActivity.class);
-                startActivity(intent);
-            }
-        });
 
 
         addMeasure.setOnClickListener(new View.OnClickListener() {
@@ -194,20 +160,6 @@ public class ProfilesDetailFragment extends Fragment implements ConfirmDialogFra
         });
 
 
-        layoutHeaderGarments.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (layoutGarment.getVisibility() == View.GONE) {
-                    layoutGarment.setVisibility(View.VISIBLE);
-                    ImageView collapse = (ImageView) view.findViewById(R.id.collapseGarment);
-                    collapse.setImageResource(R.drawable.navigation_collapse);
-                } else {
-                    layoutGarment.setVisibility(View.GONE);
-                    ImageView collapse = (ImageView) view.findViewById(R.id.collapseGarment);
-                    collapse.setImageResource(R.drawable.navigation_expand);
-                }
-            }
-        });
 
         layoutHeaderMeasures.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -369,7 +321,6 @@ public class ProfilesDetailFragment extends Fragment implements ConfirmDialogFra
             loadGarments();
         }*/
 
-        loadGarments();
 
         loadBrands();
 
@@ -387,7 +338,6 @@ public class ProfilesDetailFragment extends Fragment implements ConfirmDialogFra
                 getResources().getString(R.string.libPointure)};
 
         indexSize = SMXL.getDataBase().getIndexMeasureNotNull(user);
-        userClothes = SMXL.getDataBase().getAllUserGarments(user);
         userBrands = SMXL.getDataBase().getAllUserBrands(user);
 
         //POUR LES MESURES :
@@ -420,65 +370,6 @@ public class ProfilesDetailFragment extends Fragment implements ConfirmDialogFra
                 ((LinearLayout) getView().findViewById(R.id.layoutViewMeasure))
                         .addView(separator);
             }
-        }
-
-        //POUR LES VETEMENTS
-        //On affiche que les 4 premiers vêtement sinon "Voir plus" pour voir tt la liste
-
-        ((LinearLayout) getView().findViewById(R.id.layoutViewGarments)).removeAllViews();
-        RelativeLayout viewMore = (RelativeLayout) getView().findViewById(R.id.layoutViewMore);
-
-        if (userClothes.size() <= 4) {
-            viewMore.setVisibility(View.GONE);
-        } else {
-            viewMore.setVisibility(View.VISIBLE); //Important to specify if we already set it to GONE
-        }
-
-        viewMore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity(), ListGarmentActivity.class));
-            }
-        });
-
-        if (userClothes.size() > 4) {
-            for (int i = 4; i < userClothes.size(); i++)
-                userClothes.remove(i);
-        }
-        for (int i = 0; i < userClothes.size(); i++) {
-            View viewToLoad = LayoutInflater.from(
-                    getActivity().getApplicationContext()).inflate(
-                    R.layout.garment_item, null);
-            View separator = LayoutInflater.from(
-                    getActivity().getApplicationContext()).inflate(
-                    R.layout.separator_list, null);
-            final UserClothes clothe = userClothes.get(i);
-            TextView item = (TextView) viewToLoad.findViewById(R.id.tvNameGarment);
-            TextView brand = (TextView) viewToLoad.findViewById(R.id.tvBrandGarment);
-            TextView size = (TextView) viewToLoad.findViewById(R.id.tvSize);
-            item.setText(clothe.getType());
-            size.setText(clothe.getSize());
-            brand.setText(clothe.getBrand());
-            ((LinearLayout) getView().findViewById(R.id.layoutViewGarments))
-                    .addView(viewToLoad);
-            //position = layoutViewGarments.indexOfChild(viewToLoad);
-            //layoutViewGarments.setTag(position);
-            //appDelegate.setDealsList(dealsList);
-
-            viewToLoad.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                   Intent intent = new Intent(getActivity(), DisplayGarmentActivity.class);
-                   intent.putExtra("clothe", clothe);
-                   startActivity(intent);
-                }
-            });
-
-            //viewToLoad.setOnClickListener(selectGarment);
-            ((LinearLayout) getView().findViewById(R.id.layoutViewGarments))
-                    .addView(separator);
-
-
         }
 
         //POUR LES MARQUES :
@@ -599,15 +490,7 @@ public class ProfilesDetailFragment extends Fragment implements ConfirmDialogFra
         return pointure;
     }
 
-    public void loadGarments() {
-        // user : Get all the user's garments
-        listGarments.clear();
-        userClothes = SMXL.get().getDataBase().getAllUserGarments(user);
-        for (UserClothes uc : userClothes) {
-            adapterGarments.add(uc);
-        }
-        adapterGarments.notifyDataSetChanged();
-    }
+
 
     public void loadBrands() {
         // user : Get all the user's favorite brands
@@ -677,19 +560,16 @@ public class ProfilesDetailFragment extends Fragment implements ConfirmDialogFra
         db.execSQL(request);
         db.setTransactionSuccessful();
         db.endTransaction();
-        listGarments.remove(positionItem);
-        adapterGarments.notifyDataSetChanged();
 
     }
 
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-
         outState.putSerializable("measures", listMeasures);
-        outState.putSerializable("garments", listGarments);
         outState.putSerializable("brands", listBrandsItems);
+
+        super.onSaveInstanceState(outState);
     }
 
 

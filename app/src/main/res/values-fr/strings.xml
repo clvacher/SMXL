@@ -82,4 +82,8 @@
     <string name="size_guide">Guide des tailles</string>
     <string name="remarque">Remarques</string>
 
+    <string name="returnCreate">Rappuyez pour annuler</string>
+    <string name="newProfile1">Nouveau</string>
+    <string name="newProfile2">Profil</string>
+
 </resources>

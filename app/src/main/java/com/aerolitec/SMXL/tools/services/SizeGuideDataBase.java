@@ -69,7 +69,7 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
 
         //db.execSQL("DROP TABLE IF EXISTS user");
         db.execSQL("DROP TABLE IF EXISTS brand");
-        db.execSQL("DROP TABLE IF EXISTS clothe_type");
+        db.execSQL("DROP TABLE IF EXISTS clothes_type");
         db.execSQL("DROP TABLE IF EXISTS brand_size_guide");
         db.execSQL("DROP TABLE IF EXISTS User_Brand");
 
@@ -102,7 +102,7 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
 
             statement = "CREATE TABLE IF NOT EXISTS user_clothes ( id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     "userid INTEGER, " +
-                    "type VARCHAR(32), " +
+                    "clothesType VARCHAR(32), " +
                     "brand VARCHAR(32), " +
                     "country VARCHAR(8), " +
                     "size VARCHAR(8)," +
@@ -111,8 +111,8 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
                     "category VARCHAR(1000)); ";
             db.execSQL(statement);
 
-            statement = "CREATE TABLE IF NOT EXISTS clothe_type ( id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    "type VARCHAR(32)," +
+            statement = "CREATE TABLE IF NOT EXISTS clothes_type ( id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "clothesType VARCHAR(32)," +
                     "sexe VARCHAR(8)); ";
             db.execSQL(statement);
 
@@ -121,23 +121,41 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
             db.execSQL(statement);
 
             statement = "CREATE TABLE IF NOT EXISTS size_convert ( id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    "type VARCHAR(32), " +
+                    "clothesType VARCHAR(32), " +
                     "valueUS VARCHAR(8), " +
                     "valueUK VARCHAR(8), " +
                     "valueUE VARCHAR(8), " +
                     "valueFR VARCHAR(8), " +
                     "valueITA VARCHAR(8), " +
+                    "valueCH VARCHAR(8), " +
+                    "valueRUS VARCHAR(8), " +
                     "valueJAP VARCHAR(8), " +
                     "valueAUS VARCHAR(8)); ";
             db.execSQL(statement);
 
             statement = "CREATE TABLE IF NOT EXISTS brand_size_guide ( id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     "brand VARCHAR(32), " +
-                    "type VARCHAR(32), " +
-                    "dim1 REAL, " +
-                    "dim2 REAL, " +
-                    "dim3 REAL, " +
-                    "size VARCHAR(8)); ";
+                    "clothesType VARCHAR(32), " +
+                    "category VARCHAR(32)," +
+                    "sex CHAR(1)," +
+                    "collar REAL," +
+                    "chest REAL," +
+                    "bust REAL," +
+                    "sleeve REAL," +
+                    "waist REAL," +
+                    "hips REAL," +
+                    "thigh REAL," +
+                    "inseam REAL," +
+                    "feet REAL," +
+                    "height REAL," +
+                    "weight REAL," +
+                    "other REAL," +
+                    "size_SMXL VARCHAR(8)," +
+                    "size_ue VARCHAR(8)," +
+                    "size_us VARCHAR(8)," +
+                    "size_uk VARCHAR(8)," +
+                    "size_fr VARCHAR(8)," +
+                    "size_suite VARCHAR(8)); ";
             db.execSQL(statement);
 
 
@@ -156,16 +174,15 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
 
             db.execSQL(statement);
         }
-
         catch (Exception e){
             Log.d(Constants.TAG,"Erreur Sql : "+e.getMessage());
         }
 
 
-        // Update table ClotheType if empty
-        c = db.rawQuery("select * from clothe_type",null);
+        // Update table ClothesType if empty
+        c = db.rawQuery("select * from clothes_type",null);
         if (c.getCount() < 2){
-            updateTableClotheType(db);
+            updateTableClothesType(db);
         }
         c.close();
 
@@ -208,93 +225,93 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
 
     // Methods to initialize the content of the reference tables
     //
-    private void updateTableClotheType(SQLiteDatabase db){
+    private void updateTableClothesType(SQLiteDatabase db){
         // "NOMENCLATURE VETEMENTS" + SEXE/AGE CONCERNE : Femme, Homme, Girl, Boy, Child, babY, All (F,H,G,B,C,Y,A)
-        createRecordClotheType(db,"BLOUSON","F");
-        createRecordClotheType(db,"BLOUSON","H");
-        createRecordClotheType(db,"BLOUSON","G");
-        createRecordClotheType(db,"BLOUSON","B");
-        createRecordClotheType(db,"BLOUSON","C");
-        createRecordClotheType(db,"BLOUSON","Y");
-        createRecordClotheType(db,"CHAPEAU","A");
-        createRecordClotheType(db,"CHAUSSURE","H");
-        createRecordClotheType(db,"CHAUSSURE","F");
-        createRecordClotheType(db,"CHAUSSURE","G");
-        createRecordClotheType(db,"CHAUSSURE","B");
-        createRecordClotheType(db,"CHAUSSURE","C");
-        createRecordClotheType(db,"CHAUSSURE","Y");
-        createRecordClotheType(db,"CHEMISE","H");
-        createRecordClotheType(db,"CHEMISE","F");
-        createRecordClotheType(db,"CHEMISE","G");
-        createRecordClotheType(db,"CHEMISE","B");
-        createRecordClotheType(db,"CHEMISE","C");
-        createRecordClotheType(db,"CHEMISE","Y");
-        createRecordClotheType(db,"CHEMISIER","F");
-        createRecordClotheType(db,"CHEMISIER","G");
-        createRecordClotheType(db,"CHEMISIER","C");
-        createRecordClotheType(db,"CHEMISIER","Y");
-        createRecordClotheType(db,"COSTUME","H");
-        createRecordClotheType(db,"COSTUME","B");
-        createRecordClotheType(db,"JEANS","H");
-        createRecordClotheType(db,"JEANS","F");
-        createRecordClotheType(db,"JEANS","G");
-        createRecordClotheType(db,"JEANS","B");
-        createRecordClotheType(db,"JEANS","C");
-        createRecordClotheType(db,"JEANS","Y");
-        createRecordClotheType(db,"JUPE","F");
-        createRecordClotheType(db,"JUPE","G");
-        createRecordClotheType(db,"MANTEAU","H");
-        createRecordClotheType(db,"MANTEAU","F");
-        createRecordClotheType(db,"MANTEAU","G");
-        createRecordClotheType(db,"MANTEAU","B");
-        createRecordClotheType(db,"MANTEAU","C");
-        createRecordClotheType(db,"MANTEAU","Y");
-        createRecordClotheType(db,"PANTALON","H");
-        createRecordClotheType(db,"PANTALON","F");
-        createRecordClotheType(db,"PANTALON","G");
-        createRecordClotheType(db,"PANTALON","B");
-        createRecordClotheType(db,"PANTALON","C");
-        createRecordClotheType(db,"PANTALON","Y");
-        createRecordClotheType(db,"PULL","H");
-        createRecordClotheType(db,"PULL","F");
-        createRecordClotheType(db,"PULL","G");
-        createRecordClotheType(db,"PULL","B");
-        createRecordClotheType(db,"PULL","C");
-        createRecordClotheType(db,"PULL","Y");
-        createRecordClotheType(db,"ROBE","F");
-        createRecordClotheType(db,"ROBE","G");
-        createRecordClotheType(db,"SHORT","H");
-        createRecordClotheType(db,"SHORT","F");
-        createRecordClotheType(db,"SHORT","B");
-        createRecordClotheType(db,"SHORT","G");
-        createRecordClotheType(db,"SHORT","C");
-        createRecordClotheType(db,"SLIP","H");
-        createRecordClotheType(db,"SLIP","F");
-        createRecordClotheType(db,"SLIP","G");
-        createRecordClotheType(db,"SLIP","B");
-        createRecordClotheType(db,"SLIP","Y");
-        createRecordClotheType(db,"SOUTIEN-GORGE","F");
-        createRecordClotheType(db,"SOUTIEN-GORGE","G");
-        createRecordClotheType(db,"SWEATER","H");
-        createRecordClotheType(db,"SWEATER","F");
-        createRecordClotheType(db,"SWEATER","G");
-        createRecordClotheType(db,"SWEATER","B");
-        createRecordClotheType(db,"SWEATER","C");
-        createRecordClotheType(db,"SWEATER","Y");
-        createRecordClotheType(db,"TSHIRT","H");
-        createRecordClotheType(db,"TSHIRT","F");
-        createRecordClotheType(db,"TSHIRT","G");
-        createRecordClotheType(db,"TSHIRT","B");
-        createRecordClotheType(db,"TSHIRT","C");
-        createRecordClotheType(db,"TSHIRT","Y");
-        createRecordClotheType(db,"VESTE","H");
-        createRecordClotheType(db,"VESTE","F");
-        createRecordClotheType(db,"VESTE","G");
-        createRecordClotheType(db,"VESTE","B");
-        createRecordClotheType(db,"VESTE","C");
-        createRecordClotheType(db,"VESTE","Y");
-        createRecordClotheType(db,"VESTE","Y");
-        createRecordClotheType(db,"MAILLOTS DE BAIN","F");
+        createRecordClothesType(db, "BLOUSON", "F");
+        createRecordClothesType(db, "BLOUSON", "H");
+        createRecordClothesType(db, "BLOUSON", "G");
+        createRecordClothesType(db, "BLOUSON", "B");
+        createRecordClothesType(db, "BLOUSON", "C");
+        createRecordClothesType(db, "BLOUSON", "Y");
+        createRecordClothesType(db, "CHAPEAU", "A");
+        createRecordClothesType(db, "CHAUSSURE", "H");
+        createRecordClothesType(db, "CHAUSSURE", "F");
+        createRecordClothesType(db, "CHAUSSURE", "G");
+        createRecordClothesType(db, "CHAUSSURE", "B");
+        createRecordClothesType(db, "CHAUSSURE", "C");
+        createRecordClothesType(db, "CHAUSSURE", "Y");
+        createRecordClothesType(db, "CHEMISE", "H");
+        createRecordClothesType(db, "CHEMISE", "F");
+        createRecordClothesType(db, "CHEMISE", "G");
+        createRecordClothesType(db, "CHEMISE", "B");
+        createRecordClothesType(db, "CHEMISE", "C");
+        createRecordClothesType(db, "CHEMISE", "Y");
+        createRecordClothesType(db, "CHEMISIER", "F");
+        createRecordClothesType(db, "CHEMISIER", "G");
+        createRecordClothesType(db, "CHEMISIER", "C");
+        createRecordClothesType(db, "CHEMISIER", "Y");
+        createRecordClothesType(db, "COSTUME", "H");
+        createRecordClothesType(db, "COSTUME", "B");
+        createRecordClothesType(db, "JEANS", "H");
+        createRecordClothesType(db, "JEANS", "F");
+        createRecordClothesType(db, "JEANS", "G");
+        createRecordClothesType(db, "JEANS", "B");
+        createRecordClothesType(db, "JEANS", "C");
+        createRecordClothesType(db, "JEANS", "Y");
+        createRecordClothesType(db, "JUPE", "F");
+        createRecordClothesType(db, "JUPE", "G");
+        createRecordClothesType(db, "MANTEAU", "H");
+        createRecordClothesType(db, "MANTEAU", "F");
+        createRecordClothesType(db, "MANTEAU", "G");
+        createRecordClothesType(db, "MANTEAU", "B");
+        createRecordClothesType(db, "MANTEAU", "C");
+        createRecordClothesType(db, "MANTEAU", "Y");
+        createRecordClothesType(db, "PANTALON", "H");
+        createRecordClothesType(db, "PANTALON", "F");
+        createRecordClothesType(db, "PANTALON", "G");
+        createRecordClothesType(db, "PANTALON", "B");
+        createRecordClothesType(db, "PANTALON", "C");
+        createRecordClothesType(db, "PANTALON", "Y");
+        createRecordClothesType(db, "PULL", "H");
+        createRecordClothesType(db, "PULL", "F");
+        createRecordClothesType(db, "PULL", "G");
+        createRecordClothesType(db, "PULL", "B");
+        createRecordClothesType(db, "PULL", "C");
+        createRecordClothesType(db, "PULL", "Y");
+        createRecordClothesType(db, "ROBE", "F");
+        createRecordClothesType(db, "ROBE", "G");
+        createRecordClothesType(db, "SHORT", "H");
+        createRecordClothesType(db, "SHORT", "F");
+        createRecordClothesType(db, "SHORT", "B");
+        createRecordClothesType(db, "SHORT", "G");
+        createRecordClothesType(db, "SHORT", "C");
+        createRecordClothesType(db, "SLIP", "H");
+        createRecordClothesType(db, "SLIP", "F");
+        createRecordClothesType(db, "SLIP", "G");
+        createRecordClothesType(db, "SLIP", "B");
+        createRecordClothesType(db, "SLIP", "Y");
+        createRecordClothesType(db, "SOUTIEN-GORGE", "F");
+        createRecordClothesType(db, "SOUTIEN-GORGE", "G");
+        createRecordClothesType(db, "SWEATER", "H");
+        createRecordClothesType(db, "SWEATER", "F");
+        createRecordClothesType(db, "SWEATER", "G");
+        createRecordClothesType(db, "SWEATER", "B");
+        createRecordClothesType(db, "SWEATER", "C");
+        createRecordClothesType(db, "SWEATER", "Y");
+        createRecordClothesType(db, "TSHIRT", "H");
+        createRecordClothesType(db, "TSHIRT", "F");
+        createRecordClothesType(db, "TSHIRT", "G");
+        createRecordClothesType(db, "TSHIRT", "B");
+        createRecordClothesType(db, "TSHIRT", "C");
+        createRecordClothesType(db, "TSHIRT", "Y");
+        createRecordClothesType(db, "VESTE", "H");
+        createRecordClothesType(db, "VESTE", "F");
+        createRecordClothesType(db, "VESTE", "G");
+        createRecordClothesType(db, "VESTE", "B");
+        createRecordClothesType(db, "VESTE", "C");
+        createRecordClothesType(db, "VESTE", "Y");
+        createRecordClothesType(db, "VESTE", "Y");
+        createRecordClothesType(db, "MAILLOTS DE BAIN", "F");
 
     }
 
@@ -530,7 +547,7 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
     }
 
     private void updateTableBrandSizeGuide(SQLiteDatabase db){
-        //              Brand  Clothe Bust(cm) Waist(cm) Hips(cm) = UKSize
+        //              Brand  Clothes Bust(cm) Waist(cm) Hips(cm) = UKSize
         // CREATION DES ENREGISTREMENTS PAR MARQUE/VETEMENTS/DIM1/DIM2/DIM3/TAILLE UK
         /*createRecordBrandSizeGuide(db,"DEFAULT","ROBE",0,0,0,"0");
         createRecordBrandSizeGuide(db,"DEFAULT","ROBE",74,56,81,"2");
@@ -1882,11 +1899,11 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
 */
     }
 
-    private void createRecordClotheType(SQLiteDatabase db, String type, String sexe){
+    private void createRecordClothesType(SQLiteDatabase db, String type, String sexe){
         ContentValues values = new ContentValues(2);
-        values.put("type", type);
+        values.put("clothesType", type);
         values.put("sexe", sexe);
-        db.insert("clothe_type","id",values);
+        db.insert("clothes_type","id",values);
     }
 
     private void createRecordBrands(SQLiteDatabase db, String brand){
@@ -1900,11 +1917,11 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
         }
     }
 
-    private void createRecordSizeConvert(SQLiteDatabase db, String type, String valueUS, String valueUK, String valueEU,
+    private void createRecordSizeConvert(SQLiteDatabase db, String clothestype, String valueUS, String valueUK, String valueEU,
                                          String valueFR, String valueITA, String valueJAP, String valueAUS) {
         // id, Type,   US, UK,  EU,  FR, ITA, JAP, AUS
         ContentValues values = new ContentValues(8);
-        values.put("type", type);
+        values.put("clothesType", clothestype);
         values.put("valueUS", valueUS);
         values.put("valueUK", valueUK);
         values.put("valueUE", valueEU);
@@ -1916,15 +1933,15 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
 
     }
 
-    private void createRecordBrandSizeGuide(SQLiteDatabase db, String brand, String type,
+    private void createRecordBrandSizeGuide(SQLiteDatabase db, String brand, String clothesType,
                                             double dim1, double dim2, double dim3, String size){
         ContentValues values = new ContentValues(6);
         values.put("brand", brand);
-        values.put("type", type);
-        values.put("dim1", dim1);
-        values.put("dim2", dim2);
-        values.put("dim3", dim3);
-        values.put("size", size);
+        values.put("clothesType", clothesType);
+        values.put("collar", dim1);
+        values.put("chest", dim2);
+        values.put("bust", dim3);
+        values.put("size_suite", size);
         db.insert("brand_size_guide", "id", values);
 
     }
@@ -2213,9 +2230,7 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
         Cursor c;
         try {
             c = db.rawQuery("SELECT * FROM brand WHERE id_brand = ?",new String[] {String.valueOf(brandid)} );
-
             boolean eof = c.moveToFirst();
-
             brand.setId(c.getInt(0));
             brand.setBrand(c.getString(1));
 
@@ -2320,7 +2335,7 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
         try {
             Cursor c;
 
-            c = db.rawQuery("SELECT * FROM clothe_type where sexe = ? ", new String[]{sexe});
+            c = db.rawQuery("SELECT * FROM clothes_type where sexe = ? ", new String[]{sexe});
 
             boolean eof = c.moveToFirst();
             while (eof) {
@@ -2348,7 +2363,7 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
         SQLiteDatabase db = this.getReadableDatabase();
         try {
             Cursor c;
-            c = db.rawQuery("SELECT * FROM brand_size_guide where brand = ? AND size = ?", new String[]{brand,"0"});
+            c = db.rawQuery("SELECT * FROM brand_size_guide where brand = ? AND size_suite = ?", new String[]{brand,"0"});
             boolean eof = c.moveToFirst();
             while (eof) {
                 BrandsSizeGuide b = new BrandsSizeGuide();
@@ -2377,7 +2392,7 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
         SQLiteDatabase db = this.getReadableDatabase();
         try {
             Cursor c;
-            c = db.rawQuery("SELECT * FROM brand_size_guide where type = ? AND size = ?", new String[]{garment,"0"});
+            c = db.rawQuery("SELECT * FROM brand_size_guide where clothesType = ? AND size_suite = ?", new String[]{garment,"0"});
             boolean eof = c.moveToFirst();
             while (eof) {
                 BrandsSizeGuide b = new BrandsSizeGuide();
@@ -2407,7 +2422,7 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
         SQLiteDatabase db = this.getReadableDatabase();
         try {
             Cursor c;
-            c = db.rawQuery("SELECT * FROM brand_size_guide where brand = ? AND type = ?", new String[]{brand,garment});
+            c = db.rawQuery("SELECT * FROM brand_size_guide where brand = ? AND clothesType = ?", new String[]{brand,garment});
             boolean eof = c.moveToFirst();
             while (eof) {
                 BrandsSizeGuide b = new BrandsSizeGuide();
@@ -2530,7 +2545,7 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
         SQLiteDatabase db = this.getReadableDatabase();
         try {
             Cursor c;
-            c = db.rawQuery("SELECT * FROM size_convert WHERE type = ?", new String[]{garment});
+            c = db.rawQuery("SELECT * FROM size_convert WHERE clothesType = ?", new String[]{garment});
             boolean eof = c.moveToFirst();
             while (eof) {
                 SizeConvert s = new SizeConvert();
@@ -2562,7 +2577,7 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
         SQLiteDatabase db = this.getReadableDatabase();
         try {
             Cursor c;
-            c = db.rawQuery("SELECT id, type FROM size_convert GROUP BY type", new String[]{});
+            c = db.rawQuery("SELECT id, clothesType FROM size_convert GROUP BY clothesType", new String[]{});
             boolean eof = c.moveToFirst();
             while (eof) {
                 GarmentType gt = new GarmentType();
@@ -2587,7 +2602,7 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
         SQLiteDatabase db = this.getReadableDatabase();
         ContentValues values = new ContentValues(8);
         values.put("userid", uc.getUserid() );
-        values.put("type", uc.getType());
+        values.put("clothesType", uc.getType());
         values.put("brand", uc.getBrand());
         values.put("country", uc.getCountry());
         values.put("size", uc.getSize());
@@ -2662,23 +2677,23 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
         return true;
     }
 
-    public boolean updateUserGarment(UserClothes clothe){
+    public boolean updateUserGarment(UserClothes clothes){
         Gson gson = new Gson();
         SQLiteDatabase db = this.getReadableDatabase();
         try {
             ContentValues values = new ContentValues(8);
-            values.put("userid", clothe.getUserid() );
-            values.put("type", clothe.getType());
-            values.put("brand", clothe.getBrand());
-            values.put("country", clothe.getCountry());
-            values.put("size", clothe.getSize());
-            values.put("comment", clothe.getComment());
-            values.put("sizes", gson.toJson(clothe.getSizes()));
-            values.put("category", gson.toJson(clothe.getCategory()));
-            db.update("user_clothes", values, "id = ?", new String[]{String.valueOf(clothe.getClotheid())});
+            values.put("userid", clothes.getUserid());
+            values.put("clothesType", clothes.getType());
+            values.put("brand", clothes.getBrand());
+            values.put("country", clothes.getCountry());
+            values.put("size", clothes.getSize());
+            values.put("comment", clothes.getComment());
+            values.put("sizes", gson.toJson(clothes.getSizes()));
+            values.put("category", gson.toJson(clothes.getCategory()));
+            db.update("user_clothes", values, "id = ?", new String[]{String.valueOf(clothes.getClotheid())});
         }
         catch (SQLiteException e) {
-            Log.d(Constants.TAG, "Update clothe with error : " + e.getMessage());
+            Log.d(Constants.TAG, "Update clothes with error : " + e.getMessage());
             db.close();
             return false;
         }
@@ -2686,13 +2701,13 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
         return true;
     }
 
-    public boolean removeUserGarment(UserClothes clothe){
+    public boolean removeUserGarment(UserClothes clothes){
         SQLiteDatabase db = this.getReadableDatabase();
         try {
-            db.delete("user_clothes", "id = ?", new String[]{String.valueOf(clothe.getClotheid())});
+            db.delete("user_clothes", "id = ?", new String[]{String.valueOf(clothes.getClotheid())});
         }
         catch (SQLiteException e) {
-            Log.d(Constants.TAG, "delete clothe with error : " + e.getMessage());
+            Log.d(Constants.TAG, "delete clothes with error : " + e.getMessage());
             db.close();
             return false;
         }

@@ -3,6 +3,7 @@ package com.aerolitec.SMXL.ui.activity;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,12 +28,13 @@ public class DisplayGarmentActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("testOnCreate","ca lance le on create");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_garment);
 
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
-            clothe = (UserClothes) extras.getSerializable("clothe");
+            clothe = (UserClothes) extras.getSerializable("clothes");
         }
 
         if(clothe == null) {
@@ -79,6 +81,7 @@ public class DisplayGarmentActivity extends Activity {
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
+            Log.d("testOncreateFragment","fragment lancé");
             setHasOptionsMenu(true);
         }
 

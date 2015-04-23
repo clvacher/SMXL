@@ -56,6 +56,15 @@
                     android:textStyle="bold"
                     android:gravity="center"
                     android:textSize="17sp"/>
+                <TextView
+                    android:id="@+id/tvNbGarments"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:textColor="#fff"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:textSize="17sp"/>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/measurements"

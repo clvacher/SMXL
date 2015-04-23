@@ -9,7 +9,7 @@
     android:orientation="vertical">
 
     <RelativeLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/DefaultBackgroundColor"
         android:focusable="true"
@@ -119,158 +119,16 @@
         </LinearLayout>
 
 <!--Garments-->
-        <RelativeLayout
-            android:id="@+id/layoutHeaderGarments"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:layout_below="@+id/layoutRemarque"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
 
-            <RelativeLayout
-                android:id="@+id/layoutTexteGarment"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:background="@android:color/transparent"
-                    android:gravity="left"
-                    android:text="@string/garments"
-                    android:textColor="@color/SectionTitle"
-                    android:textSize="@dimen/textSizeIdentity"
-                    android:textStyle="bold" />
-
-                <ImageView
-                    android:id="@+id/collapseGarment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/navigation_collapse" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/layoutAddGarment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/layoutTexteGarment"
-                android:background="@android:color/white"
-                android:clickable="true"
-                android:paddingBottom="@dimen/listview_padding_horizontal"
-                android:paddingLeft="@dimen/listview_padding_horizontal"
-                android:paddingRight="@dimen/listview_padding_horizontal">
-
-                <TextView
-                    android:id="@+id/tvAddGarment"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:background="@android:color/transparent"
-                    android:gravity="left"
-                    android:text="@string/addGarment"
-                    android:textColor="@color/SectionTitle"
-                    android:textSize="@dimen/textSizeIdentity" />
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:text="+"
-                    android:textColor="@color/SectionTitle"
-                    android:textSize="@dimen/section_text_size"
-                    android:textStyle="bold" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/white"
-                android:layout_below="@+id/layoutAddGarment">
-
-                <View
-                    android:id="@+id/separator3"
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@color/separator" />
-
-            </RelativeLayout>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/garmentLayout"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:layout_below="@+id/layoutHeaderGarments"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
-
-
-            <LinearLayout
-                android:id="@+id/layoutViewGarments"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-
-            </LinearLayout>
-
-            <RelativeLayout
-                android:id="@+id/layoutViewMore"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/layoutViewGarments"
-                android:background="@android:color/white"
-                android:clickable="true"
-                android:paddingBottom="@dimen/listview_padding_horizontal"
-                android:paddingLeft="@dimen/listview_padding_horizontal"
-                android:paddingRight="@dimen/listview_padding_horizontal">
-
-                <TextView
-                    android:id="@+id/viewMoreGarment"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:background="@android:color/transparent"
-                    android:gravity="left"
-                    android:text="@string/viewMore"
-                    android:textSize="@dimen/textSizeIdentity" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_action_next_item" />
-
-            </RelativeLayout>
-
-
-        </RelativeLayout>
-
-<!--Measure-->
+        <!--Measure-->
         <RelativeLayout
             android:id="@+id/layoutHeaderMeasures"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
-            android:layout_below="@+id/garmentLayout"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/layoutRemarque">
 
             <TextView
                 android:id="@+id/collapseMeasures"
