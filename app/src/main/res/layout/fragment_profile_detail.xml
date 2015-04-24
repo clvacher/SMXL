@@ -110,10 +110,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="6dp"
-                android:textColor="@android:color/white"
+                android:textColor="@android:color/black"
                 android:textSize="@dimen/textSizeIdentity"
                 android:hint="@string/addNote"
-                android:background="#989898"
+                android:background="@color/backgroundEditTextProfile"
                 android:layout_marginBottom="10dp"/>
 
         </LinearLayout>
@@ -280,7 +280,7 @@
                     android:layout_centerVertical="true"
                     android:background="@android:color/transparent"
                     android:gravity="left"
-                    android:text="@string/add_favorite_brands"
+                    android:text="@string/manage_favorite_brands"
                     android:textColor="@color/SectionTitle"
                     android:textSize="@dimen/textSizeIdentity" />
 

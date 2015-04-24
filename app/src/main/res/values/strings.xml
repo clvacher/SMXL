@@ -20,7 +20,7 @@
     <string name="libChest">Chest size</string>
     <string name="libWaist">Waist size</string>
     <string name="libHips">Hips size</string>
-    <string name="measurements">Measurements</string>
+    <string name="measurements">Measures</string>
     <string name="libCollar">Collar size</string>
     <string name="libSleeve">Sleeve height</string>
     <string name="libInseam">Leg height</string>
@@ -92,8 +92,7 @@
     <string name="size_guide">Size Guide</string>
     <string name="title_activity_size_guide">SizeGuideActivity</string>
     <string name="title_activity_select_brands">Select your favorite brands</string>
-    <string name="favoritebrands">Favorite brands</string>
-    <string name="add_favorite_brands">Add a favorite brand</string>
+    <string name="manage_favorite_brands">Manage your favorite brands</string>
     <string name="favorite_brands">Favorite brands</string>
 
     <string name="dress_skirt">Dresses/Skirts</string>

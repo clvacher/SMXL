@@ -79,7 +79,21 @@
 
 
     <string name="no_user">Créez votre profil !</string>
-    <string name="size_guide">Guide des tailles</string>
+    <string name="notes">Notes</string>
+    <string name="buttonValidation">Valider</string>
+    <string name="size_guide">Guides des tailles</string>
+    <string name="title_activity_size_guide">SizeGuideActivity</string>
+    <string name="title_activity_select_brands">Sélectionnez vos marques favorites</string>
+    <string name="manage_favorite_brands">Gérez vos marques favorites</string>
+    <string name="favorite_brands">Marques favorites</string>
+
+    <string name="dress_skirt">Robes/Jupes</string>
+    <string name="tshirt_sweater">T-shirts/Sweats</string>
+    <string name="Pant_short">Pantalons/Shorts</string>
+    <string name="Shirt_blouse">Chemises/Blouses</string>
+    <string name="Coat_jacket">Manteaux/Blousons</string>
+    <string name="sweater_vest">Pulls/Gilets</string>
+
     <string name="remarque">Remarques</string>
 
     <string name="returnCreate">Rappuyez pour annuler</string>

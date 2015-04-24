@@ -326,7 +326,6 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
         createRecordBrands(db, "DESIGUAL");
         createRecordBrands(db, "MANGO");
         createRecordBrands(db, "AUYZIADKLJAKLSY");
-        createRecordBrands(db, "MANGO");
         createRecordBrands(db, "KOOKAI");
         createRecordBrands(db, "KOOPLES");
         createRecordBrands(db, "PROMOD");
@@ -367,7 +366,7 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
         createRecordSizeConvert(db,"JUPE","20","22","50","50","54","23","XXXL");
         createRecordSizeConvert(db,"JUPE","22","24","52","52","56","25","XXXL");
         createRecordSizeConvert(db,"JUPE","24","26","54","54","58","27","XXXL");
-
+/*
         createRecordSizeConvert(db,"COSTUME","30","30","40","","","","XXS");
         createRecordSizeConvert(db,"COSTUME","32","32","42","","","","XS");
         createRecordSizeConvert(db,"COSTUME","34","34","44","","","S","S");
@@ -380,7 +379,8 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
         createRecordSizeConvert(db,"COSTUME","48","48","58","","","","XXL");
         createRecordSizeConvert(db,"COSTUME","50","50","60","","","","XXL");
         createRecordSizeConvert(db,"COSTUME","52","52","62","","","","XXL");
-
+*/
+        /*
         createRecordSizeConvert(db,"CHEMISIER","13","13","34","","","34","XXS");
         createRecordSizeConvert(db,"CHEMISIER","13.5","13.5","35","","","35","XS");
         createRecordSizeConvert(db,"CHEMISIER","14","14","36","","","36","S");
@@ -392,6 +392,7 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
         createRecordSizeConvert(db,"CHEMISIER","16.5","16.5","42","","","42","XXXL");
         createRecordSizeConvert(db,"CHEMISIER","17","17","43","","","43","XXXL");
         createRecordSizeConvert(db,"CHEMISIER","17.5","17.5","44","","","44","XXXL");
+        */
 
         createRecordSizeConvert(db,"CHEMISE","13","13","34","","","34","XXS");
         createRecordSizeConvert(db,"CHEMISE","13.5","13.5","35","","","35","XXS");
@@ -418,6 +419,7 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
         createRecordSizeConvert(db,"TSHIRT","9","33","45","","","","XL");
         createRecordSizeConvert(db,"TSHIRT","10","34","46","","","","XXL");
 
+        /*
         createRecordSizeConvert(db,"SWEATER","1","26","36","","","","XS");
         createRecordSizeConvert(db,"SWEATER","3","28","38","","","","S");
         createRecordSizeConvert(db,"SWEATER","4","29","39","","","","S");
@@ -426,15 +428,16 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
         createRecordSizeConvert(db,"SWEATER","7","33","43","","","","L");
         createRecordSizeConvert(db,"SWEATER","9","35","45","","","","XL");
         createRecordSizeConvert(db,"SWEATER","10","36","46","","","","XXL");
+*/
 
-        createRecordSizeConvert(db,"SHIRT","1","14","36","","","","XS");
-        createRecordSizeConvert(db,"SHIRT","3","15","38","","","","S");
-        createRecordSizeConvert(db,"SHIRT","4","15","39","","","","S");
-        createRecordSizeConvert(db,"SHIRT","5","16","40","","","","M");
-        createRecordSizeConvert(db,"SHIRT","6","17","42","","","","L");
-        createRecordSizeConvert(db,"SHIRT","7","17","43","","","","L");
-        createRecordSizeConvert(db,"SHIRT","9","18","45","","","","XL");
-        createRecordSizeConvert(db,"SHIRT","10","19","46","","","","XXL");
+        createRecordSizeConvert(db,"SHORT","1","14","36","","","","XS");
+        createRecordSizeConvert(db,"SHORT","3","15","38","","","","S");
+        createRecordSizeConvert(db,"SHORT","4","15","39","","","","S");
+        createRecordSizeConvert(db,"SHORT","5","16","40","","","","M");
+        createRecordSizeConvert(db,"SHORT","6","17","42","","","","L");
+        createRecordSizeConvert(db,"SHORT","7","17","43","","","","L");
+        createRecordSizeConvert(db,"SHORT","9","18","45","","","","XL");
+        createRecordSizeConvert(db,"SHORT","10","19","46","","","","XXL");
 
         createRecordSizeConvert(db,"PULL","1","16","36","","","","XS");
         createRecordSizeConvert(db,"PULL","3","18","38","","","","S");
@@ -506,6 +509,7 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
         createRecordSizeConvert(db,"CHAUSSURE-H","15.5","14.5","51","51","","33.5","");
         createRecordSizeConvert(db,"CHAUSSURE-H","15.5","15.5","52","52","","34.5","");
 
+        /*
         createRecordSizeConvert(db,"SLIP","0","0",	"34",	"","","","XXS");
         createRecordSizeConvert(db,"SLIP","1","1",	"36",	"","","","XS");
         createRecordSizeConvert(db,"SLIP","1.5","1.5",	"38",	"","","","S");
@@ -515,7 +519,7 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
         createRecordSizeConvert(db,"SLIP","4","4",	"48",	"","","","XXL");
         createRecordSizeConvert(db,"SLIP","5","5",	"52",	"","","","XXXL");
         createRecordSizeConvert(db,"SLIP","6","6",	"56",	"","","","XXXXL");
-
+*/
         createRecordSizeConvert(db,"VESTE","36","36",	"46",	"","","","XXS");
         createRecordSizeConvert(db,"VESTE","38","38",	"48",	"","","","XS");
         createRecordSizeConvert(db,"VESTE","40","40",	"50",	"","","","S");
@@ -524,7 +528,7 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
         createRecordSizeConvert(db,"VESTE","44","44",	"54",	"","","","XL");
         createRecordSizeConvert(db,"VESTE","45","45",	"55",	"","","","XXL");
         createRecordSizeConvert(db,"VESTE","46","46",	"56",	"","","","XXXL");
-
+/*
         createRecordSizeConvert(db,"MANTEAU","36","36",	"46",	"","","","XXS");
         createRecordSizeConvert(db,"MANTEAU","38","38",	"48",	"","","","XS");
         createRecordSizeConvert(db,"MANTEAU","40","40",	"50",	"","","","S");
@@ -533,7 +537,8 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
         createRecordSizeConvert(db,"MANTEAU","44","44",	"54",	"","","","XL");
         createRecordSizeConvert(db,"MANTEAU","45","45",	"55",	"","","","XXL");
         createRecordSizeConvert(db,"MANTEAU","46","46",	"56",	"","","","XXXL");
-
+*/
+        /*
         createRecordSizeConvert(db,"BLOUSON","36","36",	"46",	"","","","XXS");
         createRecordSizeConvert(db,"BLOUSON","38","38",	"48",	"","","","XS");
         createRecordSizeConvert(db,"BLOUSON","40","40",	"50",	"","","","S");
@@ -542,7 +547,7 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
         createRecordSizeConvert(db,"BLOUSON","44","44",	"54",	"","","","XL");
         createRecordSizeConvert(db,"BLOUSON","45","45",	"55",	"","","","XXL");
         createRecordSizeConvert(db,"BLOUSON","46","46",	"56",	"","","","XXXL");
-
+*/
 
     }
 

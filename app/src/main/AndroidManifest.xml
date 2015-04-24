@@ -48,14 +48,17 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.ProfilDetailActivity"
-            android:label="@string/title_activity_profil_detail" />
+            android:label="@string/title_activity_profil_detail"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.activity.CSVCreationActivity"
-            android:label="@string/title_activity_csvcreation" >
+            android:label="@string/title_activity_csvcreation"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".ui.activity.ImportProfilActivity"
-            android:label="@string/title_activity_import_profil" >
+            android:label="@string/title_activity_import_profil"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -81,23 +84,28 @@
         <activity
             android:name=".ui.activity.AddGarmentActivity"
             android:icon="@drawable/ic_action_logo_smxl"
-            android:label="@string/title_activity_add_garment" >
+            android:label="@string/title_activity_add_garment"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".ui.activity.AddMeasureActivity"
-            android:label="@string/title_activity_add_measure_fragment" >
+            android:label="@string/title_activity_add_measure_fragment"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".ui.activity.ListGarmentActivity"
-            android:label="@string/title_activity_list_garment" >
+            android:label="@string/title_activity_list_garment"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".ui.activity.DisplayGarmentActivity"
-            android:label="@string/title_activity_display_garment" >
+            android:label="@string/title_activity_display_garment"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".ui.activity.SelectBrandsActivity"
-            android:label="@string/title_activity_select_brands" >
+            android:label="@string/title_activity_select_brands"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 
