@@ -47,7 +47,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_profil_detail">ProfilDetailActivity</string>
     <string name="title_activity_add_measure">AddMeasure</string>
-    <string name="createProfil">Create new profil</string>
+    <string name="createProfil">Create new profile</string>
     <string name="title_activity_measure_pager">Measures</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_share_profil">ShareProfil</string>
@@ -103,7 +103,7 @@
     <string name="sweater_vest">Sweater/Vest</string>
 
     <string name="returnCreate">Press back again to cancel</string>
-    <string name="newProfile1">New</string>
+    <string name="newProfile1">Add</string>
     <string name="newProfile2">Profile</string>
 
 

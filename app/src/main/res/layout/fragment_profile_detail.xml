@@ -100,7 +100,7 @@
             android:orientation="vertical"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/profilLayout"
+            android:layout_below="@id/profilLayout"
             android:paddingLeft="10dp"
             android:paddingRight="10dp">
 
@@ -118,10 +118,8 @@
 
         </LinearLayout>
 
-<!--Garments-->
-
         <!--Measure-->
-        <RelativeLayout
+        <!--RelativeLayout
             android:id="@+id/layoutHeaderMeasures"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -216,7 +214,7 @@
             </LinearLayout>
 
 
-        </LinearLayout>
+        </LinearLayout-->
 
 <!--Brand-->
         <RelativeLayout
@@ -224,7 +222,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
-            android:layout_below="@+id/measureLayout"
+            android:layout_below="@+id/layoutRemarque"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true">
 

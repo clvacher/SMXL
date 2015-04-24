@@ -55,8 +55,8 @@ public class SuperCreateUpdateProfileActivity extends Activity {
                 cropIntent.putExtra("scale", true);
                 cropIntent.putExtra("scaleUpIfNeeded", true);
                 //indicate output X and Y
-                //cropIntent.putExtra("outputX", 500);
-                //cropIntent.putExtra("outputY", 500);
+                cropIntent.putExtra("outputX", 400);
+                cropIntent.putExtra("outputY", 400);
                 //retrieve data on return
                 cropIntent.putExtra("return-data", false);
 

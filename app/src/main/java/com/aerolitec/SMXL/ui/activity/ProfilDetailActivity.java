@@ -18,10 +18,11 @@ import android.widget.TextView;
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
+import com.aerolitec.SMXL.ui.fragment.MeasureDetailFragment;
 import com.aerolitec.SMXL.ui.fragment.ProfilesDetailFragment;
 import com.aerolitec.SMXL.ui.fragment.WardrobeDetailFragment;
 
-public class ProfilDetailActivity extends FragmentActivity implements WardrobeDetailFragment.OnFragmentInteractionListener{
+public class ProfilDetailActivity extends FragmentActivity{
 
     private LinearLayout tab1,tab2,tab3;
     @Override
@@ -90,6 +91,7 @@ public class ProfilDetailActivity extends FragmentActivity implements WardrobeDe
                 ((TextView)findViewById(R.id.tvNbGarments)).setTextColor(Color.parseColor("#FFFFFF"));
                 tab3.setBackgroundResource(R.drawable.button_fawn);
                 ((TextView)findViewById(R.id.textView3)).setTextColor(getResources().getColor(R.color.SectionTitle));
+                getFragmentManager().beginTransaction().replace(R.id.container, new MeasureDetailFragment()).commit();
             }
         });
     }
@@ -144,10 +146,11 @@ public class ProfilDetailActivity extends FragmentActivity implements WardrobeDe
         super.onResume();
                 ((TextView) findViewById(R.id.tvNbGarments)).setText(" ("+SMXL.getDataBase().getAllUserGarments(UserManager.get().getUser()).size()+")");
     }
-
+/*
     @Override
     public void onFragmentInteraction(Uri uri) {
 
     }
+    */
 }
 
