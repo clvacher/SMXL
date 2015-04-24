@@ -2652,7 +2652,7 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
     public boolean removeUserBrand(User user, Brand brandToRemove){
         SQLiteDatabase db = this.getReadableDatabase();
         try {
-            db.execSQL("DELETE * FROM User_Brand WHERE id_user="+user.getUserid()+" AND id_brand="+brandToRemove.getId()+";");
+            db.execSQL("DELETE FROM User_Brand WHERE id_user="+user.getUserid()+" AND id_brand="+brandToRemove.getId()+";");
         }
         catch (SQLiteException e) {
             Log.d(Constants.TAG, "delete brand user with error : " + e.getMessage());
@@ -2666,7 +2666,7 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
     public boolean removeAllUserBrand(User user){
         SQLiteDatabase db = this.getReadableDatabase();
         try {
-            db.execSQL("DELETE * FROM User_Brand WHERE user_id="+user.getUserid()+";");
+            db.execSQL("DELETE FROM User_Brand WHERE id_user="+user.getUserid()+";");
         }
         catch (SQLiteException e) {
             Log.d(Constants.TAG, "delete all brand user with error : " + e.getMessage());

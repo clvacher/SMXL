@@ -7,6 +7,7 @@ import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.Checkable;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
@@ -17,9 +18,7 @@ import java.util.ArrayList;
 /**
  * Created by Jerome on 17/04/2015.
  */
-public class CheckableBrandLayout extends FrameLayout implements Checkable {
-
-    public static ArrayList<Brand> selectedBrands = new ArrayList<>();
+public class CheckableBrandLayout extends LinearLayout implements Checkable {
 
     private boolean mChecked;
     private TextView textView;
@@ -47,21 +46,18 @@ public class CheckableBrandLayout extends FrameLayout implements Checkable {
     }
 
     public void setChecked(boolean checked) {
+
         mChecked = checked;
 
-        if(checked){
+        if(mChecked){
             //Log.d("brand check :", brand.toString());
             setBackgroundResource(R.drawable.item_brand_checkable_check);
             textView.setTextColor(Color.parseColor("#FFFFFF"));
-            if(!selectedBrands.contains(brand)) {
-                selectedBrands.add(brand);
-            }
         }
         else{
             //Log.d("brand pas check :", brand.toString());
             setBackgroundResource(R.drawable.item_brand_checkable);
             textView.setTextColor(Color.parseColor("#000000"));
-            selectedBrands.remove(brand);
         }
 
 
@@ -83,7 +79,6 @@ public class CheckableBrandLayout extends FrameLayout implements Checkable {
         setChecked(!mChecked);
     }
 
-
     @Override
     public String toString() {
         return "CheckableBrandLayout{" +
@@ -91,4 +86,5 @@ public class CheckableBrandLayout extends FrameLayout implements Checkable {
                 ", brand=" + brand +
                 '}';
     }
+
 }

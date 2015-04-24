@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -28,22 +29,26 @@ import com.aerolitec.SMXL.ui.customLayout.CheckableBrandLayout;
 public class SelectBrandsActivity extends Activity {
 
     private static User user;
+    private ArrayList<Brand> userBrands;
     private ArrayList<Brand> brands;
+    private ArrayList<Brand> brandsSelected;
+
     private GridView gridViewBrands;
+    private FavoriteCheckableBrandAdapter gridViewBrandsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         brands=new ArrayList<>();
+        brandsSelected=new ArrayList<>();
 
         user = UserManager.get().getUser();
         if(user == null){
             Log.d("TestOnCreate", "user null");
         }
 
-        CheckableBrandLayout.selectedBrands.clear();
-        CheckableBrandLayout.selectedBrands = user.getBrands();
+        userBrands = user.getBrands();
 
         Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
         mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
@@ -54,13 +59,33 @@ public class SelectBrandsActivity extends Activity {
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setDisplayShowTitleEnabled(false);
 
-        ArrayList<Brand> brands = SMXL.get().getDataBase().getAllBrands();
-
         gridViewBrands = (GridView) this.findViewById(R.id.gridViewBrands);
 
+        brands = SMXL.get().getDataBase().getAllBrands();
 
-        gridViewBrands.setAdapter(new FavoriteCheckableBrandAdapter(brands));
+        gridViewBrandsAdapter = new FavoriteCheckableBrandAdapter(this, brands, userBrands);
+        gridViewBrands.setAdapter(gridViewBrandsAdapter);
+
         gridViewBrands.setChoiceMode(GridView.CHOICE_MODE_MULTIPLE);
+
+        brandsSelected.addAll(userBrands);
+
+        gridViewBrands.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long mylng) {
+                Brand selectedBrand = (Brand) gridViewBrandsAdapter.getItem(position);
+
+                if(brandsSelected.contains(selectedBrand)){
+                    brandsSelected.remove(selectedBrand);
+                }
+                else{
+                    brandsSelected.add(selectedBrand);
+                }
+
+                //Log.d("Brand select" , selectedBrand.toString());
+                //Log.d("all brand select", brandsSelected.toString());
+            }
+        });
 
         //gridViewBrands.setMultiChoiceModeListener(new MultiChoiceModeListener(gridViewBrands));
 
@@ -69,42 +94,70 @@ public class SelectBrandsActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d("coucou je resume", "oui oui oui");
-        Log.d("adapter gridview", gridViewBrands.getAdapter().toString());
+        //Log.d("adapter gridview", gridViewBrandsAdapter.toString());
 
-        ArrayList<Brand> brandUSer = (ArrayList)user.getBrands().clone();
+        ArrayList<Brand> brandUser = user.getBrands();
 
-        for(Brand b : brandUSer) {
-            ((FavoriteCheckableBrandAdapter) gridViewBrands.getAdapter()).checkBrand(b);
+
+        //updateUI();
+        //Log.d("onresume userbrands", brandUser.toString());
+
+
+        gridViewBrandsAdapter = new FavoriteCheckableBrandAdapter(this, brands, brandUser);
+        gridViewBrands.setAdapter(gridViewBrandsAdapter);
+
+        //Log.d("isempty", Boolean.toString(gridViewBrandsAdapter.isEmpty()));
+        //Log.d("viewtypecount", Integer.toString(gridViewBrandsAdapter.getViewTypeCount()));
+
+        //gridViewBrandsAdapter.notifyDataSetChanged();
+
+
+
+        for(Brand b : brandUser) {
+            gridViewBrands.setItemChecked(brands.indexOf(b), true);
         }
+
+
 
     }
 
+
+
     public void onClickAddBrandsUser(View view){
 
-        Log.d("Selected brands", CheckableBrandLayout.selectedBrands.toString());
+        SMXL.getDataBase().removeAllUserBrand(user);
 
-        user.setBrands(CheckableBrandLayout.selectedBrands);
-
-        for(Brand b : CheckableBrandLayout.selectedBrands){
-            if (!SMXL.getDataBase().alreadyExistUserBrand(user, b)) {
+        for(Brand b : brandsSelected){
                 SMXL.getDataBase().addUserBrand(user, b);
-            }
         }
-        Log.d("user onClickAddBrandUse", UserManager.get().getUser().toString());
+
+        user.setBrands(brandsSelected);
+
+        //Log.d("onclick selectedbrands", brandsSelected.toString());
+
+        //Log.d("user onClickAddBrandUse", UserManager.get().getUser().toString());
+
         finish();
     }
 
 
+    /*
     private void updateUI (){
         gridViewBrands.removeAllViews();
 
         for (int i = 0; i < brands.size(); i++) {
 
-            ((FavoriteCheckableBrandAdapter)gridViewBrands.getAdapter()).getView(i, new CheckableBrandLayout(getApplicationContext(), brands.get(i)), gridViewBrands);
+            if(user.getBrands().contains(brands.get(i)))
+            {
+                ((CheckableBrandLayout) gridViewBrandsAdapter.getView(i, new CheckableBrandLayout(getApplicationContext(), brands.get(i)), gridViewBrands)).setChecked(true);
+            }
+            else{
+                gridViewBrandsAdapter.getView(i, new CheckableBrandLayout(getApplicationContext(), brands.get(i)), gridViewBrands);
+            }
 
         }
     }
+    */
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

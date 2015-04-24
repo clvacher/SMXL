@@ -1,7 +1,10 @@
 package com.aerolitec.SMXL.ui.adapter;
 
+import android.app.Activity;
+import android.content.Context;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -20,14 +23,16 @@ import java.util.ArrayList;
  */
 public class FavoriteCheckableBrandAdapter extends BaseAdapter {
 
+    private Activity mContext;
     private ArrayList<Brand> brands;
-
-    public static ArrayList<CheckableBrandLayout> checkableBrands = new ArrayList<>();
-
+    private ArrayList<Brand> alreadyCheckedBrands;
 
 
-    public FavoriteCheckableBrandAdapter(ArrayList<Brand> brands) {
+
+    public FavoriteCheckableBrandAdapter(Activity context, ArrayList<Brand> brands, ArrayList<Brand> alreadyCheckedBrands) {
+        mContext = context;
         this.brands = brands;
+        this.alreadyCheckedBrands = alreadyCheckedBrands;
     }
 
     @Override
@@ -51,7 +56,7 @@ public class FavoriteCheckableBrandAdapter extends BaseAdapter {
         CheckableBrandLayout l;
 
         if (convertView == null) {
-            l = new CheckableBrandLayout(parent.getContext(), brands.get(position));
+            l = new CheckableBrandLayout(mContext, brands.get(position));
 
             l.setLayoutParams(new GridView.LayoutParams(
                     GridView.LayoutParams.MATCH_PARENT,
@@ -61,28 +66,7 @@ public class FavoriteCheckableBrandAdapter extends BaseAdapter {
             l = (CheckableBrandLayout) convertView;
         }
 
-        //Log.d("l dans les checkable", "oui oui oui");
-        //Log.d("checkablebrand after l", checkableBrands.toString());
-
-        if (!checkableBrands.contains(l)){
-            checkableBrands.add(l);
-        }
-
+        //Log.d("L est", ""+l.getBrand()+" "+l.isChecked());
         return l;
     }
-
-    public void checkBrand (Brand b){
-        Log.d("List brands fcbadapt", brands.toString());
-        Log.d("Brand b", b.toString());
-        Log.d("Brand b contains", Boolean.toString(brands.contains(b)));
-        Log.d("index of b in brands", Integer.toString(brands.indexOf(b)));
-        Log.d("checkablebrands", checkableBrands.toString());
-        Log.d("checkable item at index", checkableBrands.get(brands.indexOf(b)).toString());
-
-        Log.d("checkable size", Integer.toString(checkableBrands.size()));
-
-        checkableBrands.get(brands.indexOf(b)).setChecked(true);
-        Log.d("is checked", Boolean.toString(checkableBrands.get(brands.indexOf(b)).isChecked()));
-    }
-
 }
