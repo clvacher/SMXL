@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="DefaultBackgroundColor">#efe9d9</color>
-    <color name="SectionTitle">#ee511a</color>
-    <color name="SectionSeparator">#ffa1a29e</color>
+    <color name="DefaultBackgroundColor">#EFE9D9</color>
+    <color name="SectionTitle">#FFEE511A</color>
+    <color name="SectionSeparator">#FFA1A29E</color>
     <color name="MainText">#000000</color>
     <color name="SubTitleText">#555555</color>
-    <color name="SelectTexte">#ff000000</color>
+    <color name="SelectTexte">#FF000000</color>
     <color name="backgroundEditTextProfile">#ffdcdcdc</color>
     <color name="backgroundSelectMeasure">#fff2ffee</color>
     <color name="EditTextBorder">#c2c2c2</color>
