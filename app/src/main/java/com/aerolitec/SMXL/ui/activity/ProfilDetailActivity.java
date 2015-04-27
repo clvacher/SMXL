@@ -51,46 +51,57 @@ public class ProfilDetailActivity extends FragmentActivity{
         getActionBar().setDisplayUseLogoEnabled(false);
 
         tab1= (LinearLayout) findViewById(R.id.profile);
+        final TextView tv1=(TextView)findViewById(R.id.textView1);
         tab2= (LinearLayout) findViewById(R.id.wardrobe);
+        final TextView tv2_1=(TextView)findViewById(R.id.textView2);
+        final TextView tv2_2=(TextView)findViewById(R.id.tvNbGarments);
         tab3= (LinearLayout) findViewById(R.id.measurements);
-        tab1.setBackgroundResource(R.drawable.button_fawn);
+        final TextView tv3=(TextView)findViewById(R.id.textView3);
+
+        tab2.setBackgroundResource(R.drawable.button_fawn_bottom_left);
+        tab3.setBackgroundResource(R.drawable.button_fawn);
+
+        tv1.setTextColor(Color.WHITE);
+        tv2_1.setTextColor(getResources().getColor(R.color.SectionTitle));
+        tv2_2.setTextColor(getResources().getColor(R.color.SectionTitle));
+        tv3.setTextColor(getResources().getColor(R.color.SectionTitle));
 
         tab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tab1.setBackgroundResource(R.drawable.button_fawn);
-                ((TextView)findViewById(R.id.textView1)).setTextColor(getResources().getColor(R.color.SectionTitle));
-                tab2.setBackgroundResource(R.drawable.button_orange_border);
-                ((TextView)findViewById(R.id.textView2)).setTextColor(Color.parseColor("#FFFFFF"));
-                ((TextView)findViewById(R.id.tvNbGarments)).setTextColor(Color.parseColor("#FFFFFF"));
-                tab3.setBackgroundResource(R.drawable.button_orange_border);
-                ((TextView)findViewById(R.id.textView3)).setTextColor(Color.parseColor("#FFFFFF"));
+                tab1.setBackgroundResource(R.drawable.button_orange_border);
+                tab2.setBackgroundResource(R.drawable.button_fawn_bottom_left);
+                tab3.setBackgroundResource(R.drawable.button_fawn);
+                tv1.setTextColor(Color.WHITE);
+                tv2_1.setTextColor(getResources().getColor(R.color.SectionTitle));
+                tv2_2.setTextColor(getResources().getColor(R.color.SectionTitle));
+                tv3.setTextColor(getResources().getColor(R.color.SectionTitle));
                 getFragmentManager().beginTransaction().replace(R.id.container, new ProfilesDetailFragment()).commit();
             }
         });
         tab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tab1.setBackgroundResource(R.drawable.button_orange_border);
-                ((TextView)findViewById(R.id.textView1)).setTextColor(Color.parseColor("#FFFFFF"));
-                tab2.setBackgroundResource(R.drawable.button_fawn);
-                ((TextView)findViewById(R.id.textView2)).setTextColor(getResources().getColor(R.color.SectionTitle));
-                ((TextView)findViewById(R.id.tvNbGarments)).setTextColor(getResources().getColor(R.color.SectionTitle));
-                tab3.setBackgroundResource(R.drawable.button_orange_border);
-                ((TextView)findViewById(R.id.textView3)).setTextColor(Color.parseColor("#FFFFFF"));
+                tab1.setBackgroundResource(R.drawable.button_fawn_bottom_right);
+                tab2.setBackgroundResource(R.drawable.button_orange_border);
+                tab3.setBackgroundResource(R.drawable.button_fawn_bottom_left);
+                tv1.setTextColor(getResources().getColor(R.color.SectionTitle));
+                tv2_1.setTextColor(Color.WHITE);
+                tv2_2.setTextColor(Color.WHITE);
+                tv3.setTextColor(getResources().getColor(R.color.SectionTitle));
                 getFragmentManager().beginTransaction().replace(R.id.container, new WardrobeDetailFragment()).commit();
             }
         });
         tab3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tab1.setBackgroundResource(R.drawable.button_orange_border);
-                ((TextView)findViewById(R.id.textView1)).setTextColor(Color.parseColor("#FFFFFF"));
-                tab2.setBackgroundResource(R.drawable.button_orange_border);
-                ((TextView)findViewById(R.id.textView2)).setTextColor(Color.parseColor("#FFFFFF"));
-                ((TextView)findViewById(R.id.tvNbGarments)).setTextColor(Color.parseColor("#FFFFFF"));
-                tab3.setBackgroundResource(R.drawable.button_fawn);
-                ((TextView)findViewById(R.id.textView3)).setTextColor(getResources().getColor(R.color.SectionTitle));
+                tab1.setBackgroundResource(R.drawable.button_fawn);
+                tab2.setBackgroundResource(R.drawable.button_fawn_bottom_right);
+                tab3.setBackgroundResource(R.drawable.button_orange_border);
+                tv1.setTextColor(getResources().getColor(R.color.SectionTitle));
+                tv2_1.setTextColor(getResources().getColor(R.color.SectionTitle));
+                tv2_2.setTextColor(getResources().getColor(R.color.SectionTitle));
+                tv3.setTextColor(Color.WHITE);
                 getFragmentManager().beginTransaction().replace(R.id.container, new MeasureDetailFragment()).commit();
             }
         });
