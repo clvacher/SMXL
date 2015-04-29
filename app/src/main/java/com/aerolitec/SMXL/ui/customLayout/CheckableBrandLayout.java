@@ -35,7 +35,7 @@ public class CheckableBrandLayout extends LinearLayout implements Checkable {
         textView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
         this.brand=brand;
-        textView.setText(this.brand.getBrandName());
+        textView.setText(this.brand.getBrand_name());
 
 
         this.addView(textView);

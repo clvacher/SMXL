@@ -27,7 +27,6 @@ import java.io.File;
 public class ProfilActivity extends FragmentActivity implements OnProfileSelected {
 
     private User user;
-    private SMXL smxl;
     private static final int PICKFILE_RESULT_CODE = 1;
 
 
@@ -40,17 +39,13 @@ public class ProfilActivity extends FragmentActivity implements OnProfileSelecte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profil);
-        if (smxl == null) {
-            smxl = SMXL.get();
-        }
 
         getActionBar().setDisplayShowTitleEnabled(false);
 
-        SQLiteSMXL db = new SQLiteSMXL(this);
-        smxl.setDataBase(db);
+        SQLiteSMXL db = SMXL.getDataBase();
         db.getWritableDatabase();
         db.close();
-        user = smxl.getUser();
+        user = SMXL.get().getUser();
 
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
@@ -134,7 +129,7 @@ public class ProfilActivity extends FragmentActivity implements OnProfileSelecte
 
     @Override
     public void profileSelect(ProfileItem profile) {
-        user = smxl.get().getDataBase().getUserById(profile.getId());
+        user = SMXL.getUserDBManager().getUser(profile.getId());
         UserManager.get().setUser(user);
         Intent intent = new Intent(getApplicationContext(), ProfilDetailActivity.class);
         startActivity(intent);

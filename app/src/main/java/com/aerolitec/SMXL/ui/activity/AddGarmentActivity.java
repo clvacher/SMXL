@@ -17,8 +17,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
+import com.aerolitec.SMXL.model.Brand;
 import com.aerolitec.SMXL.model.BrandsSizeGuide;
 import com.aerolitec.SMXL.model.CategoryGarment;
+import com.aerolitec.SMXL.model.GarmentType;
 import com.aerolitec.SMXL.model.TabSizes;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.model.UserClothes;
@@ -32,9 +34,8 @@ import java.util.ArrayList;
 public class AddGarmentActivity extends Activity {
 
     private static User user;
-    private static CategoryGarment selectedCategory;
-    private static String selectedGarment;
-    private static String selectedBrand;
+    private static GarmentType selectedGarment;
+    private static Brand selectedBrand;
     private static boolean canValidate;
     private static String mComputeSize = "";
     private static ArrayList<TabSizes> sizes;
@@ -95,15 +96,14 @@ public class AddGarmentActivity extends Activity {
 
     public void saveGarment(){
         UserClothes userClothe = new UserClothes();
-        userClothe.setType(selectedGarment);
+        userClothe.setGarmentType(selectedGarment);
         userClothe.setBrand(selectedBrand);
         userClothe.setCountry("UE");
         userClothe.setSize(mComputeSize);
         userClothe.setComment(editComments.getText().toString());
-        userClothe.setUserid(user.getId_user());
+        userClothe.setUser(user);
         userClothe.setSizes(sizes);
-        userClothe.setCategory(selectedCategory);
-        SMXL.get().getDataBase().AddUserGarments(userClothe);
+        SMXL.getUserClothesDBManager().addUserClothes(userClothe);
     }
 
     public static class SelectCategoryGarmentFragment extends Fragment {
@@ -137,7 +137,7 @@ public class AddGarmentActivity extends Activity {
             gridViewCategories.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                    selectedCategory = categories.get(position);
+                    selectedGarment.setCategoryGarment(categories.get(position));
                     Fragment fragment = new SelectGarmentFragment();
                     getFragmentManager().beginTransaction()
                             .replace(R.id.container, fragment, "garment")
@@ -184,7 +184,7 @@ public class AddGarmentActivity extends Activity {
             listViewGarments = (ListView) view.findViewById(R.id.listViewGarments);
             imageChooseGarment = (ImageView) view.findViewById(R.id.imageChooseGarment);
 
-            imageChooseGarment.setImageResource(selectedCategory.getIcon());
+            imageChooseGarment.setImageResource(selectedGarment.getCategoryGarment().getIcon());
 
             garmentItems = new ArrayList<>();
 
@@ -196,7 +196,9 @@ public class AddGarmentActivity extends Activity {
             listViewGarments.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                    selectedGarment = garmentItems.get(position);
+                    //FIXME
+                    //selectedGarment = garmentItems.get(position);
+                    //selectedGarment = SMXL.getGarmentTypeDBManager().getGarmentType()
                     getFragmentManager().beginTransaction()
                             .replace(R.id.container, new SelectBrandFragment(), "brand")
                             .addToBackStack(null)
@@ -219,7 +221,7 @@ public class AddGarmentActivity extends Activity {
          */
 
         private void getGarmentsFromCategory() {
-            switch (selectedCategory.getId()) {
+            switch (selectedGarment.getCategoryGarment().getId_category_garment()) {
                 case 1:
                     garmentItems.add("Robe");
                     garmentItems.add("Jupe");
@@ -285,8 +287,8 @@ public class AddGarmentActivity extends Activity {
             imageChooseBrand = (ImageView) view.findViewById(R.id.imageChooseBrand);
             textGarment = (TextView) view.findViewById(R.id.textGarment);
 
-            imageChooseBrand.setImageResource(selectedCategory.getIcon());
-            textGarment.setText(selectedGarment);
+            imageChooseBrand.setImageResource(selectedGarment.getCategoryGarment().getIcon());
+            textGarment.setText(selectedGarment.getType());
 
             brandItems = new ArrayList<>();
 
@@ -298,7 +300,8 @@ public class AddGarmentActivity extends Activity {
             listViewBrands.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                    selectedBrand = brandItems.get(position);
+                    //FIXME
+                    //selectedBrand = brandItems.get(position);
                     getFragmentManager().beginTransaction()
                             .replace(R.id.container, new SummaryGarmentFragment(), "summary")
                             .addToBackStack(null)
@@ -310,7 +313,7 @@ public class AddGarmentActivity extends Activity {
         private void loadBrands(){
 
             brandItems.clear();
-            String recherche = selectedGarment;
+            String recherche = selectedGarment.getType();
 
             if(recherche.equalsIgnoreCase("sweat")) {
                 recherche = "sweater";
@@ -322,7 +325,7 @@ public class AddGarmentActivity extends Activity {
                 recherche = recherche.toUpperCase() + "-" + user.getSexe().substring(0,1);
             }
 
-            ArrayList<BrandsSizeGuide> brands = SMXL.get().getDataBase().getAllBrandsByGarment(recherche);
+            ArrayList<BrandsSizeGuide> brands = SMXL.getBrandSizeGuideDBManager().getAllBrandsByGarment(recherche);
             for (BrandsSizeGuide b : brands){
                 brandItems.add(b.getBrand());
             }
@@ -357,15 +360,16 @@ public class AddGarmentActivity extends Activity {
 
             textSizes = (TextView) view.findViewById(R.id.textSizes);
 
-            imageSummary.setImageResource(selectedCategory.getIcon());
-            textGarmentSummary.setText(selectedGarment);
-            textBrandSummary.setText(selectedBrand);
+            imageSummary.setImageResource(selectedGarment.getCategoryGarment().getIcon());
+            textGarmentSummary.setText(selectedGarment.getType());
+            textBrandSummary.setText(selectedBrand.getBrand_name());
 
             canValidate = true;
 
             sizes = new ArrayList<>();
 
-            SizeHelper helper = new SizeHelper(user, selectedBrand, selectedGarment, mComputeSize, textSizes, sizes);
+            //FIXME
+            SizeHelper helper = new SizeHelper(user, selectedBrand.getBrand_name(), selectedGarment.getType(), mComputeSize, textSizes, sizes);
             helper.computeSize();
 
 

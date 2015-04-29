@@ -44,8 +44,8 @@ public class GarmentAdapter extends ArrayAdapter<UserClothes> {
 
         UserClothes clothe = getItem(position);
 
-        holder.tvTypeGarment.setText(clothe.getType());
-        holder.tvBrand.setText(clothe.getBrand());
+        holder.tvTypeGarment.setText(clothe.getGarmentType().getType());
+        holder.tvBrand.setText(clothe.getBrand().getBrand_name());
         holder.tvSize.setText(clothe.getSize());
 
         return convertView;

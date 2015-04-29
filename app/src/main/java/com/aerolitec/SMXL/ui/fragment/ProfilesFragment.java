@@ -139,7 +139,7 @@ public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.
 
     private void loadProfiles(){
         // load all the profiles from the database
-        ArrayList<User> users = SMXL.get().getDataBase().getAllUser();
+        ArrayList<User> users = SMXL.getUserDBManager().getAllUsers();
 
         ProfileItem createNewProfile = new ProfileItem(0,getResources().getString(R.string.newProfile2), getResources().getString(R.string.newProfile1), "createNewProfile");
         profileItem.add(createNewProfile);

@@ -3,10 +3,17 @@ package com.aerolitec.SMXL.tools.dbmanager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
+import android.util.Log;
 
 import com.aerolitec.SMXL.model.Brand;
 import com.aerolitec.SMXL.model.User;
+import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.manager.UserManager;
+import com.aerolitec.SMXL.ui.SMXL;
+
+import java.util.ArrayList;
 
 /**
  * Created by Jerome on 28/04/2015.
@@ -95,6 +102,36 @@ public class UserBrandDBManager extends DBManager {
         return db.rawQuery("SELECT * FROM "+TABLE_NAME, null);
     }
 
+
+
+
+    public boolean alreadyExistUserBrand(User user, Brand b) {
+        boolean found = false;
+            Cursor c;
+            c = db.rawQuery("SELECT * FROM "+TABLE_NAME+
+                    " WHERE "+KEY_ID_USER+"="+user.getId_user()+
+                    " AND "+KEY_ID_BRAND+"="+b.getId_brand(), null);
+            boolean eof = c.moveToFirst();
+            found = eof;
+            c.close();
+
+        return found;
+    }
+
+    public ArrayList<Brand> getAllUserBrands(User user){
+        ArrayList<Brand> brands = new ArrayList<>();
+        Cursor c;
+        c = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+KEY_ID_USER+" = "+user.getId_user(), null);
+        boolean eof = c.moveToFirst();
+        while (eof) {
+            Brand b = SMXL.getBrandDBManager().getBrand(c.getColumnIndex(KEY_ID_BRAND));
+            brands.add(b);
+            eof = c.moveToNext();
+        }
+        c.close();
+
+        return brands;
+    }
 } // class UserBrandDBManager
 
 

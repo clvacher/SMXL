@@ -6,8 +6,10 @@ import java.io.Serializable;
 public class BrandsSizeGuide implements Serializable{
 
     int id_brand_size_guide;
-    String brand_name;
-    String garment;
+    //Brand brand;
+    String brand;
+    //GarmentType garmentType;
+    String garmentType;
     String category;
     String sex;
 
@@ -38,9 +40,9 @@ public class BrandsSizeGuide implements Serializable{
 
     public BrandsSizeGuide(String paramString1, String paramString2, String paramString3, String paramString4, Double paramDouble1, Double paramDouble2, Double paramDouble3, Double paramDouble4, Double paramDouble5, Double paramDouble6, Double paramDouble7, Double paramDouble8, Double paramDouble9, Double paramDouble10, Double paramDouble11, Double paramDouble12, Double paramDouble13, String paramString5, String paramString6, String paramString7, String paramString8, String paramString9, String paramString10)
     {
-        this.garment = paramString1;
+        this.garmentType = paramString1;
         this.category = paramString2;
-        this.brand_name = paramString3;
+        this.brand = paramString3;
         this.sex = paramString4;
         this.collar = paramDouble1;
         this.chest = paramDouble2;
@@ -67,8 +69,8 @@ public class BrandsSizeGuide implements Serializable{
     public String toString() {
         return "BrandsSizeGuide{" +
                 "id_brand_size_guide=" + id_brand_size_guide +
-                ", brand_name='" + brand_name + '\'' +
-                ", garment='" + garment + '\'' +
+                ", brand='" + brand + '\'' +
+                ", garmentTypr='" + garmentType + '\'' +
                 ", category='" + category + '\'' +
                 ", sex='" + sex + '\'' +
                 ", bust=" + bust +
@@ -101,20 +103,20 @@ public class BrandsSizeGuide implements Serializable{
         this.id_brand_size_guide = id_brand_size_guide;
     }
 
-    public String getBrand_name() {
-        return brand_name;
+    public String getBrand() {
+        return brand;
     }
 
-    public void setBrand_name(String brand_name) {
-        this.brand_name = brand_name;
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 
-    public String getGarment() {
-        return garment;
+    public String getGarmentType() {
+        return garmentType;
     }
 
-    public void setGarment(String garment) {
-        this.garment = garment;
+    public void setGarmentType(String garmentType) {
+        this.garmentType = garmentType;
     }
 
     public String getCategory() {

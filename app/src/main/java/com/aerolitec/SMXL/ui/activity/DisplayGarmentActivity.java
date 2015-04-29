@@ -24,7 +24,7 @@ import java.util.ArrayList;
 
 public class DisplayGarmentActivity extends Activity {
 
-    private static UserClothes clothe;
+    private static UserClothes userClothes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +34,10 @@ public class DisplayGarmentActivity extends Activity {
 
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
-            clothe = (UserClothes) extras.getSerializable("clothes");
+            userClothes = (UserClothes) extras.getSerializable("clothes");
         }
 
-        if(clothe == null) {
+        if(userClothes == null) {
             finish();
             return;
         }
@@ -48,7 +48,7 @@ public class DisplayGarmentActivity extends Activity {
                     .commit();
         }
 
-        getActionBar().setTitle(clothe.getType() + " " + clothe.getBrand());
+        getActionBar().setTitle(userClothes.getGarmentType().getType() + " " + userClothes.getBrand().getBrand_name());
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
         getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -101,12 +101,12 @@ public class DisplayGarmentActivity extends Activity {
 
             textSizes = (TextView) view.findViewById(R.id.textSizes);
 
-            imageSummary.setImageResource(clothe.getCategory().getIcon());
-            textGarmentSummary.setText(clothe.getType());
-            textBrandSummary.setText(clothe.getBrand());
+            imageSummary.setImageResource(userClothes.getGarmentType().getCategoryGarment().getIcon());
+            textGarmentSummary.setText(userClothes.getGarmentType().getType());
+            textBrandSummary.setText(userClothes.getBrand().getBrand_name());
 
-            textSizes.setText(formatedStingSizes(clothe.getSizes()));
-            editComments.setText(clothe.getComment());
+            textSizes.setText(formatedStingSizes(userClothes.getSizes()));
+            editComments.setText(userClothes.getComment());
 
 
             getActivity().invalidateOptionsMenu();
@@ -141,8 +141,8 @@ public class DisplayGarmentActivity extends Activity {
                     dialog.show(getFragmentManager(), "delete");
                     break;
                 case R.id.validate:
-                    clothe.setComment(editComments.getText().toString());
-                    SMXL.get().getDataBase().updateUserGarment(clothe);
+                    userClothes.setComment(editComments.getText().toString());
+                    SMXL.getUserClothesDBManager().updateUserClothes(userClothes);
                     getActivity().finish();
                     break;
             }
@@ -152,7 +152,7 @@ public class DisplayGarmentActivity extends Activity {
         @Override
         public void onConfirm(boolean confirmed, int id) {
             if(confirmed && getActivity() != null) {
-                SMXL.get().getDataBase().removeUserGarment(clothe);
+                SMXL.getUserClothesDBManager().deleteUserClothes(userClothes);
                 getActivity().finish();
             }
         }

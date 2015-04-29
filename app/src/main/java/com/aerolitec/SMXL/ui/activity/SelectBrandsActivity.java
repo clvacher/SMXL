@@ -61,7 +61,7 @@ public class SelectBrandsActivity extends Activity {
 
         gridViewBrands = (GridView) this.findViewById(R.id.gridViewBrands);
 
-        brands = SMXL.get().getDataBase().getAllBrands();
+        brands = SMXL.getBrandDBManager().getAllBrands();
 
         gridViewBrandsAdapter = new FavoriteCheckableBrandAdapter(this, brands, userBrands);
         gridViewBrands.setAdapter(gridViewBrandsAdapter);
@@ -125,10 +125,10 @@ public class SelectBrandsActivity extends Activity {
 
     public void onClickAddBrandsUser(View view){
 
-        SMXL.getDataBase().removeAllUserBrand(user);
+        SMXL.getUserBrandDBManager().deleteUserBrand(user);
 
         for(Brand b : brandsSelected){
-                SMXL.getDataBase().addUserBrand(user, b);
+                SMXL.getUserBrandDBManager().addUserBrand(user, b);
         }
 
         user.setBrands(brandsSelected);

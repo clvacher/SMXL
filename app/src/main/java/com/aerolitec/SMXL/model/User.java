@@ -375,4 +375,37 @@ public class User extends BaseObjects implements Serializable {
         }
         return age;
     }
+
+    public ArrayList<String> getUserSizes (){
+        ArrayList<String> mesures = new ArrayList<>();
+        int userId = getId_user();
+        String size = String.valueOf(getSize());
+        String weight = String.valueOf(getWeight());
+        String bust = String.valueOf(getBust());
+        String chest = String.valueOf(getChest());
+        String collar = String.valueOf(getCollar());
+        String waist = String.valueOf(getWaist());
+        String hips = String.valueOf(getHips());
+        String sleeve = String.valueOf(getSleeve());
+        String inseam = String.valueOf(getInseam());
+        String feet = String.valueOf(getFeet());
+        String unitLength = String.valueOf(getUnitLength());
+        String unitWeight = String.valueOf(getUnitWeight());
+        String pointure = String.valueOf(getPointure());
+        mesures.add(size);
+        mesures.add(weight);
+        mesures.add(bust);
+        mesures.add(chest);
+        mesures.add(collar);
+        mesures.add(waist);
+        mesures.add(hips);
+        mesures.add(sleeve);
+        mesures.add(inseam);
+        mesures.add(feet);
+        mesures.add(unitLength);
+        mesures.add(unitWeight);
+        mesures.add(pointure);
+
+        return mesures;
+    }
 }

@@ -212,7 +212,7 @@ public class UserSettingsDialogFragment extends DialogFragment {
     private void saveSettings(){
         user.setUnitLength(length);
         user.setUnitWeight(weight);
-        SMXL.get().getDataBase().updateUser(user);
+        SMXL.getUserDBManager().updateUser(user);
         this.dismiss();
     }
 

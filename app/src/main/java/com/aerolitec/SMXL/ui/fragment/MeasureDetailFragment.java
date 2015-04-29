@@ -149,7 +149,7 @@ public class MeasureDetailFragment extends Fragment {
         ((LinearLayout) getView().findViewById(R.id.layoutViewMeasure)).removeAllViews();
 
         for (int i = 0; i < indexSize.size(); i++) {
-            ArrayList<String> sizes = SMXL.getDataBase().getUserSizes(user);
+            ArrayList<String> sizes = user.getUserSizes();
             View viewToLoad = LayoutInflater.from(
                     getActivity().getApplicationContext()).inflate(
                     R.layout.measure_item, null);

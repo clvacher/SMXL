@@ -18,7 +18,6 @@ import java.util.ArrayList;
 public class SizeGuideAdapter extends FragmentStatePagerAdapter {
 
     private static ArrayList<GarmentType> al_garments = SMXL.getDataBase().getGarmentsSizeGuide();
-
     private static final int NUM_PAGES = al_garments.size();
 
 

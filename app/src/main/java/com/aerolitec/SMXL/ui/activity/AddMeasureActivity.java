@@ -229,7 +229,7 @@ public class AddMeasureActivity extends Activity {
         private void loadMeasures(){
             // load all the profiles from the database
 
-            User user = SMXL.get().getDataBase().getUserById(this.user.getId_user());
+            User user = SMXL.getUserDBManager().getUser(this.user.getId_user());
             // If unit is inch, then convert from cm to inch
             coeff = 1D;
             double coeffW = 1D;
@@ -415,7 +415,7 @@ public class AddMeasureActivity extends Activity {
             user.setSleeve(getItemFromId(ID_ARM).getValueMeasure() * coeff);
             user.setFeet(getItemFromId(ID_FOOT).getValueMeasure() * coeff);
             user.setPointure(getItemFromId(ID_SHOE_SIZE).getValueMeasure() * coeff);
-            SMXL.get().getDataBase().updateUser(user);
+            SMXL.getUserDBManager().updateUser(user);
             UserManager.get().setUser(user);
         }
 

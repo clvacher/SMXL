@@ -96,9 +96,9 @@ public class ProfilesDetailFragment extends Fragment{
         adapterMeasure = new MeasureAdapter(getActivity().getApplicationContext(), listMeasures);
 */
         listBrandsItems = new ArrayList<>();
-        ArrayList<Brand> brands = SMXL.get().getDataBase().getAllBrands();
+        ArrayList<Brand> brands = SMXL.getBrandDBManager().getAllBrands();
         for (Brand b : brands){
-            listBrandsItems.add(b.getBrandName());
+            listBrandsItems.add(b.getBrand_name());
         }
         adapterBrand = new FavoriteBrandAdapter(getActivity().getApplicationContext(), listBrandsItems);
 
@@ -262,7 +262,7 @@ public class ProfilesDetailFragment extends Fragment{
     }
 
     private void updateUI() {
-        userBrands = SMXL.getDataBase().getAllUserBrands(user);
+        userBrands = SMXL.getUserBrandDBManager().getAllUserBrands(user);
 
 
         //POUR LES MARQUES :
@@ -279,7 +279,7 @@ public class ProfilesDetailFragment extends Fragment{
 
             TextView item = (TextView) viewToLoad.findViewById(R.id.tvBrandName);
 
-            item.setText(userBrands.get(i).getBrandName());
+            item.setText(userBrands.get(i).getBrand_name());
 
             ((LinearLayout) getView().findViewById(R.id.layoutViewBrand))
                     .addView(viewToLoad);
@@ -388,9 +388,9 @@ public class ProfilesDetailFragment extends Fragment{
     public void loadBrands() {
         // user : Get all the user's favorite brands
         listBrandsItems.clear();
-        userBrands = SMXL.get().getDataBase().getAllUserBrands(user);
+        userBrands = SMXL.getUserBrandDBManager().getAllUserBrands(user);
         for (Brand b : userBrands) {
-            adapterBrand.add(b.getBrandName());
+            adapterBrand.add(b.getBrand_name());
         }
         adapterBrand.notifyDataSetChanged();
     }
@@ -417,7 +417,7 @@ public class ProfilesDetailFragment extends Fragment{
         if(!desc.equals(user.getDescription())){
             user.setDescription(desc);
             UserManager.get().setUser(user);
-            SMXL.getDataBase().updateUser(user);
+            SMXL.getUserDBManager().updateUser(user);
         }
 
         super.onPause();

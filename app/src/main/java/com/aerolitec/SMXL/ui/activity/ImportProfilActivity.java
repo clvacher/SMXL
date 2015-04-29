@@ -57,7 +57,7 @@ public class ImportProfilActivity extends Activity {
 
     private int getLastUserID() {
 
-        ArrayList<User> users = SMXL.get().getDataBase().getAllUser();
+        ArrayList<User> users = SMXL.getUserDBManager().getAllUsers();
         int sizeList = users.size();
         return sizeList;
     }
@@ -79,7 +79,7 @@ public class ImportProfilActivity extends Activity {
 
 
                 if (type.equals("user")) {
-
+/*
                     if (str.length == 27) {
 
                         SMXL.getDataBase().importUser(str[2], str[3], str[4], str[5], str[6], str[7], str[8],
@@ -89,10 +89,10 @@ public class ImportProfilActivity extends Activity {
                         Toast.makeText(this, "Le profile est corrompu (User) ... \nEssayez de le réexporter puis réimportez le", Toast.LENGTH_LONG).show();
                         finish();
                     }
-
+*/
                 } else if (type.equals("user_clothes")) {
                     ArrayList<User> users;
-                    users = SMXL.getDataBase().getAllUser();
+                    users = SMXL.getUserDBManager().getAllUsers();
                     int userId = 0;
                     if (users.size() != 0) {
                         //Get last user ( For get its ID for add garment )
@@ -100,9 +100,9 @@ public class ImportProfilActivity extends Activity {
                         userId = user.getId_user();
                     }
 
-                    UserClothes userClothes = new UserClothes(Integer.parseInt(str[1]), userId,
-                            str[3], str[4], str[5], str[6], str[7], null, null); // TODO AJOUTER ICI LE TABLEAU DES TAILLES POUR CHAQUE VETEMENT
-                    SMXL.getDataBase().AddUserGarments(userClothes);
+                    //UserClothes userClothes = new UserClothes(Integer.parseInt(str[1]), userId,
+                    //        str[3], str[4], str[5], str[6], str[7], null, null); // TODO AJOUTER ICI LE TABLEAU DES TAILLES POUR CHAQUE VETEMENT
+                    //SMXL.getUserClothesDBManager().addUserClothes(userClothes);
 
                 } else {
                     Toast.makeText(this, "Erreur lors de l'importation du profil ...", Toast.LENGTH_LONG).show();

@@ -3,9 +3,17 @@ package com.aerolitec.SMXL.tools.dbmanager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
+import android.util.Log;
 
+import com.aerolitec.SMXL.model.BrandsSizeGuide;
 import com.aerolitec.SMXL.model.CategoryGarment;
 import com.aerolitec.SMXL.model.GarmentType;
+import com.aerolitec.SMXL.tools.Constants;
+import com.aerolitec.SMXL.ui.SMXL;
+
+import java.util.ArrayList;
 
 
 /**
@@ -81,10 +89,9 @@ public class GarmentTypeDBManager extends DBManager {
         if (c.moveToFirst()) {
             gt.setId_garment_type(c.getInt(c.getColumnIndex(KEY_ID_GARMENT_TYPE)));
 
-            CategoryGarmentDBManager cgdbm = new CategoryGarmentDBManager(context);
-            cgdbm.open();
-            gt.setCategoryGarment(cgdbm.getCategoryGarment(c.getInt(c.getColumnIndex(KEY_ID_CATEGORY_GARMENT_GARMENT_TYPE))));
-            cgdbm.close();
+            SMXL.getCategoryGarmentDBManager().open();
+            gt.setCategoryGarment(SMXL.getCategoryGarmentDBManager().getCategoryGarment(c.getInt(c.getColumnIndex(KEY_ID_CATEGORY_GARMENT_GARMENT_TYPE))));
+            SMXL.getCategoryGarmentDBManager().close();
 
             gt.setType(c.getString(c.getColumnIndex(KEY_NAME_GARMENT_TYPE)));
             gt.setSex(c.getString(c.getColumnIndex(KEY_SEX_GARMENT_TYPE)));
@@ -98,6 +105,30 @@ public class GarmentTypeDBManager extends DBManager {
         // sélection de tous les enregistrements de la table
         return db.rawQuery("SELECT * FROM "+TABLE_NAME, null);
     }
+
+    public ArrayList<GarmentType> getAllGarments() {
+        ArrayList<GarmentType> garments = new ArrayList<>();
+        Cursor c = getGarmentTypes();
+        boolean eof = c.moveToFirst();
+        while (eof) {
+            GarmentType gt = new GarmentType();
+            gt.setId_garment_type(c.getInt(c.getColumnIndex(KEY_ID_GARMENT_TYPE)));
+
+            SMXL.getCategoryGarmentDBManager().open();
+            gt.setCategoryGarment(SMXL.getCategoryGarmentDBManager().getCategoryGarment(c.getInt(c.getColumnIndex(KEY_ID_CATEGORY_GARMENT_GARMENT_TYPE))));
+            SMXL.getCategoryGarmentDBManager().close();
+
+            gt.setType(c.getString(c.getColumnIndex(KEY_NAME_GARMENT_TYPE)));
+            gt.setSex(c.getString(c.getColumnIndex(KEY_SEX_GARMENT_TYPE)));
+
+            garments.add(gt);
+            eof = c.moveToNext();
+        }
+            c.close();
+            return garments;
+    }
+
+
 
 } // class GarmentTypeDBManager
 

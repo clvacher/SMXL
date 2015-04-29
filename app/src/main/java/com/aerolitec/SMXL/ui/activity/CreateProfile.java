@@ -110,7 +110,7 @@ public class CreateProfile extends SuperCreateUpdateProfileActivity{
 
             User user = null;
             try {
-                user = SMXL.get().getDataBase().createUser(etFirstName.getText().toString(),
+                user = SMXL.getUserDBManager().createUser(etFirstName.getText().toString(),
                         etLastName.getText().toString(), birthday, sexe, picturePath, etNotes.getText().toString());
                 Log.d(Constants.TAG, "New profile created : " + user.toString());
             } catch (Exception e) {

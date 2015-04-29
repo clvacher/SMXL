@@ -142,7 +142,7 @@ public class WardrobeDetailFragment extends Fragment {
 
     private void fillListGarments() {
         ((LinearLayout) getView().findViewById(R.id.layoutViewGarments)).removeAllViews();
-        userClothes = SMXL.getDataBase().getAllUserGarments(user);
+        userClothes = SMXL.getUserClothesDBManager().getAllUserClothes(user);
 
         nbGarments.setText("("+userClothes.size()+")");
 
@@ -153,9 +153,9 @@ public class WardrobeDetailFragment extends Fragment {
             View separator = LayoutInflater.from(
                     getActivity().getApplicationContext()).inflate(
                     R.layout.separator_list, null);
-            ((TextView) viewToLoad.findViewById(R.id.tvNameGarment)).setText(uc.getType());
+            ((TextView) viewToLoad.findViewById(R.id.tvNameGarment)).setText(uc.getGarmentType().getType());
             ((TextView) viewToLoad.findViewById(R.id.tvSize)).setText(uc.getSize());
-            ((TextView) viewToLoad.findViewById(R.id.tvBrandGarment)).setText(uc.getBrand());
+            ((TextView) viewToLoad.findViewById(R.id.tvBrandGarment)).setText(uc.getBrand().getBrand_name());
             ((LinearLayout) getView().findViewById(R.id.layoutViewGarments)).addView(viewToLoad);
 
             final UserClothes ucC=uc;

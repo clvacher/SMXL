@@ -97,7 +97,7 @@ public class ListGarmentActivity extends Activity {
 
         public void loadGarments() {
             listClothes.clear();
-            ArrayList<UserClothes> userClothes = SMXL.get().getDataBase().getAllUserGarments(UserManager.get().getUser());
+            ArrayList<UserClothes> userClothes = SMXL.getUserClothesDBManager().getAllUserClothes(UserManager.get().getUser());
             if(userClothes != null) {
                 listClothes.addAll(userClothes);
             }

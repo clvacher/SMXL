@@ -198,7 +198,7 @@ public class CSVCreationActivity extends Activity {
                 }
 
 
-                SMXL.getDataBase().getUserById(user.getId_user());
+                SMXL.getUserDBManager().getUser(user.getId_user());
 
 
 

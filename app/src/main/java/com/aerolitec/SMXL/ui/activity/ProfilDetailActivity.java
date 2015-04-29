@@ -155,7 +155,7 @@ public class ProfilDetailActivity extends FragmentActivity{
     @Override
     protected void onResume() {
         super.onResume();
-                ((TextView) findViewById(R.id.tvNbGarments)).setText(" ("+SMXL.getDataBase().getAllUserGarments(UserManager.get().getUser()).size()+")");
+                ((TextView) findViewById(R.id.tvNbGarments)).setText(" ("+SMXL.getUserClothesDBManager().getAllUserClothes(UserManager.get().getUser()).size()+")");
     }
 /*
     @Override

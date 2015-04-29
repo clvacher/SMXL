@@ -165,7 +165,7 @@ public class UpdateProfile extends SuperCreateUpdateProfileActivity{
                 user.setSexe(sexe);
 
                 try {
-                    SMXL.get().getDataBase().updateUser(user);
+                    SMXL.getUserDBManager().updateUser(user);
                     UserManager.get().setUser(user);
                     Log.d(Constants.TAG, "Profile updated "+UserManager.get().getUser().getDescription());
                 }
@@ -213,7 +213,7 @@ public class UpdateProfile extends SuperCreateUpdateProfileActivity{
             user.setSexe(sexe);
 
             try {
-                SMXL.get().getDataBase().updateUser(user);
+                SMXL.getUserDBManager().updateUser(user);
                 Log.d(Constants.TAG, "Profile updated");
             }
             catch (Exception e) {

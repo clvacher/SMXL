@@ -45,7 +45,7 @@ public class CategoryGarmentAdapter extends ArrayAdapter<CategoryGarment> {
 
         CategoryGarment category = getItem(position);
 
-        holder.textCategory.setText(category.getName());
+        holder.textCategory.setText(category.getCategory_garment_name());
 
         try {
             holder.image.setImageResource(category.getIcon());

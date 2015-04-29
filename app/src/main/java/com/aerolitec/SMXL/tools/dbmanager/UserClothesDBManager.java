@@ -3,12 +3,18 @@ package com.aerolitec.SMXL.tools.dbmanager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
+import android.util.Log;
 
 import com.aerolitec.SMXL.model.Brand;
+import com.aerolitec.SMXL.model.CategoryGarment;
 import com.aerolitec.SMXL.model.GarmentType;
 import com.aerolitec.SMXL.model.TabSizes;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.model.UserClothes;
+import com.aerolitec.SMXL.tools.Constants;
+import com.aerolitec.SMXL.ui.SMXL;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -110,27 +116,25 @@ public class UserClothesDBManager extends DBManager {
 
             uc.setId_user_clothes(c.getInt(c.getColumnIndex(KEY_ID_USER_CLOTHES)));
 
-            UserDBManager udbm = new UserDBManager(context);
-            udbm.open();
-            uc.setUser(udbm.getUser(c.getInt(c.getColumnIndex(KEY_ID_USER_USER_CLOTHES))));
-            udbm.close();
+            SMXL.getUserDBManager().open();
+            uc.setUser(SMXL.getUserDBManager().getUser(c.getInt(c.getColumnIndex(KEY_ID_USER_USER_CLOTHES))));
+            SMXL.getUserDBManager().close();
 
-            GarmentTypeDBManager gtdbm = new GarmentTypeDBManager(context);
-            gtdbm.open();
-            uc.setGarmentType(gtdbm.getGarmentType(c.getInt(c.getColumnIndex(KEY_ID_GARMENT_TYPE_USER_CLOTHES))));
-            gtdbm.close();
+            SMXL.getGarmentTypeDBManager().open();
+            uc.setGarmentType(SMXL.getGarmentTypeDBManager().getGarmentType(c.getInt(c.getColumnIndex(KEY_ID_GARMENT_TYPE_USER_CLOTHES))));
+            SMXL.getGarmentTypeDBManager().close();
 
-            BrandDBManager bdbm = new BrandDBManager(context);
-            bdbm.open();
-            uc.setBrand(bdbm.getBrand(c.getInt(c.getColumnIndex(KEY_ID_BRAND_USER_CLOTHES))));
-            bdbm.close();
+            SMXL.getBrandDBManager().open();
+            uc.setBrand(SMXL.getBrandDBManager().getBrand(c.getInt(c.getColumnIndex(KEY_ID_BRAND_USER_CLOTHES))));
+            SMXL.getBrandDBManager().close();
 
             uc.setCountry(c.getString(c.getColumnIndex(KEY_COUNTRY_USER_CLOTHES)));
             uc.setSize(c.getString(c.getColumnIndex(KEY_SIZE_USER_CLOTHES)));
             uc.setComment(c.getString(c.getColumnIndex(KEY_COMMENT_USER_CLOTHES)));
 
             Gson gson = new Gson();
-            uc.setSizes(gson.fromJson(c.getString(c.getColumnIndex(KEY_SIZES_USER_CLOTHES)), new TypeToken<ArrayList<TabSizes>>(){}.getType()));
+            //FIXME
+            //uc.setSizes(gson.fromJson(c.getString(c.getColumnIndex(KEY_SIZES_USER_CLOTHES)), new TypeToken<ArrayList<TabSizes>>(){}.getType()));
 
             c.close();
         }
@@ -141,6 +145,45 @@ public class UserClothesDBManager extends DBManager {
     public Cursor getUserClothes() {
         // sélection de tous les enregistrements de la table
         return db.rawQuery("SELECT * FROM "+TABLE_NAME, null);
+    }
+
+    public ArrayList<UserClothes> getAllUserClothes(User user){
+        ArrayList<UserClothes> garments = new ArrayList<>();
+        Cursor c;
+        c = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+KEY_ID_USER_USER_CLOTHES+" = "+user.getId_user(), null);
+        boolean eof = c.moveToFirst();
+        while (eof) {
+            UserClothes uc = new UserClothes();
+
+            uc.setId_user_clothes(c.getInt(c.getColumnIndex(KEY_ID_USER_CLOTHES)));
+
+            SMXL.getUserDBManager().open();
+            uc.setUser(SMXL.getUserDBManager().getUser(c.getInt(c.getColumnIndex(KEY_ID_USER_USER_CLOTHES))));
+            SMXL.getUserDBManager().close();
+
+            SMXL.getGarmentTypeDBManager().open();
+            uc.setGarmentType(SMXL.getGarmentTypeDBManager().getGarmentType(c.getInt(c.getColumnIndex(KEY_ID_GARMENT_TYPE_USER_CLOTHES))));
+            SMXL.getGarmentTypeDBManager().close();
+
+            SMXL.getBrandDBManager().open();
+            uc.setBrand(SMXL.getBrandDBManager().getBrand(c.getInt(c.getColumnIndex(KEY_ID_BRAND_USER_CLOTHES))));
+            SMXL.getBrandDBManager().close();
+
+            uc.setCountry(c.getString(c.getColumnIndex(KEY_COUNTRY_USER_CLOTHES)));
+            uc.setSize(c.getString(c.getColumnIndex(KEY_SIZE_USER_CLOTHES)));
+            uc.setComment(c.getString(c.getColumnIndex(KEY_COMMENT_USER_CLOTHES)));
+
+            Gson gson = new Gson();
+            //FIXME
+            //uc.setSizes(gson.fromJson(c.getString(c.getColumnIndex(KEY_SIZES_USER_CLOTHES)), new TypeToken<ArrayList<TabSizes>>(){}.getType()));
+
+
+            garments.add(uc);
+            eof = c.moveToNext();
+        }
+        c.close();
+
+        return garments;
     }
 
 } // class BrandDBManager
