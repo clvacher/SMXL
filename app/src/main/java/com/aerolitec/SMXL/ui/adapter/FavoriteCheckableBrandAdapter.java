@@ -66,7 +66,7 @@ public class FavoriteCheckableBrandAdapter extends BaseAdapter {
             l = (CheckableBrandLayout) convertView;
         }
 
-        //Log.d("L est", ""+l.getBrand()+" "+l.isChecked());
+        //Log.d("L est", ""+l.getBrandName()+" "+l.isChecked());
         return l;
     }
 }

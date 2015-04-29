@@ -3,7 +3,7 @@ package com.aerolitec.SMXL.ui;
 import android.app.Application;
 
 import com.aerolitec.SMXL.model.User;
-import com.aerolitec.SMXL.tools.services.SizeGuideDataBase;
+import com.aerolitec.SMXL.tools.services.SQLiteSMXL;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -12,7 +12,7 @@ import com.squareup.picasso.Picasso;
 public class SMXL extends Application{
 
     private static SMXL instance;
-    private static SizeGuideDataBase dataBase;
+    private static SQLiteSMXL dataBase;
     private Picasso picasso;
     //private static DisplayMetrics metrics;
     private User user;
@@ -36,11 +36,11 @@ public class SMXL extends Application{
         return instance;
     }
 
-    public static SizeGuideDataBase getDataBase() {
+    public static SQLiteSMXL getDataBase() {
         return dataBase;
     }
 
-    public static void setDataBase(SizeGuideDataBase dataBase) {
+    public static void setDataBase(SQLiteSMXL dataBase) {
         SMXL.dataBase = dataBase;
     }
 

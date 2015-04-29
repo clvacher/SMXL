@@ -4,6 +4,7 @@ package com.aerolitec.SMXL.ui.fragment;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -80,46 +81,57 @@ public class SizeGuideFragment extends Fragment {
                 tableRow.setBackgroundColor(Color.WHITE);
             i++;
 
+/*
+            TextView textViewCH = new TextView(getActivity());
+            TextView textViewJAP = new TextView(getActivity());
+            TextView textViewRUS = new TextView(getActivity());
 
+            textViewCH.setText(sc.getValueCH());
+            textViewJAP.setText(sc.getValueJAP());
+            textViewRUS.setText(sc.getValueRUS());
+
+            textViewCH.setGravity(Gravity.CENTER);
+            textViewJAP.setGravity(Gravity.CENTER);
+            textViewRUS.setGravity(Gravity.CENTER);
+
+            textViewCH.setTextSize(20);
+            textViewJAP.setTextSize(20);
+            textViewRUS.setTextSize(20);
+
+            tableRow.addView(textViewCH);
+            tableRow.addView(textViewJAP);
+            tableRow.addView(textViewRUS);
+*/
 
             TextView textViewUE = new TextView(getActivity());
             TextView textViewUS = new TextView(getActivity());
             TextView textViewUK = new TextView(getActivity());
-            TextView textViewCH = new TextView(getActivity());
-            TextView textViewJAP = new TextView(getActivity());
-            TextView textViewRUS = new TextView(getActivity());
+            TextView textViewFR = new TextView(getActivity());
             TextView textViewSMXL = new TextView(getActivity());
 
             textViewUE.setText(sc.getValueUE());
             textViewUS.setText(sc.getValueUS());
             textViewUK.setText(sc.getValueUK());
-            //textViewCH.setText(sc.getValueCH());
-            textViewJAP.setText(sc.getValueJAP());
-            //textViewRUS.setText(sc.getValueRUS());
-            textViewSMXL.setText(sc.getValueAUS());
+            textViewFR.setText(sc.getValueFR());
+            textViewSMXL.setText(sc.getValueSMXL());
 
             textViewUE.setGravity(Gravity.CENTER);
             textViewUS.setGravity(Gravity.CENTER);
             textViewUK.setGravity(Gravity.CENTER);
-            textViewCH.setGravity(Gravity.CENTER);
-            textViewJAP.setGravity(Gravity.CENTER);
-            textViewRUS.setGravity(Gravity.CENTER);
+            textViewFR.setGravity(Gravity.CENTER);
             textViewSMXL.setGravity(Gravity.CENTER);
 
             textViewUE.setTextSize(20);
             textViewUS.setTextSize(20);
             textViewUK.setTextSize(20);
-            textViewCH.setTextSize(20);
-            textViewJAP.setTextSize(20);
-            textViewRUS.setTextSize(20);
+            textViewFR.setTextSize(20);
             textViewSMXL.setTextSize(20);
+
 
             tableRow.addView(textViewUE);
             tableRow.addView(textViewUS);
             tableRow.addView(textViewUK);
-            tableRow.addView(textViewCH);
-            tableRow.addView(textViewJAP);
-            tableRow.addView(textViewRUS);
+            tableRow.addView(textViewFR);
             tableRow.addView(textViewSMXL);
 
             tableSizeConvert.addView(tableRow);

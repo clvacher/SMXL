@@ -1,12 +1,8 @@
 package com.aerolitec.SMXL.ui.fragment;
 
-import android.app.AlertDialog;
-import android.app.DialogFragment;
 import android.app.Fragment;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,7 +10,6 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -28,13 +23,10 @@ import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.ImageHelper;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
-import com.aerolitec.SMXL.ui.activity.AddMeasureActivity;
 import com.aerolitec.SMXL.ui.activity.SelectBrandsActivity;
 import com.aerolitec.SMXL.ui.activity.UpdateProfile;
 import com.aerolitec.SMXL.ui.adapter.BrandItem;
 import com.aerolitec.SMXL.ui.adapter.FavoriteBrandAdapter;
-import com.aerolitec.SMXL.ui.adapter.MeasureAdapter;
-import com.aerolitec.SMXL.ui.adapter.MeasureItem;
 import com.makeramen.RoundedImageView;
 
 import java.io.File;
@@ -106,7 +98,7 @@ public class ProfilesDetailFragment extends Fragment{
         listBrandsItems = new ArrayList<>();
         ArrayList<Brand> brands = SMXL.get().getDataBase().getAllBrands();
         for (Brand b : brands){
-            listBrandsItems.add(b.getBrand());
+            listBrandsItems.add(b.getBrandName());
         }
         adapterBrand = new FavoriteBrandAdapter(getActivity().getApplicationContext(), listBrandsItems);
 
@@ -287,7 +279,7 @@ public class ProfilesDetailFragment extends Fragment{
 
             TextView item = (TextView) viewToLoad.findViewById(R.id.tvBrandName);
 
-            item.setText(userBrands.get(i).getBrand());
+            item.setText(userBrands.get(i).getBrandName());
 
             ((LinearLayout) getView().findViewById(R.id.layoutViewBrand))
                     .addView(viewToLoad);
@@ -338,7 +330,7 @@ public class ProfilesDetailFragment extends Fragment{
         listMeasures.clear();
 
         // user : Récupérer les infos du User qui sont dans user
-        user = SMXL.get().getDataBase().getUserById(this.user.getUserid());
+        user = SMXL.get().getDataBase().getUserById(this.user.getId_user());
         double coeff = 1D;
         double coeffW = 1D;
         if (user.getUnitLength() == Constants.INCH) {
@@ -397,9 +389,8 @@ public class ProfilesDetailFragment extends Fragment{
         // user : Get all the user's favorite brands
         listBrandsItems.clear();
         userBrands = SMXL.get().getDataBase().getAllUserBrands(user);
-        Log.d("brandsuser", userBrands.toString());
         for (Brand b : userBrands) {
-            adapterBrand.add(b.getBrand());
+            adapterBrand.add(b.getBrandName());
         }
         adapterBrand.notifyDataSetChanged();
     }

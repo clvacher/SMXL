@@ -2,18 +2,14 @@ package com.aerolitec.SMXL.ui.customLayout;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.Checkable;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.Brand;
-
-import java.util.ArrayList;
 
 /**
  * Created by Jerome on 17/04/2015.
@@ -39,7 +35,7 @@ public class CheckableBrandLayout extends LinearLayout implements Checkable {
         textView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
         this.brand=brand;
-        textView.setText(this.brand.getBrand());
+        textView.setText(this.brand.getBrandName());
 
 
         this.addView(textView);

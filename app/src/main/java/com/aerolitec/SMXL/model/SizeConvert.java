@@ -1,49 +1,59 @@
 package com.aerolitec.SMXL.model;
 
-/**
- * Created by stephaneL on 20/03/14.
- */
+
 public class SizeConvert extends BaseObjects{
 
-    int id;
-    String type;
+    int id_size_convert;
+    String garment;
+    String sex;
     String valueUS;
     String valueUK;
     String valueUE;
     String valueFR;
     String valueITA;
     String valueJAP;
-    String valueAUS;
+    String valueSMXL;
+    String valueRUS;
+    String valueCH;
 
     public SizeConvert() {}
 
-    public SizeConvert(int id, String type, String valueUS, String valueUK, String valueUE,String valueFR,
-                       String valueITA, String valueJAP, String valueAUS){
-        this.id = id;
-        this.type = type;
+    public SizeConvert(int id_size_convert, String garment, String sex, String valueUS, String valueUK, String valueUE,String valueFR,
+                       String valueITA, String valueJAP, String valueSMXL){
+        this.id_size_convert = id_size_convert;
+        this.garment = garment;
+        this.sex = sex;
         this.valueUS = valueUS;
         this.valueUK = valueUK;
         this.valueUE = valueUE;
         this.valueFR = valueFR;
         this.valueITA = valueITA;
         this.valueJAP = valueJAP;
-        this.valueAUS = valueAUS;
+        this.valueSMXL = valueSMXL;
     }
 
-    public int getId() {
-        return id;
+    public int getId_size_convert() {
+        return id_size_convert;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId_size_convert(int id_size_convert) {
+        this.id_size_convert = id_size_convert;
     }
 
-    public String getType() {
-        return type;
+    public String getGarment() {
+        return garment;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setGarment(String garment) {
+        this.garment = garment;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
     public String getValueUS() {
@@ -94,26 +104,44 @@ public class SizeConvert extends BaseObjects{
         this.valueJAP = valueJAP;
     }
 
-    public String getValueAUS() {
-        return valueAUS;
+    public String getValueSMXL() {
+        return valueSMXL;
     }
 
-    public void setValueAUS(String valueAUS) {
-        this.valueAUS = valueAUS;
+    public void setValueSMXL(String valueSMXL) {
+        this.valueSMXL = valueSMXL;
+    }
+
+    public String getValueRUS() {
+        return valueRUS;
+    }
+
+    public void setValueRUS(String valueRUS) {
+        this.valueRUS = valueRUS;
+    }
+
+    public String getValueCH() {
+        return valueCH;
+    }
+
+    public void setValueCH(String valueCH) {
+        this.valueCH = valueCH;
     }
 
     @Override
     public String toString() {
         return "SizeConvert{" +
-                "id=" + id +
-                ", type='" + type + '\'' +
+                "id_size_convert=" + id_size_convert +
+                ", garment='" + garment + '\'' +
                 ", valueUS='" + valueUS + '\'' +
                 ", valueUK='" + valueUK + '\'' +
                 ", valueUE='" + valueUE + '\'' +
                 ", valueFR='" + valueFR + '\'' +
                 ", valueITA='" + valueITA + '\'' +
                 ", valueJAP='" + valueJAP + '\'' +
-                ", valueAUS='" + valueAUS + '\'' +
+                ", valueSMXL='" + valueSMXL + '\'' +
+                ", valueRUS='" + valueRUS + '\'' +
+                ", valueCH='" + valueCH + '\'' +
                 '}';
     }
 }

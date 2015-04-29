@@ -2,27 +2,23 @@ package com.aerolitec.SMXL.model;
 
 import java.util.ArrayList;
 
-/**
- * Created by stephaneL on 20/03/14.
- */
 public class UserClothes extends BaseObjects{
 
-    int clotheid;
-    int userid;
-    String type;
-    String brand;
+    int id_user_clothes;
+    User user;
+    GarmentType garmentType;
+    Brand brand;
     String country;
     String size;
     String comment;
     ArrayList<TabSizes> sizes;
-    private CategoryGarment category;
 
     public UserClothes() {}
 
-    public UserClothes(int clotheid, int userid, String type, String brand, String country, String size, String comment, ArrayList<TabSizes> sizes, CategoryGarment category){
-        this.clotheid = clotheid;
-        this.userid = userid;
-        this.type = type;
+    public UserClothes(int id_user_clothes, User user, GarmentType garmentType, Brand brand, String country, String size, String comment, ArrayList<TabSizes> sizes){
+        this.id_user_clothes = id_user_clothes;
+        this.user = user;
+        this.garmentType = garmentType;
         this.brand = brand;
         this.country = country;
         this.size = size;
@@ -31,41 +27,40 @@ public class UserClothes extends BaseObjects{
             this.comment = comment.substring(0,1000);
         else
             this.comment = comment;
-        this.category = category;
     }
 
 
 
 
-    public int getClotheid() {
-        return clotheid;
+    public int getId_user_clothes() {
+        return id_user_clothes;
     }
 
-    public void setClotheid(int clotheid) {
-        this.clotheid = clotheid;
+    public void setId_user_clothes(int id_user_clothes) {
+        this.id_user_clothes = id_user_clothes;
     }
 
-    public int getUserid() {
-        return userid;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserid(int userid) {
-        this.userid = userid;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public String getType() {
-        return type;
+    public GarmentType getGarmentType() {
+        return garmentType;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setGarmentType(GarmentType garmentType) {
+        this.garmentType = garmentType;
     }
 
-    public String getBrand() {
+    public Brand getBrand() {
         return brand;
     }
 
-    public void setBrand(String brand) {
+    public void setBrand(Brand brand) {
         this.brand = brand;
     }
 
@@ -103,14 +98,6 @@ public class UserClothes extends BaseObjects{
 
     @Override
     public String toString() {
-        return type + " + " + brand;
-    }
-
-    public void setCategory(CategoryGarment category) {
-        this.category = category;
-    }
-
-    public CategoryGarment getCategory() {
-        return category;
+        return garmentType + " + " + brand;
     }
 }

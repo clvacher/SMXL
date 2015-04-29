@@ -1,28 +1,21 @@
 package com.aerolitec.SMXL.ui.activity;
 
-import android.app.Activity;
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.animation.TranslateAnimation;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.User;
-import com.aerolitec.SMXL.tools.DepthPageTransformer;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.tools.services.OnProfileSelected;
-import com.aerolitec.SMXL.tools.services.SizeGuideDataBase;
+import com.aerolitec.SMXL.tools.services.SQLiteSMXL;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.adapter.ProfileItem;
 import com.aerolitec.SMXL.ui.adapter.SizeGuideAdapter;
@@ -53,7 +46,7 @@ public class ProfilActivity extends FragmentActivity implements OnProfileSelecte
 
         getActionBar().setDisplayShowTitleEnabled(false);
 
-        SizeGuideDataBase db = new SizeGuideDataBase(this);
+        SQLiteSMXL db = new SQLiteSMXL(this);
         smxl.setDataBase(db);
         db.getWritableDatabase();
         db.close();

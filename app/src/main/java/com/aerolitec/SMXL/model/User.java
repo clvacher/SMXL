@@ -1,7 +1,5 @@
 package com.aerolitec.SMXL.model;
 
-import android.util.Log;
-
 import org.joda.time.LocalDate;
 import org.joda.time.Years;
 
@@ -11,7 +9,7 @@ import java.util.ArrayList;
 
 public class User extends BaseObjects implements Serializable {
 
-    private int userid;
+    private int id_user;
     private String nickname;
     private String firstname;
     private String lastname;
@@ -21,7 +19,7 @@ public class User extends BaseObjects implements Serializable {
     private String description;
     private double size;
     private double weight;
-    private double imc;
+    private double imc; //NON PRESENT DANS LA BDD
     private double chest;
     private double collar;
     private double bust;
@@ -43,7 +41,7 @@ public class User extends BaseObjects implements Serializable {
     /**
      * Create a new User
      *
-     * @param userid
+     * @param id_user
      * @param nickname
      * @param firstname
      * @param lastname
@@ -64,12 +62,12 @@ public class User extends BaseObjects implements Serializable {
      * @param feet                (cm)
      * @param pointure            (taille)
      */
-    public User(int userid, String nickname, String firstname, String lastname, String birthday, String sexe,
+    public User(int id_user, String nickname, String firstname, String lastname, String birthday, String sexe,
                 String avatar, String description, double size, double weight, double bust,
                 double chest, double collar, double waist, double hips, double sleeve, double inseam,
                 double feet, int unitL, int unitW, double pointure) {
 
-        this.userid = userid;
+        this.id_user = id_user;
         this.nickname = nickname;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -92,13 +90,13 @@ public class User extends BaseObjects implements Serializable {
         this.pointure = pointure;
     }
 
-    public User(String userid, String nickname, String firstname, String lastname, String birthday, String sexe,
+    public User(String id_user, String nickname, String firstname, String lastname, String birthday, String sexe,
                 String avatar, String description, String size, String weight, String bust,
                 String chest, String collar, String waist, String hips, String sleeve, String inseam,
                 String feet, String unitL, String unitW, String pointure) {
 
 
-        this.userid = convertToInt(userid);
+        this.id_user = convertToInt(id_user);
         this.nickname = nickname;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -138,12 +136,12 @@ public class User extends BaseObjects implements Serializable {
     }
 
 
-    public int getUserid() {
-        return userid;
+    public int getId_user() {
+        return id_user;
     }
 
-    public void setUserid(int userid) {
-        this.userid = userid;
+    public void setId_user(int id_user) {
+        this.id_user = id_user;
     }
 
     public String getNickname() {
@@ -331,7 +329,7 @@ public class User extends BaseObjects implements Serializable {
     @Override
     public String toString() {
         return
-                "'" + userid + "'" +
+                "'" + id_user + "'" +
                         ",'" + nickname + '\'' +
                         ", '" + firstname + '\'' +
                         ", '" + lastname + '\'' +

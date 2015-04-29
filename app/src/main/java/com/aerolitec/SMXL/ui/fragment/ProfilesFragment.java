@@ -6,13 +6,11 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.LinearLayout;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.User;
@@ -148,7 +146,7 @@ public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.
 
 
         for (User u : users) {
-            profileItem.add(new ProfileItem(u.getUserid(), u.getLastname(), u.getFirstname(), u.getAvatar()));
+            profileItem.add(new ProfileItem(u.getId_user(), u.getLastname(), u.getFirstname(), u.getAvatar()));
         }
         adapter.notifyDataSetChanged();
 

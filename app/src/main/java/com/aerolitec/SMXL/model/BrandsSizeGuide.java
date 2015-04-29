@@ -2,96 +2,287 @@ package com.aerolitec.SMXL.model;
 
 import java.io.Serializable;
 
-/**
- * Created by stephaneL on 20/03/14.
- */
+
 public class BrandsSizeGuide implements Serializable{
-    int id;
-    String brand;
-    String type;
-    double dim1;
-    double dim2;
-    double dim3;
-    String size;
 
-    public BrandsSizeGuide(){}
+    int id_brand_size_guide;
+    String brand_name;
+    String garment;
+    String category;
+    String sex;
 
-    public BrandsSizeGuide(int id, String brand, String type, int dim1, int dim2, int dim3, String size){
-        this.id = id;
-        this.brand = brand;
-        this.type = type;
-        this.dim1 = dim1;
-        this.dim2 = dim2;
-        this.dim3 = dim3;
-        this.size = size;
-    }
+    Double bust;
+    Double collar;
+    Double chest;
+    Double feet;
+    Double head;
+    Double height;
+    Double hips;
+    Double inseam;
+    Double sleeve;
+    Double thigh;
+    Double waist;
+    Double weight;
 
-    public int getId() {
-        return id;
-    }
+    Double other;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    String sizeFR;
+    String sizeUE;
+    String sizeUK;
+    String sizeUS;
+    String sizeSMXL;
+    String sizeSuite;
 
-    public String getBrand() {
-        return brand;
-    }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
+    public BrandsSizeGuide() {}
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public double getDim1() {
-        return dim1;
-    }
-
-    public void setDim1(double dim1) {
-        this.dim1 = dim1;
-    }
-
-    public double getDim2() {
-        return dim2;
-    }
-
-    public void setDim2(double dim2) {
-        this.dim2 = dim2;
-    }
-
-    public double getDim3() {
-        return dim3;
-    }
-
-    public void setDim3(double dim3) {
-        this.dim3 = dim3;
-    }
-
-    public String getSize() {
-        return size;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
+    public BrandsSizeGuide(String paramString1, String paramString2, String paramString3, String paramString4, Double paramDouble1, Double paramDouble2, Double paramDouble3, Double paramDouble4, Double paramDouble5, Double paramDouble6, Double paramDouble7, Double paramDouble8, Double paramDouble9, Double paramDouble10, Double paramDouble11, Double paramDouble12, Double paramDouble13, String paramString5, String paramString6, String paramString7, String paramString8, String paramString9, String paramString10)
+    {
+        this.garment = paramString1;
+        this.category = paramString2;
+        this.brand_name = paramString3;
+        this.sex = paramString4;
+        this.collar = paramDouble1;
+        this.chest = paramDouble2;
+        this.bust = paramDouble3;
+        this.sleeve = paramDouble4;
+        this.waist = paramDouble5;
+        this.hips = paramDouble6;
+        this.inseam = paramDouble7;
+        this.feet = paramDouble8;
+        this.head = paramDouble9;
+        this.height = paramDouble10;
+        this.weight = paramDouble11;
+        this.thigh = paramDouble12;
+        this.other = paramDouble13;
+        this.sizeSMXL = paramString5;
+        this.sizeUE = paramString6;
+        this.sizeUS = paramString7;
+        this.sizeUK = paramString8;
+        this.sizeFR = paramString9;
+        this.sizeSuite = paramString10;
     }
 
     @Override
     public String toString() {
         return "BrandsSizeGuide{" +
-                "id=" + id +
-                ", brand='" + brand + '\'' +
-                ", type='" + type + '\'' +
-                ", dim1=" + dim1 +
-                ", dim2=" + dim2 +
-                ", dim3=" + dim3 +
-                ", size='" + size + '\'' +
+                "id_brand_size_guide=" + id_brand_size_guide +
+                ", brand_name='" + brand_name + '\'' +
+                ", garment='" + garment + '\'' +
+                ", category='" + category + '\'' +
+                ", sex='" + sex + '\'' +
+                ", bust=" + bust +
+                ", collar=" + collar +
+                ", chest=" + chest +
+                ", feet=" + feet +
+                ", head=" + head +
+                ", height=" + height +
+                ", hips=" + hips +
+                ", inseam=" + inseam +
+                ", sleeve=" + sleeve +
+                ", thigh=" + thigh +
+                ", waist=" + waist +
+                ", weight=" + weight +
+                ", other=" + other +
+                ", sizeFR='" + sizeFR + '\'' +
+                ", sizeUE='" + sizeUE + '\'' +
+                ", sizeUK='" + sizeUK + '\'' +
+                ", sizeUS='" + sizeUS + '\'' +
+                ", sizeSMXL='" + sizeSMXL + '\'' +
+                ", sizeSuite='" + sizeSuite + '\'' +
                 '}';
     }
+
+    public int getId_brand_size_guide() {
+        return id_brand_size_guide;
+    }
+
+    public void setId_brand_size_guide(int id_brand_size_guide) {
+        this.id_brand_size_guide = id_brand_size_guide;
+    }
+
+    public String getBrand_name() {
+        return brand_name;
+    }
+
+    public void setBrand_name(String brand_name) {
+        this.brand_name = brand_name;
+    }
+
+    public String getGarment() {
+        return garment;
+    }
+
+    public void setGarment(String garment) {
+        this.garment = garment;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public Double getBust() {
+        return bust;
+    }
+
+    public void setBust(Double bust) {
+        this.bust = bust;
+    }
+
+    public Double getCollar() {
+        return collar;
+    }
+
+    public void setCollar(Double collar) {
+        this.collar = collar;
+    }
+
+    public Double getChest() {
+        return chest;
+    }
+
+    public void setChest(Double chest) {
+        this.chest = chest;
+    }
+
+    public Double getFeet() {
+        return feet;
+    }
+
+    public void setFeet(Double feet) {
+        this.feet = feet;
+    }
+
+    public Double getHead() {
+        return head;
+    }
+
+    public void setHead(Double head) {
+        this.head = head;
+    }
+
+    public Double getHeight() {
+        return height;
+    }
+
+    public void setHeight(Double height) {
+        this.height = height;
+    }
+
+    public Double getHips() {
+        return hips;
+    }
+
+    public void setHips(Double hips) {
+        this.hips = hips;
+    }
+
+    public Double getInseam() {
+        return inseam;
+    }
+
+    public void setInseam(Double inseam) {
+        this.inseam = inseam;
+    }
+
+    public Double getSleeve() {
+        return sleeve;
+    }
+
+    public void setSleeve(Double sleeve) {
+        this.sleeve = sleeve;
+    }
+
+    public Double getThigh() {
+        return thigh;
+    }
+
+    public void setThigh(Double thigh) {
+        this.thigh = thigh;
+    }
+
+    public Double getWaist() {
+        return waist;
+    }
+
+    public void setWaist(Double waist) {
+        this.waist = waist;
+    }
+
+    public Double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Double weight) {
+        this.weight = weight;
+    }
+
+    public Double getOther() {
+        return other;
+    }
+
+    public void setOther(Double other) {
+        this.other = other;
+    }
+
+    public String getSizeFR() {
+        return sizeFR;
+    }
+
+    public void setSizeFR(String sizeFR) {
+        this.sizeFR = sizeFR;
+    }
+
+    public String getSizeUE() {
+        return sizeUE;
+    }
+
+    public void setSizeUE(String sizeUE) {
+        this.sizeUE = sizeUE;
+    }
+
+    public String getSizeUK() {
+        return sizeUK;
+    }
+
+    public void setSizeUK(String sizeUK) {
+        this.sizeUK = sizeUK;
+    }
+
+    public String getSizeUS() {
+        return sizeUS;
+    }
+
+    public void setSizeUS(String sizeUS) {
+        this.sizeUS = sizeUS;
+    }
+
+    public String getSizeSMXL() {
+        return sizeSMXL;
+    }
+
+    public void setSizeSMXL(String sizeSMXL) {
+        this.sizeSMXL = sizeSMXL;
+    }
+
+    public String getSizeSuite() {
+        return sizeSuite;
+    }
+
+    public void setSizeSuite(String sizeSuite) {
+        this.sizeSuite = sizeSuite;
+    }
 }
+

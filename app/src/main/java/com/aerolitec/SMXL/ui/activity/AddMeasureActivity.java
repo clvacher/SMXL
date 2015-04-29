@@ -229,7 +229,7 @@ public class AddMeasureActivity extends Activity {
         private void loadMeasures(){
             // load all the profiles from the database
 
-            User user = SMXL.get().getDataBase().getUserById(this.user.getUserid());
+            User user = SMXL.get().getDataBase().getUserById(this.user.getId_user());
             // If unit is inch, then convert from cm to inch
             coeff = 1D;
             double coeffW = 1D;

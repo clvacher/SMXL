@@ -14,27 +14,16 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.ExpandableListView;
 import android.widget.Toast;
 
 import com.aerolitec.SMXL.R;
-import com.aerolitec.SMXL.model.Child;
-import com.aerolitec.SMXL.model.Group;
 import com.aerolitec.SMXL.model.User;
-import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
-import com.aerolitec.SMXL.ui.adapter.EListAdapter;
-import com.aerolitec.SMXL.ui.adapter.MeasureItem;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import au.com.bytecode.opencsv.CSVWriter;
 
@@ -201,15 +190,15 @@ public class CSVCreationActivity extends Activity {
                 String tableGarment = "user_clothes";
                 file.createNewFile();
                 CSVWriter csvWrite = new CSVWriter(new FileWriter(file));
-                String requestUser = "SELECT * FROM " + tableUser + " WHERE userid=" + String.valueOf(user.getUserid());
-                String requestGarment = "SELECT * FROM " + tableGarment + " WHERE userid=" + String.valueOf(user.getUserid());
+                String requestUser = "SELECT * FROM " + tableUser + " WHERE userid=" + String.valueOf(user.getId_user());
+                String requestGarment = "SELECT * FROM " + tableGarment + " WHERE userid=" + String.valueOf(user.getId_user());
 
                 while (myDatabase == null) {
                     dialog.show();
                 }
 
 
-                SMXL.getDataBase().getUserById(user.getUserid());
+                SMXL.getDataBase().getUserById(user.getId_user());
 
 
 

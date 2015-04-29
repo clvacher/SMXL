@@ -1,24 +1,15 @@
 package com.aerolitec.SMXL.ui.activity;
 
-import android.app.Activity;
-import android.app.DatePickerDialog;
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -26,15 +17,9 @@ import android.widget.Toast;
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.Constants;
-import com.aerolitec.SMXL.tools.ImageHelper;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.makeramen.RoundedImageView;
-
-import java.io.File;
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.util.Calendar;
 
 /**
  * Created by stephaneL on 21/03/14.
@@ -132,7 +117,7 @@ public class CreateProfile extends SuperCreateUpdateProfileActivity{
                 Log.d(Constants.TAG, "Create user with error : " + e.getMessage());
             }
             if (user != null)
-                setResult(user.getUserid());
+                setResult(user.getId_user());
             else
                 setResult(0);
 

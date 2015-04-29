@@ -9,7 +9,6 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.aerolitec.SMXL.R;
-import com.aerolitec.SMXL.model.TabSizes;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.model.UserClothes;
 import com.aerolitec.SMXL.ui.SMXL;
@@ -98,7 +97,7 @@ public class ImportProfilActivity extends Activity {
                     if (users.size() != 0) {
                         //Get last user ( For get its ID for add garment )
                         User user = users.get(users.size() - 1);
-                        userId = user.getUserid();
+                        userId = user.getId_user();
                     }
 
                     UserClothes userClothes = new UserClothes(Integer.parseInt(str[1]), userId,

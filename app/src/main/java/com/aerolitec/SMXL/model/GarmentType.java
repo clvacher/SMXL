@@ -2,26 +2,28 @@ package com.aerolitec.SMXL.model;
 
 import java.io.Serializable;
 
-/**
- * Created by stephaneL on 20/03/14.
- */
 public class GarmentType implements Serializable{
-    int id;
+
+    int id_garment_type;
     String type;
+    String sex;
+    CategoryGarment categoryGarment;
 
     public GarmentType() {}
 
-    public GarmentType(int id, String type){
-        this.id = id;
+    public GarmentType(int id_garment_type, String type, String sex, CategoryGarment categoryGarment){
+        this.id_garment_type = id_garment_type;
         this.type = type;
+        this.sex = sex;
+        this.categoryGarment = categoryGarment;
     }
 
-    public int getId() {
-        return id;
+    public int getId_garment_type() {
+        return id_garment_type;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId_garment_type(int id_garment_type) {
+        this.id_garment_type = id_garment_type;
     }
 
     public String getType() {
@@ -32,11 +34,29 @@ public class GarmentType implements Serializable{
         this.type = type;
     }
 
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public CategoryGarment getCategoryGarment() {
+        return categoryGarment;
+    }
+
+    public void setCategoryGarment(CategoryGarment categoryGarment) {
+        this.categoryGarment = categoryGarment;
+    }
+
     @Override
     public String toString() {
         return "GarmentType{" +
-                "id=" + id +
+                "id_garment_type=" + id_garment_type +
                 ", type='" + type + '\'' +
+                ", sex='" + sex + '\'' +
+                ", categoryGarment=" + categoryGarment +
                 '}';
     }
 }

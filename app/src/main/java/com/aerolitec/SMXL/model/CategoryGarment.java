@@ -8,17 +8,17 @@ import com.aerolitec.SMXL.R;
 
 import java.io.Serializable;
 
-/**
- * Created by kevin on 12/06/14.
- */
+
 public class CategoryGarment implements Serializable {
 
-    private int id;
+    private int id_category_garment;
     private int icon;
-    private String name;
+    private String category_garment_name;
 
-    public CategoryGarment(Context context,int id, int icon, String name) {
-        this.id = id;
+    public CategoryGarment(){};
+
+    public CategoryGarment(Context context,int id_category_garment, int icon, String category_garment_name) {
+        this.id_category_garment = id_category_garment;
         try {
             context.getResources().getResourceEntryName(icon);
         }
@@ -27,15 +27,15 @@ public class CategoryGarment implements Serializable {
         }
         this.icon = icon;
 
-        this.name = name;
+        this.category_garment_name = category_garment_name;
     }
 
-    public int getId() {
-        return id;
+    public int getId_category_garment() {
+        return id_category_garment;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId_category_garment(int id_category_garment) {
+        this.id_category_garment = id_category_garment;
     }
 
     public int getIcon() {
@@ -46,11 +46,11 @@ public class CategoryGarment implements Serializable {
         this.icon = icon;
     }
 
-    public String getName() {
-        return name;
+    public String getCategory_garment_name() {
+        return category_garment_name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCategory_garment_name(String name_category_garment) {
+        this.category_garment_name = name_category_garment;
     }
 }

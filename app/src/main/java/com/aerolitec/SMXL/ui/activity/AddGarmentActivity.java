@@ -2,11 +2,9 @@ package com.aerolitec.SMXL.ui.activity;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +19,6 @@ import android.widget.TextView;
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.BrandsSizeGuide;
 import com.aerolitec.SMXL.model.CategoryGarment;
-import com.aerolitec.SMXL.model.SizeConvert;
 import com.aerolitec.SMXL.model.TabSizes;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.model.UserClothes;
@@ -103,7 +100,7 @@ public class AddGarmentActivity extends Activity {
         userClothe.setCountry("UE");
         userClothe.setSize(mComputeSize);
         userClothe.setComment(editComments.getText().toString());
-        userClothe.setUserid(user.getUserid());
+        userClothe.setUserid(user.getId_user());
         userClothe.setSizes(sizes);
         userClothe.setCategory(selectedCategory);
         SMXL.get().getDataBase().AddUserGarments(userClothe);
