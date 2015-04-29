@@ -9,6 +9,7 @@ public class UserClothes extends BaseObjects{
 
     int clotheid;
     int userid;
+    //TODO change type of "type" from String to GarmentType
     String type;
     String brand;
     String country;

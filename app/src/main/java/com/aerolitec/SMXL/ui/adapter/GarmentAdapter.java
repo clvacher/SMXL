@@ -2,6 +2,7 @@ package com.aerolitec.SMXL.ui.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,14 +22,15 @@ public class GarmentAdapter extends ArrayAdapter<UserClothes> {
 
     private Context context;
 
-    public GarmentAdapter(Context context, ArrayList<UserClothes> garmentsItem){
-        super(context, 0 , garmentsItem);
+    public GarmentAdapter(Context context,int resource, ArrayList<UserClothes> garmentsItem){
+        super(context, resource , garmentsItem);
         this.context = context;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
+        Log.d("getView","testest");
         if (convertView == null){
             LayoutInflater mInflater = (LayoutInflater)
                     context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
@@ -42,11 +44,11 @@ public class GarmentAdapter extends ArrayAdapter<UserClothes> {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        UserClothes clothe = getItem(position);
+        UserClothes clothes = getItem(position);
 
-        holder.tvTypeGarment.setText(clothe.getType());
-        holder.tvBrand.setText(clothe.getBrand());
-        holder.tvSize.setText(clothe.getSize());
+        holder.tvTypeGarment.setText(clothes.getType());
+        holder.tvBrand.setText(clothes.getBrand());
+        holder.tvSize.setText(clothes.getSize());
 
         return convertView;
     }

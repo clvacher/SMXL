@@ -221,6 +221,8 @@ public class AddGarmentActivity extends Activity {
          Sous-vêtements ==> Slips [caleçon, culotte, soutien-gorge]*
          */
 
+
+        //TODO CHANGE THIS FUCKING MESS
         private void getGarmentsFromCategory() {
             switch (selectedCategory.getId()) {
                 case 1:

@@ -2515,6 +2515,41 @@ public class SizeGuideDataBase extends SQLiteOpenHelper{
         return garments;
     }
 
+    //TODO change garmentType into an actual GarmentType and not a fucking String
+    public ArrayList<UserClothes> getUserGarmentsByGarment(User user,String garmentType1,String garmentType2){
+        ArrayList<UserClothes> garments = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Gson gson = new Gson();
+        try {
+            Cursor c;
+            c = db.rawQuery("SELECT * FROM user_clothes WHERE userid = ? AND (clothesType = ? OR clothesType = ?)", new String[]{String.valueOf(user.getUserid()),garmentType1,garmentType2});
+            boolean eof = c.moveToFirst();
+            while (eof) {
+                UserClothes uc = new UserClothes();
+                uc.setClotheid(c.getInt(0));
+                uc.setUserid(c.getInt(1));
+                uc.setType(c.getString(2));
+                uc.setBrand(c.getString(3));
+                uc.setCountry(c.getString(4));
+                uc.setSize(c.getString(5));
+                uc.setComment(c.getString(6));
+                ArrayList<TabSizes> tabs = gson.fromJson(c.getString(7), new TypeToken<ArrayList<TabSizes>>() {
+                }.getType());
+                uc.setSizes(tabs);
+                uc.setCategory(gson.fromJson(c.getString(8), CategoryGarment.class));
+                garments.add(uc);
+                eof = c.moveToNext();
+            }
+            c.close();
+        }
+        catch (SQLiteException e) {
+            Log.d(Constants.TAG,"error getting user garments : " + e.getMessage());
+            garments = null;
+        }
+        db.close();
+        return garments;
+    }
+
     // UserBrands
 
     public ArrayList<Brand> getAllUserBrands(User user){

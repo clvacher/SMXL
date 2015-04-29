@@ -94,11 +94,6 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".ui.activity.ListGarmentActivity"
-            android:label="@string/title_activity_list_garment"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
             android:name=".ui.activity.DisplayGarmentActivity"
             android:label="@string/title_activity_display_garment"
             android:screenOrientation="portrait">

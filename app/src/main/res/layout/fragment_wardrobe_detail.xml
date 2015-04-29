@@ -12,7 +12,8 @@
     <RelativeLayout
         android:id="@+id/layoutWardrobe"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp">
 
         <com.makeramen.RoundedImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -20,7 +21,9 @@
             android:layout_width="@dimen/size_avatar_list_profile"
             android:layout_height="@dimen/size_avatar_list_profile"
             android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
+            android:layout_marginBottom="15dp"
             android:src="@drawable/avatar"
             android:scaleType="centerCrop"
             app:corner_radius="60dp"
@@ -28,7 +31,8 @@
             app:oval="true"
             android:layout_gravity="center_horizontal"
             android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true" />
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
 
         <TextView
             android:id="@+id/firstName"
@@ -43,139 +47,936 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
 
-        <RelativeLayout
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/imgAvatar"
+            android:id="@+id/layoutCategoryTShirt"
+            android:layout_below="@id/imgAvatar"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
-            <!--HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="50dp">
-            </HorizontalScrollView-->
-            <RelativeLayout
-                android:id="@+id/layoutHeaderGarments"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true">
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="@dimen/marginGarmentCategories"
+            android:background="@android:color/white"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
 
-                <RelativeLayout
-                    android:id="@+id/layoutTexteGarment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentTop="true"
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/separator" />
+
+            <RelativeLayout
+                android:id="@+id/addTShirtLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="@dimen/garmentLogoSize"
+                    android:layout_height="@dimen/garmentLogoSize"
+                    android:id="@+id/TShirt"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:padding="2dp"
+                    android:src="@drawable/tshirt"
+                    android:layout_centerVertical="true"
                     android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:background="@android:color/transparent"
-                        android:gravity="left"
-                        android:text="@string/garments"
-                        android:textColor="@color/SectionTitle"
-                        android:textSize="@dimen/textSizeIdentity"
-                        android:textStyle="bold"
-                        android:id="@+id/textView"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/nbGarments"
-                        android:layout_toRightOf="@id/textView"
-                        android:layout_toEndOf="@id/textView"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginStart="5dp"
-                        android:layout_centerVertical="true"
-                        android:textColor="@color/SectionTitle"
-                        android:textSize="@dimen/textSizeIdentity"
-                        android:textStyle="bold"/>
-
-                    <ImageView
-                        android:id="@+id/collapseGarment"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/navigation_collapse" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/layoutAddGarment"
-                    android:layout_width="match_parent"
+                    android:layout_alignParentStart="true" />
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/layoutTexteGarment"
-                    android:background="@android:color/white"
-                    android:clickable="true"
-                    android:paddingBottom="@dimen/listview_padding_horizontal"
-                    android:paddingLeft="@dimen/listview_padding_horizontal"
-                    android:paddingRight="@dimen/listview_padding_horizontal">
-
-                    <TextView
-                        android:id="@+id/tvAddGarment"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:background="@android:color/transparent"
-                        android:gravity="left"
-                        android:text="@string/addGarment"
-                        android:textColor="@color/SectionTitle"
-                        android:textSize="@dimen/textSizeIdentity" />
-
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:text="+"
-                        android:textColor="@color/SectionTitle"
-                        android:textSize="@dimen/section_text_size"
-                        android:textStyle="bold" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
+                    android:textSize="17sp"
+                    android:text="@string/tshirt_sweater"
+                    android:textColor="@color/SectionTitle"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/TShirt"
+                    android:layout_toEndOf="@id/TShirt"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:id="@+id/textView1" />
+                <TextView
+                    android:id="@+id/nbTShirts"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@android:color/white"
-                    android:layout_below="@+id/layoutAddGarment">
-
-                    <View
-                        android:id="@+id/separator3"
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@color/separator" />
-
-                </RelativeLayout>
-
+                    android:textSize="17sp"
+                    android:textColor="@color/SectionTitle"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/textView1"
+                    android:layout_toEndOf="@id/textView1"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/SectionTitle"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="10dp"/>
             </RelativeLayout>
+
+            <ListView
+                android:visibility="gone"
+                android:id="@+id/layoutViewTShirts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </ListView>
+
             <RelativeLayout
-                android:id="@+id/garmentLayout"
-                android:layout_width="fill_parent"
+                android:id="@+id/layoutHeaderTShirts"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/white"
-                android:layout_below="@id/layoutHeaderGarments"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true">
-
-
-                <LinearLayout
-                    android:id="@+id/layoutViewGarments"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-
-                </LinearLayout>
-
-
+                android:layout_gravity="center"
+                android:background="@color/DefaultBackgroundColor">
+                <ImageView
+                    android:id="@+id/collapseTShirt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/expandLogoSize"
+                    android:src="@drawable/navigation_expand"
+                    android:layout_centerHorizontal="true" />
             </RelativeLayout>
-        </RelativeLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/layoutCategoryDress"
+            android:layout_below="@id/layoutCategoryTShirt"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="@dimen/marginGarmentCategories"
+            android:background="@android:color/white"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/separator" />
+
+            <RelativeLayout
+                android:id="@+id/addDressLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="@dimen/garmentLogoSize"
+                    android:layout_height="@dimen/garmentLogoSize"
+                    android:id="@+id/Dress"
+                    android:padding="2dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:src="@drawable/robe"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    android:text="@string/dress_skirt"
+                    android:textColor="@color/SectionTitle"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/Dress"
+                    android:layout_toEndOf="@id/Dress"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:id="@+id/textView2" />
+                <TextView
+                    android:id="@+id/nbDresses"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    android:textColor="@color/SectionTitle"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/textView2"
+                    android:layout_toEndOf="@id/textView2"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/SectionTitle"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="10dp"/>
+            </RelativeLayout>
+
+            <ListView
+                android:visibility="gone"
+                android:id="@+id/layoutViewDresses"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </ListView>
+
+            <RelativeLayout
+                android:id="@+id/layoutHeaderDresses"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/DefaultBackgroundColor">
+                <ImageView
+                    android:id="@+id/collapseDress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/expandLogoSize"
+                    android:src="@drawable/navigation_expand"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/layoutCategoryPants"
+            android:layout_below="@id/layoutCategoryDress"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="@dimen/marginGarmentCategories"
+            android:background="@android:color/white"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/separator" />
+
+            <RelativeLayout
+                android:id="@+id/addPantsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="@dimen/garmentLogoSize"
+                    android:layout_height="@dimen/garmentLogoSize"
+                    android:id="@+id/Pants"
+                    android:padding="2dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:src="@drawable/pantalon"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    android:text="@string/Pant_short"
+                    android:textColor="@color/SectionTitle"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/Pants"
+                    android:layout_toEndOf="@id/Pants"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:id="@+id/textView3" />
+                <TextView
+                    android:id="@+id/nbPants"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    android:textColor="@color/SectionTitle"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/textView3"
+                    android:layout_toEndOf="@+id/textView3"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/SectionTitle"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="10dp"/>
+            </RelativeLayout>
+
+            <ListView
+                android:visibility="gone"
+                android:id="@+id/layoutViewPants"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </ListView>
+
+            <RelativeLayout
+                android:id="@+id/layoutHeaderPants"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/DefaultBackgroundColor">
+                <ImageView
+                    android:id="@+id/collapsePants"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/expandLogoSize"
+                    android:src="@drawable/navigation_expand"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/layoutCategoryBlouse"
+            android:layout_below="@id/layoutCategoryPants"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="@dimen/marginGarmentCategories"
+            android:background="@android:color/white"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/separator" />
+
+            <RelativeLayout
+                android:id="@+id/addBlouseLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="@dimen/garmentLogoSize"
+                    android:layout_height="@dimen/garmentLogoSize"
+                    android:id="@+id/Blouse"
+                    android:padding="2dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:src="@drawable/chemise"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    android:text="@string/Shirt_blouse"
+                    android:textColor="@color/SectionTitle"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/Blouse"
+                    android:layout_toEndOf="@id/Blouse"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:id="@+id/textView4" />
+                <TextView
+                    android:id="@+id/nbBlouses"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    android:textColor="@color/SectionTitle"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/textView4"
+                    android:layout_toEndOf="@id/textView4"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/SectionTitle"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="10dp"/>
+            </RelativeLayout>
+
+            <ListView
+                android:visibility="gone"
+                android:id="@+id/layoutViewBlouses"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </ListView>
+
+            <RelativeLayout
+                android:id="@+id/layoutHeaderBlouses"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/DefaultBackgroundColor">
+                <ImageView
+                    android:id="@+id/collapseBlouse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/expandLogoSize"
+                    android:src="@drawable/navigation_expand"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/layoutCategoryJacket"
+            android:layout_below="@id/layoutCategoryBlouse"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="@dimen/marginGarmentCategories"
+            android:background="@android:color/white"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/separator" />
+
+            <RelativeLayout
+                android:id="@+id/addJacketLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="@dimen/garmentLogoSize"
+                    android:layout_height="@dimen/garmentLogoSize"
+                    android:id="@+id/Jacket"
+                    android:padding="2dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:src="@drawable/blouson"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    android:text="@string/Jacket"
+                    android:textColor="@color/SectionTitle"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/Jacket"
+                    android:layout_toEndOf="@id/Jacket"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:id="@+id/textView5" />
+                <TextView
+                    android:id="@+id/nbJackets"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    android:textColor="@color/SectionTitle"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/textView5"
+                    android:layout_toEndOf="@id/textView5"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/SectionTitle"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="10dp"/>
+            </RelativeLayout>
+
+            <ListView
+                android:visibility="gone"
+                android:id="@+id/layoutViewJackets"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </ListView>
+
+            <RelativeLayout
+                android:id="@+id/layoutHeaderJackets"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/DefaultBackgroundColor">
+                <ImageView
+                    android:id="@+id/collapseJacket"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/expandLogoSize"
+                    android:src="@drawable/navigation_expand"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/layoutCategoryCoats"
+            android:layout_below="@id/layoutCategoryJacket"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="@dimen/marginGarmentCategories"
+            android:background="@android:color/white"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/separator" />
+
+            <RelativeLayout
+                android:id="@+id/addCoatLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="@dimen/garmentLogoSize"
+                    android:layout_height="@dimen/garmentLogoSize"
+                    android:id="@+id/Coat"
+                    android:padding="2dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:src="@drawable/veste"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    android:text="@string/Coat"
+                    android:textColor="@color/SectionTitle"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/Coat"
+                    android:layout_toEndOf="@id/Coat"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:id="@+id/textView6" />
+                <TextView
+                    android:id="@+id/nbCoats"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    android:textColor="@color/SectionTitle"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/textView6"
+                    android:layout_toEndOf="@id/textView6"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/SectionTitle"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="10dp"/>
+            </RelativeLayout>
+
+            <ListView
+                android:visibility="gone"
+                android:id="@+id/layoutViewCoats"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </ListView>
+
+            <RelativeLayout
+                android:id="@+id/layoutHeaderCoats"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/DefaultBackgroundColor">
+                <ImageView
+                    android:id="@+id/collapseCoat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/expandLogoSize"
+                    android:src="@drawable/navigation_expand"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/layoutCategoryShoes"
+            android:layout_below="@id/layoutCategoryCoats"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="@dimen/marginGarmentCategories"
+            android:background="@android:color/white"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/separator" />
+
+            <RelativeLayout
+                android:id="@+id/addShoesLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="@dimen/garmentLogoSize"
+                    android:layout_height="@dimen/garmentLogoSize"
+                    android:id="@+id/Shoes"
+                    android:padding="2dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:src="@drawable/chaussure"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    android:text="@string/Shoes"
+                    android:textColor="@color/SectionTitle"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/Shoes"
+                    android:layout_toEndOf="@id/Shoes"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:id="@+id/textView7" />
+                <TextView
+                    android:id="@+id/nbShoes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    android:textColor="@color/SectionTitle"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/textView7"
+                    android:layout_toEndOf="@id/textView7"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/SectionTitle"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="10dp"/>
+            </RelativeLayout>
+
+            <ListView
+                android:visibility="gone"
+                android:id="@+id/layoutViewShoes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </ListView>
+
+            <RelativeLayout
+                android:id="@+id/layoutHeaderShoes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/DefaultBackgroundColor">
+                <ImageView
+                    android:id="@+id/collapseShoes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/expandLogoSize"
+                    android:src="@drawable/navigation_expand"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/layoutCategorySweater"
+            android:layout_below="@id/layoutCategoryShoes"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="@dimen/marginGarmentCategories"
+            android:background="@android:color/white"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/separator" />
+
+            <RelativeLayout
+                android:id="@+id/addSweaterLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="@dimen/garmentLogoSize"
+                    android:layout_height="@dimen/garmentLogoSize"
+                    android:id="@+id/Sweater"
+                    android:padding="2dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:src="@drawable/pull"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    android:text="@string/Sweater"
+                    android:textColor="@color/SectionTitle"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/Sweater"
+                    android:layout_toEndOf="@id/Sweater"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:id="@+id/textView8" />
+                <TextView
+                    android:id="@+id/nbSweaters"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    android:textColor="@color/SectionTitle"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/textView8"
+                    android:layout_toEndOf="@id/textView8"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/SectionTitle"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="10dp"/>
+            </RelativeLayout>
+
+            <ListView
+                android:visibility="gone"
+                android:id="@+id/layoutViewSweaters"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </ListView>
+
+            <RelativeLayout
+                android:id="@+id/layoutHeaderSweaters"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/DefaultBackgroundColor">
+                <ImageView
+                    android:id="@+id/collapseSweater"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/expandLogoSize"
+                    android:src="@drawable/navigation_expand"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/layoutCategoryUnderwear"
+            android:layout_below="@id/layoutCategorySweater"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="@dimen/marginGarmentCategories"
+            android:background="@android:color/white"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/separator" />
+
+            <RelativeLayout
+                android:id="@+id/addUnderwearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="@dimen/garmentLogoSize"
+                    android:layout_height="@dimen/garmentLogoSize"
+                    android:id="@+id/Underwear"
+                    android:padding="2dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:src="@drawable/sousvet"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    android:text="@string/Underwear"
+                    android:textColor="@color/SectionTitle"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/Underwear"
+                    android:layout_toEndOf="@id/Underwear"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:id="@+id/textView9" />
+                <TextView
+                    android:id="@+id/nbUnderwear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    android:textColor="@color/SectionTitle"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/textView9"
+                    android:layout_toEndOf="@+id/textView9"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/SectionTitle"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="10dp"/>
+            </RelativeLayout>
+
+            <ListView
+                android:visibility="gone"
+                android:id="@+id/layoutViewUnderwear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </ListView>
+
+            <RelativeLayout
+                android:id="@+id/layoutHeaderUnderwear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/DefaultBackgroundColor">
+                <ImageView
+                    android:id="@+id/collapseUnderwear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/expandLogoSize"
+                    android:src="@drawable/navigation_expand"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/layoutCategorySuits"
+            android:layout_below="@id/layoutCategoryUnderwear"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="@dimen/marginGarmentCategories"
+            android:background="@android:color/white"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/separator" />
+
+            <RelativeLayout
+                android:id="@+id/addSuitLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="@dimen/garmentLogoSize"
+                    android:layout_height="@dimen/garmentLogoSize"
+                    android:id="@+id/Suit"
+                    android:padding="2dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:src="@drawable/costume"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    android:text="@string/Suit"
+                    android:textColor="@color/SectionTitle"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/Suit"
+                    android:layout_toEndOf="@id/Suit"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:id="@+id/textView10" />
+                <TextView
+                    android:id="@+id/nbSuits"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    android:textColor="@color/SectionTitle"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/textView10"
+                    android:layout_toEndOf="@id/textView10"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/SectionTitle"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="10dp"/>
+            </RelativeLayout>
+
+            <ListView
+                android:visibility="gone"
+                android:id="@+id/layoutViewSuits"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </ListView>
+
+            <RelativeLayout
+                android:id="@+id/layoutHeaderSuits"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/DefaultBackgroundColor">
+                <ImageView
+                    android:id="@+id/collapseSuit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/expandLogoSize"
+                    android:src="@drawable/navigation_expand"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+        </LinearLayout>
     </RelativeLayout>
 </ScrollView>

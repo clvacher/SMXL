@@ -36,7 +36,6 @@
                     android:layout_height="wrap_content"
                     android:singleLine="true"
                     android:text="@string/profile"
-                    android:textStyle="bold"
                     android:textSize="17sp"/>
             </LinearLayout>
             <LinearLayout
@@ -55,7 +54,6 @@
                     android:layout_height="wrap_content"
                     android:singleLine="true"
                     android:text="@string/garments"
-                    android:textStyle="bold"
                     android:gravity="center"
                     android:textSize="17sp"/>
                 <TextView
@@ -82,7 +80,6 @@
                     android:layout_height="wrap_content"
                     android:singleLine="true"
                     android:text="@string/measure"
-                    android:textStyle="bold"
                     android:textSize="17sp"/>
             </LinearLayout>
         </TableRow>
