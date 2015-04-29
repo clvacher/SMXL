@@ -23,4 +23,8 @@
 
     <dimen name="width_silouhette">180dp</dimen>
 
+    <dimen name="garmentLogoSize">50dp</dimen>
+    <dimen name="expandLogoSize">35dp</dimen>
+    <dimen name="marginGarmentCategories">2dp</dimen>
+
 </resources>

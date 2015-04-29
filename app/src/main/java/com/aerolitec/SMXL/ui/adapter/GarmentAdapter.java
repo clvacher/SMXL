@@ -21,8 +21,8 @@ public class GarmentAdapter extends ArrayAdapter<UserClothes> {
 
     private Context context;
 
-    public GarmentAdapter(Context context, ArrayList<UserClothes> garmentsItem){
-        super(context, 0 , garmentsItem);
+    public GarmentAdapter(Context context,int resource, ArrayList<UserClothes> garmentsItem){
+        super(context, resource , garmentsItem);
         this.context = context;
     }
 
@@ -42,11 +42,11 @@ public class GarmentAdapter extends ArrayAdapter<UserClothes> {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        UserClothes clothe = getItem(position);
+        UserClothes clothes = getItem(position);
 
-        holder.tvTypeGarment.setText(clothe.getGarmentType().getType());
-        holder.tvBrand.setText(clothe.getBrand().getBrand_name());
-        holder.tvSize.setText(clothe.getSize());
+        holder.tvTypeGarment.setText(clothes.getGarmentType().getType());
+        holder.tvBrand.setText(clothes.getBrand().getBrand_name());
+        holder.tvSize.setText(clothes.getSize());
 
         return convertView;
     }

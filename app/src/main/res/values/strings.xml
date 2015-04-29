@@ -88,7 +88,7 @@
 
     <string name="no_user">Create your profile !</string>
     <string name="notes">Notes</string>
-    <string name="buttonValidation">Validate</string>
+    <string name="buttonValidation">Next Step</string>
     <string name="size_guide">Size Guide</string>
     <string name="title_activity_size_guide">SizeGuideActivity</string>
     <string name="title_activity_select_brands">Select your favorite brands</string>
@@ -96,11 +96,15 @@
     <string name="favorite_brands">Favorite brands</string>
 
     <string name="dress_skirt">Dresses/Skirts</string>
-    <string name="tshirt_sweater">T-shirts/Hoodies</string>
+    <string name="tshirt_sweater">T-shirts</string>
     <string name="Pant_short">Pants/Shorts</string>
     <string name="Shirt_blouse">Shirts/Blouses</string>
-    <string name="Coat_jacket">Coats/Jackets</string>
-    <string name="sweater_vest">Sweater/Vest</string>
+    <string name="Jacket">Jackets</string>
+    <string name="Coat">Coats</string>
+    <string name="Shoes">Shoes</string>
+    <string name="Sweater">Sweater/Hoodies</string>
+    <string name="Underwear">Underwear</string>
+    <string name="Suit">Suits</string>
 
     <string name="returnCreate">Press back again to cancel</string>
     <string name="newProfile1">Add</string>

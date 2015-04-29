@@ -218,6 +218,13 @@ public class ProfilesDetailFragment extends Fragment{
             }
         }
 
+        imgAvatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent nextActivity = new Intent(getActivity().getApplicationContext(), UpdateProfile.class);
+                startActivity(nextActivity);
+            }
+        });
 
         infosProfile = (RelativeLayout) view.findViewById(R.id.profilLayout);
         infosProfile.setOnClickListener(new View.OnClickListener() {
@@ -233,6 +240,7 @@ public class ProfilesDetailFragment extends Fragment{
 
         return view;
     }
+
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {

@@ -113,7 +113,8 @@
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/textSizeIdentity"
                 android:hint="@string/addNote"
-                android:background="@color/backgroundEditTextProfile"
+                android:inputType="textCapSentences"
+                android:background="@color/DefaultBackgroundColor"
                 android:layout_marginBottom="10dp"/>
 
         </LinearLayout>
@@ -265,7 +266,6 @@
                 android:id="@+id/layoutAddBrand"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button"
                 android:clickable="true"
                 android:paddingBottom="@dimen/listview_padding_horizontal"
                 android:paddingLeft="@dimen/listview_padding_horizontal"
@@ -278,6 +278,7 @@
                     android:layout_centerVertical="true"
                     android:background="@android:color/transparent"
                     android:gravity="left"
+                    android:paddingBottom="4dp"
                     android:text="@string/manage_favorite_brands"
                     android:textColor="@color/SectionTitle"
                     android:textSize="@dimen/textSizeIdentity" />

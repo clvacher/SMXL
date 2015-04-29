@@ -41,7 +41,8 @@
             android:name=".ui.activity.CreateProfile"
             android:logo="@drawable/groslogo"
             android:parentActivityName=".ui.activity.ProfilActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible"/>
         <activity
             android:name=".ui.activity.UpdateProfile"
             android:logo="@drawable/groslogo"
@@ -90,11 +91,6 @@
         <activity
             android:name=".ui.activity.AddMeasureActivity"
             android:label="@string/title_activity_add_measure_fragment"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
-            android:name=".ui.activity.ListGarmentActivity"
-            android:label="@string/title_activity_list_garment"
             android:screenOrientation="portrait">
         </activity>
         <activity
