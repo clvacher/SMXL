@@ -88,7 +88,7 @@
 
     <string name="no_user">Create your profile !</string>
     <string name="notes">Notes</string>
-    <string name="buttonValidation">Validate</string>
+    <string name="buttonValidation">Next Step</string>
     <string name="size_guide">Size Guide</string>
     <string name="title_activity_size_guide">SizeGuideActivity</string>
     <string name="title_activity_select_brands">Select your favorite brands</string>

@@ -102,6 +102,10 @@ public class WardrobeDetailFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onViewStateRestored(Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+    }
 
     @Override
     public void onResume() {
@@ -116,7 +120,6 @@ public class WardrobeDetailFragment extends Fragment {
     private void setViews(){
         //"Expand and Collapse" Layouts
         layoutHeaderTShirt = (RelativeLayout) view.findViewById(R.id.layoutHeaderTShirts);
-        layoutHeaderDresses = (RelativeLayout) view.findViewById(R.id.layoutHeaderDresses);
         layoutHeaderPants = (RelativeLayout) view.findViewById(R.id.layoutHeaderPants);
         layoutHeaderBlouses = (RelativeLayout) view.findViewById(R.id.layoutHeaderBlouses);
         layoutHeaderJackets = (RelativeLayout) view.findViewById(R.id.layoutHeaderJackets);
@@ -128,7 +131,6 @@ public class WardrobeDetailFragment extends Fragment {
 
         //ListViews containing the garments
         tShirtsListView = (ListView) view.findViewById(R.id.layoutViewTShirts);
-        dressesListView = (ListView) view.findViewById(R.id.layoutViewDresses);
         pantsListView = (ListView) view.findViewById(R.id.layoutViewPants);
         blousesListView = (ListView) view.findViewById(R.id.layoutViewBlouses);
         jacketsListView = (ListView) view.findViewById(R.id.layoutViewJackets);
@@ -140,7 +142,6 @@ public class WardrobeDetailFragment extends Fragment {
 
         //clothes counters
         nbTShirts=(TextView) view.findViewById(R.id.nbTShirts);
-        nbDresses=(TextView) view.findViewById(R.id.nbDresses);
         nbPants=(TextView) view.findViewById(R.id.nbPants);
         nbBlouses=(TextView) view.findViewById(R.id.nbBlouses);
         nbJackets=(TextView) view.findViewById(R.id.nbJackets);
@@ -149,6 +150,16 @@ public class WardrobeDetailFragment extends Fragment {
         nbSweaters=(TextView) view.findViewById(R.id.nbSweaters);
         nbUnderwear=(TextView) view.findViewById(R.id.nbUnderwear);
         nbSuits=(TextView) view.findViewById(R.id.nbSuits);
+
+
+        if(user.getSexe().equals("F")){
+            layoutHeaderDresses = (RelativeLayout) view.findViewById(R.id.layoutHeaderDresses);
+            dressesListView = (ListView) view.findViewById(R.id.layoutViewDresses);
+            nbDresses=(TextView) view.findViewById(R.id.nbDresses);
+        }
+        else{
+            view.findViewById(R.id.layoutCategoryDress).setVisibility(View.GONE);
+        }
     }
 
     private void setAddListeners(){
@@ -158,17 +169,6 @@ public class WardrobeDetailFragment extends Fragment {
             public void onClick(View v) {
                 tShirtsListView.setVisibility(View.GONE);
                 ((ImageView) view.findViewById(R.id.collapseTShirt)).setImageResource(R.drawable.navigation_expand);
-                Intent intent = new Intent(getActivity(), AddGarmentActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        addGarment=(RelativeLayout) view.findViewById(R.id.addDressLayout);
-        addGarment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dressesListView.setVisibility(View.GONE);
-                ((ImageView) view.findViewById(R.id.collapseDress)).setImageResource(R.drawable.navigation_expand);
                 Intent intent = new Intent(getActivity(), AddGarmentActivity.class);
                 startActivity(intent);
             }
@@ -261,6 +261,19 @@ public class WardrobeDetailFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        if(user.getSexe().equals("F")){
+            addGarment=(RelativeLayout) view.findViewById(R.id.addDressLayout);
+            addGarment.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dressesListView.setVisibility(View.GONE);
+                    ((ImageView) view.findViewById(R.id.collapseDress)).setImageResource(R.drawable.navigation_expand);
+                    Intent intent = new Intent(getActivity(), AddGarmentActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
     }
 
     private void setExpandListeners(){
@@ -274,21 +287,6 @@ public class WardrobeDetailFragment extends Fragment {
                     collapse.setImageResource(R.drawable.navigation_collapse);
                 } else {
                     tShirtsListView.setVisibility(View.GONE);
-                    collapse.setImageResource(R.drawable.navigation_expand);
-                }
-            }
-        });
-
-        layoutHeaderDresses.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ImageView collapse = (ImageView) view.findViewById(R.id.collapseDress);
-                if (dressesListView.getVisibility() == View.GONE) {
-                    fillListView(dressesListView, userDresses);
-                    dressesListView.setVisibility(View.VISIBLE);
-                    collapse.setImageResource(R.drawable.navigation_collapse);
-                } else {
-                    dressesListView.setVisibility(View.GONE);
                     collapse.setImageResource(R.drawable.navigation_expand);
                 }
             }
@@ -413,13 +411,28 @@ public class WardrobeDetailFragment extends Fragment {
                 }
             }
         });
+        if(user.getSexe().equals("F")){
+            layoutHeaderDresses.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ImageView collapse = (ImageView) view.findViewById(R.id.collapseDress);
+                    if (dressesListView.getVisibility() == View.GONE) {
+                        fillListView(dressesListView, userDresses);
+                        dressesListView.setVisibility(View.VISIBLE);
+                        collapse.setImageResource(R.drawable.navigation_collapse);
+                    } else {
+                        dressesListView.setVisibility(View.GONE);
+                        collapse.setImageResource(R.drawable.navigation_expand);
+                    }
+                }
+            });
+        }
     }
 
     //updates the user's lists of clothes
     //TODO change clotheType name (french)
     private void updateClothesLists(){
         userTShirts=SMXL.getDataBase().getUserGarmentsByGarment(user,"Tshirt","");
-        userDresses=SMXL.getDataBase().getUserGarmentsByGarment(user,"Robe","Jupe");
         userPants=SMXL.getDataBase().getUserGarmentsByGarment(user,"Pantalon","Jean");//ajouter short
         userBlouses=SMXL.getDataBase().getUserGarmentsByGarment(user,"Chemise","Chemisier");
         userJackets=SMXL.getDataBase().getUserGarmentsByGarment(user,"Manteau","Blouson");
@@ -428,6 +441,9 @@ public class WardrobeDetailFragment extends Fragment {
         userSweaters=SMXL.getDataBase().getUserGarmentsByGarment(user,"Pull","Sweat");
         userUnderwear=SMXL.getDataBase().getUserGarmentsByGarment(user,"Slip","");
         userSuits=SMXL.getDataBase().getUserGarmentsByGarment(user,"Costume","");
+        if(user.getSexe().equals("F")){
+            userDresses=SMXL.getDataBase().getUserGarmentsByGarment(user,"Robe","Jupe");
+        }
     }
 
     //fills the clothes counters
@@ -442,14 +458,6 @@ public class WardrobeDetailFragment extends Fragment {
         }
         else{
             layoutHeaderTShirt.setVisibility(View.VISIBLE);
-        }
-        tmp=userDresses.size();
-        nbDresses.setText("("+tmp+")");
-        if(tmp==0){
-            layoutHeaderDresses.setVisibility(View.GONE);
-        }
-        else{
-            layoutHeaderDresses.setVisibility(View.VISIBLE);
         }
         tmp=userPants.size();
         nbPants.setText("("+tmp+")");
@@ -514,6 +522,17 @@ public class WardrobeDetailFragment extends Fragment {
         }
         else{
             layoutHeaderSuits.setVisibility(View.VISIBLE);
+        }
+
+        if(user.getSexe().equals("F")){
+            tmp=userDresses.size();
+            nbDresses.setText("("+tmp+")");
+            if(tmp==0){
+                layoutHeaderDresses.setVisibility(View.GONE);
+            }
+            else{
+                layoutHeaderDresses.setVisibility(View.VISIBLE);
+            }
         }
     }
 

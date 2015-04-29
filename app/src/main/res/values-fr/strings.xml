@@ -80,7 +80,7 @@
 
     <string name="no_user">Créez votre profil !</string>
     <string name="notes">Notes</string>
-    <string name="buttonValidation">Valider</string>
+    <string name="buttonValidation">Etape Suivante</string>
     <string name="size_guide">Guides des tailles</string>
     <string name="title_activity_size_guide">SizeGuideActivity</string>
     <string name="title_activity_select_brands">Sélectionnez vos marques favorites</string>
