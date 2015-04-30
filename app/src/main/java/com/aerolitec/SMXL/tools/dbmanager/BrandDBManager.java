@@ -39,41 +39,48 @@ public class BrandDBManager extends DBManager{
 
 
     public long addBrand(Brand brand){
+        open();
         // Ajout d'un enregistrement dans la table
 
         ContentValues values = new ContentValues();
         values.put(KEY_NOM_BRAND, brand.getBrand_name());
 
         // insert() retourne l'id du nouvel enregistrement inséré, ou -1 en cas d'erreur
-        return db.insert(TABLE_NAME,null,values);
+        long i = db.insert(TABLE_NAME,null,values);
+        close();
+        return i;
     }
 
     public int updateBrand(Brand brand) {
         // modification d'un enregistrement
         // valeur de retour : (int) nombre de lignes affectées par la requête
-
+        open();
         ContentValues values = new ContentValues();
         values.put(KEY_NOM_BRAND, brand.getBrand_name());
 
         String where = KEY_ID_BRAND+" = ?";
         String[] whereArgs = {brand.getId_brand()+""};
 
-        return db.update(TABLE_NAME, values, where, whereArgs);
+        int i = db.update(TABLE_NAME, values, where, whereArgs);
+        close();
+        return i;
     }
 
     public int deleteBrand(Brand brand) {
         // suppression d'un enregistrement
         // valeur de retour : (int) nombre de lignes affectées par la clause WHERE, 0 sinon
-
+        open();
         String where = KEY_ID_BRAND+" = ?";
         String[] whereArgs = {brand.getId_brand()+""};
-
-        return db.delete(TABLE_NAME, where, whereArgs);
+        int i = db.delete(TABLE_NAME, where, whereArgs);
+        close();
+        return i;
     }
 
     public Brand getBrand(int id) {
         // Retourne l'animal dont l'id est passé en paramètre
 
+        open();
         Brand b=new Brand();
 
         Cursor c = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+KEY_ID_BRAND+"="+id, null);
@@ -82,19 +89,19 @@ public class BrandDBManager extends DBManager{
             b.setBrand_name(c.getString(c.getColumnIndex(KEY_NOM_BRAND)));
             c.close();
         }
-
+        close();
         return b;
     }
 
-    public Cursor getBrands() {
+    /*public Cursor getBrands() {
         // sélection de tous les enregistrements de la table
         return db.rawQuery("SELECT * FROM "+TABLE_NAME, null);
-    }
+    }*/
 
     public ArrayList<Brand> getAllBrands(){
+        open();
         ArrayList<Brand> brands = new ArrayList<>();
-            Cursor c;
-            c = getBrands();
+            Cursor c = db.rawQuery("SELECT * FROM "+TABLE_NAME, null);
             boolean eof = c.moveToFirst();
             while (eof) {
                 Brand b = new Brand();
@@ -105,7 +112,7 @@ public class BrandDBManager extends DBManager{
                 eof = c.moveToNext();
             }
             c.close();
-
+        close();
         return brands;
     }
 } // class BrandDBManager

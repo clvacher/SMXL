@@ -118,24 +118,13 @@ public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.
 
     public void onConfirm(boolean confirmed, int positionItem) {
         if (confirmed) {
-            deleteCurrentProfile(positionItem);
+            //deleteCurrentProfile(positionItem);
+            SMXL.getUserDBManager().deleteUser(SMXL.getUserDBManager().getUser(profileItem.get(positionItem).getId()));
+            profileItem.remove(positionItem);
+            adapter.notifyDataSetChanged();
         }
     }
 
-    private void deleteCurrentProfile(int positionItem) {
-        String profilId = String.valueOf(profileItem.get(positionItem).getId());
-        String request = "DELETE FROM user WHERE userid='"+ profilId + "'";
-
-        String DataBaseName = "SIZEGUIDE_DB";
-        SQLiteDatabase db = null;
-        db = getActivity().openOrCreateDatabase(DataBaseName, getActivity().MODE_PRIVATE, null);
-        db.beginTransaction();
-        db.execSQL(request);
-        db.setTransactionSuccessful();
-        db.endTransaction();
-        profileItem.remove(positionItem);
-        adapter.notifyDataSetChanged();
-    }
 
     private void loadProfiles(){
         // load all the profiles from the database

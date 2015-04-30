@@ -62,6 +62,7 @@ public class SelectBrandsActivity extends Activity {
         gridViewBrands = (GridView) this.findViewById(R.id.gridViewBrands);
 
         brands = SMXL.getBrandDBManager().getAllBrands();
+        Log.d("All Brands", brands.toString());
 
         gridViewBrandsAdapter = new FavoriteCheckableBrandAdapter(this, brands, userBrands);
         gridViewBrands.setAdapter(gridViewBrandsAdapter);
@@ -75,12 +76,18 @@ public class SelectBrandsActivity extends Activity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long mylng) {
                 Brand selectedBrand = (Brand) gridViewBrandsAdapter.getItem(position);
 
+                Log.d("clicklistener", selectedBrand.toString());
+
+                brandsSelected.add(selectedBrand);
+
+                /*
                 if(brandsSelected.contains(selectedBrand)){
                     brandsSelected.remove(selectedBrand);
                 }
                 else{
                     brandsSelected.add(selectedBrand);
                 }
+                */
 
                 //Log.d("Brand select" , selectedBrand.toString());
                 //Log.d("all brand select", brandsSelected.toString());
@@ -94,14 +101,8 @@ public class SelectBrandsActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        //Log.d("adapter gridview", gridViewBrandsAdapter.toString());
 
         ArrayList<Brand> brandUser = user.getBrands();
-
-
-        //updateUI();
-        //Log.d("onresume userbrands", brandUser.toString());
-
 
         gridViewBrandsAdapter = new FavoriteCheckableBrandAdapter(this, brands, brandUser);
         gridViewBrands.setAdapter(gridViewBrandsAdapter);
@@ -109,10 +110,7 @@ public class SelectBrandsActivity extends Activity {
         //Log.d("isempty", Boolean.toString(gridViewBrandsAdapter.isEmpty()));
         //Log.d("viewtypecount", Integer.toString(gridViewBrandsAdapter.getViewTypeCount()));
 
-        //gridViewBrandsAdapter.notifyDataSetChanged();
-
-
-
+        Log.d("pre selected", brandUser.toString());
         for(Brand b : brandUser) {
             gridViewBrands.setItemChecked(brands.indexOf(b), true);
         }
@@ -125,8 +123,11 @@ public class SelectBrandsActivity extends Activity {
 
     public void onClickAddBrandsUser(View view){
 
+        Log.d("userbrandsbeforeremove", SMXL.getUserBrandDBManager().getAllUserBrands(user).toString());
         SMXL.getUserBrandDBManager().deleteUserBrand(user);
+        Log.d("userbrandsafter", SMXL.getUserBrandDBManager().getAllUserBrands(user).toString());
 
+        Log.d("addClick", brandsSelected.toString());
         for(Brand b : brandsSelected){
                 SMXL.getUserBrandDBManager().addUserBrand(user, b);
         }
@@ -140,24 +141,6 @@ public class SelectBrandsActivity extends Activity {
         finish();
     }
 
-
-    /*
-    private void updateUI (){
-        gridViewBrands.removeAllViews();
-
-        for (int i = 0; i < brands.size(); i++) {
-
-            if(user.getBrands().contains(brands.get(i)))
-            {
-                ((CheckableBrandLayout) gridViewBrandsAdapter.getView(i, new CheckableBrandLayout(getApplicationContext(), brands.get(i)), gridViewBrands)).setChecked(true);
-            }
-            else{
-                gridViewBrandsAdapter.getView(i, new CheckableBrandLayout(getApplicationContext(), brands.get(i)), gridViewBrands);
-            }
-
-        }
-    }
-    */
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

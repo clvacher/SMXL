@@ -43,69 +43,86 @@ public class UserBrandDBManager extends DBManager {
 
     public long addUserBrand(User user, Brand brand){
         // Ajout d'un enregistrement dans la table
-
+        open();
         ContentValues values = new ContentValues();
         values.put(KEY_ID_USER, user.getId_user());
         values.put(KEY_ID_BRAND, brand.getId_brand());
 
+        Log.d("addUserBrand", values.toString());
+        long i = db.insert(TABLE_NAME, null, values);
+        Log.d("addUserBrand2", SMXL.getUserBrandDBManager().getAllUserBrands(user).toString());
+        close();
         // insert() retourne l'id du nouvel enregistrement inséré, ou -1 en cas d'erreur
-        return db.insert(TABLE_NAME,null,values);
+        return i;
     }
 
     public int updateUserBrand(User user, Brand brand) {
         // modification d'un enregistrement
         // valeur de retour : (int) nombre de lignes affectées par la requête
-
+        open();
         ContentValues values = new ContentValues();
         values.put(KEY_ID_USER, user.getId_user());
         values.put(KEY_ID_BRAND, brand.getId_brand());
 
-        String where = KEY_ID_BRAND+" = ? AND "+KEY_ID_USER+" = ?";
-        String[] whereArgs = {brand.getId_brand()+"", user.getId_user()+""};
+        String where = KEY_ID_USER+" = ? AND "+KEY_ID_BRAND+" = ?";
+        String[] whereArgs = {user.getId_user()+"", brand.getId_brand()+""};
 
-        return db.update(TABLE_NAME, values, where, whereArgs);
+        int i = db.update(TABLE_NAME, values, where, whereArgs);
+        close();
+        return i;
     }
 
     public int deleteUserBrand(User user, Brand brand) {
         // suppression d'un enregistrement
         // valeur de retour : (int) nombre de lignes affectées par la clause WHERE, 0 sinon
 
+        open();
         String where = KEY_ID_BRAND+" = ? AND "+KEY_ID_USER+" = ?";
         String[] whereArgs = {brand.getId_brand()+"", user.getId_user()+""};
 
-        return db.delete(TABLE_NAME, where, whereArgs);
+        int i = db.delete(TABLE_NAME, where, whereArgs);
+        close();
+        return i;
     }
 
     public int deleteUserBrand(User user) {
         // suppression d'un enregistrement
         // valeur de retour : (int) nombre de lignes affectées par la clause WHERE, 0 sinon
 
+        open();
         String where = KEY_ID_USER+" = ?";
         String[] whereArgs = {user.getId_user()+""};
 
-        return db.delete(TABLE_NAME, where, whereArgs);
+        int i = db.delete(TABLE_NAME, where, whereArgs);
+        close();
+        return i;
     }
 
     public int deleteUserBrand(Brand brand) {
         // suppression d'un enregistrement
         // valeur de retour : (int) nombre de lignes affectées par la clause WHERE, 0 sinon
 
+        open();
         String where = KEY_ID_BRAND+" = ?";
         String[] whereArgs = {brand.getId_brand()+""};
 
-        return db.delete(TABLE_NAME, where, whereArgs);
+        int i =db.delete(TABLE_NAME, where, whereArgs);
+
+        close();
+        return i;
     }
 
-
+/*
     public Cursor getUserBrands() {
         // sélection de tous les enregistrements de la table
         return db.rawQuery("SELECT * FROM "+TABLE_NAME, null);
     }
-
+*/
 
 
 
     public boolean alreadyExistUserBrand(User user, Brand b) {
+        open();
         boolean found = false;
             Cursor c;
             c = db.rawQuery("SELECT * FROM "+TABLE_NAME+
@@ -115,21 +132,25 @@ public class UserBrandDBManager extends DBManager {
             found = eof;
             c.close();
 
+        close();
         return found;
     }
 
     public ArrayList<Brand> getAllUserBrands(User user){
+        open();
         ArrayList<Brand> brands = new ArrayList<>();
-        Cursor c;
-        c = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+KEY_ID_USER+" = "+user.getId_user(), null);
+        Log.d("getAllUserBrands User",user.toString());
+        Cursor c = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+KEY_ID_USER+" = '"+user.getId_user()+"'", null);
         boolean eof = c.moveToFirst();
         while (eof) {
-            Brand b = SMXL.getBrandDBManager().getBrand(c.getColumnIndex(KEY_ID_BRAND));
+            Brand b = SMXL.getBrandDBManager().getBrand(c.getInt(c.getColumnIndex(KEY_ID_BRAND)));
             brands.add(b);
             eof = c.moveToNext();
         }
         c.close();
 
+        close();
+        Log.d("getAllUserBrands", brands.toString());
         return brands;
     }
 } // class UserBrandDBManager

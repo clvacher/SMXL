@@ -46,19 +46,24 @@ public class GarmentTypeDBManager extends DBManager {
     public long addGarmentType(GarmentType gt){
         // Ajout d'un enregistrement dans la table
 
+        open();
+
         ContentValues values = new ContentValues();
         values.put(KEY_NAME_GARMENT_TYPE, gt.getType());
         values.put(KEY_SEX_GARMENT_TYPE, gt.getSex());
         values.put(KEY_ID_CATEGORY_GARMENT_GARMENT_TYPE, gt.getCategoryGarment().getId_category_garment());
 
+        long i=db.insert(TABLE_NAME,null,values);
+        close();
         // insert() retourne l'id du nouvel enregistrement inséré, ou -1 en cas d'erreur
-        return db.insert(TABLE_NAME,null,values);
+        return i;
     }
 
     public int updateGarmentType(GarmentType gt) {
         // modification d'un enregistrement
         // valeur de retour : (int) nombre de lignes affectées par la requête
 
+        open();
         ContentValues values = new ContentValues();
         values.put(KEY_NAME_GARMENT_TYPE, gt.getType());
         values.put(KEY_SEX_GARMENT_TYPE, gt.getSex());
@@ -67,22 +72,28 @@ public class GarmentTypeDBManager extends DBManager {
         String where = KEY_ID_GARMENT_TYPE+" = ?";
         String[] whereArgs = {gt.getId_garment_type()+""};
 
-        return db.update(TABLE_NAME, values, where, whereArgs);
+        int i = db.update(TABLE_NAME, values, where, whereArgs);
+        close();
+        return i;
     }
 
     public int deleteGarmentType(GarmentType gt) {
         // suppression d'un enregistrement
         // valeur de retour : (int) nombre de lignes affectées par la clause WHERE, 0 sinon
 
+        open();
         String where = KEY_ID_GARMENT_TYPE+" = ?";
         String[] whereArgs = {gt.getId_garment_type()+""};
 
-        return db.delete(TABLE_NAME, where, whereArgs);
+        int i = db.delete(TABLE_NAME, where, whereArgs);
+        close();
+        return i;
     }
 
     public GarmentType getGarmentType(int id) {
         // Retourne l'animal dont l'id est passé en paramètre
 
+        open();
         GarmentType gt=new GarmentType();
 
         Cursor c = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+KEY_ID_GARMENT_TYPE+"="+id, null);
@@ -98,17 +109,20 @@ public class GarmentTypeDBManager extends DBManager {
             c.close();
         }
 
+        close();
         return gt;
     }
 
+    /*
     public Cursor getGarmentTypes() {
         // sélection de tous les enregistrements de la table
         return db.rawQuery("SELECT * FROM "+TABLE_NAME, null);
-    }
+    }*/
 
     public ArrayList<GarmentType> getAllGarments() {
+        open();
         ArrayList<GarmentType> garments = new ArrayList<>();
-        Cursor c = getGarmentTypes();
+        Cursor c = db.rawQuery("SELECT * FROM "+TABLE_NAME, null);
         boolean eof = c.moveToFirst();
         while (eof) {
             GarmentType gt = new GarmentType();
@@ -124,8 +138,9 @@ public class GarmentTypeDBManager extends DBManager {
             garments.add(gt);
             eof = c.moveToNext();
         }
-            c.close();
-            return garments;
+        c.close();
+        close();
+        return garments;
     }
 
 

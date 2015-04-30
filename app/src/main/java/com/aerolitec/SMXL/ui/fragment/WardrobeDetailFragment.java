@@ -39,7 +39,7 @@ public class WardrobeDetailFragment extends Fragment {
     private View view;
     private ListView tShirtsListView,dressesListView,pantsListView,blousesListView,jacketsListView,coatsListView,shoesListView,sweatersListView,underwearListView,suitsListView;
 
-    private ArrayList<UserClothes> userTShirts,userDresses,userPants,userBlouses,userJackets,userCoats,userShoes,userSweaters,userUnderwear,userSuits;
+    private ArrayList<UserClothes> userTShirts,userDresses,userPants,userBlouses,userJackets, userVests,userShoes,userSweaters,userUnderwear,userSuits;
 
     private TextView nbTShirts,nbDresses,nbPants,nbBlouses,nbJackets,nbCoats,nbShoes,nbSweaters,nbUnderwear,nbSuits;
 
@@ -342,7 +342,7 @@ public class WardrobeDetailFragment extends Fragment {
             public void onClick(View v) {
                 ImageView collapse = (ImageView) view.findViewById(R.id.collapseCoat);
                 if (coatsListView.getVisibility() == View.GONE) {
-                    fillListView(coatsListView, userCoats);
+                    fillListView(coatsListView, userVests);
                     coatsListView.setVisibility(View.VISIBLE);
                     collapse.setImageResource(R.drawable.navigation_collapse);
                 } else {
@@ -432,17 +432,18 @@ public class WardrobeDetailFragment extends Fragment {
     //updates the user's lists of clothes
     //TODO change clotheType name (french)
     private void updateClothesLists(){
-        userTShirts=SMXL.getDataBase().getUserGarmentsByGarment(user,"Tshirt","");
-        userPants=SMXL.getDataBase().getUserGarmentsByGarment(user,"Pantalon","Jean");//ajouter short
-        userBlouses=SMXL.getDataBase().getUserGarmentsByGarment(user,"Chemise","Chemisier");
-        userJackets=SMXL.getDataBase().getUserGarmentsByGarment(user,"Manteau","Blouson");
-        userCoats=SMXL.getDataBase().getUserGarmentsByGarment(user,"Veste","");
-        userShoes=SMXL.getDataBase().getUserGarmentsByGarment(user,"Chaussure","");
-        userSweaters=SMXL.getDataBase().getUserGarmentsByGarment(user,"Pull","Sweat");
-        userUnderwear=SMXL.getDataBase().getUserGarmentsByGarment(user,"Slip","");
-        userSuits=SMXL.getDataBase().getUserGarmentsByGarment(user,"Costume","");
+        userTShirts=SMXL.getUserClothesDBManager().getUserGarmentsByGarment(user, SMXL.getCategoryGarmentDBManager().getCategoryGarment(1));
+        userPants=SMXL.getUserClothesDBManager().getUserGarmentsByGarment(user, SMXL.getCategoryGarmentDBManager().getCategoryGarment(3));
+        userBlouses=SMXL.getUserClothesDBManager().getUserGarmentsByGarment(user, SMXL.getCategoryGarmentDBManager().getCategoryGarment(4));
+        userJackets=SMXL.getUserClothesDBManager().getUserGarmentsByGarment(user, SMXL.getCategoryGarmentDBManager().getCategoryGarment(5));
+        userShoes=SMXL.getUserClothesDBManager().getUserGarmentsByGarment(user, SMXL.getCategoryGarmentDBManager().getCategoryGarment(6));
+        userSweaters=SMXL.getUserClothesDBManager().getUserGarmentsByGarment(user, SMXL.getCategoryGarmentDBManager().getCategoryGarment(7));
+        userVests=SMXL.getUserClothesDBManager().getUserGarmentsByGarment(user, SMXL.getCategoryGarmentDBManager().getCategoryGarment(8));
+        userSuits=SMXL.getUserClothesDBManager().getUserGarmentsByGarment(user, SMXL.getCategoryGarmentDBManager().getCategoryGarment(9));
+        userUnderwear=SMXL.getUserClothesDBManager().getUserGarmentsByGarment(user, SMXL.getCategoryGarmentDBManager().getCategoryGarment(10));
+
         if(user.getSexe().equals("F")){
-            userDresses=SMXL.getDataBase().getUserGarmentsByGarment(user,"Robe","Jupe");
+            userDresses=SMXL.getUserClothesDBManager().getUserGarmentsByGarment(user, SMXL.getCategoryGarmentDBManager().getCategoryGarment(2));
         }
     }
 
@@ -483,7 +484,7 @@ public class WardrobeDetailFragment extends Fragment {
         else{
             layoutHeaderJackets.setVisibility(View.VISIBLE);
         }
-        tmp=userCoats.size();
+        tmp=userVests.size();
         nbCoats.setText("("+tmp+")");
         if(tmp==0){
             layoutHeaderCoats.setVisibility(View.GONE);

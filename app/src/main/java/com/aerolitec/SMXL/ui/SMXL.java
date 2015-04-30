@@ -1,7 +1,10 @@
 package com.aerolitec.SMXL.ui;
 
 import android.app.Application;
+import android.util.Log;
 
+import com.aerolitec.SMXL.R;
+import com.aerolitec.SMXL.model.CategoryGarment;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.dbmanager.BrandDBManager;
 import com.aerolitec.SMXL.tools.dbmanager.BrandSizeGuideDBManager;
@@ -48,9 +51,23 @@ public class SMXL extends Application{
         userDBManager = new UserDBManager(getApplicationContext());
         //metrics = getResources().getDisplayMetrics();
 
+        categoryGarmentDBManager.updateCategoryGarment(1, R.drawable.tshirt);
+        categoryGarmentDBManager.updateCategoryGarment(2, R.drawable.robe);
+        categoryGarmentDBManager.updateCategoryGarment(3, R.drawable.pantalon);
+        categoryGarmentDBManager.updateCategoryGarment(4, R.drawable.chemise);
+        categoryGarmentDBManager.updateCategoryGarment(5, R.drawable.blouson);
+        categoryGarmentDBManager.updateCategoryGarment(6, R.drawable.chaussure);
+        categoryGarmentDBManager.updateCategoryGarment(7, R.drawable.pull);
+        categoryGarmentDBManager.updateCategoryGarment(8, R.drawable.veste);
+        categoryGarmentDBManager.updateCategoryGarment(9, R.drawable.costume);
+        categoryGarmentDBManager.updateCategoryGarment(10, R.drawable.sousvet);
+
+
         picasso = new Picasso.Builder(getApplicationContext())
                 .debugging(false)
                 .build();
+
+        //Log.d("tshirt", R.drawable.tshirt+"");
     }
 
     public Picasso getPicasso() {

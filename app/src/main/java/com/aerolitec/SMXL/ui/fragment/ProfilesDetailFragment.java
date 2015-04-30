@@ -397,6 +397,7 @@ public class ProfilesDetailFragment extends Fragment{
         // user : Get all the user's favorite brands
         listBrandsItems.clear();
         userBrands = SMXL.getUserBrandDBManager().getAllUserBrands(user);
+        Log.d("loadBrands", userBrands.toString());
         for (Brand b : userBrands) {
             adapterBrand.add(b.getBrand_name());
         }

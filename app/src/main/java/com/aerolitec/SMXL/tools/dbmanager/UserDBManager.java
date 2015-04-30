@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 
 import com.aerolitec.SMXL.model.User;
+import com.aerolitec.SMXL.ui.SMXL;
 
 import java.util.ArrayList;
 
@@ -69,6 +70,7 @@ public class UserDBManager extends DBManager{
     }
 
     public long addUser(User user){
+        open();
         // Ajout d'un enregistrement dans la table
 
         ContentValues values = new ContentValues();
@@ -94,11 +96,14 @@ public class UserDBManager extends DBManager{
         values.put(KEY_POINTURE_USER, user.getPointure());
 
         // insert() retourne l'id du nouvel enregistrement inséré, ou -1 en cas d'erreur
-        return db.insert(TABLE_NAME,null,values);
+        long i =db.insert(TABLE_NAME,null,values);
+        close();
+        return i;
     }
 
     public User createUser(String firstName, String lastName, String birthday,
                            String sexe, String avatar, String description){
+        open();
         User user;
         String nickname = firstName+lastName+birthday;
             ContentValues values = new ContentValues();
@@ -126,13 +131,15 @@ public class UserDBManager extends DBManager{
             db.insert(TABLE_NAME, null, values);
 
         user = getUserByNickname(nickname);
+        close();
         return user;
     }
 
     private User getUserByNickname(String nickname) {
+        open();
         User u = new User();
 
-        Cursor c = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+KEY_NICKNAME_USER+"="+nickname, null);
+        Cursor c = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+KEY_NICKNAME_USER+"= '"+nickname+"'", null);
         if (c.moveToFirst()) {
             u.setId_user(c.getInt(c.getColumnIndex(KEY_ID_USER)));
             u.setNickname(c.getString(c.getColumnIndex(KEY_NICKNAME_USER)));
@@ -162,6 +169,7 @@ public class UserDBManager extends DBManager{
             c.close();
         }
 
+        close();
         return u;
     }
 
@@ -169,6 +177,7 @@ public class UserDBManager extends DBManager{
         // modification d'un enregistrement
         // valeur de retour : (int) nombre de lignes affectées par la requête
 
+        open();
         ContentValues values = new ContentValues();
         values.put(KEY_NICKNAME_USER, user.getNickname());
         values.put(KEY_FIRSTNAME_USER, user.getFirstname());
@@ -194,22 +203,28 @@ public class UserDBManager extends DBManager{
         String where = KEY_ID_USER+" = ?";
         String[] whereArgs = {user.getId_user()+""};
 
-        return db.update(TABLE_NAME, values, where, whereArgs);
+        int i =db.update(TABLE_NAME, values, where, whereArgs);
+        close();
+        return i;
     }
 
     public int deleteUser(User user) {
         // suppression d'un enregistrement
         // valeur de retour : (int) nombre de lignes affectées par la clause WHERE, 0 sinon
 
+        open();
         String where = KEY_ID_USER+" = ?";
         String[] whereArgs = {user.getId_user()+""};
 
-        return db.delete(TABLE_NAME, where, whereArgs);
+        int i = db.delete(TABLE_NAME, where, whereArgs);
+        close();
+        return i;
     }
 
     public User getUser(int id) {
         // Retourne l'animal dont l'id est passé en paramètre
 
+        open();
         User u = new User();
 
         Cursor c = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+KEY_ID_USER+"="+id, null);
@@ -239,20 +254,24 @@ public class UserDBManager extends DBManager{
 
             u.setPointure(convertToDouble(c.getString(c.getColumnIndex(KEY_POINTURE_USER))));
 
+            u.setBrands(SMXL.getUserBrandDBManager().getAllUserBrands(u));
             c.close();
         }
 
+        close();
         return u;
     }
 
+    /*
     public Cursor getUsers() {
         // sélection de tous les enregistrements de la table
         return db.rawQuery("SELECT * FROM "+TABLE_NAME, null);
-    }
+    }*/
 
     public ArrayList<User> getAllUsers() {
+        open();
         ArrayList<User> users = new ArrayList<User>();
-        Cursor c = getUsers();
+        Cursor c = db.rawQuery("SELECT * FROM "+TABLE_NAME, null);
         boolean eof = c.moveToFirst();
         while(eof){
             User u = new User();
@@ -285,6 +304,7 @@ public class UserDBManager extends DBManager{
             eof=c.moveToNext();
         }
         c.close();
+        close();
         return users;
     }
 

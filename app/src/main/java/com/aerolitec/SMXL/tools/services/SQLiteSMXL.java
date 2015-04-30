@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.Brand;
 import com.aerolitec.SMXL.model.BrandsSizeGuide;
 import com.aerolitec.SMXL.model.CategoryGarment;
@@ -33,7 +34,7 @@ import java.util.ArrayList;
 public class SQLiteSMXL extends SQLiteOpenHelper{
 
     public static final String DATABASE_NAME = "SMXL_DATABASE.sqlite";
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 6;
     private String DATABASE_PATH;
     private static final String FILE_CHARSET = "UTF-8";
     private Context context;
@@ -109,7 +110,8 @@ public class SQLiteSMXL extends SQLiteOpenHelper{
     }
 
 
-    public void onCreate(SQLiteDatabase db) {}
+    public void onCreate(SQLiteDatabase db) {
+    }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -160,116 +162,6 @@ public class SQLiteSMXL extends SQLiteOpenHelper{
 */
 
 
-    // getSizeConvert
-    public ArrayList<SizeConvert> getConvertSizesByGarment(String garment){
-        ArrayList<SizeConvert> sizes = new ArrayList<>();
-        SQLiteDatabase db = this.getReadableDatabase();
-        try {
-            Cursor c;
-            c = db.rawQuery("SELECT * FROM size_convert WHERE UPPER(clothesType) LIKE UPPER(?)", new String[]{garment});
-            for(boolean eof = c.moveToFirst(); eof; eof=c.moveToNext())
-            {
-                SizeConvert s = new SizeConvert();
-                s.setId_size_convert(c.getInt(0));
-                s.setGarment(c.getString(1));
-                s.setSex(c.getString(2));
-                s.setValueUS(c.getString(3));
-                s.setValueUK(c.getString(4));
-                s.setValueUE(c.getString(5));
-                s.setValueFR(c.getString(6));
-                s.setValueITA(c.getString(7));
-                s.setValueJAP(c.getString(8));
-                s.setValueSMXL(c.getString(9));
-                //Log.d("type", c.getString(1).toString()+"");
-                //Log.d("smxl", c.getString(8).toString()+"");
-                //Log.d("baaaah", s.getType());
-                sizes.add(s);
-            }
-            c.close();
-        }
-        catch (SQLiteException e){
-            Log.d(Constants.TAG,"ERROR Getting Size_Convert : " + e.getMessage());
-            sizes = null;
-        }
-        db.close();
-        return sizes;
-    }
-
-    public ArrayList<SizeConvert> getConvertSizesByGarment(String garment, String sex)
-    {
-        ArrayList sizes = new ArrayList();
-        if (sex.length() > 1) {}
-        for (String str = sex.substring(0, 1);; str = sex)
-        {
-            SQLiteDatabase db = this.getReadableDatabase();
-            try
-            {
-                Cursor c;
-                c = db.rawQuery("SELECT * FROM size_convert WHERE UPPER(clothesType) LIKE UPPER(?) AND UPPER(sex) LIKE UPPER(?)", new String[] { garment, str });
-                for (boolean bool = c.moveToFirst(); bool; bool = c.moveToNext())
-                {
-                    SizeConvert s = new SizeConvert();
-                    s.setId_size_convert(c.getInt(0));
-                    s.setGarment(c.getString(1));
-                    s.setSex(c.getString(2));
-                    s.setValueUS(c.getString(3));
-                    s.setValueUK(c.getString(4));
-                    s.setValueUE(c.getString(5));
-                    s.setValueFR(c.getString(6));
-                    s.setValueITA(c.getString(7));
-                    s.setValueJAP(c.getString(8));
-                    s.setValueSMXL(c.getString(9));
-                    sizes.add(s);
-                }
-                c.close();
-            }
-            catch (SQLiteException localSQLiteException)
-            {
-                for (;;)
-                {
-                    Log.d("SMXL", "ERROR Getting Size_Convert : " + localSQLiteException.getMessage());
-                    sizes = null;
-                }
-            }
-            db.close();
-            return sizes;
-        }
-    }
-
-
-
-    public ArrayList<GarmentType> getGarmentsSizeGuide(){
-        ArrayList<GarmentType> garments = new ArrayList<>();
-        SQLiteDatabase db = this.getReadableDatabase();
-        try {
-            Cursor c;
-            c = db.rawQuery("SELECT id, clothesType, sex FROM size_convert GROUP BY clothesType, sex", new String[]{});
-            boolean eof = c.moveToFirst();
-            while (eof) {
-                GarmentType gt = new GarmentType();
-                gt.setId_garment_type(c.getInt(0));
-                if(c.getString(2).contentEquals(""))
-                {
-                    gt.setType(c.getString(1));
-                }
-                else{
-                    gt.setType(c.getString(1));
-                }
-                gt.setSex(c.getString(2));
-
-                garments.add(gt);
-                eof = c.moveToNext();
-            }
-            c.close();
-        }
-        catch (SQLiteException e){
-            Log.d(Constants.TAG,"ERROR Getting Garments for size guide : " + e.getMessage());
-            garments = null;
-        }
-        db.close();
-        return garments;
-    }
-
 
     public ArrayList<Integer> getIndexMeasureNotNull(User user){
 
@@ -284,6 +176,4 @@ public class SQLiteSMXL extends SQLiteOpenHelper{
 
         return nbElement;
     }
-
-
 }

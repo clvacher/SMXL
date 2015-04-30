@@ -3,6 +3,7 @@ package com.aerolitec.SMXL.ui.activity;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,6 +37,7 @@ public class AddGarmentActivity extends Activity {
     private static User user;
     private static GarmentType selectedGarment;
     private static Brand selectedBrand;
+    private static CategoryGarment selectedCategory;
     private static boolean canValidate;
     private static String mComputeSize = "";
     private static ArrayList<TabSizes> sizes;
@@ -126,7 +128,9 @@ public class AddGarmentActivity extends Activity {
             super.onViewCreated(view, savedInstanceState);
 
             categories = new ArrayList<>();
-            getCategories();
+            categories = SMXL.getCategoryGarmentDBManager().getAllCategoryGarment();
+            Log.d("categories", categories.toString());
+            //getCategories();
 
             gridViewCategories = (GridView) view.findViewById(R.id.gridViewCategories);
 
@@ -137,7 +141,7 @@ public class AddGarmentActivity extends Activity {
             gridViewCategories.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                    selectedGarment.setCategoryGarment(categories.get(position));
+                    //selectedGarment.setCategoryGarment();
                     Fragment fragment = new SelectGarmentFragment();
                     getFragmentManager().beginTransaction()
                             .replace(R.id.container, fragment, "garment")
@@ -145,19 +149,6 @@ public class AddGarmentActivity extends Activity {
                             .commit();
                 }
             });
-        }
-
-        private void getCategories() {
-            categories.add(new CategoryGarment(getActivity(),1, R.drawable.robe, "Robes / Jupes"));
-            categories.add(new CategoryGarment(getActivity(),2, R.drawable.tshirt, "T-shirts / Sweats"));
-            categories.add(new CategoryGarment(getActivity(),3, R.drawable.pantalon, "Pantalons / Shorts"));
-            categories.add(new CategoryGarment(getActivity(),4, R.drawable.chemise, "Chemises / Blouses"));
-            categories.add(new CategoryGarment(getActivity(),5, R.drawable.blouson, "Manteaux / Blousons"));
-            categories.add(new CategoryGarment(getActivity(),6, R.drawable.pull, "Pulls / Gilets"));
-            categories.add(new CategoryGarment(getActivity(),7, R.drawable.veste, "Vestes"));
-            categories.add(new CategoryGarment(getActivity(),8, R.drawable.chaussure, "Chaussures"));
-            categories.add(new CategoryGarment(getActivity(),9, R.drawable.costume, "Costumes"));
-            categories.add(new CategoryGarment(getActivity(),10, R.drawable.sousvet, "Sous-vêtements"));
         }
     }
 
@@ -197,8 +188,7 @@ public class AddGarmentActivity extends Activity {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                     //FIXME
-                    //selectedGarment = garmentItems.get(position);
-                    //selectedGarment = SMXL.getGarmentTypeDBManager().getGarmentType()
+                    selectedCategory = selectedGarment.getCategoryGarment();
                     getFragmentManager().beginTransaction()
                             .replace(R.id.container, new SelectBrandFragment(), "brand")
                             .addToBackStack(null)

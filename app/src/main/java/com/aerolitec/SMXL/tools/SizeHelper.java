@@ -50,7 +50,7 @@ public class SizeHelper {
     }
 
     public void computeSize() {}
-
+/*
     public ArrayList<TabSizes> convertAllSize(double paramDouble)
     {
         String str1 = this.selectedGarment.toUpperCase();
@@ -61,7 +61,7 @@ public class SizeHelper {
             str1 = str1 + "-" + this.user.getSexe().substring(0, 1);
         }
         SMXL.get();
-        ArrayList localArrayList = SMXL.getDataBase().getConvertSizesByGarment(str1);
+        ArrayList localArrayList = SMXL.getSizeConvertDBManager().getConvertSizesByGarment(str1);
         if (this.sizes == null) {
             return null;
         }
@@ -91,7 +91,8 @@ public class SizeHelper {
             //this.sizes.add(new TabSizes("SMXL", String.valueOf(localSizeConvert.getValueUE())));
         }
     }
-
+*/
+    /*
     public double convertSize(double paramDouble)
     {
         String str = this.selectedGarment.toUpperCase();
@@ -102,7 +103,7 @@ public class SizeHelper {
             str = str + "-" + this.user.getSexe().substring(0, 1);
         }
         SMXL.get();
-        ArrayList localArrayList = SMXL.getDataBase().getConvertSizesByGarment(str);
+        ArrayList localArrayList = SMXL.getSizeConvertDBManager().getConvertSizesByGarment(str);
         if (localArrayList == null) {
             return paramDouble;
         }
@@ -122,4 +123,5 @@ public class SizeHelper {
         }
         return d1;
     }
+    */
 }

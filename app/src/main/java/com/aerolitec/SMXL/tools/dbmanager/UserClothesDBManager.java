@@ -54,6 +54,7 @@ public class UserClothesDBManager extends DBManager {
     public UserClothesDBManager(Context context)
     {
         super(context);
+
     }
 
 
@@ -61,6 +62,7 @@ public class UserClothesDBManager extends DBManager {
     public long addUserClothes(UserClothes uc){
         // Ajout d'un enregistrement dans la table
 
+        open();
         Gson gson = new Gson();
         ContentValues values = new ContentValues();
         values.put(KEY_ID_USER_CLOTHES, uc.getId_user_clothes());
@@ -72,13 +74,16 @@ public class UserClothesDBManager extends DBManager {
         values.put(KEY_COMMENT_USER_CLOTHES, uc.getComment());
         values.put(KEY_SIZES_USER_CLOTHES, gson.toJson(uc.getSizes()));
         // insert() retourne l'id du nouvel enregistrement inséré, ou -1 en cas d'erreur
-        return db.insert(TABLE_NAME,null,values);
+        long i = db.insert(TABLE_NAME,null,values);
+        close();
+        return i;
     }
 
     public int updateUserClothes(UserClothes uc) {
         // modification d'un enregistrement
         // valeur de retour : (int) nombre de lignes affectées par la requête
 
+        open();
         Gson gson = new Gson();
         ContentValues values = new ContentValues();
         values.put(KEY_ID_USER_CLOTHES, uc.getId_user_clothes());
@@ -93,22 +98,28 @@ public class UserClothesDBManager extends DBManager {
         String where = KEY_ID_USER_CLOTHES+" = ?";
         String[] whereArgs = {uc.getId_user_clothes()+""};
 
-        return db.update(TABLE_NAME, values, where, whereArgs);
+        int i = db.update(TABLE_NAME, values, where, whereArgs);
+        close();
+        return i;
     }
 
     public int deleteUserClothes(UserClothes uc) {
         // suppression d'un enregistrement
         // valeur de retour : (int) nombre de lignes affectées par la clause WHERE, 0 sinon
 
+        open();
         String where = KEY_ID_USER_CLOTHES+" = ?";
         String[] whereArgs = {uc.getId_user_clothes()+""};
 
-        return db.delete(TABLE_NAME, where, whereArgs);
+        int i = db.delete(TABLE_NAME, where, whereArgs);
+        close();
+        return i;
     }
 
     public UserClothes getUserClothes(int id) {
         // Retourne l'animal dont l'id est passé en paramètre
 
+        open();
         UserClothes uc=new UserClothes();
 
         Cursor c = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+KEY_ID_USER_CLOTHES+"="+id, null);
@@ -116,21 +127,13 @@ public class UserClothesDBManager extends DBManager {
 
             uc.setId_user_clothes(c.getInt(c.getColumnIndex(KEY_ID_USER_CLOTHES)));
 
-            SMXL.getUserDBManager().open();
             uc.setUser(SMXL.getUserDBManager().getUser(c.getInt(c.getColumnIndex(KEY_ID_USER_USER_CLOTHES))));
-            SMXL.getUserDBManager().close();
 
-            SMXL.getGarmentTypeDBManager().open();
             uc.setGarmentType(SMXL.getGarmentTypeDBManager().getGarmentType(c.getInt(c.getColumnIndex(KEY_ID_GARMENT_TYPE_USER_CLOTHES))));
-            SMXL.getGarmentTypeDBManager().close();
 
-            SMXL.getBrandDBManager().open();
             uc.setBrand(SMXL.getBrandDBManager().getBrand(c.getInt(c.getColumnIndex(KEY_ID_BRAND_USER_CLOTHES))));
-            SMXL.getBrandDBManager().close();
 
-            uc.setCountry(c.getString(c.getColumnIndex(KEY_COUNTRY_USER_CLOTHES)));
             uc.setSize(c.getString(c.getColumnIndex(KEY_SIZE_USER_CLOTHES)));
-            uc.setComment(c.getString(c.getColumnIndex(KEY_COMMENT_USER_CLOTHES)));
 
             Gson gson = new Gson();
             //FIXME
@@ -139,15 +142,17 @@ public class UserClothesDBManager extends DBManager {
             c.close();
         }
 
+        close();
         return uc;
     }
-
+/*
     public Cursor getUserClothes() {
         // sélection de tous les enregistrements de la table
         return db.rawQuery("SELECT * FROM "+TABLE_NAME, null);
     }
-
+*/
     public ArrayList<UserClothes> getAllUserClothes(User user){
+        open();
         ArrayList<UserClothes> garments = new ArrayList<>();
         Cursor c;
         c = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+KEY_ID_USER_USER_CLOTHES+" = "+user.getId_user(), null);
@@ -157,17 +162,11 @@ public class UserClothesDBManager extends DBManager {
 
             uc.setId_user_clothes(c.getInt(c.getColumnIndex(KEY_ID_USER_CLOTHES)));
 
-            SMXL.getUserDBManager().open();
             uc.setUser(SMXL.getUserDBManager().getUser(c.getInt(c.getColumnIndex(KEY_ID_USER_USER_CLOTHES))));
-            SMXL.getUserDBManager().close();
 
-            SMXL.getGarmentTypeDBManager().open();
             uc.setGarmentType(SMXL.getGarmentTypeDBManager().getGarmentType(c.getInt(c.getColumnIndex(KEY_ID_GARMENT_TYPE_USER_CLOTHES))));
-            SMXL.getGarmentTypeDBManager().close();
 
-            SMXL.getBrandDBManager().open();
             uc.setBrand(SMXL.getBrandDBManager().getBrand(c.getInt(c.getColumnIndex(KEY_ID_BRAND_USER_CLOTHES))));
-            SMXL.getBrandDBManager().close();
 
             uc.setCountry(c.getString(c.getColumnIndex(KEY_COUNTRY_USER_CLOTHES)));
             uc.setSize(c.getString(c.getColumnIndex(KEY_SIZE_USER_CLOTHES)));
@@ -183,6 +182,46 @@ public class UserClothesDBManager extends DBManager {
         }
         c.close();
 
+        close();
+        return garments;
+    }
+
+    //TODO change garmentType into an actual GarmentType and not a fucking String
+    public ArrayList<UserClothes> getUserGarmentsByGarment(User user, CategoryGarment categoryGarment){
+        open();
+        ArrayList<UserClothes> garments = new ArrayList<>();
+
+        Cursor c;
+        c = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+KEY_ID_USER_USER_CLOTHES+" = "+user.getId_user()+" AND "+KEY_ID_GARMENT_TYPE_USER_CLOTHES+
+                " IN (SELECT "+ GarmentTypeDBManager.KEY_ID_GARMENT_TYPE+" FROM "+GarmentTypeDBManager.TABLE_NAME+
+                " WHERE "+GarmentTypeDBManager.KEY_ID_CATEGORY_GARMENT_GARMENT_TYPE+" = "+categoryGarment.getId_category_garment()+")", null);
+
+        boolean eof = c.moveToFirst();
+        while (eof) {
+            UserClothes uc = new UserClothes();
+
+            uc.setId_user_clothes(c.getInt(c.getColumnIndex(KEY_ID_USER_CLOTHES)));
+
+            uc.setUser(SMXL.getUserDBManager().getUser(c.getInt(c.getColumnIndex(KEY_ID_USER_USER_CLOTHES))));
+
+            uc.setGarmentType(SMXL.getGarmentTypeDBManager().getGarmentType(c.getInt(c.getColumnIndex(KEY_ID_GARMENT_TYPE_USER_CLOTHES))));
+
+            uc.setBrand(SMXL.getBrandDBManager().getBrand(c.getInt(c.getColumnIndex(KEY_ID_BRAND_USER_CLOTHES))));
+
+            uc.setCountry(c.getString(c.getColumnIndex(KEY_COUNTRY_USER_CLOTHES)));
+            uc.setSize(c.getString(c.getColumnIndex(KEY_SIZE_USER_CLOTHES)));
+            uc.setComment(c.getString(c.getColumnIndex(KEY_COMMENT_USER_CLOTHES)));
+
+            Gson gson = new Gson();
+            //FIXME
+            //uc.setSizes(gson.fromJson(c.getString(c.getColumnIndex(KEY_SIZES_USER_CLOTHES)), new TypeToken<ArrayList<TabSizes>>(){}.getType()));
+
+
+            garments.add(uc);
+            eof = c.moveToNext();
+        }
+        c.close();
+        close();
         return garments;
     }
 

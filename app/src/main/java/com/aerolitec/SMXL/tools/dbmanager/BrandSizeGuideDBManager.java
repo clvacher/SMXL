@@ -78,7 +78,7 @@ public class BrandSizeGuideDBManager extends DBManager{
 
     public long addBrandSizeGuide(BrandsSizeGuide bsg){
         // Ajout d'un enregistrement dans la table
-
+        open();
         ContentValues values = new ContentValues();
         values.put(KEY_ID_MARQUE_BRAND_SIZE_GUIDE, bsg.getBrand());
         values.put(KEY_ID_GARMENT_TYPE_SIZE_GUIDE, bsg.getGarmentType());
@@ -104,15 +104,16 @@ public class BrandSizeGuideDBManager extends DBManager{
         values.put(KEY_SIZE_SMXL_SIZE_GUIDE, bsg.getSizeSMXL());
         values.put(KEY_SIZE_SUITE_SIZE_GUIDE, bsg.getSizeSuite());
 
-
+        long i = db.insert(TABLE_NAME,null,values);
+        close();
         // insert() retourne l'id du nouvel enregistrement inséré, ou -1 en cas d'erreur
-        return db.insert(TABLE_NAME,null,values);
+        return i;
     }
 
     public int updateBrandSizeGuide(BrandsSizeGuide bsg) {
         // modification d'un enregistrement
         // valeur de retour : (int) nombre de lignes affectées par la requête
-
+        open();
         ContentValues values = new ContentValues();
         values.put(KEY_ID_MARQUE_BRAND_SIZE_GUIDE, bsg.getBrand());
         values.put(KEY_ID_GARMENT_TYPE_SIZE_GUIDE, bsg.getGarmentType());
@@ -140,22 +141,26 @@ public class BrandSizeGuideDBManager extends DBManager{
         String where = KEY_ID_BRAND_SIZE_GUIDE+" = ?";
         String[] whereArgs = {bsg.getId_brand_size_guide()+""};
 
-        return db.update(TABLE_NAME, values, where, whereArgs);
+        int i = db.update(TABLE_NAME, values, where, whereArgs);
+        close();
+        return i;
     }
 
     public int deleteBrandSizeGuide(BrandsSizeGuide bsg) {
         // suppression d'un enregistrement
         // valeur de retour : (int) nombre de lignes affectées par la clause WHERE, 0 sinon
-
+        open();
         String where = KEY_ID_BRAND_SIZE_GUIDE+" = ?";
         String[] whereArgs = {bsg.getId_brand_size_guide()+""};
 
-        return db.delete(TABLE_NAME, where, whereArgs);
+        int i = db.delete(TABLE_NAME, where, whereArgs);
+        close();
+        return i;
     }
 
     public BrandsSizeGuide getBrandSizeGuide(int id) {
         // Retourne l'animal dont l'id est passé en paramètre
-
+        open();
         BrandsSizeGuide bsg=new BrandsSizeGuide();
 
         Cursor c = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+KEY_ID_BRAND_SIZE_GUIDE+"="+id, null);
@@ -200,18 +205,19 @@ public class BrandSizeGuideDBManager extends DBManager{
 
             c.close();
         }
-
+        close();
         return bsg;
     }
 
-    public Cursor getBrandsSizeGuide() {
+/*    public Cursor getBrandsSizeGuide() {
         // sélection de tous les enregistrements de la table
         return db.rawQuery("SELECT * FROM "+TABLE_NAME, null);
-    }
+    }*/
+
 
 //    public ArrayList<BrandsSizeGuide> getAllGarmentsByBrand(Brand brand){
-
-    public ArrayList<BrandsSizeGuide> getAllGarmentsByBrand(Brand brand){
+    public ArrayList<BrandsSizeGuide> getAllGarmentsByBrand(String brand){
+        open();
         ArrayList<BrandsSizeGuide> garments = new ArrayList<BrandsSizeGuide>();
         Cursor c;
         //c = db.rawQuery("SELECT * FROM"+TABLE_NAME+" WHERE "+ KEY_ID_MARQUE_BRAND_SIZE_GUIDE +" = "+brand.getId_brand(), null);
@@ -263,12 +269,13 @@ public class BrandSizeGuideDBManager extends DBManager{
             eof = c.moveToNext();
         }
         c.close();
-
+        close();
         return garments;
     }
 
     //FIXME
     public ArrayList<BrandsSizeGuide> getAllBrandsByGarment(String garmentType){
+        open();
         ArrayList<BrandsSizeGuide> brands = new ArrayList<>();
         Cursor c;
         //TODO
@@ -318,6 +325,7 @@ public class BrandSizeGuideDBManager extends DBManager{
             eof = c.moveToNext();
         }
         c.close();
+        close();
         return brands;
     }
 

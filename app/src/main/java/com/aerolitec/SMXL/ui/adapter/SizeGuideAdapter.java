@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 public class SizeGuideAdapter extends FragmentStatePagerAdapter {
 
-    private static ArrayList<GarmentType> al_garments = SMXL.getDataBase().getGarmentsSizeGuide();
+    private static ArrayList<GarmentType> al_garments = SMXL.getSizeConvertDBManager().getGarmentsSizeGuideGroupBySexAndGarment();
     private static final int NUM_PAGES = al_garments.size();
 
 
@@ -36,10 +36,10 @@ public class SizeGuideAdapter extends FragmentStatePagerAdapter {
 
         */
         if(garment.getSex().contains("F") || garment.getSex().contains("H")){
-            al_size = SMXL.getDataBase().getConvertSizesByGarment(garment.getType(), garment.getSex());
+            al_size = SMXL.getSizeConvertDBManager().getConvertSizesByGarmentAndSex(garment.getType(), garment.getSex());
         }
         else{
-            al_size = SMXL.getDataBase().getConvertSizesByGarment(garment.getType());
+            al_size = SMXL.getSizeConvertDBManager().getConvertSizesByGarment(garment);
         }
 
         return new SizeGuideFragment().newInstance(garment, al_size);
