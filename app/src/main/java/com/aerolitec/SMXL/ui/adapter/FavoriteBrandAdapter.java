@@ -9,16 +9,17 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
+import com.aerolitec.SMXL.model.Brand;
 
 import java.util.ArrayList;
 
 
-public class FavoriteBrandAdapter extends ArrayAdapter<String> {
+public class FavoriteBrandAdapter extends ArrayAdapter<Brand> {
 
     private Context context;
 
-    public FavoriteBrandAdapter(Context context, ArrayList<String> brands){
-        super(context, 0 , brands);
+    public FavoriteBrandAdapter(Context context,int resource, ArrayList<Brand> brands){
+        super(context, resource , brands);
         this.context = context;
     }
 
@@ -36,9 +37,9 @@ public class FavoriteBrandAdapter extends ArrayAdapter<String> {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        String brand = getItem(position);
+        Brand brand = getItem(position);
 
-        holder.tvBrandName.setText(brand);
+        holder.tvBrandName.setText(brand.getBrand_name());
 
         return convertView;
     }

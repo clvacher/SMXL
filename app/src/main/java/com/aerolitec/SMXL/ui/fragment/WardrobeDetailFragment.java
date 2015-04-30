@@ -110,9 +110,7 @@ public class WardrobeDetailFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        if(user != null){
-            user=UserManager.get().getUser();
-        }
+        user=UserManager.get().getUser();
         updateClothesLists();
         updateClothesCounters();
     }

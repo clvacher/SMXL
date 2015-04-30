@@ -26,7 +26,7 @@
     <string name="libInseam">Leg height</string>
     <string name="libFoot">Foot height</string>
     <string name="changeMeasure">Enter the value</string>
-    <string name="libTaillePopup">Actually size</string>
+    <string name="libTaillePopup">Actually size</string><!--sapu-->
     <string name="libBoutonRetour">Back</string>
     <string name="shareDialogTitle">Share</string>
     <string name="shareDialogEmail">Mail</string>
@@ -88,7 +88,7 @@
 
     <string name="no_user">Create your profile !</string>
     <string name="notes">Notes</string>
-    <string name="buttonValidation">Next Step</string>
+    <string name="buttonNextStep">Next Step</string>
     <string name="size_guide">Size Guide</string>
     <string name="title_activity_size_guide">SizeGuideActivity</string>
     <string name="title_activity_select_brands">Select your favorite brands</string>
@@ -99,8 +99,8 @@
     <string name="tshirt_sweater">T-shirts</string>
     <string name="Pant_short">Pants/Shorts</string>
     <string name="Shirt_blouse">Shirts/Blouses</string>
-    <string name="Jacket">Jackets</string>
-    <string name="Coat">Coats</string>
+    <string name="Jacket">Jackets/Coats</string>
+    <string name="Vest">Vest</string>
     <string name="Shoes">Shoes</string>
     <string name="Sweater">Sweater/Hoodies</string>
     <string name="Underwear">Underwear</string>
@@ -109,6 +109,10 @@
     <string name="returnCreate">Press back again to cancel</string>
     <string name="newProfile1">Add</string>
     <string name="newProfile2">Profile</string>
+
+    <string name="man">Man</string>
+    <string name="woman">Woman</string>
+    <string name="years">years old</string>
 
 
 </resources>

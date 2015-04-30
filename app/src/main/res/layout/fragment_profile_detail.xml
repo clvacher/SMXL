@@ -113,7 +113,7 @@
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/textSizeIdentity"
                 android:hint="@string/addNote"
-                android:inputType="textCapSentences"
+                android:inputType="textCapSentences|textMultiLine"
                 android:background="@color/DefaultBackgroundColor"
                 android:layout_marginBottom="10dp"/>
 
@@ -218,103 +218,110 @@
         </LinearLayout-->
 
 <!--Brand-->
-        <RelativeLayout
-            android:id="@+id/layoutHeaderBrands"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clickable="true"
+            android:id="@+id/layoutBrand"
             android:layout_below="@+id/layoutRemarque"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
-
-            <TextView
-                android:id="@+id/collapseBrands"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:background="@android:color/transparent"
-                android:gravity="left"
-                android:text="@string/favorite_brands"
-                android:textColor="@color/SectionTitle"
-                android:textSize="@dimen/textSizeIdentity"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/collapseBrand"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/navigation_collapse" />
-
-        </RelativeLayout>
-
-
-        <LinearLayout
-            android:id="@+id/brandLayout"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp"
             android:background="@android:color/white"
             android:orientation="vertical"
-            android:layout_below="@+id/layoutHeaderBrands"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
-
-
-
-            <RelativeLayout
-                android:id="@+id/layoutAddBrand"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:paddingBottom="@dimen/listview_padding_horizontal"
-                android:paddingLeft="@dimen/listview_padding_horizontal"
-                android:paddingRight="@dimen/listview_padding_horizontal">
-
-                <TextView
-                    android:id="@+id/tvAddBrand"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:background="@android:color/transparent"
-                    android:gravity="left"
-                    android:paddingBottom="4dp"
-                    android:text="@string/manage_favorite_brands"
-                    android:textColor="@color/SectionTitle"
-                    android:textSize="@dimen/textSizeIdentity" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:text="+"
-                    android:textColor="@color/SectionTitle"
-                    android:textSize="@dimen/section_text_size"
-                    android:textStyle="bold" />
-
-            </RelativeLayout>
+            android:gravity="center_horizontal">
 
             <View
-                android:id="@+id/separator5"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:background="@color/separator" />
 
-            <LinearLayout
-                android:id="@+id/layoutViewBrand"
+            <RelativeLayout
+                android:id="@+id/layoutAddBrand"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/separator"
-                android:orientation="vertical">
+                android:clickable="true">
+                <ImageView
+                    android:layout_width="@dimen/garmentLogoSize"
+                    android:layout_height="@dimen/garmentLogoSize"
+                    android:id="@+id/trademarkLogo"
+                    android:padding="2dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:src="@drawable/groslogoinverse"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+                <FrameLayout
+                    android:layout_width="1dp"
+                    android:layout_height="40dp"
+                    android:background="@color/separator"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/trademarkLogo"
+                    android:layout_toEndOf="@id/trademarkLogo"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/textSizeIdentity"
+                    android:text="@string/favorite_brands"
+                    android:textColor="@color/SectionTitle"
+                    android:id="@+id/textView"
+                    android:layout_centerInParent="true" />
+                <TextView
+                    android:id="@+id/nbBrands"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    android:textColor="@color/SectionTitle"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/textView"
+                    android:layout_toEndOf="@id/textView"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/SectionTitle"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:id="@+id/textView11" />
+            </RelativeLayout>
 
+            <ListView
+                android:visibility="gone"
+                android:id="@+id/layoutViewBrand"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            </LinearLayout>
+            </ListView>
 
-
+            <RelativeLayout
+                android:id="@+id/layoutHeaderBrands"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/DefaultBackgroundColor">
+                <ImageView
+                    android:id="@+id/collapseBrand"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/expandLogoSize"
+                    android:src="@drawable/navigation_expand"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
         </LinearLayout>
+
+        <!-- Previous version -->
+
+
 
 <!--/Brand-->
 

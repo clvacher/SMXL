@@ -10,9 +10,12 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -37,32 +40,25 @@ public class ProfilesDetailFragment extends Fragment{
 
     // TODO: Rename and change types of parameters
     private static User user;
-    private TextView tvFirstName, tvLastName, tvAgeSexe;
+    private TextView tvFirstName, tvLastName, tvAgeSexe,nbBrands;
     private EditText etDescription;
-    private RelativeLayout addMeasure, addBrand;
+    private RelativeLayout addBrand;
     private RoundedImageView imgAvatar;
-    private LinearLayout layoutMeasure, layoutRemarque, layoutBrand;
     private RelativeLayout infosProfile;
-    //private EditText etDescriptionProfil;
+    private LinearLayout layoutRemarque;
 
+    ListView brandListView;
 
-    private RelativeLayout layoutHeaderMeasures, layoutHeaderBrands;
-    //int position;
+    private RelativeLayout layoutHeaderBrands;
 
-    //private ArrayList<Integer> indexSize;
     private ArrayList<Brand> userBrands;
 
-    //private ArrayList<MeasureItem> listMeasures;
-    private ArrayList<String> listBrandsItems;
-
-    //private MeasureAdapter adapterMeasure;
     private FavoriteBrandAdapter adapterBrand;
 
 
     // TODO: Rename and change types and number of parameters
     public static ProfilesDetailFragment newInstance(User param1, String param2) {
-        ProfilesDetailFragment fragment = new ProfilesDetailFragment();
-        return fragment;
+        return new ProfilesDetailFragment();
     }
 
     public ProfilesDetailFragment() {
@@ -78,12 +74,10 @@ public class ProfilesDetailFragment extends Fragment{
         user = UserManager.get().getUser();
         if(user==null)
             Log.d("TestOnCreate","user null");
-        Log.d("User", user.toString());
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_profile_detail, container, false);
 
@@ -91,102 +85,27 @@ public class ProfilesDetailFragment extends Fragment{
             getActivity().finish();
             return null;
         }
-/*
-        listMeasures = new ArrayList<>();
-        adapterMeasure = new MeasureAdapter(getActivity().getApplicationContext(), listMeasures);
-*/
-        listBrandsItems = new ArrayList<>();
-        ArrayList<Brand> brands = SMXL.getBrandDBManager().getAllBrands();
-        for (Brand b : brands){
-            listBrandsItems.add(b.getBrand_name());
-        }
-        adapterBrand = new FavoriteBrandAdapter(getActivity().getApplicationContext(), listBrandsItems);
-
 
         tvFirstName = (TextView) view.findViewById(R.id.tvFirstName);
         tvLastName = (TextView) view.findViewById(R.id.tvLastName);
         tvAgeSexe = (TextView) view.findViewById(R.id.tvAgeSexe);
-        layoutRemarque = (LinearLayout) view.findViewById(R.id.layoutRemarque);
-
-        //addMeasure = (RelativeLayout) view.findViewById(R.id.layoutAddMeasure);
-        addBrand = (RelativeLayout) view.findViewById(R.id.layoutAddBrand);
-/*
-        layoutHeaderMeasures = (RelativeLayout) view.findViewById(R.id.layoutHeaderMeasures);
-        layoutMeasure = (LinearLayout) view.findViewById(R.id.layoutViewMeasure);
-*/
-        layoutHeaderBrands = (RelativeLayout) view.findViewById(R.id.layoutHeaderBrands);
-        layoutBrand = (LinearLayout) view.findViewById(R.id.layoutViewBrand);
-
-
-        //indexSize = SMXL.getDataBase().getIndexMeasureNotNull(user);
         etDescription = (EditText) view.findViewById(R.id.description);
 
-/*
-        addMeasure.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), AddMeasureActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
-        layoutHeaderMeasures.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (layoutMeasure.getVisibility() == View.GONE) {
-                    layoutMeasure.setVisibility(View.VISIBLE);
-                    ImageView collapse = (ImageView) view.findViewById(R.id.collapseMeasure);
-                    collapse.setImageResource(R.drawable.navigation_collapse);
-                } else {
-                    layoutMeasure.setVisibility(View.GONE);
-                    ImageView collapse = (ImageView) view.findViewById(R.id.collapseMeasure);
-                    collapse.setImageResource(R.drawable.navigation_expand);
-                }
-            }
-        });*/
-
-        addBrand.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), SelectBrandsActivity.class);
-                //intent.putExtra("user_brands", user.getBrands());
-                startActivity(intent);
-            }
-        });
-
-
-
-
-        layoutHeaderBrands.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (layoutBrand.getVisibility() == View.GONE) {
-                    layoutBrand.setVisibility(View.VISIBLE);
-                    ImageView collapse = (ImageView) view.findViewById(R.id.collapseBrand);
-                    collapse.setImageResource(R.drawable.navigation_collapse);
-                } else {
-                    layoutBrand.setVisibility(View.GONE);
-                    ImageView collapse = (ImageView) view.findViewById(R.id.collapseBrand);
-                    collapse.setImageResource(R.drawable.navigation_expand);
-                }
-            }
-        });
 
         tvFirstName.setText(user.getFirstname());
         tvLastName.setText(user.getLastname());
         String profileDescription = user.getDescription();
-
         if (profileDescription.length()>0) {
             etDescription.setText(profileDescription);
         }
-        //tvTitle.setText(user.getLastname() + " " + user.getFirstname());
+
+        //TODO "H"
         int age = user.getAge(user.getBirthday());
-        String sexe = "Femme";
+        String sexe = getResources().getString(R.string.woman);
         if (user.getSexe().startsWith("H")) {
-            sexe = "Homme";
+            sexe = getResources().getString(R.string.man);
         }
-        tvAgeSexe.setText(age + " ans / " + sexe);
+        tvAgeSexe.setText(age +" "+getResources().getString(R.string.years)+ " / " + sexe);
 
 
         imgAvatar = (RoundedImageView) view.findViewById(R.id.imgAvatar);
@@ -199,19 +118,10 @@ public class ProfilesDetailFragment extends Fragment{
                     final BitmapFactory.Options options = new BitmapFactory.Options();
                     options.inJustDecodeBounds = true;
                     BitmapFactory.decodeFile(file.getAbsolutePath(), options);
-
-                    // Calculate inSampleSize
                     options.inSampleSize = ImageHelper.calculateInSampleSize(options, width, width);
-
-                    // Decode bitmap with inSampleSize set
                     options.inJustDecodeBounds = false;
                     imgAvatar.setImageBitmap(ImageHelper.getCorrectBitmap(BitmapFactory.decodeFile(file.getAbsolutePath(), options), file.getAbsolutePath()));
-/*                    Uri uri = Uri.fromFile(file);
-                    Picasso.with(getActivity())
-                            .load(file)
-                            .resize(width, width)
-                            .transform(new RoundedTransformation(width, 0))
-                            .into(imgAvatar);*/
+
                 }
             } catch (Exception e) {
                 Log.e(Constants.TAG, "Error converting Picture to File : " + e.getMessage());
@@ -235,182 +145,75 @@ public class ProfilesDetailFragment extends Fragment{
             }
         });
 
-        getActivity().getActionBar().setHomeButtonEnabled(true);
-        getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
+        addBrand = (RelativeLayout) view.findViewById(R.id.layoutAddBrand);
+        layoutHeaderBrands = (RelativeLayout) view.findViewById(R.id.layoutHeaderBrands);
+        brandListView = (ListView) view.findViewById(R.id.layoutViewBrand);
+        nbBrands=(TextView) view.findViewById(R.id.nbBrands);
+
+        addBrand.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), SelectBrandsActivity.class);
+                startActivity(intent);
+            }
+        });
+        layoutHeaderBrands.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ImageView collapse = (ImageView) view.findViewById(R.id.collapseBrand);
+                if (brandListView.getVisibility() == View.GONE) {
+                    fillListView(brandListView, userBrands);
+                    brandListView.setVisibility(View.VISIBLE);
+                    collapse.setImageResource(R.drawable.navigation_collapse);
+                } else {
+                    brandListView.setVisibility(View.GONE);
+                    collapse.setImageResource(R.drawable.navigation_expand);
+                }
+            }
+        });
 
         return view;
     }
 
-
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        //ArrayList<MeasureItem> localMeasure = null;
-        ArrayList<BrandItem> localBrand = null;
-
-/*
-        if (savedInstanceState != null) {
-            localMeasure = (ArrayList<MeasureItem>) savedInstanceState.getSerializable("measures");
-            localBrand =   (ArrayList<BrandItem>) savedInstanceState.getSerializable("brands");
-
-        }
-        if (localMeasure != null && localMeasure.size() > 0) {
-            listMeasures.clear();
-            listMeasures.addAll(localMeasure);
-            adapterMeasure.notifyDataSetChanged();
-        } else {
-            loadMeasures();
-        }*/
-
-
-
-        loadBrands();
-
-    }
-
-    private void updateUI() {
-        userBrands = SMXL.getUserBrandDBManager().getAllUserBrands(user);
-
-
-        //POUR LES MARQUES :
-        ((LinearLayout) getView().findViewById(R.id.layoutViewBrand)).removeAllViews();
-
-        for (int i = 0; i < userBrands.size(); i++) {
-            View viewToLoad = LayoutInflater.from(
-                    getActivity().getApplicationContext()).inflate(
-                    R.layout.brand_item, null);
-            View separator = LayoutInflater.from(
-                    getActivity().getApplicationContext()).inflate(
-                    R.layout.separator_list, null);
-
-
-            TextView item = (TextView) viewToLoad.findViewById(R.id.tvBrandName);
-
-            item.setText(userBrands.get(i).getBrand_name());
-
-            ((LinearLayout) getView().findViewById(R.id.layoutViewBrand))
-                    .addView(viewToLoad);
-            //Pas de separator pour le dernier item
-            if (i != userBrands.size() - 1) {
-                ((LinearLayout) getView().findViewById(R.id.layoutViewBrand))
-                        .addView(separator);
+    //Fills the listView with the ArrayList of UserClothes provided, using a GarmentAdapter
+    private void fillListView(ListView v,ArrayList<Brand> userBrandList){
+        FavoriteBrandAdapter adapter = new FavoriteBrandAdapter(this.getActivity(),R.layout.brand_item,userBrandList);
+        v.setAdapter(adapter);
+        v.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                //TODO a completer pour les details des marques (jerome)
             }
-        }
-
-
-        //PROFIL :
-        tvFirstName.setText(user.getFirstname());
-        tvLastName.setText(user.getLastname());
-        //tvTitle.setText(user.getLastname() + " " + user.getFirstname());
-        etDescription.setText(user.getDescription());
-
-        int age = user.getAge(user.getBirthday());
-        String sexe = "Femme";
-        if (user.getSexe().startsWith("H")) {
-            sexe = "Homme";
-        }
-        tvAgeSexe.setText(age + " ans / " + sexe);
-
-        String fnAvatar = user.getAvatar();
-        if (fnAvatar != null) {
-            int width = getPixelsFromDip(80, getActivity());
-            try {
-                File file = new File(fnAvatar);
-                if (file.exists()) {
-                    final BitmapFactory.Options options = new BitmapFactory.Options();
-                    options.inJustDecodeBounds = true;
-                    BitmapFactory.decodeFile(file.getAbsolutePath(), options);
-                    options.inSampleSize = ImageHelper.calculateInSampleSize(options, width, width);
-                    options.inJustDecodeBounds = false;
-                    imgAvatar.setImageBitmap(ImageHelper.getCorrectBitmap(BitmapFactory.decodeFile(file.getAbsolutePath(), options), file.getAbsolutePath()));
-                }
-            } catch (Exception e) {
-                Log.e(Constants.TAG, "Error converting Picture to File : " + e.getMessage());
-            }
-        }
+        });
+        setListViewHeightBasedOnChildren(v);
+        adapter.notifyDataSetChanged();
     }
 
-/*
-    public void loadMeasures() {
-        // load all the profiles from the database
+    //Allows the ListView to adapt to its content
+    private static void setListViewHeightBasedOnChildren(ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null)
+            return;
 
-        listMeasures.clear();
+        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.UNSPECIFIED);
+        int totalHeight = 0;
+        View view = null;
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            view = listAdapter.getView(i, view, listView);
+            if (i == 0)
+                view.setLayoutParams(new ViewGroup.LayoutParams(desiredWidth, ViewGroup.LayoutParams.WRAP_CONTENT));
 
-        // user : Récupérer les infos du User qui sont dans user
-        user = SMXL.get().getDataBase().getUserById(this.user.getId_user());
-        double coeff = 1D;
-        double coeffW = 1D;
-        if (user.getUnitLength() == Constants.INCH) {
-            coeff = Constants.inch;
+            view.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+            totalHeight += view.getMeasuredHeight();
         }
-        if (user.getUnitWeight() == Constants.POUNDS) {
-            coeffW = Constants.pounds;
-        }
-
-        if (user.getSize() > 0)
-            listMeasures.add(new MeasureItem(1, getResources().getString(R.string.libSize), user.getSize() / coeff));
-        if (user.getWeight() > 0)
-            listMeasures.add(new MeasureItem(2, getResources().getString(R.string.libWeight), user.getWeight() / coeffW));
-        if (user.getImc() > 0)
-            listMeasures.add(new MeasureItem(3, getResources().getString(R.string.libImc), user.getImc()));
-        if (user.getSexe().startsWith("F")) {
-            if (user.getBust() > 0) {
-                listMeasures.add(new MeasureItem(3, getResources().getString(R.string.libBust), user.getBust() / coeff));
-            }
-        } else if (user.getSexe().startsWith("H")) {
-            if (user.getChest() > 0) {
-                listMeasures.add(new MeasureItem(4, getResources().getString(R.string.libChest), user.getChest() / coeff));
-            }
-        }
-        if (user.getCollar() > 0)
-            listMeasures.add(new MeasureItem(5, getResources().getString(R.string.libCollar), user.getCollar() / coeff));
-        if (user.getWaist() > 0)
-            listMeasures.add(new MeasureItem(6, getResources().getString(R.string.libWaist), user.getWaist() / coeff));
-        if (user.getHips() > 0)
-            listMeasures.add(new MeasureItem(7, getResources().getString(R.string.libHips), user.getHips() / coeff));
-        if (user.getInseam() > 0)
-            listMeasures.add(new MeasureItem(8, getResources().getString(R.string.libInseam), user.getInseam() / coeff));
-        if (user.getSleeve() > 0)
-            listMeasures.add(new MeasureItem(9, getResources().getString(R.string.libSleeve), user.getSleeve() / coeff));
-        if (user.getFeet() > 0) {
-            listMeasures.add(new MeasureItem(10, getResources().getString(R.string.libFoot), user.getFeet() / coeff));
-            listMeasures.add(new MeasureItem(11, getResources().getString(R.string.ShoeSize), computePointure(user.getFeet())));
-        }
-        adapterMeasure.notifyDataSetChanged();
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
+        listView.requestLayout();
     }
-
-    public double computePointure(double sizeCm) {
-        double pointure = 0D;
-
-        if (sizeCm != 0) {
-            sizeCm += 1;
-            pointure = sizeCm * 1.5;
-            pointure = Math.round(pointure);
-        }
-        return pointure;
-    }
-*/
-
-
-    public void loadBrands() {
-        // user : Get all the user's favorite brands
-        listBrandsItems.clear();
-        userBrands = SMXL.getUserBrandDBManager().getAllUserBrands(user);
-        Log.d("loadBrands", userBrands.toString());
-        for (Brand b : userBrands) {
-            adapterBrand.add(b.getBrand_name());
-        }
-        adapterBrand.notifyDataSetChanged();
-    }
-
-
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        //outState.putSerializable("measures", listMeasures);
-        outState.putSerializable("brands", listBrandsItems);
-
         super.onSaveInstanceState(outState);
     }
 
@@ -435,9 +238,19 @@ public class ProfilesDetailFragment extends Fragment{
     @Override
     public void onResume() {
         super.onResume();
-        if (user != null) {
-            user=UserManager.get().getUser();
-            updateUI();
+        user=UserManager.get().getUser();
+
+        userBrands=SMXL.getUserBrandDBManager().getAllUserBrands(user);
+
+        //updates the number of brands
+        int tmp;
+        tmp=userBrands.size();
+        nbBrands.setText("("+tmp+")");
+        if(tmp==0){
+            layoutHeaderBrands.setVisibility(View.GONE);
+        }
+        else{
+            layoutHeaderBrands.setVisibility(View.VISIBLE);
         }
     }
 }

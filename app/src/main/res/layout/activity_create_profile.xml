@@ -194,7 +194,7 @@
     <Button
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="@string/buttonValidation"
+        android:text="@string/buttonNextStep"
         android:id="@+id/buttonValidation"
         android:layout_gravity="center_horizontal"
         android:onClick="onActionCreateProfile"

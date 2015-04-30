@@ -45,7 +45,7 @@
     <Button
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="@string/buttonValidation"
+        android:text="@string/validate"
         android:id="@+id/buttonValidationBrands"
         android:background="#E84E1B"
         android:padding="10dp"

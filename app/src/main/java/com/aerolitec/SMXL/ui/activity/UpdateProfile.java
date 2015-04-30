@@ -82,6 +82,9 @@ public class UpdateProfile extends SuperCreateUpdateProfileActivity{
         etFirstName.setText(user.getFirstname());
         etLastName.setText(user.getLastname());
 
+        ((Button)findViewById(R.id.buttonValidation)).setText(R.string.validate);
+
+
         if (user.getSexe().startsWith("H")){
             radioH.setChecked(true);
         }
@@ -135,45 +138,7 @@ public class UpdateProfile extends SuperCreateUpdateProfileActivity{
         int id = item.getItemId();
         if (id == R.id.validate) {
 
-        /// Add Profile in DataBase ///
-            if (etFirstName.getText().toString().length() < 2 ||
-                etLastName.getText().toString().length() < 2){
-                Toast.makeText(this,"Vous devez indiquer prénom et nom",Toast.LENGTH_LONG).show();
-            }
-            else {
-                String sexe = "F";
-                int idRadioButton = radioSexe.getCheckedRadioButtonId();
-                if (idRadioButton == -1){
-                    //no item selected
-                }
-                else{
-                    if (idRadioButton == R.id.radioMale){
-                        sexe = "H";
-                    }
-                }
-
-                user.setAvatar(picturePath);
-                user.setBirthday(birthday);
-                user.setFirstname(etFirstName.getText().toString());
-                user.setLastname(etLastName.getText().toString());
-
-                user.setNickname(etFirstName.getText().toString()+etLastName.getText().toString()+birthday);
-
-                Log.d("test Update",etNotes.getText().toString());
-                user.setDescription(etNotes.getText().toString());
-
-                user.setSexe(sexe);
-
-                try {
-                    SMXL.getUserDBManager().updateUser(user);
-                    UserManager.get().setUser(user);
-                    Log.d(Constants.TAG, "Profile updated "+UserManager.get().getUser().getDescription());
-                }
-                catch (Exception e) {
-                   Log.d(Constants.TAG,"Update user with error : " + e.getMessage());
-                }
-                finish();
-            }
+            onActionCreateProfile(null);
         }
 
         if( id == android.R.id.home) {
@@ -187,20 +152,15 @@ public class UpdateProfile extends SuperCreateUpdateProfileActivity{
 
 
         /// Add Profile in DataBase ///
-        if (etFirstName.getText().toString().length() < 2 ||
-                etLastName.getText().toString().length() < 2){
-            Toast.makeText(this,"Vous devez indiquer pseudo, prénom et nom",Toast.LENGTH_LONG).show();
+        if (etFirstName.getText().toString().length() < 1 ||
+                etLastName.getText().toString().length() < 1){
+            Toast.makeText(this,getResources().getText(R.string.incompleteProfile),Toast.LENGTH_LONG).show();
         }
         else {
             String sexe = "F";
             int idRadioButton = radioSexe.getCheckedRadioButtonId();
-            if (idRadioButton == -1){
-                //no item selected
-            }
-            else{
-                if (idRadioButton == R.id.radioMale){
-                    sexe = "H";
-                }
+            if (idRadioButton == R.id.radioMale){
+                sexe = "H";
             }
 
             user.setAvatar(picturePath);
@@ -228,10 +188,4 @@ public class UpdateProfile extends SuperCreateUpdateProfileActivity{
         i.setType("image/*");
         startActivityForResult(i,77);
     }
-
-
-
-
-
-
 }

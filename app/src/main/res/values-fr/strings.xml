@@ -80,7 +80,7 @@
 
     <string name="no_user">Créez votre profil !</string>
     <string name="notes">Notes</string>
-    <string name="buttonValidation">Etape Suivante</string>
+    <string name="buttonNextStep">Etape Suivante</string>
     <string name="size_guide">Guides des tailles</string>
     <string name="title_activity_size_guide">SizeGuideActivity</string>
     <string name="title_activity_select_brands">Sélectionnez vos marques favorites</string>
@@ -92,7 +92,7 @@
     <string name="Pant_short">Pantalons/Shorts</string>
     <string name="Shirt_blouse">Chemises/Blouses</string>
     <string name="jacket">Blousons</string>
-    <string name="Coat">Manteaux</string>
+    <string name="Vest">Manteaux</string>
     <string name="Shoes">Chaussures</string>
     <string name="Sweater">Pulls/Sweats</string>
     <string name="Underwear">Sous-Vêtements</string>
@@ -103,5 +103,9 @@
     <string name="returnCreate">Rappuyez pour annuler</string>
     <string name="newProfile1">Nouveau</string>
     <string name="newProfile2">Profil</string>
+
+    <string name="man">Homme</string>
+    <string name="woman">Femme</string>
+    <string name="years">ans</string>
 
 </resources>
