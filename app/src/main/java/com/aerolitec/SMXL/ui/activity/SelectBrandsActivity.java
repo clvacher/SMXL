@@ -62,7 +62,6 @@ public class SelectBrandsActivity extends Activity {
         gridViewBrands = (GridView) this.findViewById(R.id.gridViewBrands);
 
         brands = SMXL.getBrandDBManager().getAllBrands();
-        Log.d("All Brands", brands.toString());
 
         gridViewBrandsAdapter = new FavoriteCheckableBrandAdapter(this, brands, userBrands);
         gridViewBrands.setAdapter(gridViewBrandsAdapter);
@@ -75,8 +74,6 @@ public class SelectBrandsActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long mylng) {
                 Brand selectedBrand = (Brand) gridViewBrandsAdapter.getItem(position);
-
-                Log.d("clicklistener", selectedBrand.toString());
 
                 brandsSelected.add(selectedBrand);
 
@@ -110,7 +107,6 @@ public class SelectBrandsActivity extends Activity {
         //Log.d("isempty", Boolean.toString(gridViewBrandsAdapter.isEmpty()));
         //Log.d("viewtypecount", Integer.toString(gridViewBrandsAdapter.getViewTypeCount()));
 
-        Log.d("pre selected", brandUser.toString());
         for(Brand b : brandUser) {
             gridViewBrands.setItemChecked(brands.indexOf(b), true);
         }
@@ -123,11 +119,8 @@ public class SelectBrandsActivity extends Activity {
 
     public void onClickAddBrandsUser(View view){
 
-        Log.d("userbrandsbeforeremove", SMXL.getUserBrandDBManager().getAllUserBrands(user).toString());
         SMXL.getUserBrandDBManager().deleteUserBrand(user);
-        Log.d("userbrandsafter", SMXL.getUserBrandDBManager().getAllUserBrands(user).toString());
 
-        Log.d("addClick", brandsSelected.toString());
         for(Brand b : brandsSelected){
                 SMXL.getUserBrandDBManager().addUserBrand(user, b);
         }

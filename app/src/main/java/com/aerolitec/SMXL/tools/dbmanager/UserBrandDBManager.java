@@ -48,9 +48,8 @@ public class UserBrandDBManager extends DBManager {
         values.put(KEY_ID_USER, user.getId_user());
         values.put(KEY_ID_BRAND, brand.getId_brand());
 
-        Log.d("addUserBrand", values.toString());
         long i = db.insert(TABLE_NAME, null, values);
-        Log.d("addUserBrand2", SMXL.getUserBrandDBManager().getAllUserBrands(user).toString());
+
         close();
         // insert() retourne l'id du nouvel enregistrement inséré, ou -1 en cas d'erreur
         return i;
@@ -139,7 +138,7 @@ public class UserBrandDBManager extends DBManager {
     public ArrayList<Brand> getAllUserBrands(User user){
         open();
         ArrayList<Brand> brands = new ArrayList<>();
-        Log.d("getAllUserBrands User",user.toString());
+        //Log.d("getAllUserBrands User",user.toString());
         Cursor c = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+KEY_ID_USER+" = '"+user.getId_user()+"'", null);
         boolean eof = c.moveToFirst();
         while (eof) {
@@ -150,7 +149,7 @@ public class UserBrandDBManager extends DBManager {
         c.close();
 
         close();
-        Log.d("getAllUserBrands", brands.toString());
+        //Log.d("getAllUserBrands", brands.toString());
         return brands;
     }
 } // class UserBrandDBManager

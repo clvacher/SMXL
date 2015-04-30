@@ -101,7 +101,7 @@ public class BrandDBManager extends DBManager{
     public ArrayList<Brand> getAllBrands(){
         open();
         ArrayList<Brand> brands = new ArrayList<>();
-            Cursor c = db.rawQuery("SELECT * FROM "+TABLE_NAME, null);
+            Cursor c = db.rawQuery("SELECT * FROM "+TABLE_NAME +" ORDER BY "+KEY_NOM_BRAND, null);
             boolean eof = c.moveToFirst();
             while (eof) {
                 Brand b = new Brand();
