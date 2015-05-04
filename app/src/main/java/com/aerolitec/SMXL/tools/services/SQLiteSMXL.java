@@ -34,7 +34,7 @@ import java.util.ArrayList;
 public class SQLiteSMXL extends SQLiteOpenHelper{
 
     public static final String DATABASE_NAME = "SMXL_DATABASE.sqlite";
-    public static final int DATABASE_VERSION = 7;
+    public static final int DATABASE_VERSION = 8;
     private String DATABASE_PATH;
     private static final String FILE_CHARSET = "UTF-8";
     private Context context;

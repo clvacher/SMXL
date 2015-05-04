@@ -7,6 +7,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.TextView;
@@ -21,33 +22,13 @@ import java.util.ArrayList;
 /**
  * Created by Jerome on 17/04/2015.
  */
-public class FavoriteCheckableBrandAdapter extends BaseAdapter {
+public class FavoriteCheckableBrandAdapter extends ArrayAdapter<Brand> {
 
-    private Activity mContext;
-    private ArrayList<Brand> brands;
-    private ArrayList<Brand> alreadyCheckedBrands;
+    private Context mContext;
 
-
-
-    public FavoriteCheckableBrandAdapter(Activity context, ArrayList<Brand> brands, ArrayList<Brand> alreadyCheckedBrands) {
+    public FavoriteCheckableBrandAdapter(Activity context, int resource, ArrayList<Brand> brands) {
+        super(context, resource, brands);
         mContext = context;
-        this.brands = brands;
-        this.alreadyCheckedBrands = alreadyCheckedBrands;
-    }
-
-    @Override
-    public int getCount() {
-        return brands.size();
-    }
-
-    @Override
-    public Object getItem(int position) {
-        return brands.get(position);
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
     }
 
     @Override
@@ -56,7 +37,7 @@ public class FavoriteCheckableBrandAdapter extends BaseAdapter {
         CheckableBrandLayout l;
 
         if (convertView == null) {
-            l = new CheckableBrandLayout(mContext, brands.get(position));
+            l = new CheckableBrandLayout(mContext, this.getItem(position));
 
             l.setLayoutParams(new GridView.LayoutParams(
                     GridView.LayoutParams.MATCH_PARENT,
@@ -64,9 +45,9 @@ public class FavoriteCheckableBrandAdapter extends BaseAdapter {
 
         } else {
             l = (CheckableBrandLayout) convertView;
+            l.setBrand(this.getItem(position));
         }
 
-        //Log.d("L est", ""+l.getBrandName()+" "+l.isChecked());
         return l;
     }
 }

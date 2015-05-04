@@ -141,7 +141,7 @@ public class SizeConvertDBManager extends DBManager {
     public ArrayList<GarmentType> getGarmentsSizeGuideGroupBySexAndGarment(){
         open();
         ArrayList<GarmentType> garments = new ArrayList<GarmentType>();
-        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_NAME + " GROUP BY " + KEY_SEX_SIZE_CONVERT + "," + KEY_GARMENT_SIZE_CONVERT, null);
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_NAME + " GROUP BY " + KEY_SEX_SIZE_CONVERT + "," + KEY_GARMENT_SIZE_CONVERT + " ORDER BY " + KEY_GARMENT_SIZE_CONVERT, null);
 
         boolean eof = c.moveToFirst();
         while (eof) {
@@ -150,7 +150,7 @@ public class SizeConvertDBManager extends DBManager {
 
             gt.setId_garment_type(c.getInt(c.getColumnIndex(KEY_ID_SIZE_CONVERT)));
             gt.setType(c.getString(c.getColumnIndex(KEY_GARMENT_SIZE_CONVERT)));
-            gt.setSex(c.getString(c.getColumnIndex(KEY_SMXL_SIZE_CONVERT)));
+            gt.setSex(c.getString(c.getColumnIndex(KEY_SEX_SIZE_CONVERT)));
 
             garments.add(gt);
             eof = c.moveToNext();
@@ -164,24 +164,26 @@ public class SizeConvertDBManager extends DBManager {
     public ArrayList<SizeConvert> getConvertSizesByGarment(GarmentType garment){
         open();
         ArrayList<SizeConvert> sizes = new ArrayList<SizeConvert>();
-            Cursor c;
-            c = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE UPPER("+KEY_GARMENT_SIZE_CONVERT+") LIKE UPPER('"+garment.getType()+"')", null);
-            for(boolean eof = c.moveToFirst(); eof; eof=c.moveToNext())
-            {
-                SizeConvert sc = new SizeConvert();
-                sc.setId_size_convert(c.getInt(c.getColumnIndex(KEY_ID_SIZE_CONVERT)));
-                sc.setGarment(c.getString(c.getColumnIndex(KEY_GARMENT_SIZE_CONVERT)));
-                sc.setSex(c.getString(c.getColumnIndex(KEY_SEX_SIZE_CONVERT)));
-                sc.setValueUS(c.getString(c.getColumnIndex(KEY_US_SIZE_CONVERT)));
-                sc.setValueUK(c.getString(c.getColumnIndex(KEY_UK_SIZE_CONVERT)));
-                sc.setValueUE(c.getString(c.getColumnIndex(KEY_UE_SIZE_CONVERT)));
-                sc.setValueFR(c.getString(c.getColumnIndex(KEY_FR_SIZE_CONVERT)));
-                sc.setValueITA(c.getString(c.getColumnIndex(KEY_ITA_SIZE_CONVERT)));
-                sc.setValueJAP(c.getString(c.getColumnIndex(KEY_JAP_SIZE_CONVERT)));
-                sc.setValueSMXL(c.getString(c.getColumnIndex(KEY_SMXL_SIZE_CONVERT)));
-                sizes.add(sc);
-            }
-            c.close();
+        Cursor c;
+        c = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE UPPER("+KEY_GARMENT_SIZE_CONVERT+") LIKE UPPER('"+garment.getType()+"')", null);
+        boolean eof = c.moveToFirst();
+        while(eof)
+        {
+            SizeConvert sc = new SizeConvert();
+            sc.setId_size_convert(c.getInt(c.getColumnIndex(KEY_ID_SIZE_CONVERT)));
+            sc.setGarment(c.getString(c.getColumnIndex(KEY_GARMENT_SIZE_CONVERT)));
+            sc.setSex(c.getString(c.getColumnIndex(KEY_SEX_SIZE_CONVERT)));
+            sc.setValueUS(c.getString(c.getColumnIndex(KEY_US_SIZE_CONVERT)));
+            sc.setValueUK(c.getString(c.getColumnIndex(KEY_UK_SIZE_CONVERT)));
+            sc.setValueUE(c.getString(c.getColumnIndex(KEY_UE_SIZE_CONVERT)));
+            sc.setValueFR(c.getString(c.getColumnIndex(KEY_FR_SIZE_CONVERT)));
+            sc.setValueITA(c.getString(c.getColumnIndex(KEY_ITA_SIZE_CONVERT)));
+            sc.setValueJAP(c.getString(c.getColumnIndex(KEY_JAP_SIZE_CONVERT)));
+            sc.setValueSMXL(c.getString(c.getColumnIndex(KEY_SMXL_SIZE_CONVERT)));
+            sizes.add(sc);
+            eof = c.moveToNext();
+        }
+        c.close();
 
         close();
         return sizes;
@@ -191,31 +193,32 @@ public class SizeConvertDBManager extends DBManager {
     {
         open();
         ArrayList sizes = new ArrayList();
-        if (sex.length() > 1) {}
-        for (String str = sex.substring(0, 1);; str = sex)
-        {
-                Cursor c;
-                c = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE UPPER("+KEY_GARMENT_SIZE_CONVERT+") LIKE UPPER("+garment+") AND UPPER("+KEY_SEX_SIZE_CONVERT+") LIKE UPPER("+sex+")", null);
-                for (boolean bool = c.moveToFirst(); bool; bool = c.moveToNext())
-                {
-                    SizeConvert sc = new SizeConvert();
-                    sc.setId_size_convert(c.getInt(c.getColumnIndex(KEY_ID_SIZE_CONVERT)));
-                    sc.setGarment(c.getString(c.getColumnIndex(KEY_GARMENT_SIZE_CONVERT)));
-                    sc.setSex(c.getString(c.getColumnIndex(KEY_SEX_SIZE_CONVERT)));
-                    sc.setValueUS(c.getString(c.getColumnIndex(KEY_US_SIZE_CONVERT)));
-                    sc.setValueUK(c.getString(c.getColumnIndex(KEY_UK_SIZE_CONVERT)));
-                    sc.setValueUE(c.getString(c.getColumnIndex(KEY_UE_SIZE_CONVERT)));
-                    sc.setValueFR(c.getString(c.getColumnIndex(KEY_FR_SIZE_CONVERT)));
-                    sc.setValueITA(c.getString(c.getColumnIndex(KEY_ITA_SIZE_CONVERT)));
-                    sc.setValueJAP(c.getString(c.getColumnIndex(KEY_JAP_SIZE_CONVERT)));
-                    sc.setValueSMXL(c.getString(c.getColumnIndex(KEY_SMXL_SIZE_CONVERT)));
-                    sizes.add(sc);
-                }
-                c.close();
+        Cursor c;
+        c = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE UPPER("+KEY_GARMENT_SIZE_CONVERT+") LIKE UPPER('"+garment+"') AND UPPER("+KEY_SEX_SIZE_CONVERT+") LIKE UPPER('"+sex+"')", null);
 
-            close();
-            return sizes;
+        boolean eof = c.moveToFirst();
+        while(eof)
+        {
+            SizeConvert sc = new SizeConvert();
+            sc.setId_size_convert(c.getInt(c.getColumnIndex(KEY_ID_SIZE_CONVERT)));
+            sc.setGarment(c.getString(c.getColumnIndex(KEY_GARMENT_SIZE_CONVERT)));
+            sc.setSex(c.getString(c.getColumnIndex(KEY_SEX_SIZE_CONVERT)));
+            sc.setValueUS(c.getString(c.getColumnIndex(KEY_US_SIZE_CONVERT)));
+            sc.setValueUK(c.getString(c.getColumnIndex(KEY_UK_SIZE_CONVERT)));
+            sc.setValueUE(c.getString(c.getColumnIndex(KEY_UE_SIZE_CONVERT)));
+            sc.setValueFR(c.getString(c.getColumnIndex(KEY_FR_SIZE_CONVERT)));
+            sc.setValueITA(c.getString(c.getColumnIndex(KEY_ITA_SIZE_CONVERT)));
+            sc.setValueJAP(c.getString(c.getColumnIndex(KEY_JAP_SIZE_CONVERT)));
+            sc.setValueSMXL(c.getString(c.getColumnIndex(KEY_SMXL_SIZE_CONVERT)));
+            sizes.add(sc);
+
+            eof = c.moveToNext();
         }
+        c.close();
+
+        close();
+        return sizes;
+
     }
 
 

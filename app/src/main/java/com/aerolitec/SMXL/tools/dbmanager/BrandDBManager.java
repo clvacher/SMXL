@@ -22,12 +22,15 @@ public class BrandDBManager extends DBManager{
     public static final String KEY_ID_BRAND="id_brand";
     public static final String KEY_NOM_BRAND="brand_name";
     public static final String KEY_WEBSITE_BRAND="brand_website";
+    public static final String KEY_CATEGORY_BRAND="brand_category";
+
 
     public static final String CREATE_TABLE_BRAND = "CREATE TABLE "+TABLE_NAME+
             " (" +
             " "+KEY_ID_BRAND+" INTEGER PRIMARY KEY AUTOINCREMENT," +
             " "+KEY_NOM_BRAND+" TEXT" +
             " "+KEY_WEBSITE_BRAND+" TEXT" +
+            " "+KEY_CATEGORY_BRAND+" TEXT" +
             ");";
 
     // Constructeur
@@ -44,6 +47,8 @@ public class BrandDBManager extends DBManager{
 
         ContentValues values = new ContentValues();
         values.put(KEY_NOM_BRAND, brand.getBrand_name());
+        values.put(KEY_CATEGORY_BRAND, brand.getBrand_category());
+
 
         // insert() retourne l'id du nouvel enregistrement inséré, ou -1 en cas d'erreur
         long i = db.insert(TABLE_NAME,null,values);
@@ -57,6 +62,7 @@ public class BrandDBManager extends DBManager{
         open();
         ContentValues values = new ContentValues();
         values.put(KEY_NOM_BRAND, brand.getBrand_name());
+        values.put(KEY_CATEGORY_BRAND, brand.getBrand_category());
 
         String where = KEY_ID_BRAND+" = ?";
         String[] whereArgs = {brand.getId_brand()+""};
@@ -87,6 +93,7 @@ public class BrandDBManager extends DBManager{
         if (c.moveToFirst()) {
             b.setId_brand(c.getInt(c.getColumnIndex(KEY_ID_BRAND)));
             b.setBrand_name(c.getString(c.getColumnIndex(KEY_NOM_BRAND)));
+            b.setBrand_category(c.getString(c.getColumnIndex(KEY_CATEGORY_BRAND)));
             c.close();
         }
         close();
@@ -107,6 +114,7 @@ public class BrandDBManager extends DBManager{
                 Brand b = new Brand();
                 b.setId_brand(c.getInt(c.getColumnIndex(KEY_ID_BRAND)));
                 b.setBrand_name(c.getString(c.getColumnIndex(KEY_NOM_BRAND)));
+                b.setBrand_category(c.getString(c.getColumnIndex(KEY_CATEGORY_BRAND)));
 
                 brands.add(b);
                 eof = c.moveToNext();

@@ -6,11 +6,9 @@ import java.io.Serializable;
 public class BrandsSizeGuide implements Serializable{
 
     int id_brand_size_guide;
-    //Brand brand;
-    String brand;
+    Brand brand;
     //GarmentType garmentType;
     String garmentType;
-    String category;
     String sex;
 
     Double bust;
@@ -38,10 +36,9 @@ public class BrandsSizeGuide implements Serializable{
 
     public BrandsSizeGuide() {}
 
-    public BrandsSizeGuide(String paramString1, String paramString2, String paramString3, String paramString4, Double paramDouble1, Double paramDouble2, Double paramDouble3, Double paramDouble4, Double paramDouble5, Double paramDouble6, Double paramDouble7, Double paramDouble8, Double paramDouble9, Double paramDouble10, Double paramDouble11, Double paramDouble12, Double paramDouble13, String paramString5, String paramString6, String paramString7, String paramString8, String paramString9, String paramString10)
+    public BrandsSizeGuide(String paramString1, Brand paramString3, String paramString4, Double paramDouble1, Double paramDouble2, Double paramDouble3, Double paramDouble4, Double paramDouble5, Double paramDouble6, Double paramDouble7, Double paramDouble8, Double paramDouble9, Double paramDouble10, Double paramDouble11, Double paramDouble12, Double paramDouble13, String paramString5, String paramString6, String paramString7, String paramString8, String paramString9, String paramString10)
     {
         this.garmentType = paramString1;
-        this.category = paramString2;
         this.brand = paramString3;
         this.sex = paramString4;
         this.collar = paramDouble1;
@@ -71,7 +68,6 @@ public class BrandsSizeGuide implements Serializable{
                 "id_brand_size_guide=" + id_brand_size_guide +
                 ", brand='" + brand + '\'' +
                 ", garmentTypr='" + garmentType + '\'' +
-                ", category='" + category + '\'' +
                 ", sex='" + sex + '\'' +
                 ", bust=" + bust +
                 ", collar=" + collar +
@@ -103,11 +99,11 @@ public class BrandsSizeGuide implements Serializable{
         this.id_brand_size_guide = id_brand_size_guide;
     }
 
-    public String getBrand() {
+    public Brand getBrand() {
         return brand;
     }
 
-    public void setBrand(String brand) {
+    public void setBrand(Brand brand) {
         this.brand = brand;
     }
 
@@ -117,14 +113,6 @@ public class BrandsSizeGuide implements Serializable{
 
     public void setGarmentType(String garmentType) {
         this.garmentType = garmentType;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
     }
 
     public String getSex() {

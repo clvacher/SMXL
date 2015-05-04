@@ -42,9 +42,7 @@ public class ProfilActivity extends FragmentActivity implements OnProfileSelecte
 
         getActionBar().setDisplayShowTitleEnabled(false);
 
-        SQLiteSMXL db = SMXL.getDataBase();
-        db.getWritableDatabase();
-        db.close();
+
         user = SMXL.get().getUser();
 
         if (savedInstanceState == null) {

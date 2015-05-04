@@ -9,6 +9,7 @@ public class Brand implements Serializable {
     int id_brand;
     String brand_name;
     String brand_website;
+    String brand_category;
 
     public Brand() {}
 
@@ -51,12 +52,21 @@ public class Brand implements Serializable {
         this.brand_website = brand_website;
     }
 
+    public String getBrand_category() {
+        return brand_category;
+    }
+
+    public void setBrand_category(String brand_category) {
+        this.brand_category = brand_category;
+    }
+
     @Override
     public String toString() {
         return "Brand{" +
                 "id_brand=" + id_brand +
                 ", brand_name='" + brand_name + '\'' +
                 ", brand_website='" + brand_website + '\'' +
+                ", brand_category='" + brand_category + '\'' +
                 '}';
     }
 }

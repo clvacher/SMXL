@@ -41,6 +41,7 @@ public class SizeGuideAdapter extends FragmentStatePagerAdapter {
         else{
             al_size = SMXL.getSizeConvertDBManager().getConvertSizesByGarment(garment);
         }
+        Log.d("GARMENT",garment.toString());
 
         return new SizeGuideFragment().newInstance(garment, al_size);
     }

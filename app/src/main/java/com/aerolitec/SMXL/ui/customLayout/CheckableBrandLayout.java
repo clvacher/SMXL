@@ -83,4 +83,10 @@ public class CheckableBrandLayout extends LinearLayout implements Checkable {
                 '}';
     }
 
+    public void setBrand(Brand brand) {
+        this.brand = brand;
+        textView.clearComposingText();
+        textView.setText(this.brand.getBrand_name());
+    }
+
 }

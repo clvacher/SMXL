@@ -55,15 +55,16 @@ public class SelectBrandsActivity extends Activity {
 
         setContentView(R.layout.activity_select_brands);
 
+        getActionBar().setTitle(" ");
         getActionBar().setHomeButtonEnabled(true);
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setDisplayShowTitleEnabled(false);
+        getActionBar().setDisplayShowTitleEnabled(true);
 
         gridViewBrands = (GridView) this.findViewById(R.id.gridViewBrands);
 
         brands = SMXL.getBrandDBManager().getAllBrands();
 
-        gridViewBrandsAdapter = new FavoriteCheckableBrandAdapter(this, brands, userBrands);
+        gridViewBrandsAdapter = new FavoriteCheckableBrandAdapter(this, R.layout.item_favorite_brand, brands);
         gridViewBrands.setAdapter(gridViewBrandsAdapter);
 
         gridViewBrands.setChoiceMode(GridView.CHOICE_MODE_MULTIPLE);
@@ -101,7 +102,7 @@ public class SelectBrandsActivity extends Activity {
 
         ArrayList<Brand> brandUser = user.getBrands();
 
-        gridViewBrandsAdapter = new FavoriteCheckableBrandAdapter(this, brands, brandUser);
+        gridViewBrandsAdapter = new FavoriteCheckableBrandAdapter(this, R.layout.item_favorite_brand, brands);
         gridViewBrands.setAdapter(gridViewBrandsAdapter);
 
         //Log.d("isempty", Boolean.toString(gridViewBrandsAdapter.isEmpty()));
@@ -139,6 +140,7 @@ public class SelectBrandsActivity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_select_brands, menu);
+
         return true;
     }
 
@@ -149,9 +151,8 @@ public class SelectBrandsActivity extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == android.R.id.home){
+            finish();
         }
 
         return super.onOptionsItemSelected(item);

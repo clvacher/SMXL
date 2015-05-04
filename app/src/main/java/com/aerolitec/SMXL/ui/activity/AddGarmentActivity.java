@@ -319,7 +319,7 @@ public class AddGarmentActivity extends Activity {
 
             ArrayList<BrandsSizeGuide> brands = SMXL.getBrandSizeGuideDBManager().getAllBrandsByGarment(recherche);
             for (BrandsSizeGuide b : brands){
-                brandItems.add(b.getBrand());
+                brandItems.add(b.getBrand().getBrand_name());
             }
         }
     }
