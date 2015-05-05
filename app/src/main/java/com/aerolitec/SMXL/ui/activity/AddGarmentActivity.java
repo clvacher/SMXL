@@ -138,10 +138,11 @@ public class AddGarmentActivity extends Activity {
 
             gridViewCategories.setAdapter(adapterCategory);
 
+            //TODO
             gridViewCategories.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                    //selectedGarment.setCategoryGarment();
+                    selectedCategory=(CategoryGarment)adapterView.getItemAtPosition(position);
                     Fragment fragment = new SelectGarmentFragment();
                     getFragmentManager().beginTransaction()
                             .replace(R.id.container, fragment, "garment")
@@ -173,11 +174,16 @@ public class AddGarmentActivity extends Activity {
             super.onViewCreated(view, savedInstanceState);
 
             listViewGarments = (ListView) view.findViewById(R.id.listViewGarments);
-            imageChooseGarment = (ImageView) view.findViewById(R.id.imageChooseGarment);
 
-            imageChooseGarment.setImageResource(selectedGarment.getCategoryGarment().getIcon());
+            /*CategoryGarment tmpcat=selectedGarment.getCategoryGarment();
+            Log.d("test category Value",tmpcat+"");
+            int tmp = tmpcat.getIcon();
+            Log.d("test icon Value",tmp+"");*/
 
-            garmentItems = new ArrayList<>();
+
+            imageChooseGarment.setImageResource(selectedCategory.getIcon());
+
+            garmentItems = new ArrayList<String>();
 
             getGarmentsFromCategory();
 
@@ -187,8 +193,8 @@ public class AddGarmentActivity extends Activity {
             listViewGarments.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                    //FIXME
-                    selectedCategory = selectedGarment.getCategoryGarment();
+                    //TODO
+                    selectedGarment = (GarmentType)adapterView.getItemAtPosition(position);
                     getFragmentManager().beginTransaction()
                             .replace(R.id.container, new SelectBrandFragment(), "brand")
                             .addToBackStack(null)
@@ -213,7 +219,7 @@ public class AddGarmentActivity extends Activity {
 
         //TODO CHANGE THIS FUCKING MESS
         private void getGarmentsFromCategory() {
-            switch (selectedGarment.getCategoryGarment().getId_category_garment()) {
+            switch (selectedCategory.getId_category_garment()) {
                 case 1:
                     garmentItems.add("Robe");
                     garmentItems.add("Jupe");

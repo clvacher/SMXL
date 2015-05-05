@@ -1,10 +1,8 @@
 package com.aerolitec.SMXL.ui.fragment;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.util.Log;
@@ -23,12 +21,9 @@ import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.ImageHelper;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
-import com.aerolitec.SMXL.ui.activity.AddGarmentActivity;
 import com.aerolitec.SMXL.ui.activity.AddMeasureActivity;
-import com.aerolitec.SMXL.ui.adapter.GarmentAdapter;
 import com.aerolitec.SMXL.ui.adapter.MeasureAdapter;
 import com.aerolitec.SMXL.ui.adapter.MeasureItem;
-import com.makeramen.RoundedImageView;
 
 import java.io.File;
 import java.util.ArrayList;

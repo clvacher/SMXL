@@ -97,6 +97,8 @@
     <string name="Sweater">Pulls/Sweats</string>
     <string name="Underwear">Sous-Vêtements</string>
     <string name="Suit">Costumes</string>
+    <string name="garment">Vêtement</string>
+    <string name="brand">Marque</string>
 
     <string name="remarque">Remarques</string>
 

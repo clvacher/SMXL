@@ -18,14 +18,17 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
+import com.aerolitec.SMXL.model.CategoryGarment;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.model.UserClothes;
 import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.ImageHelper;
+import com.aerolitec.SMXL.tools.dbmanager.DBManager;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.activity.AddGarmentActivity;
 import com.aerolitec.SMXL.ui.activity.DisplayGarmentActivity;
+import com.aerolitec.SMXL.ui.activity.tmp;
 import com.aerolitec.SMXL.ui.adapter.GarmentAdapter;
 import com.makeramen.RoundedImageView;
 
@@ -160,6 +163,8 @@ public class WardrobeDetailFragment extends Fragment {
         }
     }
 
+
+    //FIXME
     private void setAddListeners(){
         RelativeLayout addGarment=(RelativeLayout) view.findViewById(R.id.addTShirtLayout);
         addGarment.setOnClickListener(new View.OnClickListener() {
@@ -167,7 +172,8 @@ public class WardrobeDetailFragment extends Fragment {
             public void onClick(View v) {
                 tShirtsListView.setVisibility(View.GONE);
                 ((ImageView) view.findViewById(R.id.collapseTShirt)).setImageResource(R.drawable.navigation_expand);
-                Intent intent = new Intent(getActivity(), AddGarmentActivity.class);
+                Intent intent = new Intent(getActivity(), tmp.class);
+                intent.putExtra("category", SMXL.getCategoryGarmentDBManager().getCategoryGarment(1));
                 startActivity(intent);
             }
         });
@@ -178,7 +184,8 @@ public class WardrobeDetailFragment extends Fragment {
             public void onClick(View v) {
                 pantsListView.setVisibility(View.GONE);
                 ((ImageView) view.findViewById(R.id.collapsePants)).setImageResource(R.drawable.navigation_expand);
-                Intent intent = new Intent(getActivity(), AddGarmentActivity.class);
+                Intent intent = new Intent(getActivity(), tmp.class);
+                intent.putExtra("category", SMXL.getCategoryGarmentDBManager().getCategoryGarment(3));
                 startActivity(intent);
             }
         });
@@ -189,7 +196,8 @@ public class WardrobeDetailFragment extends Fragment {
             public void onClick(View v) {
                 blousesListView.setVisibility(View.GONE);
                 ((ImageView) view.findViewById(R.id.collapseBlouse)).setImageResource(R.drawable.navigation_expand);
-                Intent intent = new Intent(getActivity(), AddGarmentActivity.class);
+                Intent intent = new Intent(getActivity(), tmp.class);
+                intent.putExtra("category", SMXL.getCategoryGarmentDBManager().getCategoryGarment(4));
                 startActivity(intent);
             }
         });
@@ -200,7 +208,8 @@ public class WardrobeDetailFragment extends Fragment {
             public void onClick(View v) {
                 jacketsListView.setVisibility(View.GONE);
                 ((ImageView) view.findViewById(R.id.collapseJacket)).setImageResource(R.drawable.navigation_expand);
-                Intent intent = new Intent(getActivity(), AddGarmentActivity.class);
+                Intent intent = new Intent(getActivity(), tmp.class);
+                intent.putExtra("category", SMXL.getCategoryGarmentDBManager().getCategoryGarment(5));
                 startActivity(intent);
             }
         });
@@ -211,7 +220,8 @@ public class WardrobeDetailFragment extends Fragment {
             public void onClick(View v) {
                 coatsListView.setVisibility(View.GONE);
                 ((ImageView) view.findViewById(R.id.collapseCoat)).setImageResource(R.drawable.navigation_expand);
-                Intent intent = new Intent(getActivity(), AddGarmentActivity.class);
+                Intent intent = new Intent(getActivity(), tmp.class);
+                intent.putExtra("category", SMXL.getCategoryGarmentDBManager().getCategoryGarment(8));
                 startActivity(intent);
             }
         });
@@ -222,7 +232,8 @@ public class WardrobeDetailFragment extends Fragment {
             public void onClick(View v) {
                 shoesListView.setVisibility(View.GONE);
                 ((ImageView) view.findViewById(R.id.collapseShoes)).setImageResource(R.drawable.navigation_expand);
-                Intent intent = new Intent(getActivity(), AddGarmentActivity.class);
+                Intent intent = new Intent(getActivity(), tmp.class);
+                intent.putExtra("category", SMXL.getCategoryGarmentDBManager().getCategoryGarment(6));
                 startActivity(intent);
             }
         });
@@ -233,7 +244,8 @@ public class WardrobeDetailFragment extends Fragment {
             public void onClick(View v) {
                 sweatersListView.setVisibility(View.GONE);
                 ((ImageView) view.findViewById(R.id.collapseSweater)).setImageResource(R.drawable.navigation_expand);
-                Intent intent = new Intent(getActivity(), AddGarmentActivity.class);
+                Intent intent = new Intent(getActivity(), tmp.class);
+                intent.putExtra("category", SMXL.getCategoryGarmentDBManager().getCategoryGarment(7));
                 startActivity(intent);
             }
         });
@@ -244,7 +256,8 @@ public class WardrobeDetailFragment extends Fragment {
             public void onClick(View v) {
                 underwearListView.setVisibility(View.GONE);
                 ((ImageView) view.findViewById(R.id.collapseUnderwear)).setImageResource(R.drawable.navigation_expand);
-                Intent intent = new Intent(getActivity(), AddGarmentActivity.class);
+                Intent intent = new Intent(getActivity(), tmp.class);
+                intent.putExtra("category", SMXL.getCategoryGarmentDBManager().getCategoryGarment(10));
                 startActivity(intent);
             }
         });
@@ -255,7 +268,8 @@ public class WardrobeDetailFragment extends Fragment {
             public void onClick(View v) {
                 suitsListView.setVisibility(View.GONE);
                 ((ImageView) view.findViewById(R.id.collapseSuit)).setImageResource(R.drawable.navigation_expand);
-                Intent intent = new Intent(getActivity(), AddGarmentActivity.class);
+                Intent intent = new Intent(getActivity(), tmp.class);
+                intent.putExtra("category", SMXL.getCategoryGarmentDBManager().getCategoryGarment(11));
                 startActivity(intent);
             }
         });
@@ -267,7 +281,8 @@ public class WardrobeDetailFragment extends Fragment {
                 public void onClick(View v) {
                     dressesListView.setVisibility(View.GONE);
                     ((ImageView) view.findViewById(R.id.collapseDress)).setImageResource(R.drawable.navigation_expand);
-                    Intent intent = new Intent(getActivity(), AddGarmentActivity.class);
+                    Intent intent = new Intent(getActivity(), tmp.class);
+                    intent.putExtra("category", SMXL.getCategoryGarmentDBManager().getCategoryGarment(2));
                     startActivity(intent);
                 }
             });
@@ -428,7 +443,6 @@ public class WardrobeDetailFragment extends Fragment {
     }
 
     //updates the user's lists of clothes
-    //TODO change clotheType name (french)
     private void updateClothesLists(){
         userTShirts=SMXL.getUserClothesDBManager().getUserGarmentsByGarment(user, SMXL.getCategoryGarmentDBManager().getCategoryGarment(1));
         userPants=SMXL.getUserClothesDBManager().getUserGarmentsByGarment(user, SMXL.getCategoryGarmentDBManager().getCategoryGarment(3));

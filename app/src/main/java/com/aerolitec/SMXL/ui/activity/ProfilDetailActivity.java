@@ -160,11 +160,5 @@ public class ProfilDetailActivity extends FragmentActivity{
         super.onResume();
                 ((TextView) findViewById(R.id.tvNbGarments)).setText(" ("+SMXL.getUserClothesDBManager().getAllUserClothes(UserManager.get().getUser()).size()+")");
     }
-/*
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
-    }
-    */
 }
 

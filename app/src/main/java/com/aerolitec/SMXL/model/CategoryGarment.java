@@ -15,7 +15,7 @@ public class CategoryGarment implements Serializable {
     private int icon;
     private String category_garment_name;
 
-    public CategoryGarment(){};
+    public CategoryGarment(){}
 
     public CategoryGarment(Context context,int id_category_garment, int icon, String category_garment_name) {
         this.id_category_garment = id_category_garment;
@@ -52,5 +52,10 @@ public class CategoryGarment implements Serializable {
 
     public void setCategory_garment_name(String name_category_garment) {
         this.category_garment_name = name_category_garment;
+    }
+
+    @Override
+    public String toString(){
+        return id_category_garment+" "+icon+" "+category_garment_name;
     }
 }

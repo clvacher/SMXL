@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
+import com.aerolitec.SMXL.model.GarmentType;
 
 import java.util.ArrayList;
 
@@ -16,12 +17,12 @@ import java.util.ArrayList;
 /**
  * Created by stephaneL on 30/03/14.
  */
-public class TypeGarmentAdapter extends ArrayAdapter<String> {
+public class TypeGarmentAdapter extends ArrayAdapter<GarmentType> {
 
     private Context context;
 
-    public TypeGarmentAdapter(Context context, ArrayList<String> garmentItems){
-        super(context, 0 , garmentItems);
+    public TypeGarmentAdapter(Context context,int resource, ArrayList<GarmentType> garmentItems){
+        super(context, resource , garmentItems);
         this.context = context;
     }
 
@@ -35,18 +36,21 @@ public class TypeGarmentAdapter extends ArrayAdapter<String> {
             holder = new ViewHolder();
             convertView.setTag(holder);
             holder.tvTypeGarment = (TextView) convertView.findViewById(R.id.tvTypeGarment);
+            //holder.tvSex = (TextView) convertView.findViewById(R.id.tvSex);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        String item = getItem(position);
+        GarmentType item = getItem(position);
 
-        holder.tvTypeGarment.setText(item);
+        holder.tvTypeGarment.setText(item.getType());
+        //holder.tvSex.setText(item.getSex());
 
         return convertView;
     }
 
     public static class ViewHolder {
         TextView tvTypeGarment;
+        //TextView tvSex;
     }
 }

@@ -16,6 +16,20 @@ import java.util.ArrayList;
  */
 public class CategoryGarmentDBManager extends DBManager {
 
+    /*
+    1-Tshirt
+    2-robe jupe
+    3-pantalons
+    4-chemise
+    5-blouson
+    6-chaussure
+    7-sweat pull
+    8-veste
+    9-costume
+    10-ss vetement
+    11-autre
+
+     */
 
     public static final String TABLE_NAME = "category_garment";
     public static final String KEY_ID_CATEGORY_GARMENT="id_category_garment";

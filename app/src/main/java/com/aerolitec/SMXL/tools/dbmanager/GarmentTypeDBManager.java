@@ -143,7 +143,29 @@ public class GarmentTypeDBManager extends DBManager {
         return garments;
     }
 
+    public ArrayList<GarmentType> getAllGarmentTypeByCategory(CategoryGarment cg,String sex){
+        open();
+        ArrayList<GarmentType> garments = new ArrayList<>();
+        Cursor c = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+KEY_ID_CATEGORY_GARMENT_GARMENT_TYPE+" = "+cg.getId_category_garment()+" AND "+KEY_SEX_GARMENT_TYPE+" = '"+sex+"'", null);
+        boolean eof = c.moveToFirst();
+        while (eof) {
+            GarmentType gt = new GarmentType();
+            gt.setId_garment_type(c.getInt(c.getColumnIndex(KEY_ID_GARMENT_TYPE)));
 
+            SMXL.getCategoryGarmentDBManager().open();
+            gt.setCategoryGarment(SMXL.getCategoryGarmentDBManager().getCategoryGarment(c.getInt(c.getColumnIndex(KEY_ID_CATEGORY_GARMENT_GARMENT_TYPE))));
+            SMXL.getCategoryGarmentDBManager().close();
+
+            gt.setType(c.getString(c.getColumnIndex(KEY_NAME_GARMENT_TYPE)));
+            gt.setSex(c.getString(c.getColumnIndex(KEY_SEX_GARMENT_TYPE)));
+
+            garments.add(gt);
+            eof = c.moveToNext();
+        }
+        c.close();
+        close();
+        return garments;
+    }
 
 } // class GarmentTypeDBManager
 

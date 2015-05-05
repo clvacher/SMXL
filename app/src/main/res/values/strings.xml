@@ -105,6 +105,8 @@
     <string name="Sweater">Sweater/Hoodies</string>
     <string name="Underwear">Underwear</string>
     <string name="Suit">Suits</string>
+    <string name="garment">Garment</string>
+    <string name="brand">Brand</string>
 
     <string name="returnCreate">Press back again to cancel</string>
     <string name="newProfile1">Add</string>

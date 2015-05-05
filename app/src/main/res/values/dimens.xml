@@ -9,6 +9,7 @@
     <dimen name="listview_padding_horizontal">10dp</dimen>
     <dimen name="size_avatar_list_profile">70dp</dimen>
     <dimen name="size_avatar_detail">150dp</dimen>
+    <dimen name="size_garment_detail">100dp</dimen>
     <dimen name="name_list">22sp</dimen>
     <dimen name="firstname_list">18sp</dimen>
     <dimen name="textCreateProfile">16sp</dimen>

@@ -103,6 +103,12 @@
             android:label="@string/title_activity_select_brands"
             android:screenOrientation="portrait">
         </activity>
+        <activity
+            android:name=".ui.activity.tmp"
+            android:icon="@drawable/ic_action_logo_smxl"
+            android:label="@string/title_activity_add_garment"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>
