@@ -6,6 +6,7 @@ import android.database.Cursor;
 
 import com.aerolitec.SMXL.model.Brand;
 import com.aerolitec.SMXL.model.BrandsSizeGuide;
+import com.aerolitec.SMXL.model.GarmentType;
 import com.aerolitec.SMXL.ui.SMXL;
 
 import java.util.ArrayList;
@@ -18,7 +19,6 @@ public class BrandSizeGuideDBManager extends DBManager{
     public static final String KEY_ID_BRAND_SIZE_GUIDE="id_brand_size_guide";
     public static final String KEY_ID_MARQUE_BRAND_SIZE_GUIDE ="id_brand";
     public static final String KEY_ID_GARMENT_TYPE_SIZE_GUIDE ="id_garment_type";
-    public static final String KEY_SEX_SIZE_GUIDE="sex";
     public static final String KEY_COLLAR_SIZE_GUIDE="collar";
     public static final String KEY_CHEST_SIZE_GUIDE="chest";
     public static final String KEY_BUST_SIZE_GUIDE="bust";
@@ -44,8 +44,7 @@ public class BrandSizeGuideDBManager extends DBManager{
             " (" +
             " "+KEY_ID_BRAND_SIZE_GUIDE+" INTEGER PRIMARY KEY AUTOINCREMENT," +
             " "+ KEY_ID_MARQUE_BRAND_SIZE_GUIDE +" INTEGER" +
-            " "+ KEY_ID_GARMENT_TYPE_SIZE_GUIDE +" TEXT" +
-            " "+KEY_SEX_SIZE_GUIDE+" TEXT" +
+            " "+ KEY_ID_GARMENT_TYPE_SIZE_GUIDE +" INTEGER" +
             " "+KEY_BUST_SIZE_GUIDE+" TEXT" +
             " "+KEY_COLLAR_SIZE_GUIDE+" TEXT" +
             " "+KEY_CHEST_SIZE_GUIDE+" TEXT" +
@@ -65,6 +64,8 @@ public class BrandSizeGuideDBManager extends DBManager{
             " "+KEY_SIZE_US_SIZE_GUIDE+" TEXT" +
             " "+KEY_SIZE_SMXL_SIZE_GUIDE+" TEXT" +
             " "+ KEY_SIZE_SUIT_SIZE_GUIDE +" TEXT" +
+            " FOREIGN KEY("+KEY_ID_MARQUE_BRAND_SIZE_GUIDE+") REFERENCES "+SMXL.getBrandDBManager().TABLE_NAME+","+
+            " FOREIGN KEY("+KEY_ID_GARMENT_TYPE_SIZE_GUIDE+") REFERENCES "+SMXL.getGarmentTypeDBManager().TABLE_NAME+
             ");";
 
     // Constructeur
@@ -78,8 +79,7 @@ public class BrandSizeGuideDBManager extends DBManager{
         open();
         ContentValues values = new ContentValues();
         values.put(KEY_ID_MARQUE_BRAND_SIZE_GUIDE, bsg.getBrand().getId_brand());
-        values.put(KEY_ID_GARMENT_TYPE_SIZE_GUIDE, bsg.getGarmentType());
-        values.put(KEY_SEX_SIZE_GUIDE, bsg.getSex());
+        values.put(KEY_ID_GARMENT_TYPE_SIZE_GUIDE, bsg.getGarmentType().getId_garment_type());
         values.put(KEY_BUST_SIZE_GUIDE, bsg.getBust());
         values.put(KEY_COLLAR_SIZE_GUIDE, bsg.getCollar());
         values.put(KEY_CHEST_SIZE_GUIDE, bsg.getChest());
@@ -100,7 +100,7 @@ public class BrandSizeGuideDBManager extends DBManager{
         values.put(KEY_SIZE_SMXL_SIZE_GUIDE, bsg.getSizeSMXL());
         values.put(KEY_SIZE_SUIT_SIZE_GUIDE, bsg.getSizeSuite());
 
-        long i = db.insert(TABLE_NAME,null,values);
+        long i = db.insert(TABLE_NAME, null, values);
         close();
         // insert() retourne l'id du nouvel enregistrement inséré, ou -1 en cas d'erreur
         return i;
@@ -112,8 +112,7 @@ public class BrandSizeGuideDBManager extends DBManager{
         open();
         ContentValues values = new ContentValues();
         values.put(KEY_ID_MARQUE_BRAND_SIZE_GUIDE, bsg.getBrand().getId_brand());
-        values.put(KEY_ID_GARMENT_TYPE_SIZE_GUIDE, bsg.getGarmentType());
-        values.put(KEY_SEX_SIZE_GUIDE, bsg.getSex());
+        values.put(KEY_ID_GARMENT_TYPE_SIZE_GUIDE, bsg.getGarmentType().getId_garment_type());
         values.put(KEY_BUST_SIZE_GUIDE, bsg.getBust());
         values.put(KEY_COLLAR_SIZE_GUIDE, bsg.getCollar());
         values.put(KEY_CHEST_SIZE_GUIDE, bsg.getChest());
@@ -158,23 +157,12 @@ public class BrandSizeGuideDBManager extends DBManager{
         open();
         BrandsSizeGuide bsg=new BrandsSizeGuide();
 
-        Cursor c = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+KEY_ID_BRAND_SIZE_GUIDE+"="+id, null);
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + KEY_ID_BRAND_SIZE_GUIDE + "=" + id, null);
         if (c.moveToFirst()) {
             bsg.setId_brand_size_guide(c.getInt(c.getColumnIndex(KEY_ID_BRAND_SIZE_GUIDE)));
 
-            /*
-            SMXL.getBrandDBManager().open();
             bsg.setBrand(SMXL.getBrandDBManager().getBrand(c.getInt(c.getColumnIndex(KEY_ID_MARQUE_BRAND_SIZE_GUIDE))));
-            SMXL.getBrandDBManager().close();
-
-            SMXL.getGarmentTypeDBManager().open();
             bsg.setGarmentType(SMXL.getGarmentTypeDBManager().getGarmentType(c.getInt(c.getColumnIndex(KEY_ID_GARMENT_TYPE_SIZE_GUIDE))));
-            SMXL.getGarmentTypeDBManager().close();
-*/
-            bsg.setBrand(SMXL.getBrandDBManager().getBrand(c.getInt(c.getColumnIndex(KEY_ID_MARQUE_BRAND_SIZE_GUIDE))));
-            bsg.setGarmentType(c.getString(c.getColumnIndex(KEY_ID_GARMENT_TYPE_SIZE_GUIDE)));
-
-            bsg.setSex(c.getString(c.getColumnIndex(KEY_SEX_SIZE_GUIDE)));
 
             bsg.setBust(convertToDouble(c.getString(c.getColumnIndex(KEY_BUST_SIZE_GUIDE))));
             bsg.setCollar(convertToDouble(c.getString(c.getColumnIndex(KEY_COLLAR_SIZE_GUIDE))));
@@ -221,16 +209,8 @@ public class BrandSizeGuideDBManager extends DBManager{
 
             bsg.setId_brand_size_guide(c.getInt(c.getColumnIndex(KEY_ID_BRAND_SIZE_GUIDE)));
 
-
             bsg.setBrand(SMXL.getBrandDBManager().getBrand(c.getInt(c.getColumnIndex(KEY_ID_MARQUE_BRAND_SIZE_GUIDE))));
-/*
-            SMXL.getGarmentTypeDBManager().open();
             bsg.setGarmentType(SMXL.getGarmentTypeDBManager().getGarmentType(c.getInt(c.getColumnIndex(KEY_ID_GARMENT_TYPE_SIZE_GUIDE))));
-            SMXL.getGarmentTypeDBManager().close();
-*/
-            bsg.setGarmentType(c.getString(c.getColumnIndex(KEY_ID_GARMENT_TYPE_SIZE_GUIDE)));
-
-            bsg.setSex(c.getString(c.getColumnIndex(KEY_SEX_SIZE_GUIDE)));
 
             bsg.setBust(convertToDouble(c.getString(c.getColumnIndex(KEY_BUST_SIZE_GUIDE))));
             bsg.setCollar(convertToDouble(c.getString(c.getColumnIndex(KEY_COLLAR_SIZE_GUIDE))));
@@ -261,13 +241,12 @@ public class BrandSizeGuideDBManager extends DBManager{
         return garments;
     }
 
-    //FIXME
-    public ArrayList<BrandsSizeGuide> getAllBrandsByGarment(String garmentType){
+
+    public ArrayList<BrandsSizeGuide> getAllBrandsByGarment(GarmentType garmentType){
         open();
         ArrayList<BrandsSizeGuide> brands = new ArrayList<>();
         Cursor c;
-        //TODO
-        c = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+KEY_ID_GARMENT_TYPE_SIZE_GUIDE+" = "+ garmentType, null);
+        c = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+KEY_ID_GARMENT_TYPE_SIZE_GUIDE+" = "+ garmentType.getId_garment_type(), null);
         boolean eof = c.moveToFirst();
         while (eof) {
             BrandsSizeGuide bsg = new BrandsSizeGuide();
@@ -275,14 +254,7 @@ public class BrandSizeGuideDBManager extends DBManager{
             bsg.setId_brand_size_guide(c.getInt(c.getColumnIndex(KEY_ID_BRAND_SIZE_GUIDE)));
 
             bsg.setBrand(SMXL.getBrandDBManager().getBrand(c.getInt(c.getColumnIndex(KEY_ID_MARQUE_BRAND_SIZE_GUIDE))));
-/*
-            SMXL.getGarmentTypeDBManager().open();
             bsg.setGarmentType(SMXL.getGarmentTypeDBManager().getGarmentType(c.getInt(c.getColumnIndex(KEY_ID_GARMENT_TYPE_SIZE_GUIDE))));
-            SMXL.getGarmentTypeDBManager().close();
-*/
-            bsg.setGarmentType(c.getString(c.getColumnIndex(KEY_ID_GARMENT_TYPE_SIZE_GUIDE)));
-
-            bsg.setSex(c.getString(c.getColumnIndex(KEY_SEX_SIZE_GUIDE)));
 
             bsg.setBust(convertToDouble(c.getString(c.getColumnIndex(KEY_BUST_SIZE_GUIDE))));
             bsg.setCollar(convertToDouble(c.getString(c.getColumnIndex(KEY_COLLAR_SIZE_GUIDE))));

@@ -9,8 +9,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
-
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
@@ -22,6 +20,15 @@
         android:textSize="@dimen/section_text_size"
         android:textStyle="bold"
         />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerBrandsCategory"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/title"
+        />
+
 
 
     <GridView
@@ -36,7 +43,7 @@
         android:layout_gravity="center_horizontal"
         android:verticalSpacing="10dp"
         android:horizontalSpacing="10dp"
-        android:layout_below="@+id/title"
+        android:layout_below="@+id/spinnerBrandsCategory"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="50dp"
         />
@@ -53,6 +60,7 @@
         android:onClick="onClickAddBrandsUser"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
+
 
 
 

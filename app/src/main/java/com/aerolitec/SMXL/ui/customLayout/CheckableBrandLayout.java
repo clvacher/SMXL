@@ -28,11 +28,12 @@ public class CheckableBrandLayout extends LinearLayout implements Checkable {
     public CheckableBrandLayout(Context context, Brand brand) {
         super(context);
         textView = new TextView(context);
-        textView.setPadding(5, 30, 5, 30);
+        textView.setPadding(5, 15, 5, 15);
         textView.setSingleLine(true);
         textView.setGravity(Gravity.CENTER);
-        textView.setTextSize(17);
+        textView.setTextSize(15);
         textView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+
 
         this.brand=brand;
         textView.setText(this.brand.getBrand_name());

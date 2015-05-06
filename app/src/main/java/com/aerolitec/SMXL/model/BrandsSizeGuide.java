@@ -7,9 +7,7 @@ public class BrandsSizeGuide implements Serializable{
 
     int id_brand_size_guide;
     Brand brand;
-    //GarmentType garmentType;
-    String garmentType;
-    String sex;
+    GarmentType garmentType;
 
     Double bust;
     Double collar;
@@ -36,11 +34,10 @@ public class BrandsSizeGuide implements Serializable{
 
     public BrandsSizeGuide() {}
 
-    public BrandsSizeGuide(String paramString1, Brand paramString3, String paramString4, Double paramDouble1, Double paramDouble2, Double paramDouble3, Double paramDouble4, Double paramDouble5, Double paramDouble6, Double paramDouble7, Double paramDouble8, Double paramDouble9, Double paramDouble10, Double paramDouble11, Double paramDouble12, Double paramDouble13, String paramString5, String paramString6, String paramString7, String paramString8, String paramString9, String paramString10)
+    public BrandsSizeGuide(GarmentType paramString1, Brand paramString3, Double paramDouble1, Double paramDouble2, Double paramDouble3, Double paramDouble4, Double paramDouble5, Double paramDouble6, Double paramDouble7, Double paramDouble8, Double paramDouble9, Double paramDouble10, Double paramDouble11, Double paramDouble12, Double paramDouble13, String paramString5, String paramString6, String paramString7, String paramString8, String paramString9, String paramString10)
     {
         this.garmentType = paramString1;
         this.brand = paramString3;
-        this.sex = paramString4;
         this.collar = paramDouble1;
         this.chest = paramDouble2;
         this.bust = paramDouble3;
@@ -67,8 +64,7 @@ public class BrandsSizeGuide implements Serializable{
         return "BrandsSizeGuide{" +
                 "id_brand_size_guide=" + id_brand_size_guide +
                 ", brand='" + brand + '\'' +
-                ", garmentTypr='" + garmentType + '\'' +
-                ", sex='" + sex + '\'' +
+                ", garmentType='" + garmentType + '\'' +
                 ", bust=" + bust +
                 ", collar=" + collar +
                 ", chest=" + chest +
@@ -107,20 +103,12 @@ public class BrandsSizeGuide implements Serializable{
         this.brand = brand;
     }
 
-    public String getGarmentType() {
+    public GarmentType getGarmentType() {
         return garmentType;
     }
 
-    public void setGarmentType(String garmentType) {
+    public void setGarmentType(GarmentType garmentType) {
         this.garmentType = garmentType;
-    }
-
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
     }
 
     public Double getBust() {

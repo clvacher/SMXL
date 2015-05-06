@@ -15,6 +15,8 @@ import com.aerolitec.SMXL.tools.dbmanager.UserBrandDBManager;
 import com.aerolitec.SMXL.tools.dbmanager.UserClothesDBManager;
 import com.aerolitec.SMXL.tools.dbmanager.UserDBManager;
 import com.aerolitec.SMXL.tools.services.SQLiteSMXL;
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -39,6 +41,7 @@ public class SMXL extends Application{
     @Override
     public void onCreate() {
         super.onCreate();
+        FacebookSdk.sdkInitialize(getApplicationContext());
         instance = this;
         dataBase= new SQLiteSMXL(getApplicationContext());
         brandDBManager = new BrandDBManager(getApplicationContext());

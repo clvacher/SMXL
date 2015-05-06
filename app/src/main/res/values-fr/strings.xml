@@ -110,4 +110,7 @@
     <string name="woman">Femme</string>
     <string name="years">ans</string>
 
+    <string name="select_category">Tri par catégorie</string>
+
+
 </resources>

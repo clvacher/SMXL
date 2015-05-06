@@ -82,7 +82,8 @@ public class ProfilActivity extends FragmentActivity implements OnProfileSelecte
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.addProfile) {
-            Intent intent = new Intent(getApplicationContext(), CreateProfile.class);
+            //Intent intent = new Intent(getApplicationContext(), CreateProfile.class);
+            Intent intent = new Intent(getApplicationContext(), ConnexionActivity.class);
             startActivity(intent);
             return true;
         }

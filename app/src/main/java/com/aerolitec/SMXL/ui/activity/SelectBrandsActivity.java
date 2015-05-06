@@ -2,15 +2,20 @@ package com.aerolitec.SMXL.ui.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
 import com.aerolitec.SMXL.model.Brand;
@@ -29,11 +34,12 @@ import com.aerolitec.SMXL.ui.customLayout.CheckableBrandLayout;
 public class SelectBrandsActivity extends Activity {
 
     private static User user;
-    private ArrayList<Brand> userBrands;
     private ArrayList<Brand> brands;
     private ArrayList<Brand> brandsSelected;
+    private ArrayList<String> brandsCategory;
 
     private GridView gridViewBrands;
+    private Spinner spinnerBrandsCategory;
     private FavoriteCheckableBrandAdapter gridViewBrandsAdapter;
 
     @Override
@@ -42,13 +48,15 @@ public class SelectBrandsActivity extends Activity {
 
         brands=new ArrayList<>();
         brandsSelected=new ArrayList<>();
+        //FIXME
+        brandsCategory=(SMXL.getBrandDBManager().getAllBrandCategory());
+        brandsCategory.add(0,getResources().getString(R.string.select_category));
+
 
         user = UserManager.get().getUser();
         if(user == null){
             Log.d("TestOnCreate", "user null");
         }
-
-        userBrands = user.getBrands();
 
         Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
         mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
@@ -61,34 +69,60 @@ public class SelectBrandsActivity extends Activity {
         getActionBar().setDisplayShowTitleEnabled(true);
 
         gridViewBrands = (GridView) this.findViewById(R.id.gridViewBrands);
-
+        spinnerBrandsCategory = (Spinner) this.findViewById(R.id.spinnerBrandsCategory);
         brands = SMXL.getBrandDBManager().getAllBrands();
+
+        final ArrayAdapter<String> adapterSpinner = new ArrayAdapter<String>(getApplicationContext(), R.layout.item_spinner_brand_category, brandsCategory);
+        spinnerBrandsCategory.setAdapter(adapterSpinner);
 
         gridViewBrandsAdapter = new FavoriteCheckableBrandAdapter(this, R.layout.item_favorite_brand, brands);
         gridViewBrands.setAdapter(gridViewBrandsAdapter);
 
         gridViewBrands.setChoiceMode(GridView.CHOICE_MODE_MULTIPLE);
+        gridViewBrands.setNumColumns(2);
 
-        brandsSelected.addAll(userBrands);
+        brandsSelected.addAll(user.getBrands());
 
         gridViewBrands.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long mylng) {
                 Brand selectedBrand = (Brand) gridViewBrandsAdapter.getItem(position);
-
                 brandsSelected.add(selectedBrand);
 
-                /*
-                if(brandsSelected.contains(selectedBrand)){
-                    brandsSelected.remove(selectedBrand);
+                if(user.getBrands().contains(selectedBrand)){
+                    user.getBrands().remove(selectedBrand);
+                    SMXL.getUserBrandDBManager().deleteUserBrand(user, selectedBrand);
                 }
                 else{
-                    brandsSelected.add(selectedBrand);
+                    user.getBrands().add(selectedBrand);
+                    SMXL.getUserBrandDBManager().addUserBrand(user, selectedBrand);
                 }
-                */
+            }
+        });
 
-                //Log.d("Brand select" , selectedBrand.toString());
-                //Log.d("all brand select", brandsSelected.toString());
+        spinnerBrandsCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
+                if(position>0){
+                    brands = SMXL.getBrandDBManager().getBrandsByBrandCategory(SMXL.getBrandDBManager().getAllBrandCategory().get(position-1));//-1 car on a rajouté l'item d'en tete
+                }
+                else{
+                    brands = SMXL.getBrandDBManager().getAllBrands();
+                }
+
+                gridViewBrandsAdapter.clear();
+                gridViewBrandsAdapter.addAll(brands);
+                gridViewBrandsAdapter.notifyDataSetChanged();
+
+                gridViewBrands.clearChoices();
+                for(Brand b : user.getBrands()) {
+                    gridViewBrands.setItemChecked(brands.indexOf(b), true);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
 
@@ -96,42 +130,31 @@ public class SelectBrandsActivity extends Activity {
 
     }
 
+
+
     @Override
     protected void onResume() {
         super.onResume();
 
         ArrayList<Brand> brandUser = user.getBrands();
-
-        gridViewBrandsAdapter = new FavoriteCheckableBrandAdapter(this, R.layout.item_favorite_brand, brands);
-        gridViewBrands.setAdapter(gridViewBrandsAdapter);
+        Log.d("je resume", "");
+        if(gridViewBrandsAdapter==null){
+            gridViewBrandsAdapter = new FavoriteCheckableBrandAdapter(this, R.layout.item_favorite_brand, brands);
+            gridViewBrands.setAdapter(gridViewBrandsAdapter);
+            spinnerBrandsCategory.setSelection(0);
+        }
 
         //Log.d("isempty", Boolean.toString(gridViewBrandsAdapter.isEmpty()));
         //Log.d("viewtypecount", Integer.toString(gridViewBrandsAdapter.getViewTypeCount()));
 
-        for(Brand b : brandUser) {
+        for(Brand b : user.getBrands()) {
             gridViewBrands.setItemChecked(brands.indexOf(b), true);
         }
-
-
-
     }
 
 
 
     public void onClickAddBrandsUser(View view){
-
-        SMXL.getUserBrandDBManager().deleteUserBrand(user);
-
-        for(Brand b : brandsSelected){
-                SMXL.getUserBrandDBManager().addUserBrand(user, b);
-        }
-
-        user.setBrands(brandsSelected);
-
-        //Log.d("onclick selectedbrands", brandsSelected.toString());
-
-        //Log.d("user onClickAddBrandUse", UserManager.get().getUser().toString());
-
         finish();
     }
 

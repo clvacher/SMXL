@@ -11,6 +11,8 @@
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="18" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+
 
     <application
         android:name=".ui.SMXL"
@@ -18,6 +20,15 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/MyTheme" >
+
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+        <activity android:name="com.facebook.FacebookActivity"
+            android:configChanges=
+                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:label="@string/app_name" />
+
+
         <activity
             android:name=".ui.activity.IntroActivity"
             android:screenOrientation="portrait" >
@@ -107,6 +118,11 @@
             android:name=".ui.activity.tmp"
             android:icon="@drawable/ic_action_logo_smxl"
             android:label="@string/title_activity_add_garment"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.ConnexionActivity"
+            android:label="@string/title_activity_connexion"
             android:screenOrientation="portrait">
         </activity>
     </application>

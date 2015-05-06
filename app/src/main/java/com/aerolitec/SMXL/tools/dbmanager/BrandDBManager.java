@@ -51,7 +51,7 @@ public class BrandDBManager extends DBManager{
 
 
         // insert() retourne l'id du nouvel enregistrement inséré, ou -1 en cas d'erreur
-        long i = db.insert(TABLE_NAME,null,values);
+        long i = db.insert(TABLE_NAME, null, values);
         close();
         return i;
     }
@@ -89,7 +89,7 @@ public class BrandDBManager extends DBManager{
         open();
         Brand b=new Brand();
 
-        Cursor c = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+KEY_ID_BRAND+"="+id, null);
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + KEY_ID_BRAND + "=" + id, null);
         if (c.moveToFirst()) {
             b.setId_brand(c.getInt(c.getColumnIndex(KEY_ID_BRAND)));
             b.setBrand_name(c.getString(c.getColumnIndex(KEY_NOM_BRAND)));
@@ -108,18 +108,49 @@ public class BrandDBManager extends DBManager{
     public ArrayList<Brand> getAllBrands(){
         open();
         ArrayList<Brand> brands = new ArrayList<>();
-            Cursor c = db.rawQuery("SELECT * FROM "+TABLE_NAME +" ORDER BY "+KEY_NOM_BRAND, null);
-            boolean eof = c.moveToFirst();
-            while (eof) {
-                Brand b = new Brand();
-                b.setId_brand(c.getInt(c.getColumnIndex(KEY_ID_BRAND)));
-                b.setBrand_name(c.getString(c.getColumnIndex(KEY_NOM_BRAND)));
-                b.setBrand_category(c.getString(c.getColumnIndex(KEY_CATEGORY_BRAND)));
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_NAME + " ORDER BY " + KEY_NOM_BRAND, null);
+        boolean eof = c.moveToFirst();
+        while (eof) {
+            Brand b = new Brand();
+            b.setId_brand(c.getInt(c.getColumnIndex(KEY_ID_BRAND)));
+            b.setBrand_name(c.getString(c.getColumnIndex(KEY_NOM_BRAND)));
+            b.setBrand_category(c.getString(c.getColumnIndex(KEY_CATEGORY_BRAND)));
+            brands.add(b);
+            eof = c.moveToNext();
+        }
+        c.close();
+        close();
+        return brands;
+    }
 
-                brands.add(b);
-                eof = c.moveToNext();
-            }
-            c.close();
+    public ArrayList<String> getAllBrandCategory() {
+        open();
+        ArrayList<String> categories = new ArrayList<>();
+        Cursor c = db.rawQuery("SELECT DISTINCT "+KEY_CATEGORY_BRAND+" FROM " + TABLE_NAME + " ORDER BY " + KEY_CATEGORY_BRAND, null);
+        boolean eof = c.moveToFirst();
+        while (eof) {
+            categories.add(c.getString(c.getColumnIndex(KEY_CATEGORY_BRAND)));
+            eof = c.moveToNext();
+        }
+        c.close();
+        close();
+        return categories;
+    }
+
+    public ArrayList<Brand> getBrandsByBrandCategory(String category) {
+        open();
+        ArrayList<Brand> brands = new ArrayList<>();
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE "+KEY_CATEGORY_BRAND+" = '"+category+"' ORDER BY " + KEY_NOM_BRAND, null);
+        boolean eof = c.moveToFirst();
+        while (eof) {
+            Brand b = new Brand();
+            b.setId_brand(c.getInt(c.getColumnIndex(KEY_ID_BRAND)));
+            b.setBrand_name(c.getString(c.getColumnIndex(KEY_NOM_BRAND)));
+            b.setBrand_category(c.getString(c.getColumnIndex(KEY_CATEGORY_BRAND)));
+            brands.add(b);
+            eof = c.moveToNext();
+        }
+        c.close();
         close();
         return brands;
     }

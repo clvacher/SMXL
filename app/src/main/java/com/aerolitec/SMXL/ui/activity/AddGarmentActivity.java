@@ -323,7 +323,7 @@ public class AddGarmentActivity extends Activity {
                 recherche = recherche.toUpperCase() + "-" + user.getSexe().substring(0,1);
             }
 
-            ArrayList<BrandsSizeGuide> brands = SMXL.getBrandSizeGuideDBManager().getAllBrandsByGarment(recherche);
+            ArrayList<BrandsSizeGuide> brands = SMXL.getBrandSizeGuideDBManager().getAllBrandsByGarment(selectedGarment);
             for (BrandsSizeGuide b : brands){
                 brandItems.add(b.getBrand().getBrand_name());
             }

@@ -116,5 +116,10 @@
     <string name="woman">Woman</string>
     <string name="years">years old</string>
 
+    <string name="select_category">Sort by category</string>
+
+    <string name="facebook_app_id">893068277430661</string>
+    <string name="title_activity_connexion">Connexion</string>
+
 
 </resources>
