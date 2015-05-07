@@ -31,7 +31,6 @@ public class UserClothes extends BaseObjects{
 
 
 
-
     public int getId_user_clothes() {
         return id_user_clothes;
     }

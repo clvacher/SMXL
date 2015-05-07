@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by stephaneL on 20/03/14.
  */
-public class Brand implements Serializable {
+public class Brand implements Serializable,Comparable {
     int id_brand;
     String brand_name;
     String brand_website;
@@ -68,5 +68,10 @@ public class Brand implements Serializable {
                 ", brand_website='" + brand_website + '\'' +
                 ", brand_category='" + brand_category + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return getBrand_name().compareTo(((Brand)o).getBrand_name());
     }
 }

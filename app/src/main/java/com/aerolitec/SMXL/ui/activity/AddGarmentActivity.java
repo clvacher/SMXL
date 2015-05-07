@@ -281,9 +281,9 @@ public class AddGarmentActivity extends Activity {
         public void onViewCreated(View view, Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
 
-            listViewBrands = (ListView) view.findViewById(R.id.listViewBrand);
-            imageChooseBrand = (ImageView) view.findViewById(R.id.imageChooseBrand);
-            textGarment = (TextView) view.findViewById(R.id.textGarment);
+            //listViewBrands = (ListView) view.findViewById(R.id.listViewBrand);
+            //imageChooseBrand = (ImageView) view.findViewById(R.id.imageChooseBrand);
+            //textGarment = (TextView) view.findViewById(R.id.textGarment);
 
             imageChooseBrand.setImageResource(selectedGarment.getCategoryGarment().getIcon());
             textGarment.setText(selectedGarment.getType());
@@ -351,12 +351,12 @@ public class AddGarmentActivity extends Activity {
         public void onViewCreated(View view, Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
 
-            editComments = (EditText) view.findViewById(R.id.editComments);
-            imageSummary = (ImageView) view.findViewById(R.id.imageSummary);
-            textGarmentSummary = (TextView) view.findViewById(R.id.textGarmentSummary);
-            textBrandSummary = (TextView) view.findViewById(R.id.textBrandSummary);
-
-            textSizes = (TextView) view.findViewById(R.id.textSizes);
+//            editComments = (EditText) view.findViewById(R.id.editComments);
+//            imageSummary = (ImageView) view.findViewById(R.id.imageSummary);
+//            textGarmentSummary = (TextView) view.findViewById(R.id.textGarmentSummary);
+//            textBrandSummary = (TextView) view.findViewById(R.id.textBrandSummary);
+//
+//            textSizes = (TextView) view.findViewById(R.id.textSizes);
 
             imageSummary.setImageResource(selectedGarment.getCategoryGarment().getIcon());
             textGarmentSummary.setText(selectedGarment.getType());

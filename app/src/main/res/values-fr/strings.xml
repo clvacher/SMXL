@@ -86,6 +86,7 @@
     <string name="title_activity_select_brands">Sélectionnez vos marques favorites</string>
     <string name="manage_favorite_brands">Gérez vos marques favorites</string>
     <string name="favorite_brands">Marques favorites</string>
+    <string name="all_Brands">Toutes les marques</string>
 
     <string name="dress_skirt">Robes/Jupes</string>
     <string name="tshirt_sweater">T-shirts</string>

@@ -65,7 +65,6 @@ public class UserClothesDBManager extends DBManager {
         open();
         Gson gson = new Gson();
         ContentValues values = new ContentValues();
-        values.put(KEY_ID_USER_CLOTHES, uc.getId_user_clothes());
         values.put(KEY_ID_USER_USER_CLOTHES, uc.getUser().getId_user());
         values.put(KEY_ID_GARMENT_TYPE_USER_CLOTHES, uc.getGarmentType().getId_garment_type());
         values.put(KEY_ID_BRAND_USER_CLOTHES, uc.getBrand().getId_brand());

@@ -93,13 +93,13 @@ public class DisplayGarmentActivity extends Activity {
         @Override
         public void onViewCreated(View view, Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
-
-            editComments = (EditText) view.findViewById(R.id.editComments);
-            imageSummary = (ImageView) view.findViewById(R.id.imageSummary);
-            textGarmentSummary = (TextView) view.findViewById(R.id.textGarmentSummary);
-            textBrandSummary = (TextView) view.findViewById(R.id.textBrandSummary);
-
-            textSizes = (TextView) view.findViewById(R.id.textSizes);
+//TODO changer la vue associé (nouvelle, ou adapter en enlevant la size
+//            editComments = (EditText) view.findViewById(R.id.editComments);
+//            imageSummary = (ImageView) view.findViewById(R.id.imageSummary);
+//            textGarmentSummary = (TextView) view.findViewById(R.id.textGarmentSummary);
+//            textBrandSummary = (TextView) view.findViewById(R.id.textBrandSummary);
+//
+//            textSizes = (TextView) view.findViewById(R.id.textSizes);
 
             imageSummary.setImageResource(userClothes.getGarmentType().getCategoryGarment().getIcon());
             textGarmentSummary.setText(userClothes.getGarmentType().getType());

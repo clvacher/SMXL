@@ -22,6 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:singleLine="true"
             android:layout_margin="5dp"
             android:layout_weight="4"
             android:textColor="@color/SelectTexte"

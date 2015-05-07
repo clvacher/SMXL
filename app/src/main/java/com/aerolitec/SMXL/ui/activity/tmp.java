@@ -3,8 +3,11 @@ package com.aerolitec.SMXL.ui.activity;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
@@ -26,9 +29,12 @@ public class tmp extends Activity {
     private User user;
     private GarmentType selectedGarmentType;
     private Brand selectedBrand;
+    private String selectedSize;
     private CategoryGarment selectedCategory;
+    private String comment;
 
     private TextView tvBrand,tvGarmentType,tvSize;
+    private RelativeLayout smxlLayout;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,9 +50,10 @@ public class tmp extends Activity {
             return;//TODO ?
         }
 
-        tvBrand=(TextView)findViewById(R.id.textBrand);
-        tvGarmentType=(TextView)findViewById(R.id.textGarment);
+        tvBrand=(TextView)findViewById(R.id.garmentBrand);
+        tvGarmentType = (TextView)findViewById(R.id.garmentType);
         tvSize=(TextView)findViewById(R.id.textSize);
+        smxlLayout=(RelativeLayout)findViewById(R.id.layoutSMXL);
 
 
         ((ImageView)findViewById(R.id.garmentIcon)).setImageResource(selectedCategory.getIcon());
@@ -54,9 +61,17 @@ public class tmp extends Activity {
         if (savedInstanceState == null) {
             Fragment fragment = new SelectGarmentTypeFragmentTmp();
             getFragmentManager().beginTransaction()
-                    .add(R.id.container, fragment, "category")
+                    .add(R.id.container, fragment, "type")
                     .commit();
         }
+
+        smxlLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("SizeSetter","Not implemented");
+                //TODO
+            }
+        });
 
         getActionBar().setTitle(getResources().getString(R.string.add_garment));
         getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -81,14 +96,16 @@ public class tmp extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+
     public void saveGarment(){
         UserClothes userClothes = new UserClothes();
         userClothes.setGarmentType(selectedGarmentType);
         userClothes.setBrand(selectedBrand);
+        //TODO Hardcoded!
         userClothes.setCountry("UE");
-//        userClothes.setSize(mComputeSize);
-//        userClothes.setComment(editComments.getText().toString());
-//        userClothes.setUser(user);
+        userClothes.setSize(selectedSize);
+        userClothes.setComment(comment);
+        userClothes.setUser(user);
 //        userClothes.setSizes(sizes);
         SMXL.getUserClothesDBManager().addUserClothes(userClothes);
     }
@@ -96,17 +113,44 @@ public class tmp extends Activity {
     public User getUser() {return user;}
 
     public GarmentType getSelectedGarmentType() {return selectedGarmentType;}
-    public void setSelectedGarmentType(GarmentType selectedGarmentType) {this.selectedGarmentType = selectedGarmentType;}
+    public void setSelectedGarmentType(GarmentType selectedGarmentType) {
+        if(selectedGarmentType!=null) {
+            tvGarmentType.setText(selectedGarmentType.getType());
+        }
+        else{
+            tvGarmentType.setText("");
+        }
+        this.selectedGarmentType = selectedGarmentType;
+    }
 
     public Brand getSelectedBrand() {return selectedBrand;}
-    public void setSelectedBrand(Brand selectedBrand) {this.selectedBrand = selectedBrand;}
+    public void setSelectedBrand(Brand selectedBrand) {
+        if(selectedBrand!=null) {
+            tvBrand.setText(selectedBrand.getBrand_name());
+        }
+        else{
+            tvBrand.setText("");
+        }
+        this.selectedBrand = selectedBrand;
+    }
+
+    public String getSelectedSize() {return selectedSize;}
+    public void setSelectedSize(String selectedSize) {
+        if(selectedSize!=null) {
+            tvSize.setText(selectedSize);
+        }
+        else{
+            tvSize.setText("");
+        }
+        this.selectedSize = selectedSize;
+    }
+
+    public String getComment(){return comment;}
+    public void setComment(String comment){
+        this.comment=comment;
+    }
 
     public CategoryGarment getSelectedCategory() {return selectedCategory;}
     public void setSelectedCategory(CategoryGarment selectedCategory) {this.selectedCategory = selectedCategory;}
 
-    public void setTvGarmentType(TextView tvGarmentType) {this.tvGarmentType = tvGarmentType;}
-
-    public void setTvSize(TextView tvSize) {this.tvSize = tvSize;}
-
-    public void setTvBrand(TextView tvBrand) {this.tvBrand = tvBrand;}
 }

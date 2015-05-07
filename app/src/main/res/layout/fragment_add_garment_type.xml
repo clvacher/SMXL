@@ -15,20 +15,19 @@
         android:id="@+id/layoutGarment"
         android:orientation="vertical">
 
-        <TextView
+        <!--TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/title_choose_garment"
             android:textColor="@color/SectionTitle"
             android:textSize="@dimen/section_text_size"
             android:textStyle="bold"
-            />
+            /-->
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="10dp"
-            android:background="@android:color/white"
             android:orientation="horizontal"
             >
 
@@ -38,7 +37,6 @@
                 android:id="@+id/listViewGarments"
                 android:numColumns="3"
                 android:gravity="center"
-                android:padding="10dp"
                 android:scrollbarStyle="outsideOverlay"
                 android:clipToPadding="false"
                 />

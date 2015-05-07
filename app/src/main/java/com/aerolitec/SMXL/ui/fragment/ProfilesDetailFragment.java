@@ -153,6 +153,7 @@ public class ProfilesDetailFragment extends Fragment{
         addBrand.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                brandListView.setVisibility(View.GONE);
                 Intent intent = new Intent(getActivity(), SelectBrandsActivity.class);
                 startActivity(intent);
             }

@@ -74,6 +74,8 @@ public class ProfilDetailActivity extends FragmentActivity{
                 tab3.setBackgroundResource(R.drawable.button_fawn);
                 tv1.setTextColor(Color.WHITE);
                 tv1.setText(tv1.getText()); //c'est debile mais ca marche (bug d'android version 4.1.2)
+                tv2_1.setText(tv2_1.getText());
+                tv3.setText(tv3.getText());
                 tv2_1.setTextColor(getResources().getColor(R.color.SectionTitle));
                 tv2_2.setTextColor(getResources().getColor(R.color.SectionTitle));
                 tv3.setTextColor(getResources().getColor(R.color.SectionTitle));
@@ -88,6 +90,8 @@ public class ProfilDetailActivity extends FragmentActivity{
                 tab3.setBackgroundResource(R.drawable.button_fawn_bottom_left);
                 tv1.setTextColor(getResources().getColor(R.color.SectionTitle));
                 tv1.setText(tv1.getText()); //c'est debile mais ca marche (bug d'android version 4.1.2)
+                tv2_1.setText(tv2_1.getText());
+                tv3.setText(tv3.getText());
                 tv2_1.setTextColor(Color.WHITE);
                 tv2_2.setTextColor(Color.WHITE);
                 tv3.setTextColor(getResources().getColor(R.color.SectionTitle));
@@ -102,6 +106,8 @@ public class ProfilDetailActivity extends FragmentActivity{
                 tab3.setBackgroundResource(R.drawable.button_orange_border);
                 tv1.setTextColor(getResources().getColor(R.color.SectionTitle));
                 tv1.setText(tv1.getText()); //c'est debile mais ca marche (bug d'android version 4.1.2)
+                tv2_1.setText(tv2_1.getText());
+                tv3.setText(tv3.getText());
                 tv2_1.setTextColor(getResources().getColor(R.color.SectionTitle));
                 tv2_2.setTextColor(getResources().getColor(R.color.SectionTitle));
                 tv3.setTextColor(Color.WHITE);

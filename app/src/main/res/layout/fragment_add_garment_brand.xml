@@ -1,75 +1,119 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/DefaultBackgroundColor"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     >
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/layoutBrand"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:background="@color/SectionTitle"
+        android:gravity="center"
+        android:id="@+id/favoriteBrandLayout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/title_choose_brand"
-            android:textColor="@color/SectionTitle"
-            android:textSize="@dimen/section_text_size"
+            android:id="@+id/textView11"
+            android:text="@string/favorite_brands"
+            android:padding="5dp"
             android:textStyle="bold"
-            />
+            android:textSize="20sp"
+            android:textColor="@android:color/white"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
 
-        <LinearLayout
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/selectedFavoriteLeftArrow"
+            android:src="@drawable/ic_action_next_item"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/textView11"
+            android:layout_toStartOf="@+id/textView11"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/selectedFavoriteRightArrow"
+            android:src="@drawable/ic_previous_item"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/textView11"
+            android:layout_toEndOf="@+id/textView11"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="@color/SectionTitle"
+        android:layout_below="@+id/favoriteBrandLayout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/allBrandsLayout">
+
+        <View
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:padding="10dp"
-            android:background="@android:color/white"
-            android:orientation="horizontal"
-            >
+            android:layout_height="2dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/separator" />
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="All brands"
+            android:padding="5dp"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="@android:color/white"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/textView12" />
 
-                <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="130dp"
-                    android:id="@+id/imageChooseBrand"
-                    android:scaleType="centerInside"
-                    android:layout_margin="20dp"
-                    />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:id="@+id/selectedAllLeftArrow"
+            android:src="@drawable/ic_action_next_item"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/textView12"
+            android:layout_toStartOf="@+id/textView12" />
 
-                <TextView
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textGarment"
-                    android:layout_below="@id/imageChooseBrand"
-                    android:textSize="16sp"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:textColor="@color/text_green"
-                    />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:id="@+id/selectedAllRightArrow"
+            android:src="@drawable/ic_previous_item"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/textView12"
+            android:layout_toEndOf="@+id/textView12" />
+    </RelativeLayout>
 
-            </RelativeLayout>
+    <GridView
+        android:id="@+id/gridViewBrands"
+        android:layout_width="match_parent"
+        android:numColumns="2"
+        android:layout_height="match_parent"
+        android:background="@color/DefaultBackgroundColor"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="5dp"
+        android:horizontalSpacing="10dp"
+        android:layout_below="@+id/spinnerBrandCategory"
+        android:layout_marginTop="10dp"/>
 
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/listViewBrand"
-                android:numColumns="3"
-                android:gravity="center"
-                android:padding="10dp"
-                android:scrollbarStyle="outsideOverlay"
-                android:clipToPadding="false"
-                />
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:gravity="center"
+        android:id="@+id/spinnerBrandCategory"
+        android:layout_below="@+id/allBrandsLayout"
+        android:layout_centerHorizontal="true" />
 
-        </LinearLayout>
-
-    </LinearLayout>
-
-</FrameLayout>
+</RelativeLayout>

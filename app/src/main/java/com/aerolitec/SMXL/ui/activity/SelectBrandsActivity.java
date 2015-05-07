@@ -48,7 +48,7 @@ public class SelectBrandsActivity extends Activity {
 
         brands=new ArrayList<>();
         brandsSelected=new ArrayList<>();
-        //FIXME
+
         brandsCategory=(SMXL.getBrandDBManager().getAllBrandCategory());
         brandsCategory.add(0,getResources().getString(R.string.select_category));
 
@@ -79,7 +79,6 @@ public class SelectBrandsActivity extends Activity {
         gridViewBrands.setAdapter(gridViewBrandsAdapter);
 
         gridViewBrands.setChoiceMode(GridView.CHOICE_MODE_MULTIPLE);
-        gridViewBrands.setNumColumns(2);
 
         brandsSelected.addAll(user.getBrands());
 
@@ -137,7 +136,6 @@ public class SelectBrandsActivity extends Activity {
         super.onResume();
 
         ArrayList<Brand> brandUser = user.getBrands();
-        Log.d("je resume", "");
         if(gridViewBrandsAdapter==null){
             gridViewBrandsAdapter = new FavoriteCheckableBrandAdapter(this, R.layout.item_favorite_brand, brands);
             gridViewBrands.setAdapter(gridViewBrandsAdapter);
@@ -169,9 +167,6 @@ public class SelectBrandsActivity extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         if (id == android.R.id.home){

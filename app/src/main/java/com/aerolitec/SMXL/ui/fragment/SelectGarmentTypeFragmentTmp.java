@@ -47,8 +47,7 @@ public class SelectGarmentTypeFragmentTmp extends Fragment {
         if(garmentItems.size()==1){
             activity.setSelectedGarmentType(garmentItems.get(0));
             getFragmentManager().beginTransaction()
-                    .replace(R.id.container, new Fragment(), "brand")
-                    .addToBackStack(null)
+                    .replace(R.id.container, new SelectGarmentBrandFragmentTmp(), "brand")
                     .commit();
         }
 
@@ -61,13 +60,19 @@ public class SelectGarmentTypeFragmentTmp extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 activity.setSelectedGarmentType((GarmentType)adapterView.getItemAtPosition(position));
-                Log.d("TestSelection", activity.getSelectedGarmentType().toString()+"");
                 getFragmentManager().beginTransaction()
-                        .replace(R.id.container, new Fragment(), "brand")
+                        .replace(R.id.container, new SelectGarmentBrandFragmentTmp(), "brand")
                         .addToBackStack(null)
                         .commit();
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        activity.setSelectedBrand(null);
+        activity.setSelectedGarmentType(null);
     }
 
     private ArrayList<GarmentType> getGarmentsFromCategory(CategoryGarment cg) {

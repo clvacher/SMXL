@@ -26,7 +26,6 @@ import com.aerolitec.SMXL.tools.ImageHelper;
 import com.aerolitec.SMXL.tools.dbmanager.DBManager;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
-import com.aerolitec.SMXL.ui.activity.AddGarmentActivity;
 import com.aerolitec.SMXL.ui.activity.DisplayGarmentActivity;
 import com.aerolitec.SMXL.ui.activity.tmp;
 import com.aerolitec.SMXL.ui.adapter.GarmentAdapter;

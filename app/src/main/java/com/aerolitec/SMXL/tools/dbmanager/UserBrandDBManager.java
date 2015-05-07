@@ -14,6 +14,7 @@ import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by Jerome on 28/04/2015.
@@ -147,9 +148,11 @@ public class UserBrandDBManager extends DBManager {
             eof = c.moveToNext();
         }
         c.close();
-
         close();
         //Log.d("getAllUserBrands", brands.toString());
+
+
+        Collections.sort(brands);
         return brands;
     }
 } // class UserBrandDBManager
