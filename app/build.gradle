@@ -1,8 +1,10 @@
 
 apply plugin: 'android'
 //apply plugin: 'crashlytics'
+
 repositories {
     maven { url 'http://download.crashlytics.com/maven' }
+    maven { url "https://jitpack.io" }
 }
 
 
@@ -56,5 +58,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:19.+'
     compile 'com.google.code.gson:gson:2.2.+'
     compile 'com.wunderlist:sliding-layer:1.1.+'
-    compile 'com.facebook.android:facebook-android-sdk:4.0.0'
+    //compile 'com.github.jfeinstein10:SlidingMenu:4254feca3e'
+    //compile 'com.github.sromku:android-simple-facebook:2.2'
+    compile 'com.facebook.android:facebook-android-sdk:4.1.1'
 }

@@ -185,7 +185,6 @@ public class UserClothesDBManager extends DBManager {
         return garments;
     }
 
-    //TODO change garmentType into an actual GarmentType and not a fucking String
     public ArrayList<UserClothes> getUserGarmentsByGarment(User user, CategoryGarment categoryGarment){
         open();
         ArrayList<UserClothes> garments = new ArrayList<>();

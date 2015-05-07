@@ -4,26 +4,31 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.aerolitec.SMXL.R;
-import com.aerolitec.SMXL.model.User;
-import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.facebook.Profile;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
+import org.json.JSONObject;
+
 /**
  * Created by Jerome on 05/05/2015.
  */
-public class ConnexionActivity extends Activity {
+public class ConnexionActivity extends Activity{
 
 
+    AccessToken accessToken;
     CallbackManager callbackManager;
     LoginButton loginButton;
 
@@ -34,53 +39,104 @@ public class ConnexionActivity extends Activity {
         FacebookSdk.sdkInitialize(getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
         LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
+
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 Log.d("Success", "Login fb success");
                 Profile profile = Profile.getCurrentProfile();
 
-                User user = null;
-                try {
-                    user = SMXL.getUserDBManager().createUser(profile.getFirstName(),profile.getLastName(), null, null, null, profile.getLinkUri().toString());
-                    Log.d(Constants.TAG, "New profile created : " + user.toString());
-                } catch (Exception e) {
-                    Log.d(Constants.TAG, "Create user with error : " + e.getMessage());
-                }
-                if (user != null)
-                    setResult(user.getId_user());
-                else
-                    setResult(0);
+                accessToken = AccessToken.getCurrentAccessToken();
+
+
+
+                GraphRequest request = GraphRequest.newMeRequest(accessToken, new GraphRequest.GraphJSONObjectCallback() {
+                    @Override
+                    public void onCompleted(JSONObject userJson, GraphResponse response) {
+                        if (userJson != null) {
+                            Log.d("userJson", userJson.toString());
+                            UserManager.get().setUser(SMXL.getUserDBManager().createUser(userJson.optString("first_name"), userJson.optString("last_name"), null, userJson.optString("gender"), null, userJson.toString()));
+                        }
+                    }
+                });
+                request.executeAsync();
 
                 finish();
-                UserManager.get().setUser(user);
                 Intent intent = new Intent(getApplicationContext(), ProfilActivity.class);
                 startActivity(intent);
             }
 
             @Override
             public void onCancel() {
-                Log.d("Cancel","Login fb cancel");
+                Log.d("Cancel", "Login fb cancel");
 
             }
 
             @Override
             public void onError(FacebookException e) {
-                Log.d("Error","Login fb error");
+                Log.d("Error", "Login fb error");
 
             }
         });
 
-
-
-
     }
+
+
+    /*
+
+        GraphRequest request = GraphRequest.newMeRequest(
+                AccessToken.getCurrentAccessToken(),
+                new GraphRequest.GraphJSONObjectCallback() {
+                    @Override
+                    public void onCompleted(
+                            JSONObject object,
+                            GraphResponse response) {
+                        // Application code
+                        Log.d("request complete", "tototototototo");
+                    }
+                });
+                */
+        /*Bundle parameters = new Bundle();
+        parameters.putString("fields", "id,name,link");
+        request.setParameters(parameters);
+        request.executeAsync();*/
+
+
+/*
+
+        OnLoginListener onLoginListener = new OnLoginListener() {
+            @Override
+            public void onLogin() {
+                // change the state of the button or do whatever you want
+                Log.i(TAG, "Logged in");
+            }
+
+            @Override
+            public void onNotAcceptingPermissions(Permission.Type type) {
+                // user didn't accept READ or WRITE permission
+                Log.w(TAG, String.format("You didn't accept %s permissions", type.name()));
+            }
+
+*/
+    /*
+     * You can override other methods here:
+     * onThinking(), onFail(String reason), onException(Throwable throwable)
+     */
+
+
+
 
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
+    }
+
+
+    public void skipConnexion (View v){
+        Intent intent = new Intent(getApplicationContext(), ProfilActivity.class);
+        startActivity(intent);
     }
 
 

@@ -70,7 +70,7 @@ public class IntroActivity extends Activity {
             public void run() {
                 // This method will be executed once the timer is over
                 // Start your app main activity
-                Intent i = new Intent(getApplicationContext(), ProfilActivity.class);
+                Intent i = new Intent(getApplicationContext(), ConnexionActivity.class);
                 startActivity(i);
 
                 // close this activity

@@ -1,11 +1,8 @@
 package com.aerolitec.SMXL.ui;
 
 import android.app.Application;
-import android.util.Log;
 
 import com.aerolitec.SMXL.R;
-import com.aerolitec.SMXL.model.CategoryGarment;
-import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.dbmanager.BrandDBManager;
 import com.aerolitec.SMXL.tools.dbmanager.BrandSizeGuideDBManager;
 import com.aerolitec.SMXL.tools.dbmanager.CategoryGarmentDBManager;
@@ -16,7 +13,6 @@ import com.aerolitec.SMXL.tools.dbmanager.UserClothesDBManager;
 import com.aerolitec.SMXL.tools.dbmanager.UserDBManager;
 import com.aerolitec.SMXL.tools.services.SQLiteSMXL;
 import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -36,7 +32,6 @@ public class SMXL extends Application{
     private static UserDBManager userDBManager;
     private Picasso picasso;
     //private static DisplayMetrics metrics;
-    private User user;
 
     @Override
     public void onCreate() {
@@ -83,14 +78,6 @@ public class SMXL extends Application{
 
     public static SQLiteSMXL getDataBase() {
         return dataBase;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
 

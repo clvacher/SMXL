@@ -15,7 +15,6 @@ import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.tools.services.OnProfileSelected;
-import com.aerolitec.SMXL.tools.services.SQLiteSMXL;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.adapter.ProfileItem;
 import com.aerolitec.SMXL.ui.adapter.SizeGuideAdapter;
@@ -41,9 +40,6 @@ public class ProfilActivity extends FragmentActivity implements OnProfileSelecte
         setContentView(R.layout.activity_profil);
 
         getActionBar().setDisplayShowTitleEnabled(false);
-
-
-        user = SMXL.get().getUser();
 
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
