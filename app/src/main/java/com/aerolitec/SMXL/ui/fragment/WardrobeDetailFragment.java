@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -38,7 +39,6 @@ public class WardrobeDetailFragment extends Fragment {
     private User user;
     private View view;
     private ListView tShirtsListView,dressesListView,pantsListView,blousesListView,jacketsListView,coatsListView,shoesListView,sweatersListView,underwearListView,suitsListView;
-
     private ArrayList<UserClothes> userTShirts,userDresses,userPants,userBlouses,userJackets, userVests,userShoes,userSweaters,userUnderwear,userSuits;
 
     private TextView nbTShirts,nbDresses,nbPants,nbBlouses,nbJackets,nbCoats,nbShoes,nbSweaters,nbUnderwear,nbSuits;

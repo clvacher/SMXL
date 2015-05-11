@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
@@ -47,6 +48,7 @@ public class GarmentAdapter extends ArrayAdapter<UserClothes> {
 
         final UserClothes clothes = getItem(position);
 
+
         holder.tvTypeGarment.setText(clothes.getGarmentType().getType());
         holder.tvBrand.setText(clothes.getBrand().getBrand_name());
         holder.tvSize.setText(clothes.getSize());
@@ -55,6 +57,8 @@ public class GarmentAdapter extends ArrayAdapter<UserClothes> {
             public void onClick(View view) {
                 SMXL.getUserClothesDBManager().deleteUserClothes(clothes);
                 remove(clothes);
+//                ((LinearLayout)view.getParent()).setVisibility(View.GONE);
+
                 notifyDataSetChanged();
             }
         });

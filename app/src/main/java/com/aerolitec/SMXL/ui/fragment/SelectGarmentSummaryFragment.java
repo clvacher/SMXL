@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.ui.activity.AddGarmentActivity;
-import com.aerolitec.SMXL.ui.activity.tmp;
 
 /**
  * Created by Clement on 5/6/2015.
