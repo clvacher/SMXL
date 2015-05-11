@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -51,7 +52,8 @@ public class CreateProfileActivity extends SuperCreateUpdateProfileActivity{
 
         radioSexe = (RadioGroup) findViewById(R.id.radioSexe);
         imgProfil = (ProfilePictureRoundedImageView) findViewById(R.id.imgProfil);
-        imgProfil.setOnClickListener(new View.OnClickListener() {
+        FrameLayout layoutImageProfil=(FrameLayout) findViewById(R.id.layoutImageProfil);
+        layoutImageProfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 selectProfilPicture();

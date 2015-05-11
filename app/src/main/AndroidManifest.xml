@@ -94,12 +94,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activity.AddGarmentActivity"
-            android:icon="@drawable/ic_action_logo_smxl"
-            android:label="@string/title_activity_add_garment"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
             android:name=".ui.activity.AddMeasureActivity"
             android:label="@string/title_activity_add_measure_fragment"
             android:screenOrientation="portrait">
@@ -115,7 +109,7 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".ui.activity.tmp"
+            android:name=".ui.activity.AddGarmentActivity"
             android:icon="@drawable/ic_action_logo_smxl"
             android:label="@string/title_activity_add_garment"
             android:windowSoftInputMode="adjustPan"

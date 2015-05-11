@@ -43,6 +43,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:hint="@string/brand"
+                android:gravity="center"
                 android:id="@+id/garmentBrand" />
         </LinearLayout>
         <RelativeLayout
