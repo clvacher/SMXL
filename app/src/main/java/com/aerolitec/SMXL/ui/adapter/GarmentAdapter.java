@@ -6,10 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.UserClothes;
+import com.aerolitec.SMXL.ui.SMXL;
 
 import java.util.ArrayList;
 
@@ -38,15 +40,24 @@ public class GarmentAdapter extends ArrayAdapter<UserClothes> {
             holder.tvTypeGarment = (TextView) convertView.findViewById(R.id.tvNameGarment);
             holder.tvBrand = (TextView) convertView.findViewById(R.id.tvBrandGarment);
             holder.tvSize = (TextView) convertView.findViewById(R.id.tvSize);
+            holder.deleteGarment=(ImageView) convertView.findViewById(R.id.deleteGarmentIcon);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        UserClothes clothes = getItem(position);
+        final UserClothes clothes = getItem(position);
 
         holder.tvTypeGarment.setText(clothes.getGarmentType().getType());
         holder.tvBrand.setText(clothes.getBrand().getBrand_name());
         holder.tvSize.setText(clothes.getSize());
+        holder.deleteGarment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SMXL.getUserClothesDBManager().deleteUserClothes(clothes);
+                remove(clothes);
+                notifyDataSetChanged();
+            }
+        });
 
         return convertView;
     }
@@ -55,5 +66,6 @@ public class GarmentAdapter extends ArrayAdapter<UserClothes> {
         TextView tvTypeGarment;
         TextView tvBrand;
         TextView tvSize;
+        ImageView deleteGarment;
     }
 }

@@ -78,7 +78,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginStart="10dp"
                     android:padding="2dp"
-                    android:src="@drawable/tshirt"
+                    android:src="@drawable/tshirt_lowpx"
                     android:layout_centerVertical="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true" />
@@ -171,7 +171,7 @@
                     android:padding="2dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginStart="10dp"
-                    android:src="@drawable/robe"
+                    android:src="@drawable/robe_lowpx"
                     android:layout_centerVertical="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true" />
@@ -264,7 +264,7 @@
                     android:padding="2dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginStart="10dp"
-                    android:src="@drawable/pantalon"
+                    android:src="@drawable/pantalon_lowpx"
                     android:layout_centerVertical="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true" />
@@ -357,7 +357,7 @@
                     android:padding="2dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginStart="10dp"
-                    android:src="@drawable/chemise"
+                    android:src="@drawable/chemise_lowpx"
                     android:layout_centerVertical="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true" />
@@ -450,7 +450,7 @@
                     android:padding="2dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginStart="10dp"
-                    android:src="@drawable/blouson"
+                    android:src="@drawable/blouson_lowpx"
                     android:layout_centerVertical="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true" />
@@ -543,7 +543,7 @@
                     android:padding="2dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginStart="10dp"
-                    android:src="@drawable/veste"
+                    android:src="@drawable/veste_lowpx"
                     android:layout_centerVertical="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true" />
@@ -636,7 +636,7 @@
                     android:padding="2dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginStart="10dp"
-                    android:src="@drawable/chaussure"
+                    android:src="@drawable/chaussure_lowpx"
                     android:layout_centerVertical="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true" />
@@ -729,7 +729,7 @@
                     android:padding="2dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginStart="10dp"
-                    android:src="@drawable/pull"
+                    android:src="@drawable/pull_lowpx"
                     android:layout_centerVertical="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true" />
@@ -822,7 +822,7 @@
                     android:padding="2dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginStart="10dp"
-                    android:src="@drawable/sousvet"
+                    android:src="@drawable/sousvet_lowpx"
                     android:layout_centerVertical="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true" />
@@ -915,7 +915,7 @@
                     android:padding="2dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginStart="10dp"
-                    android:src="@drawable/costume"
+                    android:src="@drawable/costume_lowpx"
                     android:layout_centerVertical="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true" />

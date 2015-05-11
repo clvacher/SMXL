@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
@@ -42,18 +43,12 @@ public class ProfilesDetailFragment extends Fragment{
     private static User user;
     private TextView tvFirstName, tvLastName, tvAgeSexe,nbBrands;
     private EditText etDescription;
-    private RelativeLayout addBrand;
     private RoundedImageView imgAvatar;
-    private RelativeLayout infosProfile;
-    private LinearLayout layoutRemarque;
+    private RelativeLayout infosProfile, layoutHeaderBrands;
 
     ListView brandListView;
 
-    private RelativeLayout layoutHeaderBrands;
-
     private ArrayList<Brand> userBrands;
-
-    private FavoriteBrandAdapter adapterBrand;
 
 
     // TODO: Rename and change types and number of parameters
@@ -91,42 +86,7 @@ public class ProfilesDetailFragment extends Fragment{
         tvAgeSexe = (TextView) view.findViewById(R.id.tvAgeSexe);
         etDescription = (EditText) view.findViewById(R.id.description);
 
-
-        tvFirstName.setText(user.getFirstname());
-        tvLastName.setText(user.getLastname());
-        String profileDescription = user.getDescription();
-        if (profileDescription.length()>0) {
-            etDescription.setText(profileDescription);
-        }
-
-        //TODO "H"
-        int age = user.getAge(user.getBirthday());
-        String sexe = getResources().getString(R.string.woman);
-        if (user.getSexe().startsWith("H")) {
-            sexe = getResources().getString(R.string.man);
-        }
-        tvAgeSexe.setText(age +" "+getResources().getString(R.string.years)+ " / " + sexe);
-
-
         imgAvatar = (RoundedImageView) view.findViewById(R.id.imgAvatar);
-        String fnAvatar = user.getAvatar();
-        if (fnAvatar != null) {
-            int width = getPixelsFromDip(80, getActivity());
-            try {
-                File file = new File(fnAvatar);
-                if (file.exists()) {
-                    final BitmapFactory.Options options = new BitmapFactory.Options();
-                    options.inJustDecodeBounds = true;
-                    BitmapFactory.decodeFile(file.getAbsolutePath(), options);
-                    options.inSampleSize = ImageHelper.calculateInSampleSize(options, width, width);
-                    options.inJustDecodeBounds = false;
-                    imgAvatar.setImageBitmap(ImageHelper.getCorrectBitmap(BitmapFactory.decodeFile(file.getAbsolutePath(), options), file.getAbsolutePath()));
-
-                }
-            } catch (Exception e) {
-                Log.e(Constants.TAG, "Error converting Picture to File : " + e.getMessage());
-            }
-        }
 
         imgAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,10 +105,14 @@ public class ProfilesDetailFragment extends Fragment{
             }
         });
 
-        addBrand = (RelativeLayout) view.findViewById(R.id.layoutAddBrand);
-        layoutHeaderBrands = (RelativeLayout) view.findViewById(R.id.layoutHeaderBrands);
+
         brandListView = (ListView) view.findViewById(R.id.layoutViewBrand);
         nbBrands=(TextView) view.findViewById(R.id.nbBrands);
+
+        layoutHeaderBrands = (RelativeLayout) view.findViewById(R.id.layoutHeaderBrands);
+        LinearLayout layoutBrands=(LinearLayout) view.findViewById(R.id.layoutBrand);
+        FrameLayout addBrand= (FrameLayout) view.findViewById(R.id.tmp);
+
 
         addBrand.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,7 +122,7 @@ public class ProfilesDetailFragment extends Fragment{
                 startActivity(intent);
             }
         });
-        layoutHeaderBrands.setOnClickListener(new View.OnClickListener() {
+        layoutBrands.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ImageView collapse = (ImageView) view.findViewById(R.id.collapseBrand);
@@ -243,10 +207,13 @@ public class ProfilesDetailFragment extends Fragment{
 
         userBrands=SMXL.getUserBrandDBManager().getAllUserBrands(user);
 
+
+        updateProfile();
+
         //updates the number of brands
         int tmp;
         tmp=userBrands.size();
-        nbBrands.setText("("+tmp+")");
+        nbBrands.setText("(" + tmp + ")");
         if(tmp==0){
             layoutHeaderBrands.setVisibility(View.GONE);
         }
@@ -254,4 +221,43 @@ public class ProfilesDetailFragment extends Fragment{
             layoutHeaderBrands.setVisibility(View.VISIBLE);
         }
     }
+
+    private void updateProfile(){
+
+        tvFirstName.setText(user.getFirstname());
+        tvLastName.setText(user.getLastname());
+        String profileDescription = user.getDescription();
+        if (profileDescription.length()>0) {
+            etDescription.setText(profileDescription);
+        }
+
+        String fnAvatar = user.getAvatar();
+        if (fnAvatar != null) {
+            int width = getPixelsFromDip(80, getActivity());
+            try {
+                File file = new File(fnAvatar);
+                if (file.exists()) {
+                    final BitmapFactory.Options options = new BitmapFactory.Options();
+                    options.inJustDecodeBounds = true;
+                    BitmapFactory.decodeFile(file.getAbsolutePath(), options);
+                    options.inSampleSize = ImageHelper.calculateInSampleSize(options, width, width);
+                    options.inJustDecodeBounds = false;
+                    imgAvatar.setImageBitmap(ImageHelper.getCorrectBitmap(BitmapFactory.decodeFile(file.getAbsolutePath(), options), file.getAbsolutePath()));
+
+                }
+            } catch (Exception e) {
+                Log.e(Constants.TAG, "Error converting Picture to File : " + e.getMessage());
+            }
+        }
+
+
+        //TODO "H"
+        int age = user.getAge(user.getBirthday());
+        String sexe = getResources().getString(R.string.woman);
+        if (user.getSexe().startsWith("H")) {
+            sexe = getResources().getString(R.string.man);
+        }
+        tvAgeSexe.setText(age +" "+getResources().getString(R.string.years)+ " / " + sexe);
+    }
+
 }
