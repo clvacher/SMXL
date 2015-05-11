@@ -19,12 +19,12 @@ import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
-import com.makeramen.RoundedImageView;
+import com.aerolitec.SMXL.ui.customLayout.ProfilePictureRoundedImageView;
 
 /**
  * Created by stephaneL on 21/03/14.
  */
-public class CreateProfile extends SuperCreateUpdateProfileActivity{
+public class CreateProfileActivity extends SuperCreateUpdateProfileActivity{
 
     private boolean confirmExit=false;
 
@@ -50,7 +50,7 @@ public class CreateProfile extends SuperCreateUpdateProfileActivity{
         });
 
         radioSexe = (RadioGroup) findViewById(R.id.radioSexe);
-        imgProfil = (RoundedImageView) findViewById(R.id.imgProfil);
+        imgProfil = (ProfilePictureRoundedImageView) findViewById(R.id.imgProfil);
         imgProfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

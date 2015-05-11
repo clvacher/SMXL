@@ -78,7 +78,7 @@
 
         </RelativeLayout>
 
-        <com.makeramen.RoundedImageView
+        <com.aerolitec.SMXL.ui.customLayout.ProfilePictureRoundedImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/imgAvatar"
             android:layout_width="@dimen/size_avatar_detail"

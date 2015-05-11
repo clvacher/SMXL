@@ -22,7 +22,7 @@ import com.aerolitec.SMXL.ui.adapter.FavoriteCheckableBrandAdapter;
 import java.util.ArrayList;
 
 /**
- * Created by Clément on 5/5/2015.
+ * Created by Clement on 5/5/2015.
  */
 public class SelectGarmentBrandFragmentTmp  extends Fragment {
 

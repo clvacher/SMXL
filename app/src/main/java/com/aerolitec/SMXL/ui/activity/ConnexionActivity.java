@@ -44,9 +44,10 @@ public class ConnexionActivity extends Activity{
             @Override
             public void onSuccess(LoginResult loginResult) {
                 Log.d("Success", "Login fb success");
-                Profile profile = Profile.getCurrentProfile();
+                final Profile profile = Profile.getCurrentProfile();
 
                 accessToken = AccessToken.getCurrentAccessToken();
+
 
 
 
@@ -55,21 +56,38 @@ public class ConnexionActivity extends Activity{
                     public void onCompleted(JSONObject userJson, GraphResponse response) {
                         if (userJson != null) {
                             Log.d("userJson", userJson.toString());
-                            UserManager.get().setUser(SMXL.getUserDBManager().createUser(userJson.optString("first_name"), userJson.optString("last_name"), null, userJson.optString("gender"), null, userJson.toString()));
+                            String sex;
+                            if(userJson.optString("gender").equals("male")){
+                                sex = "H";
+                            }
+                            else{
+                                sex = "F";
+                            }
+
+                            UserManager.get().setUser(SMXL.getUserDBManager().createUser(userJson.optString("first_name"),
+                                            userJson.optString("last_name"),
+                                            null,
+                                            sex,
+                                            "https://graph.facebook.com/" + userJson.optString("id") + "/picture?type=large",
+                                            userJson.optString("birthday"))
+                            );
+
+                            Log.d("birthday", (userJson.optString("birthday")).toString());
+
+                            finish();
+                            Intent intent = new Intent(getApplicationContext(), ProfilActivity.class);
+                            startActivity(intent);
                         }
                     }
                 });
                 request.executeAsync();
 
-                finish();
-                Intent intent = new Intent(getApplicationContext(), ProfilActivity.class);
-                startActivity(intent);
+
             }
 
             @Override
             public void onCancel() {
                 Log.d("Cancel", "Login fb cancel");
-
             }
 
             @Override

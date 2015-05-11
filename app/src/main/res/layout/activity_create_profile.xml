@@ -25,7 +25,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp">
 
-            <com.makeramen.RoundedImageView
+            <com.aerolitec.SMXL.ui.customLayout.ProfilePictureRoundedImageView
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/imgProfil"
                 android:layout_width="100dp"

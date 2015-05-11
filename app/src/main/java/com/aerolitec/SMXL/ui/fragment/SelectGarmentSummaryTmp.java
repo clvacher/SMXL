@@ -9,17 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
-import com.aerolitec.SMXL.tools.SizeHelper;
 import com.aerolitec.SMXL.ui.activity.tmp;
 
-import java.util.ArrayList;
-
 /**
- * Created by Clément on 5/6/2015.
+ * Created by Clement on 5/6/2015.
  */
 public class SelectGarmentSummaryTmp extends Fragment {
     private tmp activity;

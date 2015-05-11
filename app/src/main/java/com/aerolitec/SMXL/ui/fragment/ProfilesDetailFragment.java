@@ -1,12 +1,9 @@
 package com.aerolitec.SMXL.ui.fragment;
 
 import android.app.Fragment;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,17 +20,13 @@ import android.widget.TextView;
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.Brand;
 import com.aerolitec.SMXL.model.User;
-import com.aerolitec.SMXL.tools.Constants;
-import com.aerolitec.SMXL.tools.ImageHelper;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.activity.SelectBrandsActivity;
-import com.aerolitec.SMXL.ui.activity.UpdateProfile;
-import com.aerolitec.SMXL.ui.adapter.BrandItem;
+import com.aerolitec.SMXL.ui.activity.UpdateProfileActivity;
 import com.aerolitec.SMXL.ui.adapter.FavoriteBrandAdapter;
-import com.makeramen.RoundedImageView;
+import com.aerolitec.SMXL.ui.customLayout.ProfilePictureRoundedImageView;
 
-import java.io.File;
 import java.util.ArrayList;
 
 public class ProfilesDetailFragment extends Fragment{
@@ -43,14 +36,13 @@ public class ProfilesDetailFragment extends Fragment{
     private static User user;
     private TextView tvFirstName, tvLastName, tvAgeSexe,nbBrands;
     private EditText etDescription;
-    private RoundedImageView imgAvatar;
-    private RelativeLayout infosProfile, layoutHeaderBrands;
+    private ProfilePictureRoundedImageView imgAvatar;
+    private RelativeLayout layoutHeaderBrands;
 
     ListView brandListView;
 
     private ArrayList<Brand> userBrands;
-
-
+    
     // TODO: Rename and change types and number of parameters
     public static ProfilesDetailFragment newInstance(User param1, String param2) {
         return new ProfilesDetailFragment();
@@ -86,21 +78,21 @@ public class ProfilesDetailFragment extends Fragment{
         tvAgeSexe = (TextView) view.findViewById(R.id.tvAgeSexe);
         etDescription = (EditText) view.findViewById(R.id.description);
 
-        imgAvatar = (RoundedImageView) view.findViewById(R.id.imgAvatar);
+        imgAvatar = (ProfilePictureRoundedImageView) view.findViewById(R.id.imgAvatar);
 
         imgAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent nextActivity = new Intent(getActivity().getApplicationContext(), UpdateProfile.class);
+                Intent nextActivity = new Intent(getActivity().getApplicationContext(), UpdateProfileActivity.class);
                 startActivity(nextActivity);
             }
         });
 
-        infosProfile = (RelativeLayout) view.findViewById(R.id.profilLayout);
+        RelativeLayout infosProfile = (RelativeLayout) view.findViewById(R.id.profilLayout);
         infosProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent nextActivity = new Intent(getActivity().getApplicationContext(), UpdateProfile.class);
+                Intent nextActivity = new Intent(getActivity().getApplicationContext(), UpdateProfileActivity.class);
                 startActivity(nextActivity);
             }
         });
@@ -147,7 +139,7 @@ public class ProfilesDetailFragment extends Fragment{
         v.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                //TODO a completer pour les details des marques (jerome)
+                //TODO a completer pour les details des marques (jerome) --> website
             }
         });
         setListViewHeightBasedOnChildren(v);
@@ -180,11 +172,6 @@ public class ProfilesDetailFragment extends Fragment{
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-    }
-
-
-    public int getPixelsFromDip(int dip, Context context) {
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dip, context.getResources().getDisplayMetrics());
     }
 
 
@@ -232,24 +219,7 @@ public class ProfilesDetailFragment extends Fragment{
         }
 
         String fnAvatar = user.getAvatar();
-        if (fnAvatar != null) {
-            int width = getPixelsFromDip(80, getActivity());
-            try {
-                File file = new File(fnAvatar);
-                if (file.exists()) {
-                    final BitmapFactory.Options options = new BitmapFactory.Options();
-                    options.inJustDecodeBounds = true;
-                    BitmapFactory.decodeFile(file.getAbsolutePath(), options);
-                    options.inSampleSize = ImageHelper.calculateInSampleSize(options, width, width);
-                    options.inJustDecodeBounds = false;
-                    imgAvatar.setImageBitmap(ImageHelper.getCorrectBitmap(BitmapFactory.decodeFile(file.getAbsolutePath(), options), file.getAbsolutePath()));
-
-                }
-            } catch (Exception e) {
-                Log.e(Constants.TAG, "Error converting Picture to File : " + e.getMessage());
-            }
-        }
-
+        imgAvatar.setImage(fnAvatar);
 
         //TODO "H"
         int age = user.getAge(user.getBirthday());

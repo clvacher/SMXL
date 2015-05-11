@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.ImageHelper;
-import com.makeramen.RoundedImageView;
+import com.aerolitec.SMXL.ui.customLayout.ProfilePictureRoundedImageView;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,7 +33,7 @@ public class SuperCreateUpdateProfileActivity extends Activity {
 
     EditText etFirstName, etLastName, etNotes;
     RadioGroup radioSexe;
-    RoundedImageView imgProfil;
+    ProfilePictureRoundedImageView imgProfil;
     Button datePickerButton;
     protected String picturePath;
     String birthday;

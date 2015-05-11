@@ -2,10 +2,9 @@ package com.aerolitec.SMXL.ui.fragment;
 
 import android.app.Activity;
 import android.app.DialogFragment;
-import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
-import android.os.Bundle;
 import android.app.Fragment;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +15,7 @@ import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.services.OnProfileSelected;
 import com.aerolitec.SMXL.ui.SMXL;
-import com.aerolitec.SMXL.ui.activity.CreateProfile;
+import com.aerolitec.SMXL.ui.activity.CreateProfileActivity;
 import com.aerolitec.SMXL.ui.adapter.ProfileItem;
 import com.aerolitec.SMXL.ui.adapter.ProfilesAdapter;
 import com.aerolitec.SMXL.ui.fragment.dialog.ConfirmDialogFragment;
@@ -66,6 +65,8 @@ public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
 
     }
 
@@ -133,6 +134,17 @@ public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.
         ProfileItem createNewProfile = new ProfileItem(0,getResources().getString(R.string.newProfile2), getResources().getString(R.string.newProfile1), "createNewProfile");
         profileItem.add(createNewProfile);
 
+        /*
+        GraphRequest.newMeRequest(AccessToken.getCurrentAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
+            @Override
+            public void onCompleted(JSONObject jsonObject, GraphResponse graphResponse) {
+
+                ProfilePictureView profilePicture = (ProfilePictureView) view.findViewById(R.id.profilePictureView);
+                profilePicture.setProfileId(AccessToken.getCurrentAccessToken().getUserId());
+            }
+
+        }).executeAsync();
+*/
 
         for (User u : users) {
             profileItem.add(new ProfileItem(u.getId_user(), u.getLastname(), u.getFirstname(), u.getAvatar()));
@@ -149,7 +161,7 @@ public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.
                 itemProfileListener.profileSelect(profileItem.get(arg2));
             }
             else{
-                Intent intent = new Intent(getActivity().getApplicationContext(), CreateProfile.class);
+                Intent intent = new Intent(getActivity().getApplicationContext(), CreateProfileActivity.class);
                 startActivity(intent);
             }
         }

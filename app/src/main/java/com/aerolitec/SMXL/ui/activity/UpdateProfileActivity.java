@@ -1,21 +1,12 @@
 package com.aerolitec.SMXL.ui.activity;
 
-import android.app.Activity;
-import android.app.DatePickerDialog;
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -24,19 +15,14 @@ import android.widget.Toast;
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.Constants;
-import com.aerolitec.SMXL.tools.ImageHelper;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
-import com.makeramen.RoundedImageView;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.Calendar;
+import com.aerolitec.SMXL.ui.customLayout.ProfilePictureRoundedImageView;
 
 /**
  * Created by stephaneL on 31/03/14.
  */
-public class UpdateProfile extends SuperCreateUpdateProfileActivity{
+public class UpdateProfileActivity extends SuperCreateUpdateProfileActivity{
 
     private User user;
 
@@ -66,7 +52,7 @@ public class UpdateProfile extends SuperCreateUpdateProfileActivity{
         radioSexe = (RadioGroup) findViewById(R.id.radioSexe);
         RadioButton radioH = (RadioButton) findViewById(R.id.radioMale);
         RadioButton radioF = (RadioButton) findViewById(R.id.radioFemale);
-        imgProfil = (RoundedImageView) findViewById(R.id.imgProfil);
+        imgProfil = (ProfilePictureRoundedImageView) findViewById(R.id.imgProfil);
         datePickerButton = (Button) findViewById(R.id.buttonBirthday);
 
         datePickerButton.setOnClickListener(new View.OnClickListener() {
@@ -93,25 +79,7 @@ public class UpdateProfile extends SuperCreateUpdateProfileActivity{
         }
 
         picturePath = user.getAvatar();
-        int width = imgProfil.getLayoutParams().width;
-        try {
-            File file = new File(picturePath);
-            if (file.exists()) {
-                final BitmapFactory.Options options = new BitmapFactory.Options();
-                options.inJustDecodeBounds = true;
-                BitmapFactory.decodeFile(file.getAbsolutePath(), options);
-
-                // Calculate inSampleSize
-                options.inSampleSize = ImageHelper.calculateInSampleSize(options, width, width);
-
-                // Decode bitmap with inSampleSize set
-                options.inJustDecodeBounds = false;
-                imgProfil.setImageBitmap(ImageHelper.getCorrectBitmap(BitmapFactory.decodeFile(file.getAbsolutePath(), options), file.getAbsolutePath()));
-            }
-        }
-        catch (Exception e){
-            Log.e(Constants.TAG,"Error converting picture in File : " + e.getMessage());
-        }
+        imgProfil.setImage(picturePath);
 
         imgProfil.setOnClickListener(new View.OnClickListener() {
             @Override

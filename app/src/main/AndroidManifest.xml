@@ -49,13 +49,13 @@
             android:parentActivityName=".ui.activity.ProfilActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activity.CreateProfile"
+            android:name=".ui.activity.CreateProfileActivity"
             android:logo="@drawable/groslogo"
             android:parentActivityName=".ui.activity.ProfilActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateVisible"/>
         <activity
-            android:name=".ui.activity.UpdateProfile"
+            android:name=".ui.activity.UpdateProfileActivity"
             android:logo="@drawable/groslogo"
             android:screenOrientation="portrait" />
         <activity

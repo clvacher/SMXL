@@ -2,8 +2,6 @@ package com.aerolitec.SMXL.ui.adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.BitmapFactory;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,11 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
-import com.aerolitec.SMXL.tools.Constants;
-import com.aerolitec.SMXL.tools.ImageHelper;
-import com.makeramen.RoundedImageView;
+import com.aerolitec.SMXL.ui.customLayout.ProfilePictureRoundedImageView;
 
-import java.io.File;
 import java.util.ArrayList;
 
 
@@ -33,7 +28,7 @@ public class ProfilesAdapter extends ArrayAdapter<ProfileItem> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
+        final ViewHolder holder;
 
         if (convertView == null){
             LayoutInflater mInflater = (LayoutInflater)
@@ -41,7 +36,7 @@ public class ProfilesAdapter extends ArrayAdapter<ProfileItem> {
             convertView = mInflater.inflate(R.layout.profiles_item, null);
             holder = new ViewHolder();
             convertView.setTag(holder);
-            holder.avatar = (RoundedImageView) convertView.findViewById(R.id.imgAvatar);
+            holder.avatar = (ProfilePictureRoundedImageView) convertView.findViewById(R.id.imgAvatar);
             holder.lastName = (TextView) convertView.findViewById(R.id.tvLastName);
             holder.firstName = (TextView) convertView.findViewById(R.id.tvFirstName);
         } else {
@@ -56,42 +51,17 @@ public class ProfilesAdapter extends ArrayAdapter<ProfileItem> {
         holder.firstName.setText(item.getFirstName());
 
 
-        String urlImage = item.getAvatar();
+        final String urlImage = item.getAvatar();
 
+        holder.avatar.setImage(urlImage);
 
-        if(urlImage=="createNewProfile"){
-            holder.avatar.setImageResource(R.drawable.ic_menu_btn_add);
-        }
-        else if(urlImage != null) {
-            try {
-                File file = new File(urlImage);
-
-                if (file.exists()) {
-                    final BitmapFactory.Options options = new BitmapFactory.Options();
-                    options.inJustDecodeBounds = true;
-                    BitmapFactory.decodeFile(file.getAbsolutePath(), options);
-
-                    // Calculate inSampleSize
-                    options.inSampleSize = ImageHelper.calculateInSampleSize(options, width, width);
-
-                    // Decode bitmap with inSampleSize set
-                    options.inJustDecodeBounds = false;
-                    holder.avatar.setImageBitmap(ImageHelper.getCorrectBitmap(BitmapFactory.decodeFile(file.getAbsolutePath(), options), file.getAbsolutePath()));
-                }
-            } catch (Exception e) {
-                Log.e(Constants.TAG, "Error converting picture to file : " + e.getMessage());
-            }
-        }
-        else{
-            holder.avatar.setImageResource(R.drawable.avatar);
-        }
 
 
         return convertView;
     }
 
     public static class ViewHolder {
-        RoundedImageView avatar;
+        ProfilePictureRoundedImageView avatar;
         TextView lastName;
         TextView firstName;
     }

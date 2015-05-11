@@ -14,6 +14,7 @@ import java.util.ArrayList;
  */
 public class UserDBManager extends DBManager{
 
+    private static int userNum = 0;
     public static final String TABLE_NAME = "user";
     public static final String KEY_ID_USER="id_user";
     public static final String KEY_NICKNAME_USER="nickname";
@@ -105,32 +106,34 @@ public class UserDBManager extends DBManager{
                            String sexe, String avatar, String description){
         open();
         User user;
-        String nickname = firstName+lastName+birthday;
-            ContentValues values = new ContentValues();
-            values.put(KEY_NICKNAME_USER, nickname);
-            values.put(KEY_FIRSTNAME_USER, firstName);
-            values.put(KEY_LASTNAME_USER, lastName);
-            values.put(KEY_BIRTHDAY_USER, birthday);
-            values.put(KEY_SEX_USER, sexe);
-            values.put(KEY_AVATAR_USER, avatar);
-            values.put(KEY_DESCRIPTION_USER, description);
-            values.put(KEY_SIZE_USER, 0);
-            values.put(KEY_WEIGHT_USER, 0);
-            values.put(KEY_CHEST_USER, 0);
-            values.put(KEY_COLLAR_USER, 0);
-            values.put(KEY_BUST_USER, 0);
-            values.put(KEY_WAIST_USER, 0);
-            values.put(KEY_HIPS_USER, 0);
-            values.put(KEY_SLEEVE_USER, 0);
-            values.put(KEY_INSEAM_USER, 0);
-            values.put(KEY_FEET_USER, 0);
-            values.put(KEY_UNITLENGTH_USER, 0);
-            values.put(KEY_UNITWEIGHT_USER, 0);
-            values.put(KEY_POINTURE_USER, 0);
+        String nickname = firstName+lastName+userNum;
+        ContentValues values = new ContentValues();
+        values.put(KEY_NICKNAME_USER, nickname);
+        values.put(KEY_FIRSTNAME_USER, firstName);
+        values.put(KEY_LASTNAME_USER, lastName);
+        values.put(KEY_BIRTHDAY_USER, birthday);
+        values.put(KEY_SEX_USER, sexe);
+        values.put(KEY_AVATAR_USER, avatar);
+        values.put(KEY_DESCRIPTION_USER, description);
+        values.put(KEY_SIZE_USER, 0);
+        values.put(KEY_WEIGHT_USER, 0);
+        values.put(KEY_CHEST_USER, 0);
+        values.put(KEY_COLLAR_USER, 0);
+        values.put(KEY_BUST_USER, 0);
+        values.put(KEY_WAIST_USER, 0);
+        values.put(KEY_HIPS_USER, 0);
+        values.put(KEY_SLEEVE_USER, 0);
+        values.put(KEY_INSEAM_USER, 0);
+        values.put(KEY_FEET_USER, 0);
+        values.put(KEY_UNITLENGTH_USER, 0);
+        values.put(KEY_UNITWEIGHT_USER, 0);
+        values.put(KEY_POINTURE_USER, 0);
 
-            db.insert(TABLE_NAME, null, values);
+        db.insert(TABLE_NAME, null, values);
 
         user = getUserByNickname(nickname);
+        userNum++;
+
         close();
         return user;
     }
