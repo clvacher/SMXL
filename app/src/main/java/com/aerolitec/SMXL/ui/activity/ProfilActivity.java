@@ -59,8 +59,6 @@ public class ProfilActivity extends FragmentActivity implements OnProfileSelecte
 
         //mPager.setPageTransformer(true, new DepthPageTransformer());
 
-
-
     }
 
 
@@ -79,7 +77,7 @@ public class ProfilActivity extends FragmentActivity implements OnProfileSelecte
         int id = item.getItemId();
         if (id == R.id.addProfile) {
             //Intent intent = new Intent(getApplicationContext(), CreateProfileActivity.class);
-            Intent intent = new Intent(getApplicationContext(), ConnexionActivity.class);
+            Intent intent = new Intent(getApplicationContext(), AccueilActivity.class);
             startActivity(intent);
             return true;
         }

@@ -9,28 +9,28 @@ import java.util.ArrayList;
 
 public class User extends BaseObjects implements Serializable {
 
-    private int id_user;
-    private String nickname;
-    private String firstname;
-    private String lastname;
-    private String birthday;
-    private String sexe;
-    private String avatar;
-    private String description;
-    private double size;
-    private double weight;
-    private double imc; //NON PRESENT DANS LA BDD
-    private double chest;
-    private double collar;
-    private double bust;
-    private double waist;
-    private double hips;
-    private double sleeve;
-    private double inseam;
-    private double feet;
-    private int unitLength;
-    private int unitWeight;
-    private double pointure;
+    protected int id_user;
+    protected String nickname;
+    protected String firstname;
+    protected String lastname;
+    protected String birthday;
+    protected String sexe;
+    protected String avatar;
+    protected String description;
+    protected double size;
+    protected double weight;
+    protected double imc; //NON PRESENT DANS LA BDD
+    protected double chest;
+    protected double collar;
+    protected double bust;
+    protected double waist;
+    protected double hips;
+    protected double sleeve;
+    protected double inseam;
+    protected double feet;
+    protected int unitLength;
+    protected int unitWeight;
+    protected double pointure;
 
     private ArrayList<Brand> brands = new ArrayList<>();
 

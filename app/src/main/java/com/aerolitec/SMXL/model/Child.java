@@ -3,6 +3,7 @@ package com.aerolitec.SMXL.model;
 /**
  * Created by gautierragueneau on 28/05/2014.
  */
+//TODO WTF ?
 public class Child {
     private String birthday;
     private String sexe;

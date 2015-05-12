@@ -2,12 +2,15 @@ package com.aerolitec.SMXL.ui.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.aerolitec.SMXL.R;
-import com.aerolitec.SMXL.tools.manager.UserManager;
+import com.aerolitec.SMXL.model.MainUser;
+import com.aerolitec.SMXL.tools.manager.MainUserManager;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -16,7 +19,6 @@ import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
-import com.facebook.Profile;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
@@ -35,20 +37,19 @@ public class ConnexionActivity extends Activity{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_connexion);
         FacebookSdk.sdkInitialize(getApplicationContext());
+        setContentView(R.layout.activity_connexion);
         callbackManager = CallbackManager.Factory.create();
         LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
+        loginButton.setReadPermissions("email");
+        //loginButton.setReadPermissions("user_birthday");
+
 
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 Log.d("Success", "Login fb success");
-                final Profile profile = Profile.getCurrentProfile();
-
                 accessToken = AccessToken.getCurrentAccessToken();
-
-
 
 
                 GraphRequest request = GraphRequest.newMeRequest(accessToken, new GraphRequest.GraphJSONObjectCallback() {
@@ -57,22 +58,35 @@ public class ConnexionActivity extends Activity{
                         if (userJson != null) {
                             Log.d("userJson", userJson.toString());
                             String sex;
-                            if(userJson.optString("gender").equals("male")){
+                            if (userJson.optString("gender").equals("male")) {
                                 sex = "H";
-                            }
-                            else{
+                            } else {
                                 sex = "F";
                             }
 
-                            UserManager.get().setUser(SMXL.getUserDBManager().createUser(userJson.optString("first_name"),
-                                            userJson.optString("last_name"),
-                                            null,
-                                            sex,
-                                            "https://graph.facebook.com/" + userJson.optString("id") + "/picture?type=large",
-                                            userJson.optString("birthday"))
+                            MainUser mainUser = new MainUser(userJson.optString("last_name"),
+                                    userJson.optString("first_name"),
+                                    userJson.optString("email"),
+                                    "facebook",
+                                    sex,
+                                    "https://graph.facebook.com/" + userJson.optString("id") + "/picture?type=large",
+                                    //userJson.optString("birthday")
+                                    userJson.toString()
                             );
 
-                            Log.d("birthday", (userJson.optString("birthday")).toString());
+
+                            MainUserManager.get().setMainUser(mainUser);
+                            SMXL.getUserDBManager().createUser(mainUser.getFirstname(), mainUser.getLastname(), mainUser.getBirthday(), mainUser.getSexe(), mainUser.getAvatar(), mainUser.getDescription());
+
+                            new HttpAsyncTask().execute("http://api.smxl-app.com/users.json");
+                            /*try {
+                                POSTUserOnServer(userJson.optString("email"));
+                            } catch (UnsupportedEncodingException e) {
+                                e.printStackTrace();
+                            }*/
+
+                            //Log.d("birthday", (userJson.optString("birthday")).toString());
+                            //Log.d("email", (userJson.optString("email")).toString());
 
                             finish();
                             Intent intent = new Intent(getApplicationContext(), ProfilActivity.class);
@@ -98,6 +112,20 @@ public class ConnexionActivity extends Activity{
         });
 
     }
+
+    private class HttpAsyncTask extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... urls) {
+            return POSTActivity.POST(urls[0], MainUserManager.get().getMainUser());
+        }
+
+        // onPostExecute displays the results of the AsyncTask.
+        @Override
+        protected void onPostExecute(String result) {
+            Toast.makeText(getBaseContext(), "Data Sent!", Toast.LENGTH_LONG).show();
+        }
+    }
+
 
 
     /*
@@ -155,6 +183,7 @@ public class ConnexionActivity extends Activity{
     public void skipConnexion (View v){
         Intent intent = new Intent(getApplicationContext(), ProfilActivity.class);
         startActivity(intent);
+        finish();
     }
 
 

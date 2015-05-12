@@ -5,15 +5,16 @@ apply plugin: 'android'
 repositories {
     maven { url 'http://download.crashlytics.com/maven' }
     maven { url "https://jitpack.io" }
+    maven { url 'http://dl.bintray.com/madcyph3r/maven/' }
 }
 
 
 android {
-    compileSdkVersion 19
+    compileSdkVersion 21
     buildToolsVersion '19.1.0'
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 19
+        targetSdkVersion 21
         versionCode 1
         versionName '1.0'
     }
@@ -55,10 +56,13 @@ dependencies {
     compile 'com.makeramen:roundedimageview:1.3.+'
     compile 'com.squareup.picasso:picasso:2.2.+'
     compile 'com.crashlytics.android:crashlytics:1.+'
-    compile 'com.android.support:appcompat-v7:19.+'
+    compile 'com.android.support:appcompat-v7:21.+'
     compile 'com.google.code.gson:gson:2.2.+'
     compile 'com.wunderlist:sliding-layer:1.1.+'
+    //compile 'com.github.jfeinstein10:SlidingMenu:1.3-SNAPSHOT'
     //compile 'com.github.jfeinstein10:SlidingMenu:4254feca3e'
     //compile 'com.github.sromku:android-simple-facebook:2.2'
     compile 'com.facebook.android:facebook-android-sdk:4.1.1'
+    //compile 'com.github.TangKe:SlideMenu:1.1'
+    compile 'com.github.madcyph3r:AdvancedMaterialDrawer:1.1.1'
 }
