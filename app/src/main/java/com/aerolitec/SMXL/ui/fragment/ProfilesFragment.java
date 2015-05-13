@@ -66,8 +66,6 @@ public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-
-
     }
 
     @Override
@@ -75,6 +73,10 @@ public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_profiles, container, false);
+
+        //getFragmentManager().beginTransaction().add(R.id.containerSlideSizeGuide, new SlideSizeGuideFragment()).commit();
+        //Fragment sizeGuideFragment = new SlideSizeGuideFragment();
+        getFragmentManager().beginTransaction().add(R.id.containerSlideSizeGuide, new SlideSizeGuideFragment()).commit();
 
         GridView gridViewProfiles = (GridView)view.findViewById(R.id.listViewProfiles);
         profileItem = new ArrayList<>();

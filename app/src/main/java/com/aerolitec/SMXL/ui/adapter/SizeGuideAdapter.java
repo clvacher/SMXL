@@ -1,9 +1,8 @@
 package com.aerolitec.SMXL.ui.adapter;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.util.Log;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.support.v13.app.FragmentPagerAdapter;
 
 import com.aerolitec.SMXL.model.GarmentType;
 import com.aerolitec.SMXL.model.SizeConvert;
@@ -15,7 +14,7 @@ import java.util.ArrayList;
 /**
  * Created by Jerome on 13/04/2015.
  */
-public class SizeGuideAdapter extends FragmentStatePagerAdapter {
+public class SizeGuideAdapter extends FragmentPagerAdapter {
 
     private static ArrayList<GarmentType> al_garments = SMXL.getSizeConvertDBManager().getGarmentsSizeGuideGroupBySexAndGarment();
     private static final int NUM_PAGES = al_garments.size();

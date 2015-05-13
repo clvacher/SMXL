@@ -32,6 +32,12 @@
         <item name="android:src">@drawable/ic_overflow</item>
     </style>
 
+    <style name="MyNavigationDrawerTheme" parent="MaterialNavigationDrawerTheme.Light.DarkActionBar">
+        <item name="colorPrimary">@color/SectionTitle</item>
+        <item name="colorPrimaryDark">@color/SectionTitle</item>
+        <item name="colorAccent">#FFFFFF</item>
+        <item name="sectionBackgroundColor">@color/SectionTitle</item>
+    </style>
 
 
 </resources>

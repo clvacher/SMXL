@@ -41,7 +41,9 @@
         <activity
             android:name=".ui.activity.ProfilActivity"
             android:logo="@drawable/groslogo"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:theme="@style/MyNavigationDrawerTheme" >
+
         </activity>
         <activity
             android:name=".ui.activity.AProposActivity"
@@ -119,6 +121,13 @@
             android:name=".ui.activity.ConnexionActivity"
             android:label="@string/title_activity_connexion"
             android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.AccueilActivity"
+            android:label="@string/title_activity_connexion"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+
         </activity>
     </application>
 
