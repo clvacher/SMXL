@@ -1,80 +1,63 @@
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    tools:context="com.aerolitec.SMXL.ui.fragment.SizeGuideFragment"
-    android:orientation="vertical"
-    android:id="@+id/size_guide_content"
-    android:background="@color/DefaultBackgroundColor"
-    >
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context="com.aerolitec.SMXL.ui.fragment.SizeGuideFragment">
 
-    <TableLayout
+    <!--com.wunderlist.slidinglayer.SlidingLayer
+        xmlns:slidingLayer="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/slidingLayerSizeGuide"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:stretchColumns="*"
-        android:shrinkColumns="*"
-        android:layout_margin="20dp"
-        android:id="@+id/tableSizeGarment"
-        android:paddingBottom="30dp"
-        >
+        android:layout_height="match_parent"
+        slidingLayer:shadowSize="5dp"
+        slidingLayer:offsetDistance="50dp"
+        slidingLayer:previewOffsetDistance="50dp"
+        slidingLayer:stickTo="bottom"
+        slidingLayer:changeStateOnTap="true"-->
 
-        <TableRow
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:background="@color/SectionTitle"
-            android:showDividers="middle"
+            android:layout_height="match_parent"
             >
 
-            <TextView android:text="UE"
-                android:id="@+id/headerUE"
-                android:layout_column="0"
-                android:layout_weight="1"
-                android:layout_gravity="center"
+
+
+            <android.support.v4.view.ViewPager
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/viewPagerSizeGuide">
+                <!--android:layout_below="@+id/buttonSizeGuide"-->
+
+
+                <android.support.v4.view.PagerTitleStrip
+                    android:id="@+id/pager_title_strip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:background="#888"
+                    android:textColor="#fff"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:textSize="@dimen/section_text_size"
+                    />
+
+            </android.support.v4.view.ViewPager>
+
+
+            <!--Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/size_guide"
+                android:background="@drawable/button_size_guide"
+                android:id="@+id/buttonSizeGuide"
+                android:padding="10dp"
                 android:textColor="#FFF"
-                android:textSize="@dimen/section_text_size"
-                android:textStyle="bold"/>
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                /-->
 
-            <TextView android:text="US"
-                android:id="@+id/headerUS"
-                android:layout_column="1"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:textColor="#FFF"
-                android:textSize="@dimen/section_text_size"
-                android:textStyle="bold"/>
+        </RelativeLayout>
 
-            <TextView android:text="UK"
-                android:id="@+id/headerUK"
-                android:layout_column="2"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:textColor="#FFF"
-                android:textSize="@dimen/section_text_size"
-                android:textStyle="bold"/>
+    <!--/com.wunderlist.slidinglayer.SlidingLayer-->
 
-            <TextView android:text="FR"
-                android:id="@+id/headerFR"
-                android:layout_column="3"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:textColor="#FFF"
-                android:textSize="@dimen/section_text_size"
-                android:textStyle="bold"/>
-
-
-            <TextView android:text="SMXL"
-                android:id="@+id/headerSMXL"
-                android:layout_column="4"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:textColor="#FFF"
-                android:textSize="@dimen/section_text_size"
-                android:textStyle="bold"/>
-
-        </TableRow>
-
-    </TableLayout>
-
-
-</ScrollView>
+</RelativeLayout>

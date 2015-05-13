@@ -38,13 +38,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".ui.activity.ProfilActivity"
             android:logo="@drawable/groslogo"
             android:screenOrientation="portrait"
             android:theme="@style/MyNavigationDrawerTheme" >
-
         </activity>
+
         <activity
             android:name=".ui.activity.AProposActivity"
             android:logo="@drawable/groslogo"

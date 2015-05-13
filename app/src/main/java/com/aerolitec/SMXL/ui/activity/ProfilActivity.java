@@ -5,9 +5,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.view.Menu;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.User;
@@ -16,13 +13,14 @@ import com.aerolitec.SMXL.tools.services.OnProfileSelected;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.adapter.ProfileItem;
 import com.aerolitec.SMXL.ui.fragment.ProfilesFragment;
-import com.wunderlist.slidinglayer.SlidingLayer;
+import com.aerolitec.SMXL.ui.fragment.SizeGuideFragment;
 
 import java.io.File;
 
 import de.madcyph3r.materialnavigationdrawer.MaterialNavigationDrawer;
 import de.madcyph3r.materialnavigationdrawer.head.MaterialHeadItem;
 import de.madcyph3r.materialnavigationdrawer.menu.MaterialMenu;
+import de.madcyph3r.materialnavigationdrawer.menu.item.MaterialDevisor;
 import de.madcyph3r.materialnavigationdrawer.menu.item.MaterialSection;
 import de.madcyph3r.materialnavigationdrawer.tools.RoundedCornersDrawable;
 
@@ -31,12 +29,13 @@ public class ProfilActivity extends MaterialNavigationDrawer implements OnProfil
     private User user;
     private static final int PICKFILE_RESULT_CODE = 1;
 
+    MaterialNavigationDrawer drawer = null;
 
+/*
     private ViewPager mPager;
     private PagerAdapter mPagerAdapter;
     private SlidingLayer slidingLayer;
 
-/*
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +68,6 @@ public class ProfilActivity extends MaterialNavigationDrawer implements OnProfil
     */
 
 
-    MaterialNavigationDrawer drawer = null;
 
     @Override
     public int headerType() {
@@ -107,11 +105,32 @@ public class ProfilActivity extends MaterialNavigationDrawer implements OnProfil
 */
         drawer = this;
 
+        MaterialDevisor materialDevisor = new MaterialDevisor();
         MaterialMenu menu = new MaterialMenu();
 
+
+
+
         // first section is loaded
+        MaterialSection section5 = this.newSection("Mon Compte", this.getResources().getDrawable(R.drawable.avatar), new ProfilesFragment(), false, menu);
         MaterialSection section1 = this.newSection("Mes Profils", this.getResources().getDrawable(R.drawable.icone_hd), new ProfilesFragment(), false, menu);
-        MaterialSection section2 = this.newSection("Mes Profils", this.getResources().getDrawable(R.drawable.icone_hd), new ProfilesFragment(), false, menu);
+        this.newDevisor(menu);
+
+        this.newLabel("Pratiques", false, menu);
+        MaterialSection section2 = this.newSection("Guide des tailles", getResources().getDrawable(R.drawable.icone_hd), new SizeGuideFragment(), false, menu);
+        MaterialSection section3 = this.newSection("Magasins à proximité", this.getResources().getDrawable(R.drawable.icone_hd), new ProfilesFragment(), false, menu);
+        this.newDevisor(menu);
+
+        /*MaterialSection section6 = this.newSection("Magasins à proximité", this.getResources().getDrawable(R.drawable.icone_hd), new ProfilesFragment(), false, menu);
+        MaterialSection section7 = this.newSection("Magasins à proximité", this.getResources().getDrawable(R.drawable.icone_hd), new ProfilesFragment(), false, menu);
+        MaterialSection section8 = this.newSection("Magasins à proximité", this.getResources().getDrawable(R.drawable.icone_hd), new ProfilesFragment(), false, menu);
+        MaterialSection section9 = this.newSection("Magasins à proximité", this.getResources().getDrawable(R.drawable.icone_hd), new ProfilesFragment(), false, menu);*/
+
+
+        this.newLabel("Paramètres", true, menu);
+
+        MaterialSection section4 = this.newSection("Réglages", this.getResources().getDrawable(R.drawable.ic_action_settings), new ProfilesFragment(), true, menu);
+
 
         //section1.setFillIconColor(true);
 
@@ -123,52 +142,19 @@ public class ProfilActivity extends MaterialNavigationDrawer implements OnProfil
         final Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.avatar);
         final RoundedCornersDrawable drawableAppIcon = new RoundedCornersDrawable(getResources(), bitmap);
 
+
         // create Head Item
-        MaterialHeadItem headItem = new MaterialHeadItem(this, "F HeadItem", "F Subtitle", drawableAppIcon, R.drawable.orange, menu);
+        //MaterialHeadItem headItem = new MaterialHeadItem(this, "F HeadItem", "F Subtitle", drawableAppIcon, R.drawable.blur_geom, menu);
+        MaterialHeadItem headItem1 = new MaterialHeadItem(this, "Nom Prénom", "E-Mail", drawableAppIcon, R.drawable.blur_geom, menu);
+        headItem1.setLoadFragmentOnChanged(true);
+
+
         // add head Item (menu will be loaded automatically)
-        this.addHeadItem(headItem);
+
+        //this.addHeadItem(headItem);
+        this.addHeadItem(headItem1);
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        //getMenuInflater().inflate(R.menu.profil, menu);
-        return true;
-    }
-/*
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.addProfile) {
-            //Intent intent = new Intent(getApplicationContext(), CreateProfileActivity.class);
-            Intent intent = new Intent(getApplicationContext(), AccueilActivity.class);
-            startActivity(intent);
-            return true;
-        }
-        if (id == R.id.action_apropos){
-            Intent intent = new Intent(getApplicationContext(), AProposActivity.class);
-            startActivity(intent);
-            return true;
-        }
-
-        if (id == R.id.importProfile){
-            try {
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                intent.setType("file/*.smxl");
-                startActivityForResult(intent,PICKFILE_RESULT_CODE);
-            } catch (android.content.ActivityNotFoundException ex){
-                Toast.makeText(this , "Veuillez installer un gestionnaire de fichier", Toast.LENGTH_LONG).show();
-                finish();
-            }
-        }
-
-        return super.onOptionsItemSelected(item);
-    }*/
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -196,25 +182,4 @@ public class ProfilActivity extends MaterialNavigationDrawer implements OnProfil
         startActivity(intent);
     }
 
-
-    @Override
-        protected void onResume() {
-/*
-            getFragmentManager().beginTransaction()
-                    .add(R.id.container, new ProfilesFragment())
-                    .commit();
-*/
-        super.onResume();
-    }
-
-
-
-    @Override
-    public void onBackPressed(){
-        /*if(slidingLayer.isOpened()){
-            slidingLayer.closeLayer(true);
-            return;
-        }*/
-        super.onBackPressed();
-    }
 }

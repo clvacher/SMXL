@@ -32,12 +32,30 @@
         <item name="android:src">@drawable/ic_overflow</item>
     </style>
 
-    <style name="MyNavigationDrawerTheme" parent="MaterialNavigationDrawerTheme.Light.DarkActionBar">
-        <item name="colorPrimary">@color/SectionTitle</item>
-        <item name="colorPrimaryDark">@color/SectionTitle</item>
-        <item name="colorAccent">#FFFFFF</item>
-        <item name="sectionBackgroundColor">@color/SectionTitle</item>
+
+    <!--Styles Menu-->
+
+    <style name="MySubheaderTheme">
+        <!--item name="subheaderTitleColor">#00F</item-->
     </style>
 
+    <style name="MySectionTheme">
+        <!--item name="sectionColorIcon">#00F</item-->
+        <item name="sectionColorNotification">@android:color/holo_red_light</item>
+        <!--item name="sectionBackgroundColorPressed">@color/SectionTitle</item>
+        <item name="sectionBackgroundColorSelected">@color/SectionTitle</item-->
+        <!--item name="sectionBackgroundColor">@color/DefaultBackgroundColor</item-->
+    </style>
+
+    <style name="MyNavigationDrawerTheme" parent="MaterialNavigationDrawerTheme.Light.DarkActionBar" >
+        <!-- Other customization -->
+        <item name="drawerColor">@color/DefaultBackgroundColor</item>
+        <item name="sectionStyle">@style/MySectionTheme</item>
+        <item name="subheaderStyle">@style/MySubheaderTheme</item>
+
+        <item name="colorPrimary">@color/SectionTitle</item>
+        <item name="colorPrimaryDark">@color/SectionTitle</item>
+        <item name="colorAccent">@color/SectionTitle</item>
+    </style>
 
 </resources>

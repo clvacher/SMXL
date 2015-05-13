@@ -74,9 +74,9 @@ public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_profiles, container, false);
 
-        //getFragmentManager().beginTransaction().add(R.id.containerSlideSizeGuide, new SlideSizeGuideFragment()).commit();
-        //Fragment sizeGuideFragment = new SlideSizeGuideFragment();
-        getFragmentManager().beginTransaction().add(R.id.containerSlideSizeGuide, new SlideSizeGuideFragment()).commit();
+        //getFragmentManager().beginTransaction().add(R.id.containerSlideSizeGuide, new SizeGuideFragment()).commit();
+        //Fragment sizeGuideFragment = new SizeGuideFragment();
+        //getFragmentManager().beginTransaction().add(R.id.containerSlideSizeGuide, new SizeGuideFragment()).commit();
 
         GridView gridViewProfiles = (GridView)view.findViewById(R.id.listViewProfiles);
         profileItem = new ArrayList<>();

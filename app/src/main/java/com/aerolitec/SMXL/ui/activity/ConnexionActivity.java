@@ -44,6 +44,55 @@ public class ConnexionActivity extends Activity{
         loginButton.setReadPermissions("email");
         //loginButton.setReadPermissions("user_birthday");
 
+        if(AccessToken.getCurrentAccessToken()!=null){
+            Log.d("salut", "salut");
+            GraphRequest request = GraphRequest.newMeRequest(AccessToken.getCurrentAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
+                @Override
+                public void onCompleted(JSONObject userJson, GraphResponse response) {
+                    if (userJson != null) {
+                        Log.d("userJson", userJson.toString());
+                        String sex;
+                        if (userJson.optString("gender").equals("male")) {
+                            sex = "H";
+                        } else {
+                            sex = "F";
+                        }
+
+                        MainUser mainUser = new MainUser(userJson.optString("last_name"),
+                                userJson.optString("first_name"),
+                                userJson.optString("email"),
+                                "facebook",
+                                sex,
+                                "https://graph.facebook.com/" + userJson.optString("id") + "/picture?type=large",
+                                //userJson.optString("birthday")
+                                userJson.toString()
+                        );
+
+
+                        MainUserManager.get().setMainUser(mainUser);
+                        SMXL.getUserDBManager().createUser(mainUser.getFirstname(), mainUser.getLastname(), mainUser.getBirthday(), mainUser.getSexe(), mainUser.getAvatar(), mainUser.getDescription());
+
+                        new HttpAsyncTask().execute("http://api.smxl-app.com/users.json");
+                            /*try {
+                                POSTUserOnServer(userJson.optString("email"));
+                            } catch (UnsupportedEncodingException e) {
+                                e.printStackTrace();
+                            }*/
+
+                        //Log.d("birthday", (userJson.optString("birthday")).toString());
+                        //Log.d("email", (userJson.optString("email")).toString());
+
+                        finish();
+                        Intent intent = new Intent(getApplicationContext(), ProfilActivity.class);
+                        startActivity(intent);
+                    }
+                }
+            });
+            request.executeAsync();
+        }
+        else{
+            Log.d("coucou", "coucou");
+        }
 
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
