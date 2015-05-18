@@ -54,6 +54,8 @@
     <string name="title_activity_share_profil">ShareProfil</string>
     <string name="title_activity_csvcreation">CSVCreationActivity</string>
     <string name="title_activity_import_profil">SMXL - Importer Profile</string>
+    <string name="title_activity_login">Se connecter</string>
+    <string name="title_activity_create_account">Créer Son Compte</string>
     <string name="importProfile">Importer Profile</string>
     <string name="remove">Supprimer</string>
     <string name="message_delete_garment">Voulez vous supprimer ce vêtement ?</string>
@@ -112,6 +114,13 @@
     <string name="years">ans</string>
 
     <string name="select_category">Tri par catégorie</string>
+
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Mot de passe</string>
+    <string name="confirm_password">Confirmer le mot de passe</string>
+    <string name="action_sign_in">Se connecter</string>
+    <string name="show_password">Afficher le mot de passe</string>
+    <string name="create_account">Créer le profil!</string>
 
 
 </resources>

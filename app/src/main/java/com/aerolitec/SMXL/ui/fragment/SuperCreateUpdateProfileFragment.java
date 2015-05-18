@@ -1,7 +1,8 @@
-package com.aerolitec.SMXL.ui.activity;
+package com.aerolitec.SMXL.ui.fragment;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.app.Fragment;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.database.Cursor;
@@ -27,16 +28,16 @@ import java.util.Calendar;
 /**
  * Created by Jerome on 20/04/2015.
  */
-public class SuperCreateUpdateProfileActivity extends Activity {
+public abstract class SuperCreateUpdateProfileFragment extends Fragment {
 
     protected static final int CROP_IMAGE = 2;
 
-    EditText etFirstName, etLastName, etNotes;
-    RadioGroup radioSexe;
-    ProfilePictureRoundedImageView imgProfil;
-    Button datePickerButton;
+    protected EditText etFirstName, etLastName, etNotes;
+    protected RadioGroup radioSexe;
+    protected ProfilePictureRoundedImageView imgProfil;
+    protected Button datePickerButton,validationButton;
     protected String picturePath;
-    String birthday;
+    protected String birthday;
     protected Uri cropImagePath;
 
 
@@ -78,7 +79,7 @@ public class SuperCreateUpdateProfileActivity extends Activity {
         } catch (ActivityNotFoundException anfe) {
             //display an error message
             String errorMessage = "Whoops - your device doesn't support the crop action!";
-            Toast toast = Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getActivity(), errorMessage, Toast.LENGTH_SHORT);
             toast.show();
             return false;
         }
@@ -102,7 +103,7 @@ public class SuperCreateUpdateProfileActivity extends Activity {
         int birthdayMonth = c.get(Calendar.MONTH);
         int birthdayDay = c.get(Calendar.DAY_OF_MONTH);
 
-        DatePickerDialog dpd = new DatePickerDialog(this,
+        DatePickerDialog dpd = new DatePickerDialog(getActivity(),
                 new DatePickerDialog.OnDateSetListener() {
 
                     @Override
@@ -124,11 +125,11 @@ public class SuperCreateUpdateProfileActivity extends Activity {
     @Override
     public void onActivityResult(int request_code, int result_code, Intent datas) {
         if (request_code == 77) {    // Pick a picture in gallery
-            if (result_code != RESULT_OK)
+            if (result_code != Activity.RESULT_OK)
                 return;
             Uri selectedImage = datas.getData();
             String fpCol[] = {MediaStore.MediaColumns.DATA};
-            Cursor c = getContentResolver().query(selectedImage, fpCol, null, null, null);
+            Cursor c = getActivity().getContentResolver().query(selectedImage, fpCol, null, null, null);
             picturePath = "";
             if (c.moveToFirst()) {
                 int columnIndex = c.getColumnIndex(fpCol[0]);
@@ -147,7 +148,7 @@ public class SuperCreateUpdateProfileActivity extends Activity {
             }
         }
 
-        if(request_code == CROP_IMAGE && result_code == RESULT_OK) {
+        if(request_code == CROP_IMAGE && result_code == Activity.RESULT_OK) {
             int width = imgProfil.getLayoutParams().width;
             try {
                 File file = new File(cropImagePath.getPath());

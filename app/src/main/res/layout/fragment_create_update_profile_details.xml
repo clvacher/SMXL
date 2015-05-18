@@ -1,0 +1,209 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_create_profile_details"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/DefaultBackgroundColor"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context="com.aerolitec.SMXL.app.ui.fragment.ProfileFragment"
+    android:weightSum="1">
+
+
+    <LinearLayout
+        android:id="@+id/profilLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="horizontal">
+
+
+        <FrameLayout
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/white"
+            android:id="@+id/layoutImageProfil">
+
+            <com.aerolitec.SMXL.ui.customLayout.ProfilePictureRoundedImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/imgProfil"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/avatar"
+                android:scaleType="centerCrop"
+                app:corner_radius="60dp"
+                android:layout_marginLeft="5dp"
+                app:mutate_background="true"
+                app:oval="true" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="bottom|right"
+                android:clickable="true"
+                android:layout_marginBottom="3dp"
+                android:layout_marginRight="3dp"
+                android:src="@drawable/ic_action_new_picture" />
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:layout_marginBottom="10dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/etFirstName"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:hint="@string/firstname"
+                    android:background="@android:color/transparent"
+                    android:inputType="textCapSentences"
+                    android:maxLines="1"
+                    android:paddingLeft="10dp"
+                    android:textColor="@color/SectionTitle"
+                    android:textSize="@dimen/textCreateProfile"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_action_edit"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/etLastName"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:hint="@string/surname"
+                    android:background="@android:color/transparent"
+                    android:inputType="textCapSentences"
+                    android:maxLines="1"
+                    android:paddingLeft="10dp"
+                    android:textColor="@color/SectionTitle"
+                    android:textSize="@dimen/textCreateProfile" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_action_edit"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/buttonBirthday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:gravity="center"
+                    android:hint="@string/dateOfBirth"
+                    android:background="@drawable/button_white_grey_shadow"
+                    android:textColor="@color/SectionTitle"
+                    android:textSize="@dimen/textCreateProfile" />
+
+
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/white"
+        android:orientation="horizontal">
+
+        <RadioGroup
+            android:id="@+id/radioSexe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioMale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:checked="true"
+                android:text="@string/texteHomme"
+                android:textColor="@color/SectionTitle" />
+
+            <RadioButton
+                android:id="@+id/radioFemale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="10dp"
+                android:text="@string/texteFemme"
+                android:textColor="@color/SectionTitle" />
+        </RadioGroup>
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/etNotesProfil"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/white"
+        android:gravity="top|left"
+        android:hint="@string/notes"
+        android:padding="5dp"
+        android:textColorHint="@color/SectionTitle"
+        android:windowSoftInputMode="stateHidden"
+        android:layout_weight="0.30" />
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="@string/buttonNextStep"
+        android:id="@+id/buttonValidation"
+        android:layout_gravity="center_horizontal"
+        android:background="#E84E1B"
+        android:padding="10dp"
+        android:textColor="#FFF"
+        android:layout_margin="20dp" />
+
+</LinearLayout>

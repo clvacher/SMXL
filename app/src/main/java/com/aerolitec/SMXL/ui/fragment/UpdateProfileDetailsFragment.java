@@ -1,11 +1,14 @@
-package com.aerolitec.SMXL.ui.activity;
+package com.aerolitec.SMXL.ui.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -21,56 +24,50 @@ import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.customLayout.ProfilePictureRoundedImageView;
 
 /**
- * Created by stephaneL on 31/03/14.
+ * Created by Cl?ment on 5/13/2015.
  */
-public class UpdateProfileActivity extends SuperCreateUpdateProfileActivity{
+public class UpdateProfileDetailsFragment extends SuperCreateUpdateProfileFragment {
 
     private User user;
+
+    public UpdateProfileDetailsFragment() {
+        // Required empty public constructor
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_profile);
 
         user = UserManager.get().getUser();
 
-        if(user == null) {
-            finish();
+        if (user == null) {
+            getActivity().finish();
             return;
         }
 
-        getActionBar().setTitle("");
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setHomeButtonEnabled(true);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setDisplayShowHomeEnabled(false);
-        getActionBar().setDisplayShowTitleEnabled(true);
-        getActionBar().setDisplayUseLogoEnabled(false);
+        setHasOptionsMenu(true);
+    }
 
-        etFirstName = (EditText) findViewById(R.id.etFirstName);
-        etLastName = (EditText) findViewById(R.id.etLastName);
-        etNotes = (EditText) findViewById(R.id.etNotesProfil);
-        radioSexe = (RadioGroup) findViewById(R.id.radioSexe);
-        RadioButton radioH = (RadioButton) findViewById(R.id.radioMale);
-        RadioButton radioF = (RadioButton) findViewById(R.id.radioFemale);
-        imgProfil = (ProfilePictureRoundedImageView) findViewById(R.id.imgProfil);
-        datePickerButton = (Button) findViewById(R.id.buttonBirthday);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_create_update_profile_details, container, false);
 
-        datePickerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openDatePickerDialog();
-            }
-        });
+
+        etFirstName = (EditText) view.findViewById(R.id.etFirstName);
+        etLastName = (EditText) view.findViewById(R.id.etLastName);
+        etNotes = (EditText) view.findViewById(R.id.etNotesProfil);
+        datePickerButton = (Button) view.findViewById(R.id.buttonBirthday);
+        radioSexe = (RadioGroup) view.findViewById(R.id.radioSexe);
+        RadioButton radioH = (RadioButton) view.findViewById(R.id.radioMale);
+        RadioButton radioF = (RadioButton) view.findViewById(R.id.radioFemale);
+        imgProfil = (ProfilePictureRoundedImageView) view.findViewById(R.id.imgProfil);
 
         birthday = user.getBirthday();
         datePickerButton.setText(birthday);
         etNotes.setText(user.getDescription());
         etFirstName.setText(user.getFirstname());
         etLastName.setText(user.getLastname());
-
-        ((Button)findViewById(R.id.buttonValidation)).setText(R.string.validate);
-
 
         if (user.getSexe().startsWith("H")){
             radioH.setChecked(true);
@@ -80,24 +77,46 @@ public class UpdateProfileActivity extends SuperCreateUpdateProfileActivity{
         }
 
         picturePath = user.getAvatar();
+        Log.d("ImageProfil",picturePath+"");
         imgProfil.setImage(picturePath);
 
-        FrameLayout layoutImageProfil=(FrameLayout) findViewById(R.id.layoutImageProfil);
+
+        datePickerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDatePickerDialog();
+            }
+        });
+
+        validationButton = (Button) view.findViewById(R.id.buttonValidation);
+        validationButton.setText(getResources().getString(R.string.validate));
+        validationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateProfile();
+            }
+        });
+
+        radioSexe = (RadioGroup) view.findViewById(R.id.radioSexe);
+        imgProfil = (ProfilePictureRoundedImageView) view.findViewById(R.id.imgProfil);
+        FrameLayout layoutImageProfil = (FrameLayout) view.findViewById(R.id.layoutImageProfil);
         layoutImageProfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 selectProfilPicture();
             }
         });
+
+        return view;
     }
 
-
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.validate, menu);
-        return super.onCreateOptionsMenu(menu);
+
+        getActivity().getMenuInflater().inflate(R.menu.create_profil, menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
@@ -106,25 +125,23 @@ public class UpdateProfileActivity extends SuperCreateUpdateProfileActivity{
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+
         if (id == R.id.validate) {
 
-            onActionCreateProfile(null);
-        }
+            updateProfile();
 
-        if( id == android.R.id.home) {
-            finish();
+        } else if (id == R.id.newPicture) {
+            selectProfilPicture();
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    public void onActionCreateProfile (View v){
-
-
+    public void updateProfile() {
         /// Add Profile in DataBase ///
         if (etFirstName.getText().toString().length() < 1 ||
                 etLastName.getText().toString().length() < 1){
-            Toast.makeText(this,getResources().getText(R.string.incompleteProfile),Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(),getResources().getText(R.string.incompleteProfile),Toast.LENGTH_LONG).show();
         }
         else {
             String sexe = "F";
@@ -149,13 +166,13 @@ public class UpdateProfileActivity extends SuperCreateUpdateProfileActivity{
             catch (Exception e) {
                 Log.d(Constants.TAG,"Update user with error : " + e.getMessage());
             }
-            finish();
+            getActivity().finish();
         }
     }
 
-    private void selectProfilPicture(){
+    private void selectProfilPicture() {
         Intent i = new Intent(Intent.ACTION_PICK);
         i.setType("image/*");
-        startActivityForResult(i,77);
+        startActivityForResult(i, 77);
     }
 }

@@ -15,7 +15,7 @@ import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.services.OnProfileSelected;
 import com.aerolitec.SMXL.ui.SMXL;
-import com.aerolitec.SMXL.ui.activity.CreateProfileActivity;
+import com.aerolitec.SMXL.ui.activity.CreateUpdateProfileActivity;
 import com.aerolitec.SMXL.ui.adapter.ProfileItem;
 import com.aerolitec.SMXL.ui.adapter.ProfilesAdapter;
 import com.aerolitec.SMXL.ui.fragment.dialog.ConfirmDialogFragment;
@@ -163,7 +163,8 @@ public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.
                 itemProfileListener.profileSelect(profileItem.get(arg2));
             }
             else{
-                Intent intent = new Intent(getActivity().getApplicationContext(), CreateProfileActivity.class);
+                Intent intent = new Intent(getActivity().getApplicationContext(), CreateUpdateProfileActivity.class);
+                intent.putExtra("fragmentType","create");
                 startActivity(intent);
             }
         }

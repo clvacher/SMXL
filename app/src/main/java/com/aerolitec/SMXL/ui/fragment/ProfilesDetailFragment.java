@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -22,8 +23,7 @@ import com.aerolitec.SMXL.model.Brand;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
-import com.aerolitec.SMXL.ui.activity.SelectBrandsActivity;
-import com.aerolitec.SMXL.ui.activity.UpdateProfileActivity;
+import com.aerolitec.SMXL.ui.activity.CreateUpdateProfileActivity;
 import com.aerolitec.SMXL.ui.adapter.FavoriteBrandAdapter;
 import com.aerolitec.SMXL.ui.customLayout.ProfilePictureRoundedImageView;
 
@@ -37,6 +37,7 @@ public class ProfilesDetailFragment extends Fragment{
     private TextView tvFirstName, tvLastName, tvAgeSexe,nbBrands;
     private EditText etDescription;
     private ProfilePictureRoundedImageView imgAvatar;
+    private ImageView imgQuicksize;
     private RelativeLayout layoutHeaderBrands;
 
     ListView brandListView;
@@ -83,8 +84,9 @@ public class ProfilesDetailFragment extends Fragment{
         imgAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent nextActivity = new Intent(getActivity().getApplicationContext(), UpdateProfileActivity.class);
-                startActivity(nextActivity);
+                Intent intent = new Intent(getActivity().getApplicationContext(), CreateUpdateProfileActivity.class);
+                intent.putExtra("fragmentType","update");
+                startActivity(intent);
             }
         });
 
@@ -92,8 +94,9 @@ public class ProfilesDetailFragment extends Fragment{
         infosProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent nextActivity = new Intent(getActivity().getApplicationContext(), UpdateProfileActivity.class);
-                startActivity(nextActivity);
+                Intent intent = new Intent(getActivity().getApplicationContext(), CreateUpdateProfileActivity.class);
+                intent.putExtra("fragmentType","update");
+                startActivity(intent);
             }
         });
 
@@ -110,7 +113,8 @@ public class ProfilesDetailFragment extends Fragment{
             @Override
             public void onClick(View view) {
                 brandListView.setVisibility(View.GONE);
-                Intent intent = new Intent(getActivity(), SelectBrandsActivity.class);
+                Intent intent = new Intent(getActivity(), CreateUpdateProfileActivity.class);
+                intent.putExtra("fragmentType","brands");
                 startActivity(intent);
             }
         });
@@ -126,6 +130,27 @@ public class ProfilesDetailFragment extends Fragment{
                     brandListView.setVisibility(View.GONE);
                     collapse.setImageResource(R.drawable.navigation_expand);
                 }
+            }
+        });
+
+        final RelativeLayout quicksizeLayout=(RelativeLayout) view.findViewById(R.id.quicksize);
+        ImageView noClickZone=(ImageView) view.findViewById(R.id.noClickZone);
+
+        quicksizeLayout.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()){
+                    case MotionEvent.ACTION_DOWN:
+                        quicksizeLayout.setBackgroundResource(android.R.color.holo_blue_light);
+                        break;
+                }
+                return false;
+            }
+        });
+        noClickZone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
             }
         });
 
