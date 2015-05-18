@@ -9,7 +9,6 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
 
@@ -49,7 +48,7 @@ public class CreateAccountActivity extends Activity {
     public void login(View v){
         //test connexion
 
-        //if login==successful
+        //if onClickLogin==successful
         setResult(ACCOUNT_CREATED);
         finish();
     }

@@ -69,12 +69,12 @@ public class ConnexionActivity extends Activity{
             }
         };
 
-        if(AccessToken.getCurrentAccessToken()!=null){
+        /*if(AccessToken.getCurrentAccessToken()!=null){
             Toast.makeText(getBaseContext(), "Connecté avec Facebook", Toast.LENGTH_LONG).show();
             finish();
             Intent intent = new Intent(getApplicationContext(), ProfilActivity.class);
             startActivity(intent);
-        }
+        }*/
 
 
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
@@ -109,11 +109,6 @@ public class ConnexionActivity extends Activity{
                             SMXL.getUserDBManager().createUser(mainUser.getFirstname(), mainUser.getLastname(), mainUser.getBirthday(), mainUser.getSexe(), mainUser.getAvatar(), mainUser.getDescription());
 
                             new HttpAsyncTask().execute("http://api.smxl-app.com/users.json");
-                            /*try {
-                                POSTUserOnServer(userJson.optString("email"));
-                            } catch (UnsupportedEncodingException e) {
-                                e.printStackTrace();
-                            }*/
 
                             //Log.d("birthday", (userJson.optString("birthday")).toString());
                             //Log.d("email", (userJson.optString("email")).toString());
@@ -194,13 +189,13 @@ public class ConnexionActivity extends Activity{
         startActivity(intent);
     }
 
-    public void login(View v){
+    public void onClickLogin(View v){
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
         startActivityForResult(intent, LOGIN);
     }
 
-    public void CreateAccount(View v){
+    public void onClickCreateAccount(View v){
         Intent intent = new Intent(getApplicationContext(), CreateAccountActivity.class);
-        startActivityForResult(intent,CREATE_ACCOUNT);
+        startActivityForResult(intent, CREATE_ACCOUNT);
     }
 }

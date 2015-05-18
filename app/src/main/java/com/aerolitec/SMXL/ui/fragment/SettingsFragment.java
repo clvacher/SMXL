@@ -1,4 +1,4 @@
-package com.aerolitec.SMXL;
+package com.aerolitec.SMXL.ui.fragment;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.aerolitec.SMXL.R;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.login.widget.LoginButton;

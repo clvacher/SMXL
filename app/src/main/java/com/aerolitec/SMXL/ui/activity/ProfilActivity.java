@@ -7,7 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import com.aerolitec.SMXL.R;
-import com.aerolitec.SMXL.SettingsFragment;
+import com.aerolitec.SMXL.ui.fragment.SettingsFragment;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.tools.services.OnProfileSelected;

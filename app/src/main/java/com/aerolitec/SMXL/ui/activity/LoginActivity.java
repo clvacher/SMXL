@@ -41,10 +41,10 @@ public class LoginActivity extends Activity{
         super.onResume();
     }
 
-    public void login(View v){
+    public void onClickLogin(View v){
         //test connexion
 
-        //if login==successful
+        //if onClickLogin==successful
         setResult(LOGIN_SUCCESSFUL);
         finish();
     }
