@@ -1,22 +1,19 @@
-package com.aerolitec.SMXL.ui.activity;
+package com.aerolitec.SMXL.ui.fragment;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.database.DataSetObserver;
+import android.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.GridView;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
-import android.widget.TextView;
 
 import com.aerolitec.SMXL.model.Brand;
 import com.aerolitec.SMXL.model.User;
@@ -24,14 +21,12 @@ import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
 
 import java.util.ArrayList;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.ui.adapter.FavoriteCheckableBrandAdapter;
-import com.aerolitec.SMXL.ui.customLayout.CheckableBrandLayout;
 
 
-public class SelectBrandsActivity extends Activity {
+public class SelectBrandsFragment extends Fragment {
 
     private static User user;
     private ArrayList<Brand> brands;
@@ -43,39 +38,41 @@ public class SelectBrandsActivity extends Activity {
     private FavoriteCheckableBrandAdapter gridViewBrandsAdapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+
+        user = UserManager.get().getUser();
+
+        if (user == null) {
+            getActivity().finish();
+            Log.d("Warning","user null");
+        }
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_select_brands, container, false);
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         brands=new ArrayList<>();
         brandsSelected=new ArrayList<>();
 
         brandsCategory=(SMXL.getBrandDBManager().getAllBrandCategory());
-        brandsCategory.add(0,getResources().getString(R.string.select_category));
+        brandsCategory.add(0, getResources().getString(R.string.select_category));
 
-
-        user = UserManager.get().getUser();
-        if(user == null){
-            Log.d("TestOnCreate", "user null");
-        }
-
-        Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
-        mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-
-        setContentView(R.layout.activity_select_brands);
-
-        getActionBar().setTitle(" ");
-        getActionBar().setHomeButtonEnabled(true);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setDisplayShowTitleEnabled(true);
-
-        gridViewBrands = (GridView) this.findViewById(R.id.gridViewBrands);
-        spinnerBrandsCategory = (Spinner) this.findViewById(R.id.spinnerBrandsCategory);
+        gridViewBrands = (GridView) view.findViewById(R.id.gridViewBrands);
+        spinnerBrandsCategory = (Spinner) view.findViewById(R.id.spinnerBrandsCategory);
         brands = SMXL.getBrandDBManager().getAllBrands();
 
-        final ArrayAdapter<String> adapterSpinner = new ArrayAdapter<String>(getApplicationContext(), R.layout.item_spinner_brand_category, brandsCategory);
+        final ArrayAdapter<String> adapterSpinner = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.item_spinner_brand_category, brandsCategory);
         spinnerBrandsCategory.setAdapter(adapterSpinner);
 
-        gridViewBrandsAdapter = new FavoriteCheckableBrandAdapter(this, R.layout.item_favorite_brand, brands);
+        gridViewBrandsAdapter = new FavoriteCheckableBrandAdapter(getActivity(), R.layout.item_favorite_brand, brands);
         gridViewBrands.setAdapter(gridViewBrandsAdapter);
 
         gridViewBrands.setChoiceMode(GridView.CHOICE_MODE_MULTIPLE);
@@ -88,11 +85,10 @@ public class SelectBrandsActivity extends Activity {
                 Brand selectedBrand = (Brand) gridViewBrandsAdapter.getItem(position);
                 brandsSelected.add(selectedBrand);
 
-                if(user.getBrands().contains(selectedBrand)){
+                if (user.getBrands().contains(selectedBrand)) {
                     user.getBrands().remove(selectedBrand);
                     SMXL.getUserBrandDBManager().deleteUserBrand(user, selectedBrand);
-                }
-                else{
+                } else {
                     user.getBrands().add(selectedBrand);
                     SMXL.getUserBrandDBManager().addUserBrand(user, selectedBrand);
                 }
@@ -102,10 +98,9 @@ public class SelectBrandsActivity extends Activity {
         spinnerBrandsCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
-                if(position>0){
-                    brands = SMXL.getBrandDBManager().getBrandsByBrandCategory(SMXL.getBrandDBManager().getAllBrandCategory().get(position-1));//-1 car on a rajoutÃ© l'item d'en tete
-                }
-                else{
+                if (position > 0) {
+                    brands = SMXL.getBrandDBManager().getBrandsByBrandCategory(SMXL.getBrandDBManager().getAllBrandCategory().get(position - 1));//-1 car on a rajouté l'item d'en tete
+                } else {
                     brands = SMXL.getBrandDBManager().getAllBrands();
                 }
 
@@ -114,7 +109,7 @@ public class SelectBrandsActivity extends Activity {
                 gridViewBrandsAdapter.notifyDataSetChanged();
 
                 gridViewBrands.clearChoices();
-                for(Brand b : user.getBrands()) {
+                for (Brand b : user.getBrands()) {
                     gridViewBrands.setItemChecked(brands.indexOf(b), true);
                 }
             }
@@ -125,19 +120,22 @@ public class SelectBrandsActivity extends Activity {
             }
         });
 
-        //gridViewBrands.setMultiChoiceModeListener(new MultiChoiceModeListener(gridViewBrands));
 
+        (view.findViewById(R.id.buttonValidationBrands)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                save();
+            }
+        });
     }
 
-
-
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
 
         ArrayList<Brand> brandUser = user.getBrands();
         if(gridViewBrandsAdapter==null){
-            gridViewBrandsAdapter = new FavoriteCheckableBrandAdapter(this, R.layout.item_favorite_brand, brands);
+            gridViewBrandsAdapter = new FavoriteCheckableBrandAdapter(getActivity(), R.layout.item_favorite_brand, brands);
             gridViewBrands.setAdapter(gridViewBrandsAdapter);
             spinnerBrandsCategory.setSelection(0);
         }
@@ -151,26 +149,25 @@ public class SelectBrandsActivity extends Activity {
     }
 
 
-
-    public void onClickAddBrandsUser(View view){
-        finish();
+    public void save(){
+        getActivity().finish();
     }
 
-
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public void onCreateOptionsMenu(Menu menu,MenuInflater inflater) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_select_brands, menu);
-
-        return true;
+        getActivity().getMenuInflater().inflate(R.menu.create_profil, menu);
+        super.onCreateOptionsMenu(menu,inflater);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
-        if (id == android.R.id.home){
-            finish();
+        if(id==R.id.validate){
+            save();
+        }
+        if (id == (android.R.id.home)){
+            getActivity().finish();
         }
 
         return super.onOptionsItemSelected(item);

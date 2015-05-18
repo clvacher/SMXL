@@ -51,16 +51,6 @@
             android:parentActivityName=".ui.activity.ProfilActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activity.CreateProfileActivity"
-            android:logo="@drawable/groslogo"
-            android:parentActivityName=".ui.activity.ProfilActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateVisible"/>
-        <activity
-            android:name=".ui.activity.UpdateProfileActivity"
-            android:logo="@drawable/groslogo"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ui.activity.ProfilDetailActivity"
             android:label="@string/title_activity_profil_detail"
             android:screenOrientation="portrait"/>
@@ -106,11 +96,6 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".ui.activity.SelectBrandsActivity"
-            android:label="@string/title_activity_select_brands"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
             android:name=".ui.activity.AddGarmentActivity"
             android:icon="@drawable/ic_action_logo_smxl"
             android:label="@string/title_activity_add_garment"
@@ -128,6 +113,21 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
 
+        </activity>
+        <activity
+            android:name=".ui.activity.CreateAccountActivity"
+            android:label="@string/title_activity_connexion"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.CreateUpdateProfileActivity"
+            android:label="@string/title_activity_connexion"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.LoginActivity"
+            android:label="@string/title_activity_connexion"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 

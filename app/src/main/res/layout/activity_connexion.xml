@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
+    android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/DefaultBackgroundColor">
 
@@ -20,7 +19,8 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_margin="5dp"/>
+            android:layout_margin="5dp"
+            android:onClick="skipConnexion"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -60,17 +60,18 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="Créer un compte"
-                    android:id="@+id/button2"
+                    android:id="@+id/create_account"
                     android:background="@color/SectionTitle"
-                    android:textColor="@android:color/white"/>
+                    android:textColor="@android:color/white"
+                    android:onClick="CreateAccount"/>
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Skip"
+                    android:text="Login"
+                    android:onClick="login"
                     android:id="@+id/skipConnect"
-                    android:onClick="skipConnexion"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
                     android:background="@color/SectionTitle"

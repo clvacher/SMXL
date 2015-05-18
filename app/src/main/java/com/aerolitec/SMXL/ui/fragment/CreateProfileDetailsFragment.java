@@ -1,14 +1,18 @@
-package com.aerolitec.SMXL.ui.activity;
+package com.aerolitec.SMXL.ui.fragment;
+
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
+import android.app.Fragment;
 import android.util.Log;
-import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -23,25 +27,32 @@ import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.customLayout.ProfilePictureRoundedImageView;
 
 /**
- * Created by stephaneL on 21/03/14.
+ * A simple {@link Fragment} subclass.
  */
-public class CreateProfileActivity extends SuperCreateUpdateProfileActivity{
+public class CreateProfileDetailsFragment extends SuperCreateUpdateProfileFragment {
 
-    private boolean confirmExit=false;
+
+    public CreateProfileDetailsFragment() {
+        // Required empty public constructor
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
 
-        setContentView(R.layout.activity_create_profile);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setHomeButtonEnabled(true);
-        getActionBar().setDisplayShowTitleEnabled(false);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view=inflater.inflate(R.layout.fragment_create_update_profile_details, container, false);
 
-        etFirstName = (EditText) findViewById(R.id.etFirstName);
-        etLastName = (EditText) findViewById(R.id.etLastName);
-        etNotes = (EditText) findViewById(R.id.etNotesProfil);
-        datePickerButton = (Button) findViewById(R.id.buttonBirthday);
+
+
+        etFirstName = (EditText) view.findViewById(R.id.etFirstName);
+        etLastName = (EditText) view.findViewById(R.id.etLastName);
+        etNotes = (EditText) view.findViewById(R.id.etNotesProfil);
+        datePickerButton = (Button) view.findViewById(R.id.buttonBirthday);
 
         datePickerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,9 +61,17 @@ public class CreateProfileActivity extends SuperCreateUpdateProfileActivity{
             }
         });
 
-        radioSexe = (RadioGroup) findViewById(R.id.radioSexe);
-        imgProfil = (ProfilePictureRoundedImageView) findViewById(R.id.imgProfil);
-        FrameLayout layoutImageProfil=(FrameLayout) findViewById(R.id.layoutImageProfil);
+        validationButton = (Button) view.findViewById(R.id.buttonValidation);
+        validationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createProfile();
+            }
+        });
+
+        radioSexe = (RadioGroup) view.findViewById(R.id.radioSexe);
+        imgProfil = (ProfilePictureRoundedImageView) view.findViewById(R.id.imgProfil);
+        FrameLayout layoutImageProfil=(FrameLayout) view.findViewById(R.id.layoutImageProfil);
         layoutImageProfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,18 +79,15 @@ public class CreateProfileActivity extends SuperCreateUpdateProfileActivity{
             }
         });
 
-
+        return view;
     }
-
-
-
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public void onCreateOptionsMenu(Menu menu,MenuInflater inflater) {
 
         // Inflate the menu; this adds items to the action bar if it is present.
 
-        getMenuInflater().inflate(R.menu.create_profil, menu);
-        return super.onCreateOptionsMenu(menu);
+        getActivity().getMenuInflater().inflate(R.menu.create_profil, menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
@@ -82,22 +98,18 @@ public class CreateProfileActivity extends SuperCreateUpdateProfileActivity{
         int id = item.getItemId();
 
         if (id == R.id.validate) {
-
-            onActionCreateProfile(null);
-
-        } else if (id == R.id.newPicture) {
-            selectProfilPicture();
+            createProfile();
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    public void onActionCreateProfile (View v){
+    public void createProfile(){
 
         /// Add Profile in DataBase ///
         if (etFirstName.getText().toString().length() < 2 ||
                 etLastName.getText().toString().length() < 2) {
-            Toast.makeText(this, getResources().getString(R.string.incompleteProfile), Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), getResources().getString(R.string.incompleteProfile), Toast.LENGTH_LONG).show();
         } else {
             String sexe = "F";
             int idRadioButton = radioSexe.getCheckedRadioButtonId();
@@ -119,14 +131,21 @@ public class CreateProfileActivity extends SuperCreateUpdateProfileActivity{
                 Log.d(Constants.TAG, "Create user with error : " + e.getMessage());
             }
             if (user != null)
-                setResult(user.getId_user());
+                getActivity().setResult(user.getId_user());
             else
-                setResult(0);
+                getActivity().setResult(0);
 
-            finish();
+
+            InputMethodManager mgr = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            try {
+                mgr.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
+
             UserManager.get().setUser(user);
-            Intent intent = new Intent(getApplicationContext(), SelectBrandsActivity.class);
-            startActivity(intent);
+            getFragmentManager().beginTransaction().replace(R.id.activity_create_profile,new SelectBrandsFragment()).commit();
         }
     }
 
@@ -134,38 +153,5 @@ public class CreateProfileActivity extends SuperCreateUpdateProfileActivity{
         Intent i = new Intent(Intent.ACTION_PICK);
         i.setType("image/*");
         startActivityForResult(i, 77);
-    }
-
-
-
-
-
-    public int getPixelsFromDip(int dip, Context context) {
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dip, context.getResources().getDisplayMetrics());
-    }
-
-
-    @Override
-    public void onBackPressed() {
-        if (confirmExit == true) {
-            super.onBackPressed();
-        } else {
-            confirmExit = true;
-            Toast toast = Toast.makeText(this, getResources().getText(R.string.returnCreate), Toast.LENGTH_SHORT);
-            AsyncTask task = new AsyncTask() {
-                @Override
-                protected Object doInBackground(Object[] objects) {
-                    try {
-                        Thread.sleep(2500);
-                    } catch (InterruptedException e) {
-                        Log.d("catchCreateProfile", "InterruptedException");
-                    }
-                    confirmExit = false;
-                    return null;
-                }
-            };
-            toast.show();
-            task.execute();
-        }
     }
 }

@@ -29,6 +29,10 @@ import org.json.JSONObject;
  */
 public class ConnexionActivity extends Activity{
 
+    private final static int CREATE_ACCOUNT=1;
+    private final static int LOGIN=2;
+    private final static int ACCOUNT_CREATED=10;
+    private final static int LOGIN_SUCCESSFUL=20;
 
     AccessToken accessToken;
     CallbackManager callbackManager;
@@ -177,14 +181,38 @@ public class ConnexionActivity extends Activity{
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
+        switch(requestCode){
+            case LOGIN:
+                if (resultCode == LOGIN_SUCCESSFUL) {
+                    finish();
+                    Intent intent = new Intent(getApplicationContext(), ProfilActivity.class);
+                    startActivity(intent);
+                }
+                break;
+            case CREATE_ACCOUNT:
+                if (resultCode == ACCOUNT_CREATED) {
+                    finish();
+                    Intent intent = new Intent(getApplicationContext(), ProfilActivity.class);
+                    startActivity(intent);
+                }
+
+        }
     }
 
 
     public void skipConnexion (View v){
+        finish();
         Intent intent = new Intent(getApplicationContext(), ProfilActivity.class);
         startActivity(intent);
-        finish();
     }
 
+    public void login(View v){
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        startActivityForResult(intent, LOGIN);
+    }
 
+    public void CreateAccount(View v){
+        Intent intent = new Intent(getApplicationContext(), CreateAccountActivity.class);
+        startActivityForResult(intent,CREATE_ACCOUNT);
+    }
 }

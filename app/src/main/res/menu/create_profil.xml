@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <item
         android:id="@+id/validate"
         android:icon="@drawable/ic_action_accept"
-        android:title=""
-        android:showAsAction="ifRoom"
+        android:title="@string/validate"
+        android:showAsAction="always"
+        tools:ignore="AppCompatResource"
         />
 
 

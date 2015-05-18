@@ -49,10 +49,11 @@
     <string name="title_activity_add_measure">AddMeasure</string>
     <string name="createProfil">Create new profile</string>
     <string name="title_activity_measure_pager">Measures</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_share_profil">ShareProfil</string>
     <string name="title_activity_csvcreation">CSVCreationActivity</string>
     <string name="title_activity_import_profil">SMXL - Import Profile</string>
+    <string name="title_activity_login">Login</string>
+    <string name="title_activity_create_account">Create Your Account</string>
     <string name="importProfile">Import Profile</string>
     <string name="remove">Remove</string>
     <string name="message_delete_garment">Do you want to remove this garment ?</string>
@@ -121,16 +122,16 @@
 
     <string name="facebook_app_id">893068277430661</string>
     <string name="title_activity_connexion">Connexion</string>
-    <string name="title_activity_accueil">AccueilActivity</string>
 
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="create_account">Create Account!</string>
+    <string name="show_password">Show Password</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-
-    <string name="action_example">Example action</string>
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

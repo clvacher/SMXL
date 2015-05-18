@@ -13,9 +13,7 @@
         android:layout_height="wrap_content"
         android:background="@color/DefaultBackgroundColor"
         android:focusable="true"
-        android:focusableInTouchMode="true"
-        >
-
+        android:focusableInTouchMode="true">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -23,25 +21,36 @@
             android:layout_marginBottom="85dp"
             android:layout_alignParentTop="true"
             >
-            <Button
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:focusable="true"
-                android:background="@drawable/custom_shape_button"
-                android:enabled="false"
-                android:layout_toLeftOf="@+id/center"
-                android:layout_toStartOf="@+id/center"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                />
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/custom_shape_button"
+                android:padding="10dp"
+                android:id="@+id/quicksize"
+                android:background="@color/SectionTitle"
                 android:layout_toRightOf="@+id/center"
                 android:layout_toEndOf="@+id/center"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"/>
+                android:layout_alignParentEnd="true">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView1"
+                    android:text="Quicksize"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"/>
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/cintre_inverse_hd"
+                    android:layout_below="@+id/textView1"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"/>
+            </RelativeLayout>
             <View
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -50,7 +59,8 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/custom_shape_button_mask"
+                android:id="@+id/noClickZone"
+                android:background="@drawable/button_custom_shape_mask"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="-20dp"
                 android:layout_marginBottom="-120dp"/>
