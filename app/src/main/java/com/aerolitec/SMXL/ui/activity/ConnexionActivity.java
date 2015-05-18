@@ -77,6 +77,8 @@ public class ConnexionActivity extends Activity{
         }*/
 
 
+//TODO jerome
+        /*
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
@@ -93,7 +95,6 @@ public class ConnexionActivity extends Activity{
                             } else {
                                 sex = "F";
                             }
-
                             MainUser mainUser = new MainUser(userJson.optString("last_name"),
                                     userJson.optString("first_name"),
                                     userJson.optString("email"),
@@ -135,6 +136,7 @@ public class ConnexionActivity extends Activity{
 
             }
         });
+        */
 
     }
 

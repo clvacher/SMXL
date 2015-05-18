@@ -68,7 +68,7 @@ public class POSTActivity extends Activity implements View.OnClickListener {
 
             String json = "";
 
-            // 3. build jsonObjec
+            // 3. build jsonObject
 
             JSONObject jsonObject = new JSONObject();
             jsonObject.accumulate("name", user.getLastname());

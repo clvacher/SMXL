@@ -28,7 +28,13 @@ import com.aerolitec.SMXL.ui.fragment.SelectBrandsFragment;
 import com.aerolitec.SMXL.ui.fragment.UpdateProfileDetailsFragment;
 
 /**
- * Created by stephaneL on 21/03/14.
+ * Created by Clement on 25/04/15.
+ */
+/*
+* "fragmentType" Put extras:
+ * create: create new profile
+ * update: update existing profile
+ * brands: updates existing brands for current profile
  */
 public class CreateUpdateProfileActivity extends Activity{
 

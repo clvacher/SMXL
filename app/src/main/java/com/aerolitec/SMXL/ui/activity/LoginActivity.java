@@ -1,35 +1,49 @@
 package com.aerolitec.SMXL.ui.activity;
 
 import android.app.Activity;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
 import android.text.method.SingleLineTransformationMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aerolitec.SMXL.R;
+import com.aerolitec.SMXL.model.MainUser;
+import com.aerolitec.SMXL.tools.manager.MainUserManager;
+import com.aerolitec.SMXL.tools.serverConnexion.GetMainUserHttpAsyncTask;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 /**
  * Created by Clement on 5/12/2015.
  */
-public class LoginActivity extends Activity{
-
-    private final static int LOGIN_SUCCESSFUL=20;
-
-    private AutoCompleteTextView email;
-    private TextView password;
-    private Button signIn;
+public class LoginActivity extends SuperLoginCreateAccountActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_create_account);
-        email=(AutoCompleteTextView) findViewById(R.id.email);
-        password=(TextView) findViewById(R.id.password);
     }
+
+
 
     @Override
     protected void onPause() {
@@ -41,21 +55,22 @@ public class LoginActivity extends Activity{
         super.onResume();
     }
 
-    public void onClickLogin(View v){
-        //test connexion
 
-        //if onClickLogin==successful
-        setResult(LOGIN_SUCCESSFUL);
-        finish();
-    }
-
-    public void showPassword(View v){
-        CheckBox c=(CheckBox)v;
-        if(c.isChecked()){
-            password.setTransformationMethod(SingleLineTransformationMethod.getInstance());
-        }
-        else{
-            password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.email_sign_in_button:
+                v.setVisibility(View.GONE);
+                progressBar.setVisibility(View.VISIBLE);
+                if(isConnected()) {
+                    //TODO
+                    //Connexion au serveur
+                    new GetMainUserHttpAsyncTask(this).execute(email.getText().toString(),password.getText().toString());
+                }
+                break;
+            case R.id.show_password:
+                showPassword();
+                break;
         }
     }
 }

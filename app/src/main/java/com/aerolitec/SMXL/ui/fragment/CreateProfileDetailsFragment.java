@@ -1,6 +1,7 @@
 package com.aerolitec.SMXL.ui.fragment;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -131,7 +132,7 @@ public class CreateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
                 Log.d(Constants.TAG, "Create user with error : " + e.getMessage());
             }
             if (user != null)
-                getActivity().setResult(user.getId_user());
+                getActivity().setResult(Activity.RESULT_OK);
             else
                 getActivity().setResult(0);
 

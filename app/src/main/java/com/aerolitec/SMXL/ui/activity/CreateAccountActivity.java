@@ -1,66 +1,65 @@
 package com.aerolitec.SMXL.ui.activity;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.text.method.PasswordTransformationMethod;
-import android.text.method.SingleLineTransformationMethod;
 import android.view.View;
-import android.widget.AutoCompleteTextView;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
 
 import com.aerolitec.SMXL.R;
+import com.aerolitec.SMXL.model.MainUser;
+import com.aerolitec.SMXL.tools.manager.MainUserManager;
+import com.aerolitec.SMXL.tools.manager.UserManager;
+import com.aerolitec.SMXL.tools.serverConnexion.PostMainUserHttpAsyncTask;
 
 /**
  * Created by Cl?ment on 5/13/2015.
  */
-public class CreateAccountActivity extends Activity {
+public class CreateAccountActivity extends SuperLoginCreateAccountActivity{
 
-    private final static int ACCOUNT_CREATED=10;
-
-    private AutoCompleteTextView email;
-    private EditText password;
-    private Button signIn;
+    private static final int CREATE_ACCOUNT=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_create_account);
-        email=(AutoCompleteTextView) findViewById(R.id.email);
-        password=(EditText) findViewById(R.id.password);
-        signIn=(Button) findViewById(R.id.email_sign_in_button);
-
         signIn.setText(getResources().getString(R.string.create_account));
+    }
 
+
+    @Override
+    public void onClick(View view) {
+        switch(view.getId()){
+            case R.id.email_sign_in_button:
+                view.setVisibility(View.GONE);
+                progressBar.setVisibility(View.VISIBLE);
+                if(isConnected()) {
+                    //TODO
+                    //if getMainUserHttp == null
+                    MainUser mainUser=new MainUser();
+                    mainUser.setEmail(email.getText().toString());
+                    mainUser.setPassword(password.getText().toString());
+                    MainUserManager.get().setMainUser(mainUser);
+
+                    Intent intent=new Intent(getApplicationContext(),CreateUpdateProfileActivity.class);
+                    intent.putExtra("fragmentType","create");
+                    startActivityForResult(intent,CREATE_ACCOUNT);
+                    //else
+                    //toast or warning
+                }
+                break;
+            case R.id.show_password:
+                showPassword();
+                break;
+        }
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-    }
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    public void login(View v){
-        //test connexion
-
-        //if onClickLogin==successful
-        setResult(ACCOUNT_CREATED);
-        finish();
-    }
-
-    public void showPassword(View v){
-        CheckBox c=(CheckBox)v;
-        if(c.isChecked()){
-            password.setTransformationMethod(SingleLineTransformationMethod.getInstance());
-        }
-        else{
-            password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        switch(requestCode){
+            case RESULT_OK:
+                MainUserManager.get().getMainUser().setMainProfile(UserManager.get().getUser());
+                new PostMainUserHttpAsyncTask(this).execute();
+                break;
         }
     }
-
 }

@@ -161,7 +161,7 @@ public class ProfilActivity extends MaterialNavigationDrawer implements OnProfil
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // TODO Auto-generated method stub
         switch(requestCode){
-            case PICKFILE_RESULT_CODE:
+            /*case PICKFILE_RESULT_CODE:
                 if(resultCode==RESULT_OK){
                     Uri UriFile = data.getData();
                     File profil = new File(UriFile.getPath());
@@ -170,7 +170,7 @@ public class ProfilActivity extends MaterialNavigationDrawer implements OnProfil
                     startActivity(intent);
                 }
                 break;
-
+            */
         }
     }
 
