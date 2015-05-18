@@ -1,4 +1,4 @@
-<ScrollView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
@@ -9,72 +9,68 @@
     android:background="@color/DefaultBackgroundColor"
     >
 
-    <TableLayout
+
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:stretchColumns="*"
-        android:shrinkColumns="*"
-        android:layout_margin="20dp"
-        android:id="@+id/tableSizeGarment"
-        android:paddingBottom="30dp"
-        >
+        android:background="@color/SectionTitle">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:background="@color/SectionTitle"
-            android:showDividers="middle"
-            >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UE"
+            android:id="@+id/textViewUE"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            android:textSize="@dimen/abc_action_bar_icon_vertical_padding_material"
+            android:layout_weight="1"/>
 
-            <TextView android:text="UE"
-                android:id="@+id/headerUE"
-                android:layout_column="0"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:textColor="#FFF"
-                android:textSize="@dimen/section_text_size"
-                android:textStyle="bold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="US"
+            android:id="@+id/textViewUS"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            android:textSize="@dimen/abc_action_bar_icon_vertical_padding_material"
+            android:layout_weight="1"/>
 
-            <TextView android:text="US"
-                android:id="@+id/headerUS"
-                android:layout_column="1"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:textColor="#FFF"
-                android:textSize="@dimen/section_text_size"
-                android:textStyle="bold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UK"
+            android:id="@+id/textViewUK"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            android:textSize="@dimen/abc_action_bar_icon_vertical_padding_material"
+            android:layout_weight="1"/>
 
-            <TextView android:text="UK"
-                android:id="@+id/headerUK"
-                android:layout_column="2"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:textColor="#FFF"
-                android:textSize="@dimen/section_text_size"
-                android:textStyle="bold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FR"
+            android:id="@+id/textViewFR"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            android:textSize="@dimen/abc_action_bar_icon_vertical_padding_material"
+            android:layout_weight="1"/>
 
-            <TextView android:text="FR"
-                android:id="@+id/headerFR"
-                android:layout_column="3"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:textColor="#FFF"
-                android:textSize="@dimen/section_text_size"
-                android:textStyle="bold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SMXL"
+            android:id="@+id/textViewSMXL"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            android:textSize="@dimen/abc_action_bar_icon_vertical_padding_material"
+            android:layout_weight="1"/>
+    </LinearLayout>
 
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/listViewTableSizeConvert"
+        />
 
-            <TextView android:text="SMXL"
-                android:id="@+id/headerSMXL"
-                android:layout_column="4"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:textColor="#FFF"
-                android:textSize="@dimen/section_text_size"
-                android:textStyle="bold"/>
-
-        </TableRow>
-
-    </TableLayout>
-
-
-</ScrollView>
+</LinearLayout>

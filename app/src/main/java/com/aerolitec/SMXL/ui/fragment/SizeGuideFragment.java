@@ -1,7 +1,7 @@
 package com.aerolitec.SMXL.ui.fragment;
 
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -45,7 +45,7 @@ public class SizeGuideFragment extends Fragment {
         mPagerAdapter = new SizeGuideAdapter(getChildFragmentManager());
         mPager.setAdapter(mPagerAdapter);
 
-        //mPager.setPageTransformer(true, new ZoomOutPageTransformer());
+//        mPager.setPageTransformer(true, new ZoomOutPageTransformer());
 
         return view;
     }
