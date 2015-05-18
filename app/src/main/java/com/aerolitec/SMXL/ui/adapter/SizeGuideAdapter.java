@@ -1,8 +1,8 @@
 package com.aerolitec.SMXL.ui.adapter;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.support.v13.app.FragmentPagerAdapter;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 
 import com.aerolitec.SMXL.model.GarmentType;
 import com.aerolitec.SMXL.model.SizeConvert;
@@ -28,12 +28,7 @@ public class SizeGuideAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         GarmentType garment = al_garments.get(position);
         ArrayList<SizeConvert> al_size = new ArrayList<>();
-        /*
-        if(recherche.contains("-")){
-            recherche = recherche.substring(0, recherche.length()-4);
-        }
 
-        */
         if(garment.getSex().contains("F") || garment.getSex().contains("H")){
             al_size = SMXL.getSizeConvertDBManager().getConvertSizesByGarmentAndSex(garment.getType(), garment.getSex());
         }

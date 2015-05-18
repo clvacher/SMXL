@@ -1,27 +1,13 @@
 package com.aerolitec.SMXL.tools.services;
 
-import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.aerolitec.SMXL.R;
-import com.aerolitec.SMXL.model.Brand;
-import com.aerolitec.SMXL.model.BrandsSizeGuide;
-import com.aerolitec.SMXL.model.CategoryGarment;
-import com.aerolitec.SMXL.model.GarmentType;
-import com.aerolitec.SMXL.model.SizeConvert;
-import com.aerolitec.SMXL.model.TabSizes;
 import com.aerolitec.SMXL.model.User;
-import com.aerolitec.SMXL.model.UserClothes;
-import com.aerolitec.SMXL.tools.Constants;
-import com.aerolitec.SMXL.ui.SMXL;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -34,7 +20,7 @@ import java.util.ArrayList;
 public class SQLiteSMXL extends SQLiteOpenHelper{
 
     public static final String DATABASE_NAME = "SMXL_DATABASE.sqlite";
-    public static final int DATABASE_VERSION = 10;
+    public static final int DATABASE_VERSION = 11;
     private String DATABASE_PATH;
     private static final String FILE_CHARSET = "UTF-8";
     private Context context;

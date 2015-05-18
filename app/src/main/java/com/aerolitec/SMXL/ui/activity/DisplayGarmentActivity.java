@@ -137,8 +137,8 @@ public class DisplayGarmentActivity extends Activity {
                     args.putString("confirm", getResources().getString(R.string.remove));
                     args.putString("message", getResources().getString(R.string.remove_garment));
                     dialog.setArguments(args);
-                    dialog.setTargetFragment(this, 42);
-                    dialog.show(getFragmentManager(), "delete");
+                    //dialog.setTargetFragment(this, 42);
+                    //dialog.show(getFragmentManager(), "delete");
                     break;
                 case R.id.validate:
                     userClothes.setComment(editComments.getText().toString());

@@ -1,16 +1,14 @@
 package com.aerolitec.SMXL.ui.fragment;
 
-import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.aerolitec.SMXL.R;
-import com.aerolitec.SMXL.tools.ZoomOutPageTransformer;
 import com.aerolitec.SMXL.ui.adapter.SizeGuideAdapter;
 
 
@@ -44,29 +42,21 @@ public class SizeGuideFragment extends Fragment {
 
         // Instantiate a ViewPager and a PagerAdapter.
         mPager = (ViewPager) view.findViewById(R.id.viewPagerSizeGuide);
-        mPagerAdapter = new SizeGuideAdapter(getFragmentManager());
+        mPagerAdapter = new SizeGuideAdapter(getChildFragmentManager());
         mPager.setAdapter(mPagerAdapter);
 
-        mPager.setPageTransformer(true, new ZoomOutPageTransformer());
+//        mPager.setPageTransformer(true, new ZoomOutPageTransformer());
 
         return view;
     }
 
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        if (savedInstanceState != null) {
-            // Restauration des données du contexte utilisateur
-            Log.d("coucou ma bite", "test");
-            mPager.setCurrentItem(5);
-        }
-    }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putInt("pagerPosition", mPager.getCurrentItem());
+    public void onResume() {
+        super.onResume();
     }
+
+
 
 
 }

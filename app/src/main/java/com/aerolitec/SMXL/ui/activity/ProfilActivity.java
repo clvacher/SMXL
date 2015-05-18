@@ -32,43 +32,6 @@ public class ProfilActivity extends MaterialNavigationDrawer implements OnProfil
 
     MaterialNavigationDrawer drawer = null;
 
-/*
-    private ViewPager mPager;
-    private PagerAdapter mPagerAdapter;
-    private SlidingLayer slidingLayer;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-
-        setContentView(R.layout.activity_profil);
-
-        //getActionBar().setDisplayShowTitleEnabled(false);
-
-
-        if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction()
-                    .add(R.id.container, new ProfilesFragment())
-                    .commit();
-        }
-
-        slidingLayer = (SlidingLayer)findViewById(R.id.slidingLayerSizeGuide);
-        slidingLayer.setSlidingFromShadowEnabled(false);
-        slidingLayer.setSlidingEnabled(false);
-
-
-        // Instantiate a ViewPager and a PagerAdapter.
-        mPager = (ViewPager) findViewById(R.id.viewPagerSizeGuide);
-        mPagerAdapter = new SizeGuideAdapter(getSupportFragmentManager());
-        mPager.setAdapter(mPagerAdapter);
-
-        //mPager.setPageTransformer(true, new DepthPageTransformer());
-
-    }
-    */
-
-
 
     @Override
     public int headerType() {
@@ -80,30 +43,7 @@ public class ProfilActivity extends MaterialNavigationDrawer implements OnProfil
     @Override
     public void init(Bundle savedInstanceState) {
 
-        //setContentView(R.layout.activity_profil);
 
-        //getActionBar().setDisplayShowTitleEnabled(false);
-
-/*
-        if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction()
-                    .add(R.id.container, new ProfilesFragment())
-                    .commit();
-        }
-*/
-        /*
-        slidingLayer = (SlidingLayer)findViewById(R.id.slidingLayerSizeGuide);
-        slidingLayer.setSlidingFromShadowEnabled(false);
-        slidingLayer.setSlidingEnabled(false);
-
-
-        // Instantiate a ViewPager and a PagerAdapter.
-        mPager = (ViewPager) findViewById(R.id.viewPagerSizeGuide);
-        mPagerAdapter = new SizeGuideAdapter(getSupportFragmentManager());
-        mPager.setAdapter(mPagerAdapter);
-
-        //mPager.setPageTransformer(true, new DepthPageTransformer());
-*/
         drawer = this;
 
         MaterialDevisor materialDevisor = new MaterialDevisor();

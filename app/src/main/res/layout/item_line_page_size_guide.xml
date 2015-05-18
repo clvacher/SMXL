@@ -1,0 +1,56 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal"
+    android:id="@+id/size_guide_content"
+    android:background="@color/DefaultBackgroundColor"
+    >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UE"
+            android:id="@+id/textViewUE"
+            android:gravity="center"
+            android:textSize="@dimen/abc_action_bar_icon_vertical_padding_material"
+            android:layout_weight="1"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="US"
+            android:id="@+id/textViewUS"
+            android:gravity="center"
+            android:textSize="@dimen/abc_action_bar_icon_vertical_padding_material"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UK"
+            android:id="@+id/textViewUK"
+            android:gravity="center"
+            android:textSize="@dimen/abc_action_bar_icon_vertical_padding_material"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FR"
+            android:id="@+id/textViewFR"
+            android:gravity="center"
+            android:textSize="@dimen/abc_action_bar_icon_vertical_padding_material"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SMXL"
+            android:id="@+id/textViewSMXL"
+            android:gravity="center"
+            android:textSize="@dimen/abc_action_bar_icon_vertical_padding_material"
+            android:layout_weight="1"/>
+
+</LinearLayout>
