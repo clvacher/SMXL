@@ -1,13 +1,12 @@
 package com.aerolitec.SMXL.ui.fragment;
 
-import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.aerolitec.SMXL.R;
-import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.login.widget.LoginButton;
 
@@ -15,7 +14,6 @@ import com.facebook.login.widget.LoginButton;
 public class SettingsFragment extends Fragment {
 
     private View view;
-    AccessToken accessToken;
     CallbackManager callbackManager;
 
     public static SettingsFragment newInstance() {

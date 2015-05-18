@@ -1,8 +1,8 @@
 package com.aerolitec.SMXL.ui.fragment;
 
 import android.app.Activity;
-import android.app.DialogFragment;
-import android.app.Fragment;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -23,35 +23,18 @@ import com.aerolitec.SMXL.ui.fragment.dialog.ConfirmDialogFragment;
 import java.util.ArrayList;
 
 public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.ConfirmDialogListener{
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+
     private final static int DELETE_PROFILE = 1;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
     private View view;
     private ArrayList<ProfileItem> profileItem;
-    private ProfilesAdapter adapter;
+    private ProfilesAdapter profilesAdapter;
+    private GridView gridViewProfiles;
 
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProfilesFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ProfilesFragment newInstance(String param1, String param2) {
+
+    public static ProfilesFragment newInstance() {
         ProfilesFragment fragment = new ProfilesFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
     public ProfilesFragment() {
@@ -61,11 +44,6 @@ public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-
     }
 
     @Override
@@ -78,11 +56,11 @@ public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.
         //Fragment sizeGuideFragment = new SizeGuideFragment();
         //getFragmentManager().beginTransaction().add(R.id.containerSlideSizeGuide, new SizeGuideFragment()).commit();
 
-        GridView gridViewProfiles = (GridView)view.findViewById(R.id.listViewProfiles);
+        gridViewProfiles = (GridView)view.findViewById(R.id.listViewProfiles);
         profileItem = new ArrayList<>();
 
-        adapter = new ProfilesAdapter(getActivity().getApplicationContext(),profileItem);
-        gridViewProfiles.setAdapter(adapter);
+        profilesAdapter = new ProfilesAdapter(getActivity().getApplicationContext(),profileItem);
+        gridViewProfiles.setAdapter(profilesAdapter);
         gridViewProfiles.setOnItemClickListener(selectProfile);
 
         gridViewProfiles.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -112,7 +90,7 @@ public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.
         if(local != null && local.size() > 0) {
             profileItem.clear();
             profileItem.addAll(local);
-            adapter.notifyDataSetChanged();
+            profilesAdapter.notifyDataSetChanged();
         } else {
             loadProfiles();
         }
@@ -124,7 +102,7 @@ public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.
             //deleteCurrentProfile(positionItem);
             SMXL.getUserDBManager().deleteUser(SMXL.getUserDBManager().getUser(profileItem.get(positionItem).getId()));
             profileItem.remove(positionItem);
-            adapter.notifyDataSetChanged();
+            profilesAdapter.notifyDataSetChanged();
         }
     }
 
@@ -136,22 +114,10 @@ public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.
         ProfileItem createNewProfile = new ProfileItem(0,getResources().getString(R.string.newProfile2), getResources().getString(R.string.newProfile1), "createNewProfile");
         profileItem.add(createNewProfile);
 
-        /*
-        GraphRequest.newMeRequest(AccessToken.getCurrentAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
-            @Override
-            public void onCompleted(JSONObject jsonObject, GraphResponse graphResponse) {
-
-                ProfilePictureView profilePicture = (ProfilePictureView) view.findViewById(R.id.profilePictureView);
-                profilePicture.setProfileId(AccessToken.getCurrentAccessToken().getUserId());
-            }
-
-        }).executeAsync();
-*/
-
         for (User u : users) {
             profileItem.add(new ProfileItem(u.getId_user(), u.getLastname(), u.getFirstname(), u.getAvatar()));
         }
-        adapter.notifyDataSetChanged();
+        profilesAdapter.notifyDataSetChanged();
 
     }
 
@@ -190,6 +156,13 @@ public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.
         super.onSaveInstanceState(outState);
 
         outState.putSerializable("profiles", profileItem);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        profileItem.clear();
+        loadProfiles();
     }
 
 }

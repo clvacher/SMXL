@@ -11,19 +11,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.GridView;
 import android.widget.Spinner;
 
+import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.Brand;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
+import com.aerolitec.SMXL.ui.adapter.FavoriteCheckableBrandAdapter;
 
 import java.util.ArrayList;
-
-import com.aerolitec.SMXL.R;
-import com.aerolitec.SMXL.ui.adapter.FavoriteCheckableBrandAdapter;
 
 
 public class SelectBrandsFragment extends Fragment {
@@ -99,7 +97,7 @@ public class SelectBrandsFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
                 if (position > 0) {
-                    brands = SMXL.getBrandDBManager().getBrandsByBrandCategory(SMXL.getBrandDBManager().getAllBrandCategory().get(position - 1));//-1 car on a rajouté l'item d'en tete
+                    brands = SMXL.getBrandDBManager().getBrandsByBrandCategory(SMXL.getBrandDBManager().getAllBrandCategory().get(position - 1));//-1 car on a rajoute l'item d'en tete
                 } else {
                     brands = SMXL.getBrandDBManager().getAllBrands();
                 }

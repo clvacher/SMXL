@@ -14,9 +14,6 @@ import com.aerolitec.SMXL.ui.customLayout.ProfilePictureRoundedImageView;
 import java.util.ArrayList;
 
 
-/**
- * Created by stephaneL on 20/03/14.
- */
 public class ProfilesAdapter extends ArrayAdapter<ProfileItem> {
 
     private Context context;
@@ -45,17 +42,12 @@ public class ProfilesAdapter extends ArrayAdapter<ProfileItem> {
 
         ProfileItem item = getItem(position);
 
-        int width=holder.avatar.getLayoutParams().width;
-
         holder.lastName.setText(item.getLastName());
         holder.firstName.setText(item.getFirstName());
-
 
         final String urlImage = item.getAvatar();
 
         holder.avatar.setImage(urlImage);
-
-
 
         return convertView;
     }

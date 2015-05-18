@@ -57,6 +57,7 @@ public class ConnexionActivity extends Activity{
 
                     if (currentAccessToken != null) {
                         Log.d("No Problem", "si si");
+
                     } else {
                         Log.d("Problem", "si si");
                         finish();
@@ -69,12 +70,12 @@ public class ConnexionActivity extends Activity{
             }
         };
 
-        /*if(AccessToken.getCurrentAccessToken()!=null){
+        if(AccessToken.getCurrentAccessToken()!=null){
             Toast.makeText(getBaseContext(), "Connecté avec Facebook", Toast.LENGTH_LONG).show();
             finish();
             Intent intent = new Intent(getApplicationContext(), ProfilActivity.class);
             startActivity(intent);
-        }*/
+        }
 
 
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
@@ -101,7 +102,8 @@ public class ConnexionActivity extends Activity{
                                     sex,
                                     "https://graph.facebook.com/" + userJson.optString("id") + "/picture?type=large",
                                     //userJson.optString("birthday")
-                                    userJson.toString()
+                                    //userJson.toString()
+                                    ""
                             );
 
 
