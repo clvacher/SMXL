@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import com.aerolitec.SMXL.R;
+import com.aerolitec.SMXL.SettingsFragment;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.tools.services.OnProfileSelected;
@@ -129,7 +130,7 @@ public class ProfilActivity extends MaterialNavigationDrawer implements OnProfil
 
         this.newLabel("Paramètres", true, menu);
 
-        MaterialSection section4 = this.newSection("Réglages", this.getResources().getDrawable(R.drawable.ic_action_settings), new ProfilesFragment(), true, menu);
+        MaterialSection section4 = this.newSection("Réglages", this.getResources().getDrawable(R.drawable.ic_action_settings), new SettingsFragment(), true, menu);
 
 
         //section1.setFillIconColor(true);
