@@ -18,6 +18,7 @@ import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.TabSizes;
 import com.aerolitec.SMXL.model.UserClothes;
 import com.aerolitec.SMXL.ui.SMXL;
+import com.aerolitec.SMXL.ui.fragment.SelectGarmentSummaryFragment;
 import com.aerolitec.SMXL.ui.fragment.dialog.ConfirmDialogFragment;
 
 import java.util.ArrayList;
@@ -44,7 +45,7 @@ public class DisplayGarmentActivity extends Activity {
 
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
-                    .add(R.id.container, new SummaryGarmentFragment())
+                    .add(R.id.container, new SelectGarmentSummaryFragment())
                     .commit();
         }
 
@@ -69,7 +70,7 @@ public class DisplayGarmentActivity extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
-
+/*
     public static class SummaryGarmentFragment extends Fragment implements ConfirmDialogFragment.ConfirmDialogListener {
 
         private ImageView imageSummary;
@@ -157,4 +158,5 @@ public class DisplayGarmentActivity extends Activity {
             }
         }
     }
+    */
 }

@@ -12,7 +12,7 @@ import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.tools.serverConnexion.PostMainUserHttpAsyncTask;
 
 /**
- * Created by Cl?ment on 5/13/2015.
+ * Created by Clement on 5/13/2015.
  */
 public class CreateAccountActivity extends SuperLoginCreateAccountActivity{
 

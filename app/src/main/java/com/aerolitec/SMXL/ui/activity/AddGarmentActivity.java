@@ -23,8 +23,8 @@ import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.fragment.SelectGarmentTypeFragment;
 
 /**
- * Created by Clément on 5/4/2015.
- * class temporaire en remplacement de addGarmentActivity
+ * Created by Clement on 5/4/2015.
+ *
  */
 public class AddGarmentActivity extends Activity {
 
@@ -33,6 +33,7 @@ public class AddGarmentActivity extends Activity {
     private Brand selectedBrand;
     private String selectedSize;
     private CategoryGarment selectedCategory;
+    
     private String comment;
 
     private TextView tvBrand,tvGarmentType,tvSize;
@@ -47,7 +48,18 @@ public class AddGarmentActivity extends Activity {
         setContentView(R.layout.activity_add_garment);
 
         //gets the selected garment category from the intent
-        selectedCategory=(CategoryGarment)getIntent().getExtras().get("category");
+        Bundle extras=getIntent().getExtras();
+        if(extras != null) {
+            if((selectedCategory = (CategoryGarment) extras.get("category")) == null){
+                UserClothes userClothes = (UserClothes) extras.get("userClothes");
+                selectedGarmentType = userClothes.getGarmentType();
+                selectedBrand = userClothes.getBrand();
+                selectedSize = userClothes.getSize();
+            }
+        }
+        else{
+            finish();
+        }
 
         user = UserManager.get().getUser();
         if(user == null) {

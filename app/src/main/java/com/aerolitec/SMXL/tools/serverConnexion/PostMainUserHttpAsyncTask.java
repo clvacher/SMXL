@@ -2,6 +2,7 @@ package com.aerolitec.SMXL.tools.serverConnexion;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
@@ -30,7 +31,7 @@ public class PostMainUserHttpAsyncTask extends AsyncTask<Void, Void, String> {
     public static final String MAIN_USER_FOLDER="mainUser";
     public static final String SERVER_ADDRESS="http://api.smxl-app.com/users.json";
 
-    private Activity activity;
+    protected Activity activity;
 
     public PostMainUserHttpAsyncTask(Activity activity) {
         super();
@@ -51,16 +52,19 @@ public class PostMainUserHttpAsyncTask extends AsyncTask<Void, Void, String> {
                 FileOutputStream fos = activity.openFileOutput(MAIN_USER_FOLDER, Context.MODE_PRIVATE);
                 fos.flush();
                 fos.write(MainUserManager.get().getMainUser().getBytes());
+                activity.setResult(Activity.RESULT_OK);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        activity.setResult(Activity.RESULT_OK);
+        else{
+            activity.setResult(Activity.RESULT_CANCELED);
+        }
         activity.finish();
     }
 
 
-    private String POST(String url, MainUser user){
+    protected String POST(String url, MainUser user){
         InputStream inputStream = null;
         String result = "";
         try {
@@ -122,7 +126,7 @@ public class PostMainUserHttpAsyncTask extends AsyncTask<Void, Void, String> {
         return result;
     }
 
-    private String convertInputStreamToString(InputStream inputStream) throws IOException {
+    protected String convertInputStreamToString(InputStream inputStream) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
         String line = "";
         String result = "";

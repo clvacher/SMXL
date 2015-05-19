@@ -6,10 +6,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.Window;
-import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
+import android.view.animation.AnimationSet;
 import android.widget.RelativeLayout;
+import android.widget.ImageView;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.MainUser;
@@ -97,7 +97,7 @@ public class IntroActivity extends Activity {
 
         try {
             FileInputStream fis = openFileInput(PostMainUserHttpAsyncTask.MAIN_USER_FOLDER);
-            int bufferSize=fis.available()+50; //+50 to be safe
+            int bufferSize=fis.available();
             Log.d("TheoraticalStorageSize", "" + bufferSize);
 
             byte data[] = new byte[bufferSize];
