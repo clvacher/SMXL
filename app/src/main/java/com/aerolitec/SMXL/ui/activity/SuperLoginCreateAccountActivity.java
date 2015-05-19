@@ -38,9 +38,6 @@ import java.io.InputStreamReader;
  */
 public abstract class SuperLoginCreateAccountActivity extends Activity implements View.OnClickListener{
 
-    protected final static int ACCOUNT_CREATED=10;
-    protected final static int LOGIN_SUCCESSFUL=20;
-
     protected AutoCompleteTextView email;
     protected TextView password;
     protected ProgressBar progressBar;

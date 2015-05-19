@@ -1,6 +1,7 @@
 package com.aerolitec.SMXL.tools.serverConnexion;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
@@ -16,6 +17,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -25,6 +27,7 @@ import java.io.InputStreamReader;
  */
 public class PostMainUserHttpAsyncTask extends AsyncTask<Void, Void, String> {
 
+    public static final String MAIN_USER_FOLDER="mainUser";
     public static final String SERVER_ADDRESS="http://api.smxl-app.com/users.json";
 
     private Activity activity;
@@ -43,6 +46,15 @@ public class PostMainUserHttpAsyncTask extends AsyncTask<Void, Void, String> {
     @Override
     protected void onPostExecute(String result) {
         Toast.makeText(activity, "Data Sent!", Toast.LENGTH_LONG).show();
+        if(!result.equals("Did not work!")) {
+            try {
+                FileOutputStream fos = activity.openFileOutput(MAIN_USER_FOLDER, Context.MODE_PRIVATE);
+                fos.flush();
+                fos.write(MainUserManager.get().getMainUser().getBytes());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         activity.setResult(Activity.RESULT_OK);
         activity.finish();
     }

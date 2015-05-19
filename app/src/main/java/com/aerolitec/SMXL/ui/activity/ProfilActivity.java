@@ -5,8 +5,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.aerolitec.SMXL.R;
+import com.aerolitec.SMXL.model.MainUser;
 import com.aerolitec.SMXL.ui.fragment.SettingsFragment;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.manager.UserManager;
@@ -16,7 +18,11 @@ import com.aerolitec.SMXL.ui.adapter.ProfileItem;
 import com.aerolitec.SMXL.ui.fragment.ProfilesFragment;
 import com.aerolitec.SMXL.ui.fragment.SizeGuideFragment;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 
 import de.madcyph3r.materialnavigationdrawer.MaterialNavigationDrawer;
 import de.madcyph3r.materialnavigationdrawer.head.MaterialHeadItem;
@@ -42,7 +48,6 @@ public class ProfilActivity extends MaterialNavigationDrawer implements OnProfil
     // called from onCreate(), make your view init here or in your fragment.
     @Override
     public void init(Bundle savedInstanceState) {
-
 
         drawer = this;
 

@@ -2,6 +2,7 @@ package com.aerolitec.SMXL.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.aerolitec.SMXL.R;
@@ -38,7 +39,7 @@ public class CreateAccountActivity extends SuperLoginCreateAccountActivity{
                     mainUser.setPassword(password.getText().toString());
                     MainUserManager.get().setMainUser(mainUser);
 
-                    Intent intent=new Intent(getApplicationContext(),CreateUpdateProfileActivity.class);
+                    Intent intent=new Intent(getApplicationContext(), CreateUpdateProfileActivity.class);
                     intent.putExtra("fragmentType","create");
                     startActivityForResult(intent,CREATE_ACCOUNT);
                     //else
@@ -54,11 +55,12 @@ public class CreateAccountActivity extends SuperLoginCreateAccountActivity{
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         switch(requestCode){
-            case RESULT_OK:
-                MainUserManager.get().getMainUser().setMainProfile(UserManager.get().getUser());
-                new PostMainUserHttpAsyncTask(this).execute();
+            case CREATE_ACCOUNT:
+                if(resultCode==RESULT_OK) {
+                    MainUserManager.get().getMainUser().setMainProfile(UserManager.get().getUser());
+                    new PostMainUserHttpAsyncTask(this).execute();
+                }
                 break;
         }
     }

@@ -20,6 +20,7 @@ import com.aerolitec.SMXL.ui.adapter.ProfileItem;
 import com.aerolitec.SMXL.ui.adapter.ProfilesAdapter;
 import com.aerolitec.SMXL.ui.fragment.dialog.ConfirmDialogFragment;
 
+import java.io.FileInputStream;
 import java.util.ArrayList;
 
 public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.ConfirmDialogListener{

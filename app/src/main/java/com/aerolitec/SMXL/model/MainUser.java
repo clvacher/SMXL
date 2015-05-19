@@ -1,16 +1,23 @@
 package com.aerolitec.SMXL.model;
 
+import com.aerolitec.SMXL.ui.SMXL;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+
 /**
  * Created by Jerome on 11/05/2015.
  */
-public class MainUser{
+public class MainUser implements Serializable{
     private String email;
     private String password;
     private String firstname;
     private String lastname;
     private String sex;
     private String avatar;
-    private User mainProfile;
+    private int idMainProfile;
 
     public String getFirstname() {return firstname;}
     public void setFirstname(String firstname) {this.firstname = firstname;}
@@ -24,9 +31,9 @@ public class MainUser{
     public String getAvatar() {return avatar;}
     public void setAvatar(String avatar) {this.avatar = avatar;}
 
-    public User getMainProfile() { return mainProfile;}
+    public User getMainProfile() { return SMXL.getUserDBManager().getUser(idMainProfile);}
     public void setMainProfile(User mainProfile) {
-        this.mainProfile = mainProfile;
+        this.idMainProfile = mainProfile.id_user;
         this.firstname = mainProfile.firstname;
         this.lastname = mainProfile.lastname;
         this.sex = mainProfile.sexe;
@@ -52,14 +59,37 @@ public class MainUser{
 
     public MainUser(){super();}
 
-    public MainUser(String lastname, String firstname, String email, String password, String sex, String avatar, User mainProfile){
+    public MainUser(String email, String password, User mainProfile){
         super();
-        this.lastname = lastname;
-        this.firstname = firstname;
         this.email = email;
         this.password = password;
-        this.sex = sex;
-        this.avatar = avatar;
-        this.mainProfile = mainProfile;
+        setMainProfile(mainProfile);
+    }
+
+    @Override
+    public String toString() {
+        return "MainUser{" +
+                "email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", sex='" + sex + '\'' +
+                ", avatar='" + avatar + '\'' +
+                ", mainProfile=" + idMainProfile +
+                '}';
+    }
+
+
+    public byte[] getBytes() throws IOException{
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        ObjectOutputStream objectOutputStream= new ObjectOutputStream(byteArrayOutputStream);
+
+        objectOutputStream.writeObject(this);
+
+        byte[] data = byteArrayOutputStream.toByteArray();
+
+        objectOutputStream.close();
+
+        return data;
     }
 }

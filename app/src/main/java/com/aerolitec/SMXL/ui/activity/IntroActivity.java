@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Window;
 import android.view.animation.AnimationUtils;
 import android.view.animation.AnimationSet;
@@ -11,13 +12,22 @@ import android.widget.RelativeLayout;
 import android.widget.ImageView;
 
 import com.aerolitec.SMXL.R;
+import com.aerolitec.SMXL.model.MainUser;
+import com.aerolitec.SMXL.tools.manager.MainUserManager;
+import com.aerolitec.SMXL.tools.serverConnexion.PostMainUserHttpAsyncTask;
+
+import java.io.ByteArrayInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.ObjectInputStream;
 
 
 public class IntroActivity extends Activity {
     // Splash screen timerS
     private static int SPLASH_TIME_OUT = 2000;
-    RelativeLayout rlIntro;
-    ImageView launchIcon;
+    private RelativeLayout rlIntro;
+    private ImageView launchIcon;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +39,8 @@ public class IntroActivity extends Activity {
         setContentView(R.layout.activity_intro);
 
         launchIcon = (ImageView)findViewById(R.id.imgLogo);
+
+        getMainUserFromStorage();
 
         AnimationSet scal1 = new AnimationSet(true);
 
@@ -79,6 +91,36 @@ public class IntroActivity extends Activity {
         }, SPLASH_TIME_OUT);
 
 
+    }
+
+    public void getMainUserFromStorage() {
+        //TEST
+
+        try {
+            FileInputStream fis = openFileInput(PostMainUserHttpAsyncTask.MAIN_USER_FOLDER);
+            int bufferSize=fis.available()-50; //+50 to be safe
+            Log.d("TheoraticalStorageSize", "" + bufferSize);
+
+            byte data[] = new byte[bufferSize];
+            int tmp;
+            int count = 0;
+            while ((tmp = fis.read()) != -1 && count < bufferSize) {
+                data[count] = (byte) tmp;
+                count++;
+            }
+            Log.d("RealStorageSize", "" + count);
+
+            ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(data);
+            ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
+            MainUser mainUser;
+            Log.d("EmptyMainUser",""+MainUserManager.get().getMainUser());
+            MainUserManager.get().setMainUser((mainUser = (MainUser) objectInputStream.readObject()));
+            Log.d("MainUser", "" + mainUser);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            MainUserManager.get().setMainUser(null);
+        }
     }
 
 }

@@ -131,11 +131,12 @@ public class CreateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
             } catch (Exception e) {
                 Log.d(Constants.TAG, "Create user with error : " + e.getMessage());
             }
-            if (user != null)
+            if (user != null) {
                 getActivity().setResult(Activity.RESULT_OK);
-            else
+            }
+            else {
                 getActivity().setResult(0);
-
+            }
 
             InputMethodManager mgr = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
             try {

@@ -170,14 +170,14 @@ public class ConnexionActivity extends Activity{
         callbackManager.onActivityResult(requestCode, resultCode, data);
         switch(requestCode){
             case LOGIN:
-                if (resultCode == LOGIN_SUCCESSFUL) {
+                if (resultCode == RESULT_OK) {
                     finish();
                     Intent intent = new Intent(getApplicationContext(), ProfilActivity.class);
                     startActivity(intent);
                 }
                 break;
             case CREATE_ACCOUNT:
-                if (resultCode == ACCOUNT_CREATED) {
+                if (resultCode == RESULT_OK) {
                     finish();
                     Intent intent = new Intent(getApplicationContext(), ProfilActivity.class);
                     startActivity(intent);
