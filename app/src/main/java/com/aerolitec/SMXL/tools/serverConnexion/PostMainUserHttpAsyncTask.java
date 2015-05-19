@@ -23,7 +23,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 /**
- * Created by Clément on 5/18/2015.
+ * Created by Clement on 5/18/2015.
  */
 public class PostMainUserHttpAsyncTask extends AsyncTask<Void, Void, String> {
 
@@ -94,7 +94,7 @@ public class PostMainUserHttpAsyncTask extends AsyncTask<Void, Void, String> {
             // 6. set httpPost Entity
             httpPost.setEntity(se);
 
-            // 7. Set some headers to inform server about the type of the content   
+            // 7. Set some headers to inform server about the type of the contentï¿½ ï¿½
             httpPost.setHeader("Accept", "application/json");
             httpPost.setHeader("Content-type", "application/json");
 

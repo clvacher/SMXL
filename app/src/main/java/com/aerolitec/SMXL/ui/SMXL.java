@@ -36,7 +36,6 @@ public class SMXL extends Application{
     @Override
     public void onCreate() {
         super.onCreate();
-        FacebookSdk.sdkInitialize(getApplicationContext());
         instance = this;
         dataBase= new SQLiteSMXL(getApplicationContext());
         brandDBManager = new BrandDBManager(getApplicationContext());

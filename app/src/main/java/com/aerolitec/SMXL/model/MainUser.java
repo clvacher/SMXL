@@ -75,7 +75,7 @@ public class MainUser implements Serializable{
                 ", lastname='" + lastname + '\'' +
                 ", sex='" + sex + '\'' +
                 ", avatar='" + avatar + '\'' +
-                ", mainProfile=" + idMainProfile +
+                ", idMainProfile=" + idMainProfile +
                 '}';
     }
 
@@ -92,4 +92,5 @@ public class MainUser implements Serializable{
 
         return data;
     }
+
 }

@@ -24,5 +24,6 @@ public class MainUserManager {
     public void setMainUser(MainUser mainUser) {
         this.mainUser = mainUser;
     }
+
 }
 

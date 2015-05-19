@@ -1,7 +1,7 @@
 package com.aerolitec.SMXL.tools.serverConnexion;
 
 /**
- * Created by Clément on 5/18/2015.
+ * Created by Clement on 5/18/2015.
  */
 public class PostProfileHttpAsyncTask {
 }

@@ -239,7 +239,7 @@ public class ProfilesDetailFragment extends Fragment{
         tvFirstName.setText(user.getFirstname());
         tvLastName.setText(user.getLastname());
         String profileDescription = user.getDescription();
-        if (profileDescription.length()>0) {
+        if (profileDescription!=null) {
             etDescription.setText(profileDescription);
         }
 

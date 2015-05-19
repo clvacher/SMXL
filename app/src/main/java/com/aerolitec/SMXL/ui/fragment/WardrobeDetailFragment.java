@@ -1,17 +1,15 @@
 package com.aerolitec.SMXL.ui.fragment;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -21,16 +19,13 @@ import android.widget.TextView;
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.model.UserClothes;
-import com.aerolitec.SMXL.tools.Constants;
-import com.aerolitec.SMXL.tools.ImageHelper;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
-import com.aerolitec.SMXL.ui.activity.DisplayGarmentActivity;
 import com.aerolitec.SMXL.ui.activity.AddGarmentActivity;
+import com.aerolitec.SMXL.ui.activity.DisplayGarmentActivity;
 import com.aerolitec.SMXL.ui.adapter.GarmentAdapter;
-import com.makeramen.RoundedImageView;
+import com.aerolitec.SMXL.ui.customLayout.ProfilePictureRoundedImageView;
 
-import java.io.File;
 import java.util.ArrayList;
 
 
@@ -68,26 +63,10 @@ public class WardrobeDetailFragment extends Fragment {
 
 
         TextView tvFirstName = (TextView) view.findViewById(R.id.firstName);
-        ImageView avatar=(RoundedImageView)view.findViewById(R.id.imgAvatar);
+        ProfilePictureRoundedImageView avatar=(ProfilePictureRoundedImageView)view.findViewById(R.id.imgAvatar);
 
         //Initial setup of the name and picture of the user
-        String fnAvatar = user.getAvatar();
-        if (fnAvatar != null) {
-            int width = getPixelsFromDip(80, getActivity());
-            try {
-                File file = new File(fnAvatar);
-                if (file.exists()) {
-                    final BitmapFactory.Options options = new BitmapFactory.Options();
-                    options.inJustDecodeBounds = true;
-                    BitmapFactory.decodeFile(file.getAbsolutePath(), options);
-                    options.inSampleSize = ImageHelper.calculateInSampleSize(options, width, width);
-                    options.inJustDecodeBounds = false;
-                    avatar.setImageBitmap(ImageHelper.getCorrectBitmap(BitmapFactory.decodeFile(file.getAbsolutePath(), options), file.getAbsolutePath()));
-                }
-            } catch (Exception e) {
-                Log.e(Constants.TAG, "Error converting Picture to File : " + e.getMessage());
-            }
-        }
+        avatar.setImage(user.getAvatar());
         tvFirstName.setText(user.getFirstname());
 
         //setup of the class view attributes with findViewById

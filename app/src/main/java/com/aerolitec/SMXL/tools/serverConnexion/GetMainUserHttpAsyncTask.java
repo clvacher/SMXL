@@ -7,7 +7,7 @@ import android.widget.Toast;
 import com.aerolitec.SMXL.model.User;
 
 /**
- * Created by Clément on 5/18/2015.
+ * Created by Clement on 5/18/2015.
  */
 public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,User>{
 
