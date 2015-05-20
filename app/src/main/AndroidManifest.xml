@@ -97,11 +97,6 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".ui.activity.DisplayGarmentActivity"
-            android:label="@string/title_activity_display_garment"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
             android:name=".ui.activity.AddGarmentActivity"
             android:icon="@drawable/ic_action_logo_smxl"
             android:label="@string/title_activity_add_garment"

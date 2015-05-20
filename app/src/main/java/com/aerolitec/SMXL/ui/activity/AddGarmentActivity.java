@@ -3,7 +3,6 @@ package com.aerolitec.SMXL.ui.activity;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v7.internal.view.menu.MenuView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,8 +17,10 @@ import com.aerolitec.SMXL.model.CategoryGarment;
 import com.aerolitec.SMXL.model.GarmentType;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.model.UserClothes;
+import com.aerolitec.SMXL.tools.manager.MainUserManager;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
+import com.aerolitec.SMXL.ui.fragment.SelectGarmentSummaryFragment;
 import com.aerolitec.SMXL.ui.fragment.SelectGarmentTypeFragment;
 
 /**
@@ -33,13 +34,16 @@ public class AddGarmentActivity extends Activity {
     private Brand selectedBrand;
     private String selectedSize;
     private CategoryGarment selectedCategory;
-    
+    private int selectedIdUserClothes=-1;
+    private UserClothes userClothes;
+
     private String comment;
 
     private TextView tvBrand,tvGarmentType,tvSize;
     private RelativeLayout smxlLayout;
 
     private Boolean validation=false;
+    private Boolean update=false;
     private Menu menu;
 
     @Override
@@ -47,14 +51,25 @@ public class AddGarmentActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_garment);
 
+
+        tvBrand=(TextView)findViewById(R.id.garmentBrand);
+        tvGarmentType = (TextView)findViewById(R.id.garmentType);
+        tvSize=(TextView)findViewById(R.id.textSize);
+        smxlLayout=(RelativeLayout)findViewById(R.id.layoutSMXL);
+
         //gets the selected garment category from the intent
         Bundle extras=getIntent().getExtras();
         if(extras != null) {
             if((selectedCategory = (CategoryGarment) extras.get("category")) == null){
-                UserClothes userClothes = (UserClothes) extras.get("userClothes");
-                selectedGarmentType = userClothes.getGarmentType();
-                selectedBrand = userClothes.getBrand();
-                selectedSize = userClothes.getSize();
+                existingGarment(extras);
+            }
+            else{
+                Fragment fragment = new SelectGarmentTypeFragment();
+                getFragmentManager().beginTransaction()
+                        .add(R.id.container, fragment, "type")
+                        .commit();
+
+                getActionBar().setTitle(getResources().getString(R.string.add_garment));
             }
         }
         else{
@@ -67,36 +82,23 @@ public class AddGarmentActivity extends Activity {
             return;//TODO ?
         }
 
-        tvBrand=(TextView)findViewById(R.id.garmentBrand);
-        tvGarmentType = (TextView)findViewById(R.id.garmentType);
-        tvSize=(TextView)findViewById(R.id.textSize);
-        smxlLayout=(RelativeLayout)findViewById(R.id.layoutSMXL);
-
-
         ((ImageView)findViewById(R.id.garmentIcon)).setImageResource(selectedCategory.getIcon());
-
-        if (savedInstanceState == null) {
-            Fragment fragment = new SelectGarmentTypeFragment();
-            getFragmentManager().beginTransaction()
-                    .add(R.id.container, fragment, "type")
-                    .commit();
-        }
 
         smxlLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("SizeSetter","Not implemented");
+                Log.d("SizeSetter", "Not implemented");
                 //TODO
             }
         });
 
-        getActionBar().setTitle(getResources().getString(R.string.add_garment));
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setDisplayShowHomeEnabled(false);
         getActionBar().setDisplayShowTitleEnabled(true);
         getActionBar().setDisplayUseLogoEnabled(false);
+
     }
 
 
@@ -104,14 +106,20 @@ public class AddGarmentActivity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.add_garment, menu);
         this.menu=menu;
+        Log.d("MENU BEFORE",this.menu.toString()+"");
         return super.onCreateOptionsMenu(menu);
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.validate:
                 saveGarment();
+                finish();
+                break;
+            case R.id.update:
+                updateGarment();
                 finish();
                 break;
             case android.R.id.home:
@@ -178,15 +186,62 @@ public class AddGarmentActivity extends Activity {
     public CategoryGarment getSelectedCategory() {return selectedCategory;}
     public void setSelectedCategory(CategoryGarment selectedCategory) {this.selectedCategory = selectedCategory;}
 
+
+    public int getSelectedIdUserClothes() {return selectedIdUserClothes;}
+    public void setSelectedIdUserClothes(int selectedIdUserClothes) {this.selectedIdUserClothes = selectedIdUserClothes;}
+
     public void setValidation(Boolean b){
         validation = b;
         onPrepareOptionsMenu(menu);
     }
-
+    public void setUpdate(Boolean b){
+        update = b;
+        onPrepareOptionsMenu(menu);
+    }
     @Override
     public boolean onPrepareOptionsMenu(Menu menu){
+        Log.d("MENU", menu.toString());
         (menu.findItem(R.id.validate)).setVisible(validation);
+        (menu.findItem(R.id.update)).setVisible(update);
         return true;
     }
+
+    private void existingGarment(Bundle extras){
+        userClothes = (UserClothes) extras.get("userClothes");
+        selectedGarmentType = userClothes.getGarmentType();
+        selectedBrand = userClothes.getBrand();
+        selectedSize = userClothes.getSize();
+        selectedIdUserClothes = userClothes.getId_user_clothes();
+        selectedCategory = userClothes.getGarmentType().getCategoryGarment();
+        comment = userClothes.getComment();
+
+        tvBrand.setText(userClothes.getBrand().getBrand_name());
+        tvGarmentType.setText(userClothes.getGarmentType().getType());
+        tvSize.setText(userClothes.getSize());
+        update=true;
+
+        Fragment fragment = new SelectGarmentSummaryFragment();
+        getFragmentManager().beginTransaction()
+                .add(R.id.container, fragment, "type")
+                .commit();
+
+        getActionBar().setTitle(getResources().getString(R.string.edit_garment));
+    }
+
+
+    private void updateGarment(){
+        Log.d("update", "en cours");
+        userClothes.setGarmentType(selectedGarmentType);
+        userClothes.setBrand(selectedBrand);
+        //TODO Hardcoded!
+        userClothes.setCountry("UE");
+        Log.d("size",selectedSize);
+        userClothes.setSize(selectedSize);
+        userClothes.setComment(comment);
+        userClothes.setUser(user);
+//        userClothes.setSizes(sizes);
+        SMXL.getUserClothesDBManager().updateUserClothes(userClothes);
+    }
+
 
 }

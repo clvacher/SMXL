@@ -71,6 +71,7 @@
     <string name="title_choose_category">Choisissez une catégorie de vêtement</string>
     <string name="title_choose_garment">Choisissez un type de vêtement</string>
     <string name="add_garment">Ajouter un vêtement</string>
+    <string name="edit_garment">Edition de vêtement</string>
     <string name="title_choose_brand">Choisissez une marque</string>
     <string name="title_summary">Récapitulatif</string>
     <string name="description_add_garment">Ajouter des commentaires pour ce vêtement</string>

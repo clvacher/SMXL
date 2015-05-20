@@ -18,6 +18,12 @@ public class MainUser implements Serializable{
     private String sex;
     private String avatar;
     private int idMainProfile;
+    private int accountType;
+    /*
+     * 0 connexion classique
+     * 1 connexion Facebook
+     * 2 ...
+     */
 
     public String getFirstname() {return firstname;}
     public void setFirstname(String firstname) {this.firstname = firstname;}
@@ -31,7 +37,7 @@ public class MainUser implements Serializable{
     public String getAvatar() {return avatar;}
     public void setAvatar(String avatar) {this.avatar = avatar;}
 
-    public User getMainProfile() { return SMXL.getUserDBManager().getUser(idMainProfile);}
+    public User getMainProfile() { return SMXL.getUserDBManager().getUser(idMainProfile);} // /!\ renvoie un User en ReadOnly (pas de set sur le User retourné)
     public void setMainProfile(User mainProfile) {
         this.idMainProfile = mainProfile.id_user;
         this.firstname = mainProfile.firstname;

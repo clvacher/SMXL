@@ -26,8 +26,8 @@ import java.io.InputStreamReader;
  */
 public class PostMainUserHttpAsyncTask extends AsyncTask<Void, Void, String> {
 
-    public static final String MAIN_USER_FOLDER="mainUser";
-    public static final String SERVER_ADDRESS="http://api.smxl-app.com/users.json";
+    public static final String MAIN_USER_FILE = "mainUser";
+    public static final String SERVER_ADDRESS_CREATE_MAIN_USER = "http://api.smxl-app.com/users.json";
 
     protected Activity activity;
 
@@ -38,7 +38,7 @@ public class PostMainUserHttpAsyncTask extends AsyncTask<Void, Void, String> {
 
     @Override
     protected String doInBackground(Void... params) {
-        return POST(SERVER_ADDRESS, MainUserManager.get().getMainUser());
+        return POST(SERVER_ADDRESS_CREATE_MAIN_USER, MainUserManager.get().getMainUser());
     }
 
     // onPostExecute displays the results of the AsyncTask.
@@ -47,7 +47,7 @@ public class PostMainUserHttpAsyncTask extends AsyncTask<Void, Void, String> {
         //Toast.makeText(activity, "Data Sent!", Toast.LENGTH_LONG).show();
         if(!result.equals("Did not work!")) {
             try {
-                FileOutputStream fos = activity.openFileOutput(MAIN_USER_FOLDER, Context.MODE_PRIVATE);
+                FileOutputStream fos = activity.openFileOutput(MAIN_USER_FILE, Context.MODE_PRIVATE);
                 fos.flush();
                 fos.write(MainUserManager.get().getMainUser().getBytes());
                 activity.setResult(Activity.RESULT_OK);
@@ -124,7 +124,7 @@ public class PostMainUserHttpAsyncTask extends AsyncTask<Void, Void, String> {
         return result;
     }
 
-    protected String convertInputStreamToString(InputStream inputStream) throws IOException {
+    public static String convertInputStreamToString(InputStream inputStream) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
         String line = "";
         String result = "";

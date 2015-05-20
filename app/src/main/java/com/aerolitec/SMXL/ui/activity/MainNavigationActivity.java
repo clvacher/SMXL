@@ -80,8 +80,8 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
                     Toast.makeText(getBaseContext(), "Déconnexion", Toast.LENGTH_SHORT).show();
                     MainUserManager.get().setMainUser(null);
 
-                    File file = new File(getFilesDir(), PostMainUserFacebookHttpAsyncTask.MAIN_USER_FOLDER);
-                    file.delete();
+                File file = new File(getFilesDir(),PostMainUserFacebookHttpAsyncTask.MAIN_USER_FILE);
+                file.delete();
 
                     SMXL.getUserDBManager().deleteAllUsers();
 
