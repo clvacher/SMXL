@@ -408,4 +408,19 @@ public class User extends BaseObjects implements Serializable {
 
         return mesures;
     }
+
+
+    public ArrayList<Integer> getIndexMeasureNotNull(){
+
+        ArrayList<Integer> nbElement = new ArrayList<Integer>();
+        ArrayList<String> sizes;
+        sizes = this.getUserSizes();
+        for (int i = 0 ; i < sizes.size() ; i++){
+            if(!(sizes.get(i).equals("0.0")) && !(sizes.get(i).equals("0")) && !(sizes.get(i).equals("")) ){
+                nbElement.add(i);
+            }
+        }
+
+        return nbElement;
+    }
 }

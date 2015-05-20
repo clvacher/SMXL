@@ -121,7 +121,6 @@ public abstract class SuperCreateUpdateProfileFragment extends Fragment {
     }
 
 
-
     @Override
     public void onActivityResult(int request_code, int result_code, Intent datas) {
         if (request_code == 77) {    // Pick a picture in gallery

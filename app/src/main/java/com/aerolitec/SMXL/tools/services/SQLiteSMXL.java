@@ -7,21 +7,19 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.aerolitec.SMXL.model.User;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.ArrayList;
 
 
 public class SQLiteSMXL extends SQLiteOpenHelper{
 
     public static final String DATABASE_NAME = "SMXL_DATABASE.sqlite";
-    public static final int DATABASE_VERSION = 11;
-    private String DATABASE_PATH;
+    public static final int DATABASE_VERSION = 12;
+    private File DATABASE_FILE;
+    private String DATABASE_DIR;
     private static final String FILE_CHARSET = "UTF-8";
     private Context context;
 
@@ -32,11 +30,12 @@ public class SQLiteSMXL extends SQLiteOpenHelper{
 
 
         String filesDir = context.getFilesDir().getPath(); // /data/data/com.package.nom/files/
-        DATABASE_PATH = filesDir.substring(0, filesDir.lastIndexOf("/")) + "/databases/"; // /data/data/com.package.nom/databases/
+        File dirDatabases = new File(context.getFilesDir().getParentFile().getAbsolutePath(), "databases");
+        DATABASE_DIR = dirDatabases.getAbsolutePath(); // /data/data/com.package.nom/databases/
 
         // Si la bdd n'existe pas dans le dossier de l'app
         if (!checkdatabase()) {
-            // copy db de 'assets' vers DATABASE_PATH
+            // copy db de 'assets' vers DATABASE_DIR
             copydatabase();
         }
 
@@ -45,13 +44,15 @@ public class SQLiteSMXL extends SQLiteOpenHelper{
 
     private boolean checkdatabase() {
         // retourne true/false si la bdd existe dans le dossier de l'app
-        File dbfile = new File(DATABASE_PATH + DATABASE_NAME);
-        return dbfile.exists();
+        DATABASE_FILE = new File(DATABASE_DIR, DATABASE_NAME);
+        return DATABASE_FILE.exists();
     }
 
     private void copydatabase() {
 
-        final String outFileName = DATABASE_PATH + DATABASE_NAME;
+        //final File outFileName = new File(DATABASE_DIR, DATABASE_NAME);
+
+        DATABASE_FILE = new File(DATABASE_DIR, DATABASE_NAME);
 
         InputStream myInput;
         try {
@@ -59,7 +60,7 @@ public class SQLiteSMXL extends SQLiteOpenHelper{
             myInput = context.getAssets().open(DATABASE_NAME);
 
             // dossier de destination
-            File pathFile = new File(DATABASE_PATH);
+            File pathFile = new File(DATABASE_DIR);
             if (!pathFile.exists()) {
                 if (!pathFile.mkdirs()) {
                     Toast.makeText(context, "Erreur : copydatabase(), pathFile.mkdirs()", Toast.LENGTH_SHORT).show();
@@ -68,7 +69,7 @@ public class SQLiteSMXL extends SQLiteOpenHelper{
             }
 
             // Ouverture en écriture du fichier bdd de destination
-            OutputStream myOutput = new FileOutputStream(outFileName);
+            OutputStream myOutput = new FileOutputStream(DATABASE_FILE);
 
             // transfert de inputfile vers outputfile
             byte[] buffer = new byte[1024];
@@ -88,7 +89,7 @@ public class SQLiteSMXL extends SQLiteOpenHelper{
 
         // on greffe le numéro de version
         try {
-            SQLiteDatabase checkdb = SQLiteDatabase.openDatabase(DATABASE_PATH + DATABASE_NAME, null, SQLiteDatabase.OPEN_READWRITE);
+            SQLiteDatabase checkdb = SQLiteDatabase.openDatabase(DATABASE_FILE.getAbsolutePath(), null, SQLiteDatabase.OPEN_READWRITE);
             checkdb.setVersion(DATABASE_VERSION);
         } catch (SQLiteException e) {
             // bdd n'existe pas
@@ -149,17 +150,5 @@ public class SQLiteSMXL extends SQLiteOpenHelper{
 
 
 
-    public ArrayList<Integer> getIndexMeasureNotNull(User user){
 
-        ArrayList<Integer> nbElement = new ArrayList<Integer>();
-        ArrayList<String> sizes;
-        sizes = user.getUserSizes();
-        for (int i = 0 ; i < sizes.size() ; i++){
-            if(!(sizes.get(i).equals("0.0")) && !(sizes.get(i).equals("0")) && !(sizes.get(i).equals("")) ){
-                    nbElement.add(i);
-            }
-        }
-
-        return nbElement;
-    }
 }

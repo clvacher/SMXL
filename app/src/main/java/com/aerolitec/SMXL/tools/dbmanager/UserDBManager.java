@@ -230,7 +230,7 @@ public class UserDBManager extends DBManager{
         open();
         User u = new User();
 
-        Cursor c = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+KEY_ID_USER+"="+id, null);
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + KEY_ID_USER + "=" + id, null);
         if (c.moveToFirst()) {
             u.setId_user(c.getInt(c.getColumnIndex(KEY_ID_USER)));
             u.setNickname(c.getString(c.getColumnIndex(KEY_NICKNAME_USER)));
@@ -311,5 +311,11 @@ public class UserDBManager extends DBManager{
         return users;
     }
 
+    public void deleteAllUsers() {
+        open();
+        db.delete(TABLE_NAME, null, null);
+        close();
+
+    }
 } // class UserDBManager
 

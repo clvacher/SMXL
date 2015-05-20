@@ -38,6 +38,8 @@ public class ProfilePictureRoundedImageView extends RoundedImageView {
 
         final String urlImageFinal = urlImage;
 
+        //Log.d("Mainpicture async https", MainUserManager.get().getMainUser().getAvatar().toString());
+
         if(urlImage=="createNewProfile"){
             setImageResource(R.drawable.ic_menu_btn_add);
         }
@@ -49,6 +51,7 @@ public class ProfilePictureRoundedImageView extends RoundedImageView {
                     @Override
                     protected void onPreExecute() {
                         super.onPreExecute();
+
                     }
 
                     @Override

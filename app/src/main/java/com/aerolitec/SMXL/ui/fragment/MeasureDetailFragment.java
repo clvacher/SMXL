@@ -1,10 +1,10 @@
 package com.aerolitec.SMXL.ui.fragment;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -20,7 +20,6 @@ import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.ImageHelper;
 import com.aerolitec.SMXL.tools.manager.UserManager;
-import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.activity.AddMeasureActivity;
 import com.aerolitec.SMXL.ui.adapter.MeasureAdapter;
 import com.aerolitec.SMXL.ui.adapter.MeasureItem;
@@ -67,7 +66,7 @@ public class MeasureDetailFragment extends Fragment {
         tvFirstName.setText(user.getFirstname());
         ImageView avatar=(ImageView)view.findViewById(R.id.imgAvatar);
 
-        indexSize = SMXL.getDataBase().getIndexMeasureNotNull(user);
+        indexSize = user.getIndexMeasureNotNull();
 
         addMeasure=(RelativeLayout) view.findViewById(R.id.layoutAddMeasure);
         layoutHeaderMeasures = (RelativeLayout) view.findViewById(R.id.layoutHeaderMeasures);
@@ -140,7 +139,7 @@ public class MeasureDetailFragment extends Fragment {
                 getResources().getString(R.string.libUnit), getResources().getString(R.string.libUnit),
                 getResources().getString(R.string.libPointure)};
 
-        indexSize = SMXL.getDataBase().getIndexMeasureNotNull(user);
+        indexSize = user.getIndexMeasureNotNull();
         ((LinearLayout) getView().findViewById(R.id.layoutViewMeasure)).removeAllViews();
 
         for (int i = 0; i < indexSize.size(); i++) {

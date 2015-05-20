@@ -11,8 +11,6 @@ import com.aerolitec.SMXL.tools.dbmanager.SizeConvertDBManager;
 import com.aerolitec.SMXL.tools.dbmanager.UserBrandDBManager;
 import com.aerolitec.SMXL.tools.dbmanager.UserClothesDBManager;
 import com.aerolitec.SMXL.tools.dbmanager.UserDBManager;
-import com.aerolitec.SMXL.tools.services.SQLiteSMXL;
-import com.facebook.FacebookSdk;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -21,7 +19,6 @@ import com.squareup.picasso.Picasso;
 public class SMXL extends Application{
 
     private static SMXL instance;
-    private static SQLiteSMXL dataBase;
     private static BrandDBManager brandDBManager;
     private static BrandSizeGuideDBManager brandSizeGuideDBManager;
     private static CategoryGarmentDBManager categoryGarmentDBManager;
@@ -37,7 +34,6 @@ public class SMXL extends Application{
     public void onCreate() {
         super.onCreate();
         instance = this;
-        dataBase= new SQLiteSMXL(getApplicationContext());
         brandDBManager = new BrandDBManager(getApplicationContext());
         brandSizeGuideDBManager = new BrandSizeGuideDBManager(getApplicationContext());
         categoryGarmentDBManager = new CategoryGarmentDBManager(getApplicationContext());
@@ -64,7 +60,6 @@ public class SMXL extends Application{
                 .debugging(false)
                 .build();
 
-        //Log.d("tshirt", R.drawable.tshirt+"");
     }
 
     public Picasso getPicasso() {
@@ -74,11 +69,6 @@ public class SMXL extends Application{
     public static SMXL get() {
         return instance;
     }
-
-    public static SQLiteSMXL getDataBase() {
-        return dataBase;
-    }
-
 
     // Getters Manager
 
