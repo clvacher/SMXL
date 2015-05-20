@@ -1,5 +1,6 @@
 package com.aerolitec.SMXL.ui.fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,9 +20,13 @@ import android.widget.Toast;
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.Constants;
+import com.aerolitec.SMXL.tools.manager.MainUserManager;
 import com.aerolitec.SMXL.tools.manager.UserManager;
+import com.aerolitec.SMXL.tools.serverConnexion.PostMainUserHttpAsyncTask;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.customLayout.ProfilePictureRoundedImageView;
+
+import java.io.FileOutputStream;
 
 /**
  * Created by Cl?ment on 5/13/2015.
@@ -158,6 +163,23 @@ public class UpdateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
             user.setDescription(etNotes.getText().toString());
 
             user.setSexe(sexe);
+
+            if(MainUserManager.get().getMainUser().getMainProfile().getId_user() == user.getId_user()){
+                MainUserManager.get().getMainUser().setFirstname(etFirstName.getText().toString());
+                MainUserManager.get().getMainUser().setLastname(etLastName.getText().toString());
+                MainUserManager.get().getMainUser().setAvatar(picturePath);
+                MainUserManager.get().getMainUser().setSex(sexe);
+
+                try {
+                    FileOutputStream fos = null;
+                    fos = getActivity().openFileOutput(PostMainUserHttpAsyncTask.MAIN_USER_FILE, Context.MODE_PRIVATE);
+                    fos.flush();
+                    fos.write(MainUserManager.get().getMainUser().getBytes());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
 
             try {
                 SMXL.getUserDBManager().updateUser(user);

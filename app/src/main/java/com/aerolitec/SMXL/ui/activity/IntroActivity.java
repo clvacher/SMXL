@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.MainUser;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
+import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.tools.serverConnexion.PostMainUserHttpAsyncTask;
 
 import java.io.ByteArrayInputStream;
@@ -115,10 +116,12 @@ public class IntroActivity extends Activity {
             Log.d("EmptyMainUser",""+MainUserManager.get().getMainUser());
             MainUserManager.get().setMainUser((mainUser = (MainUser) objectInputStream.readObject()));
             Log.d("MainUser", "" + mainUser);
+            UserManager.get().setUser(mainUser.getMainProfile());
 
         } catch (Exception e) {
             e.printStackTrace();
             MainUserManager.get().setMainUser(null);
+            UserManager.get().setUser(null);
         }
     }
 

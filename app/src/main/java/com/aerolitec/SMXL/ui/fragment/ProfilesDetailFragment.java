@@ -1,6 +1,6 @@
 package com.aerolitec.SMXL.ui.fragment;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -63,7 +63,7 @@ public class ProfilesDetailFragment extends Fragment{
         Bundle args = getArguments();
         user = UserManager.get().getUser();
         if(user==null)
-            Log.d("TestOnCreate","user null");
+            Log.d("ProfilDetailFrag","user null");
     }
 
     @Override
@@ -110,6 +110,7 @@ public class ProfilesDetailFragment extends Fragment{
         layoutBrands=(LinearLayout) view.findViewById(R.id.layoutBrand);
         FrameLayout addBrand= (FrameLayout) view.findViewById(R.id.tmp);
         collapseBrands = (ImageView) view.findViewById(R.id.collapseBrand);
+
 
 
         addBrand.setOnClickListener(new View.OnClickListener() {

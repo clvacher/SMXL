@@ -55,7 +55,7 @@ public class MeasureDetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
         user= UserManager.get().getUser();
         if(user==null)
-            Log.d("TestOnCreate", "user null");
+            Log.d("MeasureDetailFragment", "user null");
     }
 
     @Override
