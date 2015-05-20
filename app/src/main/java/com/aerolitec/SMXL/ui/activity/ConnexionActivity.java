@@ -212,12 +212,6 @@ public class ConnexionActivity extends Activity{
     }
 
 
-    public void skipConnexion (View v){
-        finish();
-        Intent intent = new Intent(getApplicationContext(), MainNavigationActivity.class);
-        startActivity(intent);
-    }
-
     public void onClickLogin(View v){
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
         startActivityForResult(intent, LOGIN);

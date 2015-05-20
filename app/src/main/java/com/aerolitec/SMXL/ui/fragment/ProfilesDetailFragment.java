@@ -124,8 +124,8 @@ public class ProfilesDetailFragment extends Fragment{
             }
         });
 
-        final RelativeLayout quicksizeLayout=(RelativeLayout) view.findViewById(R.id.quicksize);
         ImageView noClickZone=(ImageView) view.findViewById(R.id.noClickZone);
+        /*final RelativeLayout quicksizeLayout=(RelativeLayout) view.findViewById(R.id.quicksize);
 
         quicksizeLayout.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -138,6 +138,7 @@ public class ProfilesDetailFragment extends Fragment{
                 return false;
             }
         });
+        */
         noClickZone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
