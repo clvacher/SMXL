@@ -1,13 +1,10 @@
 package com.aerolitec.SMXL.ui.activity;
 
 
-import android.app.FragmentManager;
-import android.content.Intent;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
+import android.support.v4.app.FragmentManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -37,7 +34,7 @@ public class ProfilDetailActivity extends FragmentActivity{
 
         if (savedInstanceState == null) {
             ProfilesDetailFragment profilesDetailFragment = new ProfilesDetailFragment();
-            getFragmentManager().beginTransaction()
+            getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, profilesDetailFragment, "profileDetail")
                     .commit();
         }
@@ -79,7 +76,7 @@ public class ProfilDetailActivity extends FragmentActivity{
                 tv2_1.setTextColor(getResources().getColor(R.color.SectionTitle));
                 tv2_2.setTextColor(getResources().getColor(R.color.SectionTitle));
                 tv3.setTextColor(getResources().getColor(R.color.SectionTitle));
-                getFragmentManager().beginTransaction().replace(R.id.container, new ProfilesDetailFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.container, new ProfilesDetailFragment()).commit();
             }
         });
         tab2.setOnClickListener(new View.OnClickListener() {
@@ -155,7 +152,7 @@ public class ProfilDetailActivity extends FragmentActivity{
 
 
     private void showEditDialog() {
-        FragmentManager fm = getFragmentManager();
+        FragmentManager fm = getSupportFragmentManager();
         UserSettingsDialogFragment userSettingsDialogFragment = new UserSettingsDialogFragment();
         userSettingsDialogFragment.show(fm, "fragment_UserSettings");
     }

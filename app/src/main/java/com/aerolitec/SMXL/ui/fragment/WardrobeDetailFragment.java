@@ -53,7 +53,7 @@ public class WardrobeDetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
         user= UserManager.get().getUser();
         if(user==null)
-            Log.d("TestOnCreate", "user null");
+            Log.d("WardrobeFrag", "user null");
     }
 
     @Override

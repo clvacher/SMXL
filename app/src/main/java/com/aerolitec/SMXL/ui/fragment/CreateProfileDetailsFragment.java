@@ -2,11 +2,10 @@ package com.aerolitec.SMXL.ui.fragment;
 
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
-import android.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -134,6 +133,7 @@ public class CreateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
             }
             if (user != null) {
                 getActivity().setResult(Activity.RESULT_OK);
+                UserManager.get().setUser(user);
             }
             else {
                 getActivity().setResult(0);

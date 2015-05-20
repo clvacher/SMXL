@@ -10,7 +10,6 @@ import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.aerolitec.SMXL.ui.fragment.ListBrandsFragment;
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.MainUser;
 import com.aerolitec.SMXL.model.User;
@@ -22,6 +21,8 @@ import com.aerolitec.SMXL.tools.serverConnexion.PostMainUserFacebookHttpAsyncTas
 import com.aerolitec.SMXL.tools.services.OnProfileSelected;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.adapter.ProfileItem;
+import com.aerolitec.SMXL.ui.fragment.ListBrandsFragment;
+import com.aerolitec.SMXL.ui.fragment.ProfilesDetailFragment;
 import com.aerolitec.SMXL.ui.fragment.ProfilesFragment;
 import com.aerolitec.SMXL.ui.fragment.SettingsFragment;
 import com.aerolitec.SMXL.ui.fragment.SizeGuideFragment;
@@ -41,13 +42,16 @@ import de.madcyph3r.materialnavigationdrawer.tools.RoundedCornersDrawable;
 
 public class MainNavigationActivity extends MaterialNavigationDrawer implements OnProfileSelected {
 
+    private MainUser mainUser;
     private User user;
     private static final int PICKFILE_RESULT_CODE = 1;
 
     MaterialNavigationDrawer drawer = null;
+    MaterialHeadItem mainUserHeadItem = null;
 
     AccessTokenTracker mAccessTokenTracker;
     ProfileTracker mProfileTracker;
+    int i=1;
 
     @Override
     public int headerType() {
@@ -61,6 +65,25 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
         super.onResume();
         mAccessTokenTracker.startTracking();
         mProfileTracker.startTracking();
+        if(mainUser!=null){
+            setValueOfMainUserInNavigationDrawer();
+        }
+        UserManager.get().setUser(MainUserManager.get().getMainUser().getMainProfile());
+    }
+
+    private void setValueOfMainUserInNavigationDrawer() {
+        mainUserHeadItem.setTitle(mainUser.getFirstname() + " " + mainUser.getLastname() + i);
+        mainUserHeadItem.setSubTitle(mainUser.getEmail());
+
+
+
+        final Bitmap bitmap = getBitmapMainUser(mainUser.getAvatar());
+        RoundedTransformation roundedTransformation = new RoundedTransformation();
+        RoundedBitmapDrawable drawableFactory = RoundedBitmapDrawableFactory.create(getResources(), roundedTransformation.transform(bitmap));
+        mainUserHeadItem.setPhoto(drawableFactory);
+        Log.d("COUCOU", mainUser.getFirstname() + " " + mainUser.getLastname());
+
+        i++;
     }
 
     @Override
@@ -73,6 +96,8 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
     // called from onCreate(), make your view init here or in your fragment.
     @Override
     public void init(Bundle savedInstanceState) {
+
+        mainUser = MainUserManager.get().getMainUser();
 
         mProfileTracker = new ProfileTracker() {
             @Override
@@ -108,28 +133,28 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
         MaterialDevisor materialDevisor = new MaterialDevisor();
         MaterialMenu menu = new MaterialMenu();
 
+
         // first section is loaded
-        MaterialSection sectionMonCompte = this.newSection("Mon Compte", this.getResources().getDrawable(R.drawable.avatar), new ProfilesFragment(), false, menu);
-        MaterialSection section1 = this.newSection("Mes Profils", this.getResources().getDrawable(R.drawable.icone_hd), new ProfilesFragment(), false, menu);
+        MaterialSection sectionMesProfils = this.newSection("Mes Profils", new ProfilesFragment(), false, menu);
+
+        MaterialSection sectionMonProfil = this.newSection("Mon Profil", this.getResources().getDrawable(R.drawable.avatar), new ProfilesDetailFragment(), false, menu);
+        
+
+        //sectionMesProfils.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);  this.getResources().getDrawable(R.drawable.ic_perm_group_social_info),
         this.newDevisor(menu);
 
         //this.newLabel("Pratiques", false, menu);
-        MaterialSection section2 = this.newSection("Guide des tailles", this.getResources().getDrawable(R.drawable.tshirt), new SizeGuideFragment(), false, menu);
-        MaterialSection section3 = this.newSection("Magasins à proximité", this.getResources().getDrawable(android.R.drawable.ic_dialog_map), new ProfilesFragment(), false, menu);
-        section3.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
+        MaterialSection sectionSizeGuide = this.newSection("Guide des tailles", this.getResources().getDrawable(R.drawable.tshirt), new SizeGuideFragment(), false, menu);
+        MaterialSection sectionMagasins = this.newSection("Magasins à proximité", new ProfilesFragment(), false, menu);
+        //sectionMagasins.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);     this.getResources().getDrawable(android.R.drawable.ic_dialog_map),
         this.newDevisor(menu);
 
-        MaterialSection section4 = this.newSection("Marques", new ListBrandsFragment(), false, menu);
-        MaterialSection section7 = this.newSection("Blogs", new ProfilesFragment(), false, menu);
-        MaterialSection section8 = this.newSection("Magazines", new ProfilesFragment(), false, menu);
+        MaterialSection sectionBrands = this.newSection("Marques", new ListBrandsFragment(), false, menu);
+        MaterialSection sectionBlogs = this.newSection("Blogs", new ProfilesFragment(), false, menu);
+        MaterialSection sectionMagazines = this.newSection("Magazines", new ProfilesFragment(), false, menu);
 
 
         this.newDevisor(menu);
-
-        /*MaterialSection section6 = this.newSection("Magasins à proximité", this.getResources().getDrawable(R.drawable.icone_hd), new ProfilesFragment(), false, menu);
-        MaterialSection section7 = this.newSection("Magasins à proximité", this.getResources().getDrawable(R.drawable.icone_hd), new ProfilesFragment(), false, menu);
-        MaterialSection section8 = this.newSection("Magasins à proximité", this.getResources().getDrawable(R.drawable.icone_hd), new ProfilesFragment(), false, menu);
-        MaterialSection section9 = this.newSection("Magasins à proximité", this.getResources().getDrawable(R.drawable.icone_hd), new ProfilesFragment(), false, menu);*/
 
         this.newLabel("Paramètres", false, menu);
 
@@ -148,42 +173,19 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
 
             final Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.avatar);
             final RoundedCornersDrawable drawableAppIcon = new RoundedCornersDrawable(getResources(), bitmap);
-            MaterialHeadItem headItem1 = new MaterialHeadItem(this, "Nom", "Prénom", drawableAppIcon, R.drawable.blur_geom, menu);
-            this.addHeadItem(headItem1);
+            mainUserHeadItem = new MaterialHeadItem(this, "Nom", "Prénom", drawableAppIcon, R.drawable.blur_geom, menu);
 
         }
         else{
             final Bitmap bitmap = getBitmapMainUser(mainUser.getAvatar());
             RoundedTransformation roundedTransformation = new RoundedTransformation();
             RoundedBitmapDrawable drawableFactory = RoundedBitmapDrawableFactory.create(getResources(), roundedTransformation.transform(bitmap));
-            MaterialHeadItem headItem1 = new MaterialHeadItem(this, mainUser.getFirstname()+" "+mainUser.getLastname(), mainUser.getEmail(), drawableFactory, R.drawable.blur_geom, menu);
-            this.addHeadItem(headItem1);
-
-            sectionMonCompte.setIcon(drawableFactory);
+            mainUserHeadItem = new MaterialHeadItem(this, mainUser.getFirstname()+" "+mainUser.getLastname(), mainUser.getEmail(), drawableFactory, R.drawable.blur_geom, menu);
+            sectionMonProfil.setIcon(drawableFactory);
         }
 
-        //Log.d("Mainuser Profil", mainUser.toString());
+        this.addHeadItem(mainUserHeadItem);
 
-        // use bitmap and make a circle photo
-
-        //Log.d("Main user", mainUser.toString());
-        //final Bitmap bitmap = BitmapFactory.decodeFile(mainUser.getAvatar());
-        //final Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.avatar);
-
-        //final RoundedCornersDrawable drawableAppIcon = new RoundedCornersDrawable(getResources(), bitmap);
-
-        //RoundedBitmapDrawable drawableFactory = RoundedBitmapDrawableFactory.create(getResources(), mainUser.getAvatar());
-
-        // create Head Item
-        //MaterialHeadItem headItem1 = new MaterialHeadItem(this, "F HeadItem", "F Subtitle", drawableAppIcon, R.drawable.blur_geom, menu);
-        //MaterialHeadItem headItem1 = new MaterialHeadItem(this, mainUser.getFirstname()+" "+mainUser.getLastname(), mainUser.getEmail(), drawableAppIcon, R.drawable.blur_geom, menu);
-        //headItem1.setLoadFragmentOnChanged(true);
-
-
-        // add head Item (menu will be loaded automatically)
-
-        //this.addHeadItem(headItem);
-        //this.addHeadItem(headItem1);
     }
 
 
@@ -214,43 +216,19 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
     }
 
     public Bitmap getBitmapMainUser(String urlImage){
-        final String urlImageFinal = urlImage;
 
         if(urlImage!=null) {
-            if (urlImage.contains("https")){
+            try {
+                File file = new File(urlImage);
 
-                /*AsyncTask asyncTask = new AsyncTask() {
+                if (file.exists()) {
+                    //Log.d("Bitmap WARNING ProfActi", MainUserManager.get().getMainUser().getAvatar().toString());
+                    //Log.d("Bitmap WARNING ProfActi", file.getAbsolutePath());
 
-                    Bitmap bitmap;
-
-                    @Override
-                    protected Object doInBackground(Object[] objects) {
-                        try {
-                            URL url = new URL(urlImageFinal);
-                            bitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        return bitmap;
-                    }
-                };
-                asyncTask.execute();*/
-                Log.d("HTTPS WARNING ProfActi", MainUserManager.get().getMainUser().getAvatar().toString());
-                return BitmapFactory.decodeResource(getResources(), R.drawable.avatar);
-            }
-            else{
-                try {
-                    File file = new File(urlImage);
-
-                    if (file.exists()) {
-                        Log.d("Bitmap WARNING ProfActi", MainUserManager.get().getMainUser().getAvatar().toString());
-                        Log.d("Bitmap WARNING ProfActi", file.getAbsolutePath());
-
-                        return BitmapFactory.decodeFile(file.getAbsolutePath());
-                    }
-                } catch (Exception e) {
-                    Log.e(Constants.TAG, "Error converting picture to file : " + e.getMessage());
+                    return BitmapFactory.decodeFile(file.getAbsolutePath());
                 }
+            } catch (Exception e) {
+                Log.e(Constants.TAG, "Error converting picture to file : " + e.getMessage());
             }
         }
 

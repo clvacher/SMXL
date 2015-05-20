@@ -1,5 +1,7 @@
 package com.aerolitec.SMXL.model;
 
+import android.util.Log;
+
 import com.aerolitec.SMXL.ui.SMXL;
 
 import java.io.ByteArrayOutputStream;
@@ -37,13 +39,14 @@ public class MainUser implements Serializable{
     public String getAvatar() {return avatar;}
     public void setAvatar(String avatar) {this.avatar = avatar;}
 
-    public User getMainProfile() { return SMXL.getUserDBManager().getUser(idMainProfile);} // /!\ renvoie un User en ReadOnly (pas de set sur le User retourne)
+    public User getMainProfile() { return SMXL.getUserDBManager().getUser(idMainProfile);} // /!\ renvoie un User en ReadOnly, les set n'affectent pas la base
     public void setMainProfile(User mainProfile) {
-        this.idMainProfile = mainProfile.id_user;
-        this.firstname = mainProfile.firstname;
-        this.lastname = mainProfile.lastname;
-        this.sex = mainProfile.sexe;
-        this.avatar = mainProfile.avatar;
+        Log.d("setMainProfile ID", mainProfile.getId_user()+"");
+        this.idMainProfile = mainProfile.getId_user();
+        this.firstname = mainProfile.getFirstname();
+        this.lastname = mainProfile.getLastname();
+        this.sex = mainProfile.getSexe();
+        this.avatar = mainProfile.getAvatar();
     }
 
     public String getPassword() {
