@@ -134,6 +134,7 @@ public class CreateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
             }
             if (user != null) {
                 getActivity().setResult(Activity.RESULT_OK);
+                UserManager.get().setUser(user);
             }
             else {
                 getActivity().setResult(0);

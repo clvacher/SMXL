@@ -75,6 +75,7 @@ public class SelectBrandsFragment extends Fragment {
 
         gridViewBrands.setChoiceMode(GridView.CHOICE_MODE_MULTIPLE);
 
+
         brandsSelected.addAll(user.getBrands());
 
         gridViewBrands.setOnItemClickListener(new AdapterView.OnItemClickListener() {

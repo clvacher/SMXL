@@ -39,6 +39,7 @@ public class ProfilesDetailFragment extends Fragment{
     private ProfilePictureRoundedImageView imgAvatar;
     private ImageView imgQuicksize, collapseBrands;
     private RelativeLayout layoutHeaderBrands;
+    private LinearLayout layoutBrands;
 
 
     ListView brandListView;
@@ -106,8 +107,9 @@ public class ProfilesDetailFragment extends Fragment{
         nbBrands=(TextView) view.findViewById(R.id.nbBrands);
 
         layoutHeaderBrands = (RelativeLayout) view.findViewById(R.id.layoutHeaderBrands);
-        LinearLayout layoutBrands=(LinearLayout) view.findViewById(R.id.layoutBrand);
+        layoutBrands=(LinearLayout) view.findViewById(R.id.layoutBrand);
         FrameLayout addBrand= (FrameLayout) view.findViewById(R.id.tmp);
+        collapseBrands = (ImageView) view.findViewById(R.id.collapseBrand);
 
 
         addBrand.setOnClickListener(new View.OnClickListener() {
@@ -118,20 +120,6 @@ public class ProfilesDetailFragment extends Fragment{
                 Intent intent = new Intent(getActivity(), CreateUpdateProfileActivity.class);
                 intent.putExtra("fragmentType","brands");
                 startActivity(intent);
-            }
-        });
-        layoutBrands.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                collapseBrands = (ImageView) view.findViewById(R.id.collapseBrand);
-                if (brandListView.getVisibility() == View.GONE) {
-                    fillListView(brandListView, userBrands);
-                    brandListView.setVisibility(View.VISIBLE);
-                    collapseBrands.setImageResource(R.drawable.navigation_collapse);
-                } else {
-                    brandListView.setVisibility(View.GONE);
-                    collapseBrands.setImageResource(R.drawable.navigation_expand);
-                }
             }
         });
 
@@ -230,9 +218,33 @@ public class ProfilesDetailFragment extends Fragment{
         nbBrands.setText("(" + tmp + ")");
         if(tmp==0){
             layoutHeaderBrands.setVisibility(View.GONE);
+            layoutBrands.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    brandListView.setVisibility(View.GONE);
+                    collapseBrands.setImageResource(R.drawable.navigation_expand);
+                    Intent intent = new Intent(getActivity(), CreateUpdateProfileActivity.class);
+                    intent.putExtra("fragmentType","brands");
+                    startActivity(intent);
+                }
+            });
+
         }
         else{
             layoutHeaderBrands.setVisibility(View.VISIBLE);
+            layoutBrands.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (brandListView.getVisibility() == View.GONE) {
+                        fillListView(brandListView, userBrands);
+                        brandListView.setVisibility(View.VISIBLE);
+                        collapseBrands.setImageResource(R.drawable.navigation_collapse);
+                    } else {
+                        brandListView.setVisibility(View.GONE);
+                        collapseBrands.setImageResource(R.drawable.navigation_expand);
+                    }
+                }
+            });
         }
     }
 

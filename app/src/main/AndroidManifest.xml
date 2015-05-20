@@ -100,7 +100,6 @@
             android:name=".ui.activity.AddGarmentActivity"
             android:icon="@drawable/ic_action_logo_smxl"
             android:label="@string/title_activity_add_garment"
-            android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait">
         </activity>
         <activity
