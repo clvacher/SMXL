@@ -10,7 +10,6 @@ import android.widget.Toast;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.User;
-import com.aerolitec.SMXL.model.UserClothes;
 import com.aerolitec.SMXL.ui.SMXL;
 
 import java.io.BufferedReader;
@@ -47,7 +46,7 @@ public class ImportProfilActivity extends Activity {
 
         if (profil != null) {
             ExtractCSV(profil);
-            Intent accueilIntent = new Intent(this, ProfilActivity.class);
+            Intent accueilIntent = new Intent(this, MainNavigationActivity.class);
             startActivity(accueilIntent);
 
         } else {

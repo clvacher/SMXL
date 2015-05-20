@@ -2,7 +2,6 @@ package com.aerolitec.SMXL.tools.serverConnexion;
 
 import android.app.Activity;
 import android.content.Context;
-import android.widget.Toast;
 
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
 
@@ -19,7 +18,7 @@ public class PostMainUserFacebookHttpAsyncTask extends PostMainUserHttpAsyncTask
 
     @Override
     protected void onPostExecute(String result) {
-        Toast.makeText(activity, "Data Sent!", Toast.LENGTH_LONG).show();
+        //Toast.makeText(activity, "Data Sent!", Toast.LENGTH_LONG).show();
         if(!result.equals("Did not work!")) {
             try {
                 FileOutputStream fos = activity.openFileOutput(MAIN_USER_FILE, Context.MODE_PRIVATE);
