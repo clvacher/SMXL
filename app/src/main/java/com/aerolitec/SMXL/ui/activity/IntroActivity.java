@@ -96,7 +96,7 @@ public class IntroActivity extends Activity {
         //TEST
 
         try {
-            FileInputStream fis = openFileInput(PostMainUserHttpAsyncTask.MAIN_USER_FOLDER);
+            FileInputStream fis = openFileInput(PostMainUserHttpAsyncTask.MAIN_USER_FILE);
             int bufferSize=fis.available();
             Log.d("TheoraticalStorageSize", "" + bufferSize);
 

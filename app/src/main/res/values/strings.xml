@@ -75,6 +75,8 @@
     <string name="title_choose_category">Choose a category of garment</string>
     <string name="title_choose_garment">Choose a type of garment</string>
     <string name="add_garment">Add garment</string>
+    <string name="update">Update</string>
+    <string name="edit_garment">Edit garment</string>
     <string name="title_choose_brand">Choose a brand</string>
     <string name="title_summary">Summary</string>
     <string name="description_add_garment">Comments for this garment</string>

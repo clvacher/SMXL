@@ -22,7 +22,7 @@ public class PostMainUserFacebookHttpAsyncTask extends PostMainUserHttpAsyncTask
         Toast.makeText(activity, "Data Sent!", Toast.LENGTH_LONG).show();
         if(!result.equals("Did not work!")) {
             try {
-                FileOutputStream fos = activity.openFileOutput(MAIN_USER_FOLDER, Context.MODE_PRIVATE);
+                FileOutputStream fos = activity.openFileOutput(MAIN_USER_FILE, Context.MODE_PRIVATE);
                 fos.flush();
                 fos.write(MainUserManager.get().getMainUser().getBytes());
             } catch (IOException e) {

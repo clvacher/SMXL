@@ -8,4 +8,11 @@
         android:showAsAction="always"
         android:visible="false"
         tools:ignore="AppCompatResource" />
+    <item android:id="@+id/update"
+        android:title="@string/update"
+        android:icon="@drawable/ic_action_accept"
+        android:orderInCategory="2"
+        android:showAsAction="always"
+        android:visible="false"
+        tools:ignore="AppCompatResource" />
 </menu>

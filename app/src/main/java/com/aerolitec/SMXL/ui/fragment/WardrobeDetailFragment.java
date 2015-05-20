@@ -22,7 +22,6 @@ import com.aerolitec.SMXL.model.UserClothes;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.activity.AddGarmentActivity;
-import com.aerolitec.SMXL.ui.activity.DisplayGarmentActivity;
 import com.aerolitec.SMXL.ui.adapter.GarmentAdapter;
 import com.aerolitec.SMXL.ui.customLayout.ProfilePictureRoundedImageView;
 
@@ -532,8 +531,8 @@ public class WardrobeDetailFragment extends Fragment {
         v.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(getActivity(), DisplayGarmentActivity.class);
-                intent.putExtra("clothes", (UserClothes) adapterView.getItemAtPosition(i));
+                Intent intent = new Intent(getActivity(), AddGarmentActivity.class);
+                intent.putExtra("userClothes", (UserClothes) adapterView.getItemAtPosition(i));
                 startActivity(intent);
             }
         });
