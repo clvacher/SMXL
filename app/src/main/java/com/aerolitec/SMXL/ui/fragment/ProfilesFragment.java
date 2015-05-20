@@ -1,10 +1,10 @@
 package com.aerolitec.SMXL.ui.fragment;
 
 import android.app.Activity;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +20,6 @@ import com.aerolitec.SMXL.ui.adapter.ProfileItem;
 import com.aerolitec.SMXL.ui.adapter.ProfilesAdapter;
 import com.aerolitec.SMXL.ui.fragment.dialog.ConfirmDialogFragment;
 
-import java.io.FileInputStream;
 import java.util.ArrayList;
 
 public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.ConfirmDialogListener{
@@ -67,7 +66,7 @@ public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.
         gridViewProfiles.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                if (position == 0)
+                if (position == 0 || position == 1)
                     return false;
 
                 DialogFragment confirmDialog = new ConfirmDialogFragment();
@@ -124,10 +123,9 @@ public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.
 
     private AdapterView.OnItemClickListener selectProfile = new AdapterView.OnItemClickListener() {
         @Override
-        public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-                                long arg3) {
-            if(arg2>0) {
-                itemProfileListener.profileSelect(profileItem.get(arg2));
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            if(position>0) {
+                itemProfileListener.profileSelect(profileItem.get(position));
             }
             else{
                 Intent intent = new Intent(getActivity().getApplicationContext(), CreateUpdateProfileActivity.class);

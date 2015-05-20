@@ -15,6 +15,8 @@ public abstract class DBManager {
     protected SQLiteDatabase db;
     protected Context context;
 
+    private int openedConnections = 0;
+
     // Constructeur
     public DBManager(Context context)
     {
@@ -25,13 +27,17 @@ public abstract class DBManager {
     public void open()
     {
         //on ouvre la table en lecture/écriture
+        openedConnections++;
         db = maBaseSQLite.getWritableDatabase();
     }
 
     public void close()
     {
-        //on ferme l'accès à la BDD
-        db.close();
+        //on ferme l'accès à la BDD si personne n'est encore connecté
+        openedConnections--;
+        if(openedConnections == 0){
+            db.close();
+        }
     }
 
     protected int convertToInt(String arg){

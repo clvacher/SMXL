@@ -244,7 +244,6 @@ public class ProfilesDetailFragment extends Fragment{
         }
 
         String fnAvatar = user.getAvatar();
-        Log.d("useravatar detail fragm", fnAvatar.toString());
         imgAvatar.setImage(fnAvatar);
 
         //TODO "H"

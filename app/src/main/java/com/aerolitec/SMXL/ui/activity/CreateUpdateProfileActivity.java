@@ -2,27 +2,12 @@ package com.aerolitec.SMXL.ui.activity;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.TypedValue;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.aerolitec.SMXL.R;
-import com.aerolitec.SMXL.model.User;
-import com.aerolitec.SMXL.tools.Constants;
-import com.aerolitec.SMXL.tools.manager.UserManager;
-import com.aerolitec.SMXL.ui.SMXL;
-import com.aerolitec.SMXL.ui.customLayout.ProfilePictureRoundedImageView;
 import com.aerolitec.SMXL.ui.fragment.CreateProfileDetailsFragment;
 import com.aerolitec.SMXL.ui.fragment.SelectBrandsFragment;
 import com.aerolitec.SMXL.ui.fragment.UpdateProfileDetailsFragment;

@@ -9,10 +9,12 @@ import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.aerolitec.SMXL.ui.fragment.ListBrandsFragment;
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.MainUser;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.Constants;
+import com.aerolitec.SMXL.tools.RoundedTransformation;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.tools.serverConnexion.PostMainUserFacebookHttpAsyncTask;
@@ -52,6 +54,14 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
         return MaterialNavigationDrawer.DRAWERHEADER_HEADITEMS;
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mAccessTokenTracker.startTracking();
+        mProfileTracker.startTracking();
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -66,17 +76,19 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
         mProfileTracker = new ProfileTracker() {
             @Override
             protected void onCurrentProfileChanged(Profile oldProfile, Profile newProfile) {
-                Toast.makeText(getBaseContext(), "Déconnexion", Toast.LENGTH_SHORT).show();
-                MainUserManager.get().setMainUser(null);
+                if(newProfile == null) {
+                    Toast.makeText(getBaseContext(), "Déconnexion", Toast.LENGTH_SHORT).show();
+                    MainUserManager.get().setMainUser(null);
 
-                File file = new File(getFilesDir(),PostMainUserFacebookHttpAsyncTask.MAIN_USER_FOLDER);
-                file.delete();
+                    File file = new File(getFilesDir(), PostMainUserFacebookHttpAsyncTask.MAIN_USER_FOLDER);
+                    file.delete();
 
-                SMXL.getUserDBManager().deleteAllUsers();
+                    SMXL.getUserDBManager().deleteAllUsers();
 
-                finish();
-                Intent intent = new Intent(getApplicationContext(), ConnexionActivity.class);
-                startActivity(intent);
+                    finish();
+                    Intent intent = new Intent(getApplicationContext(), ConnexionActivity.class);
+                    startActivity(intent);
+                }
             }
         };
         mProfileTracker.startTracking();
@@ -96,7 +108,7 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
         MaterialMenu menu = new MaterialMenu();
 
         // first section is loaded
-        MaterialSection section5 = this.newSection("Mon Compte", this.getResources().getDrawable(R.drawable.avatar), new ProfilesFragment(), false, menu);
+        MaterialSection sectionMonCompte = this.newSection("Mon Compte", this.getResources().getDrawable(R.drawable.avatar), new ProfilesFragment(), false, menu);
         MaterialSection section1 = this.newSection("Mes Profils", this.getResources().getDrawable(R.drawable.icone_hd), new ProfilesFragment(), false, menu);
         this.newDevisor(menu);
 
@@ -105,7 +117,7 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
         MaterialSection section3 = this.newSection("Magasins à proximité", new ProfilesFragment(), false, menu);
         this.newDevisor(menu);
 
-        MaterialSection section4 = this.newSection("Marques", new ProfilesFragment(), false, menu);
+        MaterialSection section4 = this.newSection("Marques", new ListBrandsFragment(), false, menu);
         MaterialSection section7 = this.newSection("Blogs", new ProfilesFragment(), false, menu);
         MaterialSection section8 = this.newSection("Magazines", new ProfilesFragment(), false, menu);
 
@@ -139,11 +151,14 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
         }
         else{
             final Bitmap bitmap = getBitmapMainUser(mainUser.getAvatar());
-            RoundedBitmapDrawable drawableFactory = RoundedBitmapDrawableFactory.create(getResources(), bitmap);
+            RoundedTransformation roundedTransformation = new RoundedTransformation();
+            RoundedBitmapDrawable drawableFactory = RoundedBitmapDrawableFactory.create(getResources(), roundedTransformation.transform(bitmap));
             MaterialHeadItem headItem1 = new MaterialHeadItem(this, mainUser.getFirstname()+" "+mainUser.getLastname(), mainUser.getEmail(), drawableFactory, R.drawable.blur_geom, menu);
             this.addHeadItem(headItem1);
 
+            sectionMonCompte.setIcon(drawableFactory);
         }
+
         //Log.d("Mainuser Profil", mainUser.toString());
 
         // use bitmap and make a circle photo
@@ -218,18 +233,17 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
                 };
                 asyncTask.execute();*/
                 Log.d("HTTPS WARNING ProfActi", MainUserManager.get().getMainUser().getAvatar().toString());
+                return BitmapFactory.decodeResource(getResources(), R.drawable.avatar);
             }
             else{
                 try {
                     File file = new File(urlImage);
 
                     if (file.exists()) {
-                        final BitmapFactory.Options options = new BitmapFactory.Options();
-                        options.inJustDecodeBounds = true;
                         Log.d("Bitmap WARNING ProfActi", MainUserManager.get().getMainUser().getAvatar().toString());
                         Log.d("Bitmap WARNING ProfActi", file.getAbsolutePath());
 
-                        return BitmapFactory.decodeFile(file.getAbsolutePath(), options);
+                        return BitmapFactory.decodeFile(file.getAbsolutePath());
                     }
                 } catch (Exception e) {
                     Log.e(Constants.TAG, "Error converting picture to file : " + e.getMessage());
@@ -239,5 +253,7 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
 
         return BitmapFactory.decodeResource(getResources(), R.drawable.avatar);
     }
+
+
 
 }
