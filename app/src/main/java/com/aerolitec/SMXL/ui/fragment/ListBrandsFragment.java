@@ -9,6 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.Spinner;
@@ -75,8 +76,8 @@ public class ListBrandsFragment extends Fragment {
 
         //gridViewBrands.setChoiceMode(GridView.CHOICE_MODE_MULTIPLE);
 
-        gridViewBrands.setChoiceMode(GridView.CHOICE_MODE_NONE);
-        /*
+        gridViewBrands.setChoiceMode(GridView.CHOICE_MODE_SINGLE);
+
         spinnerBrandsCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
@@ -99,7 +100,7 @@ public class ListBrandsFragment extends Fragment {
 
             }
         });
-        */
+
     }
 
     @Override

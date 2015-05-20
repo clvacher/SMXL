@@ -3,6 +3,7 @@ package com.aerolitec.SMXL.ui.activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
@@ -113,8 +114,9 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
         this.newDevisor(menu);
 
         //this.newLabel("Pratiques", false, menu);
-        MaterialSection section2 = this.newSection("Guide des tailles", new SizeGuideFragment(), false, menu);
-        MaterialSection section3 = this.newSection("Magasins à proximité", new ProfilesFragment(), false, menu);
+        MaterialSection section2 = this.newSection("Guide des tailles", this.getResources().getDrawable(R.drawable.tshirt), new SizeGuideFragment(), false, menu);
+        MaterialSection section3 = this.newSection("Magasins à proximité", this.getResources().getDrawable(android.R.drawable.ic_dialog_map), new ProfilesFragment(), false, menu);
+        section3.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
         this.newDevisor(menu);
 
         MaterialSection section4 = this.newSection("Marques", new ListBrandsFragment(), false, menu);
@@ -132,6 +134,7 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
         this.newLabel("Paramètres", false, menu);
 
         MaterialSection section6 = this.newSection("Réglages", this.getResources().getDrawable(R.drawable.ic_action_settings), new SettingsFragment(), false, menu);
+        section6.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
 
 
         //section1.setFillIconColor(true);

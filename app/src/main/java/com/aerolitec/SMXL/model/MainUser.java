@@ -37,7 +37,7 @@ public class MainUser implements Serializable{
     public String getAvatar() {return avatar;}
     public void setAvatar(String avatar) {this.avatar = avatar;}
 
-    public User getMainProfile() { return SMXL.getUserDBManager().getUser(idMainProfile);} // /!\ renvoie un User en ReadOnly (pas de set sur le User retourné)
+    public User getMainProfile() { return SMXL.getUserDBManager().getUser(idMainProfile);} // /!\ renvoie un User en ReadOnly (pas de set sur le User retourne)
     public void setMainProfile(User mainProfile) {
         this.idMainProfile = mainProfile.id_user;
         this.firstname = mainProfile.firstname;
