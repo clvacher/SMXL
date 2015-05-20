@@ -37,8 +37,9 @@ public class ProfilesDetailFragment extends Fragment{
     private TextView tvFirstName, tvLastName, tvAgeSexe,nbBrands;
     private EditText etDescription;
     private ProfilePictureRoundedImageView imgAvatar;
-    private ImageView imgQuicksize;
+    private ImageView imgQuicksize, collapseBrands;
     private RelativeLayout layoutHeaderBrands;
+
 
     ListView brandListView;
 
@@ -113,6 +114,7 @@ public class ProfilesDetailFragment extends Fragment{
             @Override
             public void onClick(View view) {
                 brandListView.setVisibility(View.GONE);
+                collapseBrands.setImageResource(R.drawable.navigation_expand);
                 Intent intent = new Intent(getActivity(), CreateUpdateProfileActivity.class);
                 intent.putExtra("fragmentType","brands");
                 startActivity(intent);
@@ -121,14 +123,14 @@ public class ProfilesDetailFragment extends Fragment{
         layoutBrands.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ImageView collapse = (ImageView) view.findViewById(R.id.collapseBrand);
+                collapseBrands = (ImageView) view.findViewById(R.id.collapseBrand);
                 if (brandListView.getVisibility() == View.GONE) {
                     fillListView(brandListView, userBrands);
                     brandListView.setVisibility(View.VISIBLE);
-                    collapse.setImageResource(R.drawable.navigation_collapse);
+                    collapseBrands.setImageResource(R.drawable.navigation_collapse);
                 } else {
                     brandListView.setVisibility(View.GONE);
-                    collapse.setImageResource(R.drawable.navigation_expand);
+                    collapseBrands.setImageResource(R.drawable.navigation_expand);
                 }
             }
         });
@@ -244,7 +246,6 @@ public class ProfilesDetailFragment extends Fragment{
         }
 
         String fnAvatar = user.getAvatar();
-        Log.d("useravatar detail fragm", fnAvatar.toString());
         imgAvatar.setImage(fnAvatar);
 
         //TODO "H"
