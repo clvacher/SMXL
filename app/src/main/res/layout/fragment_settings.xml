@@ -19,7 +19,8 @@
         android:text="New Button"
         android:id="@+id/button4"
         android:layout_alignBottom="@+id/login_button_settings"
-        android:layout_centerInParent="true" />
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
 
 
 </RelativeLayout>
