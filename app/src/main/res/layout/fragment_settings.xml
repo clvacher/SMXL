@@ -16,8 +16,8 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="New Button"
-        android:id="@+id/button4"
+        android:text="@string/action_disconnect"
+        android:id="@+id/buttonClassicDisconnection"
         android:layout_alignBottom="@+id/login_button_settings"
         android:layout_centerInParent="true"
         android:visibility="gone"/>

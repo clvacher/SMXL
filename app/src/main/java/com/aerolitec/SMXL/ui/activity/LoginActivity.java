@@ -87,11 +87,13 @@ public class LoginActivity extends SuperLoginCreateAccountActivity {
     public void nonExistingAccount() {
         requestStatus.setText(getResources().getString(R.string.errorRetrievingAccount));
         signIn.setVisibility(View.VISIBLE);
+        setResult(RESULT_CANCELED);
         progressBar.setVisibility(View.GONE);
     }
 
     @Override
     public void alreadyExistingAccount() {
         requestStatus.setText(getResources().getString(R.string.unimplemented));
+        setResult(RESULT_OK);
     }
 }

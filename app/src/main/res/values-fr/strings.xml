@@ -138,6 +138,7 @@
     <string name="too_many_color">Vous avez déjà choisi 4 couleurs</string>
     <string name="update">Mettre à jour</string>
     <string name="viewMore">Voir plus</string>
+    <string name="disconnected">Déconnecté!</string>
 
 
 </resources>

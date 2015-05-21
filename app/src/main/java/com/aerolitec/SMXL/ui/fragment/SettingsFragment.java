@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.aerolitec.SMXL.R;
@@ -45,25 +46,35 @@ public class SettingsFragment extends Fragment {
         // Inflate the layout for this fragment
         callbackManager = CallbackManager.Factory.create();
         view = inflater.inflate(R.layout.fragment_settings, container, false);
+        LoginButton loginButton = (LoginButton) view.findViewById(R.id.login_button_settings);
+        Button classicLogoutButton = (Button) view.findViewById(R.id.buttonClassicDisconnection);
+        classicLogoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                disconnect();
+            }
+        });
         switch(MainUserManager.get().getMainUser().getAccountType()){
-            case 0:
-                break;
             case 1:
+                loginButton.setVisibility(View.VISIBLE);
+                classicLogoutButton.setVisibility(View.GONE);
+                loginButton.setReadPermissions("email");
+                break;
+            default:
+                loginButton.setVisibility(View.GONE);
+                classicLogoutButton.setVisibility(View.VISIBLE);
                 break;
 
         }
 
 
-        LoginButton loginButton = (LoginButton) view.findViewById(R.id.login_button_settings);
-        loginButton.setReadPermissions("email");
 
 
         return view;
     }
 
     private void disconnect(){
-        Toast.makeText(getActivity(), "Déconnexion", Toast.LENGTH_SHORT).show();
-        //TODO check si le toast apparait bien ou si il faut mettre getApplicationContext
+        Toast.makeText(getActivity(), getResources().getString(R.string.disconnected), Toast.LENGTH_SHORT).show();
         MainUserManager.get().setMainUser(null);
 
         File file = new File(getActivity().getFilesDir(), PostMainUserHttpAsyncTask.MAIN_USER_FILE);

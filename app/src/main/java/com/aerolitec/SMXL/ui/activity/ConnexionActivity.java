@@ -44,8 +44,6 @@ public class ConnexionActivity extends Activity{
 
     private final static int CREATE_ACCOUNT=1;
     private final static int LOGIN=2;
-    private final static int ACCOUNT_CREATED=10;
-    private final static int LOGIN_SUCCESSFUL=20;
 
     private CallbackManager mCallbackManager;
 
@@ -202,7 +200,7 @@ public class ConnexionActivity extends Activity{
                     startActivity(intent);
                 }
                 else{
-                    finish();
+                    //finish();
                 }
                 break;
             case CREATE_ACCOUNT:
@@ -212,7 +210,7 @@ public class ConnexionActivity extends Activity{
                     startActivity(intent);
                 }
                 else{
-                    finish();
+                    //finish();
                 }
         }
     }
@@ -273,11 +271,6 @@ public class ConnexionActivity extends Activity{
                     e.printStackTrace();
                 }
 
-                /*
-                sendBroadcast(new Intent(
-                        Intent.ACTION_MEDIA_MOUNTED,
-                        Uri.parse("file://" + Environment.getExternalStorageDirectory())));
-                */
 
                 return null;
             }
