@@ -122,6 +122,18 @@
     <string name="action_sign_in">Se connecter</string>
     <string name="show_password">Afficher le mot de passe</string>
     <string name="create_account">Créer le profil!</string>
+    <string name="Jacket">Vestes/Blousons</string>
+    <string name="addColor">Ajouter une couleur</string>
+    <string name="facebook_app_id">893068277430661</string>
+    <string name="mesurer">Comment mesurer</string>
+    <string name="title_activity_add_garment">Ajouter un vêtement</string>
+    <string name="title_activity_connexion">Connection</string>
+    <string name="title_activity_add_measure_fragment">AddMeasureFragment</string>
+    <string name="title_activity_display_garment">Mes Vêtements</string>
+    <string name="title_activity_list_garment">Liste des vêtements</string>
+    <string name="too_many_color">Vous avez déjà choisi 4 couleurs</string>
+    <string name="update">Mettre à jour</string>
+    <string name="viewMore">Voir plus</string>
 
 
 </resources>

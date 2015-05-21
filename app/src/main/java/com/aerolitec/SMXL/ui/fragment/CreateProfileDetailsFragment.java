@@ -102,6 +102,10 @@ public class CreateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
             createProfile();
         }
 
+        if (id == android.R.id.home){
+            getActivity().finish();
+        }
+
         return super.onOptionsItemSelected(item);
     }
 

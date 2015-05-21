@@ -64,13 +64,13 @@
     <string name="addMeasure">Add Measure</string>
     <string name="addGarment">Add Garment</string>
     <string name="removeGarment">Do you want to remove this profile ?</string>
-    <string name="viewMore">Voir plus</string>
+    <string name="viewMore">View more</string>
     <string name="favoriteColor">Favorite color</string>
     <string name="too_many_color">You already have 4 favorite colors</string>
     <string name="addColor">Add color</string>
     <string name="libPointure">Pointure</string>
     <string name="remarque">Notes</string>
-    <string name="mesurer">Comment mesurer</string>
+    <string name="mesurer">How to mesure</string>
     <string name="title_activity_add_garment">Add garment</string>
     <string name="title_choose_category">Choose a category of garment</string>
     <string name="title_choose_garment">Choose a type of garment</string>
@@ -134,6 +134,7 @@
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="jacket">Jacket</string>
 
 
 </resources>
