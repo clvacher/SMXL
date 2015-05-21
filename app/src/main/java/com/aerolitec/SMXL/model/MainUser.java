@@ -21,7 +21,9 @@ public class MainUser implements Serializable{
     private String avatar;
     private int idMainProfile;
     private int accountType;
+
     /*
+
      * 0 connexion classique
      * 1 connexion Facebook
      * 2 ...
@@ -52,7 +54,6 @@ public class MainUser implements Serializable{
     public String getPassword() {
         return password;
     }
-
     public void setPassword(String password) {
         this.password = password;
     }
@@ -60,11 +61,16 @@ public class MainUser implements Serializable{
     public String getEmail() {
         return email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
 
+    public int getAccountType() {
+        return accountType;
+    }
+    public void setAccountType(int accountType) {
+        this.accountType = accountType;
+    }
 
     public MainUser(){super();}
 

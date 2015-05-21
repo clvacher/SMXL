@@ -22,7 +22,8 @@ import com.aerolitec.SMXL.R;
 public abstract class SuperLoginCreateAccountActivity extends Activity implements View.OnClickListener{
 
     protected AutoCompleteTextView email;
-    protected TextView password;
+    protected EditText password;
+    protected TextView requestStatus;
     protected ProgressBar progressBar;
     protected Button signIn;
     protected CheckBox showPassword;
@@ -37,6 +38,7 @@ public abstract class SuperLoginCreateAccountActivity extends Activity implement
         signIn=(Button) findViewById(R.id.email_sign_in_button);
         progressBar=(ProgressBar) findViewById(R.id.progressBar2);
         showPassword=(CheckBox) findViewById(R.id.show_password);
+        requestStatus=(TextView) findViewById(R.id.requestStatusTextView);
 
     }
 

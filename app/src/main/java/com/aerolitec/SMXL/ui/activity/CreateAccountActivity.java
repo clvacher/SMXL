@@ -9,6 +9,7 @@ import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.MainUser;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
 import com.aerolitec.SMXL.tools.manager.UserManager;
+import com.aerolitec.SMXL.tools.serverConnexion.GetMainUserHttpAsyncTask;
 import com.aerolitec.SMXL.tools.serverConnexion.PostMainUserHttpAsyncTask;
 
 /**
@@ -39,6 +40,8 @@ public class CreateAccountActivity extends SuperLoginCreateAccountActivity{
                     mainUser.setPassword(password.getText().toString());
                     MainUserManager.get().setMainUser(mainUser);
 
+                    new GetMainUserHttpAsyncTask(this).execute();
+                    
                     Intent intent=new Intent(getApplicationContext(), CreateUpdateProfileActivity.class);
                     intent.putExtra("fragmentType","create");
                     startActivityForResult(intent,CREATE_ACCOUNT);

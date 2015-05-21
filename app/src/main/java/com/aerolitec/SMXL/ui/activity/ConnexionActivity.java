@@ -201,12 +201,18 @@ public class ConnexionActivity extends Activity{
                     Intent intent = new Intent(getApplicationContext(), MainNavigationActivity.class);
                     startActivity(intent);
                 }
+                else{
+                    finish();
+                }
                 break;
             case CREATE_ACCOUNT:
                 if (resultCode == RESULT_OK) {
                     finish();
                     Intent intent = new Intent(getApplicationContext(), MainNavigationActivity.class);
                     startActivity(intent);
+                }
+                else{
+                    finish();
                 }
         }
     }

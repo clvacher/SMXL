@@ -103,11 +103,11 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
             @Override
             protected void onCurrentProfileChanged(Profile oldProfile, Profile newProfile) {
                 if(newProfile == null) {
-                    Toast.makeText(getBaseContext(), "Déconnexion", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Déconnexion", Toast.LENGTH_SHORT).show();
                     MainUserManager.get().setMainUser(null);
 
-                File file = new File(getFilesDir(),PostMainUserFacebookHttpAsyncTask.MAIN_USER_FILE);
-                file.delete();
+                    File file = new File(getFilesDir(),PostMainUserFacebookHttpAsyncTask.MAIN_USER_FILE);
+                    file.delete();
 
                     SMXL.getUserDBManager().deleteAllUsers();
 

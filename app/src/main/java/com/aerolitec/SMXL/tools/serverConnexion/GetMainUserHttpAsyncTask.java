@@ -22,7 +22,7 @@ import java.io.InputStream;
  */
 public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
 
-    public static final String SERVER_ADDRESS_GET_MAIN_USER = "http://api.smxl-app.com/users/log.json";
+    public static final String SERVER_ADDRESS_GET_MAIN_USER = "http://api.smxl-app.com/users/logs.json";
     private Activity activity;
 
     public GetMainUserHttpAsyncTask(Activity activity) {
@@ -37,9 +37,15 @@ public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
 
     @Override
     protected void onPostExecute(String user) {
-        Toast.makeText(activity, "Data Received!", Toast.LENGTH_LONG).show();
         super.onPostExecute(user);
-        activity.setResult(Activity.RESULT_OK);
+        if(user.equals("Did not work!")) {
+            Toast.makeText(activity, "Data Received!", Toast.LENGTH_LONG).show();
+            activity.setResult(Activity.RESULT_OK);
+        }
+        else{
+            Toast.makeText(activity, "Login Failed!", Toast.LENGTH_LONG).show();
+            activity.setResult(Activity.RESULT_CANCELED);
+        }
         activity.finish();
     }
 
