@@ -126,7 +126,7 @@ public class CreateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
             User user = null;
             try {
                 user = SMXL.getUserDBManager().createUser(etFirstName.getText().toString(),
-                        etLastName.getText().toString(), birthday, sexe, picturePath, etNotes.getText().toString());
+                        etLastName.getText().toString().substring(0,1).toUpperCase()+etLastName.getText().toString().substring(1), birthday, sexe, picturePath, etNotes.getText().toString());
                 Log.d(Constants.TAG, "New profile created : " + user.toString());
             } catch (Exception e) {
                 Log.d(Constants.TAG, "Create user with error : " + e.getMessage());

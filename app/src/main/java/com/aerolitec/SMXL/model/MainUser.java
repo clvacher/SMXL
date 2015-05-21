@@ -65,13 +65,21 @@ public class MainUser implements Serializable{
         this.email = email;
     }
 
+    public int getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(int accountType) {
+        this.accountType = accountType;
+    }
 
     public MainUser(){super();}
 
-    public MainUser(String email, String password, User mainProfile){
+    public MainUser(String email, String password, int accountType, User mainProfile){
         super();
         this.email = email;
         this.password = password;
+        this.accountType = accountType;
         setMainProfile(mainProfile);
     }
 

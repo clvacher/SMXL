@@ -16,9 +16,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/imageView2"
             android:src="@drawable/nouvelle_capture_opti_carre500x500"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
             android:layout_margin="5dp"/>
     </RelativeLayout>
 

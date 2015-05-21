@@ -48,6 +48,7 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
 
     MaterialNavigationDrawer drawer = null;
     MaterialHeadItem mainUserHeadItem = null;
+    MaterialSection sectionMyProfile = null;
 
     AccessTokenTracker mAccessTokenTracker;
     ProfileTracker mProfileTracker;
@@ -66,24 +67,21 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
         mAccessTokenTracker.startTracking();
         mProfileTracker.startTracking();
         if(mainUser!=null){
-            setValueOfMainUserInNavigationDrawer();
+            setValueMainUserHeadItem();
+            UserManager.get().setUser(MainUserManager.get().getMainUser().getMainProfile());
         }
-        UserManager.get().setUser(MainUserManager.get().getMainUser().getMainProfile());
     }
 
-    private void setValueOfMainUserInNavigationDrawer() {
-        mainUserHeadItem.setTitle(mainUser.getFirstname() + " " + mainUser.getLastname() + i);
-        mainUserHeadItem.setSubTitle(mainUser.getEmail());
-
-
-
+    private void setValueMainUserHeadItem() {
         final Bitmap bitmap = getBitmapMainUser(mainUser.getAvatar());
         RoundedTransformation roundedTransformation = new RoundedTransformation();
         RoundedBitmapDrawable drawableFactory = RoundedBitmapDrawableFactory.create(getResources(), roundedTransformation.transform(bitmap));
-        mainUserHeadItem.setPhoto(drawableFactory);
-        Log.d("COUCOU", mainUser.getFirstname() + " " + mainUser.getLastname());
 
-        i++;
+        drawer.setHeadItemTitle(mainUser.getFirstname() + " " + mainUser.getLastname());
+        drawer.setFirstHeadItemPhoto(drawableFactory);
+        sectionMyProfile.setIcon(drawableFactory);
+
+        Log.d("COUCOU", mainUser.getFirstname() + " " + mainUser.getLastname());
     }
 
     @Override
@@ -137,8 +135,8 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
         // first section is loaded
         MaterialSection sectionMesProfils = this.newSection("Mes Profils", new ProfilesFragment(), false, menu);
 
-        MaterialSection sectionMonProfil = this.newSection("Mon Profil", this.getResources().getDrawable(R.drawable.avatar), new ProfilesDetailFragment(), false, menu);
-        
+        sectionMyProfile = this.newSection("Mon Profil", this.getResources().getDrawable(R.drawable.avatar), new ProfilesDetailFragment(), false, menu);
+
 
         //sectionMesProfils.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);  this.getResources().getDrawable(R.drawable.ic_perm_group_social_info),
         this.newDevisor(menu);
@@ -149,7 +147,7 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
         //sectionMagasins.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);     this.getResources().getDrawable(android.R.drawable.ic_dialog_map),
         this.newDevisor(menu);
 
-        MaterialSection sectionBrands = this.newSection("Marques", new ListBrandsFragment(), false, menu);
+        MaterialSection sectionBrands = this.newSection("Marques", this.getResources().getDrawable(R.drawable.ic_action_labels) ,new ListBrandsFragment(), false, menu);
         MaterialSection sectionBlogs = this.newSection("Blogs", new ProfilesFragment(), false, menu);
         MaterialSection sectionMagazines = this.newSection("Magazines", new ProfilesFragment(), false, menu);
 
@@ -181,10 +179,10 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
             RoundedTransformation roundedTransformation = new RoundedTransformation();
             RoundedBitmapDrawable drawableFactory = RoundedBitmapDrawableFactory.create(getResources(), roundedTransformation.transform(bitmap));
             mainUserHeadItem = new MaterialHeadItem(this, mainUser.getFirstname()+" "+mainUser.getLastname(), mainUser.getEmail(), drawableFactory, R.drawable.blur_geom, menu);
-            sectionMonProfil.setIcon(drawableFactory);
+            sectionMyProfile.setIcon(drawableFactory);
         }
 
-        this.addHeadItem(mainUserHeadItem);
+        drawer.addHeadItem(mainUserHeadItem);
 
     }
 

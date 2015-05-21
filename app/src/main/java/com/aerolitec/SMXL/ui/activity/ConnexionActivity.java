@@ -15,7 +15,7 @@ import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.MainUser;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
-import com.aerolitec.SMXL.tools.serverConnexion.PostMainUserHttpAsyncTask;
+import com.aerolitec.SMXL.tools.serverConnexion.PostMainUserFacebookHttpAsyncTask;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
@@ -59,7 +59,6 @@ public class ConnexionActivity extends Activity{
             AccessToken accessToken  = loginResult.getAccessToken();
             Profile profile = Profile.getCurrentProfile();
             displayWelcomeMessage(profile);
-
         }
 
         @Override
@@ -75,7 +74,7 @@ public class ConnexionActivity extends Activity{
 
     private void displayWelcomeMessage(Profile profile) {
         if(profile != null){
-            Toast.makeText(getBaseContext(), "Welcome "+profile.getName(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Welcome "+profile.getName(), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -134,7 +133,7 @@ public class ConnexionActivity extends Activity{
 
                     //FIXME
                     //new HttpAsyncTask().execute("http://api.smxl-app.com/users.json");
-                    new PostMainUserHttpAsyncTask(activity).execute();
+                    new PostMainUserFacebookHttpAsyncTask(activity).execute();
 
                     //Log.d("birthday", (userJson.optString("birthday")).toString());
                     //Log.d("email", (userJson.optString("email")).toString());
@@ -159,6 +158,7 @@ public class ConnexionActivity extends Activity{
         MainUser mainUser = new MainUser(
                 userJson.optString("email"),
                 "facebook",
+                1,
                 SMXL.getUserDBManager().createUser(
                         userJson.optString("first_name"),
                         userJson.optString("last_name"),
