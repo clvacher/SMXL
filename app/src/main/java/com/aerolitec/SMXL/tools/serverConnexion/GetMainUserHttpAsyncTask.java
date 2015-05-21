@@ -7,6 +7,11 @@ import android.widget.Toast;
 
 import com.aerolitec.SMXL.model.MainUser;
 import com.aerolitec.SMXL.model.User;
+import com.aerolitec.SMXL.tools.manager.MainUserManager;
+import com.aerolitec.SMXL.ui.activity.CreateAccountActivity;
+import com.aerolitec.SMXL.ui.activity.CreateUpdateProfileActivity;
+import com.aerolitec.SMXL.ui.activity.LoginActivity;
+import com.aerolitec.SMXL.ui.activity.SuperLoginCreateAccountActivity;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -32,21 +37,25 @@ public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
 
     @Override
     protected String doInBackground(String... params) {
-        return GET(SERVER_ADDRESS_GET_MAIN_USER,params[0],params[1]);
+        return GET(SERVER_ADDRESS_GET_MAIN_USER, MainUserManager.get().getMainUser().getEmail(),MainUserManager.get().getMainUser().getPassword());
     }
 
     @Override
-    protected void onPostExecute(String user) {
-        super.onPostExecute(user);
-        if(user.equals("Did not work!")) {
-            Toast.makeText(activity, "Data Received!", Toast.LENGTH_LONG).show();
-            activity.setResult(Activity.RESULT_OK);
+    protected void onPostExecute(String result) {
+        super.onPostExecute(result);
+        //TODO tester avec SuperLoginCreateAccountActivity.class
+        //TODO tester la valeur de result
+        boolean activityTypeIsRight = activity.getClass()== LoginActivity.class || activity.getClass() == CreateAccountActivity.class;
+        if(!result.equals("Did not work!")) {
+            if(activityTypeIsRight) {
+                ((SuperLoginCreateAccountActivity) activity).alreadyExistingAccount();
+            }
         }
         else{
-            Toast.makeText(activity, "Login Failed!", Toast.LENGTH_LONG).show();
-            activity.setResult(Activity.RESULT_CANCELED);
+            //Toast.makeText(activity, "Error retrieving Account", Toast.LENGTH_LONG).show();
+            if(activityTypeIsRight)
+                ((SuperLoginCreateAccountActivity) activity).nonExistingAccount();
         }
-        activity.finish();
     }
 
     protected String GET(String url, String email,String password){
@@ -75,7 +84,8 @@ public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
             inputStream = httpResponse.getEntity().getContent();
 
             if(inputStream != null){
-                result = PostMainUserHttpAsyncTask.convertInputStreamToString(inputStream);
+                if((result = PostMainUserHttpAsyncTask.convertInputStreamToString(inputStream)).equals("null"))
+                    result = "Did not work!";
             }
 
             else{

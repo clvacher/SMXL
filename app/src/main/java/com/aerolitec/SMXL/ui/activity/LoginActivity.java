@@ -1,6 +1,7 @@
 package com.aerolitec.SMXL.ui.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -62,15 +63,35 @@ public class LoginActivity extends SuperLoginCreateAccountActivity {
             case R.id.email_sign_in_button:
                 v.setVisibility(View.GONE);
                 progressBar.setVisibility(View.VISIBLE);
+                requestStatus.setVisibility(View.VISIBLE);
+                requestStatus.setText(getResources().getString(R.string.checkingAvailability));
                 if(isConnected()) {
                     //TODO
                     //Connexion au serveur
-                    new GetMainUserHttpAsyncTask(this).execute(email.getText().toString(),password.getText().toString());
+                    MainUser mainUser = new MainUser();
+                    mainUser.setEmail(email.getText().toString());
+                    mainUser.setPassword(password.getText().toString());
+                    MainUserManager.get().setMainUser(mainUser);
+
+
+                    new GetMainUserHttpAsyncTask(this).execute();//email.getText().toString(),password.getText().toString() dans execute
                 }
                 break;
             case R.id.show_password:
                 showPassword();
                 break;
         }
+    }
+
+    @Override
+    public void nonExistingAccount() {
+        requestStatus.setText(getResources().getString(R.string.errorRetrievingAccount));
+        signIn.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void alreadyExistingAccount() {
+        requestStatus.setText(getResources().getString(R.string.unimplemented));
     }
 }

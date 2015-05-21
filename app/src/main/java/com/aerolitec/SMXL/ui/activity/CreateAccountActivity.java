@@ -32,27 +32,34 @@ public class CreateAccountActivity extends SuperLoginCreateAccountActivity{
             case R.id.email_sign_in_button:
                 view.setVisibility(View.GONE);
                 progressBar.setVisibility(View.VISIBLE);
+                requestStatus.setText(getResources().getString(R.string.checkingAvailability));
+                requestStatus.setVisibility(View.VISIBLE);
                 if(isConnected()) {
-                    //TODO
-                    //if getMainUserHttp == null
                     MainUser mainUser=new MainUser();
                     mainUser.setEmail(email.getText().toString());
                     mainUser.setPassword(password.getText().toString());
                     MainUserManager.get().setMainUser(mainUser);
 
                     new GetMainUserHttpAsyncTask(this).execute();
-                    
-                    Intent intent=new Intent(getApplicationContext(), CreateUpdateProfileActivity.class);
-                    intent.putExtra("fragmentType","create");
-                    startActivityForResult(intent,CREATE_ACCOUNT);
-                    //else
-                    //toast or warning
                 }
                 break;
             case R.id.show_password:
                 showPassword();
                 break;
         }
+    }
+
+    @Override
+    public void nonExistingAccount(){
+        Intent intent=new Intent(getApplicationContext(), CreateUpdateProfileActivity.class);
+        intent.putExtra("fragmentType","create");
+        startActivityForResult(intent,CREATE_ACCOUNT);
+    }
+    @Override
+    public void alreadyExistingAccount(){
+        signIn.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.GONE);
+        requestStatus.setText(getResources().getString(R.string.alreadyExistingAccount));
     }
 
     @Override

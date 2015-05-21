@@ -41,7 +41,7 @@
     <string name="majProfile">Profile update</string>
     <string name="libImc">BMI</string>
     <string name="unimplemented">Developing&#8230;</string>
-    <string name="addNote">Add a description, a comment&#8230;</string>
+    <string name="addNote">My shipping Address</string><!--Add a description, a comment&#8230;-->
     <string name="ShoeSize">Shoe size</string>
     <string name="title_activity_profil">ProfilActivity</string>
     <string name="hello_world">Hello world!</string>
@@ -131,6 +131,9 @@
     <string name="action_sign_in">Sign in</string>
     <string name="create_account">Create Account!</string>
     <string name="show_password">Show Password</string>
+    <string name="checkingAvailability">Checking account availability&#8230;</string>
+    <string name="alreadyExistingAccount">Account already exists!</string>
+    <string name="errorRetrievingAccount">Error retrieving account!</string>
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
