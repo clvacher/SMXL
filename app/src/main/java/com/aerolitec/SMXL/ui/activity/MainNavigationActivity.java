@@ -3,13 +3,16 @@ package com.aerolitec.SMXL.ui.activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
+import com.aerolitec.SMXL.EnChantierFragment;
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.MainUser;
 import com.aerolitec.SMXL.model.User;
@@ -26,6 +29,7 @@ import com.aerolitec.SMXL.ui.fragment.ProfilesDetailFragment;
 import com.aerolitec.SMXL.ui.fragment.ProfilesFragment;
 import com.aerolitec.SMXL.ui.fragment.SettingsFragment;
 import com.aerolitec.SMXL.ui.fragment.SizeGuideFragment;
+import com.aerolitec.SMXL.ui.fragment.WardrobeDetailFragment;
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
 import com.facebook.Profile;
@@ -35,6 +39,8 @@ import java.io.File;
 
 import de.madcyph3r.materialnavigationdrawer.MaterialNavigationDrawer;
 import de.madcyph3r.materialnavigationdrawer.head.MaterialHeadItem;
+import de.madcyph3r.materialnavigationdrawer.listener.MaterialSectionChangeListener;
+import de.madcyph3r.materialnavigationdrawer.listener.MaterialSectionOnClickListener;
 import de.madcyph3r.materialnavigationdrawer.menu.MaterialMenu;
 import de.madcyph3r.materialnavigationdrawer.menu.item.MaterialDevisor;
 import de.madcyph3r.materialnavigationdrawer.menu.item.MaterialSection;
@@ -128,36 +134,70 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
         //Log.d("Main user picture", MainUserManager.get().getMainUser().getAvatar().toString());
         drawer = this;
 
+
         MaterialDevisor materialDevisor = new MaterialDevisor();
+
+        final MaterialSectionChangeListener materialSectionChangeListener = new MaterialSectionChangeListener() {
+            @Override
+            public void onBeforeChangeSection(MaterialSection materialSection) {
+                getCurrentSection().getText().setTextColor(Color.BLACK);
+            }
+
+            @Override
+            public void onAfterChangeSection(MaterialSection materialSection) {
+                materialSection.getText().setTextColor(Color.WHITE);
+            }
+        };
+
         MaterialMenu menu = new MaterialMenu();
 
+        MaterialSection materialSection = new MaterialSection(getApplicationContext(), true, 0, false, materialSectionChangeListener);
+        materialSection.setTarget(new SizeGuideFragment());
+        materialSection.setOnClickListener(new MaterialSectionOnClickListener() {
+            @Override
+            public void onClick(MaterialSection materialSection, View view) {
+                drawer.onClick(materialSection, view);
+            }
+        });
+        materialSection.setTitle("COUCOU");
+        //menu.addItem(materialSection);
 
         // first section is loaded
-        MaterialSection sectionMesProfils = this.newSection("Mes Profils", new ProfilesFragment(), false, menu);
+
+        MaterialSection sectionMesProfils = this.newSection("Mes Profils", this.getResources().getDrawable(R.drawable.ic_perm_group_social_info), new ProfilesFragment(), false, menu);
+
+        //sectionMesProfils.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
 
         sectionMyProfile = this.newSection("Mon Profil", this.getResources().getDrawable(R.drawable.avatar), new ProfilesDetailFragment(), false, menu);
 
+        MaterialSection sectionMonDressing = this.newSection("Mon Dressing", this.getResources().getDrawable(R.drawable.pantalon), new WardrobeDetailFragment(), false, menu);
 
-        //sectionMesProfils.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);  this.getResources().getDrawable(R.drawable.ic_perm_group_social_info),
+
         this.newDevisor(menu);
 
         //this.newLabel("Pratiques", false, menu);
         MaterialSection sectionSizeGuide = this.newSection("Guide des tailles", this.getResources().getDrawable(R.drawable.tshirt), new SizeGuideFragment(), false, menu);
-        MaterialSection sectionMagasins = this.newSection("Magasins à proximité", new ProfilesFragment(), false, menu);
-        //sectionMagasins.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);     this.getResources().getDrawable(android.R.drawable.ic_dialog_map),
+        sectionSizeGuide.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
+
+        MaterialSection sectionMagasins = this.newSection("Magasins à proximité", this.getResources().getDrawable(android.R.drawable.ic_dialog_map), new EnChantierFragment(), false, menu);
+        sectionMagasins.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
+
         this.newDevisor(menu);
 
         MaterialSection sectionBrands = this.newSection("Marques", this.getResources().getDrawable(R.drawable.ic_action_labels) ,new ListBrandsFragment(), false, menu);
-        MaterialSection sectionBlogs = this.newSection("Blogs", new ProfilesFragment(), false, menu);
-        MaterialSection sectionMagazines = this.newSection("Magazines", new ProfilesFragment(), false, menu);
+        sectionBrands.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
 
+        MaterialSection sectionBlogs = this.newSection("Blogs", new EnChantierFragment(), false, menu);
+        MaterialSection sectionMagazines = this.newSection("Magazines", new EnChantierFragment(), false, menu);
 
         this.newDevisor(menu);
 
-        this.newLabel("Paramètres", false, menu);
+        //this.newLabel("Paramètres", false, menu);
 
         MaterialSection section6 = this.newSection("Réglages", this.getResources().getDrawable(R.drawable.ic_action_settings), new SettingsFragment(), false, menu);
         section6.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
+
+
 
 
         //section1.setFillIconColor(true);

@@ -1,0 +1,15 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context="com.aerolitec.SMXL.EnChantierFragment"
+    android:background="@color/DefaultBackgroundColor">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="En cours de développement..."
+        android:layout_centerInParent="true"
+        android:textColor="@color/SectionTitle"
+        android:textSize="20dp"
+        />
+
+</RelativeLayout>
