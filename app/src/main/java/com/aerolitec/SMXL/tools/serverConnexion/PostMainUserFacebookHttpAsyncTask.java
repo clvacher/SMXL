@@ -12,6 +12,7 @@ import java.io.IOException;
  * Created by Clement on 5/19/2015.
  */
 public class PostMainUserFacebookHttpAsyncTask extends PostMainUserHttpAsyncTask{
+
     public PostMainUserFacebookHttpAsyncTask(Activity activity) {
         super(activity);
     }
@@ -28,7 +29,5 @@ public class PostMainUserFacebookHttpAsyncTask extends PostMainUserHttpAsyncTask
                 e.printStackTrace();
             }
         }
-
     }
-
 }

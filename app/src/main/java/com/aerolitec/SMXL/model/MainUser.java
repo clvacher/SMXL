@@ -23,7 +23,6 @@ public class MainUser implements Serializable{
     private int accountType;
 
     /*
-
      * 0 connexion classique
      * 1 connexion Facebook
      * 2 ...
@@ -68,16 +67,18 @@ public class MainUser implements Serializable{
     public int getAccountType() {
         return accountType;
     }
+
     public void setAccountType(int accountType) {
         this.accountType = accountType;
     }
 
     public MainUser(){super();}
 
-    public MainUser(String email, String password, User mainProfile){
+    public MainUser(String email, String password, int accountType, User mainProfile){
         super();
         this.email = email;
         this.password = password;
+        this.accountType = accountType;
         setMainProfile(mainProfile);
     }
 

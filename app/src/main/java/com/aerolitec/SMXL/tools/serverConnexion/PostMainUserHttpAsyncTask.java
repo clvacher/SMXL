@@ -82,6 +82,8 @@ public class PostMainUserHttpAsyncTask extends AsyncTask<Void, Void, String> {
             jsonObject.accumulate("firstname", user.getFirstname());
             jsonObject.accumulate("email", user.getEmail());
             jsonObject.accumulate("password", user.getPassword());
+            Log.d("TYPE", user.getAccountType()+"");
+            jsonObject.accumulate("social", user.getAccountType());
 
             // 4. convert JSONObject to JSON to String
             json = jsonObject.toString();

@@ -158,7 +158,7 @@ public class UpdateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
             user.setAvatar(picturePath);
             user.setBirthday(birthday);
             user.setFirstname(etFirstName.getText().toString());
-            user.setLastname(etLastName.getText().toString());
+            user.setLastname(etLastName.getText().toString().substring(0,1).toUpperCase()+etLastName.getText().toString().substring(1));
 
             user.setDescription(etNotes.getText().toString());
 
@@ -166,7 +166,7 @@ public class UpdateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
 
             if(MainUserManager.get().getMainUser().getMainProfile().getId_user() == user.getId_user()){
                 MainUserManager.get().getMainUser().setFirstname(etFirstName.getText().toString());
-                MainUserManager.get().getMainUser().setLastname(etLastName.getText().toString());
+                MainUserManager.get().getMainUser().setLastname(etLastName.getText().toString().substring(0,1).toUpperCase()+etLastName.getText().toString().substring(1));
                 MainUserManager.get().getMainUser().setAvatar(picturePath);
                 MainUserManager.get().getMainUser().setSex(sexe);
 
