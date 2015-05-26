@@ -61,11 +61,11 @@ public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
                     MainUser mainUser = null;
                     try {
                         jsonMainUser = new JSONObject(result);
-                        String sex;
+                        int sex;
                         if (jsonMainUser.getBoolean("sex")) {
-                            sex = "H";
+                            sex = 1;
                         } else {
-                            sex = "F";
+                            sex = 2;
                         }
                         mainUser = new MainUser(jsonMainUser.optString("email"),
                                 jsonMainUser.optString("password"),

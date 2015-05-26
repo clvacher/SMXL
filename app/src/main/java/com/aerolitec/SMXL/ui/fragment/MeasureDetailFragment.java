@@ -39,7 +39,7 @@ public class MeasureDetailFragment extends Fragment {
 
     private User user;
     private View view;
-    private TextView tvHead,tvNeck,tvShoulder,tvChest,tvWaist,tvHips,tvSleeve,tvThigh,tvHeight,tvInseam,tvFeet;
+    private TextView tvHead, tvNeck, tvShoulder, tvChest, tvWaist, tvHips, tvSleeve, tvThigh, tvHeight, tvInseam, tvFeet;
     private FrameLayout sizesImageLayout;
 
     private RelativeLayout test2;
@@ -50,14 +50,14 @@ public class MeasureDetailFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        user= UserManager.get().getUser();
-        if(user==null)
+        user = UserManager.get().getUser();
+        if (user == null)
             Log.d("MeasureDetailFragment", "user null");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_measure_detail,container,false);
+        view = inflater.inflate(R.layout.fragment_measure_detail, container, false);
         sizesImageLayout = (FrameLayout) getActivity().findViewById(R.id.container);
 
         findMeasureItemsInView(view);
@@ -115,7 +115,7 @@ public class MeasureDetailFragment extends Fragment {
 
     }
 
-    private void findMeasureItemsInView(View v){
+    private void findMeasureItemsInView(View v) {
         tvHead = (TextView) v.findViewById(R.id.tvHead);
         tvNeck = (TextView) v.findViewById(R.id.tvNeck);
         tvShoulder = (TextView) v.findViewById(R.id.tvShoulder);
@@ -130,7 +130,7 @@ public class MeasureDetailFragment extends Fragment {
     }
 
 
-    private void placeMeasureItems(){
+    private void placeMeasureItems() {
 
 /*
         int totalHeight=sizesImageLayout.getHeight(),
@@ -142,21 +142,21 @@ public class MeasureDetailFragment extends Fragment {
         Log.d("calculatedwidth",totalWidth+"");
         */
         test2 = (RelativeLayout) view.findViewById(R.id.sizesImageLayout);
-        int totalHeight = test2.getHeight(),totalWidth = test2.getWidth();
-        Log.d("getHeight",totalHeight+"");
-        Log.d("getWidth",totalWidth+"");
+        int totalHeight = test2.getHeight(), totalWidth = test2.getWidth();
+        Log.d("getHeight", totalHeight + "");
+        Log.d("getWidth", totalWidth + "");
 
         tvHead.setY(totalHeight * 2 / 100);
 
-        tvNeck.setY(totalHeight*13.1f/100);
+        tvNeck.setY(totalHeight * 13.1f / 100);
 
-        tvShoulder.setY(totalHeight*18.5f/100);
+        tvShoulder.setY(totalHeight * 18.5f / 100);
 
-        tvChest.setY(totalHeight*28/100);
+        tvChest.setY(totalHeight * 28 / 100);
 
-        tvWaist.setY(totalHeight*39/100);
+        tvWaist.setY(totalHeight * 39 / 100);
 
-        tvSleeve.setY(totalHeight*30/100);
+        tvSleeve.setY(totalHeight * 30 / 100);
         tvSleeve.setX(totalWidth * 18 / 100);
 
         tvHeight.setX(totalWidth * 91 / 100);
@@ -170,8 +170,9 @@ public class MeasureDetailFragment extends Fragment {
         tvInseam.setY(totalHeight * 70 / 100);
 
         tvFeet.setX(totalWidth * 60 / 100);
-        tvFeet.setY(totalHeight * 93.5f/100);
+        tvFeet.setY(totalHeight * 93.5f / 100);
     }
+}
 /*
     private User user;
     private View view;
@@ -317,3 +318,4 @@ public class MeasureDetailFragment extends Fragment {
     }
 
 }
+*/
