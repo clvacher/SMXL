@@ -15,6 +15,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
+import com.aerolitec.SMXL.model.MainUser;
 
 /**
  * Created by Clement on 5/18/2015.
@@ -73,7 +74,7 @@ public abstract class SuperLoginCreateAccountActivity extends Activity implement
     public void nonExistingAccount(){
     }
 
-    public void alreadyExistingAccount(){
+    public void alreadyExistingAccount(MainUser mainUser){
     }
 
 }

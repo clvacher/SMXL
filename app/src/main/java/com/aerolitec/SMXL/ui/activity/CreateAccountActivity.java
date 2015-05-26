@@ -52,11 +52,11 @@ public class CreateAccountActivity extends SuperLoginCreateAccountActivity{
     @Override
     public void nonExistingAccount(){
         Intent intent=new Intent(getApplicationContext(), CreateUpdateProfileActivity.class);
-        intent.putExtra("fragmentType","create");
-        startActivityForResult(intent,CREATE_ACCOUNT);
+        intent.putExtra("fragmentType", "create");
+        startActivityForResult(intent, CREATE_ACCOUNT);
     }
     @Override
-    public void alreadyExistingAccount(){
+    public void alreadyExistingAccount(MainUser mainUser){
         signIn.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.GONE);
         requestStatus.setText(getResources().getString(R.string.alreadyExistingAccount));

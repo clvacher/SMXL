@@ -15,4 +15,5 @@
     <color name="LastName">#671a10</color>
     <color name="separator">#d7d2ce</color>
     <color name="text_green">#48A288</color>
+    <color name="measure_item_color">#aaee511a</color>
 </resources>

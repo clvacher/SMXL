@@ -1,165 +1,146 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-     xmlns:tools="http://schemas.android.com/tools"
-     tools:context="com.aerolitec.SMXL.ui.fragment.MeasureDetailFragment"
-     android:layout_width="match_parent"
-     android:layout_height="match_parent"
-     android:background="@color/DefaultBackgroundColor"
-     android:paddingLeft="10dp"
-     android:paddingRight="10dp"
-     android:orientation="vertical"
-     android:scrollbars="none">
-     <RelativeLayout
-         android:id="@+id/layoutWardrobe"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content">
+<!--ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.aerolitec.SMXL.ui.fragment.MeasureDetailFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:background="@color/DefaultBackgroundColor"-->
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context="com.aerolitec.SMXL.ui.fragment.MeasureDetailFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:background="@color/DefaultBackgroundColor"
+        android:gravity="center"
+        android:clickable="false">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sizesImageLayout"
+            android:background="@drawable/homme_clean_v2">
+            <View
+                android:id="@+id/center"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_centerInParent="true"/>
 
-         <com.makeramen.RoundedImageView
-             xmlns:app="http://schemas.android.com/apk/res-auto"
-             android:id="@+id/imgAvatar"
-             android:layout_width="@dimen/size_avatar_list_profile"
-             android:layout_height="@dimen/size_avatar_list_profile"
-             android:layout_marginLeft="20dp"
-             android:layout_marginTop="20dp"
-             android:src="@drawable/avatar"
-             android:scaleType="centerCrop"
-             app:corner_radius="60dp"
-             app:mutate_background="true"
-             app:oval="true"
-             android:layout_gravity="center_horizontal"
-             android:layout_alignParentTop="true"
-             android:layout_alignParentLeft="true" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvShoulder"
+                android:background="@drawable/measure_item_background"
+                android:hint="Shoulder"
+                android:textColorHint="@android:color/white"
+                android:layout_centerHorizontal="true"
+                android:paddingLeft="@dimen/measureTvPadding"
+                android:paddingRight="@dimen/measureTvPadding"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvChest"
+                android:background="@drawable/measure_item_background"
+                android:hint="Chest"
+                android:textColorHint="@android:color/white"
+                android:layout_centerHorizontal="true"
+                android:paddingLeft="@dimen/measureTvPadding"
+                android:paddingRight="@dimen/measureTvPadding"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvWaist"
+                android:background="@drawable/measure_item_background"
+                android:hint="Waist"
+                android:textColorHint="@android:color/white"
+                android:layout_centerHorizontal="true"
+                android:paddingLeft="@dimen/measureTvPadding"
+                android:paddingRight="@dimen/measureTvPadding"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/measure_item_background"
+                android:hint="Hips"
+                android:id="@+id/tvHips"
+                android:textColorHint="@android:color/white"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:paddingLeft="@dimen/measureTvPadding"
+                android:paddingRight="@dimen/measureTvPadding"/>
 
-         <TextView
-             android:id="@+id/firstName"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_marginTop="20dp"
-             android:layout_marginRight="20dp"
-             android:layout_marginEnd="20dp"
-             android:textSize="@dimen/textSizeMeasure"
-             android:textStyle="bold"
-             android:layout_alignTop="@+id/imgAvatar"
-             android:layout_alignParentRight="true"
-             android:layout_alignParentEnd="true" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvSleeve"
+                android:hint="Sleeve"
+                android:background="@drawable/measure_item_background"
+                android:textColorHint="@android:color/white"
+                android:paddingLeft="@dimen/measureTvPadding"
+                android:paddingRight="@dimen/measureTvPadding"/>
 
-         <RelativeLayout
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:layout_below="@+id/imgAvatar"
-             android:layout_alignParentLeft="true"
-             android:layout_alignParentStart="true">
-             <RelativeLayout
-                 android:id="@+id/layoutHeaderMeasures"
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content"
-                 android:clickable="true"
-                 android:layout_alignParentLeft="true"
-                 android:layout_alignParentStart="true">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvHead"
+                android:background="@drawable/measure_item_background"
+                android:hint="Head"
+                android:textColorHint="@android:color/white"
+                android:layout_centerHorizontal="true"
+                android:paddingLeft="@dimen/measureTvPadding"
+                android:paddingRight="@dimen/measureTvPadding"/>
 
-                 <RelativeLayout
-                     android:id="@+id/layoutTextMeasures"
-                     android:layout_width="wrap_content"
-                     android:layout_height="match_parent"
-                     android:layout_alignParentTop="true"
-                     android:layout_alignParentLeft="true"
-                     android:layout_alignParentStart="true">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvNeck"
+                android:background="@drawable/measure_item_background"
+                android:hint="Neck"
+                android:textColorHint="@android:color/white"
+                android:layout_centerHorizontal="true"
+                android:paddingLeft="@dimen/measureTvPadding"
+                android:paddingRight="@dimen/measureTvPadding"/>
 
-                     <TextView
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:layout_centerVertical="true"
-                         android:background="@android:color/transparent"
-                         android:gravity="left"
-                         android:text="@string/measure"
-                         android:textColor="@color/SectionTitle"
-                         android:textSize="@dimen/textSizeIdentity"
-                         android:textStyle="bold"
-                         android:id="@+id/collapseMeasures"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvThigh"
+                android:hint="Thigh"
+                android:background="@drawable/measure_item_background"
+                android:textColorHint="@android:color/white"
+                android:paddingLeft="@dimen/measureTvPadding"
+                android:paddingRight="@dimen/measureTvPadding"/>
 
-                     <ImageView
-                         android:id="@+id/collapseMeasure"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:layout_alignParentRight="true"
-                         android:layout_centerVertical="true"
-                         android:src="@drawable/navigation_collapse" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvInseam"
+                android:hint="Inseam"
+                android:background="@drawable/measure_item_background"
+                android:textColorHint="@android:color/white"
+                android:paddingLeft="@dimen/measureTvPadding"
+                android:paddingRight="@dimen/measureTvPadding"/>
 
-                 </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvFeet"
+                android:hint="Feet"
+                android:background="@drawable/measure_item_background"
+                android:textColorHint="@android:color/white"
+                android:paddingLeft="@dimen/measureTvPadding"
+                android:paddingRight="@dimen/measureTvPadding"/>
 
-                 <RelativeLayout
-                     android:id="@+id/layoutAddMeasure"
-                     android:layout_width="match_parent"
-                     android:layout_height="wrap_content"
-                     android:layout_below="@id/layoutTextMeasures"
-                     android:background="@android:color/white"
-                     android:clickable="true"
-                     android:paddingBottom="@dimen/listview_padding_horizontal"
-                     android:paddingLeft="@dimen/listview_padding_horizontal"
-                     android:paddingRight="@dimen/listview_padding_horizontal">
-
-                     <TextView
-                         android:id="@+id/tvAddMeasure"
-                         android:layout_width="match_parent"
-                         android:layout_height="wrap_content"
-                         android:layout_centerVertical="true"
-                         android:background="@android:color/transparent"
-                         android:gravity="left"
-                         android:text="@string/addMeasure"
-                         android:textColor="@color/SectionTitle"
-                         android:textSize="@dimen/textSizeIdentity" />
-
-
-                     <TextView
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:layout_alignParentRight="true"
-                         android:layout_centerVertical="true"
-                         android:text="+"
-                         android:textColor="@color/SectionTitle"
-                         android:textSize="@dimen/section_text_size"
-                         android:textStyle="bold" />
-
-                 </RelativeLayout>
-                 <RelativeLayout
-                     android:layout_width="match_parent"
-                     android:layout_height="wrap_content"
-                     android:background="@android:color/white"
-                     android:layout_below="@id/layoutAddMeasure">
-
-                     <View
-                         android:id="@+id/separator3"
-                         android:layout_width="match_parent"
-                         android:layout_height="2dp"
-                         android:layout_marginLeft="10dp"
-                         android:layout_marginRight="10dp"
-                         android:background="@color/separator" />
-
-                 </RelativeLayout>
-
-             </RelativeLayout>
-             <RelativeLayout
-                 android:id="@+id/garmentLayout"
-                 android:layout_width="fill_parent"
-                 android:layout_height="wrap_content"
-                 android:background="@android:color/white"
-                 android:layout_below="@id/layoutHeaderMeasures"
-                 android:layout_alignParentLeft="true"
-                 android:layout_alignParentStart="true">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvHeight"
+                android:hint="Height"
+                android:background="@drawable/measure_item_background"
+                android:textColorHint="@android:color/white"
+                android:layout_centerVertical="true"
+                android:paddingLeft="@dimen/measureTvPadding"
+                android:paddingRight="@dimen/measureTvPadding"/>
 
 
-                 <LinearLayout
-                     android:id="@+id/layoutViewMeasure"
-                     android:layout_width="match_parent"
-                     android:layout_height="wrap_content"
-                     android:orientation="vertical">
-
-
-                 </LinearLayout>
-
-
-             </RelativeLayout>
-         </RelativeLayout>
-     </RelativeLayout>
-
-
- </ScrollView>
+        </RelativeLayout>
+    </RelativeLayout>

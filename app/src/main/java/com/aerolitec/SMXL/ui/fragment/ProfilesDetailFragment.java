@@ -31,8 +31,6 @@ import java.util.ArrayList;
 
 public class ProfilesDetailFragment extends Fragment{
 
-
-    // TODO: Rename and change types of parameters
     private static User user;
     private TextView tvFirstName, tvLastName, tvAgeSexe,nbBrands;
     private EditText etDescription;
@@ -45,11 +43,6 @@ public class ProfilesDetailFragment extends Fragment{
     ListView brandListView;
 
     private ArrayList<Brand> userBrands;
-    
-    // TODO: Rename and change types and number of parameters
-    public static ProfilesDetailFragment newInstance(User param1, String param2) {
-        return new ProfilesDetailFragment();
-    }
 
     public ProfilesDetailFragment() {
         // Required empty public constructor

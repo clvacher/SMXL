@@ -8,6 +8,7 @@ import android.widget.Toast;
 import com.aerolitec.SMXL.model.MainUser;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
+import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.activity.CreateAccountActivity;
 import com.aerolitec.SMXL.ui.activity.CreateUpdateProfileActivity;
 import com.aerolitec.SMXL.ui.activity.LoginActivity;
@@ -46,15 +47,44 @@ public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
         //TODO tester avec SuperLoginCreateAccountActivity.class
         //TODO tester la valeur de result
         boolean activityTypeIsRight = activity.getClass()== LoginActivity.class || activity.getClass() == CreateAccountActivity.class;
-        if(!result.equals("Did not work!")) {
-            if(activityTypeIsRight) {
-                ((SuperLoginCreateAccountActivity) activity).alreadyExistingAccount();
-            }
-        }
-        else{
-            //Toast.makeText(activity, "Error retrieving Account", Toast.LENGTH_LONG).show();
-            if(activityTypeIsRight)
-                ((SuperLoginCreateAccountActivity) activity).nonExistingAccount();
+        switch (result){
+            case "null":
+                if(activityTypeIsRight)
+                    ((SuperLoginCreateAccountActivity) activity).nonExistingAccount();
+                break;
+            case "Did not work!":
+                Toast.makeText(activity, "Error retrieving Account", Toast.LENGTH_LONG).show();
+                break;
+            default:
+                if(activityTypeIsRight) {
+                    JSONObject jsonMainUser = null;
+                    MainUser mainUser = null;
+                    try {
+                        jsonMainUser = new JSONObject(result);
+                        String sex;
+                        if (jsonMainUser.getBoolean("sex")) {
+                            sex = "H";
+                        } else {
+                            sex = "F";
+                        }
+                        mainUser = new MainUser(jsonMainUser.optString("email"),
+                                jsonMainUser.optString("password"),
+                                (int) jsonMainUser.get("social"),
+                                SMXL.getUserDBManager().createUser(
+                                        jsonMainUser.optString("firstname"),
+                                        jsonMainUser.optString("name"),
+                                        null, // birthday
+                                        sex,
+                                        null, // avatar
+                                        null // description
+                                ));
+
+                    }
+                    catch(Exception e){
+                        e.printStackTrace();
+                    }
+                    ((SuperLoginCreateAccountActivity) activity).alreadyExistingAccount(mainUser);
+                }
         }
     }
 
@@ -84,8 +114,7 @@ public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
             inputStream = httpResponse.getEntity().getContent();
 
             if(inputStream != null){
-                if((result = PostMainUserHttpAsyncTask.convertInputStreamToString(inputStream)).equals("null"))
-                    result = "Did not work!";
+                result = PostMainUserHttpAsyncTask.convertInputStreamToString(inputStream);
             }
 
             else{

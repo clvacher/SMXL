@@ -1,15 +1,21 @@
 package com.aerolitec.SMXL.ui.fragment;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -24,12 +30,150 @@ import com.aerolitec.SMXL.ui.activity.AddMeasureActivity;
 import com.aerolitec.SMXL.ui.adapter.MeasureAdapter;
 import com.aerolitec.SMXL.ui.adapter.MeasureItem;
 
+import org.w3c.dom.Text;
+
 import java.io.File;
 import java.util.ArrayList;
 
 
 public class MeasureDetailFragment extends Fragment {
 
+    private User user;
+    private View view;
+    private TextView tvHead,tvNeck,tvShoulder,tvChest,tvWaist,tvHips,tvSleeve,tvThigh,tvHeight,tvInseam,tvFeet;
+    private FrameLayout sizesImageLayout;
+
+    private RelativeLayout test2;
+
+    public MeasureDetailFragment() {
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        user= UserManager.get().getUser();
+        if(user==null)
+            Log.d("MeasureDetailFragment", "user null");
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.fragment_measure_detail,container,false);
+        sizesImageLayout = (FrameLayout) getActivity().findViewById(R.id.container);
+
+        findMeasureItemsInView(view);
+
+        //placeMeasureItems();
+        test2 = (RelativeLayout) view.findViewById(R.id.sizesImageLayout);
+
+        ViewTreeObserver vto = test2.getViewTreeObserver();
+        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+
+            @Override
+            public void onGlobalLayout() {
+                placeMeasureItems();
+
+                ViewTreeObserver obs = test2.getViewTreeObserver();
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    obs.removeOnGlobalLayoutListener(this);
+                } else {
+                    obs.removeGlobalOnLayoutListener(this);
+                }
+            }
+
+        });
+
+        /* Test de taille d'image
+
+        final Activity activity = getActivity();
+        final RelativeLayout test2 = (RelativeLayout) view.findViewById(R.id.sizesImageLayout);
+        AsyncTask test = new AsyncTask() {
+            @Override
+            protected Object doInBackground(Object[] params) {
+                try {
+                    Thread.sleep(2000);
+                    Log.d("atHeight", test2.getHeight() + "");
+                    Log.d("atMeasuredHeight", test2.getMeasuredHeight() + "");
+                    Log.d("atWidth", test2.getWidth() + "");
+                    Log.d("atMeasuredWidth",test2.getMeasuredWidth()+"");
+                }
+                catch (Exception e){
+
+                }
+                return null;
+            }
+        };
+        test.execute();
+        */
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+
+    }
+
+    private void findMeasureItemsInView(View v){
+        tvHead = (TextView) v.findViewById(R.id.tvHead);
+        tvNeck = (TextView) v.findViewById(R.id.tvNeck);
+        tvShoulder = (TextView) v.findViewById(R.id.tvShoulder);
+        tvChest = (TextView) v.findViewById(R.id.tvChest);
+        tvWaist = (TextView) v.findViewById(R.id.tvWaist);
+        tvSleeve = (TextView) v.findViewById(R.id.tvSleeve);
+        tvHips = (TextView) v.findViewById(R.id.tvHips);
+        tvHeight = (TextView) v.findViewById(R.id.tvHeight);
+        tvThigh = (TextView) v.findViewById(R.id.tvThigh);
+        tvInseam = (TextView) v.findViewById(R.id.tvInseam);
+        tvFeet = (TextView) v.findViewById(R.id.tvFeet);
+    }
+
+
+    private void placeMeasureItems(){
+
+/*
+        int totalHeight=sizesImageLayout.getHeight(),
+                totalWidth = Math.round(totalHeight/1.41617f);
+        Log.d("getHeight",totalHeight+"");
+        Log.d("getMeasuredHeight",sizesImageLayout.getMeasuredHeight()+"");
+        Log.d("getWidth",sizesImageLayout.getWidth()+"");
+        Log.d("getMeasuredWidth",sizesImageLayout.getMeasuredWidth()+"");
+        Log.d("calculatedwidth",totalWidth+"");
+        */
+        test2 = (RelativeLayout) view.findViewById(R.id.sizesImageLayout);
+        int totalHeight = test2.getHeight(),totalWidth = test2.getWidth();
+        Log.d("getHeight",totalHeight+"");
+        Log.d("getWidth",totalWidth+"");
+
+        tvHead.setY(totalHeight * 2 / 100);
+
+        tvNeck.setY(totalHeight*13.1f/100);
+
+        tvShoulder.setY(totalHeight*18.5f/100);
+
+        tvChest.setY(totalHeight*28/100);
+
+        tvWaist.setY(totalHeight*39/100);
+
+        tvSleeve.setY(totalHeight*30/100);
+        tvSleeve.setX(totalWidth * 18 / 100);
+
+        tvHeight.setX(totalWidth * 91 / 100);
+
+        tvThigh.setY(totalHeight * 56 / 100);
+        tvThigh.setX(totalWidth * 53 / 100);
+
+        tvHeight.setX(totalWidth * 85 / 100);
+
+        tvInseam.setX(totalWidth * 26 / 100);
+        tvInseam.setY(totalHeight * 70 / 100);
+
+        tvFeet.setX(totalWidth * 60 / 100);
+        tvFeet.setY(totalHeight * 93.5f/100);
+    }
+/*
     private User user;
     private View view;
     private ArrayList<Integer> indexSize;
@@ -39,12 +183,6 @@ public class MeasureDetailFragment extends Fragment {
     private ArrayList<MeasureItem> listMeasures;
 
     private MeasureAdapter adapterMeasure;
-
-    // TODO: Rename and change types and number of parameters
-    public static MeasureDetailFragment newInstance(String param1, String param2) {
-        MeasureDetailFragment fragment = new MeasureDetailFragment();
-        return fragment;
-    }
 
     public MeasureDetailFragment() {
         // Required empty public constructor
@@ -87,7 +225,8 @@ public class MeasureDetailFragment extends Fragment {
                     layoutMeasure.setVisibility(View.VISIBLE);
                     ImageView collapse = (ImageView) view.findViewById(R.id.collapseMeasure);
                     collapse.setImageResource(R.drawable.navigation_collapse);
-                } else {
+                }
+                else {
                     layoutMeasure.setVisibility(View.GONE);
                     ImageView collapse = (ImageView) view.findViewById(R.id.collapseMeasure);
                     collapse.setImageResource(R.drawable.navigation_expand);
@@ -178,4 +317,5 @@ public class MeasureDetailFragment extends Fragment {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dip, context.getResources().getDisplayMetrics());
     }
 
+*/
 }

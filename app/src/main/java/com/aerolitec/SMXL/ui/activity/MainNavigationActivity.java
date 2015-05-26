@@ -226,25 +226,6 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
 
     }
 
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // TODO Auto-generated method stub
-        switch(requestCode){
-            /*case PICKFILE_RESULT_CODE:
-                if(resultCode==RESULT_OK){
-                    Uri UriFile = data.getData();
-                    File profil = new File(UriFile.getPath());
-                    Intent intent = new Intent(getApplicationContext(), ImportProfilActivity.class);
-                    intent.putExtra("PROFIL", profil);
-                    startActivity(intent);
-                }
-                break;
-            */
-        }
-    }
-
-
     @Override
     public void profileSelect(ProfileItem profile) {
         user = SMXL.getUserDBManager().getUser(profile.getId());

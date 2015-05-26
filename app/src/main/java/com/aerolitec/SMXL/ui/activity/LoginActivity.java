@@ -20,7 +20,9 @@ import android.widget.Toast;
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.MainUser;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
+import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.tools.serverConnexion.GetMainUserHttpAsyncTask;
+import com.aerolitec.SMXL.ui.SMXL;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -92,8 +94,14 @@ public class LoginActivity extends SuperLoginCreateAccountActivity {
     }
 
     @Override
-    public void alreadyExistingAccount() {
-        requestStatus.setText(getResources().getString(R.string.unimplemented));
+    public void alreadyExistingAccount(MainUser mainUser) {
+
+        MainUserManager.get().setMainUser(mainUser);
+
+        UserManager.get().setUser(mainUser.getMainProfile());
+
+        Intent intent = new Intent(getApplicationContext(), MainNavigationActivity.class);
+        startActivity(intent);
         setResult(RESULT_OK);
     }
 }

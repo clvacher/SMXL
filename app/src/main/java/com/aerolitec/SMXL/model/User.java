@@ -19,7 +19,7 @@ public class User extends BaseObjects implements Serializable {
     private String description;
     private double size;
     private double weight;
-    private double imc; //NON PRESENT DANS LA BDD
+    private double imc; //TODO NON PRESENT DANS LA BDD
     private double chest;
     private double collar;
     private double bust;

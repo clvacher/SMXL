@@ -55,7 +55,6 @@ public class AddGarmentActivity extends Activity {
         tvBrand=(TextView)findViewById(R.id.garmentBrand);
         tvGarmentType = (TextView)findViewById(R.id.garmentType);
         tvSize=(TextView)findViewById(R.id.textSize);
-        smxlLayout=(RelativeLayout)findViewById(R.id.layoutSMXL);
 
         //gets the selected garment category from the intent
         Bundle extras=getIntent().getExtras();
@@ -78,19 +77,12 @@ public class AddGarmentActivity extends Activity {
 
         user = UserManager.get().getUser();
         if(user == null) {
+            Log.d("AddGarmentActivity","userNull");
             finish();
-            return;//TODO ?
         }
 
         ((ImageView)findViewById(R.id.garmentIcon)).setImageResource(selectedCategory.getIcon());
 
-        smxlLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("SizeSetter", "Not implemented");
-                //TODO
-            }
-        });
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
