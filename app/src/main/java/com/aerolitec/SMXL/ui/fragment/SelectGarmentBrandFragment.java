@@ -1,6 +1,6 @@
 package com.aerolitec.SMXL.ui.fragment;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -94,8 +94,8 @@ public class SelectGarmentBrandFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 activity.setSelectedBrand((Brand) adapterView.getItemAtPosition(i));
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.container, new SelectGarmentSummaryFragment(), "summary")
+                activity.getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.containerAddGarmentActivity, new SelectGarmentSummaryFragment(), "summary")
                         .addToBackStack(null)
                         .commit();
             }

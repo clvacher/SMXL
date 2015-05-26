@@ -27,7 +27,7 @@ public class GarmentTypeDBManager extends DBManager {
             " "+KEY_ID_GARMENT_TYPE+" INTEGER PRIMARY KEY AUTOINCREMENT," +
             " "+KEY_ID_CATEGORY_GARMENT_GARMENT_TYPE+" INTEGER," +
             " "+KEY_NAME_GARMENT_TYPE+" TEXT" +
-            " "+KEY_SEX_GARMENT_TYPE+" TEXT" +
+            " "+KEY_SEX_GARMENT_TYPE+" INTEGER" +
             " FOREIGN KEY("+KEY_ID_CATEGORY_GARMENT_GARMENT_TYPE+") REFERENCES "+CategoryGarmentDBManager.TABLE_NAME+
             ");";
 
@@ -141,7 +141,11 @@ public class GarmentTypeDBManager extends DBManager {
     public ArrayList<GarmentType> getAllGarmentTypeByCategory(CategoryGarment cg, int sex){
         open();
         ArrayList<GarmentType> garments = new ArrayList<>();
-        Cursor c = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+KEY_ID_CATEGORY_GARMENT_GARMENT_TYPE+" = "+cg.getId_category_garment()+" AND "+KEY_SEX_GARMENT_TYPE+" = "+sex, null);
+        String sexString = "F";
+        if(sex==1){
+            sexString="H";
+        }
+        Cursor c = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+KEY_ID_CATEGORY_GARMENT_GARMENT_TYPE+" = "+cg.getId_category_garment()+" AND "+KEY_SEX_GARMENT_TYPE+" = '"+sexString+"'", null);
         boolean eof = c.moveToFirst();
         while (eof) {
             GarmentType gt = new GarmentType();

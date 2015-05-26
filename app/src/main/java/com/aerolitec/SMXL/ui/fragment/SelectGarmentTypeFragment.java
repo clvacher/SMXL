@@ -1,7 +1,8 @@
 package com.aerolitec.SMXL.ui.fragment;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +30,7 @@ public class SelectGarmentTypeFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Log.d("onCreateView", inflater.toString());
         return inflater.inflate(R.layout.fragment_add_garment_type, container, false);
     }
 
@@ -43,8 +45,8 @@ public class SelectGarmentTypeFragment extends Fragment {
         ArrayList<GarmentType> garmentItems = getGarmentsFromCategory(activity.getSelectedCategory());//C'est pas fou, changer dans le intent?
         if(garmentItems.size()==1){
             activity.setSelectedGarmentType(garmentItems.get(0));
-            getFragmentManager().beginTransaction()
-                    .replace(R.id.container, new SelectGarmentBrandFragment(), "brand")
+            activity.getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.containerAddGarmentActivity, new SelectGarmentBrandFragment(), "brand")
                     .commit();
         }
 
@@ -57,8 +59,8 @@ public class SelectGarmentTypeFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 activity.setSelectedGarmentType((GarmentType)adapterView.getItemAtPosition(position));
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.container, new SelectGarmentBrandFragment(), "brand")
+                activity.getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.containerAddGarmentActivity, new SelectGarmentBrandFragment(), "brand")
                         .addToBackStack(null)
                         .commit();
             }

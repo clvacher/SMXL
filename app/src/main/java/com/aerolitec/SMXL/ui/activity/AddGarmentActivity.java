@@ -1,8 +1,8 @@
 package com.aerolitec.SMXL.ui.activity;
 
-import android.app.Activity;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,7 +17,6 @@ import com.aerolitec.SMXL.model.CategoryGarment;
 import com.aerolitec.SMXL.model.GarmentType;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.model.UserClothes;
-import com.aerolitec.SMXL.tools.manager.MainUserManager;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.fragment.SelectGarmentSummaryFragment;
@@ -27,7 +26,7 @@ import com.aerolitec.SMXL.ui.fragment.SelectGarmentTypeFragment;
  * Created by Clement on 5/4/2015.
  *
  */
-public class AddGarmentActivity extends Activity {
+public class AddGarmentActivity extends FragmentActivity {
 
     private User user;
     private GarmentType selectedGarmentType;
@@ -65,10 +64,11 @@ public class AddGarmentActivity extends Activity {
             }
             else{
                 Fragment fragment = new SelectGarmentTypeFragment();
-                getFragmentManager().beginTransaction()
-                        .add(R.id.container, fragment, "type")
+                getSupportFragmentManager().beginTransaction()
+                        .add(R.id.containerAddGarmentActivity, fragment, "type")
                         .commit();
 
+                Log.d("Fragment", fragment.toString());
                 getActionBar().setTitle(getResources().getString(R.string.add_garment));
             }
         }
@@ -221,8 +221,8 @@ public class AddGarmentActivity extends Activity {
         update=true;
 
         Fragment fragment = new SelectGarmentSummaryFragment();
-        getFragmentManager().beginTransaction()
-                .add(R.id.container, fragment, "type")
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.containerAddGarmentActivity, fragment, "type")
                 .commit();
 
         getActionBar().setTitle(getResources().getString(R.string.edit_garment));

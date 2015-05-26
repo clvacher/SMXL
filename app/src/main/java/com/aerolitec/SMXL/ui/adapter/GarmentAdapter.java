@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
@@ -23,6 +22,7 @@ import java.util.ArrayList;
 public class GarmentAdapter extends ArrayAdapter<UserClothes> {
 
     private Context context;
+    private ArrayAdapter adapter = this;
 
     public GarmentAdapter(Context context,int resource, ArrayList<UserClothes> garmentsItem){
         super(context, resource , garmentsItem);
@@ -30,7 +30,7 @@ public class GarmentAdapter extends ArrayAdapter<UserClothes> {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, final ViewGroup parent) {
         ViewHolder holder;
         if (convertView == null){
             LayoutInflater mInflater = (LayoutInflater)
@@ -52,12 +52,15 @@ public class GarmentAdapter extends ArrayAdapter<UserClothes> {
         holder.tvTypeGarment.setText(clothes.getGarmentType().getType());
         holder.tvBrand.setText(clothes.getBrand().getBrand_name());
         holder.tvSize.setText(clothes.getSize());
+
         holder.deleteGarment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 SMXL.getUserClothesDBManager().deleteUserClothes(clothes);
                 remove(clothes);
 //                ((LinearLayout)view.getParent()).setVisibility(View.GONE);
+//                parent.removeAllViews();
+//                ((ListView)parent).setAdapter(adapter);
 
                 notifyDataSetChanged();
             }
