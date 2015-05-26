@@ -37,6 +37,8 @@ public class UserDBManager extends DBManager{
     public static final String KEY_UNITLENGTH_USER="unitL";
     public static final String KEY_UNITWEIGHT_USER="unitW";
     public static final String KEY_POINTURE_USER="pointure";
+    public static final String KEY_THIGH_USER="thigh";
+
 
 
     public static final String CREATE_TABLE_USER = "CREATE TABLE "+TABLE_NAME+
@@ -46,7 +48,7 @@ public class UserDBManager extends DBManager{
             " "+KEY_FIRSTNAME_USER+" TEXT" +
             " "+KEY_LASTNAME_USER+" TEXT" +
             " "+KEY_BIRTHDAY_USER+" TEXT" +
-            " "+KEY_SEX_USER+" TEXT" +
+            " "+KEY_SEX_USER+" INTEGER" +
             " "+KEY_AVATAR_USER+" TEXT" +
             " "+KEY_DESCRIPTION_USER+" TEXT" +
             " "+KEY_SIZE_USER+" TEXT" +
@@ -62,6 +64,7 @@ public class UserDBManager extends DBManager{
             " "+KEY_UNITLENGTH_USER+" TEXT" +
             " "+KEY_UNITWEIGHT_USER+" TEXT" +
             " "+KEY_POINTURE_USER+" TEXT" +
+            " "+KEY_THIGH_USER+" TEXT" +
             ");";
 
     // Constructeur
@@ -95,6 +98,7 @@ public class UserDBManager extends DBManager{
         values.put(KEY_UNITLENGTH_USER, user.getUnitLength());
         values.put(KEY_UNITWEIGHT_USER, user.getUnitWeight());
         values.put(KEY_POINTURE_USER, user.getPointure());
+        values.put(KEY_THIGH_USER, user.getThigh());
 
         // insert() retourne l'id du nouvel enregistrement inséré, ou -1 en cas d'erreur
         long i =db.insert(TABLE_NAME,null,values);
@@ -103,7 +107,7 @@ public class UserDBManager extends DBManager{
     }
 
     public User createUser(String firstName, String lastName, String birthday,
-                           String sexe, String avatar, String description){
+                           int sexe, String avatar, String description){
         open();
         User user;
         String nickname = firstName+lastName+userNum;
@@ -128,6 +132,7 @@ public class UserDBManager extends DBManager{
         values.put(KEY_UNITLENGTH_USER, 0);
         values.put(KEY_UNITWEIGHT_USER, 0);
         values.put(KEY_POINTURE_USER, 0);
+        values.put(KEY_THIGH_USER, 0);
 
         db.insert(TABLE_NAME, null, values);
 
@@ -149,7 +154,7 @@ public class UserDBManager extends DBManager{
             u.setFirstname(c.getString(c.getColumnIndex(KEY_FIRSTNAME_USER)));
             u.setLastname(c.getString(c.getColumnIndex(KEY_LASTNAME_USER)));
             u.setBirthday(c.getString(c.getColumnIndex(KEY_BIRTHDAY_USER)));
-            u.setSexe(c.getString(c.getColumnIndex(KEY_SEX_USER)));
+            u.setSexe(c.getInt(c.getColumnIndex(KEY_SEX_USER)));
             u.setAvatar(c.getString(c.getColumnIndex(KEY_AVATAR_USER)));
             u.setDescription(c.getString(c.getColumnIndex(KEY_DESCRIPTION_USER)));
 
@@ -168,6 +173,7 @@ public class UserDBManager extends DBManager{
             u.setUnitWeight(convertToInt(c.getString(c.getColumnIndex(KEY_UNITWEIGHT_USER))));
 
             u.setPointure(convertToDouble(c.getString(c.getColumnIndex(KEY_POINTURE_USER))));
+            u.setThigh(convertToDouble(c.getString(c.getColumnIndex(KEY_THIGH_USER))));
 
             c.close();
         }
@@ -202,6 +208,7 @@ public class UserDBManager extends DBManager{
         values.put(KEY_UNITLENGTH_USER, user.getUnitLength());
         values.put(KEY_UNITWEIGHT_USER, user.getUnitWeight());
         values.put(KEY_POINTURE_USER, user.getPointure());
+        values.put(KEY_THIGH_USER, user.getThigh());
 
         String where = KEY_ID_USER+" = ?";
         String[] whereArgs = {user.getId_user()+""};
@@ -237,7 +244,7 @@ public class UserDBManager extends DBManager{
             u.setFirstname(c.getString(c.getColumnIndex(KEY_FIRSTNAME_USER)));
             u.setLastname(c.getString(c.getColumnIndex(KEY_LASTNAME_USER)));
             u.setBirthday(c.getString(c.getColumnIndex(KEY_BIRTHDAY_USER)));
-            u.setSexe(c.getString(c.getColumnIndex(KEY_SEX_USER)));
+            u.setSexe(c.getInt(c.getColumnIndex(KEY_SEX_USER)));
             u.setAvatar(c.getString(c.getColumnIndex(KEY_AVATAR_USER)));
             u.setDescription(c.getString(c.getColumnIndex(KEY_DESCRIPTION_USER)));
 
@@ -256,6 +263,7 @@ public class UserDBManager extends DBManager{
             u.setUnitWeight(convertToInt(c.getString(c.getColumnIndex(KEY_UNITWEIGHT_USER))));
 
             u.setPointure(convertToDouble(c.getString(c.getColumnIndex(KEY_POINTURE_USER))));
+            u.setThigh(convertToDouble(c.getString(c.getColumnIndex(KEY_THIGH_USER))));
 
             u.setBrands(SMXL.getUserBrandDBManager().getAllUserBrands(u));
             c.close();
@@ -283,7 +291,7 @@ public class UserDBManager extends DBManager{
             u.setFirstname(c.getString(c.getColumnIndex(KEY_FIRSTNAME_USER)));
             u.setLastname(c.getString(c.getColumnIndex(KEY_LASTNAME_USER)));
             u.setBirthday(c.getString(c.getColumnIndex(KEY_BIRTHDAY_USER)));
-            u.setSexe(c.getString(c.getColumnIndex(KEY_SEX_USER)));
+            u.setSexe(c.getInt(c.getColumnIndex(KEY_SEX_USER)));
             u.setAvatar(c.getString(c.getColumnIndex(KEY_AVATAR_USER)));
             u.setDescription(c.getString(c.getColumnIndex(KEY_DESCRIPTION_USER)));
 
@@ -302,6 +310,7 @@ public class UserDBManager extends DBManager{
             u.setUnitWeight(convertToInt(c.getString(c.getColumnIndex(KEY_UNITWEIGHT_USER))));
 
             u.setPointure(convertToDouble(c.getString(c.getColumnIndex(KEY_POINTURE_USER))));
+            u.setThigh(convertToDouble(c.getString(c.getColumnIndex(KEY_THIGH_USER))));
 
             users.add(u);
             eof=c.moveToNext();

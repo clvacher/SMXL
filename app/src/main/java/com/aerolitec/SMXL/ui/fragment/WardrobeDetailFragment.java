@@ -128,7 +128,7 @@ public class WardrobeDetailFragment extends Fragment {
         nbSuits=(TextView) view.findViewById(R.id.nbSuits);
 
 
-        if(user.getSexe().equals("F")){
+        if(user.getSexe()==2){
             layoutHeaderDresses = (RelativeLayout) view.findViewById(R.id.layoutHeaderDresses);
             dressesListView = (ListView) view.findViewById(R.id.layoutViewDresses);
             nbDresses=(TextView) view.findViewById(R.id.nbDresses);
@@ -249,7 +249,7 @@ public class WardrobeDetailFragment extends Fragment {
             }
         });
 
-        if(user.getSexe().equals("F")){
+        if(user.getSexe()==2){
             addGarment=(RelativeLayout) view.findViewById(R.id.addDressLayout);
             addGarment.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -399,7 +399,7 @@ public class WardrobeDetailFragment extends Fragment {
                 }
             }
         });
-        if(user.getSexe().equals("F")){
+        if(user.getSexe()==2){
             layoutHeaderDresses.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -429,7 +429,7 @@ public class WardrobeDetailFragment extends Fragment {
         userSuits=SMXL.getUserClothesDBManager().getUserGarmentsByGarment(user, SMXL.getCategoryGarmentDBManager().getCategoryGarment(9));
         userUnderwear=SMXL.getUserClothesDBManager().getUserGarmentsByGarment(user, SMXL.getCategoryGarmentDBManager().getCategoryGarment(10));
 
-        if(user.getSexe().equals("F")){
+        if(user.getSexe()==2){
             userDresses=SMXL.getUserClothesDBManager().getUserGarmentsByGarment(user, SMXL.getCategoryGarmentDBManager().getCategoryGarment(2));
         }
     }
@@ -512,7 +512,7 @@ public class WardrobeDetailFragment extends Fragment {
             layoutHeaderSuits.setVisibility(View.VISIBLE);
         }
 
-        if(user.getSexe().equals("F")){
+        if(user.getSexe()==2){
             tmp=userDresses.size();
             nbDresses.setText("("+tmp+")");
             if(tmp==0){

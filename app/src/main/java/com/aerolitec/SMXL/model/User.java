@@ -14,7 +14,7 @@ public class User extends BaseObjects implements Serializable {
     private String firstname;
     private String lastname;
     private String birthday;
-    private String sexe;
+    private int sexe; //1 Homme 2 Femme
     private String avatar;
     private String description;
     private double size;
@@ -31,6 +31,7 @@ public class User extends BaseObjects implements Serializable {
     private int unitLength;
     private int unitWeight;
     private double pointure;
+    private double thigh;
 
     private ArrayList<Brand> brands = new ArrayList<>();
 
@@ -46,7 +47,7 @@ public class User extends BaseObjects implements Serializable {
      * @param firstname
      * @param lastname
      * @param birthday
-     * @param sexe                [M/W/B/G] = Man, Woman, Boy, Girl
+     * @param sexe                1 Homme 2 Femme
      * @param avatar              (File name)
      * @param description
      * @param size                (cm)
@@ -61,11 +62,12 @@ public class User extends BaseObjects implements Serializable {
      * @param inseam              (cm)
      * @param feet                (cm)
      * @param pointure            (taille)
+     * @param thigh               (cm)
      */
-    public User(int id_user, String nickname, String firstname, String lastname, String birthday, String sexe,
+    public User(int id_user, String nickname, String firstname, String lastname, String birthday, int sexe,
                 String avatar, String description, double size, double weight, double bust,
                 double chest, double collar, double waist, double hips, double sleeve, double inseam,
-                double feet, int unitL, int unitW, double pointure) {
+                double feet, int unitL, int unitW, double pointure, double thigh) {
 
         this.id_user = id_user;
         this.nickname = nickname;
@@ -88,12 +90,13 @@ public class User extends BaseObjects implements Serializable {
         this.unitLength = unitL;
         this.unitWeight = unitW;
         this.pointure = pointure;
+        this.thigh = thigh;
     }
 
     public User(String id_user, String nickname, String firstname, String lastname, String birthday, String sexe,
                 String avatar, String description, String size, String weight, String bust,
                 String chest, String collar, String waist, String hips, String sleeve, String inseam,
-                String feet, String unitL, String unitW, String pointure) {
+                String feet, String unitL, String unitW, String pointure, String thigh) {
 
 
         this.id_user = convertToInt(id_user);
@@ -101,7 +104,7 @@ public class User extends BaseObjects implements Serializable {
         this.firstname = firstname;
         this.lastname = lastname;
         this.birthday = birthday;
-        this.sexe = sexe;
+        this.sexe = convertToInt(sexe);
         this.avatar = avatar;
         this.description = description;
         this.size = convertToDouble(size);
@@ -117,6 +120,7 @@ public class User extends BaseObjects implements Serializable {
         this.unitLength = convertToInt(unitL);
         this.unitWeight = convertToInt(unitW);
         this.pointure = convertToDouble(pointure);
+        this.thigh = convertToDouble(thigh);
     }
 
     private int convertToInt(String arg) {
@@ -176,11 +180,11 @@ public class User extends BaseObjects implements Serializable {
         this.birthday = birthday;
     }
 
-    public String getSexe() {
+    public int getSexe() {
         return sexe;
     }
 
-    public void setSexe(String sexe) {
+    public void setSexe(int sexe) {
         this.sexe = sexe;
     }
 
@@ -326,6 +330,14 @@ public class User extends BaseObjects implements Serializable {
         this.pointure = pointure;
     }
 
+    public double getThigh() {
+        return thigh;
+    }
+
+    public void setThigh(double thigh) {
+        this.thigh = thigh;
+    }
+
     @Override
     public String toString() {
         return
@@ -352,6 +364,7 @@ public class User extends BaseObjects implements Serializable {
                         ", " + unitLength +
                         ", " + unitWeight +
                         ", " + pointure +
+                        ", " + thigh +
                         ", " + brands;
     }
 
@@ -392,6 +405,7 @@ public class User extends BaseObjects implements Serializable {
         String unitLength = String.valueOf(getUnitLength());
         String unitWeight = String.valueOf(getUnitWeight());
         String pointure = String.valueOf(getPointure());
+        String thigh = String.valueOf(getThigh());
         mesures.add(size);
         mesures.add(weight);
         mesures.add(bust);
@@ -405,6 +419,7 @@ public class User extends BaseObjects implements Serializable {
         mesures.add(unitLength);
         mesures.add(unitWeight);
         mesures.add(pointure);
+        mesures.add(thigh);
 
         return mesures;
     }

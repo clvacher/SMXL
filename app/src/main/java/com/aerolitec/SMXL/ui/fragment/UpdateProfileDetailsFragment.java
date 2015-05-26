@@ -74,7 +74,7 @@ public class UpdateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
         etFirstName.setText(user.getFirstname());
         etLastName.setText(user.getLastname());
 
-        if (user.getSexe().startsWith("H")){
+        if (user.getSexe()==1){
             radioH.setChecked(true);
         }
         else {
@@ -149,10 +149,10 @@ public class UpdateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
             Toast.makeText(getActivity(),getResources().getText(R.string.incompleteProfile),Toast.LENGTH_LONG).show();
         }
         else {
-            String sexe = "F";
+            int sexe = 2;
             int idRadioButton = radioSexe.getCheckedRadioButtonId();
             if (idRadioButton == R.id.radioMale){
-                sexe = "H";
+                sexe = 1;
             }
 
             user.setAvatar(picturePath);

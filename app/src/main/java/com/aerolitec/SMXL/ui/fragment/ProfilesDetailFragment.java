@@ -1,11 +1,10 @@
 package com.aerolitec.SMXL.ui.fragment;
 
-import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -23,6 +22,7 @@ import com.aerolitec.SMXL.model.Brand;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
+import com.aerolitec.SMXL.ui.activity.BrowserActivity;
 import com.aerolitec.SMXL.ui.activity.CreateUpdateProfileActivity;
 import com.aerolitec.SMXL.ui.adapter.FavoriteBrandAdapter;
 import com.aerolitec.SMXL.ui.customLayout.ProfilePictureRoundedImageView;
@@ -150,13 +150,26 @@ public class ProfilesDetailFragment extends Fragment{
     }
 
     //Fills the listView with the ArrayList of UserClothes provided, using a GarmentAdapter
-    private void fillListView(ListView v,ArrayList<Brand> userBrandList){
+    private void fillListView(ListView v, final ArrayList<Brand> userBrandList){
         FavoriteBrandAdapter adapter = new FavoriteBrandAdapter(this.getActivity(),R.layout.brand_item,userBrandList);
         v.setAdapter(adapter);
+        Log.d("userBrand", userBrandList.toString());
         v.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                //TODO a completer pour les details des marques (jerome) --> website
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                String urlBrand = userBrandList.get(position).getBrandWebsite();
+                if(urlBrand != null){
+                    if (!urlBrand.startsWith("http://") && !urlBrand.startsWith("https://"))
+                    {
+                        urlBrand = "http://" + urlBrand;
+                    }
+                    //TODO webview ne pas ouvrir le navigateur
+                    //Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(urlBrand));
+                    Intent browserIntent = new Intent(getActivity(), BrowserActivity.class);
+                    browserIntent.putExtra("URL", urlBrand);
+                    browserIntent.putExtra("TITLE", userBrandList.get(position).getBrand_name());
+                    startActivity(browserIntent);
+                }
             }
         });
         setListViewHeightBasedOnChildren(v);
@@ -262,10 +275,9 @@ public class ProfilesDetailFragment extends Fragment{
         String fnAvatar = user.getAvatar();
         imgAvatar.setImage(fnAvatar);
 
-        //TODO "H"
         int age = user.getAge(user.getBirthday());
         String sexe = getResources().getString(R.string.woman);
-        if (user.getSexe().startsWith("H")) {
+        if (user.getSexe()==1) {
             sexe = getResources().getString(R.string.man);
         }
         tvAgeSexe.setText(age +" "+getResources().getString(R.string.years)+ " / " + sexe);

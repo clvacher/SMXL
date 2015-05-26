@@ -1,32 +1,10 @@
 package com.aerolitec.SMXL.ui.activity;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Fragment;
-import android.content.DialogInterface;
-import android.graphics.BitmapFactory;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import com.aerolitec.SMXL.R;
-import com.aerolitec.SMXL.model.User;
-import com.aerolitec.SMXL.tools.Constants;
-import com.aerolitec.SMXL.tools.manager.UserManager;
-import com.aerolitec.SMXL.ui.SMXL;
-import com.aerolitec.SMXL.ui.adapter.MeasureItem;
-
-import java.util.ArrayList;
 
 public class AddMeasureActivity extends Activity {
-
+    //FIXME FIXME FIXME
+/*
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +40,7 @@ public class AddMeasureActivity extends Activity {
     /**
      * A placeholder fragment containing a simple view.
      */
-    public static class PlaceholderFragment extends Fragment {
+/*    public static class PlaceholderFragment extends Fragment {
 
         private static final int ID_HEAD = 1;
         private static final int ID_SIZE = 2;
@@ -482,5 +460,5 @@ public class AddMeasureActivity extends Activity {
         public void setPointure(double pointure) {
             this.pointure = pointure;
         }
-    }
+    }*/
 }

@@ -48,6 +48,11 @@
         android:layout_marginBottom="50dp"
         />
 
+    <!--RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/containerListFragment"/
+         ci dessus nouveau layout pour liste brands dans fragment a part-->
 
     <Button
         android:layout_width="200dp"

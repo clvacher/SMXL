@@ -8,11 +8,12 @@ import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
-import com.aerolitec.SMXL.EnChantierFragment;
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.MainUser;
 import com.aerolitec.SMXL.model.User;
@@ -25,6 +26,7 @@ import com.aerolitec.SMXL.tools.services.OnProfileSelected;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.adapter.ProfileItem;
 import com.aerolitec.SMXL.ui.fragment.ListBrandsFragment;
+import com.aerolitec.SMXL.ui.fragment.MeasureDetailFragment;
 import com.aerolitec.SMXL.ui.fragment.ProfilesDetailFragment;
 import com.aerolitec.SMXL.ui.fragment.ProfilesFragment;
 import com.aerolitec.SMXL.ui.fragment.SettingsFragment;
@@ -53,6 +55,7 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
     private static final int PICKFILE_RESULT_CODE = 1;
 
     MaterialNavigationDrawer drawer = null;
+    boolean drawerOpen = false;
     MaterialHeadItem mainUserHeadItem = null;
     MaterialSection sectionMyProfile = null;
 
@@ -66,6 +69,15 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
         return MaterialNavigationDrawer.DRAWERHEADER_HEADITEMS;
     }
 
+    @Override
+    public void onBackPressed() {
+        if(drawerOpen){
+            drawer.closeDrawer();
+        }
+        else{
+            super.onBackPressed();
+        }
+    }
 
     @Override
     protected void onResume() {
@@ -101,6 +113,27 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
     @Override
     public void init(Bundle savedInstanceState) {
 
+
+        drawer = this;
+        drawer.setDrawerStateListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+            }
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                drawerOpen = true;
+                InputMethodManager inputManager = ( InputMethodManager ) getSystemService(INPUT_METHOD_SERVICE);
+                inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            }
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                drawerOpen = false;
+            }
+            @Override
+            public void onDrawerStateChanged(int newState) {
+            }
+        });
+
         mainUser = MainUserManager.get().getMainUser();
 
         mProfileTracker = new ProfileTracker() {
@@ -132,7 +165,6 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
         mAccessTokenTracker.startTracking();
 
         //Log.d("Main user picture", MainUserManager.get().getMainUser().getAvatar().toString());
-        drawer = this;
 
 
         MaterialDevisor materialDevisor = new MaterialDevisor();
@@ -166,11 +198,14 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
 
         MaterialSection sectionMesProfils = this.newSection("Mes Profils", this.getResources().getDrawable(R.drawable.ic_perm_group_social_info), new ProfilesFragment(), false, menu);
 
+        this.newDevisor(menu);
+
         //sectionMesProfils.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
 
         sectionMyProfile = this.newSection("Mon Profil", this.getResources().getDrawable(R.drawable.avatar), new ProfilesDetailFragment(), false, menu);
 
         MaterialSection sectionMonDressing = this.newSection("Mon Dressing", this.getResources().getDrawable(R.drawable.pantalon), new WardrobeDetailFragment(), false, menu);
+        MaterialSection sectionMesMesures = this.newSection("Mes Mesures", this.getResources().getDrawable(R.drawable.robe), new MeasureDetailFragment(), false, menu);
 
 
         this.newDevisor(menu);
@@ -179,16 +214,16 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
         MaterialSection sectionSizeGuide = this.newSection("Guide des tailles", this.getResources().getDrawable(R.drawable.tshirt), new SizeGuideFragment(), false, menu);
         sectionSizeGuide.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
 
-        MaterialSection sectionMagasins = this.newSection("Magasins à proximité", this.getResources().getDrawable(android.R.drawable.ic_dialog_map), new EnChantierFragment(), false, menu);
-        sectionMagasins.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
+        //MaterialSection sectionMagasins = this.newSection("Magasins à proximité", this.getResources().getDrawable(android.R.drawable.ic_dialog_map), new EnChantierFragment(), false, menu);
+        //sectionMagasins.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
 
         this.newDevisor(menu);
 
         MaterialSection sectionBrands = this.newSection("Marques", this.getResources().getDrawable(R.drawable.ic_action_labels) ,new ListBrandsFragment(), false, menu);
         sectionBrands.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
 
-        MaterialSection sectionBlogs = this.newSection("Blogs", new EnChantierFragment(), false, menu);
-        MaterialSection sectionMagazines = this.newSection("Magazines", new EnChantierFragment(), false, menu);
+        //MaterialSection sectionBlogs = this.newSection("Blogs", new EnChantierFragment(), false, menu);
+        //MaterialSection sectionMagazines = this.newSection("Magazines", new EnChantierFragment(), false, menu);
 
         this.newDevisor(menu);
 

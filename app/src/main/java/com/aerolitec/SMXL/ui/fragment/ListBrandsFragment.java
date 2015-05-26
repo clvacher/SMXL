@@ -4,13 +4,12 @@ package com.aerolitec.SMXL.ui.fragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Filterable;
 import android.widget.GridView;
 import android.widget.Spinner;
 
@@ -18,6 +17,7 @@ import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.Brand;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.adapter.FavoriteCheckableBrandAdapter;
+import com.github.leonardoxh.fakesearchview.FakeSearchView;
 
 import java.util.ArrayList;
 
@@ -25,7 +25,7 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ListBrandsFragment extends Fragment {
+public class ListBrandsFragment extends Fragment implements FakeSearchView.OnSearchListener {
 
 
     public ListBrandsFragment() {
@@ -87,8 +87,8 @@ public class ListBrandsFragment extends Fragment {
                     brands = SMXL.getBrandDBManager().getAllBrands();
                 }
 
-                gridViewBrandsAdapter.clear();
-                gridViewBrandsAdapter.addAll(brands);
+                gridViewBrandsAdapter.getBrands().clear();
+                gridViewBrandsAdapter.getBrands().addAll(brands);
                 gridViewBrandsAdapter.notifyDataSetChanged();
 
                 gridViewBrands.clearChoices();
@@ -116,16 +116,54 @@ public class ListBrandsFragment extends Fragment {
     }
 
 
+/*
     @Override
     public void onCreateOptionsMenu(Menu menu,MenuInflater inflater) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        //getActivity().getMenuInflater().inflate(R.menu.create_profil, menu);
-        super.onCreateOptionsMenu(menu,inflater);
+
+        //getActivity().getMenuInflater().inflate(R.menu.search_brand, menu);
+        //super.onCreateOptionsMenu(menu,inflater);
+
+        inflater.inflate(R.menu.search_brand, menu);
+        MenuItem menuItem = menu.findItem(R.id.fake_search);
+        final FakeSearchView fakeSearchView = (FakeSearchView) MenuItemCompat.getActionView(menuItem);
+        fakeSearchView.setOnSearchListener(this);
+
+        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                //get focus
+                item.getActionView().requestFocus();
+                //get input method
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+                return true;  // Return true to expand action view
+            }
+        });
+
+
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         return super.onOptionsItemSelected(item);
     }
+*/
+    @Override
+    public void onSearch(FakeSearchView fakeSearchView, CharSequence constraint) {
+        //The constraint variable here change every time user input data
+        ((Filterable)gridViewBrands.getAdapter()).getFilter().filter(constraint);
+    /* Any adapter that implements a Filterable interface, or just extends the built in FakeSearchAdapter
+       and implements the searchitem on your model to a custom filter logic */
+    }
+
+    @Override
+    public void onSearchHint(FakeSearchView fakeSearchView, CharSequence charSequence) {
+        //This is received when the user click in the search button on the keyboard
+        ((Filterable)gridViewBrands.getAdapter()).getFilter().filter(charSequence);
+        InputMethodManager inputManager = ( InputMethodManager ) getActivity().getSystemService(getActivity().INPUT_METHOD_SERVICE);
+        inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+    }
+
 
 }

@@ -2,7 +2,7 @@ package com.aerolitec.SMXL.ui.fragment;
 
 
 import android.app.Activity;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -116,13 +116,13 @@ public class CreateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
                 etLastName.getText().toString().length() < 2) {
             Toast.makeText(getActivity(), getResources().getString(R.string.incompleteProfile), Toast.LENGTH_LONG).show();
         } else {
-            String sexe = "F";
+            int sexe = 2;
             int idRadioButton = radioSexe.getCheckedRadioButtonId();
             if (idRadioButton == -1) {
                 //no item selected
             } else {
                 if (idRadioButton == R.id.radioMale) {
-                    sexe = "H";
+                    sexe = 1;
                 }
             }
 
@@ -151,7 +151,7 @@ public class CreateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
                 e.printStackTrace();
             }
 
-            getFragmentManager().beginTransaction().replace(R.id.activity_create_profile,new SelectBrandsFragment()).commit();
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.activity_create_profile,new SelectBrandsFragment()).commit();
         }
     }
 

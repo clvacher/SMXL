@@ -2,7 +2,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragment_select_brands"
-    android:padding="10dp"
+    android:padding="5dp"
     tools:context="com.aerolitec.SMXL.ui.fragment.ListBrandsFragment"
     android:background="@color/DefaultBackgroundColor"
     android:layout_width="match_parent"
@@ -29,12 +29,8 @@
         android:horizontalSpacing="10dp"
         android:layout_below="@+id/spinnerBrandsCategory"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="1dp"
         />
-
-
-
-
 
 </RelativeLayout>
 

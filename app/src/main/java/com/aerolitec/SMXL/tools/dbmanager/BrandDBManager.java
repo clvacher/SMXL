@@ -3,13 +3,8 @@ package com.aerolitec.SMXL.tools.dbmanager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
-import android.util.Log;
 
 import com.aerolitec.SMXL.model.Brand;
-import com.aerolitec.SMXL.tools.Constants;
-import com.aerolitec.SMXL.tools.services.SQLiteSMXL;
 
 import java.util.ArrayList;
 
@@ -94,6 +89,7 @@ public class BrandDBManager extends DBManager{
             b.setId_brand(c.getInt(c.getColumnIndex(KEY_ID_BRAND)));
             b.setBrand_name(c.getString(c.getColumnIndex(KEY_NOM_BRAND)));
             b.setBrand_category(c.getString(c.getColumnIndex(KEY_CATEGORY_BRAND)));
+            b.setBrandWebsite(c.getString(c.getColumnIndex(KEY_WEBSITE_BRAND)));
             c.close();
         }
         close();
@@ -115,6 +111,7 @@ public class BrandDBManager extends DBManager{
             b.setId_brand(c.getInt(c.getColumnIndex(KEY_ID_BRAND)));
             b.setBrand_name(c.getString(c.getColumnIndex(KEY_NOM_BRAND)));
             b.setBrand_category(c.getString(c.getColumnIndex(KEY_CATEGORY_BRAND)));
+            b.setBrandWebsite(c.getString(c.getColumnIndex(KEY_WEBSITE_BRAND)));
             brands.add(b);
             eof = c.moveToNext();
         }
@@ -147,6 +144,7 @@ public class BrandDBManager extends DBManager{
             b.setId_brand(c.getInt(c.getColumnIndex(KEY_ID_BRAND)));
             b.setBrand_name(c.getString(c.getColumnIndex(KEY_NOM_BRAND)));
             b.setBrand_category(c.getString(c.getColumnIndex(KEY_CATEGORY_BRAND)));
+            b.setBrandWebsite(c.getString(c.getColumnIndex(KEY_WEBSITE_BRAND)));
             brands.add(b);
             eof = c.moveToNext();
         }

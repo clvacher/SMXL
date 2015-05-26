@@ -10,6 +10,8 @@ repositories {
 
 
 android {
+    signingConfigs {
+    }
     compileSdkVersion 21
     buildToolsVersion '19.1.0'
     defaultConfig {
@@ -66,4 +68,5 @@ dependencies {
     //compile 'com.github.TangKe:SlideMenu:1.1'
     compile 'com.github.madcyph3r:AdvancedMaterialDrawer:1.1.1'
     //compile 'it.neokree:MaterialNavigationDrawer:1.3.3'
+    compile 'com.github.leonardoxh:fake-search-view:0.3.1'
 }

@@ -3,14 +3,9 @@ package com.aerolitec.SMXL.tools.dbmanager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
-import android.util.Log;
 
-import com.aerolitec.SMXL.model.BrandsSizeGuide;
 import com.aerolitec.SMXL.model.CategoryGarment;
 import com.aerolitec.SMXL.model.GarmentType;
-import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.ui.SMXL;
 
 import java.util.ArrayList;
@@ -143,10 +138,10 @@ public class GarmentTypeDBManager extends DBManager {
         return garments;
     }
 
-    public ArrayList<GarmentType> getAllGarmentTypeByCategory(CategoryGarment cg,String sex){
+    public ArrayList<GarmentType> getAllGarmentTypeByCategory(CategoryGarment cg, int sex){
         open();
         ArrayList<GarmentType> garments = new ArrayList<>();
-        Cursor c = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+KEY_ID_CATEGORY_GARMENT_GARMENT_TYPE+" = "+cg.getId_category_garment()+" AND "+KEY_SEX_GARMENT_TYPE+" = '"+sex+"'", null);
+        Cursor c = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+KEY_ID_CATEGORY_GARMENT_GARMENT_TYPE+" = "+cg.getId_category_garment()+" AND "+KEY_SEX_GARMENT_TYPE+" = "+sex, null);
         boolean eof = c.moveToFirst();
         while (eof) {
             GarmentType gt = new GarmentType();
