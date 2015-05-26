@@ -10,11 +10,12 @@ import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.Brand;
+import com.github.leonardoxh.fakesearchview.SearchItem;
 
 /**
  * Created by Jerome on 17/04/2015.
  */
-public class CheckableBrandLayout extends LinearLayout implements Checkable {
+public class CheckableBrandLayout extends LinearLayout implements Checkable, SearchItem {
 
     private boolean mChecked;
     private TextView textView;
@@ -90,4 +91,8 @@ public class CheckableBrandLayout extends LinearLayout implements Checkable {
         textView.setText(this.brand.getBrand_name());
     }
 
+    @Override
+    public boolean match(CharSequence charSequence) {
+        return brand.getBrand_name().toLowerCase().startsWith(charSequence.toString().toLowerCase());
+    }
 }

@@ -108,7 +108,7 @@ public class ProfilDetailActivity extends FragmentActivity{
                 tv2_1.setTextColor(getResources().getColor(R.color.SectionTitle));
                 tv2_2.setTextColor(getResources().getColor(R.color.SectionTitle));
                 tv3.setTextColor(Color.WHITE);
-                getFragmentManager().beginTransaction().replace(R.id.container, new MeasureDetailFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.container, new MeasureDetailFragment()).commit();
             }
         });
     }

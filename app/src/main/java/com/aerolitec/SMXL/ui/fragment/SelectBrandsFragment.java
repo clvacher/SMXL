@@ -1,7 +1,7 @@
 package com.aerolitec.SMXL.ui.fragment;
 
-import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -25,6 +25,8 @@ import java.util.ArrayList;
 
 
 public class SelectBrandsFragment extends Fragment {
+
+    private View view;
 
     private static User user;
     private ArrayList<Brand> brands;
@@ -50,7 +52,9 @@ public class SelectBrandsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_select_brands, container, false);
+        view = inflater.inflate(R.layout.fragment_select_brands, container, false);
+        //getChildFragmentManager().beginTransaction().add(R.id.containerListFragment, new ListBrandsFragment()).commit();
+        return view;
     }
 
     @Override
@@ -103,8 +107,8 @@ public class SelectBrandsFragment extends Fragment {
                     brands = SMXL.getBrandDBManager().getAllBrands();
                 }
 
-                gridViewBrandsAdapter.clear();
-                gridViewBrandsAdapter.addAll(brands);
+                gridViewBrandsAdapter.getBrands().clear();
+                gridViewBrandsAdapter.getBrands().addAll(brands);
                 gridViewBrandsAdapter.notifyDataSetChanged();
 
                 gridViewBrands.clearChoices();
@@ -126,6 +130,7 @@ public class SelectBrandsFragment extends Fragment {
                 save();
             }
         });
+
     }
 
     @Override

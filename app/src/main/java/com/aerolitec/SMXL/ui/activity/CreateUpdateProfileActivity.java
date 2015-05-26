@@ -1,9 +1,9 @@
 package com.aerolitec.SMXL.ui.activity;
 
-import android.app.Activity;
-import android.app.Fragment;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -21,7 +21,7 @@ import com.aerolitec.SMXL.ui.fragment.UpdateProfileDetailsFragment;
  * update: update existing profile
  * brands: updates existing brands for current profile
  */
-public class CreateUpdateProfileActivity extends Activity{
+public class CreateUpdateProfileActivity extends FragmentActivity {
 
     private boolean confirmExit=false;
 
@@ -49,9 +49,10 @@ public class CreateUpdateProfileActivity extends Activity{
                     f=new SelectBrandsFragment();
                     break;
             }
-            getFragmentManager().beginTransaction()
+            getSupportFragmentManager().beginTransaction()
                     .add(R.id.activity_create_profile, f)
                     .commit();
+
         }
 
 

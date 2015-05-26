@@ -106,7 +106,7 @@
 
     <string name="remarque">Remarques</string>
 
-    <string name="returnCreate">Rappuyez pour annuler</string>
+    <string name="returnCreate">Appuyer de nouveau pour quitter</string>
     <string name="newProfile1">Nouveau</string>
     <string name="newProfile2">Profil</string>
 
@@ -139,6 +139,8 @@
     <string name="update">Mettre à jour</string>
     <string name="viewMore">Voir plus</string>
     <string name="disconnected">Déconnecté!</string>
+    <string name="find">Rechercher</string>
+    <string name="title_activity_browser">Navigateur</string>
 
 
 </resources>

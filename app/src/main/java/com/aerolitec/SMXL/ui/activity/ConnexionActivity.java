@@ -147,11 +147,11 @@ public class ConnexionActivity extends Activity{
 
     private void generateAndSetMainUserWithUserJSON(JSONObject userJson) {
         Log.d("userJson", userJson.toString());
-        String sex;
+        int sex;
         if (userJson.optString("gender").equals("male")) {
-            sex = "H";
+            sex = 1;
         } else {
-            sex = "F";
+            sex = 2;
         }
         MainUser mainUser = new MainUser(
                 userJson.optString("email"),

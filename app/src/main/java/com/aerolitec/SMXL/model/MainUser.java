@@ -17,7 +17,7 @@ public class MainUser implements Serializable{
     private String password;
     private String firstname;
     private String lastname;
-    private String sex;
+    private int sex; //1 Homme 2 Femme
     private String avatar;
     private int idMainProfile;
     private int accountType;
@@ -34,8 +34,8 @@ public class MainUser implements Serializable{
     public String getLastname() {return lastname;}
     public void setLastname(String lastname) {this.lastname = lastname;}
 
-    public String getSex() {return sex;}
-    public void setSex(String sex) {this.sex = sex;}
+    public int getSex() {return sex;}
+    public void setSex(int sex) {this.sex = sex;}
 
     public String getAvatar() {return avatar;}
     public void setAvatar(String avatar) {this.avatar = avatar;}
@@ -76,7 +76,7 @@ public class MainUser implements Serializable{
 
     public MainUser(String email, String password, int accountType, User mainProfile){
         super();
-        this.email = email;
+        this.email=email;
         this.password = password;
         this.accountType = accountType;
         setMainProfile(mainProfile);

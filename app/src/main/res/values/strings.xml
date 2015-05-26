@@ -137,6 +137,8 @@
 
     <string name="jacket">Jacket</string>
     <string name="disconnected">Disconnected!</string>
+    <string name="find">Rechercher</string>
+    <string name="title_activity_browser">BrowserActivity</string>
 
 
 </resources>

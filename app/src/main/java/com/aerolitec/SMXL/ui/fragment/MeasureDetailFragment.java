@@ -1,7 +1,6 @@
 package com.aerolitec.SMXL.ui.fragment;
 
-import android.app.Activity;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
@@ -317,5 +316,4 @@ public class MeasureDetailFragment extends Fragment {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dip, context.getResources().getDisplayMetrics());
     }
 
-*/
 }
