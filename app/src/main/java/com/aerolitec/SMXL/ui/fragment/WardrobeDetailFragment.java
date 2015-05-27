@@ -1,9 +1,9 @@
 package com.aerolitec.SMXL.ui.fragment;
 
-import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -38,7 +38,6 @@ public class WardrobeDetailFragment extends Fragment {
     private TextView nbTShirts,nbDresses,nbPants,nbBlouses,nbJackets,nbCoats,nbShoes,nbSweaters,nbUnderwear,nbSuits;
 
     RelativeLayout layoutHeaderTShirt,layoutHeaderDresses,layoutHeaderPants,layoutHeaderBlouses,layoutHeaderJackets,layoutHeaderCoats,layoutHeaderShoes,layoutHeaderSweaters,layoutHeaderUnderwear,layoutHeaderSuits;
-
 
     public static WardrobeDetailFragment newInstance(String param1, String param2) {
         return new WardrobeDetailFragment();
@@ -417,6 +416,7 @@ public class WardrobeDetailFragment extends Fragment {
         }
     }
 
+
     //updates the user's lists of clothes
     private void updateClothesLists(){
         userTShirts=SMXL.getUserClothesDBManager().getUserGarmentsByGarment(user, SMXL.getCategoryGarmentDBManager().getCategoryGarment(1));
@@ -552,7 +552,7 @@ public class WardrobeDetailFragment extends Fragment {
     }
 
     //Allows the ListView to adapt to its content
-    private static void setListViewHeightBasedOnChildren(ListView listView) {
+    public static void setListViewHeightBasedOnChildren(ListView listView) {
         ListAdapter listAdapter = listView.getAdapter();
         if (listAdapter == null)
             return;
@@ -573,4 +573,6 @@ public class WardrobeDetailFragment extends Fragment {
         listView.setLayoutParams(params);
         listView.requestLayout();
     }
+
+
 }

@@ -12,9 +12,6 @@ import com.aerolitec.SMXL.R;
 public class Constants {
     public static final String TAG = "SMXL";
 
-    public static final String DATABASE_NAME = "SIZEGUIDE_DB";
-
-
     public static final Float inch = 2.54F;
     public static final Float pounds = 2.2046F;
     public static final Float cm = 0.3937F;

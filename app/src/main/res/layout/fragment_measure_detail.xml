@@ -19,7 +19,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/sizesImageLayout"
-            android:background="@drawable/homme_clean_v2">
+            android:background="@drawable/homme_clean_v2"
+            >
             <View
                 android:id="@+id/center"
                 android:layout_width="0dp"

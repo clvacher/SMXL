@@ -7,11 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.UserClothes;
 import com.aerolitec.SMXL.ui.SMXL;
+import com.aerolitec.SMXL.ui.fragment.WardrobeDetailFragment;
 
 import java.util.ArrayList;
 
@@ -22,7 +24,6 @@ import java.util.ArrayList;
 public class GarmentAdapter extends ArrayAdapter<UserClothes> {
 
     private Context context;
-    private ArrayAdapter adapter = this;
 
     public GarmentAdapter(Context context,int resource, ArrayList<UserClothes> garmentsItem){
         super(context, resource , garmentsItem);
@@ -58,11 +59,8 @@ public class GarmentAdapter extends ArrayAdapter<UserClothes> {
             public void onClick(View view) {
                 SMXL.getUserClothesDBManager().deleteUserClothes(clothes);
                 remove(clothes);
-//                ((LinearLayout)view.getParent()).setVisibility(View.GONE);
-//                parent.removeAllViews();
-//                ((ListView)parent).setAdapter(adapter);
-
                 notifyDataSetChanged();
+                WardrobeDetailFragment.setListViewHeightBasedOnChildren((ListView) parent);
             }
         });
 
