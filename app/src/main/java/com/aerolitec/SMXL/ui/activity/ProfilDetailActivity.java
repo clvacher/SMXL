@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.tools.manager.UserManager;
-import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.fragment.MeasureDetailFragment;
 import com.aerolitec.SMXL.ui.fragment.ProfilesDetailFragment;
 import com.aerolitec.SMXL.ui.fragment.WardrobeDetailFragment;
@@ -51,7 +50,6 @@ public class ProfilDetailActivity extends FragmentActivity{
         final TextView tv1=(TextView)findViewById(R.id.textView1);
         tab2= (LinearLayout) findViewById(R.id.wardrobe);
         final TextView tv2_1=(TextView)findViewById(R.id.textView2);
-        final TextView tv2_2=(TextView)findViewById(R.id.tvNbGarments);
         tab3= (LinearLayout) findViewById(R.id.measurements);
         final TextView tv3=(TextView)findViewById(R.id.textView3);
 
@@ -60,7 +58,6 @@ public class ProfilDetailActivity extends FragmentActivity{
 
         tv1.setTextColor(Color.WHITE);
         tv2_1.setTextColor(getResources().getColor(R.color.SectionTitle));
-        tv2_2.setTextColor(getResources().getColor(R.color.SectionTitle));
         tv3.setTextColor(getResources().getColor(R.color.SectionTitle));
 
         tab1.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +71,6 @@ public class ProfilDetailActivity extends FragmentActivity{
                 tv2_1.setText(tv2_1.getText());
                 tv3.setText(tv3.getText());
                 tv2_1.setTextColor(getResources().getColor(R.color.SectionTitle));
-                tv2_2.setTextColor(getResources().getColor(R.color.SectionTitle));
                 tv3.setTextColor(getResources().getColor(R.color.SectionTitle));
                 getSupportFragmentManager().beginTransaction().replace(R.id.container, new ProfilesDetailFragment()).commit();
             }
@@ -90,8 +86,8 @@ public class ProfilDetailActivity extends FragmentActivity{
                 tv2_1.setText(tv2_1.getText());
                 tv3.setText(tv3.getText());
                 tv2_1.setTextColor(Color.WHITE);
-                tv2_2.setTextColor(Color.WHITE);
                 tv3.setTextColor(getResources().getColor(R.color.SectionTitle));
+                WardrobeDetailFragment wardrobeDetailFragment = new WardrobeDetailFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.container, new WardrobeDetailFragment()).commit();
             }
         });
@@ -106,7 +102,6 @@ public class ProfilDetailActivity extends FragmentActivity{
                 tv2_1.setText(tv2_1.getText());
                 tv3.setText(tv3.getText());
                 tv2_1.setTextColor(getResources().getColor(R.color.SectionTitle));
-                tv2_2.setTextColor(getResources().getColor(R.color.SectionTitle));
                 tv3.setTextColor(Color.WHITE);
                 getSupportFragmentManager().beginTransaction().replace(R.id.container, new MeasureDetailFragment()).commit();
             }
@@ -155,13 +150,6 @@ public class ProfilDetailActivity extends FragmentActivity{
         FragmentManager fm = getSupportFragmentManager();
         UserSettingsDialogFragment userSettingsDialogFragment = new UserSettingsDialogFragment();
         userSettingsDialogFragment.show(fm, "fragment_UserSettings");
-    }
-
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-                ((TextView) findViewById(R.id.tvNbGarments)).setText(" ("+SMXL.getUserClothesDBManager().getAllUserClothes(UserManager.get().getUser()).size()+")");
     }
 }
 

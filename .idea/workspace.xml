@@ -38,21 +38,27 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: com.aerolitec.SMXL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bcedc9f4-a278-4245-beda-299f3891aad9" name="Default" comment="Amelioration du guide des tailles avec un adapteur pour les données de chaque page">
+    <list default="true" id="bcedc9f4-a278-4245-beda-299f3891aad9" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/customLayout/CustomGlobalGarmentWardrobeLayout.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/custom_global_garment_wardrobe.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/fake_search_view_0_3_1.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/outputFileStates.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/ConnexionActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/ConnexionActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/CreateProfileDetailsFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/CreateProfileDetailsFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/MainNavigationActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/MainNavigationActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/model/MainUser.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/model/MainUser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/tools/serverConnexion/PostMainUserFacebookHttpAsyncTask.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/tools/serverConnexion/PostMainUserFacebookHttpAsyncTask.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/tools/serverConnexion/PostMainUserHttpAsyncTask.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/tools/serverConnexion/PostMainUserHttpAsyncTask.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/adapter/GarmentAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/adapter/GarmentAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/MeasureDetailFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/MeasureDetailFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/ProfilDetailActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/ProfilDetailActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/SuperCreateUpdateProfileFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/SuperCreateUpdateProfileFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/UpdateProfileDetailsFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/UpdateProfileDetailsFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_connexion.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_connexion.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/WardrobeDetailFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/WardrobeDetailFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_profil_detail.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_profil_detail.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_create_update_profile_details.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_create_update_profile_details.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_wardrobe_detail.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_wardrobe_detail.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/garment_item.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/garment_item.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SMXL.iws" />
@@ -92,130 +98,70 @@
     <option name="PATCH_PATH" value="" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$/app">
+          <activation />
+        </task>
+        <projects_view />
+      </state>
+    </system>
+  </component>
   <component name="FavoritesManager">
     <favorites_list name="SMXL" />
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MainNavigationActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/MainNavigationActivity.java">
+      <file leaf-file-name="CheckableBrandLayout.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/customLayout/CheckableBrandLayout.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="147" column="30" selection-start-line="147" selection-start-column="30" selection-end-line="147" selection-end-column="30" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ConnexionActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/ConnexionActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="131" column="64" selection-start-line="131" selection-start-column="64" selection-end-line="131" selection-end-column="64" />
-              <folding>
-                <element signature="e#3020#3232#0" expanded="true" />
-                <element signature="e#3231#3232#0" expanded="true" />
-                <element signature="method#onActivityResult#0;class#ConnexionActivity#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PostMainUserFacebookHttpAsyncTask.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/tools/serverConnexion/PostMainUserFacebookHttpAsyncTask.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="15" column="11" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="11" />
-              <folding>
-                <element signature="e#424#425#0" expanded="true" />
-                <element signature="e#455#456#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PostMainUserHttpAsyncTask.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/tools/serverConnexion/PostMainUserHttpAsyncTask.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5263158">
-              <caret line="85" column="41" selection-start-line="85" selection-start-column="41" selection-end-line="85" selection-end-column="41" />
+              <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainUser.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/model/MainUser.java">
+      <file leaf-file-name="WardrobeDetailFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/WardrobeDetailFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="77" column="66" selection-start-line="77" selection-start-column="55" selection-end-line="77" selection-end-column="66" />
+            <state vertical-scroll-proportion="-30.0">
+              <caret line="68" column="28" selection-start-line="68" selection-start-column="28" selection-end-line="68" selection-end-column="28" />
               <folding>
-                <element signature="e#1656#1657#0" expanded="true" />
-                <element signature="e#1687#1688#0" expanded="true" />
-                <element signature="e#1735#1736#0" expanded="true" />
-                <element signature="e#1775#1776#0" expanded="true" />
+                <element signature="e#3867#3868#0" expanded="true" />
+                <element signature="e#3918#3919#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="activity_connexion.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_connexion.xml">
+      <file leaf-file-name="ProfilDetailActivity.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/ProfilDetailActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.9670975">
+              <caret line="152" column="5" selection-start-line="152" selection-start-column="5" selection-end-line="152" selection-end-column="5" />
+              <folding>
+                <element signature="e#2446#3324#0" expanded="true" />
+                <element signature="e#3323#3324#0" expanded="true" />
+                <element signature="e#3359#4344#0" expanded="true" />
+                <element signature="e#4343#4344#0" expanded="true" />
+                <element signature="e#4379#5257#0" expanded="true" />
+                <element signature="e#5256#5257#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="activity_profil_detail.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_profil_detail.xml">
           <provider editor-type-id="android-designer">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.344828">
-              <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+            <state vertical-scroll-proportion="-7.62069">
+              <caret line="57" column="45" selection-start-line="57" selection-start-column="45" selection-end-line="57" selection-end-column="45" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SelectBrandsFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/SelectBrandsFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProfilesDetailFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/ProfilesDetailFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="97" column="44" selection-start-line="97" selection-start-column="44" selection-end-line="97" selection-end-column="44" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3362#3696#0" expanded="true" />
-                <element signature="e#3695#3696#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IntroActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/IntroActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="118" column="55" selection-start-line="118" selection-start-column="55" selection-end-line="118" selection-end-column="55" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MeasureDetailFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/MeasureDetailFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="57" column="40" selection-start-line="57" selection-start-column="40" selection-end-line="57" selection-end-column="40" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -226,6 +172,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="layoutResourceFile_vertical" />
+        <option value="resourceFile" />
+        <option value="valueResourceFile" />
         <option value="Class" />
       </list>
     </option>
@@ -234,6 +182,11 @@
     <FindUsagesManager>
       <setting name="OPEN_NEW_TAB" value="true" />
     </FindUsagesManager>
+  </component>
+  <component name="GenerateSignedApkSettings">
+    <option name="KEY_STORE_PATH" value="$USER_HOME$/Documents/androidkeys/my-release-key.keystore" />
+    <option name="KEY_ALIAS" value="alias_name" />
+    <option name="REMEMBER_PASSWORDS" value="true" />
   </component>
   <component name="Git.Settings">
     <option name="UPDATE_TYPE" value="MERGE" />
@@ -641,6 +594,11 @@
                 <option name="description" value="Prepare com.facebook.android:facebook-android-sdk:4.1.1" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="prepareComFacebookAndroidFacebookAndroidSdk411Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Prepare com.github.leonardoxh:fake-search-view:0.3.1" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="prepareComGithubLeonardoxhFakeSearchView031Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="description" value="Prepare com.github.madcyph3r:AdvancedMaterialDrawer:1.1.1" />
@@ -1127,6 +1085,11 @@
                 <option name="name" value="prepareComFacebookAndroidFacebookAndroidSdk411Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
+                <option name="description" value="Prepare com.github.leonardoxh:fake-search-view:0.3.1" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="prepareComGithubLeonardoxhFakeSearchView031Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
                 <option name="description" value="Prepare com.github.madcyph3r:AdvancedMaterialDrawer:1.1.1" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
                 <option name="name" value="prepareComGithubMadcyph3rAdvancedMaterialDrawer111Library" />
@@ -1244,7 +1207,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="4294364809000" />
+        <entry key="$PROJECT_DIR$" value="4295058969000" />
         <entry key="$PROJECT_DIR$/../Work/ContactsBBL/app" value="4276099645694" />
       </map>
     </option>
@@ -1423,6 +1386,7 @@
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.wunderlist/sliding-layer/1.1.1/27a64fae7fea6de8113d587f4dd5f7ae7395d92b/sliding-layer-1.1.1.aar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.facebook.android/facebook-android-sdk/4.1.1/c2cb37642a67f59eafbb27d6a440d577158dece0/facebook-android-sdk-4.1.1.aar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.madcyph3r/AdvancedMaterialDrawer/1.1.1/5c08bdf548716d9385da32c709506fd262088f26/AdvancedMaterialDrawer-1.1.1.aar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.leonardoxh/fake-search-view/0.3.1/3b2397057c3a1ffd4b4e9da40f4bcaf30a232a4a/fake-search-view-0.3.1.aar" />
                             <option value="$USER_HOME$/Documents/android-sdk-macosx/extras/android/m2repository/com/android/support/support-annotations/22.1.1/support-annotations-22.1.1.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-android/1.2.0/6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd/bolts-android-1.2.0.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar" />
@@ -1450,57 +1414,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/SettingsFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/LoginActivity.java" />
-        <option value="$PROJECT_DIR$/app/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/dialog/ConfirmDialogFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/DisplayGarmentActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/SettingsFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/adapter/ProfilesAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/adapter/SizeGuideAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_line_page_size_guide.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/PageSizeGuideFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_page_size_guide.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/SizeGuideFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/adapter/PageSizeGuideAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/tools/serverConnexion/GetMainUserHttpAsyncTask.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/tools/serverConnexion/PostProfileHttpAsyncTask.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/tools/manager/MainUserManager.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/SuperLoginCreateAccountActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/tools/facebookmanager/CustomAccessTokenTracker.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_wardrobe_detail.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/SuperCreateUpdateProfileFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/customLayout/ProfilePictureRoundedImageView.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/tools/dbmanager/UserDBManager.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/SMXL.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/tools/services/SQLiteSMXL.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/ProfilActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/tools/dbmanager/DBManager.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_settings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/tools/RoundedTransformation.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/CreateUpdateProfileActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/SelectBrandsFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ListBrandsFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/adapter/FavoriteCheckableBrandAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/customLayout/CheckableBrandLayout.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_list_brands.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/ProfilesFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/menu/search_brand.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/SizeGuideFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/ListBrandsFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/model/User.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/ProfilDetailActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/UserSettingsDialogFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/IntroActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/MeasureDetailFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/WardrobeDetailFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/ProfilesDetailFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_connexion.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/tools/serverConnexion/PostMainUserFacebookHttpAsyncTask.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/CreateProfileDetailsFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/UpdateProfileDetailsFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/tools/dbmanager/BrandDBManager.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_select_brands.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/SelectBrandsFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/MainNavigationActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_browser.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/CreateUpdateProfileActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/menu/menu_browser.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/BrowserActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/IntroActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/AddMeasureActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/model/User.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/model/MainUser.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/ConnexionActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/tools/serverConnexion/PostMainUserHttpAsyncTask.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/tools/dbmanager/UserDBManager.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/CreateProfileDetailsFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/ProfilesDetailFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values-fr/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/tools/services/SQLiteSMXL.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/SelectGarmentSummaryFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_add_garment.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/AddGarmentActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/adapter/TypeGarmentAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/model/GarmentType.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/tools/dbmanager/GarmentTypeDBManager.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/SelectGarmentBrandFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/SelectGarmentTypeFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_measure_detail.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/tools/Constants.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_create_update_profile_details.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/UpdateProfileDetailsFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/SuperCreateUpdateProfileFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/custom_global_garment_wardrobe.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/SMXL.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/tools/utilityMethods.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/tools/UtilityMethods.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/garment_item.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_wardrobe_detail.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/adapter/GarmentAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/custom_global_garment_wardrobe.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/WardrobeDetailFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/customLayout/CustomGlobalGarmentWardrobeLayout.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/MeasureDetailFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_profil_detail.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/ProfilDetailActivity.java" />
       </list>
     </option>
   </component>
@@ -1560,6 +1524,22 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SMXL" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -1708,6 +1688,36 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="values-fr" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SMXL" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SMXL" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="values" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -1738,7 +1748,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="drawable-xxhdpi" />
+              <option name="myItemId" value="layout" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1840,7 +1850,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="fragment" />
+              <option name="myItemId" value="customLayout" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1946,44 +1956,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="tools" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="serverConnexion" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SMXL" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SMXL" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SMXL" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="model" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -2014,24 +1986,26 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scratches" />
-      <pane id="PackagesPane">
-        <subPane>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="SMXL" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SMXL" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="build" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2049,7 +2023,7 @@
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Documents/androidkeys/my-release-key.keystore" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager2.WIDTH" value="237" />
@@ -2074,6 +2048,10 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="1060" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
+    <property name="restartRequiresConfirmation" value="true" />
+    <property name="ExportApk.ApkPath" value="$PROJECT_DIR$/app" />
+    <property name="ExportApk.Flavors" value="" />
+    <property name="ExportApk.BuildType" value="release" />
   </component>
   <component name="RecentsManager">
     <key name="android.template.packageName">
@@ -2087,6 +2065,7 @@
       <recent name="C:\Users\Clément\Documents\GitHub\SMXL\app\src\main\res\drawable-nodpi" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
       <recent name="C:\Users\Clément\Documents\GitHub\SMXL\app\src\main\res\drawable" />
       <recent name="$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/model" />
@@ -2156,6 +2135,16 @@
       <option name="SELECTED_CLOUD_PROJECT_ID" value="" />
       <option name="IS_VALID_CLOUD_SELECTION" value="false" />
       <option name="INVALID_CLOUD_SELECTION_ERROR" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="AppEngineRunConfiguration" factoryName="App Engine DevAppServer">
+      <module name="" />
+      <setting name="serverAddress" value="" />
+      <setting name="sdkPath" value="" />
+      <setting name="serverPort" value="" />
+      <setting name="vmArgs" value="" />
+      <setting name="warPath" value="" />
+      <setting name="sync" value="false" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -2278,17 +2267,36 @@
       <option name="CLEAR_LOGCAT" value="false" />
       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
       <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
-      <option name="SELECTED_MATRIX_CONFIGURATION_ID" value="0" />
-      <option name="SELECTED_CLOUD_PROJECT_ID" value="" />
+      <option name="SELECTED_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_PROJECT_ID" value="Please select a project..." />
       <option name="IS_VALID_CLOUD_SELECTION" value="false" />
-      <option name="INVALID_CLOUD_SELECTION_ERROR" value="" />
+      <option name="INVALID_CLOUD_SELECTION_ERROR" value="Matrix configuration not specified" />
       <RunnerSettings RunnerId="AndroidDebugRunner" />
       <ConfigurationWrapper RunnerId="AndroidDebugRunner" />
       <method />
     </configuration>
-    <list size="2">
+    <configuration default="false" name="Unnamed" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/app" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="assemble" />
+          </list>
+        </option>
+        <option name="vmOptions" value="" />
+      </ExternalSystemSettings>
+      <method />
+    </configuration>
+    <list size="3">
       <item index="0" class="java.lang.String" itemvalue="Android Application.app" />
-      <item index="1" class="java.lang.String" itemvalue="Groovy.build" />
+      <item index="1" class="java.lang.String" itemvalue="Gradle.Unnamed" />
+      <item index="2" class="java.lang.String" itemvalue="Groovy.build" />
     </list>
     <recent_temporary>
       <list size="1">
@@ -2551,7 +2559,37 @@
       <option name="project" value="LOCAL" />
       <updated>1432138794208</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Ajout du type account dans le POST&#10;Ajout d'une majuscule automatique sur le lastname">
+      <created>1432200479647</created>
+      <option name="number" value="00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1432200479647</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Ajout du fragment en chantier&#10;Bouton retour fonctionnel lors de la création du profil&#10;Ajout de l'onglet garde robe directement dans le menu">
+      <created>1432218327758</created>
+      <option name="number" value="00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1432218327758</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Sexe --&gt; 1 et 2 au lieu de H et F&#10;Recherche des marques dans la section du menu&#10;Rajout de thigh au User et dans les manager de db&#10;Rajout du website des marques et ouverture d'un browser interne lors du clic dans le profildetailfragment&#10;Changement de tous les fragments en fragment v4&#10;Le retour dans l'activity ferme le menu s'il est ouvert sinon quitte l'appli&#10;">
+      <created>1432650031231</created>
+      <option name="number" value="00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1432650031231</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Résolution du bug qui ne chargeait pas les fragments dans AddGarmentActivity">
+      <created>1432653919775</created>
+      <option name="number" value="00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1432653919775</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Résolution du probleme de suppression dans la liste des garment mais reste à améliorer les compteurs et les flèches">
+      <created>1432714731164</created>
+      <option name="number" value="00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1432714731164</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -2575,27 +2613,28 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
-    <editor active="true" />
+    <frame x="0" y="0" width="1920" height="1080" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32994923" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2555781" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.10851927" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33333334" sideWeight="0.45566165" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39893618" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23588924" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17518637" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3275862" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5760649" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.46146044" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295699" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39350912" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21602434" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32234043" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24866879" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17518637" sideWeight="0.54433835" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2565923" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20842217" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20820022" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39893618" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -2607,7 +2646,6 @@
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" x="1700" y="-222" width="1720" height="880" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Memory Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2565923" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="UnknownFeatures">
@@ -2625,12 +2663,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Resolution du bug de Notes (.equals() au lieu de ==)&#10;Les notes se mettent a jour dès un changement de page" />
-    <MESSAGE value="ajout du cintre sur le mur&#10;Amelioration du champs de note (add note quand champs vide)" />
-    <MESSAGE value="Linking au second fragment garde-robe&#10;Resolution du bug de mise a jour du profil lors d'une modification&#10;(UserManager mis a jour a chaque update)&#10;" />
-    <MESSAGE value="Annulation de la creation profil (appuyer deux fois sur retour)&#10;Fragment garde robe fonctionnel, suppression de la partie garde robe sur les details profil&#10;Ajout du nombre de vetements a l'onglet et au fragment.&#10;Suppression du bouton de partage en vue de la mise a jour.&#10;&#10;Mise a jour de la doc string.&#10;Nettoyages secondaires." />
-    <MESSAGE value="Ajout de l'onglet &quot;Mesures&quot; fonctionnel&#10;suppression des mesures dans la vue detail profil&#10;&#10;modifications mineures sur les strings" />
-    <MESSAGE value="Changement du design des onglets" />
     <MESSAGE value="Résolution du bug d'affichage sous 4.1.2 au niveau des onglets." />
     <MESSAGE value="Ajout d'une methode &quot;getUserGarmentsbyGarment&quot; dans la base de données permettant de recuperer seulement un type de vetement pour un utilisateur donné&#10;Ajout de notes explicative dans addGarmentActivity&#10;Suppression de l'activity &quot;ListGarmentActivity&quot; et de ses xml (activity, fragment,menu et manifest) qui permettait de voir tous les vetements d'un utilisateur&#10;Mise en place de l'adapter de vetement permettant d'afficher les listes de vetements dans le Dressing&#10;Ajout du click de modification sur la photo de profil dans profildetailfragment&#10;Amelioration du shadow sur les onglets non selectionnés&#10;Texte des onglets en ecriture simple et non en gras&#10;Saisie des notes avec majuscule sur la premiere lettre et changement du fond (gris --&gt; beige)&#10;Ajout de toutes les categories de vetements dans la garde robe, modification et optimisation du code du fragment&#10;Ajout de dimensions pour gerer les tailles des elements de la garde robe&#10;Ajout des traductions pour chaque type de vetement&#10;" />
     <MESSAGE value="Valider changé en etape suivante&#10;Les robes n'apparaissent que pour les profils feminins" />
@@ -2650,333 +2682,278 @@
     <MESSAGE value="ajout du fragment ne contenant que la liste des marques" />
     <MESSAGE value="Amelioration menu" />
     <MESSAGE value="Section menu vers le profil du main user" />
-    <option name="LAST_COMMIT_MESSAGE" value="Section menu vers le profil du main user" />
+    <MESSAGE value="Ajout du type account dans le POST&#10;Ajout d'une majuscule automatique sur le lastname" />
+    <MESSAGE value="Ajout du fragment en chantier&#10;Bouton retour fonctionnel lors de la création du profil&#10;Ajout de l'onglet garde robe directement dans le menu" />
+    <MESSAGE value="Sexe --&gt; 1 et 2 au lieu de H et F&#10;Recherche des marques dans la section du menu&#10;Rajout de thigh au User et dans les manager de db&#10;Rajout du website des marques et ouverture d'un browser interne lors du clic dans le profildetailfragment&#10;Changement de tous les fragments en fragment v4&#10;Le retour dans l'activity ferme le menu s'il est ouvert sinon quitte l'appli&#10;" />
+    <MESSAGE value="Résolution du bug qui ne chargeait pas les fragments dans AddGarmentActivity" />
+    <MESSAGE value="Résolution du probleme de suppression dans la liste des garment mais reste à améliorer les compteurs et les flèches" />
+    <MESSAGE value="Refonte du dressing, création d'un custom layout correspondant à un item&#10;Suppression du compteur du dressing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refonte du dressing, création d'un custom layout correspondant à un item&#10;Suppression du compteur du dressing" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="21" />
+      <option name="time" value="22" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_line_page_size_guide.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/IntroActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/tools/manager/MainUserManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="14" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/SuperLoginCreateAccountActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.13368984">
-          <caret line="19" column="17" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.github.madcyph3r/AdvancedMaterialDrawer/1.1.1/classes.jar!/de/madcyph3r/materialnavigationdrawer/head/MaterialHeadItem.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34529147">
-          <caret line="114" column="11" selection-start-line="114" selection-start-column="11" selection-end-line="114" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/PageSizeGuideFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.github.madcyph3r/AdvancedMaterialDrawer/1.1.1/classes.jar!/de/madcyph3r/materialnavigationdrawer/tools/RoundedCornersDrawable.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44036698">
-          <caret line="25" column="44" selection-start-line="25" selection-start-column="44" selection-end-line="25" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_wardrobe_detail.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.275862">
-          <caret line="17" column="36" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Documents/android-sdk-macosx/sources/android-21/android/content/Intent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="693" column="31" selection-start-line="693" selection-start-column="31" selection-end-line="693" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/SuperCreateUpdateProfileFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1842105">
-          <caret line="73" column="20" selection-start-line="73" selection-start-column="20" selection-end-line="73" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/SMXL.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/tools/services/SQLiteSMXL.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/tools/dbmanager/DBManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="35" column="69" selection-start-line="35" selection-start-column="69" selection-end-line="35" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Documents/android-sdk-macosx/sources/android-21/android/graphics/BitmapFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="114" column="23" selection-start-line="114" selection-start-column="23" selection-end-line="114" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/Documents/android-sdk-macosx/extras/android/m2repository/com/android/support/support-v4/22.1.1/support-v4-22.1.1-sources.jar!/android/support/v4/graphics/drawable/RoundedBitmapDrawableFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="65" column="40" selection-start-line="65" selection-start-column="40" selection-end-line="65" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/widget/RoundedTransformation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.10526316">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/tools/dbmanager/UserDBManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="277" column="38" selection-start-line="277" selection-start-column="38" selection-end-line="277" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/tools/dbmanager/CategoryGarmentDBManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9668508">
-          <caret line="95" column="0" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/customLayout/ProfilePictureRoundedImageView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="36" column="16" selection-start-line="36" selection-start-column="16" selection-end-line="36" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/tools/RoundedTransformation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18421052">
-          <caret line="18" column="8" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_select_brands.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_settings.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/ListBrandsFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="86" column="63" selection-start-line="86" selection-start-column="63" selection-end-line="86" selection-end-column="63" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0526316">
-          <caret line="40" column="64" selection-start-line="40" selection-start-column="60" selection-end-line="40" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/ProfilesFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.04255319">
-          <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_list_brands.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.793103">
-          <caret line="16" column="10" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
-          <folding />
+          <caret line="45" column="42" selection-start-line="45" selection-start-column="42" selection-end-line="45" selection-end-column="42" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/model/User.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.148149">
+          <caret line="122" column="44" selection-start-line="122" selection-start-column="44" selection-end-line="122" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/tools/serverConnexion/GetMainUserHttpAsyncTask.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="34" column="47" selection-start-line="34" selection-start-column="47" selection-end-line="34" selection-end-column="47" />
+          <caret line="56" column="69" selection-start-line="56" selection-start-column="69" selection-end-line="56" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/CreateProfileDetailsFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="124" column="29" selection-start-line="124" selection-start-column="29" selection-end-line="124" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/adapter/SizeGuideAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.86538464">
+          <caret line="49" column="111" selection-start-line="49" selection-start-column="111" selection-end-line="49" selection-end-column="111" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/tools/serverConnexion/PostMainUserHttpAsyncTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6891026">
+          <caret line="80" column="62" selection-start-line="80" selection-start-column="62" selection-end-line="80" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/ProfilesDetailFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="5.5048075">
+          <caret line="277" column="18" selection-start-line="277" selection-start-column="18" selection-end-line="277" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/tools/serverConnexion/PostMainUserFacebookHttpAsyncTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16826923">
+          <caret line="13" column="63" selection-start-line="13" selection-start-column="63" selection-end-line="13" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/tools/manager/MainUserManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.24038461">
+          <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/model/MainUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.625">
+          <caret line="33" column="23" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/tools/dbmanager/UserDBManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.720268">
+          <caret line="128" column="39" selection-start-line="128" selection-start-column="39" selection-end-line="128" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/tools/services/SQLiteSMXL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1923077">
+          <caret line="19" column="49" selection-start-line="19" selection-start-column="49" selection-end-line="19" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/AddMeasureActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.37660256">
+          <caret line="230" column="42" selection-start-line="230" selection-start-column="42" selection-end-line="230" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/CSVCreationActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="150" column="20" selection-start-line="150" selection-start-column="20" selection-end-line="150" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_add_garment_type.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
+    <entry file="jar://$USER_HOME$/Documents/android-sdk-macosx/extras/android/m2repository/com/android/support/support-v4/22.1.1/support-v4-22.1.1-sources.jar!/android/support/v4/app/FragmentTransaction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="57" column="59" selection-start-line="57" selection-start-column="59" selection-end-line="57" selection-end-column="59" />
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="231" column="40" selection-start-line="231" selection-start-column="40" selection-end-line="231" selection-end-column="40" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/tools/dbmanager/BrandDBManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
+          <caret line="122" column="29" selection-start-line="122" selection-start-column="29" selection-end-line="122" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#996#997#0" expanded="false" />
+            <element signature="e#1026#1027#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/UserSettingsDialogFragment.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_add_garment.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27620396">
-          <caret line="13" column="28" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="81" column="52" selection-start-line="81" selection-start-column="25" selection-end-line="81" selection-end-column="52" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/ProfilDetailActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/SelectGarmentSummaryFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="152" column="0" selection-start-line="152" selection-start-column="0" selection-end-line="152" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.github.madcyph3r/AdvancedMaterialDrawer/1.1.1/classes.jar!/de/madcyph3r/materialnavigationdrawer/listener/MaterialSectionOnClickListener.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16513762">
-          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.github.madcyph3r/AdvancedMaterialDrawer/1.1.1/classes.jar!/de/madcyph3r/materialnavigationdrawer/listener/MaterialSectionChangeListener.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19266056">
-          <caret line="10" column="9" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.github.madcyph3r/AdvancedMaterialDrawer/1.1.1/classes.jar!/de/madcyph3r/materialnavigationdrawer/menu/item/MaterialSection.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.8">
-          <caret line="33" column="45" selection-start-line="33" selection-start-column="45" selection-end-line="33" selection-end-column="45" />
+          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/SelectGarmentBrandFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
-          <folding />
+          <caret line="97" column="65" selection-start-line="97" selection-start-column="65" selection-end-line="97" selection-end-column="65" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/IntroActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="118" column="55" selection-start-line="118" selection-start-column="55" selection-end-line="118" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/WardrobeDetailFragment.java">
+    <entry file="file://$USER_HOME$/Documents/android-sdk-macosx/sources/android-21/android/widget/ArrayAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334">
-          <caret line="55" column="31" selection-start-line="55" selection-start-column="31" selection-end-line="55" selection-end-column="31" />
+          <caret line="238" column="16" selection-start-line="238" selection-start-column="16" selection-end-line="238" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/MeasureDetailFragment.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/SelectGarmentTypeFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="57" column="40" selection-start-line="57" selection-start-column="40" selection-end-line="57" selection-end-column="40" />
+          <caret line="48" column="61" selection-start-line="48" selection-start-column="61" selection-end-line="48" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/AddGarmentActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="5.1201925">
+          <caret line="215" column="35" selection-start-line="216" selection-start-column="26" selection-end-line="216" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/CreateUpdateProfileActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/tools/Constants.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.65789473">
-          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.14423077">
+          <caret line="12" column="34" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_connexion.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/tools/dbmanager/GarmentTypeDBManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.344828">
-          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.25480768">
+          <caret line="145" column="26" selection-start-line="145" selection-start-column="26" selection-end-line="145" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.github.madcyph3r/AdvancedMaterialDrawer/1.1.1/classes.jar!/de/madcyph3r/materialnavigationdrawer/MaterialNavigationDrawer.class">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/adapter/TypeGarmentAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34862384">
-          <caret line="1092" column="0" selection-start-line="1092" selection-start-column="0" selection-end-line="1092" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/CreateAccountActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16826923">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values-fr/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.0384617">
+          <caret line="116" column="9" selection-start-line="116" selection-start-column="8" selection-end-line="116" selection-end-column="9" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/MainNavigationActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.69391024">
+          <caret line="138" column="0" selection-start-line="138" selection-start-column="0" selection-end-line="138" selection-end-column="0" />
+          <folding>
+            <element signature="e#5298#6059#0" expanded="false" />
+            <element signature="e#6058#6059#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="124" column="18" selection-start-line="124" selection-start-column="18" selection-end-line="124" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/UpdateProfileDetailsFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.8701923">
+          <caret line="37" column="43" selection-start-line="37" selection-start-column="43" selection-end-line="37" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#3723#3918#0" expanded="false" />
+            <element signature="e#3917#3918#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/SuperCreateUpdateProfileFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.27570093">
+          <caret line="206" column="44" selection-start-line="206" selection-start-column="44" selection-end-line="206" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#6010#6018#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2985,107 +2962,197 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.55452865">
-          <caret line="103" column="55" selection-start-line="103" selection-start-column="39" selection-end-line="103" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/CreateAccountActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0263158">
-          <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/UpdateProfileDetailsFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.31578946">
-          <caret line="159" column="64" selection-start-line="159" selection-start-column="64" selection-end-line="159" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/CreateProfileDetailsFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.02631579">
-          <caret line="128" column="129" selection-start-line="128" selection-start-column="24" selection-end-line="128" selection-end-column="129" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/ProfilesDetailFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="97" column="44" selection-start-line="97" selection-start-column="44" selection-end-line="97" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3362#3696#0" expanded="true" />
-            <element signature="e#3695#3696#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/SelectBrandsFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <caret line="46" column="40" selection-start-line="46" selection-start-column="40" selection-end-line="46" selection-end-column="40" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/MainNavigationActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="147" column="30" selection-start-line="147" selection-start-column="30" selection-end-line="147" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/model/MainUser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="77" column="66" selection-start-line="77" selection-start-column="55" selection-end-line="77" selection-end-column="66" />
-          <folding>
-            <element signature="e#1656#1657#0" expanded="true" />
-            <element signature="e#1687#1688#0" expanded="true" />
-            <element signature="e#1735#1736#0" expanded="true" />
-            <element signature="e#1775#1776#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/tools/serverConnexion/PostMainUserFacebookHttpAsyncTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="11" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="11" />
-          <folding>
-            <element signature="e#424#425#0" expanded="true" />
-            <element signature="e#455#456#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/ConnexionActivity.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13551402">
+          <caret line="248" column="31" selection-start-line="245" selection-start-column="16" selection-end-line="248" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/custom_simple_spinner_dropdown_item.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.02446982">
+          <caret line="1" column="68" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/model/GarmentType.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="131" column="64" selection-start-line="131" selection-start-column="64" selection-end-line="131" selection-end-column="64" />
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Documents/android-sdk-macosx/sources/android-21/android/view/View.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="8845" column="25" selection-start-line="8845" selection-start-column="25" selection-end-line="8845" selection-end-column="25" />
           <folding>
-            <element signature="e#3020#3232#0" expanded="true" />
-            <element signature="e#3231#3232#0" expanded="true" />
-            <element signature="method#onActivityResult#0;class#ConnexionActivity#0" expanded="false" />
+            <element signature="e#346228#346229#0" expanded="false" />
+            <element signature="e#346259#346260#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/tools/serverConnexion/PostMainUserHttpAsyncTask.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/garment_item.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5263158">
-          <caret line="85" column="41" selection-start-line="85" selection-start-column="41" selection-end-line="85" selection-end-column="41" />
+        <state vertical-scroll-proportion="0.44045678">
+          <caret line="18" column="32" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_wardrobe_detail.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8976109">
+          <caret line="55" column="8" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/adapter/GarmentAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.0981308">
+          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+          <folding>
+            <element signature="e#1938#2205#0" expanded="true" />
+            <element signature="e#2204#2205#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/custom_global_garment_wardrobe.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.30716723">
+          <caret line="12" column="43" selection-start-line="12" selection-start-column="43" selection-end-line="12" selection-end-column="43" />
+          <folding>
+            <element signature="e#1558#1582#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/tools/UtilityMethods.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="14" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/customLayout/CustomGlobalGarmentWardrobeLayout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="3.3707864">
+          <caret line="80" column="13" selection-start-line="80" selection-start-column="13" selection-end-line="80" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4789#5262#0" expanded="true" />
+            <element signature="e#5261#5262#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_measure_detail.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.96330273">
+          <caret line="21" column="57" selection-start-line="21" selection-start-column="57" selection-end-line="21" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/MeasureDetailFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.3595505">
+          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/customLayout/ProfilePictureRoundedImageView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2949438">
+          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/customLayout/CheckableBrandLayout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/fragment/WardrobeDetailFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-30.0">
+          <caret line="68" column="28" selection-start-line="68" selection-start-column="28" selection-end-line="68" selection-end-column="28" />
+          <folding>
+            <element signature="e#3867#3868#0" expanded="true" />
+            <element signature="e#3918#3919#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_profil_detail.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.62069">
+          <caret line="57" column="45" selection-start-line="57" selection-start-column="45" selection-end-line="57" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/SMXL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.026845638">
+          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aerolitec/SMXL/ui/activity/ProfilDetailActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9670975">
+          <caret line="152" column="5" selection-start-line="152" selection-start-column="5" selection-end-line="152" selection-end-column="5" />
+          <folding>
+            <element signature="e#2446#3324#0" expanded="true" />
+            <element signature="e#3323#3324#0" expanded="true" />
+            <element signature="e#3359#4344#0" expanded="true" />
+            <element signature="e#4343#4344#0" expanded="true" />
+            <element signature="e#4379#5257#0" expanded="true" />
+            <element signature="e#5256#5257#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

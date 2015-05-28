@@ -22,7 +22,6 @@ import java.util.ArrayList;
 public class GarmentAdapter extends ArrayAdapter<UserClothes> {
 
     private Context context;
-    private ArrayAdapter adapter = this;
 
     public GarmentAdapter(Context context,int resource, ArrayList<UserClothes> garmentsItem){
         super(context, resource , garmentsItem);
@@ -58,10 +57,6 @@ public class GarmentAdapter extends ArrayAdapter<UserClothes> {
             public void onClick(View view) {
                 SMXL.getUserClothesDBManager().deleteUserClothes(clothes);
                 remove(clothes);
-//                ((LinearLayout)view.getParent()).setVisibility(View.GONE);
-//                parent.removeAllViews();
-//                ((ListView)parent).setAdapter(adapter);
-
                 notifyDataSetChanged();
             }
         });
