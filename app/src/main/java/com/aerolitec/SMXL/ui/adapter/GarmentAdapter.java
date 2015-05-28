@@ -7,13 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.UserClothes;
 import com.aerolitec.SMXL.ui.SMXL;
-import com.aerolitec.SMXL.ui.fragment.WardrobeDetailFragment;
 
 import java.util.ArrayList;
 
@@ -60,7 +58,6 @@ public class GarmentAdapter extends ArrayAdapter<UserClothes> {
                 SMXL.getUserClothesDBManager().deleteUserClothes(clothes);
                 remove(clothes);
                 notifyDataSetChanged();
-                WardrobeDetailFragment.setListViewHeightBasedOnChildren((ListView) parent);
             }
         });
 

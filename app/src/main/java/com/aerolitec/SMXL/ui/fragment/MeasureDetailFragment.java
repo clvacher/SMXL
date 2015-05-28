@@ -1,38 +1,20 @@
 package com.aerolitec.SMXL.ui.fragment;
 
-import android.support.v4.app.Fragment;
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.User;
-import com.aerolitec.SMXL.tools.Constants;
-import com.aerolitec.SMXL.tools.ImageHelper;
 import com.aerolitec.SMXL.tools.manager.UserManager;
-import com.aerolitec.SMXL.ui.activity.AddMeasureActivity;
-import com.aerolitec.SMXL.ui.adapter.MeasureAdapter;
-import com.aerolitec.SMXL.ui.adapter.MeasureItem;
-
-import org.w3c.dom.Text;
-
-import java.io.File;
-import java.util.ArrayList;
 
 
 public class MeasureDetailFragment extends Fragment {

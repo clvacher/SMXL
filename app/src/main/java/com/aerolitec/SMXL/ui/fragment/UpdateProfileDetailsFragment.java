@@ -29,7 +29,7 @@ import com.aerolitec.SMXL.ui.customLayout.ProfilePictureRoundedImageView;
 import java.io.FileOutputStream;
 
 /**
- * Created by Cl?ment on 5/13/2015.
+ * Created by Clement on 5/13/2015.
  */
 public class UpdateProfileDetailsFragment extends SuperCreateUpdateProfileFragment {
 
@@ -108,7 +108,8 @@ public class UpdateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
         layoutImageProfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectProfilPicture();
+                //selectProfilPicture();
+                openImageIntent();
             }
         });
 
@@ -197,4 +198,5 @@ public class UpdateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
         i.setType("image/*");
         startActivityForResult(i, 77);
     }
+
 }

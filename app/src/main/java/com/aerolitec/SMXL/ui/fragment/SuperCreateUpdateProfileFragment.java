@@ -2,15 +2,22 @@ package com.aerolitec.SMXL.ui.fragment;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.support.v4.app.Fragment;
 import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.hardware.Camera;
 import android.net.Uri;
 import android.os.Environment;
+import android.os.Parcelable;
 import android.provider.MediaStore;
+import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.Surface;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -19,11 +26,15 @@ import android.widget.Toast;
 
 import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.ImageHelper;
+import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.customLayout.ProfilePictureRoundedImageView;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Jerome on 20/04/2015.
@@ -31,6 +42,8 @@ import java.util.Calendar;
 public abstract class SuperCreateUpdateProfileFragment extends Fragment {
 
     protected static final int CROP_IMAGE = 2;
+    protected static final int CHOOSE_CAMERA_GALLERY = 5;
+
 
     protected EditText etFirstName, etLastName, etNotes;
     protected RadioGroup radioSexe;
@@ -121,54 +134,159 @@ public abstract class SuperCreateUpdateProfileFragment extends Fragment {
     }
 
 
-    @Override
-    public void onActivityResult(int request_code, int result_code, Intent datas) {
-        if (request_code == 77) {    // Pick a picture in gallery
-            if (result_code != Activity.RESULT_OK)
-                return;
-            Uri selectedImage = datas.getData();
-            String fpCol[] = {MediaStore.MediaColumns.DATA};
-            Cursor c = getActivity().getContentResolver().query(selectedImage, fpCol, null, null, null);
-            picturePath = "";
-            if (c.moveToFirst()) {
-                int columnIndex = c.getColumnIndex(fpCol[0]);
-                picturePath = c.getString(columnIndex);
-            }
-            c.close();
 
-            try {
-                File file = new File(picturePath);
-                if (file.exists()) {
-                    Uri uri = Uri.fromFile(file);
-                    performCropImage(uri);
-                }
-            } catch (Exception e) {
-                Log.e(Constants.TAG, "Error converting Picture in File : " + e.getMessage());
-            }
+    //Source : http://stackoverflow.com/questions/4455558/allow-user-to-select-camera-or-gallery-for-image
+    private Uri outputFileUri;
+
+    protected void openImageIntent() {
+
+        // Determine Uri of camera image to save.
+        String root = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
+        File myDir = new File(root, "SMXL");
+        myDir.mkdirs();
+        Random rand = new Random();
+        int rndInt = rand.nextInt(13) + 1;
+        final String fname = UserManager.get().getUser().getFirstname()+"_"+UserManager.get().getUser().getLastname()+"_"+rndInt+".png";
+        final File sdImageMainDirectory = new File(myDir, fname);
+        outputFileUri = Uri.fromFile(sdImageMainDirectory);
+
+        // Camera.
+        final List<Intent> cameraIntents = new ArrayList<Intent>();
+        final Intent captureIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        final PackageManager packageManager = getActivity().getPackageManager();
+        final List<ResolveInfo> listCam = packageManager.queryIntentActivities(captureIntent, 0);
+        for(ResolveInfo res : listCam) {
+            final String packageName = res.activityInfo.packageName;
+            final Intent intent = new Intent(captureIntent);
+            intent.setComponent(new ComponentName(res.activityInfo.packageName, res.activityInfo.name));
+            intent.setPackage(packageName);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
+            cameraIntents.add(intent);
         }
 
-        if(request_code == CROP_IMAGE && result_code == Activity.RESULT_OK) {
-            int width = imgProfil.getLayoutParams().width;
-            try {
-                File file = new File(cropImagePath.getPath());
-                if (file.exists()) {
-                    final BitmapFactory.Options options = new BitmapFactory.Options();
-                    options.inJustDecodeBounds = true;
-                    BitmapFactory.decodeFile(file.getAbsolutePath(), options);
+        // Filesystem.
+        final Intent galleryIntent = new Intent(Intent.ACTION_PICK);
+        galleryIntent.setType("image/*");
+        //galleryIntent.setAction(Intent.ACTION_GET_CONTENT);  Rajoute toutes les applis possédant des images
 
-                    // Calculate inSampleSize
-                    options.inSampleSize = ImageHelper.calculateInSampleSize(options, width, width);
+        // Chooser of filesystem options.
+        final Intent chooserIntent = Intent.createChooser(galleryIntent, "Select Source");
 
-                    // Decode bitmap with inSampleSize set
-                    options.inJustDecodeBounds = false;
-                    imgProfil.setImageBitmap(ImageHelper.getCorrectBitmap(BitmapFactory.decodeFile(file.getAbsolutePath(), options), file.getAbsolutePath()));
+        // Add the camera options.
+        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, cameraIntents.toArray(new Parcelable[cameraIntents.size()]));
+
+
+        startActivityForResult(chooserIntent, CHOOSE_CAMERA_GALLERY);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == CHOOSE_CAMERA_GALLERY) {
+                final boolean isCamera;
+                if (data == null) {
+                    isCamera = true;
+                } else {
+                    final String action = data.getAction();
+                    if (action == null) {
+                        isCamera = false;
+                    } else {
+                        isCamera = action.equals(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                    }
                 }
-            } catch (Exception e) {
-                Log.e(Constants.TAG, "Error converting Picture to File : " + e.getMessage());
+
+                //Uri selectedImageUri;
+                if (isCamera) {
+                    //selectedImageUri = outputFileUri;
+
+                    picturePath = outputFileUri.getPath();
+
+
+                    try {
+                        File file = new File(picturePath);
+                        if (file.exists()) {
+                            Uri uri = Uri.fromFile(file);
+                            performCropImage(uri);
+                        }
+                    } catch (Exception e) {
+                        Log.e(Constants.TAG, "Error converting Picture in File : " + e.getMessage());
+                    }
+                } else {
+                    //Récupéré de l'ancien --> si selection gallery
+                    Uri selectedImageUri = data.getData();
+                    String fpCol[] = {MediaStore.MediaColumns.DATA};
+                    Cursor c = getActivity().getContentResolver().query(selectedImageUri, fpCol, null, null, null);
+                    picturePath = "";
+                    if (c.moveToFirst()) {
+                        int columnIndex = c.getColumnIndex(fpCol[0]);
+                        picturePath = c.getString(columnIndex);
+                    }
+                    c.close();
+
+                    try {
+                        File file = new File(picturePath);
+                        if (file.exists()) {
+                            Uri uri = Uri.fromFile(file);
+                            performCropImage(uri);
+                        }
+                    } catch (Exception e) {
+                        Log.e(Constants.TAG, "Error converting Picture in File : " + e.getMessage());
+                    }
+                    //selectedImageUri = data == null ? null : data.getData();
+                }
+            }
+
+            if(requestCode == CROP_IMAGE) {
+                int width = imgProfil.getLayoutParams().width;
+                try {
+                    File file = new File(cropImagePath.getPath());
+                    if (file.exists()) {
+                        final BitmapFactory.Options options = new BitmapFactory.Options();
+                        options.inJustDecodeBounds = true;
+
+                        String picturePath = file.getAbsolutePath();
+                        Bitmap pictureBitmap = BitmapFactory.decodeFile(picturePath, options);
+
+                        // Calculate inSampleSize
+                        options.inSampleSize = ImageHelper.calculateInSampleSize(options, width, width);
+
+                        // Decode bitmap with inSampleSize set
+                        options.inJustDecodeBounds = false;
+
+                        imgProfil.setImageBitmap(ImageHelper.getCorrectBitmap(pictureBitmap, picturePath));
+                    }
+                } catch (Exception e) {
+                    Log.e(Constants.TAG, "Error converting Picture to File : " + e.getMessage());
+                }
             }
         }
     }
 
+
+    public static void setCameraDisplayOrientation(Activity activity,
+                                                   int cameraId, android.hardware.Camera camera) {
+        android.hardware.Camera.CameraInfo info =
+                new android.hardware.Camera.CameraInfo();
+        android.hardware.Camera.getCameraInfo(cameraId, info);
+        int rotation = activity.getWindowManager().getDefaultDisplay()
+                .getRotation();
+        int degrees = 0;
+        switch (rotation) {
+            case Surface.ROTATION_0: degrees = 0; break;
+            case Surface.ROTATION_90: degrees = 90; break;
+            case Surface.ROTATION_180: degrees = 180; break;
+            case Surface.ROTATION_270: degrees = 270; break;
+        }
+
+        int result;
+        if (info.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
+            result = (info.orientation + degrees) % 360;
+            result = (360 - result) % 360;  // compensate the mirror
+        } else {  // back-facing
+            result = (info.orientation - degrees + 360) % 360;
+        }
+        camera.setDisplayOrientation(result);
+    }
 
 
 }
