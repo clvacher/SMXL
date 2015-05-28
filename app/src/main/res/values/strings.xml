@@ -14,19 +14,23 @@
     <string name="garments">Wardrobe</string>
     <string name="profile">Profile</string>
     <string name="title_section_measures">Measures</string>
-    <string name="libBust">Bust size</string>
-    <string name="libSize">Size</string>
+
+    <string name="libHead">Head</string>
+    <string name="libBust">Bust</string>
+    <string name="libSize">Height</string>
     <string name="libWeight">Weight</string>
-    <string name="libChest">Chest size</string>
-    <string name="libWaist">Waist size</string>
-    <string name="libHips">Hips size</string>
+    <string name="libChest">Chest</string>
+    <string name="libWaist">Waist</string>
+    <string name="libHips">Hips</string>
     <string name="measurements">Measures</string>
-    <string name="libCollar">Collar size</string>
-    <string name="libSleeve">Sleeve height</string>
-    <string name="libInseam">Leg height</string>
-    <string name="libFoot">Foot height</string>
-    <string name="changeMeasure">Enter the value</string>
-    <string name="libTaillePopup">Actually size</string><!--sapu-->
+    <string name="libCollar">Neck</string>
+    <string name="libSleeve">Sleeve</string>
+    <string name="libInseam">Leg</string>
+    <string name="libFeet">Feet</string>
+    <string name="libShoulders">Shoulders</string>
+
+    <string name="changeMeasure">Enter value</string>
+    <string name="libTaillePopup">Actual size</string><!--sapu-->
     <string name="libBoutonRetour">Back</string>
     <string name="shareDialogTitle">Share</string>
     <string name="shareDialogEmail">Mail</string>
@@ -65,9 +69,6 @@
     <string name="addGarment">Add Garment</string>
     <string name="removeGarment">Do you want to remove this profile ?</string>
     <string name="viewMore">View more</string>
-    <string name="favoriteColor">Favorite color</string>
-    <string name="too_many_color">You already have 4 favorite colors</string>
-    <string name="addColor">Add color</string>
     <string name="libPointure">Pointure</string>
     <string name="remarque">Notes</string>
     <string name="mesurer">How to mesure</string>

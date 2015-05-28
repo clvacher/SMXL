@@ -1,5 +1,9 @@
 package com.aerolitec.SMXL.model;
 
+import android.util.Log;
+
+import com.aerolitec.SMXL.tools.dbmanager.UserDBManager;
+
 import org.joda.time.LocalDate;
 import org.joda.time.Years;
 
@@ -121,6 +125,31 @@ public class User extends BaseObjects implements Serializable {
         this.unitWeight = convertToInt(unitW);
         this.pointure = convertToDouble(pointure);
         this.thigh = convertToDouble(thigh);
+    }
+
+    public User(String firstname, String lastname, String birthday, int sexe) {
+        this.nickname = firstname+lastname+UserDBManager.userNum;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.birthday = birthday;
+        this.sexe = sexe;
+        this.avatar = null;
+        this.description = null;
+        this.size = 0;
+        this.weight = 0;
+        this.chest = 0;
+        this.collar = 0;
+        this.bust = 0;
+        this.waist = 0;
+        this.hips = 0;
+        this.sleeve = 0;
+        this.inseam = 0;
+        this.feet = 0;
+        this.unitLength = 0;
+        this.unitWeight = 0;
+        this.pointure = 0;
+        this.thigh = 0;
+        Log.d("new User",this.toString());
     }
 
     private int convertToInt(String arg) {

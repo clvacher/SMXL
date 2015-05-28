@@ -15,17 +15,22 @@
     <string name="profile">Profil</string>
     <string name="measurements">Mesures</string>
     <string name="title_section_measures">Mesures</string>
-    <string name="libBust">Tour de poitrine</string>
+
+
+    <string name="libHead">Tête</string>
+    <string name="libBust">Poitrine</string> <!-- /!\ Bust est un faux ami ma gueule : Bust = Poitrine & Chest = Buste -->
     <string name="libSize">Taille</string>
     <string name="libWeight">Poids</string>
-    <string name="libChest">Tour de poitrine</string>
-    <string name="libWaist">Tour de taille</string>
-    <string name="libHips">Tour de hanche</string>
-    <string name="libCollar">Tour de cou</string>
+    <string name="libChest">Buste</string>
+    <string name="libWaist">Taille</string>
+    <string name="libHips">Hanches</string>
+    <string name="libCollar">Cou</string>
     <string name="libPointure">Pointure</string>
     <string name="libSleeve">Manche</string>
-    <string name="libInseam">Hauteur jambe</string>
-    <string name="libFoot">Longueur pied</string>
+    <string name="libInseam">Jambe</string>
+    <string name="libFoot">Pieds</string>
+    <string name="libShoulders">Epaules</string>
+
     <string name="changeMeasure">Entrez la valeur</string>
     <string name="libTaillePopup">Taille actuelle</string>
     <string name="libBoutonRetour">Retour</string>

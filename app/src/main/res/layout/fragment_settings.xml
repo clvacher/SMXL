@@ -11,16 +11,19 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_centerInParent="true"
-        android:layout_margin="5dp"/>
+        android:layout_margin="5dp"
+        android:visibility="gone"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="@string/action_disconnect"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:background="@color/SectionTitle"
         android:id="@+id/buttonClassicDisconnection"
         android:layout_alignBottom="@+id/login_button_settings"
-        android:layout_centerInParent="true"
-        android:visibility="gone"/>
+        android:layout_centerInParent="true"/>
 
 
 </RelativeLayout>

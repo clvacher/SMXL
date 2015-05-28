@@ -140,7 +140,7 @@ public class CreateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
                 UserManager.get().setUser(user);
             }
             else {
-                getActivity().setResult(0);
+                getActivity().setResult(Activity.RESULT_CANCELED);
             }
 
             InputMethodManager mgr = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);

@@ -15,6 +15,9 @@ import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.MainUser;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
+import com.aerolitec.SMXL.tools.manager.UserManager;
+import com.aerolitec.SMXL.tools.serverConnexion.GetMainUserHttpAsyncTask;
+import com.aerolitec.SMXL.tools.serverConnexion.LoginCreateAccountInterface;
 import com.aerolitec.SMXL.tools.serverConnexion.PostMainUserFacebookHttpAsyncTask;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.facebook.AccessToken;
@@ -30,6 +33,7 @@ import com.facebook.ProfileTracker;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
+import org.joda.time.Duration;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -40,7 +44,7 @@ import java.net.URL;
 /**
  * Created by Jerome on 05/05/2015.
  */
-public class ConnexionActivity extends Activity{
+public class ConnexionActivity extends Activity implements LoginCreateAccountInterface{
 
     private final static int CREATE_ACCOUNT=1;
     private final static int LOGIN=2;
@@ -54,9 +58,12 @@ public class ConnexionActivity extends Activity{
     private FacebookCallback<LoginResult> mFacebookCallBack = new FacebookCallback<LoginResult>() {
         @Override
         public void onSuccess(LoginResult loginResult) {
-            AccessToken accessToken  = loginResult.getAccessToken();
-            Profile profile = Profile.getCurrentProfile();
-            displayWelcomeMessage(profile);
+//            AccessToken accessToken  = loginResult.getAccessToken();
+//            Profile profile = Profile.getCurrentProfile();
+//            displayWelcomeMessage(profile);
+
+
+            new GetMainUserHttpAsyncTask(activity).execute();
         }
 
         @Override
@@ -88,7 +95,7 @@ public class ConnexionActivity extends Activity{
             @Override
             protected void onCurrentAccessTokenChanged(AccessToken oldToken, AccessToken newToken) {
                 if (newToken != null && MainUserManager.get().getMainUser() == null) {
-                    queryToSetMainUserWithFacebookToken(newToken);
+                    queryToSetMainUserWithFacebookToken();
                 }
             }
         };
@@ -121,7 +128,7 @@ public class ConnexionActivity extends Activity{
 
     }
 
-    private void queryToSetMainUserWithFacebookToken(AccessToken newToken) {
+    private void queryToSetMainUserWithFacebookToken() {
         GraphRequest request = GraphRequest.newMeRequest(AccessToken.getCurrentAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
             @Override
             public void onCompleted(JSONObject userJson, GraphResponse response) {
@@ -192,28 +199,17 @@ public class ConnexionActivity extends Activity{
         super.onActivityResult(requestCode, resultCode, data);
         mCallbackManager.onActivityResult(requestCode, resultCode, data);
 
-        switch(requestCode){
-            case LOGIN:
-                if (resultCode == RESULT_OK) {
-                    finish();
-                    Intent intent = new Intent(getApplicationContext(), MainNavigationActivity.class);
-                    startActivity(intent);
-                }
-                else{
-                    //finish();
-                }
-                break;
-            case CREATE_ACCOUNT:
-                if (resultCode == RESULT_OK) {
-                    finish();
-                    Intent intent = new Intent(getApplicationContext(), MainNavigationActivity.class);
-                    startActivity(intent);
-                }
-                else{
-                    //finish();
-                }
+        if (resultCode == RESULT_OK) {
+            finish();
+            Intent intent = new Intent(getApplicationContext(), MainNavigationActivity.class);
+            startActivity(intent);
+        }
+        else{
+            Toast.makeText(this,"Result Error", Toast.LENGTH_LONG);
+            //finish();
         }
     }
+
 
 
     public void onClickLogin(View v){
@@ -286,4 +282,25 @@ public class ConnexionActivity extends Activity{
 
     }
 
+    @Override
+    public void alreadyExistingAccount(MainUser mainUser) {
+
+        MainUserManager.get().setMainUser(mainUser);
+
+        UserManager.get().setUser(mainUser.getMainProfile());
+
+        Intent intent = new Intent(getApplicationContext(), MainNavigationActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void nonExistingAccount() {
+        queryToSetMainUserWithFacebookToken();
+    }
+
+    @Override
+    public void serverError(String errorMsg) {
+
+    }
 }

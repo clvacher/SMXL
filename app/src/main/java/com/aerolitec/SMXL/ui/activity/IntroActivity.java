@@ -43,7 +43,7 @@ public class IntroActivity extends Activity {
 
         setContentView(R.layout.activity_intro);
 
-        Log.d("TEST", printKeyHash(this));
+//        Log.d("TEST", printKeyHash(this));
 
         launchIcon = (ImageView)findViewById(R.id.imgLogo);
 

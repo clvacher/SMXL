@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class UserDBManager extends DBManager{
 
-    private static int userNum = 0;
+    public static int userNum = 0;
     public static final String TABLE_NAME = "user";
     public static final String KEY_ID_USER="id_user";
     public static final String KEY_NICKNAME_USER="nickname";
@@ -142,6 +142,7 @@ public class UserDBManager extends DBManager{
         close();
         return user;
     }
+
 
     private User getUserByNickname(String nickname) {
         open();

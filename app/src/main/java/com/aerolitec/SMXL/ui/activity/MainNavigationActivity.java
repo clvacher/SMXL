@@ -98,8 +98,6 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
         drawer.setHeadItemTitle(mainUser.getFirstname() + " " + mainUser.getLastname());
         drawer.setFirstHeadItemPhoto(drawableFactory);
         sectionMyProfile.setIcon(drawableFactory);
-
-        Log.d("COUCOU", mainUser.getFirstname() + " " + mainUser.getLastname());
     }
 
     @Override

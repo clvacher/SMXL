@@ -42,7 +42,6 @@ public class MainUser implements Serializable{
 
     public User getMainProfile() { return SMXL.getUserDBManager().getUser(idMainProfile);} // /!\ renvoie un User en ReadOnly, les set n'affectent pas la base
     public void setMainProfile(User mainProfile) {
-        Log.d("setMainProfile ID", mainProfile.getId_user()+"");
         this.idMainProfile = mainProfile.getId_user();
         this.firstname = mainProfile.getFirstname();
         this.lastname = mainProfile.getLastname();

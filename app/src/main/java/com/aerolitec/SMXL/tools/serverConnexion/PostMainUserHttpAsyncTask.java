@@ -66,7 +66,6 @@ public class PostMainUserHttpAsyncTask extends AsyncTask<Void, Void, String> {
         InputStream inputStream = null;
         String result = "";
         try {
-
             // 1. create HttpClient
             HttpClient httpclient = new DefaultHttpClient();
 
@@ -82,42 +81,52 @@ public class PostMainUserHttpAsyncTask extends AsyncTask<Void, Void, String> {
             jsonObject.accumulate("firstname", user.getFirstname());
             jsonObject.accumulate("email", user.getEmail());
             jsonObject.accumulate("password", user.getPassword());
-            Log.d("TYPE", user.getAccountType()+"");
+            jsonObject.accumulate("sex", user.getSex());
+            String birthday=user.getMainProfile().getBirthday();
+            if(birthday !=null) {
+                jsonObject.accumulate("birthdate", reverseBirthdayOrder(birthday));
+            }
             jsonObject.accumulate("social", user.getAccountType());
+
 
             // 4. convert JSONObject to JSON to String
             json = jsonObject.toString();
 
-            // ** Alternative way to convert Person object to JSON string usin Jackson Lib
+            // ** Alternative way to convert Person object to JSON string using Jackson Lib
             // ObjectMapper mapper = new ObjectMapper();
             // json = mapper.writeValueAsString(person);
 
             // 5. set json to StringEntity
             StringEntity se = new StringEntity(json);
 
+
             // 6. set httpPost Entity
             httpPost.setEntity(se);
+
 
             // 7. Set some headers to inform server about the type of the content� �
             httpPost.setHeader("Accept", "application/json");
             httpPost.setHeader("Content-type", "application/json");
 
+
             // 8. Execute POST request to the given URL
             HttpResponse httpResponse = httpclient.execute(httpPost);
 
+
             // 9. receive response as inputStream
             inputStream = httpResponse.getEntity().getContent();
+
 
             // 10. convert inputstream to string
             if(inputStream != null){
                 result = convertInputStreamToString(inputStream);
             }
-
             else{
                 result = "Did not work!";
             }
 
         } catch (Exception e) {
+            e.printStackTrace();
             Log.d("InputStream", e.getLocalizedMessage());
         }
 
@@ -136,5 +145,9 @@ public class PostMainUserHttpAsyncTask extends AsyncTask<Void, Void, String> {
 
         inputStream.close();
         return result;
+    }
+
+    protected String reverseBirthdayOrder(String birthday){
+        return birthday.substring(6,10)+"-"+birthday.substring(3,5)+"-"+birthday.substring(0,2);
     }
 }

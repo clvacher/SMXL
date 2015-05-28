@@ -10,12 +10,13 @@ import com.aerolitec.SMXL.model.MainUser;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.tools.serverConnexion.GetMainUserHttpAsyncTask;
+import com.aerolitec.SMXL.tools.serverConnexion.LoginCreateAccountInterface;
 import com.aerolitec.SMXL.tools.serverConnexion.PostMainUserHttpAsyncTask;
 
 /**
  * Created by Clement on 5/13/2015.
  */
-public class CreateAccountActivity extends SuperLoginCreateAccountActivity{
+public class CreateAccountActivity extends SuperLoginCreateAccountActivity implements LoginCreateAccountInterface{
 
     private static final int CREATE_ACCOUNT=1;
 
@@ -24,6 +25,7 @@ public class CreateAccountActivity extends SuperLoginCreateAccountActivity{
         super.onCreate(savedInstanceState);
         signIn.setText(getResources().getString(R.string.create_account));
     }
+
 
 
     @Override
@@ -49,18 +51,8 @@ public class CreateAccountActivity extends SuperLoginCreateAccountActivity{
         }
     }
 
-    @Override
-    public void nonExistingAccount(){
-        Intent intent=new Intent(getApplicationContext(), CreateUpdateProfileActivity.class);
-        intent.putExtra("fragmentType", "create");
-        startActivityForResult(intent, CREATE_ACCOUNT);
-    }
-    @Override
-    public void alreadyExistingAccount(MainUser mainUser){
-        signIn.setVisibility(View.VISIBLE);
-        progressBar.setVisibility(View.GONE);
-        requestStatus.setText(getResources().getString(R.string.alreadyExistingAccount));
-    }
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -69,10 +61,30 @@ public class CreateAccountActivity extends SuperLoginCreateAccountActivity{
             case CREATE_ACCOUNT:
                 if(resultCode==RESULT_OK) {
                     MainUserManager.get().getMainUser().setMainProfile(UserManager.get().getUser());
-                    new PostMainUserHttpAsyncTask(this).execute();
+                    PostMainUserHttpAsyncTask tmp =new PostMainUserHttpAsyncTask(this);
+                    tmp.execute();
                 }
                 break;
         }
     }
 
+
+    @Override
+    public void alreadyExistingAccount(MainUser mainUser){
+        signIn.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.GONE);
+        requestStatus.setText(getResources().getString(R.string.alreadyExistingAccount));
+    }
+
+    @Override
+    public void nonExistingAccount(){
+        Intent intent=new Intent(getApplicationContext(), CreateUpdateProfileActivity.class);
+        intent.putExtra("fragmentType", "create");
+        startActivityForResult(intent, CREATE_ACCOUNT);
+    }
+
+    @Override
+    public void serverError(String errorMsg) {
+
+    }
 }

@@ -19,9 +19,11 @@ import android.widget.Toast;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.MainUser;
+import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.tools.serverConnexion.GetMainUserHttpAsyncTask;
+import com.aerolitec.SMXL.tools.serverConnexion.LoginCreateAccountInterface;
 import com.aerolitec.SMXL.ui.SMXL;
 
 import org.apache.http.HttpResponse;
@@ -39,7 +41,7 @@ import java.io.InputStreamReader;
 /**
  * Created by Clement on 5/12/2015.
  */
-public class LoginActivity extends SuperLoginCreateAccountActivity {
+public class LoginActivity extends SuperLoginCreateAccountActivity implements LoginCreateAccountInterface{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +87,18 @@ public class LoginActivity extends SuperLoginCreateAccountActivity {
         }
     }
 
+
+    @Override
+    public void alreadyExistingAccount(MainUser mainUser) {
+        SMXL.getUserDBManager().addUser(UserManager.get().getUser());
+
+        MainUserManager.get().setMainUser(mainUser);
+
+        UserManager.get().setUser(mainUser.getMainProfile());
+        setResult(RESULT_OK);
+        finish();
+    }
+
     @Override
     public void nonExistingAccount() {
         requestStatus.setText(getResources().getString(R.string.errorRetrievingAccount));
@@ -94,14 +108,7 @@ public class LoginActivity extends SuperLoginCreateAccountActivity {
     }
 
     @Override
-    public void alreadyExistingAccount(MainUser mainUser) {
+    public void serverError(String errorMsg) {
 
-        MainUserManager.get().setMainUser(mainUser);
-
-        UserManager.get().setUser(mainUser.getMainProfile());
-
-        Intent intent = new Intent(getApplicationContext(), MainNavigationActivity.class);
-        startActivity(intent);
-        setResult(RESULT_OK);
     }
 }

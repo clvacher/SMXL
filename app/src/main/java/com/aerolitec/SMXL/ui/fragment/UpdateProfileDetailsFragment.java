@@ -135,8 +135,10 @@ public class UpdateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
 
             updateProfile();
 
-        } else if (id == R.id.newPicture) {
-            selectProfilPicture();
+        }
+
+        if (id == android.R.id.home){
+            getActivity().finish();
         }
 
         return super.onOptionsItemSelected(item);

@@ -71,10 +71,4 @@ public abstract class SuperLoginCreateAccountActivity extends Activity implement
             return false;
     }
 
-    public void nonExistingAccount(){
-    }
-
-    public void alreadyExistingAccount(MainUser mainUser){
-    }
-
 }
