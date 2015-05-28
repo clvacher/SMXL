@@ -93,7 +93,7 @@ public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
                     Calendar cal=Calendar.getInstance();
                     cal.setTime(birthDate);
 
-                    String birthdayString = cal.get(Calendar.DAY_OF_MONTH)+"-"+String.format("%02d",cal.get(Calendar.MONTH)+1)+"-"+cal.get(Calendar.YEAR);
+                    String birthdayString = cal.get(Calendar.DAY_OF_MONTH)+"-"+String.format("%02d", cal.get(Calendar.MONTH) + 1)+"-"+cal.get(Calendar.YEAR);
 
                     UserManager.get().setUser(new User(
                             jsonMainUser.optString("firstname"),

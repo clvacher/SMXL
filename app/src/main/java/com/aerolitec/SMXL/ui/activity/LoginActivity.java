@@ -1,6 +1,7 @@
 package com.aerolitec.SMXL.ui.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -24,6 +25,7 @@ import com.aerolitec.SMXL.tools.manager.MainUserManager;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.tools.serverConnexion.GetMainUserHttpAsyncTask;
 import com.aerolitec.SMXL.tools.serverConnexion.LoginCreateAccountInterface;
+import com.aerolitec.SMXL.tools.serverConnexion.PostMainUserHttpAsyncTask;
 import com.aerolitec.SMXL.ui.SMXL;
 
 import org.apache.http.HttpResponse;
@@ -34,6 +36,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -93,8 +96,17 @@ public class LoginActivity extends SuperLoginCreateAccountActivity implements Lo
         SMXL.getUserDBManager().addUser(UserManager.get().getUser());
 
         MainUserManager.get().setMainUser(mainUser);
-
         UserManager.get().setUser(mainUser.getMainProfile());
+
+        try {
+            FileOutputStream fos = openFileOutput(PostMainUserHttpAsyncTask.MAIN_USER_FILE, Context.MODE_PRIVATE);
+            fos.flush();
+            fos.write(MainUserManager.get().getMainUser().getBytes());
+            setResult(Activity.RESULT_OK);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         setResult(RESULT_OK);
         finish();
     }
