@@ -44,17 +44,16 @@ public class SMXL extends Application{
         userDBManager = new UserDBManager(getApplicationContext());
         //metrics = getResources().getDisplayMetrics();
 
-        categoryGarmentDBManager.updateCategoryGarment(1, R.drawable.tshirt);
-        categoryGarmentDBManager.updateCategoryGarment(2, R.drawable.robe);
-        categoryGarmentDBManager.updateCategoryGarment(3, R.drawable.pantalon);
-        categoryGarmentDBManager.updateCategoryGarment(4, R.drawable.chemise);
-        categoryGarmentDBManager.updateCategoryGarment(5, R.drawable.blouson);
-        categoryGarmentDBManager.updateCategoryGarment(6, R.drawable.chaussure);
-        categoryGarmentDBManager.updateCategoryGarment(7, R.drawable.pull);
-        categoryGarmentDBManager.updateCategoryGarment(8, R.drawable.veste);
-        categoryGarmentDBManager.updateCategoryGarment(9, R.drawable.costume);
-        categoryGarmentDBManager.updateCategoryGarment(10, R.drawable.sousvet);
-
+        categoryGarmentDBManager.updateCategoryGarment(1, R.drawable.tshirt_lowpx);
+        categoryGarmentDBManager.updateCategoryGarment(2, R.drawable.robe_lowpx);
+        categoryGarmentDBManager.updateCategoryGarment(3, R.drawable.pantalon_lowpx);
+        categoryGarmentDBManager.updateCategoryGarment(4, R.drawable.chemise_lowpx);
+        categoryGarmentDBManager.updateCategoryGarment(5, R.drawable.blouson_lowpx);
+        categoryGarmentDBManager.updateCategoryGarment(6, R.drawable.chaussure_lowpx);
+        categoryGarmentDBManager.updateCategoryGarment(7, R.drawable.pull_lowpx);
+        categoryGarmentDBManager.updateCategoryGarment(8, R.drawable.veste_lowpx);
+        categoryGarmentDBManager.updateCategoryGarment(9, R.drawable.costume_lowpx);
+        categoryGarmentDBManager.updateCategoryGarment(10, R.drawable.sousvet_lowpx);
 
         picasso = new Picasso.Builder(getApplicationContext())
                 .debugging(false)
