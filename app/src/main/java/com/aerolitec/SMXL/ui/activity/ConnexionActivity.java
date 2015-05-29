@@ -1,6 +1,7 @@
 package com.aerolitec.SMXL.ui.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -20,6 +21,7 @@ import com.aerolitec.SMXL.tools.serverConnexion.GetMainUserFacebookHttpAsyncTask
 import com.aerolitec.SMXL.tools.serverConnexion.GetMainUserHttpAsyncTask;
 import com.aerolitec.SMXL.tools.serverConnexion.LoginCreateAccountInterface;
 import com.aerolitec.SMXL.tools.serverConnexion.PostMainUserFacebookHttpAsyncTask;
+import com.aerolitec.SMXL.tools.serverConnexion.PostMainUserHttpAsyncTask;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
@@ -309,7 +311,14 @@ public class ConnexionActivity extends Activity implements LoginCreateAccountInt
         MainUserManager.get().setMainUser(mainUser);
 
         UserManager.get().setUser(mainUser.getMainProfile());
-        Log.d("alreadyExistingAccount", "Connexion");
+        try {
+            FileOutputStream fos = openFileOutput(PostMainUserHttpAsyncTask.MAIN_USER_FILE, Context.MODE_PRIVATE);
+            fos.flush();
+            fos.write(MainUserManager.get().getMainUser().getBytes());
+            setResult(Activity.RESULT_OK);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         Intent intent = new Intent(getApplicationContext(), MainNavigationActivity.class);
         startActivity(intent);
