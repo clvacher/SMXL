@@ -21,11 +21,14 @@ public class MainUser implements Serializable{
     private String avatar;
     private int idMainProfile;
     private int accountType;
+    private String facebookId;
+
 
     /*
      * 0 connexion classique
      * 1 connexion Facebook
      * 2 ...
+
      */
 
     public String getFirstname() {return firstname;}
@@ -66,10 +69,17 @@ public class MainUser implements Serializable{
     public int getAccountType() {
         return accountType;
     }
-
     public void setAccountType(int accountType) {
         this.accountType = accountType;
     }
+
+    public String getFacebookId() {
+        return facebookId;
+    }
+    public void setFacebookId(String facebookId) {
+        this.facebookId = facebookId;
+    }
+
 
     public MainUser(){super();}
 
@@ -78,7 +88,8 @@ public class MainUser implements Serializable{
         this.email=email;
         this.password = password;
         this.accountType = accountType;
-        setMainProfile(mainProfile);
+        if(mainProfile!=null)
+            setMainProfile(mainProfile);
     }
 
     @Override

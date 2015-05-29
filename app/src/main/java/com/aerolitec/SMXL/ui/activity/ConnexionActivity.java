@@ -16,6 +16,7 @@ import com.aerolitec.SMXL.model.MainUser;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
 import com.aerolitec.SMXL.tools.manager.UserManager;
+import com.aerolitec.SMXL.tools.serverConnexion.GetMainUserFacebookHttpAsyncTask;
 import com.aerolitec.SMXL.tools.serverConnexion.GetMainUserHttpAsyncTask;
 import com.aerolitec.SMXL.tools.serverConnexion.LoginCreateAccountInterface;
 import com.aerolitec.SMXL.tools.serverConnexion.PostMainUserFacebookHttpAsyncTask;
@@ -63,7 +64,19 @@ public class ConnexionActivity extends Activity implements LoginCreateAccountInt
 //            displayWelcomeMessage(profile);
 
 
-            new GetMainUserHttpAsyncTask(activity).execute();
+            GraphRequest request = GraphRequest.newMeRequest(AccessToken.getCurrentAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
+                @Override
+                public void onCompleted(JSONObject userJson, GraphResponse response) {
+                    if (userJson != null) {
+
+                        MainUserManager.get().setMainUser(new MainUser(userJson.optString("email"),"facebook",1,null));
+                        new GetMainUserFacebookHttpAsyncTask(activity).execute();
+                    }
+                }
+            });
+            request.executeAsync();
+
+
         }
 
         @Override
@@ -91,14 +104,14 @@ public class ConnexionActivity extends Activity implements LoginCreateAccountInt
         FacebookSdk.sdkInitialize(getApplicationContext());
         mCallbackManager = CallbackManager.Factory.create();
 
-        mAccessTokenTracker = new AccessTokenTracker() {
-            @Override
-            protected void onCurrentAccessTokenChanged(AccessToken oldToken, AccessToken newToken) {
-                if (newToken != null && MainUserManager.get().getMainUser() == null) {
-                    queryToSetMainUserWithFacebookToken();
-                }
-            }
-        };
+//        mAccessTokenTracker = new AccessTokenTracker() {
+//            @Override
+//            protected void onCurrentAccessTokenChanged(AccessToken oldToken, AccessToken newToken) {
+//                if (newToken != null && MainUserManager.get().getMainUser() == null) {
+//                    queryToSetMainUserWithFacebookToken();
+//                }
+//            }
+//        };
 
         mProfileTracker = new ProfileTracker() {
             @Override
@@ -107,12 +120,13 @@ public class ConnexionActivity extends Activity implements LoginCreateAccountInt
             }
         };
 
-        mAccessTokenTracker.startTracking();
+//        mAccessTokenTracker.startTracking();
         mProfileTracker.startTracking();
 
         //Skips connexion if the mainUser exists
         if((MainUserManager.get().getMainUser())!=null){
             finish();
+            Log.d("connexionSkip", "Connexion");
             Intent intent = new Intent(getApplicationContext(), MainNavigationActivity.class);
             startActivity(intent);
         }
@@ -144,6 +158,7 @@ public class ConnexionActivity extends Activity implements LoginCreateAccountInt
                     //Log.d("email", (userJson.optString("email")).toString());
 
                     finish();
+                    Log.d("queryTosetBlabla", "Connexion");
                     Intent intent = new Intent(getApplicationContext(), MainNavigationActivity.class);
                     startActivity(intent);
                 }
@@ -173,8 +188,12 @@ public class ConnexionActivity extends Activity implements LoginCreateAccountInt
                         null // description
                 )
         );
+        mainUser.setFacebookId(userJson.optString("id"));
 
         MainUserManager.get().setMainUser(mainUser);
+
+        Log.d("ConnexionActivity", MainUserManager.get().getMainUser().toString());
+
         saveProfilePictureMainUserAsPNG();
     }
 
@@ -189,7 +208,7 @@ public class ConnexionActivity extends Activity implements LoginCreateAccountInt
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mAccessTokenTracker.stopTracking();
+//        mAccessTokenTracker.stopTracking();
         mProfileTracker.stopTracking();
     }
     
@@ -198,15 +217,16 @@ public class ConnexionActivity extends Activity implements LoginCreateAccountInt
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         mCallbackManager.onActivityResult(requestCode, resultCode, data);
-
-        if (resultCode == RESULT_OK) {
-            finish();
-            Intent intent = new Intent(getApplicationContext(), MainNavigationActivity.class);
-            startActivity(intent);
-        }
-        else{
-            Toast.makeText(this,"Result Error", Toast.LENGTH_LONG);
-            //finish();
+        if(requestCode == CREATE_ACCOUNT || requestCode == LOGIN){
+            if (resultCode == RESULT_OK) {
+                Log.d("OnactivityResult", "Connexion");
+                finish();
+                Intent intent = new Intent(getApplicationContext(), MainNavigationActivity.class);
+                startActivity(intent);
+            } else {
+                Toast.makeText(this, "Result Error", Toast.LENGTH_LONG);
+                //finish();
+            }
         }
     }
 
@@ -284,10 +304,12 @@ public class ConnexionActivity extends Activity implements LoginCreateAccountInt
 
     @Override
     public void alreadyExistingAccount(MainUser mainUser) {
+        SMXL.getUserDBManager().addUser(UserManager.get().getUser());
 
         MainUserManager.get().setMainUser(mainUser);
 
         UserManager.get().setUser(mainUser.getMainProfile());
+        Log.d("alreadyExistingAccount", "Connexion");
 
         Intent intent = new Intent(getApplicationContext(), MainNavigationActivity.class);
         startActivity(intent);
@@ -296,6 +318,7 @@ public class ConnexionActivity extends Activity implements LoginCreateAccountInt
 
     @Override
     public void nonExistingAccount() {
+        Log.d("nonExistingAccount","Connexion");
         queryToSetMainUserWithFacebookToken();
     }
 

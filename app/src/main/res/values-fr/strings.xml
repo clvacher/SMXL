@@ -129,7 +129,7 @@
     <string name="create_account">Créer le profil!</string>
     <string name="checkingAvailability">Verification de la disponibilité du compte&#8230;</string>
     <string name="alreadyExistingAccount">Compte déja existant!</string>
-    <string name="errorRetrievingAccount">Compte inexistant!</string>
+    <string name="errorRetrievingAccount">Email ou mot de passe erronné!</string>
     
     <string name="Jacket">Vestes/Blousons</string>
     <string name="addColor">Ajouter une couleur</string>

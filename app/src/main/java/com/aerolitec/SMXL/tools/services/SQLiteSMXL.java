@@ -91,6 +91,7 @@ public class SQLiteSMXL extends SQLiteOpenHelper{
         try {
             SQLiteDatabase checkdb = SQLiteDatabase.openDatabase(DATABASE_FILE.getAbsolutePath(), null, SQLiteDatabase.OPEN_READWRITE);
             checkdb.setVersion(DATABASE_VERSION);
+            checkdb.close();
         } catch (SQLiteException e) {
             // bdd n'existe pas
         }

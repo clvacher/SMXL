@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.aerolitec.SMXL.model.MainUser;
+import com.aerolitec.SMXL.tools.UtilityMethods;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
 
 import org.apache.http.HttpResponse;
@@ -38,7 +39,28 @@ public class PostMainUserHttpAsyncTask extends AsyncTask<Void, Void, String> {
 
     @Override
     protected String doInBackground(Void... params) {
-        return POST(SERVER_ADDRESS_CREATE_MAIN_USER, MainUserManager.get().getMainUser());
+        MainUser mainUser = MainUserManager.get().getMainUser();
+        String json = "";
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.accumulate("name", mainUser.getLastname());
+            jsonObject.accumulate("firstname", mainUser.getFirstname());
+            jsonObject.accumulate("email", mainUser.getEmail());
+            jsonObject.accumulate("password", mainUser.getPassword());
+            jsonObject.accumulate("sex", mainUser.getSex());
+            String birthday = mainUser.getMainProfile().getBirthday();
+            if (birthday != null) {
+                jsonObject.accumulate("birthdate", UtilityMethods.reverseBirthdayOrder(birthday));
+            }
+            jsonObject.accumulate("social", mainUser.getAccountType());
+
+            json = jsonObject.toString();
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return POST(SERVER_ADDRESS_CREATE_MAIN_USER, json);
     }
 
     // onPostExecute displays the results of the AsyncTask.
@@ -62,7 +84,7 @@ public class PostMainUserHttpAsyncTask extends AsyncTask<Void, Void, String> {
     }
 
 
-    protected String POST(String url, MainUser user){
+    protected String POST(String url, String json){
         InputStream inputStream = null;
         String result = "";
         try {
@@ -72,29 +94,7 @@ public class PostMainUserHttpAsyncTask extends AsyncTask<Void, Void, String> {
             // 2. make POST request to the given URL
             HttpPost httpPost = new HttpPost(url);
 
-            String json = "";
 
-            // 3. build jsonObject
-
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.accumulate("name", user.getLastname());
-            jsonObject.accumulate("firstname", user.getFirstname());
-            jsonObject.accumulate("email", user.getEmail());
-            jsonObject.accumulate("password", user.getPassword());
-            jsonObject.accumulate("sex", user.getSex());
-            String birthday=user.getMainProfile().getBirthday();
-            if(birthday !=null) {
-                jsonObject.accumulate("birthdate", reverseBirthdayOrder(birthday));
-            }
-            jsonObject.accumulate("social", user.getAccountType());
-
-
-            // 4. convert JSONObject to JSON to String
-            json = jsonObject.toString();
-
-            // ** Alternative way to convert Person object to JSON string using Jackson Lib
-            // ObjectMapper mapper = new ObjectMapper();
-            // json = mapper.writeValueAsString(person);
 
             // 5. set json to StringEntity
             StringEntity se = new StringEntity(json);
@@ -119,7 +119,7 @@ public class PostMainUserHttpAsyncTask extends AsyncTask<Void, Void, String> {
 
             // 10. convert inputstream to string
             if(inputStream != null){
-                result = convertInputStreamToString(inputStream);
+                result = UtilityMethods.convertInputStreamToString(inputStream);
             }
             else{
                 result = "Did not work!";
@@ -133,21 +133,5 @@ public class PostMainUserHttpAsyncTask extends AsyncTask<Void, Void, String> {
         // 11. return result
         Log.d("Result POST", result);
         return result;
-    }
-
-    public static String convertInputStreamToString(InputStream inputStream) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-        String line = "";
-        String result = "";
-        while ((line = bufferedReader.readLine()) != null){
-            result += line;
-        }
-
-        inputStream.close();
-        return result;
-    }
-
-    protected String reverseBirthdayOrder(String birthday){
-        return birthday.substring(6,10)+"-"+birthday.substring(3,5)+"-"+birthday.substring(0,2);
     }
 }

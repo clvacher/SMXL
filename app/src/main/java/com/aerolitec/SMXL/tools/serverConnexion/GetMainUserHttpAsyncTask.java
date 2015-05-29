@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.aerolitec.SMXL.model.MainUser;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.Constants;
+import com.aerolitec.SMXL.tools.UtilityMethods;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
@@ -37,6 +38,7 @@ import java.util.Date;
 public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
 
     public static final String SERVER_ADDRESS_GET_MAIN_USER = "http://api.smxl-app.com/users/logs.json";
+    public static final String SERVER_ADDRESS_GET_MAIN_USER_FACEBOOK = "http://api.smxl-app.com/users/facebooks.json";
     //used for the ability of displaying toasts
     private Context context;
 
@@ -63,7 +65,18 @@ public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
 
     @Override
     protected String doInBackground(String... params) {
-        return GET(SERVER_ADDRESS_GET_MAIN_USER, MainUserManager.get().getMainUser().getEmail(),MainUserManager.get().getMainUser().getPassword());
+        String json = "";
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.accumulate("email", MainUserManager.get().getMainUser().getEmail());
+            jsonObject.accumulate("password", MainUserManager.get().getMainUser().getPassword());
+            json = jsonObject.toString();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return GET(SERVER_ADDRESS_GET_MAIN_USER,json);
     }
 
     @Override
@@ -117,20 +130,12 @@ public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
         }
     }
 
-    protected String GET(String url, String email,String password){
+    protected String GET(String url, String json){
         InputStream inputStream = null;
         String result = "";
         try {
             HttpClient httpclient = new DefaultHttpClient();
             HttpPost httpPost = new HttpPost(url);
-
-            String json = "";
-
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.accumulate("email", email);
-            jsonObject.accumulate("password", password);
-
-            json = jsonObject.toString();
 
             StringEntity se = new StringEntity(json);
             httpPost.setEntity(se);
@@ -143,7 +148,7 @@ public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
             inputStream = httpResponse.getEntity().getContent();
 
             if(inputStream != null){
-                result = PostMainUserHttpAsyncTask.convertInputStreamToString(inputStream);
+                result = UtilityMethods.convertInputStreamToString(inputStream);
 
                 //converts the result to a JSON-convertible String
                 if(!result.equals("null"))

@@ -32,6 +32,8 @@ public class IntroActivity extends Activity {
     private static int SPLASH_TIME_OUT = 2000;
     private RelativeLayout rlIntro;
     private ImageView launchIcon;
+    private Handler offsetHandler;
+    private Runnable r;
 
 
     @Override
@@ -78,26 +80,16 @@ public class IntroActivity extends Activity {
         trans.setInterpolator(new AccelerateInterpolator(1.0f));
         rlIntro.startAnimation(trans);*/
 
-        new Handler().postDelayed(new Runnable() {
-
-            /*
-             * Showing splash screen with a timer. This will be useful when you
-             * want to show case your app logo / company
-             */
-
+        offsetHandler = new Handler();
+        r = new Runnable() {
             @Override
             public void run() {
-                // This method will be executed once the timer is over
-                // Start your app main activity
                 Intent i = new Intent(getApplicationContext(), ConnexionActivity.class);
                 startActivity(i);
-
-                // close this activity
                 finish();
             }
-        }, SPLASH_TIME_OUT);
-
-
+        };
+        offsetHandler.postDelayed(r, SPLASH_TIME_OUT);
     }
 
     public static String printKeyHash(Activity context) {
@@ -131,6 +123,12 @@ public class IntroActivity extends Activity {
         }
 
         return key;
+    }
+
+    @Override
+    public void onBackPressed() {
+        offsetHandler.removeCallbacks(r);
+        super.onBackPressed();
     }
 
     public void getMainUserFromStorage() {
