@@ -1,12 +1,11 @@
 package com.aerolitec.SMXL.ui.activity;
 
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -68,7 +67,7 @@ public class AddGarmentActivity extends FragmentActivity {
                         .commit();
 
                 Log.d("Fragment", fragment.toString());
-                getActionBar().setTitle(getResources().getString(R.string.add_garment));
+                //getActionBar().setTitle(getResources().getString(R.string.add_garment));
             }
         }
         else{
@@ -84,12 +83,12 @@ public class AddGarmentActivity extends FragmentActivity {
         ((ImageView)findViewById(R.id.garmentIcon)).setImageResource(selectedCategory.getIcon());
 
 
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        /*getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setDisplayShowHomeEnabled(false);
         getActionBar().setDisplayShowTitleEnabled(true);
-        getActionBar().setDisplayUseLogoEnabled(false);
+        getActionBar().setDisplayUseLogoEnabled(false);*/
 
     }
 
@@ -217,7 +216,7 @@ public class AddGarmentActivity extends FragmentActivity {
                 .add(R.id.containerAddGarmentActivity, fragment, "type")
                 .commit();
 
-        getActionBar().setTitle(getResources().getString(R.string.edit_garment));
+        //getActionBar().setTitle(getResources().getString(R.string.edit_garment));
     }
 
 

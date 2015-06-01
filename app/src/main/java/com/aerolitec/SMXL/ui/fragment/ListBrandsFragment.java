@@ -1,9 +1,14 @@
 package com.aerolitec.SMXL.ui.fragment;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -116,7 +121,7 @@ public class ListBrandsFragment extends Fragment implements FakeSearchView.OnSea
     }
 
 
-/*
+
     @Override
     public void onCreateOptionsMenu(Menu menu,MenuInflater inflater) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -148,7 +153,7 @@ public class ListBrandsFragment extends Fragment implements FakeSearchView.OnSea
     public boolean onOptionsItemSelected(MenuItem item) {
         return super.onOptionsItemSelected(item);
     }
-*/
+
     @Override
     public void onSearch(FakeSearchView fakeSearchView, CharSequence constraint) {
         //The constraint variable here change every time user input data

@@ -1,7 +1,9 @@
 package com.aerolitec.SMXL.ui.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -9,8 +11,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Filterable;
 import android.widget.GridView;
 import android.widget.Spinner;
 
@@ -19,14 +23,14 @@ import com.aerolitec.SMXL.model.Brand;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
+import com.aerolitec.SMXL.ui.activity.MainNavigationActivity;
 import com.aerolitec.SMXL.ui.adapter.FavoriteCheckableBrandAdapter;
+import com.github.leonardoxh.fakesearchview.FakeSearchView;
 
 import java.util.ArrayList;
 
 
-public class SelectBrandsFragment extends Fragment {
-
-    private View view;
+public class SelectBrandsFragment extends Fragment implements FakeSearchView.OnSearchListener{
 
     private static User user;
     private ArrayList<Brand> brands;
@@ -41,6 +45,8 @@ public class SelectBrandsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        ((MainNavigationActivity)getActivity()).getActionBarToggle().setDrawerIndicatorEnabled(false);
+        ((MainNavigationActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         user = UserManager.get().getUser();
 
@@ -52,9 +58,7 @@ public class SelectBrandsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_select_brands, container, false);
-        //getChildFragmentManager().beginTransaction().add(R.id.containerListFragment, new ListBrandsFragment()).commit();
-        return view;
+        return inflater.inflate(R.layout.fragment_select_brands, container, false);
     }
 
     @Override
@@ -154,26 +158,63 @@ public class SelectBrandsFragment extends Fragment {
 
 
     public void save(){
-        getActivity().finish();
+        //Log.d("list fragments brands 1", getActivity().getSupportFragmentManager().getFragments().toString());
+        //getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
+        getActivity().onBackPressed();
     }
+
 
     @Override
     public void onCreateOptionsMenu(Menu menu,MenuInflater inflater) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getActivity().getMenuInflater().inflate(R.menu.create_profil, menu);
-        super.onCreateOptionsMenu(menu,inflater);
+
+        //getActivity().getMenuInflater().inflate(R.menu.search_brand, menu);
+        //super.onCreateOptionsMenu(menu,inflater);
+
+        inflater.inflate(R.menu.search_brand, menu);
+        MenuItem menuItem = menu.findItem(R.id.fake_search);
+        final FakeSearchView fakeSearchView = (FakeSearchView) MenuItemCompat.getActionView(menuItem);
+        fakeSearchView.setOnSearchListener(this);
+
+        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                //get focus
+                item.getActionView().requestFocus();
+                //get input method
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+                return true;  // Return true to expand action view
+            }
+        });
+
+
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if(id==R.id.validate){
-            save();
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // your code for order here
+                ((MainNavigationActivity)getActivity()).onBackPressed();
+                return true;
         }
-        if (id == (android.R.id.home)){
-            getActivity().finish();
-        }
+        return true;
+    }
 
-        return super.onOptionsItemSelected(item);
+    @Override
+    public void onSearch(FakeSearchView fakeSearchView, CharSequence constraint) {
+        //The constraint variable here change every time user input data
+        ((Filterable)gridViewBrands.getAdapter()).getFilter().filter(constraint);
+    /* Any adapter that implements a Filterable interface, or just extends the built in FakeSearchAdapter
+       and implements the searchitem on your model to a custom filter logic */
+    }
+
+    @Override
+    public void onSearchHint(FakeSearchView fakeSearchView, CharSequence charSequence) {
+        //This is received when the user click in the search button on the keyboard
+        ((Filterable)gridViewBrands.getAdapter()).getFilter().filter(charSequence);
+        InputMethodManager inputManager = ( InputMethodManager ) getActivity().getSystemService(getActivity().INPUT_METHOD_SERVICE);
+        inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 }

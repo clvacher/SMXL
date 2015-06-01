@@ -8,15 +8,9 @@ import android.widget.Toast;
 
 import com.aerolitec.SMXL.model.MainUser;
 import com.aerolitec.SMXL.model.User;
-import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.UtilityMethods;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
 import com.aerolitec.SMXL.tools.manager.UserManager;
-import com.aerolitec.SMXL.ui.SMXL;
-import com.aerolitec.SMXL.ui.activity.CreateAccountActivity;
-import com.aerolitec.SMXL.ui.activity.CreateUpdateProfileActivity;
-import com.aerolitec.SMXL.ui.activity.LoginActivity;
-import com.aerolitec.SMXL.ui.activity.SuperLoginCreateAccountActivity;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;

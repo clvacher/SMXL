@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,6 @@ import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.services.OnProfileSelected;
 import com.aerolitec.SMXL.ui.SMXL;
-import com.aerolitec.SMXL.ui.activity.CreateUpdateProfileActivity;
 import com.aerolitec.SMXL.ui.adapter.ProfileItem;
 import com.aerolitec.SMXL.ui.adapter.ProfilesAdapter;
 import com.aerolitec.SMXL.ui.fragment.dialog.ConfirmDialogFragment;
@@ -26,17 +26,12 @@ public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.
 
     private final static int DELETE_PROFILE = 1;
 
+    private Fragment fragment = this;
     private View view;
     private ArrayList<ProfileItem> profileItem;
     private ProfilesAdapter profilesAdapter;
     private GridView gridViewProfiles;
 
-
-
-    public static ProfilesFragment newInstance() {
-        ProfilesFragment fragment = new ProfilesFragment();
-        return fragment;
-    }
     public ProfilesFragment() {
         // Required empty public constructor
     }
@@ -126,11 +121,18 @@ public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             if(position>0) {
                 itemProfileListener.profileSelect(profileItem.get(position));
+                //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new ProfilesDetailFragment()).commit();
             }
             else{
-                Intent intent = new Intent(getActivity().getApplicationContext(), CreateUpdateProfileActivity.class);
-                intent.putExtra("fragmentType","create");
-                startActivity(intent);
+                //Intent intent = new Intent(getActivity().getApplicationContext(), CreateUpdateProfileActivity.class);
+                Intent intent = new Intent(getActivity().getApplicationContext(), EnChantierFragment.class);
+                intent.putExtra("fragmentType", "create");
+                //startActivity(intent);
+                //getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).add(R.id.frame_container, new EnChantierFragment()).commit();
+
+
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.frame_container, new CreateProfileDetailsFragment()).commit();
+
             }
         }
     };
@@ -148,20 +150,13 @@ public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.
         }
     }
 
-
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-
-        outState.putSerializable("profiles", profileItem);
-    }
-
     @Override
     public void onResume(){
+        Log.d("Profiles fragment", "RESUME");
         super.onResume();
         profileItem.clear();
         loadProfiles();
     }
+
 
 }
