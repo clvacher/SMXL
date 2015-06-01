@@ -40,7 +40,8 @@ public class AddMeasureActivity extends Activity {
     /**
      * A placeholder fragment containing a simple view.
      */
-/*    public static class PlaceholderFragment extends Fragment {
+    /*
+    public static class PlaceholderFragment extends Fragment {
 
         private static final int ID_HEAD = 1;
         private static final int ID_SIZE = 2;
@@ -460,5 +461,6 @@ public class AddMeasureActivity extends Activity {
         public void setPointure(double pointure) {
             this.pointure = pointure;
         }
-    }*/
+    }
+    */
 }

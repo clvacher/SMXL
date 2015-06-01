@@ -1,5 +1,7 @@
 package com.aerolitec.SMXL.ui.fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -15,14 +18,20 @@ import android.widget.TextView;
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.manager.UserManager;
+import com.aerolitec.SMXL.ui.adapter.MeasureItem;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class MeasureDetailFragment extends Fragment {
 
     private User user;
     private View view;
-    private TextView tvHead, tvNeck, tvShoulder, tvChest, tvWaist, tvHips, tvSleeve, tvThigh, tvHeight, tvInseam, tvFeet;
+    private TextView tvNeck, tvChest, tvWaist, tvHips, tvSleeve, tvThigh, tvHeight, tvInseam, tvFeet;
     private FrameLayout sizesImageLayout;
+
+    private ArrayList<MeasureItem> measureItems;
 
     private RelativeLayout test2;
 
@@ -43,8 +52,9 @@ public class MeasureDetailFragment extends Fragment {
         sizesImageLayout = (FrameLayout) getActivity().findViewById(R.id.container);
 
         findMeasureItemsInView(view);
+        loadMeasures();
 
-        //placeMeasureItems();
+
         test2 = (RelativeLayout) view.findViewById(R.id.sizesImageLayout);
 
         ViewTreeObserver vto = test2.getViewTreeObserver();
@@ -87,6 +97,7 @@ public class MeasureDetailFragment extends Fragment {
         };
         test.execute();
         */
+
         return view;
     }
 
@@ -98,9 +109,7 @@ public class MeasureDetailFragment extends Fragment {
     }
 
     private void findMeasureItemsInView(View v) {
-        tvHead = (TextView) v.findViewById(R.id.tvHead);
         tvNeck = (TextView) v.findViewById(R.id.tvNeck);
-        tvShoulder = (TextView) v.findViewById(R.id.tvShoulder);
         tvChest = (TextView) v.findViewById(R.id.tvChest);
         tvWaist = (TextView) v.findViewById(R.id.tvWaist);
         tvSleeve = (TextView) v.findViewById(R.id.tvSleeve);
@@ -111,28 +120,39 @@ public class MeasureDetailFragment extends Fragment {
         tvFeet = (TextView) v.findViewById(R.id.tvFeet);
     }
 
+    private void loadMeasures(){
+//        tvNeck.setText(user.getCollar()+"");
+//        tvChest.setText(user.getChest()+"");
+//        tvWaist.setText(user.getWaist()+"");
+//        tvSleeve.setText(user.getSleeve()+"");
+//        tvHips.setText(user.getSleeve()+"");
+//        tvHeight.setText(user.getSize()+"");
+//        tvThigh.setText(user.getThigh()+"");
+//        tvInseam.setText(user.getInseam()+"");
+//        tvFeet.setText(user.getFeet()+"");
+    }
+
+    private void setListeners(){
+        tvNeck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                View measureDialog = (LayoutInflater.from(getActivity())).inflate(R.layout.measure_dialog, null);
+
+                (new AlertDialog.Builder(getActivity())).setView(measureDialog);
+
+                ((TextView) measureDialog.findViewById(R.id.textView1)).setText("");
+            }
+        });
+    }
+
 
     private void placeMeasureItems() {
-
-/*
-        int totalHeight=sizesImageLayout.getHeight(),
-                totalWidth = Math.round(totalHeight/1.41617f);
-        Log.d("getHeight",totalHeight+"");
-        Log.d("getMeasuredHeight",sizesImageLayout.getMeasuredHeight()+"");
-        Log.d("getWidth",sizesImageLayout.getWidth()+"");
-        Log.d("getMeasuredWidth",sizesImageLayout.getMeasuredWidth()+"");
-        Log.d("calculatedwidth",totalWidth+"");
-        */
         test2 = (RelativeLayout) view.findViewById(R.id.sizesImageLayout);
         int totalHeight = test2.getHeight(), totalWidth = test2.getWidth();
         Log.d("getHeight", totalHeight + "");
         Log.d("getWidth", totalWidth + "");
 
-        tvHead.setY(totalHeight * 2 / 100);
-
         tvNeck.setY(totalHeight * 13.1f / 100);
-
-        tvShoulder.setY(totalHeight * 18.5f / 100);
 
         tvChest.setY(totalHeight * 28 / 100);
 
@@ -154,6 +174,7 @@ public class MeasureDetailFragment extends Fragment {
         tvFeet.setX(totalWidth * 60 / 100);
         tvFeet.setY(totalHeight * 93.5f / 100);
     }
+
 }
 /*
     private User user;

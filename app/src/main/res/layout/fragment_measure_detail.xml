@@ -30,16 +30,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvShoulder"
-                android:background="@drawable/measure_item_background"
-                android:hint="@string/libShoulders"
-                android:textColorHint="@android:color/white"
-                android:layout_centerHorizontal="true"
-                android:paddingLeft="@dimen/measureTvPadding"
-                android:paddingRight="@dimen/measureTvPadding"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/tvChest"
                 android:background="@drawable/measure_item_background"
                 android:hint="@string/libChest"
@@ -76,17 +66,6 @@
                 android:hint="@string/libSleeve"
                 android:background="@drawable/measure_item_background"
                 android:textColorHint="@android:color/white"
-                android:paddingLeft="@dimen/measureTvPadding"
-                android:paddingRight="@dimen/measureTvPadding"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvHead"
-                android:background="@drawable/measure_item_background"
-                android:hint="@string/libHead"
-                android:textColorHint="@android:color/white"
-                android:layout_centerHorizontal="true"
                 android:paddingLeft="@dimen/measureTvPadding"
                 android:paddingRight="@dimen/measureTvPadding"/>
 
