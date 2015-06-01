@@ -160,7 +160,15 @@ public class SelectBrandsFragment extends Fragment implements FakeSearchView.OnS
     public void save(){
         //Log.d("list fragments brands 1", getActivity().getSupportFragmentManager().getFragments().toString());
         //getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
-        getActivity().onBackPressed();
+        InputMethodManager inputManager = ( InputMethodManager ) getActivity().getSystemService(getActivity().INPUT_METHOD_SERVICE);
+        if(inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS)){
+            getActivity().onBackPressed();
+        }
+
+        getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
+
+
+        //getActivity().onBackPressed();
     }
 
 
