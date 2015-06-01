@@ -48,7 +48,7 @@
         <!--item name="sectionBackgroundColor">@color/DefaultBackgroundColor</item-->
     </style>
 
-    <style name="MyNavigationDrawerTheme" parent="MaterialNavigationDrawerTheme.Light.DarkActionBar" >
+    <style name="MyNavigationDrawerTheme" parent="MaterialNavigationDrawerTheme.Light.DarkActionBar">
         <!-- Other customization -->
         <item name="drawerColor">@color/DefaultBackgroundColor</item>
         <item name="sectionStyle">@style/MySectionTheme</item>

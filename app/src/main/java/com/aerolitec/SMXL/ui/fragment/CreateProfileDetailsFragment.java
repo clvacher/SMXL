@@ -2,10 +2,11 @@ package com.aerolitec.SMXL.ui.fragment;
 
 
 import android.app.Activity;
-import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -25,12 +26,14 @@ import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
+import com.aerolitec.SMXL.ui.activity.MainNavigationActivity;
 import com.aerolitec.SMXL.ui.customLayout.ProfilePictureRoundedImageView;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class CreateProfileDetailsFragment extends SuperCreateUpdateProfileFragment {
+
 
 
     public CreateProfileDetailsFragment() {
@@ -41,6 +44,8 @@ public class CreateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        ((MainNavigationActivity)getActivity()).getActionBarToggle().setDrawerIndicatorEnabled(false);
+        ((MainNavigationActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -86,7 +91,6 @@ public class CreateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
     public void onCreateOptionsMenu(Menu menu,MenuInflater inflater) {
 
         // Inflate the menu; this adds items to the action bar if it is present.
-
         getActivity().getMenuInflater().inflate(R.menu.create_profil, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
@@ -96,16 +100,16 @@ public class CreateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        switch (item.getItemId()){
+            case R.id.validate :
+                createProfile();
+                return true;
 
-        if (id == R.id.validate) {
-            createProfile();
+            case android.R.id.home:
+                // your code for order here
+                ((MainNavigationActivity)getActivity()).onBackPressed();
+                return true;
         }
-
-        if (id == android.R.id.home){
-            getActivity().finish();
-        }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -151,7 +155,11 @@ public class CreateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
                 e.printStackTrace();
             }
 
-            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.activity_create_profile,new SelectBrandsFragment()).commit();
+           // Log.d("list fragments create 1", getActivity().getSupportFragmentManager().getFragments().toString());
+            FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).add(R.id.frame_container, new SelectBrandsFragment());
+            getActivity().onBackPressed();
+            ft.commit();
+
         }
     }
 
@@ -160,4 +168,6 @@ public class CreateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
         i.setType("image/*");
         startActivityForResult(i, 77);
     }
+
+
 }

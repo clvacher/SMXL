@@ -38,13 +38,13 @@ public class ProfilDetailActivity extends FragmentActivity{
                     .commit();
         }
 
-        getActionBar().setTitle(" ");
+        /*getActionBar().setTitle(" ");
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setDisplayShowHomeEnabled(false);
         getActionBar().setDisplayShowTitleEnabled(true);
-        getActionBar().setDisplayUseLogoEnabled(false);
+        getActionBar().setDisplayUseLogoEnabled(false);*/
 
         tab1= (LinearLayout) findViewById(R.id.profile);
         final TextView tv1=(TextView)findViewById(R.id.textView1);

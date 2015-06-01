@@ -32,8 +32,7 @@ import com.aerolitec.SMXL.ui.fragment.ProfilesFragment;
 import com.aerolitec.SMXL.ui.fragment.SettingsFragment;
 import com.aerolitec.SMXL.ui.fragment.SizeGuideFragment;
 import com.aerolitec.SMXL.ui.fragment.WardrobeDetailFragment;
-import com.facebook.AccessToken;
-import com.facebook.AccessTokenTracker;
+import com.facebook.FacebookSdk;
 import com.facebook.Profile;
 import com.facebook.ProfileTracker;
 
@@ -42,7 +41,6 @@ import java.io.File;
 import de.madcyph3r.materialnavigationdrawer.MaterialNavigationDrawer;
 import de.madcyph3r.materialnavigationdrawer.head.MaterialHeadItem;
 import de.madcyph3r.materialnavigationdrawer.listener.MaterialSectionChangeListener;
-import de.madcyph3r.materialnavigationdrawer.listener.MaterialSectionOnClickListener;
 import de.madcyph3r.materialnavigationdrawer.menu.MaterialMenu;
 import de.madcyph3r.materialnavigationdrawer.menu.item.MaterialDevisor;
 import de.madcyph3r.materialnavigationdrawer.menu.item.MaterialSection;
@@ -59,7 +57,6 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
     MaterialHeadItem mainUserHeadItem = null;
     MaterialSection sectionMyProfile = null;
 
-    AccessTokenTracker mAccessTokenTracker;
     ProfileTracker mProfileTracker;
     int i=1;
 
@@ -69,6 +66,7 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
         return MaterialNavigationDrawer.DRAWERHEADER_HEADITEMS;
     }
 
+
     @Override
     public void onBackPressed() {
         if(drawerOpen){
@@ -77,12 +75,15 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
         else{
             super.onBackPressed();
         }
+        if(getSupportFragmentManager().getBackStackEntryCount()==0){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+            getActionBarToggle().setDrawerIndicatorEnabled(true);
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        mAccessTokenTracker.startTracking();
         mProfileTracker.startTracking();
         if(mainUser!=null){
             setValueMainUserHeadItem();
@@ -103,7 +104,6 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mAccessTokenTracker.stopTracking();
         mProfileTracker.stopTracking();
     }
 
@@ -111,8 +111,10 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
     @Override
     public void init(Bundle savedInstanceState) {
 
+        FacebookSdk.sdkInitialize(getApplicationContext());
 
         drawer = this;
+
         drawer.setDrawerStateListener(new DrawerLayout.DrawerListener() {
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
@@ -154,14 +156,6 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
         };
         mProfileTracker.startTracking();
 
-         mAccessTokenTracker = new AccessTokenTracker() {
-            @Override
-            protected void onCurrentAccessTokenChanged(AccessToken oldToken, AccessToken newToken) {
-
-            }
-        };
-        mAccessTokenTracker.startTracking();
-
         //Log.d("Main user picture", MainUserManager.get().getMainUser().getAvatar().toString());
 
 
@@ -180,17 +174,6 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
         };
 
         MaterialMenu menu = new MaterialMenu();
-
-        MaterialSection materialSection = new MaterialSection(getApplicationContext(), true, 0, false, materialSectionChangeListener);
-        materialSection.setTarget(new SizeGuideFragment());
-        materialSection.setOnClickListener(new MaterialSectionOnClickListener() {
-            @Override
-            public void onClick(MaterialSection materialSection, View view) {
-                drawer.onClick(materialSection, view);
-            }
-        });
-        materialSection.setTitle("COUCOU");
-        //menu.addItem(materialSection);
 
         // first section is loaded
 
@@ -274,9 +257,6 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
                 File file = new File(urlImage);
 
                 if (file.exists()) {
-                    //Log.d("Bitmap WARNING ProfActi", MainUserManager.get().getMainUser().getAvatar().toString());
-                    //Log.d("Bitmap WARNING ProfActi", file.getAbsolutePath());
-
                     return BitmapFactory.decodeFile(file.getAbsolutePath());
                 }
             } catch (Exception e) {
@@ -286,7 +266,6 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
 
         return BitmapFactory.decodeResource(getResources(), R.drawable.avatar);
     }
-
 
 
 }

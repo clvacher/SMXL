@@ -30,9 +30,9 @@ public class CreateUpdateProfileActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_create_profile);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setHomeButtonEnabled(true);
-        getActionBar().setDisplayShowTitleEnabled(false);
+        //getActionBar().setDisplayHomeAsUpEnabled(true);
+        //getActionBar().setHomeButtonEnabled(true);
+        //getActionBar().setDisplayShowTitleEnabled(false);
 
 
         String fragmentType=getIntent().getStringExtra("fragmentType");
