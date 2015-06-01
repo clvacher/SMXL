@@ -27,6 +27,7 @@ import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.activity.MainNavigationActivity;
+import com.aerolitec.SMXL.ui.activity.SuperNavigationActivity;
 import com.aerolitec.SMXL.ui.customLayout.ProfilePictureRoundedImageView;
 
 /**
@@ -34,7 +35,7 @@ import com.aerolitec.SMXL.ui.customLayout.ProfilePictureRoundedImageView;
  */
 public class CreateProfileDetailsFragment extends SuperCreateUpdateProfileFragment {
 
-
+    SuperNavigationActivity superNavigationActivity;
 
     public CreateProfileDetailsFragment() {
         // Required empty public constructor
@@ -43,9 +44,10 @@ public class CreateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        superNavigationActivity = (SuperNavigationActivity)getActivity();
         setHasOptionsMenu(true);
-        ((MainNavigationActivity)getActivity()).getActionBarToggle().setDrawerIndicatorEnabled(false);
-        ((MainNavigationActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        superNavigationActivity.setBarAsNextFragment();
+        superNavigationActivity.updateTitle(R.string.createProfil);
     }
 
     @Override
@@ -156,9 +158,11 @@ public class CreateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
             }
 
            // Log.d("list fragments create 1", getActivity().getSupportFragmentManager().getFragments().toString());
-            FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).add(R.id.frame_container, new SelectBrandsFragment());
+            FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction().add(R.id.frame_container, new SelectBrandsFragment());
             getActivity().onBackPressed();
             ft.commit();
+            superNavigationActivity.updateHamburger();
+            superNavigationActivity.restoreDefaultTitleCurrentSection();
 
         }
     }

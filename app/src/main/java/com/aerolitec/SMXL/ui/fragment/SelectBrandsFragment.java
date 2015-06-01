@@ -24,6 +24,7 @@ import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.activity.MainNavigationActivity;
+import com.aerolitec.SMXL.ui.activity.SuperNavigationActivity;
 import com.aerolitec.SMXL.ui.adapter.FavoriteCheckableBrandAdapter;
 import com.github.leonardoxh.fakesearchview.FakeSearchView;
 
@@ -32,6 +33,7 @@ import java.util.ArrayList;
 
 public class SelectBrandsFragment extends Fragment implements FakeSearchView.OnSearchListener{
 
+    SuperNavigationActivity superNavigationActivity;
     private static User user;
     private ArrayList<Brand> brands;
     private ArrayList<Brand> brandsSelected;
@@ -45,8 +47,9 @@ public class SelectBrandsFragment extends Fragment implements FakeSearchView.OnS
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        ((MainNavigationActivity)getActivity()).getActionBarToggle().setDrawerIndicatorEnabled(false);
-        ((MainNavigationActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        superNavigationActivity = (SuperNavigationActivity) getActivity();
+        superNavigationActivity.setBarAsNextFragment();
+        superNavigationActivity.updateTitle(R.string.title_activity_select_brands);
 
         user = UserManager.get().getUser();
 
@@ -158,17 +161,16 @@ public class SelectBrandsFragment extends Fragment implements FakeSearchView.OnS
 
 
     public void save(){
-        //Log.d("list fragments brands 1", getActivity().getSupportFragmentManager().getFragments().toString());
-        //getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
+
         InputMethodManager inputManager = ( InputMethodManager ) getActivity().getSystemService(getActivity().INPUT_METHOD_SERVICE);
         if(inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS)){
             getActivity().onBackPressed();
         }
 
-        getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
+        superNavigationActivity.getSupportFragmentManager().beginTransaction().remove(this).commit();
+        superNavigationActivity.updateHamburger();
+        superNavigationActivity.restoreDefaultTitleCurrentSection();
 
-
-        //getActivity().onBackPressed();
     }
 
 

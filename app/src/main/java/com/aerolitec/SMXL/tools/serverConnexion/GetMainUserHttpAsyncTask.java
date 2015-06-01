@@ -3,6 +3,7 @@ package com.aerolitec.SMXL.tools.serverConnexion;
 import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -47,6 +48,24 @@ public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
         try {
             if (context instanceof LoginCreateAccountInterface)
                 loginCreateAccountInterface = (LoginCreateAccountInterface) context;
+            else
+                throw new Exception("Activity using GetMainUserHttpAsyncTask must implement LoginCreateAccountInterface");
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            cancel(true);
+        }
+
+    }
+
+    public GetMainUserHttpAsyncTask(Fragment fragment) {
+        super();
+        this.context=fragment.getActivity();
+
+        //Casting of the calling activity to the correct interface. Raises exception if it fails
+        try {
+            if (fragment instanceof LoginCreateAccountInterface)
+                loginCreateAccountInterface = (LoginCreateAccountInterface) fragment;
             else
                 throw new Exception("Activity using GetMainUserHttpAsyncTask must implement LoginCreateAccountInterface");
         }

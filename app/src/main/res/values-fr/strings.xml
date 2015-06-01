@@ -53,7 +53,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_profil_detail">ProfilDetailActivity</string>
     <string name="title_activity_add_measure">AddMeasure</string>
-    <string name="createProfil">Creer un nouveau profile</string>
+    <string name="createProfil">Nouveau Profil</string>
     <string name="title_activity_measure_pager">Mesures</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_share_profil">ShareProfil</string>
@@ -91,7 +91,7 @@
     <string name="buttonNextStep">Etape Suivante</string>
     <string name="size_guide">Guides des tailles</string>
     <string name="title_activity_size_guide">SizeGuideActivity</string>
-    <string name="title_activity_select_brands">Sélectionnez vos marques favorites</string>
+    <string name="title_activity_select_brands">Marques Favorites</string>
     <string name="manage_favorite_brands">Gérez vos marques favorites</string>
     <string name="favorite_brands">Marques favorites</string>
     <string name="all_Brands">Toutes les marques</string>

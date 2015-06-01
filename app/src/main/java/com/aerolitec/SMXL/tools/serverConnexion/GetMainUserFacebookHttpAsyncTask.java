@@ -1,6 +1,7 @@
 package com.aerolitec.SMXL.tools.serverConnexion;
 
 import android.app.Activity;
+import android.support.v4.app.Fragment;
 
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
 
@@ -13,6 +14,10 @@ public class GetMainUserFacebookHttpAsyncTask extends GetMainUserHttpAsyncTask{
 
     public GetMainUserFacebookHttpAsyncTask(Activity context) {
         super(context);
+    }
+
+    public GetMainUserFacebookHttpAsyncTask(Fragment fragment) {
+        super(fragment);
     }
 
     @Override

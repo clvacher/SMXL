@@ -20,6 +20,7 @@ import com.aerolitec.SMXL.model.MainUser;
 /**
  * Created by Clement on 5/18/2015.
  */
+/*
 public abstract class SuperLoginCreateAccountActivity extends Activity implements View.OnClickListener{
 
     protected AutoCompleteTextView email;
@@ -72,3 +73,4 @@ public abstract class SuperLoginCreateAccountActivity extends Activity implement
     }
 
 }
+*/
