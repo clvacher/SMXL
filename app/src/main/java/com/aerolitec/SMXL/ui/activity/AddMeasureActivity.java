@@ -40,7 +40,8 @@ public class AddMeasureActivity extends Activity {
     /**
      * A placeholder fragment containing a simple view.
      */
-/*    public static class PlaceholderFragment extends Fragment {
+/*
+    public static class PlaceholderFragment extends Fragment {
 
         private static final int ID_HEAD = 1;
         private static final int ID_SIZE = 2;
@@ -222,7 +223,7 @@ public class AddMeasureActivity extends Activity {
             }
             measureItems.add(new MeasureItem(ID_HEAD, getResources().getString(R.string.libSize) + " (" + unit[0]+" )", 0));
 
-            measureItems.add(new MeasureItem(ID_SIZE, getResources().getString(R.string.libSize) + " (" + unit[0]+" )", user.getSize()/coeff));
+            measureItems.add(new MeasureItem(ID_SIZE, getResources().getString(R.string.libSize) + " (" + unit[0]+" )", user.getHeight()/coeff));
             measureItems.add(new MeasureItem(ID_WEIGHT, getResources().getString(R.string.libWeight) + " (" + unit[1]+")", user.getWeight()/coeffW));
             measureItems.add(new MeasureItem(ID_COLLAR, getResources().getString(R.string.libCollar) + " (" + unit[0]+" )", user.getCollar()/coeff));
             if (user.getSexe().startsWith("F")) {
@@ -382,7 +383,7 @@ public class AddMeasureActivity extends Activity {
             if (user.getUnitWeight()==Constants.POUNDS){
                 coeffW = Constants.pounds;
             }
-            user.setSize(getItemFromId(ID_SIZE).getValueMeasure() * coeff);
+            user.setHeight(getItemFromId(ID_SIZE).getValueMeasure() * coeff);
             user.setWeight(getItemFromId(ID_WEIGHT).getValueMeasure() * coeffW);
             user.setCollar(getItemFromId(ID_COLLAR).getValueMeasure() * coeff);
             user.setBust(getItemFromId(ID_CHEST).getValueMeasure() * coeff);
@@ -460,5 +461,6 @@ public class AddMeasureActivity extends Activity {
         public void setPointure(double pointure) {
             this.pointure = pointure;
         }
-    }*/
+    }
+    */
 }

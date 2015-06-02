@@ -132,8 +132,8 @@ public class SQLiteSMXL extends SQLiteOpenHelper{
                 b.setDim1(c.getInt(3));
                 b.setDim2(c.getInt(4));
                 b.setDim3(c.getInt(5));
-                b.setSize(c.getString(6));
-                if (!b.getSize().equals("0")) {
+                b.setHeight(c.getString(6));
+                if (!b.getHeight().equals("0")) {
                     sizes.add(b);
                 }
                 eof = c.moveToNext();

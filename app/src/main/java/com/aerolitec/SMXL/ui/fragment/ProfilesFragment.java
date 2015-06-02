@@ -16,6 +16,7 @@ import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.services.OnProfileSelected;
 import com.aerolitec.SMXL.ui.SMXL;
+import com.aerolitec.SMXL.ui.activity.CreateUpdateProfileActivity;
 import com.aerolitec.SMXL.ui.adapter.ProfileItem;
 import com.aerolitec.SMXL.ui.adapter.ProfilesAdapter;
 import com.aerolitec.SMXL.ui.fragment.dialog.ConfirmDialogFragment;
@@ -124,14 +125,8 @@ public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.
                 //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new ProfilesDetailFragment()).commit();
             }
             else{
-                //Intent intent = new Intent(getActivity().getApplicationContext(), CreateUpdateProfileActivity.class);
-                Intent intent = new Intent(getActivity().getApplicationContext(), EnChantierFragment.class);
-                intent.putExtra("fragmentType", "create");
-                //startActivity(intent);
-                //getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).add(R.id.frame_container, new EnChantierFragment()).commit();
-
-
-                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.frame_container, new CreateProfileDetailsFragment()).commit();
+                Intent intent = new Intent(getActivity().getApplicationContext(), CreateUpdateProfileActivity.class);
+                startActivity(intent);
 
             }
         }

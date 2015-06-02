@@ -93,7 +93,7 @@ public class LoginActivity extends SuperLoginCreateAccountActivity implements Lo
 
 
     @Override
-    public void alreadyExistingAccount(MainUser mainUser) {
+    public void accountRetrieved(MainUser mainUser) {
         SMXL.getUserDBManager().addUser(UserManager.get().getUser());
 
         MainUserManager.get().setMainUser(mainUser);

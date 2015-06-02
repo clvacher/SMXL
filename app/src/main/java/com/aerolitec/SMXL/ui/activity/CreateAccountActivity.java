@@ -58,10 +58,10 @@ public class CreateAccountActivity extends SuperLoginCreateAccountActivity imple
 
 
     @Override
-    public void alreadyExistingAccount(MainUser mainUser){
+    public void accountRetrieved(MainUser mainUser){
         signIn.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.GONE);
-        requestStatus.setText(getResources().getString(R.string.alreadyExistingAccount));
+        requestStatus.setText(getResources().getString(R.string.accountRetrieved));
     }
 
     @Override

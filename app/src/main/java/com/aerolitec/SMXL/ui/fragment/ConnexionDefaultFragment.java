@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.MainUser;
@@ -141,12 +142,17 @@ public class ConnexionDefaultFragment extends Fragment implements LoginCreateAcc
     }
 
     @Override
-    public void serverError(String errorMsg) {
-
+    public void wrongPassword() {
+        //euhhhhh... ca devrait pas passer la normalement... D=
     }
 
     @Override
-    public void alreadyExistingAccount(MainUser mainUser) {
+    public void serverError(String errorMsg) {
+        Toast.makeText(getActivity(), errorMsg, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void accountRetrieved(MainUser mainUser) {
         Log.d("ALREADY", "ALREADY");
         SMXL.getUserDBManager().addUser(UserManager.get().getUser());
 

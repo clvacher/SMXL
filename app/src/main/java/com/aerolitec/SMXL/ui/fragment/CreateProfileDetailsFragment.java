@@ -109,7 +109,7 @@ public class CreateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
 
             case android.R.id.home:
                 // your code for order here
-                ((MainNavigationActivity)getActivity()).onBackPressed();
+                getActivity().onBackPressed();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -157,12 +157,12 @@ public class CreateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
                 e.printStackTrace();
             }
 
-           // Log.d("list fragments create 1", getActivity().getSupportFragmentManager().getFragments().toString());
-            FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction().add(R.id.frame_container, new SelectBrandsFragment());
-            getActivity().onBackPressed();
-            ft.commit();
+            getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).add(R.id.frame_container, new SelectBrandsFragment()).commit();
+
             superNavigationActivity.updateHamburger();
             superNavigationActivity.restoreDefaultTitleCurrentSection();
+
+            getActivity().setResult(Activity.RESULT_OK);
 
         }
     }

@@ -5,7 +5,6 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.aerolitec.SMXL.model.MainUser;
 import com.aerolitec.SMXL.model.User;
@@ -97,11 +96,14 @@ public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
         super.onPostExecute(result);
         //TODO tester la valeur de result
         switch (result){
-            case "null":
+            case "wrong email":
                 loginCreateAccountInterface.nonExistingAccount();
                 break;
+            case "wrong password":
+                loginCreateAccountInterface.wrongPassword();
+                break;
             case "Did not work!":
-                Toast.makeText(context, "Error retrieving Account", Toast.LENGTH_LONG).show();
+                loginCreateAccountInterface.serverError("Error retrieving Account");
                 break;
             default:
                 JSONObject jsonMainUser;
@@ -139,16 +141,19 @@ public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
                 catch(Exception e){
                     e.printStackTrace();
                 }
-                loginCreateAccountInterface.alreadyExistingAccount(mainUser);
+                loginCreateAccountInterface.accountRetrieved(mainUser);
         }
     }
 
     protected String GET(String url, String json){
         InputStream inputStream = null;
         String result = "";
+        Log.d("toto","1");
         try {
             HttpClient httpclient = new DefaultHttpClient();
+            Log.d("toto","2");
             HttpPost httpPost = new HttpPost(url);
+            Log.d("toto","3");
 
             StringEntity se = new StringEntity(json);
             httpPost.setEntity(se);
@@ -164,7 +169,7 @@ public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
                 result = UtilityMethods.convertInputStreamToString(inputStream);
 
                 //converts the result to a JSON-convertible String
-                if(!result.equals("null"))
+                if(!result.equals("wrong email") && !result.equals("wrong password"))
                     result = result.substring(1,result.length()-1);
             }
 

@@ -6,7 +6,8 @@ import com.aerolitec.SMXL.model.MainUser;
  * Created by Clement on 5/27/2015.
  */
 public interface LoginCreateAccountInterface {
-    void alreadyExistingAccount(MainUser mainUser);
+    void accountRetrieved(MainUser mainUser);
     void nonExistingAccount();
+    void wrongPassword();
     void serverError(String errorMsg);
 }

@@ -21,7 +21,7 @@ public class User extends BaseObjects implements Serializable {
     private int sexe; //1 Homme 2 Femme
     private String avatar;
     private String description;
-    private double size;
+    private double Height;
     private double weight;
     private double imc; //TODO NON PRESENT DANS LA BDD
     private double chest;
@@ -54,7 +54,7 @@ public class User extends BaseObjects implements Serializable {
      * @param sexe                1 Homme 2 Femme
      * @param avatar              (File name)
      * @param description
-     * @param size                (cm)
+     * @param Height                (cm)
      * @param weight              (cm)
      * @param bust                (cm)
      * @param chest               (cm)
@@ -69,7 +69,7 @@ public class User extends BaseObjects implements Serializable {
      * @param thigh               (cm)
      */
     public User(int id_user, String nickname, String firstname, String lastname, String birthday, int sexe,
-                String avatar, String description, double size, double weight, double bust,
+                String avatar, String description, double Height, double weight, double bust,
                 double chest, double collar, double waist, double hips, double sleeve, double inseam,
                 double feet, int unitL, int unitW, double pointure, double thigh) {
 
@@ -81,7 +81,7 @@ public class User extends BaseObjects implements Serializable {
         this.sexe = sexe;
         this.avatar = avatar;
         this.description = description;
-        this.size = size;
+        this.Height = Height;
         this.weight = weight;
         this.bust = bust;
         this.chest = chest;
@@ -98,7 +98,7 @@ public class User extends BaseObjects implements Serializable {
     }
 
     public User(String id_user, String nickname, String firstname, String lastname, String birthday, String sexe,
-                String avatar, String description, String size, String weight, String bust,
+                String avatar, String description, String Height, String weight, String bust,
                 String chest, String collar, String waist, String hips, String sleeve, String inseam,
                 String feet, String unitL, String unitW, String pointure, String thigh) {
 
@@ -111,7 +111,7 @@ public class User extends BaseObjects implements Serializable {
         this.sexe = convertToInt(sexe);
         this.avatar = avatar;
         this.description = description;
-        this.size = convertToDouble(size);
+        this.Height = convertToDouble(Height);
         this.weight = convertToDouble(weight);
         this.bust = convertToDouble(bust);
         this.chest = convertToDouble(chest);
@@ -135,7 +135,7 @@ public class User extends BaseObjects implements Serializable {
         this.sexe = sexe;
         this.avatar = null;
         this.description = null;
-        this.size = 0;
+        this.Height = 0;
         this.weight = 0;
         this.chest = 0;
         this.collar = 0;
@@ -233,12 +233,12 @@ public class User extends BaseObjects implements Serializable {
         this.description = description;
     }
 
-    public double getSize() {
-        return size;
+    public double getHeight() {
+        return Height;
     }
 
-    public void setSize(double size) {
-        this.size = size;
+    public void setHeight(double height) {
+        this.Height = height;
     }
 
     public double getWeight() {
@@ -342,8 +342,8 @@ public class User extends BaseObjects implements Serializable {
     }
 
     public double getImc() {
-        if (this.size > 0 && this.weight > 0) {
-            double imcD = weight / ((size / 100) * (size / 100));
+        if (this.Height > 0 && this.weight > 0) {
+            double imcD = weight / ((Height / 100) * (Height / 100));
             imc = (Math.rint(imcD * 100)) / 100;
         } else {
             imc = 0;
@@ -378,7 +378,7 @@ public class User extends BaseObjects implements Serializable {
                         ", '" + sexe + '\'' +
                         ", '" + avatar + '\'' +
                         ", '" + description + '\'' +
-                        ", " + size +
+                        ", " + Height +
                         ", " + weight +
                         ", " + imc +
                         ", " + bust +
@@ -421,7 +421,7 @@ public class User extends BaseObjects implements Serializable {
     public ArrayList<String> getUserSizes (){
         ArrayList<String> mesures = new ArrayList<>();
         int userId = getId_user();
-        String size = String.valueOf(getSize());
+        String size = String.valueOf(getHeight());
         String weight = String.valueOf(getWeight());
         String bust = String.valueOf(getBust());
         String chest = String.valueOf(getChest());

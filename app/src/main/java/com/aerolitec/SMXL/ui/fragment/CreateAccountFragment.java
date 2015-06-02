@@ -10,11 +10,14 @@ import android.view.ViewGroup;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.MainUser;
+import com.aerolitec.SMXL.tools.UtilityMethods;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.tools.serverConnexion.GetMainUserHttpAsyncTask;
 import com.aerolitec.SMXL.tools.serverConnexion.LoginCreateAccountInterface;
 import com.aerolitec.SMXL.tools.serverConnexion.PostMainUserHttpAsyncTask;
+import com.aerolitec.SMXL.ui.activity.CreateUpdateProfileActivity;
+import com.aerolitec.SMXL.ui.activity.MainNavigationActivity;
 
 
 public class CreateAccountFragment extends SuperLoginCreateAccountFragment implements LoginCreateAccountInterface{
@@ -41,15 +44,20 @@ public class CreateAccountFragment extends SuperLoginCreateAccountFragment imple
             public void onClick(View v) {
                 v.setVisibility(View.GONE);
                 progressBar.setVisibility(View.VISIBLE);
-                requestStatus.setText(getResources().getString(R.string.checkingAvailability));
                 requestStatus.setVisibility(View.VISIBLE);
-                if(isConnected()) {
-                    MainUser mainUser=new MainUser();
+                requestStatus.setText(getResources().getString(R.string.checkingAvailability));
+                if (UtilityMethods.isConnected(getActivity())) {
+                    MainUser mainUser = new MainUser();
                     mainUser.setEmail(email.getText().toString());
                     mainUser.setPassword(password.getText().toString());
                     MainUserManager.get().setMainUser(mainUser);
 
                     new GetMainUserHttpAsyncTask(fragment).execute();
+                }
+                else {
+                    requestStatus.setText(getResources().getString(R.string.no_connexion));
+                    progressBar.setVisibility(View.GONE);
+                    v.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -62,8 +70,10 @@ public class CreateAccountFragment extends SuperLoginCreateAccountFragment imple
             case CREATE_ACCOUNT:
                 if(resultCode== Activity.RESULT_OK) {
                     MainUserManager.get().getMainUser().setMainProfile(UserManager.get().getUser());
-                    PostMainUserHttpAsyncTask tmp =new PostMainUserHttpAsyncTask(getActivity());
-                    tmp.execute();
+                    new PostMainUserHttpAsyncTask(getActivity()).execute();
+                    getActivity().finish();
+                    Intent intent = new Intent(getActivity().getApplicationContext(), MainNavigationActivity.class);
+                    startActivity(intent);
                 }
                 break;
         }
@@ -71,7 +81,7 @@ public class CreateAccountFragment extends SuperLoginCreateAccountFragment imple
 
 
     @Override
-    public void alreadyExistingAccount(MainUser mainUser){
+    public void accountRetrieved(MainUser mainUser){
         signIn.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.GONE);
         requestStatus.setText(getResources().getString(R.string.alreadyExistingAccount));
@@ -79,15 +89,15 @@ public class CreateAccountFragment extends SuperLoginCreateAccountFragment imple
 
     @Override
     public void nonExistingAccount(){
-        /*Intent intent=new Intent(getActivity().getApplicationContext(), CreateUpdateProfileActivity.class);
-        intent.putExtra("fragmentType", "create");
-        startActivityForResult(intent, CREATE_ACCOUNT);*/
+        Intent intent=new Intent(getActivity().getApplicationContext(), CreateUpdateProfileActivity.class);
+        startActivityForResult(intent, CREATE_ACCOUNT);
+
+//        getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.frame_container, new CreateProfileDetailsFragment()).commit();
+
     }
 
     @Override
-    public void serverError(String errorMsg) {
-
+    public void wrongPassword() {
+        accountRetrieved(null);
     }
-
-
 }
