@@ -2,6 +2,10 @@ package com.aerolitec.SMXL.ui.activity;
 
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.LinearLayout;
 
 import com.aerolitec.SMXL.R;
@@ -119,7 +123,7 @@ public class ProfilDetailActivity extends NoDrawerActivity{
         setBarAsNextFragment();
     }
 
-    /*
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -143,7 +147,7 @@ public class ProfilDetailActivity extends NoDrawerActivity{
                 Intent share = new Intent(getApplicationContext(), CSVCreationActivity.class);
                 startActivity(share);
                 return true;*/
-/*            case R.id.setting :
+            case R.id.setting :
                 showEditDialog();
 
                 /*
@@ -152,7 +156,7 @@ public class ProfilDetailActivity extends NoDrawerActivity{
                 startActivity(intent);
                 */
 
-/*            default:
+           default:
                 return super.onOptionsItemSelected(item);
         }
     }
@@ -162,6 +166,6 @@ public class ProfilDetailActivity extends NoDrawerActivity{
         FragmentManager fm = getSupportFragmentManager();
         UserSettingsDialogFragment userSettingsDialogFragment = new UserSettingsDialogFragment();
         userSettingsDialogFragment.show(fm, "fragment_UserSettings");
-    }*/
+    }
 }
 
