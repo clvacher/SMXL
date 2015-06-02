@@ -1,5 +1,9 @@
 package com.aerolitec.SMXL.tools;
 
+import android.app.Activity;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListAdapter;
@@ -55,5 +59,11 @@ public class UtilityMethods {
     //reverses the birthday from dd-mm-yyyy to yyy-mm-dd
     public static String reverseBirthdayOrder(String birthday){
         return birthday.substring(6,10)+"-"+birthday.substring(3,5)+"-"+birthday.substring(0,2);
+    }
+
+    public static boolean isConnected(Context context){
+        ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(Activity.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        return (networkInfo != null && networkInfo.isConnected());
     }
 }

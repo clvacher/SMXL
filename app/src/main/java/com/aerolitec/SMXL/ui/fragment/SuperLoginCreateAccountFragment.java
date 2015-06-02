@@ -17,13 +17,15 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aerolitec.SMXL.R;
+import com.aerolitec.SMXL.tools.serverConnexion.LoginCreateAccountInterface;
 
 /**
  * Created by Jerome on 01/06/2015.
  */
-public abstract class SuperLoginCreateAccountFragment extends Fragment{
+public abstract class SuperLoginCreateAccountFragment extends Fragment implements LoginCreateAccountInterface{
 
     protected Fragment fragment = this;
     protected AutoCompleteTextView email;
@@ -60,6 +62,15 @@ public abstract class SuperLoginCreateAccountFragment extends Fragment{
         return view;
     }
 
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        signIn.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.GONE);
+        requestStatus.setVisibility(View.GONE);
+    }
+
     protected void showPassword(){
         if(showPassword.isChecked()){
             password.setTransformationMethod(SingleLineTransformationMethod.getInstance());
@@ -69,12 +80,8 @@ public abstract class SuperLoginCreateAccountFragment extends Fragment{
         }
     }
 
-    protected boolean isConnected(){
-        ConnectivityManager connMgr = (ConnectivityManager) getActivity().getSystemService(Activity.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-        if (networkInfo != null && networkInfo.isConnected())
-            return true;
-        else
-            return false;
+    @Override
+    public void serverError(String errorMsg) {
+        Toast.makeText(getActivity(), errorMsg, Toast.LENGTH_LONG).show();
     }
 }

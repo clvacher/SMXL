@@ -129,6 +129,10 @@
     <string name="checkingAvailability">Verification de la disponibilité du compte&#8230;</string>
     <string name="alreadyExistingAccount">Compte déja existant!</string>
     <string name="errorRetrievingAccount">Email ou mot de passe erronné!</string>
+    <string name="retrieving_account">Récupération du compte&#8230;</string>
+    <string name="wrong_username">Email inexistant!</string>
+    <string name="wrong_password">Mot de passe éronné</string>
+    <string name="no_connexion">Vérifiez votre connexion</string>
     
     <string name="Jacket">Vestes/Blousons</string>
     <string name="addColor">Ajouter une couleur</string>

@@ -1,6 +1,7 @@
 package com.aerolitec.SMXL.ui.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
@@ -23,6 +24,7 @@ import com.aerolitec.SMXL.model.Brand;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
+import com.aerolitec.SMXL.ui.activity.ConnexionActivity;
 import com.aerolitec.SMXL.ui.activity.MainNavigationActivity;
 import com.aerolitec.SMXL.ui.activity.SuperNavigationActivity;
 import com.aerolitec.SMXL.ui.adapter.FavoriteCheckableBrandAdapter;
@@ -144,15 +146,12 @@ public class SelectBrandsFragment extends Fragment implements FakeSearchView.OnS
     public void onResume() {
         super.onResume();
 
-        ArrayList<Brand> brandUser = user.getBrands();
         if(gridViewBrandsAdapter==null){
             gridViewBrandsAdapter = new FavoriteCheckableBrandAdapter(getActivity(), R.layout.item_favorite_brand, brands);
             gridViewBrands.setAdapter(gridViewBrandsAdapter);
             spinnerBrandsCategory.setSelection(0);
         }
 
-        //Log.d("isempty", Boolean.toString(gridViewBrandsAdapter.isEmpty()));
-        //Log.d("viewtypecount", Integer.toString(gridViewBrandsAdapter.getViewTypeCount()));
 
         for(Brand b : user.getBrands()) {
             gridViewBrands.setItemChecked(brands.indexOf(b), true);
@@ -167,20 +166,20 @@ public class SelectBrandsFragment extends Fragment implements FakeSearchView.OnS
             getActivity().onBackPressed();
         }
 
-        superNavigationActivity.getSupportFragmentManager().beginTransaction().remove(this).commit();
-        superNavigationActivity.updateHamburger();
-        superNavigationActivity.restoreDefaultTitleCurrentSection();
+        superNavigationActivity.finish();
 
+        if(superNavigationActivity instanceof ConnexionActivity){
+            Intent intent = new Intent(superNavigationActivity.getApplicationContext(), MainNavigationActivity.class);
+            startActivity(intent);
+        }
+
+        superNavigationActivity.restoreDefaultTitleCurrentSection();
     }
 
 
     @Override
     public void onCreateOptionsMenu(Menu menu,MenuInflater inflater) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-
-        //getActivity().getMenuInflater().inflate(R.menu.search_brand, menu);
-        //super.onCreateOptionsMenu(menu,inflater);
-
+        menu.clear();
         inflater.inflate(R.menu.search_brand, menu);
         MenuItem menuItem = menu.findItem(R.id.fake_search);
         final FakeSearchView fakeSearchView = (FakeSearchView) MenuItemCompat.getActionView(menuItem);
@@ -205,9 +204,12 @@ public class SelectBrandsFragment extends Fragment implements FakeSearchView.OnS
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                // your code for order here
-                ((MainNavigationActivity)getActivity()).onBackPressed();
-                return true;
+                getActivity().onBackPressed();
+                break;
+            case R.id.validate:
+                Log.d("validate","andsave");
+                save();
+                break;
         }
         return true;
     }

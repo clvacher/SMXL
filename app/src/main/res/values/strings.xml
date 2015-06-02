@@ -134,6 +134,10 @@
     <string name="checkingAvailability">Checking account availability&#8230;</string>
     <string name="alreadyExistingAccount">Account already exists!</string>
     <string name="errorRetrievingAccount">Error retrieving account!</string>
+    <string name="retrieving_account">Retrieving Account&#8230;</string>
+    <string name="wrong_email">Wrong Email!</string>
+    <string name="wrong_password">Wrong Password!</string>
+    <string name="no_connexion">Check your connexion!</string>
 
     <string name="jacket">Jacket</string>
     <string name="disconnected">Disconnected!</string>

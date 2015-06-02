@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.MainUser;
+import com.aerolitec.SMXL.tools.UtilityMethods;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.tools.serverConnexion.GetMainUserHttpAsyncTask;
@@ -48,17 +50,20 @@ public class LoginFragment extends SuperLoginCreateAccountFragment implements Lo
                 v.setVisibility(View.GONE);
                 progressBar.setVisibility(View.VISIBLE);
                 requestStatus.setVisibility(View.VISIBLE);
-                requestStatus.setText(getResources().getString(R.string.checkingAvailability));
-                if (isConnected()) {
-                    //TODO
-                    //Connexion au serveur
+                requestStatus.setText(getResources().getString(R.string.retrieving_account));
+                if (UtilityMethods.isConnected(getActivity())) {
+
                     MainUser mainUser = new MainUser();
                     mainUser.setEmail(email.getText().toString());
                     mainUser.setPassword(password.getText().toString());
                     MainUserManager.get().setMainUser(mainUser);
 
-
-                    new GetMainUserHttpAsyncTask(fragment).execute();//email.getText().toString(),password.getText().toString() dans execute
+                    new GetMainUserHttpAsyncTask(fragment).execute();//todo email.getText().toString(),password.getText().toString() dans execute
+                }
+                else {
+                    requestStatus.setText(getResources().getString(R.string.no_connexion));
+                    progressBar.setVisibility(View.GONE);
+                    v.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -66,7 +71,7 @@ public class LoginFragment extends SuperLoginCreateAccountFragment implements Lo
 
 
     @Override
-    public void alreadyExistingAccount(MainUser mainUser) {
+    public void accountRetrieved(MainUser mainUser) {
         SMXL.getUserDBManager().addUser(UserManager.get().getUser());
 
         MainUserManager.get().setMainUser(mainUser);
@@ -88,15 +93,17 @@ public class LoginFragment extends SuperLoginCreateAccountFragment implements Lo
 
     @Override
     public void nonExistingAccount() {
-        requestStatus.setText(getResources().getString(R.string.errorRetrievingAccount));
+        requestStatus.setText(getResources().getString(R.string.wrong_email));
         signIn.setVisibility(View.VISIBLE);
         getActivity().setResult(Activity.RESULT_CANCELED);
         progressBar.setVisibility(View.GONE);
     }
 
-
     @Override
-    public void serverError(String errorMsg) {
-
+    public void wrongPassword() {
+        requestStatus.setText(getResources().getString(R.string.wrong_password));
+        signIn.setVisibility(View.VISIBLE);
+        getActivity().setResult(Activity.RESULT_CANCELED);
+        progressBar.setVisibility(View.GONE);
     }
 }

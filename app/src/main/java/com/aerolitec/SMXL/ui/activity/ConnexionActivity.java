@@ -40,8 +40,8 @@ public class ConnexionActivity extends NoDrawerActivity{
         FacebookSdk.sdkInitialize(getApplicationContext());
 
         MaterialSection section1 = this.newSection("Connexion", this.getResources().getDrawable(R.drawable.ic_perm_group_social_info), new ConnexionDefaultFragment(), false, menu);
-        MaterialSection section2 = this.newSection("Create Account", this.getResources().getDrawable(R.drawable.ic_perm_group_social_info), new CreateAccountFragment(), false, menu);
-        MaterialSection section3 = this.newSection("Login", this.getResources().getDrawable(R.drawable.ic_perm_group_social_info), new LoginFragment(), false, menu);
+//        MaterialSection section2 = this.newSection("Create Account", this.getResources().getDrawable(R.drawable.ic_perm_group_social_info), new CreateAccountFragment(), false, menu);
+//        MaterialSection section3 = this.newSection("Login", this.getResources().getDrawable(R.drawable.ic_perm_group_social_info), new LoginFragment(), false, menu);
 
 
         mProfileTracker = new ProfileTracker() {
@@ -84,21 +84,21 @@ public class ConnexionActivity extends NoDrawerActivity{
     }
 
 
-    /*
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == CREATE_ACCOUNT || requestCode == LOGIN){
-            if (resultCode == RESULT_OK) {
-                Log.d("OnactivityResult", "Connexion");
-                finish();
-                Intent intent = new Intent(getApplicationContext(), MainNavigationActivity.class);
-                startActivity(intent);
-            } else {
-                Toast.makeText(this, "Result Error", Toast.LENGTH_LONG);
-                //finish();
-            }
-        }
-    }
-*/
+
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if(requestCode == CREATE_ACCOUNT || requestCode == LOGIN){
+//            if (resultCode == RESULT_OK) {
+//                Log.d("OnactivityResult", "Connexion");
+//                finish();
+//                Intent intent = new Intent(getApplicationContext(), MainNavigationActivity.class);
+//                startActivity(intent);
+//            } else {
+//                Toast.makeText(this, "Result Error", Toast.LENGTH_LONG);
+//                //finish();
+//            }
+//        }
+//    }
+
 }

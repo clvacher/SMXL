@@ -1,5 +1,24 @@
 package com.aerolitec.SMXL.ui.activity;
 
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.widget.Toast;
+
+import com.aerolitec.SMXL.R;
+import com.aerolitec.SMXL.tools.manager.MainUserManager;
+import com.aerolitec.SMXL.ui.fragment.ConnexionDefaultFragment;
+import com.aerolitec.SMXL.ui.fragment.CreateAccountFragment;
+import com.aerolitec.SMXL.ui.fragment.CreateProfileDetailsFragment;
+import com.aerolitec.SMXL.ui.fragment.LoginFragment;
+import com.facebook.FacebookSdk;
+import com.facebook.Profile;
+import com.facebook.ProfileTracker;
+
+import de.madcyph3r.materialnavigationdrawer.menu.item.MaterialSection;
+
 /**
  * Created by Clement on 25/04/15.
  */
@@ -9,43 +28,30 @@ package com.aerolitec.SMXL.ui.activity;
  * update: update existing profile
  * brands: updates existing brands for current profile
  */
-    /*
-public class CreateUpdateProfileActivity extends FragmentActivity {
+
+public class CreateUpdateProfileActivity extends NoDrawerActivity {
 
     private boolean confirmExit=false;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void init(Bundle bundle) {
+        super.init(bundle);
 
-        setContentView(R.layout.activity_create_profile);
-        //getActionBar().setDisplayHomeAsUpEnabled(true);
-        //getActionBar().setHomeButtonEnabled(true);
-        //getActionBar().setDisplayShowTitleEnabled(false);
-
-
-        String fragmentType=getIntent().getStringExtra("fragmentType");
-        if (savedInstanceState == null) {
-            Fragment f=null;
-            switch(fragmentType){
-                case "create":
-                    f=new CreateProfileDetailsFragment();
-                    break;
-                case "update":
-                    f=new UpdateProfileDetailsFragment();
-                    break;
-                case "brands":
-                    f=new SelectBrandsFragment();
-                    break;
-            }
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.activity_create_profile, f)
-                    .commit();
-
-        }
-
-
+        MaterialSection section1 = this.newSection("Connexion", new CreateProfileDetailsFragment(), false, menu);
     }
+
+    @Override
+    public int headerType() {
+        return super.headerType();
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setDrawerBlocked();
+    }
+
 
     @Override
     public void onBackPressed() {
@@ -60,7 +66,7 @@ public class CreateUpdateProfileActivity extends FragmentActivity {
                     try {
                         Thread.sleep(2500);
                     } catch (InterruptedException e) {
-                        Log.d("catchCreateProfile", "InterruptedException");
+                        e.printStackTrace();
                     }
                     confirmExit = false;
                     return null;
@@ -71,4 +77,3 @@ public class CreateUpdateProfileActivity extends FragmentActivity {
         }
     }
 }
-*/
