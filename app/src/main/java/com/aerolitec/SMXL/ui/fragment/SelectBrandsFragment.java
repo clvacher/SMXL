@@ -23,7 +23,6 @@ import com.aerolitec.SMXL.model.Brand;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
-import com.aerolitec.SMXL.ui.activity.MainNavigationActivity;
 import com.aerolitec.SMXL.ui.activity.SuperNavigationActivity;
 import com.aerolitec.SMXL.ui.adapter.FavoriteCheckableBrandAdapter;
 import com.github.leonardoxh.fakesearchview.FakeSearchView;
@@ -178,9 +177,6 @@ public class SelectBrandsFragment extends Fragment implements FakeSearchView.OnS
     public void onCreateOptionsMenu(Menu menu,MenuInflater inflater) {
         // Inflate the menu; this adds items to the action bar if it is present.
 
-        //getActivity().getMenuInflater().inflate(R.menu.search_brand, menu);
-        //super.onCreateOptionsMenu(menu,inflater);
-
         inflater.inflate(R.menu.search_brand, menu);
         MenuItem menuItem = menu.findItem(R.id.fake_search);
         final FakeSearchView fakeSearchView = (FakeSearchView) MenuItemCompat.getActionView(menuItem);
@@ -206,7 +202,7 @@ public class SelectBrandsFragment extends Fragment implements FakeSearchView.OnS
         switch (item.getItemId()) {
             case android.R.id.home:
                 // your code for order here
-                ((MainNavigationActivity)getActivity()).onBackPressed();
+                getActivity().onBackPressed();
                 return true;
         }
         return true;

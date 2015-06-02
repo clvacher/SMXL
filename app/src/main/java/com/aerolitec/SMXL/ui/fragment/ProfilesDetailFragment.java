@@ -78,6 +78,8 @@ public class ProfilesDetailFragment extends Fragment{
         imgAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.frame_container, new UpdateProfileDetailsFragment()).commit();
                 /*Intent intent = new Intent(getActivity().getApplicationContext(), CreateUpdateProfileActivity.class);
                 intent.putExtra("fragmentType","update");
                 startActivity(intent);*/
@@ -88,6 +90,8 @@ public class ProfilesDetailFragment extends Fragment{
         infosProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.frame_container, new UpdateProfileDetailsFragment()).commit();
                 /*Intent intent = new Intent(getActivity().getApplicationContext(), CreateUpdateProfileActivity.class);
                 intent.putExtra("fragmentType","update");
                 startActivity(intent);*/
@@ -111,14 +115,16 @@ public class ProfilesDetailFragment extends Fragment{
                 brandListView.setVisibility(View.GONE);
                 collapseBrands.setImageResource(R.drawable.navigation_expand);
 
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.frame_container, new SelectBrandsFragment()).commit();
                 /*Intent intent = new Intent(getActivity(), CreateUpdateProfileActivity.class);
                 intent.putExtra("fragmentType","brands");
                 startActivity(intent);*/
             }
         });
 
-        ImageView noClickZone=(ImageView) view.findViewById(R.id.noClickZone);
-        /*final RelativeLayout quicksizeLayout=(RelativeLayout) view.findViewById(R.id.quicksize);
+        /*ImageView noClickZone=(ImageView) view.findViewById(R.id.noClickZone);
+
+        final RelativeLayout quicksizeLayout=(RelativeLayout) view.findViewById(R.id.quicksize);
 
         quicksizeLayout.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -131,13 +137,14 @@ public class ProfilesDetailFragment extends Fragment{
                 return false;
             }
         });
-        */
+
         noClickZone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
             }
         });
+        */
 
         return view;
     }
@@ -232,6 +239,7 @@ public class ProfilesDetailFragment extends Fragment{
                     brandListView.setVisibility(View.GONE);
                     collapseBrands.setImageResource(R.drawable.navigation_expand);
 
+                    getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.frame_container, new SelectBrandsFragment()).commit();
                     /*Intent intent = new Intent(getActivity(), CreateUpdateProfileActivity.class);
                     intent.putExtra("fragmentType","brands");
                     startActivity(intent);*/

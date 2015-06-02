@@ -1,30 +1,23 @@
 package com.aerolitec.SMXL.ui.activity;
 
 
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
-import com.aerolitec.SMXL.tools.manager.UserManager;
-import com.aerolitec.SMXL.ui.fragment.MeasureDetailFragment;
-import com.aerolitec.SMXL.ui.fragment.ProfilesDetailFragment;
-import com.aerolitec.SMXL.ui.fragment.WardrobeDetailFragment;
+import com.aerolitec.SMXL.ui.fragment.TabsFragment;
 
-public class ProfilDetailActivity extends FragmentActivity{
+import de.madcyph3r.materialnavigationdrawer.menu.item.MaterialSection;
+
+public class ProfilDetailActivity extends NoDrawerActivity{
 
     private LinearLayout tab1,tab2,tab3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profil_detail);
+
+
+        /*setContentView(R.layout.activity_profil_detail);
 
         if(UserManager.get().getUser() == null) {
             finish();
@@ -36,7 +29,7 @@ public class ProfilDetailActivity extends FragmentActivity{
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, profilesDetailFragment, "profileDetail")
                     .commit();
-        }
+        }*/
 
         /*getActionBar().setTitle(" ");
         getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -46,7 +39,7 @@ public class ProfilDetailActivity extends FragmentActivity{
         getActionBar().setDisplayShowTitleEnabled(true);
         getActionBar().setDisplayUseLogoEnabled(false);*/
 
-        tab1= (LinearLayout) findViewById(R.id.profile);
+        /*tab1= (LinearLayout) findViewById(R.id.profile);
         final TextView tv1=(TextView)findViewById(R.id.textView1);
         tab2= (LinearLayout) findViewById(R.id.wardrobe);
         final TextView tv2_1=(TextView)findViewById(R.id.textView2);
@@ -105,9 +98,28 @@ public class ProfilDetailActivity extends FragmentActivity{
                 tv3.setTextColor(Color.WHITE);
                 getSupportFragmentManager().beginTransaction().replace(R.id.container, new MeasureDetailFragment()).commit();
             }
-        });
+        });*/
     }
 
+    @Override
+    public void init(Bundle bundle) {
+        super.init(bundle);
+        MaterialSection section1 = this.newSection(getResources().getString(R.string.profile), new TabsFragment(), false, menu);
+    }
+
+    @Override
+    public int headerType() {
+        return super.headerType();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setDrawerBlocked();
+        setBarAsNextFragment();
+    }
+
+    /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -131,7 +143,7 @@ public class ProfilDetailActivity extends FragmentActivity{
                 Intent share = new Intent(getApplicationContext(), CSVCreationActivity.class);
                 startActivity(share);
                 return true;*/
-            case R.id.setting :
+/*            case R.id.setting :
                 showEditDialog();
 
                 /*
@@ -140,7 +152,7 @@ public class ProfilDetailActivity extends FragmentActivity{
                 startActivity(intent);
                 */
 
-            default:
+/*            default:
                 return super.onOptionsItemSelected(item);
         }
     }
@@ -150,6 +162,6 @@ public class ProfilDetailActivity extends FragmentActivity{
         FragmentManager fm = getSupportFragmentManager();
         UserSettingsDialogFragment userSettingsDialogFragment = new UserSettingsDialogFragment();
         userSettingsDialogFragment.show(fm, "fragment_UserSettings");
-    }
+    }*/
 }
 
