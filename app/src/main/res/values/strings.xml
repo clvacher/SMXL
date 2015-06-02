@@ -15,22 +15,21 @@
     <string name="profile">Profile</string>
     <string name="title_section_measures">Measures</string>
 
-    <string name="libHead">Head</string>
     <string name="libBust">Bust</string>
-    <string name="libSize">Height</string>
+    <string name="libHeight">Height</string>
     <string name="libWeight">Weight</string>
     <string name="libChest">Chest</string>
     <string name="libWaist">Waist</string>
     <string name="libHips">Hips</string>
-    <string name="measurements">Measures</string>
+    <string name="measurements">Measurements</string>
     <string name="libCollar">Neck</string>
     <string name="libSleeve">Sleeve</string>
     <string name="libInseam">Leg</string>
     <string name="libFeet">Feet</string>
-    <string name="libShoulders">Shoulders</string>
+    <string name="libthigh">Thigh</string>
 
     <string name="changeMeasure">Enter value</string>
-    <string name="libTaillePopup">Actual size</string><!--sapu-->
+    <string name="libTaillePopup">Actual height</string><!--sapu-->
     <string name="libBoutonRetour">Back</string>
     <string name="shareDialogTitle">Share</string>
     <string name="shareDialogEmail">Mail</string>
@@ -46,7 +45,7 @@
     <string name="libImc">BMI</string>
     <string name="unimplemented">Developing&#8230;</string>
     <string name="addNote">My shipping Address</string><!--Add a description, a comment&#8230;-->
-    <string name="ShoeSize">Shoe size</string>
+    <string name="ShoeSize">Shoe height</string>
     <string name="title_activity_profil">ProfilActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_profil_detail">ProfilDetailActivity</string>
@@ -141,8 +140,10 @@
     <string name="find">Rechercher</string>
     <string name="title_activity_browser">BrowserActivity</string>
 
-<!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="my_profiles">My Profiles</string>
+    <string name="my_profile">My Profile</string>
+    <string name="my_measurements">My Measurements</string>
+    <string name="my_wardrobe">My Wardrobe</string>
 
 
 </resources>

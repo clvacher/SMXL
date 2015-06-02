@@ -177,22 +177,23 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
 
         // first section is loaded
 
-        MaterialSection sectionMesProfils = this.newSection("Mes Profils", this.getResources().getDrawable(R.drawable.ic_perm_group_social_info), new ProfilesFragment(), false, menu);
+        MaterialSection sectionMesProfils = this.newSection(getResources().getString(R.string.my_profiles), this.getResources().getDrawable(R.drawable.ic_perm_group_social_info), new ProfilesFragment(), false, menu);
 
         this.newDevisor(menu);
 
+
         //sectionMesProfils.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
 
-        sectionMyProfile = this.newSection("Mon Profil", this.getResources().getDrawable(R.drawable.avatar), new ProfilesDetailFragment(), false, menu);
+        sectionMyProfile = this.newSection(getResources().getString(R.string.my_profile), this.getResources().getDrawable(R.drawable.avatar), new ProfilesDetailFragment(), false, menu);
 
-        MaterialSection sectionMonDressing = this.newSection("Mon Dressing", this.getResources().getDrawable(R.drawable.pantalon), new WardrobeDetailFragment(), false, menu);
-        MaterialSection sectionMesMesures = this.newSection("Mes Mesures", this.getResources().getDrawable(R.drawable.robe), new MeasureDetailFragment(), false, menu);
+        MaterialSection sectionMonDressing = this.newSection(getResources().getString(R.string.my_wardrobe), this.getResources().getDrawable(R.drawable.shopping_bag), new WardrobeDetailFragment(), false, menu);
+        MaterialSection sectionMesMesures = this.newSection(getResources().getString(R.string.measurements), this.getResources().getDrawable(R.drawable.tape_measure), new MeasureDetailFragment(), false, menu);
 
 
         this.newDevisor(menu);
 
         //this.newLabel("Pratiques", false, menu);
-        MaterialSection sectionSizeGuide = this.newSection("Guide des tailles", this.getResources().getDrawable(R.drawable.tshirt), new SizeGuideFragment(), false, menu);
+        MaterialSection sectionSizeGuide = this.newSection(getResources().getString(R.string.size_guide), this.getResources().getDrawable(R.drawable.tshirt), new SizeGuideFragment(), false, menu);
         sectionSizeGuide.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
 
         //MaterialSection sectionMagasins = this.newSection("Magasins à proximité", this.getResources().getDrawable(android.R.drawable.ic_dialog_map), new EnChantierFragment(), false, menu);
@@ -200,7 +201,7 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
 
         this.newDevisor(menu);
 
-        MaterialSection sectionBrands = this.newSection("Marques", this.getResources().getDrawable(R.drawable.ic_action_labels) ,new ListBrandsFragment(), false, menu);
+        MaterialSection sectionBrands = this.newSection(getResources().getString(R.string.favorite_brands), this.getResources().getDrawable(R.drawable.ic_action_labels) ,new ListBrandsFragment(), false, menu);
         sectionBrands.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
 
         //MaterialSection sectionBlogs = this.newSection("Blogs", new EnChantierFragment(), false, menu);
@@ -210,7 +211,7 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
 
         //this.newLabel("Paramètres", false, menu);
 
-        MaterialSection section6 = this.newSection("Réglages", this.getResources().getDrawable(R.drawable.ic_action_settings), new SettingsFragment(), false, menu);
+        MaterialSection section6 = this.newSection(getResources().getString(R.string.settings), this.getResources().getDrawable(R.drawable.ic_action_settings), new SettingsFragment(), false, menu);
         section6.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
 
 

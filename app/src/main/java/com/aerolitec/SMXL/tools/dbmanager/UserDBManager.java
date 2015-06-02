@@ -85,7 +85,7 @@ public class UserDBManager extends DBManager{
         values.put(KEY_SEX_USER, user.getSexe());
         values.put(KEY_AVATAR_USER, user.getAvatar());
         values.put(KEY_DESCRIPTION_USER, user.getDescription());
-        values.put(KEY_SIZE_USER, user.getSize());
+        values.put(KEY_SIZE_USER, user.getHeight());
         values.put(KEY_WEIGHT_USER, user.getWeight());
         values.put(KEY_CHEST_USER, user.getChest());
         values.put(KEY_COLLAR_USER, user.getCollar());
@@ -159,7 +159,7 @@ public class UserDBManager extends DBManager{
             u.setAvatar(c.getString(c.getColumnIndex(KEY_AVATAR_USER)));
             u.setDescription(c.getString(c.getColumnIndex(KEY_DESCRIPTION_USER)));
 
-            u.setSize(convertToDouble(c.getString(c.getColumnIndex(KEY_SIZE_USER))));
+            u.setHeight(convertToDouble(c.getString(c.getColumnIndex(KEY_SIZE_USER))));
             u.setWeight(convertToDouble(c.getString(c.getColumnIndex(KEY_WEIGHT_USER))));
             u.setChest(convertToDouble(c.getString(c.getColumnIndex(KEY_CHEST_USER))));
             u.setCollar(convertToDouble(c.getString(c.getColumnIndex(KEY_COLLAR_USER))));
@@ -196,7 +196,7 @@ public class UserDBManager extends DBManager{
         values.put(KEY_SEX_USER, user.getSexe());
         values.put(KEY_AVATAR_USER, user.getAvatar());
         values.put(KEY_DESCRIPTION_USER, user.getDescription());
-        values.put(KEY_SIZE_USER, user.getSize());
+        values.put(KEY_SIZE_USER, user.getHeight());
         values.put(KEY_WEIGHT_USER, user.getWeight());
         values.put(KEY_CHEST_USER, user.getChest());
         values.put(KEY_COLLAR_USER, user.getCollar());
@@ -249,7 +249,7 @@ public class UserDBManager extends DBManager{
             u.setAvatar(c.getString(c.getColumnIndex(KEY_AVATAR_USER)));
             u.setDescription(c.getString(c.getColumnIndex(KEY_DESCRIPTION_USER)));
 
-            u.setSize(convertToDouble(c.getString(c.getColumnIndex(KEY_SIZE_USER))));
+            u.setHeight(convertToDouble(c.getString(c.getColumnIndex(KEY_SIZE_USER))));
             u.setWeight(convertToDouble(c.getString(c.getColumnIndex(KEY_WEIGHT_USER))));
             u.setChest(convertToDouble(c.getString(c.getColumnIndex(KEY_CHEST_USER))));
             u.setCollar(convertToDouble(c.getString(c.getColumnIndex(KEY_COLLAR_USER))));
@@ -296,7 +296,7 @@ public class UserDBManager extends DBManager{
             u.setAvatar(c.getString(c.getColumnIndex(KEY_AVATAR_USER)));
             u.setDescription(c.getString(c.getColumnIndex(KEY_DESCRIPTION_USER)));
 
-            u.setSize(convertToDouble(c.getString(c.getColumnIndex(KEY_SIZE_USER))));
+            u.setHeight(convertToDouble(c.getString(c.getColumnIndex(KEY_SIZE_USER))));
             u.setWeight(convertToDouble(c.getString(c.getColumnIndex(KEY_WEIGHT_USER))));
             u.setChest(convertToDouble(c.getString(c.getColumnIndex(KEY_CHEST_USER))));
             u.setCollar(convertToDouble(c.getString(c.getColumnIndex(KEY_COLLAR_USER))));

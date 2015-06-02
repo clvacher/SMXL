@@ -17,9 +17,8 @@
     <string name="title_section_measures">Mesures</string>
 
 
-    <string name="libHead">Tête</string>
     <string name="libBust">Poitrine</string> <!-- /!\ Bust est un faux ami ma gueule : Bust = Poitrine & Chest = Buste -->
-    <string name="libSize">Taille</string>
+    <string name="libHeight">Taille</string>
     <string name="libWeight">Poids</string>
     <string name="libChest">Buste</string>
     <string name="libWaist">Taille</string>
@@ -29,7 +28,7 @@
     <string name="libSleeve">Manche</string>
     <string name="libInseam">Jambe</string>
     <string name="libFoot">Pieds</string>
-    <string name="libShoulders">Epaules</string>
+    <string name="libthigh">Cuisse</string>
 
     <string name="changeMeasure">Entrez la valeur</string>
     <string name="libTaillePopup">Taille actuelle</string>
@@ -147,5 +146,9 @@
     <string name="find">Rechercher</string>
     <string name="title_activity_browser">Navigateur</string>
 
+    <string name="my_profiles">Mes profils</string>
+    <string name="my_profile">Mon Profil</string>
+    <string name="my_measurements">Mes mesures</string>
+    <string name="my_wardrobe">Mon dressing</string>
 
 </resources>

@@ -78,7 +78,8 @@ public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
         super.onPostExecute(result);
         //TODO tester la valeur de result
         switch (result){
-            case "null":
+            case "wrong email":
+            case "wrong password":
                 loginCreateAccountInterface.nonExistingAccount();
                 break;
             case "Did not work!":
@@ -145,7 +146,7 @@ public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
                 result = UtilityMethods.convertInputStreamToString(inputStream);
 
                 //converts the result to a JSON-convertible String
-                if(!result.equals("null"))
+                if(!result.equals("wrong email") && !result.equals("wrong password"))
                     result = result.substring(1,result.length()-1);
             }
 
