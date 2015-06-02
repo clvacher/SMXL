@@ -23,7 +23,6 @@ import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.activity.BrowserActivity;
-import com.aerolitec.SMXL.ui.activity.CreateUpdateProfileActivity;
 import com.aerolitec.SMXL.ui.adapter.FavoriteBrandAdapter;
 import com.aerolitec.SMXL.ui.customLayout.ProfilePictureRoundedImageView;
 
@@ -79,9 +78,9 @@ public class ProfilesDetailFragment extends Fragment{
         imgAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity().getApplicationContext(), CreateUpdateProfileActivity.class);
+                /*Intent intent = new Intent(getActivity().getApplicationContext(), CreateUpdateProfileActivity.class);
                 intent.putExtra("fragmentType","update");
-                startActivity(intent);
+                startActivity(intent);*/
             }
         });
 
@@ -89,9 +88,9 @@ public class ProfilesDetailFragment extends Fragment{
         infosProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity().getApplicationContext(), CreateUpdateProfileActivity.class);
+                /*Intent intent = new Intent(getActivity().getApplicationContext(), CreateUpdateProfileActivity.class);
                 intent.putExtra("fragmentType","update");
-                startActivity(intent);
+                startActivity(intent);*/
             }
         });
 
@@ -111,9 +110,10 @@ public class ProfilesDetailFragment extends Fragment{
             public void onClick(View view) {
                 brandListView.setVisibility(View.GONE);
                 collapseBrands.setImageResource(R.drawable.navigation_expand);
-                Intent intent = new Intent(getActivity(), CreateUpdateProfileActivity.class);
+
+                /*Intent intent = new Intent(getActivity(), CreateUpdateProfileActivity.class);
                 intent.putExtra("fragmentType","brands");
-                startActivity(intent);
+                startActivity(intent);*/
             }
         });
 
@@ -231,9 +231,10 @@ public class ProfilesDetailFragment extends Fragment{
                 public void onClick(View view) {
                     brandListView.setVisibility(View.GONE);
                     collapseBrands.setImageResource(R.drawable.navigation_expand);
-                    Intent intent = new Intent(getActivity(), CreateUpdateProfileActivity.class);
+
+                    /*Intent intent = new Intent(getActivity(), CreateUpdateProfileActivity.class);
                     intent.putExtra("fragmentType","brands");
-                    startActivity(intent);
+                    startActivity(intent);*/
                 }
             });
 

@@ -3,7 +3,6 @@ package com.aerolitec.SMXL.ui.activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
@@ -40,19 +39,16 @@ import java.io.File;
 
 import de.madcyph3r.materialnavigationdrawer.MaterialNavigationDrawer;
 import de.madcyph3r.materialnavigationdrawer.head.MaterialHeadItem;
-import de.madcyph3r.materialnavigationdrawer.listener.MaterialSectionChangeListener;
 import de.madcyph3r.materialnavigationdrawer.menu.MaterialMenu;
-import de.madcyph3r.materialnavigationdrawer.menu.item.MaterialDevisor;
 import de.madcyph3r.materialnavigationdrawer.menu.item.MaterialSection;
 import de.madcyph3r.materialnavigationdrawer.tools.RoundedCornersDrawable;
 
-public class MainNavigationActivity extends MaterialNavigationDrawer implements OnProfileSelected {
+public class MainNavigationActivity extends SuperNavigationActivity implements OnProfileSelected {
 
     private MainUser mainUser;
     private User user;
     private static final int PICKFILE_RESULT_CODE = 1;
 
-    MaterialNavigationDrawer drawer = null;
     boolean drawerOpen = false;
     MaterialHeadItem mainUserHeadItem = null;
     MaterialSection sectionMyProfile = null;
@@ -75,10 +71,7 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
         else{
             super.onBackPressed();
         }
-        if(getSupportFragmentManager().getBackStackEntryCount()==0){
-            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-            getActionBarToggle().setDrawerIndicatorEnabled(true);
-        }
+        updateHamburger();
     }
 
     @Override
@@ -155,23 +148,6 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
             }
         };
         mProfileTracker.startTracking();
-
-        //Log.d("Main user picture", MainUserManager.get().getMainUser().getAvatar().toString());
-
-
-        MaterialDevisor materialDevisor = new MaterialDevisor();
-
-        final MaterialSectionChangeListener materialSectionChangeListener = new MaterialSectionChangeListener() {
-            @Override
-            public void onBeforeChangeSection(MaterialSection materialSection) {
-                getCurrentSection().getText().setTextColor(Color.BLACK);
-            }
-
-            @Override
-            public void onAfterChangeSection(MaterialSection materialSection) {
-                materialSection.getText().setTextColor(Color.WHITE);
-            }
-        };
 
         MaterialMenu menu = new MaterialMenu();
 
@@ -267,6 +243,4 @@ public class MainNavigationActivity extends MaterialNavigationDrawer implements 
 
         return BitmapFactory.decodeResource(getResources(), R.drawable.avatar);
     }
-
-
 }

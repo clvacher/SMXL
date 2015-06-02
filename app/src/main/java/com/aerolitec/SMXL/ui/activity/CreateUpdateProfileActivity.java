@@ -1,17 +1,5 @@
 package com.aerolitec.SMXL.ui.activity;
 
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.util.Log;
-import android.widget.Toast;
-
-import com.aerolitec.SMXL.R;
-import com.aerolitec.SMXL.ui.fragment.CreateProfileDetailsFragment;
-import com.aerolitec.SMXL.ui.fragment.SelectBrandsFragment;
-import com.aerolitec.SMXL.ui.fragment.UpdateProfileDetailsFragment;
-
 /**
  * Created by Clement on 25/04/15.
  */
@@ -21,6 +9,7 @@ import com.aerolitec.SMXL.ui.fragment.UpdateProfileDetailsFragment;
  * update: update existing profile
  * brands: updates existing brands for current profile
  */
+    /*
 public class CreateUpdateProfileActivity extends FragmentActivity {
 
     private boolean confirmExit=false;
@@ -82,3 +71,4 @@ public class CreateUpdateProfileActivity extends FragmentActivity {
         }
     }
 }
+*/

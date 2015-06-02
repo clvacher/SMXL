@@ -1,21 +1,9 @@
 package com.aerolitec.SMXL.ui.activity;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-
-import com.aerolitec.SMXL.R;
-import com.aerolitec.SMXL.model.MainUser;
-import com.aerolitec.SMXL.tools.manager.MainUserManager;
-import com.aerolitec.SMXL.tools.manager.UserManager;
-import com.aerolitec.SMXL.tools.serverConnexion.GetMainUserHttpAsyncTask;
-import com.aerolitec.SMXL.tools.serverConnexion.LoginCreateAccountInterface;
-import com.aerolitec.SMXL.tools.serverConnexion.PostMainUserHttpAsyncTask;
-
 /**
  * Created by Clement on 5/13/2015.
  */
+/*
 public class CreateAccountActivity extends SuperLoginCreateAccountActivity implements LoginCreateAccountInterface{
 
     private static final int CREATE_ACCOUNT=1;
@@ -87,4 +75,4 @@ public class CreateAccountActivity extends SuperLoginCreateAccountActivity imple
     public void serverError(String errorMsg) {
 
     }
-}
+}*/
