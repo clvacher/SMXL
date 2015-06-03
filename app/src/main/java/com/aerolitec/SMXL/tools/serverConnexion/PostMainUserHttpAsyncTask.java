@@ -6,7 +6,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.aerolitec.SMXL.model.MainUser;
-import com.aerolitec.SMXL.tools.UtilityMethods;
+import com.aerolitec.SMXL.tools.UtilityMethodshyghghj;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
 
 import org.apache.http.HttpResponse;
@@ -48,7 +48,7 @@ public class PostMainUserHttpAsyncTask extends AsyncTask<Void, Void, String> {
             jsonObject.accumulate("sex", mainUser.getSex());
             String birthday = mainUser.getMainProfile().getBirthday();
             if (birthday != null) {
-                jsonObject.accumulate("birthdate", UtilityMethods.reverseBirthdayOrder(birthday));
+                jsonObject.accumulate("birthdate", UtilityMethodshyghghj.reverseBirthdayOrder(birthday));
             }
             jsonObject.accumulate("social", mainUser.getAccountType());
 
@@ -117,7 +117,7 @@ public class PostMainUserHttpAsyncTask extends AsyncTask<Void, Void, String> {
 
             // 10. convert inputstream to string
             if(inputStream != null){
-                result = UtilityMethods.convertInputStreamToString(inputStream);
+                result = UtilityMethodshyghghj.convertInputStreamToString(inputStream);
             }
             else{
                 result = "Did not work!";

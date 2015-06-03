@@ -1,32 +1,19 @@
 package com.aerolitec.SMXL.tools;
 
-import android.app.Activity;
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.URI;
-import java.net.URISyntaxException;
 
 /**
  * Created by Jerome on 28/05/2015.
  */
-public class UtilityMethods {
+public class UtilityMethodshyghghj {
 
     //Allows the ListView to adapt to its content test tet
     public static void setListViewHeightBasedOnChildren(ListView listView) {
@@ -68,11 +55,5 @@ public class UtilityMethods {
     //reverses the birthday from dd-mm-yyyy to yyy-mm-dd
     public static String reverseBirthdayOrder(String birthday){
         return birthday.substring(6,10)+"-"+birthday.substring(3,5)+"-"+birthday.substring(0,2);
-    }
-
-    public static boolean isConnected(Context context){
-        ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(Activity.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-        return (networkInfo != null && networkInfo.isConnected());
     }
 }

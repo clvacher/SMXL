@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.CategoryGarment;
 import com.aerolitec.SMXL.model.UserClothes;
-import com.aerolitec.SMXL.tools.UtilityMethods;
+import com.aerolitec.SMXL.tools.UtilityMethodshyghghj;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.activity.AddGarmentActivity;
@@ -77,13 +77,13 @@ public class CustomGlobalGarmentWardrobeLayout extends LinearLayout {
             @Override
             public void onChildViewAdded(View parent, View child) {
                 updateCounter();
-                UtilityMethods.setListViewHeightBasedOnChildren(listView);
+                UtilityMethodshyghghj.setListViewHeightBasedOnChildren(listView);
             }
 
             @Override
             public void onChildViewRemoved(View parent, View child) {
                 updateCounter();
-                UtilityMethods.setListViewHeightBasedOnChildren(listView);
+                UtilityMethodshyghghj.setListViewHeightBasedOnChildren(listView);
             }
         });
 
@@ -128,7 +128,7 @@ public class CustomGlobalGarmentWardrobeLayout extends LinearLayout {
                 getContext().startActivity(intent);
             }
         });
-        UtilityMethods.setListViewHeightBasedOnChildren(v);
+        UtilityMethodshyghghj.setListViewHeightBasedOnChildren(v);
         adapter.notifyDataSetChanged();
     }
 

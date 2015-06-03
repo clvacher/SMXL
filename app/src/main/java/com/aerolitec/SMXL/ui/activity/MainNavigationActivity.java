@@ -24,6 +24,7 @@ import com.aerolitec.SMXL.tools.serverConnexion.PostMainUserFacebookHttpAsyncTas
 import com.aerolitec.SMXL.tools.services.OnProfileSelected;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.adapter.ProfileItem;
+import com.aerolitec.SMXL.ui.fragment.EnChantierFragment;
 import com.aerolitec.SMXL.ui.fragment.ListBrandsFragment;
 import com.aerolitec.SMXL.ui.fragment.MeasureDetailFragment;
 import com.aerolitec.SMXL.ui.fragment.ProfilesDetailFragment;
@@ -186,6 +187,9 @@ public class MainNavigationActivity extends SuperNavigationActivity implements O
         this.newDevisor(menu);
 
         //this.newLabel("Paramètres", false, menu);
+
+        MaterialSection section7 = this.newSection("Partager mon profil", this.getResources().getDrawable(R.drawable.ic_action_share), new EnChantierFragment(), false, menu);
+        section7.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
 
         MaterialSection section6 = this.newSection(getResources().getString(R.string.settings), this.getResources().getDrawable(R.drawable.ic_action_settings), new SettingsFragment(), false, menu);
         section6.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);

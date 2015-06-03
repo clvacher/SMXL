@@ -7,11 +7,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.MainUser;
-import com.aerolitec.SMXL.tools.UtilityMethods;
+import com.aerolitec.SMXL.tools.UtilityMethodshyghghj;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.tools.serverConnexion.GetMainUserHttpAsyncTask;
@@ -51,7 +50,7 @@ public class LoginFragment extends SuperLoginCreateAccountFragment implements Lo
                 progressBar.setVisibility(View.VISIBLE);
                 requestStatus.setVisibility(View.VISIBLE);
                 requestStatus.setText(getResources().getString(R.string.retrieving_account));
-                if (UtilityMethods.isConnected(getActivity())) {
+                if (UtilityMethodshyghghj.isConnected(getActivity())) {
 
                     MainUser mainUser = new MainUser();
                     mainUser.setEmail(email.getText().toString());

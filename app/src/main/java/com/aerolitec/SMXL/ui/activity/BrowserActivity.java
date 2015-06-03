@@ -15,26 +15,18 @@ import android.widget.Toast;
 import com.aerolitec.SMXL.R;
 
 
-public class BrowserActivity extends Activity {
+public class BrowserActivity extends NoDrawerActivity {
 
     private WebView webView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void init(Bundle bundle) {
+        super.init(bundle);
         getWindow().requestFeature(Window.FEATURE_PROGRESS);
-        String title = getIntent().getStringExtra("TITLE");
-        if(title!=null)
-        {
-            getActionBar().setTitle(title);
-        }
-        else{
-            getActionBar().setTitle("");
-        }
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
-        setContentView(R.layout.activity_browser);
+        //MaterialSection section1 = this.newSection("Browser", new BrowserFragment(), false, menu);
 
         final Activity activity = this;
 
@@ -72,6 +64,12 @@ public class BrowserActivity extends Activity {
                 Toast.makeText(activity, "Oh no! " + description, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setDrawerBlocked();
     }
 
     @Override
