@@ -1,6 +1,7 @@
 package com.aerolitec.SMXL.ui.fragment;
 
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,8 @@ import android.support.v4.app.FragmentTabHost;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.TabHost;
 import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
@@ -40,6 +43,14 @@ public class TabsProfileDetailFragment extends Fragment {
 
         fragmentTabHost.setBackgroundColor(getResources().getColor(R.color.SectionTitle));
 
+        fragmentTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+            @Override
+            public void onTabChanged(String tabId) {
+
+                InputMethodManager inputManager = ( InputMethodManager ) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+                inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            }
+        });
 
         for (int i = 0; i < fragmentTabHost.getTabWidget().getChildCount(); i++) {
             TextView tv = (TextView) fragmentTabHost.getTabWidget().getChildAt(i).findViewById(android.R.id.title);
