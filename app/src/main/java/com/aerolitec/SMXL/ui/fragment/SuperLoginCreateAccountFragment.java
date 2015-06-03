@@ -84,7 +84,7 @@ public abstract class SuperLoginCreateAccountFragment extends Fragment implement
     public boolean emailFormatIsValid(){
         if(!((email.getText().toString()).matches(".*@.*\\..*") && (email.getText().toString()).length() > 5)){
             requestStatus.setVisibility(View.VISIBLE);
-            requestStatus.setText("This is not a valid Email!");
+            requestStatus.setText(R.string.email_not_valid);
             return false;
         }
         return true;
@@ -93,7 +93,7 @@ public abstract class SuperLoginCreateAccountFragment extends Fragment implement
     public boolean passwordFormatIsValid(){
         if(!(password.getText().toString().length()>5)){
             requestStatus.setVisibility(View.VISIBLE);
-            requestStatus.setText("Password must be at least 6 characters long!");
+            requestStatus.setText(R.string.password_not_valid);
             return false;
         }
         return true;

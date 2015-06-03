@@ -139,6 +139,8 @@
     <string name="wrong_password">Wrong Password!</string>
     <string name="no_connexion">Check your connexion!</string>
     <string name="disconnected">Disconnected!</string>
+    <string name="email_not_valid">This is not a valid Email!</string>
+    <string name="password_not_valid">Password must be at least 6 characters long!</string>
 
     <string name="jacket">Jacket</string>
     <string name="search">Search</string>

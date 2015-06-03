@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -122,21 +123,11 @@ public class ProfilesDetailFragment extends Fragment{
             }
         });
 
-        /*ImageView noClickZone=(ImageView) view.findViewById(R.id.noClickZone);
+        ImageView noClickZone=(ImageView) view.findViewById(R.id.noClickZone);
 
         final RelativeLayout quicksizeLayout=(RelativeLayout) view.findViewById(R.id.quicksize);
 
-        quicksizeLayout.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                switch (motionEvent.getAction()){
-                    case MotionEvent.ACTION_DOWN:
-                        quicksizeLayout.setBackgroundResource(android.R.color.holo_blue_light);
-                        break;
-                }
-                return false;
-            }
-        });
+        
 
         noClickZone.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,7 +135,7 @@ public class ProfilesDetailFragment extends Fragment{
 
             }
         });
-        */
+
 
         return view;
     }

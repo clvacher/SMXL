@@ -133,6 +133,8 @@
     <string name="wrong_username">Email inexistant!</string>
     <string name="wrong_password">Mot de passe éronné</string>
     <string name="no_connexion">Vérifiez votre connexion</string>
+    <string name="email_not_valid">Cet email n\'est pas valide!</string>
+    <string name="password_not_valid">Le mot de passe doit faire au moins 6 charactères!</string>
     
     <string name="Jacket">Vestes/Blousons</string>
     <string name="addColor">Ajouter une couleur</string>
@@ -143,7 +145,6 @@
     <string name="title_activity_add_measure_fragment">AddMeasureFragment</string>
     <string name="title_activity_display_garment">Mes Vêtements</string>
     <string name="title_activity_list_garment">Liste des vêtements</string>
-    <string name="too_many_color">Vous avez déjà choisi 4 couleurs</string>
     <string name="update">Mettre à jour</string>
     <string name="viewMore">Voir plus</string>
     <string name="disconnected">Déconnecté!</string>
