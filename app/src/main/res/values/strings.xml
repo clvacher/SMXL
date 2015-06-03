@@ -44,7 +44,7 @@
     <string name="majProfile">Profile update</string>
     <string name="libImc">BMI</string>
     <string name="unimplemented">Developing&#8230;</string>
-    <string name="addNote">My shipping Address</string><!--Add a description, a comment&#8230;-->
+    <string name="addNote">Add a description, a comment&#8230;</string>
     <string name="ShoeSize">Shoe height</string>
     <string name="title_activity_profil">ProfilActivity</string>
     <string name="hello_world">Hello world!</string>
@@ -148,6 +148,9 @@
     <string name="my_profile">My Profile</string>
     <string name="my_measurements">My Measurements</string>
     <string name="my_wardrobe">My Wardrobe</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

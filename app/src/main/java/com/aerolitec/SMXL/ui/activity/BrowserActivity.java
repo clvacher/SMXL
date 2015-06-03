@@ -1,69 +1,32 @@
 package com.aerolitec.SMXL.ui.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.Window;
-import android.webkit.WebChromeClient;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.aerolitec.SMXL.R;
+import com.aerolitec.SMXL.ui.fragment.BrowserFragment;
+
+import de.madcyph3r.materialnavigationdrawer.menu.item.MaterialSection;
 
 
 public class BrowserActivity extends NoDrawerActivity {
 
-    private WebView webView;
+    BrowserFragment browserFragment;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
+        super.onCreate(savedInstanceState, persistentState);
+    }
 
     @Override
     public void init(Bundle bundle) {
         super.init(bundle);
-        getWindow().requestFeature(Window.FEATURE_PROGRESS);
 
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        browserFragment = new BrowserFragment();
+        MaterialSection section1 = this.newSection("Browser", browserFragment, false, menu);
 
-        //MaterialSection section1 = this.newSection("Browser", new BrowserFragment(), false, menu);
-
-        final Activity activity = this;
-
-
-        final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBarWebView);
-        progressBar.setMax(100);
-        progressBar.setProgress(0);
-
-        webView = (WebView)findViewById(R.id.WebView);
-
-        webView.getSettings().setJavaScriptEnabled(true);
-
-        webView.getSettings().setBuiltInZoomControls(true);
-        webView.getSettings().setSupportZoom(true);
-
-        //Full webpage visible
-        webView.getSettings().setLoadWithOverviewMode(true);
-        webView.getSettings().setUseWideViewPort(true);
-
-        webView.loadUrl(getIntent().getStringExtra("URL"));
-
-        webView.setWebChromeClient(new WebChromeClient() {
-            @Override
-            public void onProgressChanged(WebView view, int newProgress) {
-                activity.setProgress(newProgress * 100);
-                progressBar.setProgress(newProgress);
-                if (newProgress==100){
-                    progressBar.setVisibility(View.GONE);
-                }
-            }
-        });
-
-        webView.setWebViewClient(new WebViewClient() {
-            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-                Toast.makeText(activity, "Oh no! " + description, Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     @Override
@@ -74,8 +37,8 @@ public class BrowserActivity extends NoDrawerActivity {
 
     @Override
     public void onBackPressed() {
-        if (webView.copyBackForwardList().getCurrentIndex() > 0) {
-            webView.goBack();
+        if (browserFragment.getWebView().copyBackForwardList().getCurrentIndex() > 0) {
+            browserFragment.getWebView().goBack();
         }
         else {
             // Your exit alert code, or alternatively line below to finish
@@ -99,7 +62,7 @@ public class BrowserActivity extends NoDrawerActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.refresh) {
-            webView.reload();
+            browserFragment.getWebView().reload();
         }
 
         if(id == android.R.id.home){

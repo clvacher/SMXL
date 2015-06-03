@@ -15,44 +15,11 @@
         android:layout_height="wrap_content"
         android:paddingBottom="10dp">
 
-        <com.aerolitec.SMXL.ui.customLayout.ProfilePictureRoundedImageView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/imgAvatar"
-            android:layout_width="@dimen/size_avatar_list_profile"
-            android:layout_height="@dimen/size_avatar_list_profile"
-            android:layout_marginLeft="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="15dp"
-            android:src="@drawable/avatar"
-            android:scaleType="centerCrop"
-            app:corner_radius="60dp"
-            app:mutate_background="true"
-            app:oval="true"
-            android:layout_gravity="center_horizontal"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"/>
-
-        <TextView
-            android:id="@+id/firstName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginEnd="20dp"
-            android:textSize="@dimen/textSizeMeasure"
-            android:textStyle="bold"
-            android:layout_alignTop="@+id/imgAvatar"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:id="@+id/linearLayoutWardrobe"
-            android:layout_below="@+id/imgAvatar"/>
+            android:id="@+id/linearLayoutWardrobe"/>
 
     </RelativeLayout>
 </ScrollView>
