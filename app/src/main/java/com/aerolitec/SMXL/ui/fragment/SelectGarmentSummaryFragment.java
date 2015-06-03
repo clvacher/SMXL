@@ -40,11 +40,14 @@ public class SelectGarmentSummaryFragment extends Fragment {
         EditText etSize=(EditText) view.findViewById(R.id.editText2);
         etComment=(EditText) view.findViewById(R.id.editText);
         addToWardrobe=(Button) view.findViewById(R.id.button3);
+        addToWardrobe.setText(getResources().getString(R.string.validate));
 
-        if(activity.getSelectedIdUserClothes() != -1){
-            etSize.setText(activity.getSelectedSize());
-            etComment.setText(activity.getComment());
-            addToWardrobe.setText(getResources().getString(R.string.edit_garment));
+
+        if(activity.getAddGarmentFragment().getSelectedIdUserClothes() != -1){
+            etSize.setText(activity.getAddGarmentFragment().getSelectedSize());
+            etComment.setText(activity.getAddGarmentFragment().getComment());
+            addToWardrobe.setVisibility(View.VISIBLE);
+
             etSize.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence charSequence, int start, int count, int after) {
@@ -58,7 +61,7 @@ public class SelectGarmentSummaryFragment extends Fragment {
 
                 @Override
                 public void afterTextChanged(Editable editable) {
-                    activity.setSelectedSize(editable.toString());
+                    activity.getAddGarmentFragment().setSelectedSize(editable.toString());
                     Boolean b = editable.toString().length() > 0;
                     if (b) {
                         addToWardrobe.setVisibility(View.VISIBLE);
@@ -66,7 +69,14 @@ public class SelectGarmentSummaryFragment extends Fragment {
                         addToWardrobe.setVisibility(View.GONE);
                     }
                     activity.setUpdate(b);
-                    activity.setSelectedSize(editable.toString());
+                    activity.getAddGarmentFragment().setSelectedSize(editable.toString());
+                }
+            });
+            addToWardrobe.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    activity.getAddGarmentFragment().updateGarment();
+                    activity.finish();
                 }
             });
         }
@@ -89,15 +99,15 @@ public class SelectGarmentSummaryFragment extends Fragment {
                         addToWardrobe.setVisibility(View.GONE);
                     }
                     activity.setValidation(b);
-                    activity.setSelectedSize(editable.toString());
+                    activity.getAddGarmentFragment().setSelectedSize(editable.toString());
                 }
             });
 
             addToWardrobe.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    activity.setComment((etComment.getText()).toString());
-                    activity.saveGarment();
+                    activity.getAddGarmentFragment().setComment((etComment.getText()).toString());
+                    activity.getAddGarmentFragment().saveGarment();
                     activity.finish();
                 }
             });
@@ -116,7 +126,7 @@ public class SelectGarmentSummaryFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                activity.setComment(editable.toString());
+                activity.getAddGarmentFragment().setComment(editable.toString());
             }
         });
     }

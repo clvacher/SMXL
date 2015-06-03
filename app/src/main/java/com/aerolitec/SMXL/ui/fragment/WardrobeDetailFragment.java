@@ -7,14 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.customLayout.CustomGlobalGarmentWardrobeLayout;
-import com.aerolitec.SMXL.ui.customLayout.ProfilePictureRoundedImageView;
 
 
 public class WardrobeDetailFragment extends Fragment {
@@ -41,16 +39,7 @@ public class WardrobeDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_wardrobe_detail, container, false);
-
         linearLayout = (LinearLayout) view.findViewById(R.id.linearLayoutWardrobe);
-
-        TextView tvFirstName = (TextView) view.findViewById(R.id.firstName);
-        ProfilePictureRoundedImageView avatar=(ProfilePictureRoundedImageView)view.findViewById(R.id.imgAvatar);
-
-        //Initial setup of the name and picture of the user
-        avatar.setImage(user.getAvatar());
-        tvFirstName.setText(user.getFirstname());
-
         return view;
     }
 

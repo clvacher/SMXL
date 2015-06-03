@@ -15,11 +15,11 @@ import com.aerolitec.SMXL.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TabsFragment extends Fragment {
+public class TabsProfileDetailFragment extends Fragment {
 
     private FragmentTabHost fragmentTabHost;
 
-    public TabsFragment() {
+    public TabsProfileDetailFragment() {
         // Required empty public constructor
     }
 
@@ -30,11 +30,11 @@ public class TabsFragment extends Fragment {
         fragmentTabHost = new FragmentTabHost(getActivity());
         fragmentTabHost.setup(getActivity(), getChildFragmentManager(), R.id.frame_container);
 
-        fragmentTabHost.addTab(fragmentTabHost.newTabSpec("profile").setIndicator("Profil"),
+        fragmentTabHost.addTab(fragmentTabHost.newTabSpec("profile").setIndicator(getString(R.string.profile)),
                 ProfilesDetailFragment.class, null);
-        fragmentTabHost.addTab(fragmentTabHost.newTabSpec("wardrobe").setIndicator("Dressing"),
+        fragmentTabHost.addTab(fragmentTabHost.newTabSpec("wardrobe").setIndicator(getString(R.string.garments)),
                 WardrobeDetailFragment.class, null);
-        fragmentTabHost.addTab(fragmentTabHost.newTabSpec("measures").setIndicator("Mesures"),
+        fragmentTabHost.addTab(fragmentTabHost.newTabSpec("measures").setIndicator(getString(R.string.measurements)),
                 MeasureDetailFragment.class, null);
 
 
@@ -46,6 +46,7 @@ public class TabsFragment extends Fragment {
             tv.setTextColor(Color.WHITE);
             fragmentTabHost.getTabWidget().getChildAt(i).setBackgroundResource(R.drawable.selector_tabs_state);
         }
+
         return fragmentTabHost;
     }
 

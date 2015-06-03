@@ -93,9 +93,9 @@ public class SelectGarmentBrandFragment extends Fragment {
         gvBrands.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                activity.setSelectedBrand((Brand) adapterView.getItemAtPosition(i));
-                activity.getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.containerAddGarmentActivity, new SelectGarmentSummaryFragment(), "summary")
+                activity.getAddGarmentFragment().setSelectedBrand((Brand) adapterView.getItemAtPosition(i));
+                activity.getAddGarmentFragment().getChildFragmentManager().beginTransaction()
+                        .replace(R.id.containerAddGarmentFragment, new SelectGarmentSummaryFragment(), "summary")
                         .addToBackStack(null)
                         .commit();
             }

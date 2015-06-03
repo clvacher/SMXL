@@ -42,11 +42,11 @@ public class SelectGarmentTypeFragment extends Fragment {
 
         ListView listViewGarments = (ListView) view.findViewById(R.id.listViewGarments);
 
-        ArrayList<GarmentType> garmentItems = getGarmentsFromCategory(activity.getSelectedCategory());//C'est pas fou, changer dans le intent?
+        ArrayList<GarmentType> garmentItems = getGarmentsFromCategory(activity.getAddGarmentFragment().getSelectedCategory());//C'est pas fou, changer dans le intent?
         if(garmentItems.size()==1){
-            activity.setSelectedGarmentType(garmentItems.get(0));
-            activity.getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.containerAddGarmentActivity, new SelectGarmentBrandFragment(), "brand")
+            activity.getAddGarmentFragment().setSelectedGarmentType(garmentItems.get(0));
+            activity.getAddGarmentFragment().getChildFragmentManager().beginTransaction()
+                    .replace(R.id.containerAddGarmentFragment, new SelectGarmentBrandFragment(), "brand")
                     .commit();
         }
 
@@ -58,9 +58,9 @@ public class SelectGarmentTypeFragment extends Fragment {
         listViewGarments.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                activity.setSelectedGarmentType((GarmentType)adapterView.getItemAtPosition(position));
-                activity.getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.containerAddGarmentActivity, new SelectGarmentBrandFragment(), "brand")
+                activity.getAddGarmentFragment().setSelectedGarmentType((GarmentType) adapterView.getItemAtPosition(position));
+                activity.getAddGarmentFragment().getChildFragmentManager().beginTransaction()
+                        .replace(R.id.containerAddGarmentFragment, new SelectGarmentBrandFragment(), "brand")
                         .addToBackStack(null)
                         .commit();
             }
@@ -70,8 +70,8 @@ public class SelectGarmentTypeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        activity.setSelectedBrand(null);
-        activity.setSelectedGarmentType(null);
+        activity.getAddGarmentFragment().setSelectedBrand(null);
+        activity.getAddGarmentFragment().setSelectedGarmentType(null);
     }
 
     private ArrayList<GarmentType> getGarmentsFromCategory(CategoryGarment cg) {
