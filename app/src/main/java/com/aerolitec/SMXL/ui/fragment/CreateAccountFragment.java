@@ -39,6 +39,7 @@ public class CreateAccountFragment extends SuperLoginCreateAccountFragment imple
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        signIn.setText(getResources().getString(R.string.create_account));
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,12 +48,18 @@ public class CreateAccountFragment extends SuperLoginCreateAccountFragment imple
                 requestStatus.setVisibility(View.VISIBLE);
                 requestStatus.setText(getResources().getString(R.string.checkingAvailability));
                 if (UtilityMethodsv2.isConnected(getActivity())) {
-                    MainUser mainUser = new MainUser();
-                    mainUser.setEmail(email.getText().toString());
-                    mainUser.setPassword(password.getText().toString());
-                    MainUserManager.get().setMainUser(mainUser);
+                    if(inputFormatIsValid()) {
+                        MainUser mainUser = new MainUser();
+                        mainUser.setEmail(email.getText().toString());
+                        mainUser.setPassword(password.getText().toString());
+                        MainUserManager.get().setMainUser(mainUser);
 
-                    new GetMainUserHttpAsyncTask(fragment).execute();
+                        new GetMainUserHttpAsyncTask(fragment).execute();
+                    }
+                    else{
+                        progressBar.setVisibility(View.GONE);
+                        v.setVisibility(View.VISIBLE);
+                    }
                 }
                 else {
                     requestStatus.setText(getResources().getString(R.string.no_connexion));

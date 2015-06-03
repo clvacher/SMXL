@@ -52,12 +52,19 @@ public class LoginFragment extends SuperLoginCreateAccountFragment implements Lo
                 requestStatus.setText(getResources().getString(R.string.retrieving_account));
                 if (UtilityMethodsv2.isConnected(getActivity())) {
 
-                    MainUser mainUser = new MainUser();
-                    mainUser.setEmail(email.getText().toString());
-                    mainUser.setPassword(password.getText().toString());
-                    MainUserManager.get().setMainUser(mainUser);
+                    if(inputFormatIsValid()) {
+                        MainUser mainUser = new MainUser();
+                        mainUser.setEmail(email.getText().toString());
+                        mainUser.setPassword(password.getText().toString());
+                        MainUserManager.get().setMainUser(mainUser);
 
-                    new GetMainUserHttpAsyncTask(fragment).execute();//todo email.getText().toString(),password.getText().toString() dans execute
+                        new GetMainUserHttpAsyncTask(fragment).execute();//todo email.getText().toString(),password.getText().toString() dans execute
+                    }
+                    else{
+                        progressBar.setVisibility(View.GONE);
+                        v.setVisibility(View.VISIBLE);
+                    }
+
                 }
                 else {
                     requestStatus.setText(getResources().getString(R.string.no_connexion));

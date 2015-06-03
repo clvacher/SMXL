@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.method.PasswordTransformationMethod;
 import android.text.method.SingleLineTransformationMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,6 +79,30 @@ public abstract class SuperLoginCreateAccountFragment extends Fragment implement
         else{
             password.setTransformationMethod(PasswordTransformationMethod.getInstance());
         }
+    }
+
+    public boolean emailFormatIsValid(){
+        if(!((email.getText().toString()).matches(".*@.*\\..*") && (email.getText().toString()).length() > 5)){
+            requestStatus.setVisibility(View.VISIBLE);
+            requestStatus.setText("This is not a valid Email!");
+            return false;
+        }
+        return true;
+    }
+
+    public boolean passwordFormatIsValid(){
+        if(!(password.getText().toString().length()>5)){
+            requestStatus.setVisibility(View.VISIBLE);
+            requestStatus.setText("Password must be at least 6 characters long!");
+            return false;
+        }
+        return true;
+    }
+
+    public boolean inputFormatIsValid(){
+        String test = "[5]";
+        Log.d("test",test.trim());
+        return (emailFormatIsValid() && passwordFormatIsValid());
     }
 
     @Override

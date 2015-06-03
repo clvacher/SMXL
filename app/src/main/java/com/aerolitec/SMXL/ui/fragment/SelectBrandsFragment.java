@@ -25,6 +25,7 @@ import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.activity.ConnexionActivity;
+import com.aerolitec.SMXL.ui.activity.CreateUpdateProfileActivity;
 import com.aerolitec.SMXL.ui.activity.MainNavigationActivity;
 import com.aerolitec.SMXL.ui.activity.SuperNavigationActivity;
 import com.aerolitec.SMXL.ui.adapter.FavoriteCheckableBrandAdapter;
@@ -165,12 +166,11 @@ public class SelectBrandsFragment extends Fragment implements FakeSearchView.OnS
         if(inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS)){
             getActivity().onBackPressed();
         }
-
-        superNavigationActivity.finish();
-
-        if(superNavigationActivity instanceof ConnexionActivity){
-            Intent intent = new Intent(superNavigationActivity.getApplicationContext(), MainNavigationActivity.class);
-            startActivity(intent);
+        if(superNavigationActivity instanceof CreateUpdateProfileActivity) {
+            superNavigationActivity.finish();
+        }
+        else{
+            getActivity().onBackPressed();
         }
 
         superNavigationActivity.restoreDefaultTitleCurrentSection();
