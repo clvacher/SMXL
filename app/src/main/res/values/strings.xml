@@ -141,7 +141,7 @@
 
     <string name="jacket">Jacket</string>
     <string name="disconnected">Disconnected!</string>
-    <string name="find">Rechercher</string>
+    <string name="search">Search</string>
     <string name="title_activity_browser">BrowserActivity</string>
 
     <string name="my_profiles">My Profiles</string>

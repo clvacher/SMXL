@@ -157,7 +157,7 @@ public class CreateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
                 e.printStackTrace();
             }
 
-            getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).add(R.id.frame_container, new SelectBrandsFragment()).commit();
+            getActivity().getSupportFragmentManager().beginTransaction().add(R.id.frame_container, new SelectBrandsFragment()).commit();
 
             superNavigationActivity.updateHamburger();
             superNavigationActivity.restoreDefaultTitleCurrentSection();

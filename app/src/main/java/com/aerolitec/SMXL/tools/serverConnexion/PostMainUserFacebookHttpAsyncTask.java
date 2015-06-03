@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 
 import com.aerolitec.SMXL.model.MainUser;
-import com.aerolitec.SMXL.tools.UtilityMethodshyghghj;
+import com.aerolitec.SMXL.tools.UtilityMethodsv2;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
 
 import org.json.JSONObject;
@@ -35,7 +35,7 @@ public class PostMainUserFacebookHttpAsyncTask extends PostMainUserHttpAsyncTask
             jsonObject.accumulate("id_facebook",mainUser.getFacebookId());
             String birthday = mainUser.getMainProfile().getBirthday();
             if (birthday != null) {
-                jsonObject.accumulate("birthdate", UtilityMethodshyghghj.reverseBirthdayOrder(birthday));
+                jsonObject.accumulate("birthdate", UtilityMethodsv2.reverseBirthdayOrder(birthday));
             }
             jsonObject.accumulate("social", mainUser.getAccountType());
 

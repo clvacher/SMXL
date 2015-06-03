@@ -41,4 +41,9 @@ public class MeasureItem implements Serializable{
     public void setValueMeasure(double valueMeasure) {
         this.valueMeasure = valueMeasure;
     }
+
+    @Override
+    public String toString() {
+        return typeMeasure+" "+valueMeasure;
+    }
 }

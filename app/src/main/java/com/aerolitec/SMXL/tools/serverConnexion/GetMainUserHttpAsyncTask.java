@@ -8,7 +8,7 @@ import android.util.Log;
 
 import com.aerolitec.SMXL.model.MainUser;
 import com.aerolitec.SMXL.model.User;
-import com.aerolitec.SMXL.tools.UtilityMethodshyghghj;
+import com.aerolitec.SMXL.tools.UtilityMethodsv2;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 
@@ -166,7 +166,7 @@ public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
             inputStream = httpResponse.getEntity().getContent();
 
             if(inputStream != null){
-                result = UtilityMethodshyghghj.convertInputStreamToString(inputStream);
+                result = UtilityMethodsv2.convertInputStreamToString(inputStream);
 
                 //converts the result to a JSON-convertible String
                 if(!result.equals("wrong email") && !result.equals("wrong password"))

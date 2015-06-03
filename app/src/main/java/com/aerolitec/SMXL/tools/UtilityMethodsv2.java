@@ -1,5 +1,9 @@
 package com.aerolitec.SMXL.tools;
 
+import android.app.Activity;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListAdapter;
@@ -13,7 +17,7 @@ import java.io.InputStreamReader;
 /**
  * Created by Jerome on 28/05/2015.
  */
-public class UtilityMethodshyghghj {
+public class UtilityMethodsv2 {
 
     //Allows the ListView to adapt to its content test tet
     public static void setListViewHeightBasedOnChildren(ListView listView) {
@@ -55,5 +59,11 @@ public class UtilityMethodshyghghj {
     //reverses the birthday from dd-mm-yyyy to yyy-mm-dd
     public static String reverseBirthdayOrder(String birthday){
         return birthday.substring(6,10)+"-"+birthday.substring(3,5)+"-"+birthday.substring(0,2);
+    }
+
+    public static boolean isConnected(Context context){
+        ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(Activity.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        return (networkInfo != null && networkInfo.isConnected());
     }
 }

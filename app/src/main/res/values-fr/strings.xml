@@ -147,7 +147,7 @@
     <string name="update">Mettre à jour</string>
     <string name="viewMore">Voir plus</string>
     <string name="disconnected">Déconnecté!</string>
-    <string name="find">Rechercher</string>
+    <string name="search">Rechercher</string>
     <string name="title_activity_browser">Navigateur</string>
 
     <string name="my_profiles">Mes profils</string>

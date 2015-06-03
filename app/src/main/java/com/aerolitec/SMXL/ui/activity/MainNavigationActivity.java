@@ -178,7 +178,7 @@ public class MainNavigationActivity extends SuperNavigationActivity implements O
 
         this.newDevisor(menu);
 
-        MaterialSection sectionBrands = this.newSection(getResources().getString(R.string.favorite_brands), this.getResources().getDrawable(R.drawable.ic_action_labels) ,new ListBrandsFragment(), false, menu);
+        MaterialSection sectionBrands = this.newSection(getResources().getString(R.string.all_Brands), this.getResources().getDrawable(R.drawable.ic_action_labels) ,new ListBrandsFragment(), false, menu);
         sectionBrands.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
 
         //MaterialSection sectionBlogs = this.newSection("Blogs", new EnChantierFragment(), false, menu);

@@ -1,6 +1,7 @@
 package com.aerolitec.SMXL.ui.fragment;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
@@ -94,14 +96,14 @@ public class MeasureDetailFragment extends Fragment {
     private void loadMeasureItems(){
         measureItems= new HashMap<>();
         measureItems.put(tvNeck, new MeasureItem(getResources().getString(R.string.libCollar),user.getCollar()));
-        measureItems.put(tvChest, new MeasureItem(getResources().getString(R.string.libChest),user.getCollar()));
-        measureItems.put(tvWaist, new MeasureItem(getResources().getString(R.string.libWaist),user.getCollar()));
-        measureItems.put(tvSleeve, new MeasureItem(getResources().getString(R.string.libSleeve),user.getCollar()));
-        measureItems.put(tvHips, new MeasureItem(getResources().getString(R.string.libHips),user.getCollar()));
-        measureItems.put(tvHeight, new MeasureItem(getResources().getString(R.string.libHeight),user.getCollar()));
-        measureItems.put(tvThigh, new MeasureItem(getResources().getString(R.string.libthigh),user.getCollar()));
-        measureItems.put(tvInseam, new MeasureItem(getResources().getString(R.string.libInseam),user.getCollar()));
-        measureItems.put(tvFeet, new MeasureItem(getResources().getString(R.string.libFeet), user.getCollar()));
+        measureItems.put(tvChest, new MeasureItem(getResources().getString(R.string.libChest),user.getChest()));
+        measureItems.put(tvWaist, new MeasureItem(getResources().getString(R.string.libWaist),user.getWaist()));
+        measureItems.put(tvSleeve, new MeasureItem(getResources().getString(R.string.libSleeve),user.getSleeve()));
+        measureItems.put(tvHips, new MeasureItem(getResources().getString(R.string.libHips),user.getHips()));
+        measureItems.put(tvHeight, new MeasureItem(getResources().getString(R.string.libHeight),user.getHeight()));
+        measureItems.put(tvThigh, new MeasureItem(getResources().getString(R.string.libthigh),user.getThigh()));
+        measureItems.put(tvInseam, new MeasureItem(getResources().getString(R.string.libInseam),user.getInseam()));
+        measureItems.put(tvFeet, new MeasureItem(getResources().getString(R.string.libFeet), user.getFeet()));
     }
 
     private void findMeasureItemsInView(View v) {
@@ -160,11 +162,13 @@ public class MeasureDetailFragment extends Fragment {
         View measureDialog = (LayoutInflater.from(getActivity())).inflate(R.layout.measure_dialog, null);
 
         final MeasureItem measureItem = measureItems.get(v);
+        Log.d("",measureItem.toString());
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setView(measureDialog);
 
         ((TextView) measureDialog.findViewById(R.id.textView1)).setText(measureItem.getTypeMeasure());
+
         final EditText userInput = (EditText) measureDialog.findViewById(R.id.etDialogUserInput);
         if (measureItem.getValueMeasure() != 0){
             userInput.setText(String.valueOf(measureItem.getValueMeasure()));
@@ -178,11 +182,18 @@ public class MeasureDetailFragment extends Fragment {
                     value = Double.valueOf(userInput.getText().toString());
                 }
                 measureItem.setValueMeasure(value);
-                ((TextView)v).setText(value+"");
+                ((TextView) v).setText(value + "");
             }
         });
         final AlertDialog dialog = builder.create();
         dialog.show();
+
+        Log.d("toto","keyboard");
+
+        userInput.requestFocus();
+        InputMethodManager keyboard = (InputMethodManager)
+                getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        keyboard.showSoftInput(userInput, 0);
     }
 
     private void placeMeasureItems() {
