@@ -4,14 +4,10 @@ package com.aerolitec.SMXL.ui.fragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.aerolitec.SMXL.R;
-import com.aerolitec.SMXL.ui.activity.MainNavigationActivity;
 
 
 /**
@@ -38,23 +34,8 @@ public class EnChantierFragment extends Fragment {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
         // update the actionbar to show the up carat/affordance
-        ((MainNavigationActivity)getActivity()).getActionBarToggle().setDrawerIndicatorEnabled(false);
-        ((MainNavigationActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //((MainNavigationActivity)getActivity()).setBarAsNextFragment();
 
-    }
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                // your code for order here
-                ((MainNavigationActivity)getActivity()).onBackPressed();
-                return true;
-        }
-        return true;
     }
 
 }
