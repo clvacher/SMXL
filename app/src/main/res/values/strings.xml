@@ -138,9 +138,9 @@
     <string name="wrong_email">Wrong Email!</string>
     <string name="wrong_password">Wrong Password!</string>
     <string name="no_connexion">Check your connexion!</string>
+    <string name="disconnected">Disconnected!</string>
 
     <string name="jacket">Jacket</string>
-    <string name="disconnected">Disconnected!</string>
     <string name="search">Search</string>
     <string name="title_activity_browser">BrowserActivity</string>
 

@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -186,14 +187,11 @@ public class MeasureDetailFragment extends Fragment {
             }
         });
         final AlertDialog dialog = builder.create();
+        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         dialog.show();
 
         Log.d("toto","keyboard");
 
-        userInput.requestFocus();
-        InputMethodManager keyboard = (InputMethodManager)
-                getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-        keyboard.showSoftInput(userInput, 0);
     }
 
     private void placeMeasureItems() {

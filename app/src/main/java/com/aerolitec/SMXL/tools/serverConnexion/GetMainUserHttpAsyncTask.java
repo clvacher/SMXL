@@ -121,7 +121,7 @@ public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
                     Calendar cal=Calendar.getInstance();
                     cal.setTime(birthDate);
 
-                    String birthdayString = cal.get(Calendar.DAY_OF_MONTH)+"-"+String.format("%02d", cal.get(Calendar.MONTH) + 1)+"-"+cal.get(Calendar.YEAR);
+                    String birthdayString = String.format("%02d", cal.get(Calendar.DAY_OF_MONTH))+"-"+String.format("%02d", cal.get(Calendar.MONTH) + 1)+"-"+cal.get(Calendar.YEAR);
 
                     UserManager.get().setUser(new User(
                             jsonMainUser.optString("firstname"),
@@ -148,12 +148,9 @@ public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
     protected String GET(String url, String json){
         InputStream inputStream = null;
         String result = "";
-        Log.d("toto","1");
         try {
             HttpClient httpclient = new DefaultHttpClient();
-            Log.d("toto","2");
             HttpPost httpPost = new HttpPost(url);
-            Log.d("toto","3");
 
             StringEntity se = new StringEntity(json);
             httpPost.setEntity(se);
