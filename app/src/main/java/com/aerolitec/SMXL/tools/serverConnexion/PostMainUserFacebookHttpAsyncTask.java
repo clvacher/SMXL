@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 
 import com.aerolitec.SMXL.model.MainUser;
+import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.UtilityMethodsv2;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
 
@@ -53,7 +54,7 @@ public class PostMainUserFacebookHttpAsyncTask extends PostMainUserHttpAsyncTask
         //Toast.makeText(activity, "Data Sent!", Toast.LENGTH_LONG).show();
         if(!result.equals("Did not work!")) {
             try {
-                FileOutputStream fos = activity.openFileOutput(MAIN_USER_FILE, Context.MODE_PRIVATE);
+                FileOutputStream fos = activity.openFileOutput(Constants.MAIN_USER_FILE, Context.MODE_PRIVATE);
                 fos.flush();
                 fos.write(MainUserManager.get().getMainUser().getBytes());
             } catch (IOException e) {

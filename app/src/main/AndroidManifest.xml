@@ -99,17 +99,7 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".ui.activity.CreateAccountActivity"
-            android:label="@string/title_activity_connexion"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
             android:name=".ui.activity.CreateUpdateProfileActivity"
-            android:label="@string/title_activity_connexion"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
-            android:name=".ui.activity.LoginActivity"
             android:label="@string/title_activity_connexion"
             android:screenOrientation="portrait" >
         </activity>

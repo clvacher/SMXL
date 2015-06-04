@@ -16,6 +16,7 @@ import android.widget.RelativeLayout;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.MainUser;
+import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.tools.serverConnexion.PostMainUserHttpAsyncTask;
@@ -135,7 +136,7 @@ public class IntroActivity extends Activity {
         //TEST
 
         try {
-            FileInputStream fis = openFileInput(PostMainUserHttpAsyncTask.MAIN_USER_FILE);
+            FileInputStream fis = openFileInput(Constants.MAIN_USER_FILE);
             int bufferSize=fis.available();
             Log.d("TheoraticalStorageSize", "" + bufferSize);
 

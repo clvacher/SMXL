@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.MainUser;
 import com.aerolitec.SMXL.model.User;
+import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.tools.serverConnexion.GetMainUserFacebookHttpAsyncTask;
@@ -165,7 +166,7 @@ public class ConnexionDefaultFragment extends Fragment implements LoginCreateAcc
 
 
         try {
-            FileOutputStream fos = getActivity().openFileOutput(PostMainUserHttpAsyncTask.MAIN_USER_FILE, Context.MODE_PRIVATE);
+            FileOutputStream fos = getActivity().openFileOutput(Constants.MAIN_USER_FILE, Context.MODE_PRIVATE);
             fos.flush();
             fos.write(MainUserManager.get().getMainUser().getBytes());
             getActivity().setResult(Activity.RESULT_OK);

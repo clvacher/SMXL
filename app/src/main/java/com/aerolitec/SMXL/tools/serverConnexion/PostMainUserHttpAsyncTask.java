@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.aerolitec.SMXL.model.MainUser;
+import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.UtilityMethodsv2;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
 
@@ -25,7 +26,6 @@ import java.io.InputStream;
  */
 public class PostMainUserHttpAsyncTask extends AsyncTask<Void, Void, String> {
 
-    public static final String MAIN_USER_FILE = "mainUser";
     public static final String SERVER_ADDRESS_CREATE_MAIN_USER = "http://api.smxl-app.com/users.json";
 
     protected Activity activity;
@@ -67,7 +67,7 @@ public class PostMainUserHttpAsyncTask extends AsyncTask<Void, Void, String> {
         //Toast.makeText(activity, "Data Sent!", Toast.LENGTH_LONG).show();
         if(!result.equals("Did not work!")) {
             try {
-                FileOutputStream fos = activity.openFileOutput(MAIN_USER_FILE, Context.MODE_PRIVATE);
+                FileOutputStream fos = activity.openFileOutput(Constants.MAIN_USER_FILE, Context.MODE_PRIVATE);
                 fos.flush();
                 fos.write(MainUserManager.get().getMainUser().getBytes());
                 activity.setResult(Activity.RESULT_OK);

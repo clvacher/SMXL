@@ -81,7 +81,6 @@ public class MainNavigationActivity extends SuperNavigationActivity implements O
         mProfileTracker.startTracking();
         if(mainUser!=null){
             setValueMainUserHeadItem();
-            Log.d("TESTDRAWER",MainUserManager.get().getMainUser().getMainProfile().toString());
             UserManager.get().setUser(MainUserManager.get().getMainUser().getMainProfile());
         }
     }
@@ -138,7 +137,7 @@ public class MainNavigationActivity extends SuperNavigationActivity implements O
                     Toast.makeText(getApplicationContext(), "Déconnexion", Toast.LENGTH_SHORT).show();
                     MainUserManager.get().setMainUser(null);
 
-                    File file = new File(getFilesDir(),PostMainUserFacebookHttpAsyncTask.MAIN_USER_FILE);
+                    File file = new File(getFilesDir(),Constants.MAIN_USER_FILE);
                     file.delete();
 
                     SMXL.getUserDBManager().deleteAllUsers();

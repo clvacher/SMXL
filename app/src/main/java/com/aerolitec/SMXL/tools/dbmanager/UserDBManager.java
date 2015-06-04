@@ -324,7 +324,7 @@ public class UserDBManager extends DBManager{
     public void deleteAllUsers() {
         open();
         db.delete(TABLE_NAME, null, null);
-        userNum = 0;
+        userNum=0;
         close();
 
     }

@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.aerolitec.SMXL.R;
+import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
 import com.aerolitec.SMXL.tools.serverConnexion.PostMainUserHttpAsyncTask;
 import com.aerolitec.SMXL.ui.SMXL;
@@ -77,7 +78,7 @@ public class SettingsFragment extends Fragment {
         Toast.makeText(getActivity(), getResources().getString(R.string.disconnected), Toast.LENGTH_SHORT).show();
         MainUserManager.get().setMainUser(null);
 
-        File file = new File(getActivity().getFilesDir(), PostMainUserHttpAsyncTask.MAIN_USER_FILE);
+        File file = new File(getActivity().getFilesDir(), Constants.MAIN_USER_FILE);
         file.delete();
 
         SMXL.getUserDBManager().deleteAllUsers();

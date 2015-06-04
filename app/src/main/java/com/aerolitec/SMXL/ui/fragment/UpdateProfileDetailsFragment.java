@@ -173,7 +173,7 @@ public class UpdateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
 
                 try {
                     FileOutputStream fos = null;
-                    fos = getActivity().openFileOutput(PostMainUserHttpAsyncTask.MAIN_USER_FILE, Context.MODE_PRIVATE);
+                    fos = getActivity().openFileOutput(Constants.MAIN_USER_FILE, Context.MODE_PRIVATE);
                     fos.flush();
                     fos.write(MainUserManager.get().getMainUser().getBytes());
                 } catch (Exception e) {

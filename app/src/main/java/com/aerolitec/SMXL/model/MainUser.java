@@ -19,6 +19,7 @@ public class MainUser implements Serializable{
     private String lastname;
     private int sex; //1 Homme 2 Femme
     private String avatar;
+
     private int idMainProfile;
     private int accountType;
     private String facebookId;
