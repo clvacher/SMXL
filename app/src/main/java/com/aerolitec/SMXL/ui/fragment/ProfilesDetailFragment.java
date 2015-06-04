@@ -124,10 +124,14 @@ public class ProfilesDetailFragment extends Fragment{
         });
 
         ImageView noClickZone=(ImageView) view.findViewById(R.id.noClickZone);
+        RelativeLayout quicksizeLayout=(RelativeLayout) view.findViewById(R.id.quicksize);
 
-        final RelativeLayout quicksizeLayout=(RelativeLayout) view.findViewById(R.id.quicksize);
+        quicksizeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        
+            }
+        });
 
         noClickZone.setOnClickListener(new View.OnClickListener() {
             @Override

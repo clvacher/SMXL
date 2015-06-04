@@ -43,28 +43,28 @@ public class SelectGarmentTypeFragment extends Fragment {
         ListView listViewGarments = (ListView) view.findViewById(R.id.listViewGarments);
 
         ArrayList<GarmentType> garmentItems = getGarmentsFromCategory(activity.getAddGarmentFragment().getSelectedCategory());//C'est pas fou, changer dans le intent?
+
         if(garmentItems.size()==1){
             activity.getAddGarmentFragment().setSelectedGarmentType(garmentItems.get(0));
             activity.getAddGarmentFragment().getChildFragmentManager().beginTransaction()
                     .replace(R.id.containerAddGarmentFragment, new SelectGarmentBrandFragment(), "brand")
                     .commit();
         }
+        else {
+            TypeGarmentAdapter adapterGarments = new TypeGarmentAdapter(activity, R.layout.type_garment_item, garmentItems);
+            listViewGarments.setAdapter(adapterGarments);
 
-
-
-        TypeGarmentAdapter adapterGarments = new TypeGarmentAdapter(activity, R.layout.type_garment_item, garmentItems);
-        listViewGarments.setAdapter(adapterGarments);
-
-        listViewGarments.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                activity.getAddGarmentFragment().setSelectedGarmentType((GarmentType) adapterView.getItemAtPosition(position));
-                activity.getAddGarmentFragment().getChildFragmentManager().beginTransaction()
-                        .replace(R.id.containerAddGarmentFragment, new SelectGarmentBrandFragment(), "brand")
-                        .addToBackStack(null)
-                        .commit();
-            }
-        });
+            listViewGarments.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                    activity.getAddGarmentFragment().setSelectedGarmentType((GarmentType) adapterView.getItemAtPosition(position));
+                    activity.getAddGarmentFragment().getChildFragmentManager().beginTransaction()
+                            .replace(R.id.containerAddGarmentFragment, new SelectGarmentBrandFragment(), "brand")
+                            .addToBackStack(null)
+                            .commit();
+                }
+            });
+        }
     }
 
     @Override

@@ -100,8 +100,6 @@ public abstract class SuperLoginCreateAccountFragment extends Fragment implement
     }
 
     public boolean inputFormatIsValid(){
-        String test = "[5]";
-        Log.d("test",test.trim());
         return (emailFormatIsValid() && passwordFormatIsValid());
     }
 

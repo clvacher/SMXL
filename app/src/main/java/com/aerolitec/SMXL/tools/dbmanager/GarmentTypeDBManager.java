@@ -114,7 +114,7 @@ public class GarmentTypeDBManager extends DBManager {
         return db.rawQuery("SELECT * FROM "+TABLE_NAME, null);
     }*/
 
-    public ArrayList<GarmentType> getAllGarments() {
+    public ArrayList<GarmentType> getAllGarmentTypes() {
         open();
         ArrayList<GarmentType> garments = new ArrayList<>();
         Cursor c = db.rawQuery("SELECT * FROM "+TABLE_NAME, null);

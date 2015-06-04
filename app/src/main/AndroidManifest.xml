@@ -8,7 +8,7 @@
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -57,7 +57,6 @@
             android:label="@string/title_activity_csvcreation"
             android:screenOrientation="portrait" >
         </activity>
-
         <activity
             android:name=".ui.activity.ImportProfilActivity"
             android:label="@string/title_activity_import_profil"
@@ -84,7 +83,6 @@
                 <data android:host="*" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ui.activity.AddMeasureActivity"
             android:label="@string/title_activity_add_measure_fragment"
@@ -108,7 +106,7 @@
         <activity
             android:name=".ui.activity.CreateUpdateProfileActivity"
             android:label="@string/title_activity_connexion"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".ui.activity.LoginActivity"
@@ -120,7 +118,14 @@
             android:label="@string/title_activity_browser"
             android:screenOrientation="portrait" >
         </activity>
-
+        <activity
+            android:name=".ui.activity.QuicksizeActivity"
+            android:label="@string/title_activity_quicksize"
+            android:parentActivityName=".ui.activity.NoDrawerActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.aerolitec.SMXL.ui.activity.NoDrawerActivity" />
+        </activity>
     </application>
 
 </manifest>

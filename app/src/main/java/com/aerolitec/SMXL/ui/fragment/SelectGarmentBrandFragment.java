@@ -35,6 +35,7 @@ public class SelectGarmentBrandFragment extends Fragment {
     private ListView listViewBrands;
     private TextView textGarment;
     private ArrayList<String> brandItems;
+    private RelativeLayout rlFavoriteBrands, rlBrands;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,7 +56,6 @@ public class SelectGarmentBrandFragment extends Fragment {
         gvBrands = (GridView) view.findViewById(R.id.gridViewBrands);
         spinnerBrandsCategory = (Spinner) view.findViewById(R.id.spinnerBrandCategory);
 
-        RelativeLayout rlFavoriteBrands, rlBrands;
         rlBrands =(RelativeLayout) view.findViewById(R.id.allBrandsLayout);
         rlFavoriteBrands = (RelativeLayout) view.findViewById(R.id.favoriteBrandLayout);
 
@@ -85,8 +85,8 @@ public class SelectGarmentBrandFragment extends Fragment {
                 favoriteLeft.setVisibility(View.VISIBLE);
                 allLeft.setVisibility(View.GONE);
                 allRight.setVisibility(View.GONE);
-                fillGridView(gvBrands, getFavoriteBrands());
                 spinnerBrandsCategory.setVisibility(View.GONE);
+                fillGridView(gvBrands, getFavoriteBrands());
             }
         });
 
@@ -125,12 +125,18 @@ public class SelectGarmentBrandFragment extends Fragment {
     public void onResume() {
         super.onResume();
         fillGridView(gvBrands, getFavoriteBrands());
-        fillSpinner(spinnerBrandsCategory,getSpinnerCategories());
+        fillSpinner(spinnerBrandsCategory, getSpinnerCategories());
     }
 
-    private void fillGridView(GridView gv, ArrayList<Brand> alBrands){
+    private boolean fillGridView(GridView gv, ArrayList<Brand> alBrands){
+        if(alBrands.size()==0){
+            rlBrands.callOnClick();
+            rlFavoriteBrands.setVisibility(View.GONE);
+            return false;
+        }
         gv.setAdapter(new FavoriteCheckableBrandAdapter(getActivity(), R.layout.item_favorite_brand, alBrands));
         gv.setChoiceMode(GridView.CHOICE_MODE_SINGLE);
+        return true;
     }
 
     private void fillSpinner(Spinner s,ArrayList<String> categories){

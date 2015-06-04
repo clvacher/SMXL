@@ -26,7 +26,7 @@
                 android:layout_height="match_parent"
                 android:padding="10dp"
                 android:id="@+id/quicksize"
-                android:background="@drawable/test"
+                android:background="@drawable/button_quicksize"
                 android:clickable="true"
                 android:layout_toRightOf="@+id/center"
                 android:layout_toEndOf="@+id/center"
