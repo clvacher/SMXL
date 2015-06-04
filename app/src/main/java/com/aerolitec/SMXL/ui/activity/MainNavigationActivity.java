@@ -81,6 +81,7 @@ public class MainNavigationActivity extends SuperNavigationActivity implements O
         mProfileTracker.startTracking();
         if(mainUser!=null){
             setValueMainUserHeadItem();
+            Log.d("TESTDRAWER",MainUserManager.get().getMainUser().getMainProfile().toString());
             UserManager.get().setUser(MainUserManager.get().getMainUser().getMainProfile());
         }
     }

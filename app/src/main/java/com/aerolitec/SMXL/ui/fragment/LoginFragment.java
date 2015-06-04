@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.MainUser;
+import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.UtilityMethodsv2;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
 import com.aerolitec.SMXL.tools.manager.UserManager;
@@ -78,8 +79,10 @@ public class LoginFragment extends SuperLoginCreateAccountFragment implements Lo
 
     @Override
     public void accountRetrieved(MainUser mainUser) {
-        SMXL.getUserDBManager().addUser(UserManager.get().getUser());
-
+        //SMXL.getUserDBManager().addUser(UserManager.get().getUser());
+        User tmpUser = UserManager.get().getUser();
+        User realUser = SMXL.getUserDBManager().createUser(tmpUser.getFirstname(), tmpUser.getLastname(), tmpUser.getBirthday(), tmpUser.getSexe(), null, null );
+        mainUser.setMainProfile(realUser);
         MainUserManager.get().setMainUser(mainUser);
         UserManager.get().setUser(mainUser.getMainProfile());
 
