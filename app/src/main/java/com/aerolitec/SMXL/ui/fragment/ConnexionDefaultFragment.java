@@ -154,11 +154,16 @@ public class ConnexionDefaultFragment extends Fragment implements LoginCreateAcc
     @Override
     public void accountRetrieved(MainUser mainUser) {
         Log.d("ALREADY", "ALREADY");
-        SMXL.getUserDBManager().addUser(UserManager.get().getUser());
 
+        //SMXL.getUserDBManager().addUser(UserManager.get().getUser());
+        User tmpUser = UserManager.get().getUser();
+        Log.d("ALREADY", tmpUser.toString());
+        User realUser = SMXL.getUserDBManager().createUser(tmpUser.getFirstname(), tmpUser.getLastname(), tmpUser.getBirthday(), tmpUser.getSexe(), null, null );
+        mainUser.setMainProfile(realUser);
         MainUserManager.get().setMainUser(mainUser);
-
         UserManager.get().setUser(mainUser.getMainProfile());
+
+
         try {
             FileOutputStream fos = getActivity().openFileOutput(PostMainUserHttpAsyncTask.MAIN_USER_FILE, Context.MODE_PRIVATE);
             fos.flush();
