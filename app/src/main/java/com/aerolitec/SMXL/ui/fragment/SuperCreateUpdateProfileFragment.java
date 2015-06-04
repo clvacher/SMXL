@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.hardware.Camera;
 import android.net.Uri;
@@ -25,7 +24,6 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.aerolitec.SMXL.tools.Constants;
-import com.aerolitec.SMXL.tools.ImageHelper;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.customLayout.ProfilePictureRoundedImageView;
 
@@ -245,15 +243,8 @@ public abstract class SuperCreateUpdateProfileFragment extends Fragment {
                         options.inJustDecodeBounds = true;
 
                         String picturePath = file.getAbsolutePath();
-                        Bitmap pictureBitmap = BitmapFactory.decodeFile(picturePath, options);
 
-                        // Calculate inSampleSize
-                        options.inSampleSize = ImageHelper.calculateInSampleSize(options, width, width);
-
-                        // Decode bitmap with inSampleSize set
-                        options.inJustDecodeBounds = false;
-
-                        imgProfil.setImageBitmap(ImageHelper.getCorrectBitmap(pictureBitmap, picturePath));
+                        imgProfil.setImage(picturePath);
                     }
                 } catch (Exception e) {
                     Log.e(Constants.TAG, "Error converting Picture to File : " + e.getMessage());
