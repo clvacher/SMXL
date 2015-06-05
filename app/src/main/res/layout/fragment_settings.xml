@@ -6,6 +6,14 @@
     tools:context="com.aerolitec.SMXL.ui.fragment.SettingsFragment"
     android:background="@color/DefaultBackgroundColor">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/SectionTitle"
+        android:text="La déconnexion entraîne la perte de tous les profils."/>
+
+
     <com.facebook.login.widget.LoginButton
         android:id="@+id/login_button_settings"
         android:layout_width="match_parent"

@@ -20,11 +20,11 @@ import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.RoundedTransformation;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
 import com.aerolitec.SMXL.tools.manager.UserManager;
-import com.aerolitec.SMXL.tools.serverConnexion.PostMainUserFacebookHttpAsyncTask;
 import com.aerolitec.SMXL.tools.services.OnProfileSelected;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.adapter.ProfileItem;
 import com.aerolitec.SMXL.ui.fragment.EnChantierFragment;
+import com.aerolitec.SMXL.ui.fragment.ListBlogsFragment;
 import com.aerolitec.SMXL.ui.fragment.ListBrandsFragment;
 import com.aerolitec.SMXL.ui.fragment.MeasureDetailFragment;
 import com.aerolitec.SMXL.ui.fragment.ProfilesDetailFragment;
@@ -173,15 +173,18 @@ public class MainNavigationActivity extends SuperNavigationActivity implements O
         MaterialSection sectionSizeGuide = this.newSection(getResources().getString(R.string.size_guide), this.getResources().getDrawable(R.drawable.tshirt), new SizeGuideFragment(), false, menu);
         sectionSizeGuide.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
 
-        //MaterialSection sectionMagasins = this.newSection("Magasins à proximité", this.getResources().getDrawable(android.R.drawable.ic_dialog_map), new EnChantierFragment(), false, menu);
-        //sectionMagasins.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
+        MaterialSection sectionMagasins = this.newSection("Magasins à proximité", this.getResources().getDrawable(android.R.drawable.ic_dialog_map), new EnChantierFragment(), false, menu);
+        sectionMagasins.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
+
+        MaterialSection sectionWishlist = this.newSection("Liste d'envies", this.getResources().getDrawable(R.drawable.heart), new EnChantierFragment(), false, menu);
+
 
         this.newDevisor(menu);
 
         MaterialSection sectionBrands = this.newSection(getResources().getString(R.string.all_Brands), this.getResources().getDrawable(R.drawable.ic_action_labels) ,new ListBrandsFragment(), false, menu);
         sectionBrands.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
 
-        //MaterialSection sectionBlogs = this.newSection("Blogs", new EnChantierFragment(), false, menu);
+        MaterialSection sectionBlogs = this.newSection("Blogs", this.getResources().getDrawable(R.drawable.browser) ,new ListBlogsFragment(), false, menu);
         //MaterialSection sectionMagazines = this.newSection("Magazines", new EnChantierFragment(), false, menu);
 
         this.newDevisor(menu);

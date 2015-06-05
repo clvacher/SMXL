@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -22,7 +21,6 @@ import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.UtilityMethodsv2;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
-import com.aerolitec.SMXL.ui.activity.BrowserActivity;
 import com.aerolitec.SMXL.ui.activity.QuickSizeActivityv2;
 import com.aerolitec.SMXL.ui.adapter.FavoriteBrandAdapter;
 import com.aerolitec.SMXL.ui.customLayout.ProfilePictureRoundedImageView;
@@ -39,6 +37,7 @@ public class ProfilesDetailFragment extends Fragment{
     private RelativeLayout layoutHeaderBrands;
     private LinearLayout layoutBrands;
 
+    FavoriteBrandAdapter adapter;
 
     ListView brandListView;
 
@@ -79,11 +78,7 @@ public class ProfilesDetailFragment extends Fragment{
         imgAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.frame_container, new UpdateProfileDetailsFragment()).commit();
-                /*Intent intent = new Intent(getActivity().getApplicationContext(), CreateUpdateProfileActivity.class);
-                intent.putExtra("fragmentType","update");
-                startActivity(intent);*/
             }
         });
 
@@ -91,11 +86,7 @@ public class ProfilesDetailFragment extends Fragment{
         infosProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.frame_container, new UpdateProfileDetailsFragment()).commit();
-                /*Intent intent = new Intent(getActivity().getApplicationContext(), CreateUpdateProfileActivity.class);
-                intent.putExtra("fragmentType","update");
-                startActivity(intent);*/
             }
         });
 
@@ -113,13 +104,7 @@ public class ProfilesDetailFragment extends Fragment{
         addBrand.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                brandListView.setVisibility(View.GONE);
-                collapseBrands.setImageResource(R.drawable.navigation_expand);
-
                 getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.frame_container, new SelectBrandsFragment()).commit();
-                /*Intent intent = new Intent(getActivity(), CreateUpdateProfileActivity.class);
-                intent.putExtra("fragmentType","brands");
-                startActivity(intent);*/
             }
         });
 
@@ -145,42 +130,6 @@ public class ProfilesDetailFragment extends Fragment{
         return view;
     }
 
-    private void fillListView(ListView v, final ArrayList<Brand> userBrandList){
-        FavoriteBrandAdapter adapter = new FavoriteBrandAdapter(this.getActivity(),R.layout.brand_item,userBrandList);
-        v.setAdapter(adapter);
-        Log.d("userBrand", userBrandList.toString());
-        v.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                String urlBrand = userBrandList.get(position).getBrandWebsite();
-                if (urlBrand != null) {
-                    if (!urlBrand.startsWith("http://") && !urlBrand.startsWith("https://")) {
-                        urlBrand = "http://" + urlBrand;
-                    }
-                    //TODO webview ne pas ouvrir le navigateur
-                    //Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(urlBrand));
-                    Intent browserIntent = new Intent(getActivity(), BrowserActivity.class);
-                    browserIntent.putExtra("URL", urlBrand);
-                    browserIntent.putExtra("TITLE", userBrandList.get(position).getBrand_name());
-                    startActivity(browserIntent);
-                }
-            }
-        });
-        v.setOnHierarchyChangeListener(new ViewGroup.OnHierarchyChangeListener() {
-            @Override
-            public void onChildViewAdded(View parent, View child) {
-                updateBrandCounter();
-            }
-
-            @Override
-            public void onChildViewRemoved(View parent, View child) {
-                updateBrandCounter();
-            }
-        });
-        UtilityMethodsv2.setListViewHeightBasedOnChildren(v);
-        adapter.notifyDataSetChanged();
-    }
-
 
 
     @Override
@@ -197,7 +146,6 @@ public class ProfilesDetailFragment extends Fragment{
             UserManager.get().setUser(user);
             SMXL.getUserDBManager().updateUser(user);
         }
-
         super.onPause();
     }
 
@@ -207,46 +155,20 @@ public class ProfilesDetailFragment extends Fragment{
         user=UserManager.get().getUser();
 
         userBrands=SMXL.getUserBrandDBManager().getAllUserBrands(user);
-
+        Log.d("USERBRANDS", userBrands.toString());
 
         updateProfile();
 
-        //updates the number of brands
-        int tmp;
-        tmp=userBrands.size();
-        nbBrands.setText("(" + tmp + ")");
-        if(tmp==0){
-            layoutHeaderBrands.setVisibility(View.GONE);
-            layoutBrands.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    brandListView.setVisibility(View.GONE);
-                    collapseBrands.setImageResource(R.drawable.navigation_expand);
+        adapter = new FavoriteBrandAdapter(getActivity(),R.layout.brand_item, userBrands);
+        brandListView.setAdapter(adapter);
+        UtilityMethodsv2.setListViewHeightBasedOnChildren(brandListView);
 
-                    getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.frame_container, new SelectBrandsFragment()).commit();
-                    /*Intent intent = new Intent(getActivity(), CreateUpdateProfileActivity.class);
-                    intent.putExtra("fragmentType","brands");
-                    startActivity(intent);*/
-                }
-            });
+        initBrandListViewListeners();
 
-        }
-        else{
-            layoutHeaderBrands.setVisibility(View.VISIBLE);
-            layoutBrands.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (brandListView.getVisibility() == View.GONE) {
-                        fillListView(brandListView, userBrands);
-                        brandListView.setVisibility(View.VISIBLE);
-                        collapseBrands.setImageResource(R.drawable.navigation_collapse);
-                    } else {
-                        brandListView.setVisibility(View.GONE);
-                        collapseBrands.setImageResource(R.drawable.navigation_expand);
-                    }
-                }
-            });
-        }
+        updateBrandCounter();
+
+        UtilityMethodsv2.setListViewHeightBasedOnChildren(brandListView);
+
     }
 
     private void updateProfile(){
@@ -266,17 +188,61 @@ public class ProfilesDetailFragment extends Fragment{
         if (user.getSexe()==1) {
             sexe = getResources().getString(R.string.man);
         }
-        tvAgeSexe.setText(age +" "+getResources().getString(R.string.years)+ " / " + sexe);
+        tvAgeSexe.setText(age + " " + getResources().getString(R.string.years) + " / " + sexe);
     }
 
     public void updateBrandCounter(){
         nbBrands.setText("(" + userBrands.size() + ")");
         if(userBrands.size()==0){
             layoutHeaderBrands.setVisibility(View.GONE);
+            layoutBrands.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    brandListView.setVisibility(View.GONE);
+                    collapseBrands.setImageResource(R.drawable.navigation_expand);
+                    getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.frame_container, new SelectBrandsFragment()).commit();
+                }
+            });
         }
         else{
             layoutHeaderBrands.setVisibility(View.VISIBLE);
+            layoutBrands.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (brandListView.getVisibility() == View.GONE) {
+                        Log.d("userBrand", userBrands.toString());
+                        adapter.notifyDataSetChanged();
+                        brandListView.setVisibility(View.VISIBLE);
+                        collapseBrands.setImageResource(R.drawable.navigation_collapse);
+                    } else {
+                        brandListView.setVisibility(View.GONE);
+                        collapseBrands.setImageResource(R.drawable.navigation_expand);
+                    }
+                }
+            });
         }
     }
+
+
+    private void initBrandListViewListeners(){
+        /*brandListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                String urlBrand = userBrands.get(position).getBrandWebsite();
+                if (urlBrand != null) {
+                    if (!urlBrand.startsWith("http://") && !urlBrand.startsWith("https://")) {
+                        urlBrand = "http://" + urlBrand;
+                    }
+                    Intent browserIntent = new Intent(getActivity(), BrowserActivity.class);
+                    browserIntent.putExtra("URL", urlBrand);
+                    browserIntent.putExtra("TITLE", userBrands.get(position).getBrand_name());
+                    startActivity(browserIntent);
+                }
+            }
+        });*/
+
+    }
+
+
 
 }

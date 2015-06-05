@@ -46,7 +46,7 @@
     <string name="majProfile">Mise à jour du profil</string>
     <string name="libImc">IMC</string>
     <string name="unimplemented">Fonctionnalité en cours de développement</string>
-    <string name="addNote">Ajouter un descriptif, des commentaires&#8230;</string><!---->
+    <string name="addNote">Adresse de livraison</string><!--Ajouter un descriptif, des commentaires&#8230;-->
     <string name="ShoeSize">Pointure</string>
     <string name="title_activity_profil">ProfilActivity</string>
     <string name="hello_world">Hello world!</string>
@@ -93,7 +93,7 @@
     <string name="title_activity_select_brands">Marques Favorites</string>
     <string name="manage_favorite_brands">Gérez vos marques favorites</string>
     <string name="favorite_brands">Marques favorites</string>
-    <string name="all_Brands">Toutes les marques</string>
+    <string name="all_Brands">Marques</string>
 
     <string name="dress_skirt">Robes/Jupes</string>
     <string name="tshirt_sweater">T-shirts</string>
@@ -173,6 +173,6 @@
     <string name="VESTE">Veste</string>
     <string name="JUPE">Jupe</string>
     <string name="ROBE">Robe</string>
-    <string name="SOUTIEN_GORGE">Bra</string>
+    <string name="SOUTIEN_GORGE">Soutien-Gorge</string>
 
 </resources>
