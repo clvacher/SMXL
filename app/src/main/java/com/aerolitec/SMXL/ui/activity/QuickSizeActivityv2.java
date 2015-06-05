@@ -5,35 +5,49 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.aerolitec.SMXL.R;
+import com.aerolitec.SMXL.model.User;
+import com.aerolitec.SMXL.ui.fragment.QuickSizeFragment;
 import com.aerolitec.SMXL.ui.fragment.QuickSizeSelectGarmentFragmentv2;
 
 public class QuickSizeActivityv2 extends NoDrawerActivity {
 
+    private QuickSizeFragment quickSizeFragment;
+
+
+    public User getUser() {return quickSizeFragment.getUser();}
+
     @Override
     public void init(Bundle bundle) {
         super.init(bundle);
-        this.newSection("Select", new QuickSizeSelectGarmentFragmentv2(), false, menu);
+        quickSizeFragment = new QuickSizeFragment();
+        this.newSection("QuickSize", quickSizeFragment, false, menu);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_quicksize, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id){
+            case android.R.id.home:
+                finish();
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
+        setDrawerBlocked();
+        super.onResume();
+    }
+
+    public QuickSizeFragment getQuickSizeFragment(){
+        return quickSizeFragment;
     }
 }

@@ -1,0 +1,67 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="MergeRootFrame"
+    android:background="@color/DefaultBackgroundColor"
+    android:padding="16dp">
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TableRow android:layout_width="match_parent"
+            android:background="@android:color/white">
+            <TextView android:text="SMXL : "
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/SectionTitle"
+                android:paddingRight="10dp"/>
+            <TextView android:id="@+id/valueSMXL"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="N/C"
+                />
+        </TableRow>
+        <TableRow>
+            <TextView android:text="UE : "
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/SectionTitle"/>
+            <TextView android:id="@+id/valueUE"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="N/C"/>
+        </TableRow>
+        <TableRow
+            android:background="@android:color/white">
+            <TextView android:text="US : "
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/SectionTitle"/>
+            <TextView android:id="@+id/valueUS"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="N/C"/>
+        </TableRow>
+        <TableRow>
+            <TextView android:text="UK : "
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/SectionTitle"/>
+            <TextView android:id="@+id/valueUK"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="N/C"/>
+        </TableRow>
+        <TableRow
+            android:background="@android:color/white">
+            <TextView android:text="FR : "
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/SectionTitle"/>
+            <TextView android:id="@+id/valueFR"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="N/C"/>
+        </TableRow>
+    </TableLayout>
+</RelativeLayout>

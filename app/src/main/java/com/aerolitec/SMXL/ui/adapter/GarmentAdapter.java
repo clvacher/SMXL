@@ -48,7 +48,7 @@ public class GarmentAdapter extends ArrayAdapter<UserClothes> {
         final UserClothes clothes = getItem(position);
 
 
-        holder.tvTypeGarment.setText(clothes.getGarmentType().getType());
+        holder.tvTypeGarment.setText(context.getResources().getIdentifier(clothes.getGarmentType().getType(),"string",context.getPackageName()));
         holder.tvBrand.setText(clothes.getBrand().getBrand_name());
         holder.tvSize.setText(clothes.getSize());
 

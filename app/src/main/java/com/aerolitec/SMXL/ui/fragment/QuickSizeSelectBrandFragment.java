@@ -1,32 +1,31 @@
 package com.aerolitec.SMXL.ui.fragment;
 
-import android.support.v4.app.Fragment;
+
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.Brand;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.activity.AddGarmentActivity;
+import com.aerolitec.SMXL.ui.activity.QuickSizeActivityv2;
 import com.aerolitec.SMXL.ui.adapter.FavoriteCheckableBrandAdapter;
 
 import java.util.ArrayList;
 
 /**
- * Created by Clement on 5/5/2015.
+ * A simple {@link Fragment} subclass.
  */
-public class SelectGarmentBrandFragment extends Fragment {
-
-    private AddGarmentActivity activity;
+public class QuickSizeSelectBrandFragment extends Fragment {
+    private QuickSizeActivityv2 activity;
 
     private GridView gvBrands;
     private Spinner spinnerBrandsCategory;
@@ -48,7 +47,7 @@ public class SelectGarmentBrandFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        activity=(AddGarmentActivity)getActivity();
+        activity=(QuickSizeActivityv2)getActivity();
 
         gvBrands = (GridView) view.findViewById(R.id.gridViewBrands);
         spinnerBrandsCategory = (Spinner) view.findViewById(R.id.spinnerBrandCategory);
@@ -90,9 +89,9 @@ public class SelectGarmentBrandFragment extends Fragment {
         gvBrands.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                activity.getAddGarmentFragment().setSelectedBrand((Brand) adapterView.getItemAtPosition(i));
-                activity.getAddGarmentFragment().getChildFragmentManager().beginTransaction()
-                        .replace(R.id.containerAddGarmentFragment, new SelectGarmentSummaryFragment(), "summary")
+                activity.getQuickSizeFragment().setSelectedBrand((Brand) adapterView.getItemAtPosition(i));
+                activity.getQuickSizeFragment().getChildFragmentManager().beginTransaction()
+                        .replace(R.id.containerQuickSizeFragment, new QuickSizeSummaryFragment(), "summary")
                         .addToBackStack(null)
                         .commit();
             }
@@ -103,7 +102,7 @@ public class SelectGarmentBrandFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
                 ArrayList<Brand> brands;
                 if (position > 0) {
-                    brands = SMXL.getBrandDBManager().getBrandsByBrandCategory(SMXL.getBrandDBManager().getAllBrandCategory().get(position - 1));//-1 car on a rajoutÃ© l'item d'en tete
+                    brands = SMXL.getBrandDBManager().getBrandsByBrandCategory(SMXL.getBrandDBManager().getAllBrandCategory().get(position - 1));//-1 car on a rajouté l'item d'en tete
                 } else {
                     brands = SMXL.getBrandDBManager().getAllBrands();
                 }
@@ -141,7 +140,7 @@ public class SelectGarmentBrandFragment extends Fragment {
     }
 
     private ArrayList<Brand> getFavoriteBrands(){
-        return SMXL.getUserBrandDBManager().getAllUserBrands(((AddGarmentActivity)getActivity()).getUser());
+        return SMXL.getUserBrandDBManager().getAllUserBrands(activity.getUser());
     }
 
     private ArrayList<Brand> getAllbrands(){
@@ -153,4 +152,5 @@ public class SelectGarmentBrandFragment extends Fragment {
         brandsCategory.add(0,getResources().getString(R.string.select_category));
         return brandsCategory;
     }
+
 }

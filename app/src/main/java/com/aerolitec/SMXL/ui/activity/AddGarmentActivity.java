@@ -29,7 +29,7 @@ public class AddGarmentActivity extends NoDrawerActivity {
     public void init(Bundle bundle) {
         super.init(bundle);
         addGarmentFragment = new AddGarmentFragment();
-        MaterialSection section1 = this.newSection(getResources().getString(R.string.edit_garment), addGarmentFragment, false, menu);
+        this.newSection(getResources().getString(R.string.edit_garment), addGarmentFragment, false, menu);
     }
 
     @Override

@@ -3,9 +3,11 @@ package com.aerolitec.SMXL.ui.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ListView;
 
@@ -15,12 +17,15 @@ import com.aerolitec.SMXL.model.GarmentType;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
+import com.aerolitec.SMXL.ui.activity.QuickSizeActivityv2;
 import com.aerolitec.SMXL.ui.adapter.FavoriteCheckableBrandAdapter;
 import com.aerolitec.SMXL.ui.adapter.TypeGarmentAdapter;
 
 import java.util.ArrayList;
 
 public class QuickSizeSelectGarmentFragmentv2 extends Fragment {
+
+    private QuickSizeActivityv2 activity;
 
     private ListView lvGarmentTypes;
     private User user;
@@ -33,6 +38,7 @@ public class QuickSizeSelectGarmentFragmentv2 extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         user = UserManager.get().getUser();
+        activity = (QuickSizeActivityv2) getActivity();
     }
 
     @Override
@@ -58,6 +64,16 @@ public class QuickSizeSelectGarmentFragmentv2 extends Fragment {
     private void fillGridView(ListView lv, ArrayList<GarmentType> garmentItems){
         lv.setAdapter(new TypeGarmentAdapter(getActivity(), R.layout.item_favorite_brand, garmentItems));
         lv.setChoiceMode(GridView.CHOICE_MODE_SINGLE);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                activity.getQuickSizeFragment().setSelectedGarmentType((GarmentType) parent.getItemAtPosition(position));
+                activity.getQuickSizeFragment().getChildFragmentManager().beginTransaction()
+                        .addToBackStack(null)
+                        .replace(R.id.containerQuickSizeFragment, new QuickSizeSelectBrandFragment(), "brand")
+                        .commit();
+            }
+        });
     }
 
     private ArrayList<GarmentType> getAllGarmentTypes(){
