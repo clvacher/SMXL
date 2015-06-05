@@ -3,6 +3,7 @@ package com.aerolitec.SMXL.ui;
 import android.app.Application;
 
 import com.aerolitec.SMXL.R;
+import com.aerolitec.SMXL.tools.dbmanager.BlogDBManager;
 import com.aerolitec.SMXL.tools.dbmanager.BrandDBManager;
 import com.aerolitec.SMXL.tools.dbmanager.BrandSizeGuideDBManager;
 import com.aerolitec.SMXL.tools.dbmanager.CategoryGarmentDBManager;
@@ -27,6 +28,8 @@ public class SMXL extends Application{
     private static UserBrandDBManager userBrandDBManager;
     private static UserClothesDBManager userClothesDBManager;
     private static UserDBManager userDBManager;
+    private static BlogDBManager blogDBManager;
+
     private Picasso picasso;
     //private static DisplayMetrics metrics;
 
@@ -42,6 +45,7 @@ public class SMXL extends Application{
         userBrandDBManager = new UserBrandDBManager(getApplicationContext());
         userClothesDBManager = new UserClothesDBManager(getApplicationContext());
         userDBManager = new UserDBManager(getApplicationContext());
+        blogDBManager = new BlogDBManager(getApplicationContext());
         //metrics = getResources().getDisplayMetrics();
 
         categoryGarmentDBManager.updateCategoryGarment(1, R.drawable.tshirt_lowpx);
@@ -101,5 +105,9 @@ public class SMXL extends Application{
 
     public static UserDBManager getUserDBManager() {
         return userDBManager;
+    }
+
+    public static BlogDBManager getBlogDBManager() {
+        return blogDBManager;
     }
 }

@@ -1,5 +1,6 @@
 package com.aerolitec.SMXL.ui.fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -190,5 +192,12 @@ public class UpdateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
             }
             getActivity().onBackPressed();
         }
+    }
+
+    @Override
+    public void onPause() {
+        InputMethodManager inputManager = ( InputMethodManager ) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        super.onPause();
     }
 }
