@@ -153,9 +153,8 @@ public class ProfilesDetailFragment extends Fragment{
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 String urlBrand = userBrandList.get(position).getBrandWebsite();
-                if(urlBrand != null){
-                    if (!urlBrand.startsWith("http://") && !urlBrand.startsWith("https://"))
-                    {
+                if (urlBrand != null) {
+                    if (!urlBrand.startsWith("http://") && !urlBrand.startsWith("https://")) {
                         urlBrand = "http://" + urlBrand;
                     }
                     //TODO webview ne pas ouvrir le navigateur
@@ -165,6 +164,17 @@ public class ProfilesDetailFragment extends Fragment{
                     browserIntent.putExtra("TITLE", userBrandList.get(position).getBrand_name());
                     startActivity(browserIntent);
                 }
+            }
+        });
+        v.setOnHierarchyChangeListener(new ViewGroup.OnHierarchyChangeListener() {
+            @Override
+            public void onChildViewAdded(View parent, View child) {
+                updateBrandCounter();
+            }
+
+            @Override
+            public void onChildViewRemoved(View parent, View child) {
+                updateBrandCounter();
             }
         });
         UtilityMethodsv2.setListViewHeightBasedOnChildren(v);
