@@ -73,7 +73,7 @@ public class UserDBManager extends DBManager{
         super(context);
     }
 
-    public long addUser(User user){
+    /*public long addUser(User user){
         open();
         // Ajout d'un enregistrement dans la table
 
@@ -104,7 +104,7 @@ public class UserDBManager extends DBManager{
         long i =db.insert(TABLE_NAME,null,values);
         close();
         return i;
-    }
+    }*/
 
     public User createUser(String firstName, String lastName, String birthday,
                            int sexe, String avatar, String description){

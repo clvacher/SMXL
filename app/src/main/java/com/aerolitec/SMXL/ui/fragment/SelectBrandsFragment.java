@@ -1,7 +1,6 @@
 package com.aerolitec.SMXL.ui.fragment;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
@@ -15,6 +14,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Filterable;
 import android.widget.GridView;
 import android.widget.Spinner;
@@ -24,9 +24,7 @@ import com.aerolitec.SMXL.model.Brand;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
-import com.aerolitec.SMXL.ui.activity.ConnexionActivity;
 import com.aerolitec.SMXL.ui.activity.CreateUpdateProfileActivity;
-import com.aerolitec.SMXL.ui.activity.MainNavigationActivity;
 import com.aerolitec.SMXL.ui.activity.SuperNavigationActivity;
 import com.aerolitec.SMXL.ui.adapter.FavoriteCheckableBrandAdapter;
 import com.github.leonardoxh.fakesearchview.FakeSearchView;
@@ -39,12 +37,13 @@ public class SelectBrandsFragment extends Fragment implements FakeSearchView.OnS
     SuperNavigationActivity superNavigationActivity;
     private static User user;
     private ArrayList<Brand> brands;
-    private ArrayList<Brand> brandsSelected;
+    //private ArrayList<Brand> brandsSelected;
     private ArrayList<String> brandsCategory;
 
     private GridView gridViewBrands;
     private Spinner spinnerBrandsCategory;
     private FavoriteCheckableBrandAdapter gridViewBrandsAdapter;
+    private Button buttonValidate;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,7 +52,6 @@ public class SelectBrandsFragment extends Fragment implements FakeSearchView.OnS
         superNavigationActivity = (SuperNavigationActivity) getActivity();
         superNavigationActivity.setBarAsNextFragment();
         superNavigationActivity.updateTitle(R.string.title_activity_select_brands);
-
         user = UserManager.get().getUser();
 
         if (user == null) {
@@ -71,40 +69,54 @@ public class SelectBrandsFragment extends Fragment implements FakeSearchView.OnS
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        buttonValidate = (Button) view.findViewById(R.id.buttonValidationBrands);
+
         brands=new ArrayList<>();
-        brandsSelected=new ArrayList<>();
+        //brandsSelected=new ArrayList<>();
 
         brandsCategory=(SMXL.getBrandDBManager().getAllBrandCategory());
         brandsCategory.add(0, getResources().getString(R.string.select_category));
 
         gridViewBrands = (GridView) view.findViewById(R.id.gridViewBrands);
         spinnerBrandsCategory = (Spinner) view.findViewById(R.id.spinnerBrandsCategory);
-        brands = SMXL.getBrandDBManager().getAllBrands();
 
         final ArrayAdapter<String> adapterSpinner = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.item_spinner_brand_category, brandsCategory);
         spinnerBrandsCategory.setAdapter(adapterSpinner);
 
+
+        //brandsSelected.addAll(user.getBrands());
+
+
+        brands = SMXL.getBrandDBManager().getAllBrands();
+        brands.removeAll(user.getBrands());
         gridViewBrandsAdapter = new FavoriteCheckableBrandAdapter(getActivity(), R.layout.item_favorite_brand, brands);
         gridViewBrands.setAdapter(gridViewBrandsAdapter);
 
-        gridViewBrands.setChoiceMode(GridView.CHOICE_MODE_MULTIPLE);
+        gridViewBrands.setChoiceMode(GridView.CHOICE_MODE_SINGLE);
 
-
-        brandsSelected.addAll(user.getBrands());
 
         gridViewBrands.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long mylng) {
                 Brand selectedBrand = (Brand) gridViewBrandsAdapter.getItem(position);
-                brandsSelected.add(selectedBrand);
+                //brandsSelected.add(selectedBrand);
 
-                if (user.getBrands().contains(selectedBrand)) {
-                    user.getBrands().remove(selectedBrand);
-                    SMXL.getUserBrandDBManager().deleteUserBrand(user, selectedBrand);
-                } else {
-                    user.getBrands().add(selectedBrand);
-                    SMXL.getUserBrandDBManager().addUserBrand(user, selectedBrand);
-                }
+                brands.remove(selectedBrand);
+                //gridViewBrandsAdapter = new FavoriteCheckableBrandAdapter(getActivity(), R.layout.item_favorite_brand, brands);
+                //gridViewBrands.setAdapter(gridViewBrandsAdapter);
+                gridViewBrandsAdapter.getBrands().remove(selectedBrand);
+                gridViewBrandsAdapter.notifyDataSetChanged();
+
+
+                //if (user.getBrands().contains(selectedBrand)) {
+                //    user.getBrands().remove(selectedBrand);
+                //    SMXL.getUserBrandDBManager().deleteUserBrand(user, selectedBrand);
+                //} else {
+                user.getBrands().add(selectedBrand);
+                SMXL.getUserBrandDBManager().addUserBrand(user, selectedBrand);
+                gridViewBrands.clearChoices();
+                //}
+
             }
         });
 
@@ -116,15 +128,16 @@ public class SelectBrandsFragment extends Fragment implements FakeSearchView.OnS
                 } else {
                     brands = SMXL.getBrandDBManager().getAllBrands();
                 }
+                brands.removeAll(user.getBrands());
 
                 gridViewBrandsAdapter.getBrands().clear();
                 gridViewBrandsAdapter.getBrands().addAll(brands);
                 gridViewBrandsAdapter.notifyDataSetChanged();
 
-                gridViewBrands.clearChoices();
+                /*gridViewBrands.clearChoices();
                 for (Brand b : user.getBrands()) {
                     gridViewBrands.setItemChecked(brands.indexOf(b), true);
-                }
+                }*/
             }
 
             @Override
@@ -154,9 +167,9 @@ public class SelectBrandsFragment extends Fragment implements FakeSearchView.OnS
         }
 
 
-        for(Brand b : user.getBrands()) {
+        /*for(Brand b : user.getBrands()) {
             gridViewBrands.setItemChecked(brands.indexOf(b), true);
-        }
+        }*/
     }
 
 
@@ -197,8 +210,6 @@ public class SelectBrandsFragment extends Fragment implements FakeSearchView.OnS
                 return true;  // Return true to expand action view
             }
         });
-
-
     }
 
     @Override
@@ -208,7 +219,6 @@ public class SelectBrandsFragment extends Fragment implements FakeSearchView.OnS
                 getActivity().onBackPressed();
                 break;
             case R.id.validate:
-                Log.d("validate","andsave");
                 save();
                 break;
         }
@@ -219,6 +229,8 @@ public class SelectBrandsFragment extends Fragment implements FakeSearchView.OnS
     public void onSearch(FakeSearchView fakeSearchView, CharSequence constraint) {
         //The constraint variable here change every time user input data
         ((Filterable)gridViewBrands.getAdapter()).getFilter().filter(constraint);
+        //gridViewBrands.clearChoices();
+        //spinnerBrandsCategory.setSelection(0);
     /* Any adapter that implements a Filterable interface, or just extends the built in FakeSearchAdapter
        and implements the searchitem on your model to a custom filter logic */
     }

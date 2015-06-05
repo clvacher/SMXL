@@ -2,7 +2,6 @@ package com.aerolitec.SMXL.ui.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,10 +29,6 @@ public class WardrobeDetailFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         user= UserManager.get().getUser();
-
-        if(user==null)
-            Log.d("WardrobeFrag", "user null");
-
     }
 
     @Override
