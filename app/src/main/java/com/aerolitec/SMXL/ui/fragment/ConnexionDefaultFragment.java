@@ -25,7 +25,6 @@ import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.tools.serverConnexion.GetMainUserFacebookHttpAsyncTask;
 import com.aerolitec.SMXL.tools.serverConnexion.LoginCreateAccountInterface;
 import com.aerolitec.SMXL.tools.serverConnexion.PostMainUserFacebookHttpAsyncTask;
-import com.aerolitec.SMXL.tools.serverConnexion.PostMainUserHttpAsyncTask;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.activity.MainNavigationActivity;
 import com.aerolitec.SMXL.ui.activity.SuperNavigationActivity;
@@ -154,11 +153,7 @@ public class ConnexionDefaultFragment extends Fragment implements LoginCreateAcc
 
     @Override
     public void accountRetrieved(MainUser mainUser) {
-        Log.d("ALREADY", "ALREADY");
-
-        //SMXL.getUserDBManager().addUser(UserManager.get().getUser());
         User tmpUser = UserManager.get().getUser();
-        Log.d("ALREADY", tmpUser.toString());
         User realUser = SMXL.getUserDBManager().createUser(tmpUser.getFirstname(), tmpUser.getLastname(), tmpUser.getBirthday(), tmpUser.getSexe(), null, null );
         mainUser.setMainProfile(realUser);
         MainUserManager.get().setMainUser(mainUser);

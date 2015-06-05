@@ -9,17 +9,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/title_activity_select_brands"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:textColor="@color/SectionTitle"
-        android:textSize="@dimen/section_text_size"
-        android:textStyle="bold"
-        />
 
     <Spinner
         android:layout_width="wrap_content"

@@ -12,7 +12,6 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -20,6 +19,7 @@ import android.widget.TextView;
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.Brand;
 import com.aerolitec.SMXL.model.User;
+import com.aerolitec.SMXL.tools.UtilityMethodsv2;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.activity.BrowserActivity;
@@ -32,7 +32,7 @@ import java.util.ArrayList;
 public class ProfilesDetailFragment extends Fragment{
 
     private static User user;
-    private TextView tvFirstName, tvLastName, tvAgeSexe,nbBrands;
+    private TextView tvFirstName, tvLastName, tvAgeSexe, nbBrands;
     private EditText etDescription;
     private ProfilePictureRoundedImageView imgAvatar;
     private ImageView imgQuicksize, collapseBrands;
@@ -145,7 +145,6 @@ public class ProfilesDetailFragment extends Fragment{
         return view;
     }
 
-    //Fills the listView with the ArrayList of UserClothes provided, using a GarmentAdapter
     private void fillListView(ListView v, final ArrayList<Brand> userBrandList){
         FavoriteBrandAdapter adapter = new FavoriteBrandAdapter(this.getActivity(),R.layout.brand_item,userBrandList);
         v.setAdapter(adapter);
@@ -168,32 +167,11 @@ public class ProfilesDetailFragment extends Fragment{
                 }
             }
         });
-        setListViewHeightBasedOnChildren(v);
+        UtilityMethodsv2.setListViewHeightBasedOnChildren(v);
         adapter.notifyDataSetChanged();
     }
 
-    //Allows the ListView to adapt to its content
-    private static void setListViewHeightBasedOnChildren(ListView listView) {
-        ListAdapter listAdapter = listView.getAdapter();
-        if (listAdapter == null)
-            return;
 
-        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.UNSPECIFIED);
-        int totalHeight = 0;
-        View view = null;
-        for (int i = 0; i < listAdapter.getCount(); i++) {
-            view = listAdapter.getView(i, view, listView);
-            if (i == 0)
-                view.setLayoutParams(new ViewGroup.LayoutParams(desiredWidth, ViewGroup.LayoutParams.WRAP_CONTENT));
-
-            view.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
-            totalHeight += view.getMeasuredHeight();
-        }
-        ViewGroup.LayoutParams params = listView.getLayoutParams();
-        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
-        listView.setLayoutParams(params);
-        listView.requestLayout();
-    }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -279,6 +257,16 @@ public class ProfilesDetailFragment extends Fragment{
             sexe = getResources().getString(R.string.man);
         }
         tvAgeSexe.setText(age +" "+getResources().getString(R.string.years)+ " / " + sexe);
+    }
+
+    public void updateBrandCounter(){
+        nbBrands.setText("(" + userBrands.size() + ")");
+        if(userBrands.size()==0){
+            layoutHeaderBrands.setVisibility(View.GONE);
+        }
+        else{
+            layoutHeaderBrands.setVisibility(View.VISIBLE);
+        }
     }
 
 }

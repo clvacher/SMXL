@@ -2,7 +2,6 @@ package com.aerolitec.SMXL.ui.fragment;
 
 
 import android.app.Activity;
-import android.support.v4.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,7 +25,6 @@ import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
-import com.aerolitec.SMXL.ui.activity.MainNavigationActivity;
 import com.aerolitec.SMXL.ui.activity.SuperNavigationActivity;
 import com.aerolitec.SMXL.ui.customLayout.ProfilePictureRoundedImageView;
 
@@ -157,7 +155,7 @@ public class CreateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
                 e.printStackTrace();
             }
 
-            getActivity().getSupportFragmentManager().beginTransaction().add(R.id.frame_container, new SelectBrandsFragment()).commit();
+            getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).add(R.id.frame_container, new SelectBrandsFragment()).commit();
 
             superNavigationActivity.updateHamburger();
             superNavigationActivity.restoreDefaultTitleCurrentSection();

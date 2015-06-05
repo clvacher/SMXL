@@ -21,7 +21,6 @@ import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
 import com.aerolitec.SMXL.tools.manager.UserManager;
-import com.aerolitec.SMXL.tools.serverConnexion.PostMainUserHttpAsyncTask;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.customLayout.ProfilePictureRoundedImageView;
 
@@ -189,7 +188,7 @@ public class UpdateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
             catch (Exception e) {
                 Log.d(Constants.TAG,"Update user with error : " + e.getMessage());
             }
-            getActivity().finish();
+            getActivity().onBackPressed();
         }
     }
 }

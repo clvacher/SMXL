@@ -40,7 +40,6 @@ public class TabsProfileDetailFragment extends Fragment {
         fragmentTabHost.addTab(fragmentTabHost.newTabSpec("measures").setIndicator(getString(R.string.measurements)),
                 MeasureDetailFragment.class, null);
 
-
         fragmentTabHost.setBackgroundColor(getResources().getColor(R.color.SectionTitle));
 
         fragmentTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {

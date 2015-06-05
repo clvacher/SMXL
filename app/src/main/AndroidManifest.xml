@@ -51,7 +51,8 @@
         <activity
             android:name=".ui.activity.ProfilDetailActivity"
             android:label="@string/title_activity_profil_detail"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustNothing"/>
         <activity
             android:name=".ui.activity.CSVCreationActivity"
             android:label="@string/title_activity_csvcreation"
