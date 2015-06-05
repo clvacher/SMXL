@@ -42,7 +42,7 @@ public class SizeGuideFragment extends Fragment {
 
         // Instantiate a ViewPager and a PagerAdapter.
         mPager = (ViewPager) view.findViewById(R.id.viewPagerSizeGuide);
-        mPagerAdapter = new SizeGuideAdapter(getChildFragmentManager());
+        mPagerAdapter = new SizeGuideAdapter(getChildFragmentManager(),getActivity());
         mPager.setAdapter(mPagerAdapter);
 
 //        mPager.setPageTransformer(true, new ZoomOutPageTransformer());

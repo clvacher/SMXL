@@ -152,5 +152,22 @@
     <string name="my_wardrobe">My Wardrobe</string>
     <string name="title_activity_quicksize">QuicksizeActivity</string>
 
+    <!--translation from database-->
+    <string name="BLOUSON">Jacket</string>
+    <string name="CHAUSSURE">Shoes</string>
+    <string name="CHEMISE">Shirt</string>
+    <string name="COSTUME">Suit</string>
+    <string name="JEANS">Jeans</string>
+    <string name="MANTEAU">Coat</string>
+    <string name="PANTALON">Pants</string>
+    <string name="PULL">Sweater</string>
+    <string name="SHORT">Shorts</string>
+    <string name="SLIP">UnderPants</string>
+    <string name="SWEATER">Hoodie</string>
+    <string name="TSHIRT">T-Shirt</string>
+    <string name="VESTE">Vest</string>
+    <string name="JUPE">Skirt</string>
+    <string name="ROBE">Dress</string>
+    <string name="SOUTIEN_GORGE">Bra</string>
 
 </resources>

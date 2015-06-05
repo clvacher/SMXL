@@ -1,18 +1,18 @@
 package com.aerolitec.SMXL.ui.activity;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.aerolitec.SMXL.R;
+import com.aerolitec.SMXL.ui.fragment.QuickSizeSelectGarmentFragmentv2;
 
-public class QuicksizeActivity extends ActionBarActivity {
+public class QuickSizeActivityv2 extends NoDrawerActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quicksize);
+    public void init(Bundle bundle) {
+        super.init(bundle);
+        this.newSection("Select", new QuickSizeSelectGarmentFragmentv2(), false, menu);
     }
 
     @Override

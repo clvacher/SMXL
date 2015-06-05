@@ -109,7 +109,7 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".ui.activity.QuicksizeActivity"
+            android:name=".ui.activity.QuickSizeActivityv2"
             android:label="@string/title_activity_quicksize"
             android:parentActivityName=".ui.activity.NoDrawerActivity" >
             <meta-data

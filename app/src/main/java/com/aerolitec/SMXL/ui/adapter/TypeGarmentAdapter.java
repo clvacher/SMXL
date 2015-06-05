@@ -37,13 +37,14 @@ public class TypeGarmentAdapter extends ArrayAdapter<GarmentType> {
             convertView.setTag(holder);
             holder.tvTypeGarment = (TextView) convertView.findViewById(R.id.tvTypeGarment);
             //holder.tvSex = (TextView) convertView.findViewById(R.id.tvSex);
-        } else {
+        }
+        else {
             holder = (ViewHolder) convertView.getTag();
         }
 
         GarmentType item = getItem(position);
-
-        holder.tvTypeGarment.setText(item.getType());
+        int tmp=context.getResources().getIdentifier(item.getType(), "string", context.getPackageName());
+        holder.tvTypeGarment.setText(tmp);
         //holder.tvSex.setText(item.getSex());
 
         return convertView;

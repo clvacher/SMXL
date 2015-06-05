@@ -1,5 +1,6 @@
 package com.aerolitec.SMXL.ui.adapter;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -18,10 +19,12 @@ public class SizeGuideAdapter extends FragmentPagerAdapter {
 
     private static ArrayList<GarmentType> al_garments = SMXL.getSizeConvertDBManager().getGarmentsSizeGuideGroupBySexAndGarment();
     private static final int NUM_PAGES = al_garments.size();
+    private Context context;
 
 
-    public SizeGuideAdapter(FragmentManager fm) {
+    public SizeGuideAdapter(FragmentManager fm, Context context) {
         super(fm);
+        this.context = context;
     }
 
     @Override
@@ -35,7 +38,6 @@ public class SizeGuideAdapter extends FragmentPagerAdapter {
         else{
             al_size = SMXL.getSizeConvertDBManager().getConvertSizesByGarment(garment);
         }
-
         return new PageSizeGuideFragment().newInstance(garment, al_size);
     }
 
@@ -48,9 +50,9 @@ public class SizeGuideAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         if(al_garments.get(position)!=null){
             if(al_garments.get(position).getSex().contains("F") || al_garments.get(position).getSex().contains("H")) {
-                return al_garments.get(position).getType() + " - " + al_garments.get(position).getSex();
+                return context.getResources().getString(context.getResources().getIdentifier(al_garments.get(position).getType(), "string", context.getPackageName())) + " - " + al_garments.get(position).getSex();//TODO getResources.getIdentifier
             }
-            return al_garments.get(position).getType();
+            return context.getResources().getString(context.getResources().getIdentifier(al_garments.get(position).getType(), "string", context.getPackageName()));
         }
         return null;
     }

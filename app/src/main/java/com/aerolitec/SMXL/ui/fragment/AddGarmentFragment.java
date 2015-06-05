@@ -106,7 +106,7 @@ public class AddGarmentFragment extends Fragment {
         comment = userClothes.getComment();
 
         tvBrand.setText(userClothes.getBrand().getBrand_name());
-        tvGarmentType.setText(userClothes.getGarmentType().getType());
+        tvGarmentType.setText(getActivity().getResources().getIdentifier(userClothes.getGarmentType().getType(), "string", getActivity().getPackageName()));
         tvSize.setText(userClothes.getSize());
 
 
@@ -137,7 +137,7 @@ public class AddGarmentFragment extends Fragment {
     public GarmentType getSelectedGarmentType() {return selectedGarmentType;}
     public void setSelectedGarmentType(GarmentType selectedGarmentType) {
         if(selectedGarmentType!=null) {
-            tvGarmentType.setText(selectedGarmentType.getType());
+            tvGarmentType.setText(getActivity().getResources().getIdentifier(selectedGarmentType.getType(), "string", getActivity().getPackageName()));
         }
         else{
             tvGarmentType.setText("");

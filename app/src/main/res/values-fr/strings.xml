@@ -100,7 +100,8 @@
     <string name="Pant_short">Pantalons/Shorts</string>
     <string name="Shirt_blouse">Chemises/Blouses</string>
     <string name="jacket">Blousons</string>
-    <string name="Vest">Manteaux</string>
+    <string name="Vest">Veste</string>
+    <string name="Coat">Manteaux</string>
     <string name="Shoes">Chaussures</string>
     <string name="Sweater">Pulls/Sweats</string>
     <string name="Underwear">Sous-Vêtements</string>
@@ -155,5 +156,23 @@
     <string name="my_profile">Mon Profil</string>
     <string name="my_measurements">Mes mesures</string>
     <string name="my_wardrobe">Mon dressing</string>
+
+    <!--translation from database-->
+    <string name="BLOUSON">Blouson</string>
+    <string name="CHAUSSURE">Chaussures</string>
+    <string name="CHEMISE">Chemise</string>
+    <string name="COSTUME">Costume</string>
+    <string name="JEANS">Jeans</string>
+    <string name="MANTEAU">Manteau</string>
+    <string name="PANTALON">Pantalon</string>
+    <string name="PULL">Pull</string>
+    <string name="SHORT">Short</string>
+    <string name="SLIP">Slip</string>
+    <string name="SWEATER">Sweat</string>
+    <string name="TSHIRT">T-Shirt</string>
+    <string name="VESTE">Veste</string>
+    <string name="JUPE">Jupe</string>
+    <string name="ROBE">Robe</string>
+    <string name="SOUTIEN_GORGE">Bra</string>
 
 </resources>

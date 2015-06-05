@@ -33,9 +33,7 @@ public class ConnexionActivity extends NoDrawerActivity{
 
         FacebookSdk.sdkInitialize(getApplicationContext());
 
-        MaterialSection section1 = this.newSection("Connexion", new ConnexionDefaultFragment(), false, menu);
-        //MaterialSection section2 = this.newSection("Create Account", new CreateAccountFragment(), false, menu);
-        //MaterialSection section3 = this.newSection("Login", new LoginFragment(), false, menu);
+        this.newSection("Connexion", new ConnexionDefaultFragment(), false, menu);
 
 
         mProfileTracker = new ProfileTracker() {
