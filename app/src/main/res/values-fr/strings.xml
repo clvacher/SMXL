@@ -161,6 +161,7 @@
     <string name="BLOUSON">Blouson</string>
     <string name="CHAUSSURE">Chaussures</string>
     <string name="CHEMISE">Chemise</string>
+    <string name="CHEMISIER">Chemisier</string>
     <string name="COSTUME">Costume</string>
     <string name="JEANS">Jeans</string>
     <string name="MANTEAU">Manteau</string>
@@ -174,5 +175,6 @@
     <string name="JUPE">Jupe</string>
     <string name="ROBE">Robe</string>
     <string name="SOUTIEN_GORGE">Soutien-Gorge</string>
+    <string name="MAILLOTS_DE_BAIN">Maillot de Bains</string>
 
 </resources>

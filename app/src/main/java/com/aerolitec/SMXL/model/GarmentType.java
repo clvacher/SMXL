@@ -1,5 +1,7 @@
 package com.aerolitec.SMXL.model;
 
+import android.util.Log;
+
 import java.io.Serializable;
 
 public class GarmentType implements Serializable{
@@ -32,6 +34,7 @@ public class GarmentType implements Serializable{
 
     public void setType(String type) {
         this.type = type;
+        Log.d("type",type);
     }
 
     public String getSex() {
