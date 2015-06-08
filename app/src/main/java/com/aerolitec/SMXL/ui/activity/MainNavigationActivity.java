@@ -173,10 +173,10 @@ public class MainNavigationActivity extends SuperNavigationActivity implements O
         MaterialSection sectionSizeGuide = this.newSection(getResources().getString(R.string.size_guide), this.getResources().getDrawable(R.drawable.tshirt), new SizeGuideFragment(), false, menu);
         sectionSizeGuide.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
 
-        MaterialSection sectionMagasins = this.newSection("Magasins à proximité", this.getResources().getDrawable(android.R.drawable.ic_dialog_map), new EnChantierFragment(), false, menu);
-        sectionMagasins.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
+        //MaterialSection sectionMagasins = this.newSection("Magasins à proximité", this.getResources().getDrawable(android.R.drawable.ic_dialog_map), new EnChantierFragment(), false, menu);
+        //sectionMagasins.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
 
-        MaterialSection sectionWishlist = this.newSection("Liste d'envies", this.getResources().getDrawable(R.drawable.heart), new EnChantierFragment(), false, menu);
+        //MaterialSection sectionWishlist = this.newSection("Liste d'envies", this.getResources().getDrawable(R.drawable.heart), new EnChantierFragment(), false, menu);
 
 
         this.newDevisor(menu);

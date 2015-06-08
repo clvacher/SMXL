@@ -7,7 +7,7 @@ import com.aerolitec.SMXL.ui.adapter.GarmentItem;
  */
 public interface OnGarmentSelected {
 
-        public void garmentSelect(GarmentItem garment);
+        void garmentSelect(GarmentItem garment);
 
     }
 

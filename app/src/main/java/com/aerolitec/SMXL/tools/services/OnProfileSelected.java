@@ -7,7 +7,7 @@ import com.aerolitec.SMXL.ui.adapter.ProfileItem;
  */
 public interface OnProfileSelected {
 
-        public void profileSelect(ProfileItem media);
+        void profileSelect(ProfileItem media);
 
     }
 

@@ -19,7 +19,7 @@ import android.util.Log;
 public class ConfirmDialogFragment extends DialogFragment {
 
     public interface ConfirmDialogListener {
-        public void onConfirm(boolean confirmed, int id);
+        void onConfirm(boolean confirmed, int id);
     }
 
     private ConfirmDialogListener listener;

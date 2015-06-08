@@ -7,7 +7,7 @@ import com.aerolitec.SMXL.ui.adapter.MeasureItem;
  */
 public interface OnMeasureChanged {
 
-        public void measureSelect(MeasureItem measure);
+        void measureSelect(MeasureItem measure);
 
     }
 
