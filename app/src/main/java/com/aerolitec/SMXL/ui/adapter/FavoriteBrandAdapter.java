@@ -49,6 +49,22 @@ public class FavoriteBrandAdapter extends ArrayAdapter<Brand> {
 
         final Brand brand = getItem(position);
 
+        View.OnClickListener onClickListenerBrowser = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String urlBrand = getItem(position).getBrandWebsite();
+                if (urlBrand != null && !urlBrand.isEmpty()) {
+                    if (!urlBrand.startsWith("http://") && !urlBrand.startsWith("https://")) {
+                        urlBrand = "http://" + urlBrand;
+                    }
+                    Intent browserIntent = new Intent(context, BrowserActivity.class);
+                    browserIntent.putExtra("URL", urlBrand);
+                    browserIntent.putExtra("TITLE", getItem(position).getBrand_name());
+                    context.startActivity(browserIntent);
+                }
+            }
+        };
+
         holder.tvBrandName.setText(brand.getBrand_name());
 
         holder.deleteBrand.setOnClickListener(new View.OnClickListener() {
@@ -62,22 +78,10 @@ public class FavoriteBrandAdapter extends ArrayAdapter<Brand> {
             }
         });
 
-        holder.browser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                    String urlBrand = getItem(position).getBrandWebsite();
-                    if (urlBrand != null) {
-                        if (!urlBrand.startsWith("http://") && !urlBrand.startsWith("https://")) {
-                            urlBrand = "http://" + urlBrand;
-                        }
-                        Intent browserIntent = new Intent(context, BrowserActivity.class);
-                        browserIntent.putExtra("URL", urlBrand);
-                        browserIntent.putExtra("TITLE", getItem(position).getBrand_name());
-                        context.startActivity(browserIntent);
-                    }
+        holder.browser.setOnClickListener(onClickListenerBrowser);
 
-            }
-        });
+        holder.tvBrandName.setOnClickListener(onClickListenerBrowser);
+
 
         return convertView;
     }

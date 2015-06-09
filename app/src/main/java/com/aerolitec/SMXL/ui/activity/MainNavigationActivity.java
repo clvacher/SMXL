@@ -163,7 +163,7 @@ public class MainNavigationActivity extends SuperNavigationActivity implements O
 
         sectionMyProfile = this.newSection(getResources().getString(R.string.my_profile), this.getResources().getDrawable(R.drawable.avatar), new ProfilesDetailFragment(), false, menu);
 
-        MaterialSection sectionMonDressing = this.newSection(getResources().getString(R.string.my_wardrobe), this.getResources().getDrawable(R.drawable.shopping_bag), new WardrobeDetailFragment(), false, menu);
+        MaterialSection sectionMonDressing = this.newSection(getResources().getString(R.string.my_wardrobe), this.getResources().getDrawable(R.drawable.dressing), new WardrobeDetailFragment(), false, menu);
         MaterialSection sectionMesMesures = this.newSection(getResources().getString(R.string.measurements), this.getResources().getDrawable(R.drawable.tape_measure), new MeasureDetailFragment(), false, menu);
 
 
@@ -173,10 +173,10 @@ public class MainNavigationActivity extends SuperNavigationActivity implements O
         MaterialSection sectionSizeGuide = this.newSection(getResources().getString(R.string.size_guide), this.getResources().getDrawable(R.drawable.tshirt), new SizeGuideFragment(), false, menu);
         sectionSizeGuide.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
 
-        MaterialSection sectionMagasins = this.newSection("Magasins à proximité", this.getResources().getDrawable(android.R.drawable.ic_dialog_map), new EnChantierFragment(), false, menu);
-        sectionMagasins.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
+        //MaterialSection sectionMagasins = this.newSection("Magasins à proximité", this.getResources().getDrawable(android.R.drawable.ic_dialog_map), new EnChantierFragment(), false, menu);
+        //sectionMagasins.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
 
-        MaterialSection sectionWishlist = this.newSection("Liste d'envies", this.getResources().getDrawable(R.drawable.heart), new EnChantierFragment(), false, menu);
+        //MaterialSection sectionWishlist = this.newSection("Liste d'envies", this.getResources().getDrawable(R.drawable.heart), new EnChantierFragment(), false, menu);
 
 
         this.newDevisor(menu);
@@ -184,7 +184,7 @@ public class MainNavigationActivity extends SuperNavigationActivity implements O
         MaterialSection sectionBrands = this.newSection(getResources().getString(R.string.all_Brands), this.getResources().getDrawable(R.drawable.ic_action_labels) ,new ListBrandsFragment(), false, menu);
         sectionBrands.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
 
-        MaterialSection sectionBlogs = this.newSection("Blogs", this.getResources().getDrawable(R.drawable.browser) ,new ListBlogsFragment(), false, menu);
+        MaterialSection sectionBlogs = this.newSection("Blogs", this.getResources().getDrawable(R.drawable.blog) ,new ListBlogsFragment(), false, menu);
         //MaterialSection sectionMagazines = this.newSection("Magazines", new EnChantierFragment(), false, menu);
 
         this.newDevisor(menu);

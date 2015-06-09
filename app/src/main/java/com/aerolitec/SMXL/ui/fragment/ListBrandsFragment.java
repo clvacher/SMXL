@@ -166,7 +166,7 @@ public class ListBrandsFragment extends Fragment implements FakeSearchView.OnSea
     public void onSearchHint(FakeSearchView fakeSearchView, CharSequence charSequence) {
         //This is received when the user click in the search button on the keyboard
         ((Filterable)gridViewBrands.getAdapter()).getFilter().filter(charSequence);
-        InputMethodManager inputManager = ( InputMethodManager ) getActivity().getSystemService(getActivity().INPUT_METHOD_SERVICE);
+        InputMethodManager inputManager = ( InputMethodManager ) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 

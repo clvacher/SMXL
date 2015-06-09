@@ -68,8 +68,8 @@ public class BrandSizeGuideDBManager extends DBManager{
             " "+KEY_SIZE_US_SIZE_GUIDE+" TEXT" +
             " "+KEY_SIZE_SMXL_SIZE_GUIDE+" TEXT" +
             " "+ KEY_SIZE_SUIT_SIZE_GUIDE +" TEXT" +
-            " FOREIGN KEY("+KEY_ID_MARQUE_BRAND_SIZE_GUIDE+") REFERENCES "+SMXL.getBrandDBManager().TABLE_NAME+","+
-            " FOREIGN KEY("+KEY_ID_GARMENT_TYPE_SIZE_GUIDE+") REFERENCES "+SMXL.getGarmentTypeDBManager().TABLE_NAME+
+            " FOREIGN KEY("+KEY_ID_MARQUE_BRAND_SIZE_GUIDE+") REFERENCES "+ BrandDBManager.TABLE_NAME +","+
+            " FOREIGN KEY("+KEY_ID_GARMENT_TYPE_SIZE_GUIDE+") REFERENCES "+ GarmentTypeDBManager.TABLE_NAME +
             ");";
 
     // Constructeur

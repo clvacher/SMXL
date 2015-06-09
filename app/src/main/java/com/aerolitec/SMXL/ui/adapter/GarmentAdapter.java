@@ -16,9 +16,6 @@ import com.aerolitec.SMXL.ui.SMXL;
 import java.util.ArrayList;
 
 
-/**
- * Created by stephaneL on 21/03/14.
- */
 public class GarmentAdapter extends ArrayAdapter<UserClothes> {
 
     private Context context;

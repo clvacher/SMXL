@@ -94,7 +94,6 @@ public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
     @Override
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
-        //TODO tester la valeur de result
         switch (result){
             case "wrong email":
             case "null":

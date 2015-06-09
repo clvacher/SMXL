@@ -85,11 +85,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activity.AddMeasureActivity"
-            android:label="@string/title_activity_add_measure_fragment"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
             android:name=".ui.activity.AddGarmentActivity"
             android:label="@string/title_activity_add_garment"
             android:screenOrientation="portrait" >
