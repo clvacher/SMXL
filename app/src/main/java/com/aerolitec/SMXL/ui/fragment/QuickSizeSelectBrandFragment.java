@@ -15,7 +15,6 @@ import android.widget.Spinner;
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.Brand;
 import com.aerolitec.SMXL.ui.SMXL;
-import com.aerolitec.SMXL.ui.activity.AddGarmentActivity;
 import com.aerolitec.SMXL.ui.activity.QuickSizeActivityv2;
 import com.aerolitec.SMXL.ui.adapter.FavoriteCheckableBrandAdapter;
 
@@ -102,7 +101,7 @@ public class QuickSizeSelectBrandFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
                 ArrayList<Brand> brands;
                 if (position > 0) {
-                    brands = SMXL.getBrandDBManager().getBrandsByBrandCategory(SMXL.getBrandDBManager().getAllBrandCategory().get(position - 1));//-1 car on a rajouté l'item d'en tete
+                    brands = SMXL.getBrandDBManager().getBrandsByBrandCategory(SMXL.getBrandDBManager().getAllBrandCategory().get(position - 1));//-1 car on a rajoute l'item d'en tete
                 } else {
                     brands = SMXL.getBrandDBManager().getAllBrands();
                 }
