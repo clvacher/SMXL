@@ -3,18 +3,26 @@ package com.aerolitec.SMXL.ui.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
-import com.aerolitec.SMXL.ui.activity.QuickSizeActivityv2;
+import com.aerolitec.SMXL.model.BrandSizeGuideMeasuresRow;
+import com.aerolitec.SMXL.model.TabSizes;
+import com.aerolitec.SMXL.ui.SMXL;
+import com.aerolitec.SMXL.ui.activity.QuickSizeActivity;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class QuickSizeSummaryFragment extends Fragment {
-    private QuickSizeActivityv2 activity;
+    private QuickSizeActivity activity;
 
 
     public QuickSizeSummaryFragment() {
@@ -25,15 +33,40 @@ public class QuickSizeSummaryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_quick_size_summary, container, false);
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
-        activity=(QuickSizeActivityv2)getActivity();
+        activity=(QuickSizeActivity)getActivity();
+
+        TextView tvSMXL =(TextView) view.findViewById(R.id.valueSMXL);
+        TextView tvFR =(TextView) view.findViewById(R.id.valueFR);
+        TextView tvUE =(TextView) view.findViewById(R.id.valueUE);
+        TextView tvUS =(TextView) view.findViewById(R.id.valueUS);
+        TextView tvUK =(TextView) view.findViewById(R.id.valueUK);
+
+
+        HashMap<String,String> results = computeMeasures();
+        tvSMXL.setText(results.get("SMXL"));
+        tvFR.setText(results.get("FR"));
+        tvUE.setText(results.get("UE"));
+        tvUS.setText(results.get("US"));
+        tvUK.setText(results.get("UK"));
+
 
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    private HashMap<String,String> computeMeasures(){
+        ArrayList<BrandSizeGuideMeasuresRow> brandSizeGuideMeasuresRows;
+
+        brandSizeGuideMeasuresRows = SMXL.getBrandSizeGuideDBManager().getBrandSizeGuideMeasureRowsByBrandAndGarmentType(activity.getQuickSizeFragment().getSelectedBrand(),activity.getQuickSizeFragment().getSelectedGarmentType());
+
+        BrandSizeGuideMeasuresRow brandSizeGuideMeasuresRow = BrandSizeGuideMeasuresRow.getClosestRowToMeasures(brandSizeGuideMeasuresRows, activity.getUser());
+
+        return brandSizeGuideMeasuresRow.getCorrespondingSizes();
     }
 }

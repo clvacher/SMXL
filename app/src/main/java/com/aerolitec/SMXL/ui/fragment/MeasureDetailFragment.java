@@ -124,7 +124,7 @@ public class MeasureDetailFragment extends Fragment {
         tvChest.setText(user.getChest()+"");
         tvWaist.setText(user.getWaist()+"");
         tvSleeve.setText(user.getSleeve()+"");
-        tvHips.setText(user.getSleeve()+"");
+        tvHips.setText(user.getHips()+"");
         tvHeight.setText(user.getHeight()+"");
         tvThigh.setText(user.getThigh()+"");
         tvInseam.setText(user.getInseam()+"");

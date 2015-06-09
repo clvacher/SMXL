@@ -16,9 +16,9 @@
         android:focusableInTouchMode="true">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="140dp"
             android:layout_above="@+id/profilLayout"
-            android:layout_marginBottom="85dp"
+            android:layout_marginBottom="70dp"
             android:layout_alignParentTop="true"
             >
             <RelativeLayout
@@ -39,24 +39,59 @@
                     android:text="Quicksize"
                     android:textStyle="bold"
                     android:textColor="@android:color/white"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginRight="10dp"
                     android:layout_marginEnd="15dp"
                     android:layout_marginBottom="5dp"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"/>
                 <ImageView
-                    android:layout_width="70dp"
+                    android:layout_width="45dp"
                     android:layout_height="wrap_content"
+                    android:padding="5dp"
                     android:src="@drawable/cintre_inverse_hd"
-                    android:layout_below="@+id/textView1"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true"/>
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignRight="@+id/textView1"
+                    android:layout_alignEnd="@+id/textView1"
+                    android:layout_below="@+id/textView1"/>
             </RelativeLayout>
             <View
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:id="@+id/center"
                 android:layout_centerHorizontal="true"/>
+            <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:id="@+id/whishList"
+            android:background="@color/SectionSeparator"
+            android:clickable="true"
+            android:layout_toLeftOf="@+id/center"
+            android:layout_toStartOf="@+id/center"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView2"
+                android:text="Wish-list"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="5dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/heart"
+                android:layout_below="@+id/textView2"
+                android:layout_alignLeft="@+id/textView2"
+                android:layout_alignStart="@+id/textView2"
+                android:layout_alignParentBottom="true"
+                />
+        </RelativeLayout>
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

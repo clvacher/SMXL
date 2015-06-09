@@ -3,10 +3,14 @@ package com.aerolitec.SMXL.tools.dbmanager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 
 import com.aerolitec.SMXL.model.Brand;
+import com.aerolitec.SMXL.model.BrandSizeGuideMeasuresRow;
 import com.aerolitec.SMXL.model.BrandsSizeGuide;
 import com.aerolitec.SMXL.model.GarmentType;
+import com.aerolitec.SMXL.model.TabSizes;
+import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.ui.SMXL;
 
 import java.util.ArrayList;
@@ -18,7 +22,7 @@ public class BrandSizeGuideDBManager extends DBManager{
     private static final String TABLE_NAME = "brand_size_guide";
     public static final String KEY_ID_BRAND_SIZE_GUIDE="id_brand_size_guide";
     public static final String KEY_ID_MARQUE_BRAND_SIZE_GUIDE ="id_brand";
-    public static final String KEY_ID_GARMENT_TYPE_SIZE_GUIDE ="id_garment_type";
+    public static final String KEY_ID_GARMENT_TYPE_SIZE_GUIDE ="id_garment";
     public static final String KEY_COLLAR_SIZE_GUIDE="collar";
     public static final String KEY_CHEST_SIZE_GUIDE="chest";
     public static final String KEY_BUST_SIZE_GUIDE="bust";
@@ -242,42 +246,18 @@ public class BrandSizeGuideDBManager extends DBManager{
     }
 
 
-    public ArrayList<BrandsSizeGuide> getAllBrandsByGarment(GarmentType garmentType){
+    public ArrayList<Brand> getAllBrandsByGarment(GarmentType garmentType){
         open();
-        ArrayList<BrandsSizeGuide> brands = new ArrayList<>();
+        ArrayList<Brand> brands = new ArrayList<>();
         Cursor c;
-        c = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+KEY_ID_GARMENT_TYPE_SIZE_GUIDE+" = "+ garmentType.getId_garment_type(), null);
+        c = db.rawQuery("SELECT DISTINCT "+KEY_ID_MARQUE_BRAND_SIZE_GUIDE +
+                        " FROM "+TABLE_NAME+
+                        " WHERE "+KEY_ID_GARMENT_TYPE_SIZE_GUIDE+" = "+ garmentType.getId_garment_type(), null);
         boolean eof = c.moveToFirst();
         while (eof) {
-            BrandsSizeGuide bsg = new BrandsSizeGuide();
+            Brand brand = SMXL.getBrandDBManager().getBrand(c.getInt(c.getColumnIndex(KEY_ID_MARQUE_BRAND_SIZE_GUIDE)));
 
-            bsg.setId_brand_size_guide(c.getInt(c.getColumnIndex(KEY_ID_BRAND_SIZE_GUIDE)));
-
-            bsg.setBrand(SMXL.getBrandDBManager().getBrand(c.getInt(c.getColumnIndex(KEY_ID_MARQUE_BRAND_SIZE_GUIDE))));
-            bsg.setGarmentType(SMXL.getGarmentTypeDBManager().getGarmentType(c.getInt(c.getColumnIndex(KEY_ID_GARMENT_TYPE_SIZE_GUIDE))));
-
-            bsg.setBust(convertToDouble(c.getString(c.getColumnIndex(KEY_BUST_SIZE_GUIDE))));
-            bsg.setCollar(convertToDouble(c.getString(c.getColumnIndex(KEY_COLLAR_SIZE_GUIDE))));
-            bsg.setChest(convertToDouble(c.getString(c.getColumnIndex(KEY_CHEST_SIZE_GUIDE))));
-            bsg.setFeet(convertToDouble(c.getString(c.getColumnIndex(KEY_FEET_SIZE_GUIDE))));
-            bsg.setHead(convertToDouble(c.getString(c.getColumnIndex(KEY_HEAD_SIZE_GUIDE))));
-            bsg.setHeight(convertToDouble(c.getString(c.getColumnIndex(KEY_HEIGHT_SIZE_GUIDE))));
-            bsg.setHips(convertToDouble(c.getString(c.getColumnIndex(KEY_HIPS_SIZE_GUIDE))));
-            bsg.setInseam(convertToDouble(c.getString(c.getColumnIndex(KEY_INSEAM_SIZE_GUIDE))));
-            bsg.setSleeve(convertToDouble(c.getString(c.getColumnIndex(KEY_SLEEVE_SIZE_GUIDE))));
-            bsg.setThigh(convertToDouble(c.getString(c.getColumnIndex(KEY_THIGH_SIZE_GUIDE))));
-            bsg.setWaist(convertToDouble(c.getString(c.getColumnIndex(KEY_WAIST_SIZE_GUIDE))));
-            bsg.setWeight(convertToDouble(c.getString(c.getColumnIndex(KEY_WEIGHT_SIZE_GUIDE))));
-            bsg.setOther(convertToDouble(c.getString(c.getColumnIndex(KEY_OTHER_SIZE_GUIDE))));
-
-            bsg.setSizeFR(c.getString(c.getColumnIndex(KEY_SIZE_FR_SIZE_GUIDE)));
-            bsg.setSizeUE(c.getString(c.getColumnIndex(KEY_SIZE_UE_SIZE_GUIDE)));
-            bsg.setSizeUK(c.getString(c.getColumnIndex(KEY_SIZE_UK_SIZE_GUIDE)));
-            bsg.setSizeUS(c.getString(c.getColumnIndex(KEY_SIZE_US_SIZE_GUIDE)));
-            bsg.setSizeSMXL(c.getString(c.getColumnIndex(KEY_SIZE_SMXL_SIZE_GUIDE)));
-            bsg.setSizeSuite(c.getString(c.getColumnIndex(KEY_SIZE_SUIT_SIZE_GUIDE)));
-
-            brands.add(bsg);
+            brands.add(brand);
             eof = c.moveToNext();
         }
         c.close();
@@ -285,5 +265,83 @@ public class BrandSizeGuideDBManager extends DBManager{
         return brands;
     }
 
+//    public ArrayList<Brand> getAllUserBrandsByGarment(GarmentType garmentType,User user){
+//        open();
+//        ArrayList<Brand> brands = new ArrayList<>();
+//        Cursor c;
+//        c = db.rawQuery("SELECT DISTINCT "+KEY_ID_MARQUE_BRAND_SIZE_GUIDE +
+//                " FROM "+TABLE_NAME+
+//                " WHERE "+KEY_ID_GARMENT_TYPE_SIZE_GUIDE+" = "+ garmentType.getId_garment_type(), null);
+//        boolean eof = c.moveToFirst();
+//        while (eof) {
+//            Brand brand = SMXL.getUserBrandDBManager().getUserBrandById(c.getInt(c.getColumnIndex(KEY_ID_MARQUE_BRAND_SIZE_GUIDE)), user);
+//
+//            brands.add(brand);
+//            eof = c.moveToNext();
+//        }
+//        c.close();
+//        close();
+//        return brands;
+//    }
+
+
+    // /!\ PEUT retourner null
+    public Brand getBrandByIdAndGarment(GarmentType garmentType, int brandId){
+        open();
+        Brand brand= null;
+        Cursor c;
+        c = db.rawQuery("SELECT DISTINCT "+KEY_ID_MARQUE_BRAND_SIZE_GUIDE +
+                " FROM "+TABLE_NAME+
+                " WHERE "+KEY_ID_GARMENT_TYPE_SIZE_GUIDE+" = "+ garmentType.getId_garment_type()+" AND "+KEY_ID_MARQUE_BRAND_SIZE_GUIDE+" = "+brandId, null);
+        if(c.moveToFirst()){
+            brand = SMXL.getBrandDBManager().getBrand(c.getInt(c.getColumnIndex(KEY_ID_MARQUE_BRAND_SIZE_GUIDE)));
+        }
+        c.close();
+        close();
+        return brand;
+    }
+
+
+    public ArrayList<BrandSizeGuideMeasuresRow> getBrandSizeGuideMeasureRowsByBrandAndGarmentType(Brand brand,GarmentType garmentType){
+        open();
+        ArrayList<BrandSizeGuideMeasuresRow> brandSizeGuideMeasuresRows= new ArrayList<>();
+        BrandSizeGuideMeasuresRow brandSizeGuideMeasuresRow;
+        Cursor c;
+        c= db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+KEY_ID_MARQUE_BRAND_SIZE_GUIDE+" = "+brand.getId_brand()+" AND "+KEY_ID_GARMENT_TYPE_SIZE_GUIDE+" = "+garmentType.getId_garment_type(),null);
+        boolean eof = c.moveToFirst();
+        while(eof){
+            brandSizeGuideMeasuresRow = new BrandSizeGuideMeasuresRow();
+
+            brandSizeGuideMeasuresRow.setBust(convertToDouble(c.getString(c.getColumnIndex(KEY_BUST_SIZE_GUIDE))));
+            brandSizeGuideMeasuresRow.setCollar(convertToDouble(c.getString(c.getColumnIndex(KEY_COLLAR_SIZE_GUIDE))));
+            brandSizeGuideMeasuresRow.setChest(convertToDouble(c.getString(c.getColumnIndex(KEY_CHEST_SIZE_GUIDE))));
+            brandSizeGuideMeasuresRow.setFeet(convertToDouble(c.getString(c.getColumnIndex(KEY_FEET_SIZE_GUIDE))));
+            brandSizeGuideMeasuresRow.setHeight(convertToDouble(c.getString(c.getColumnIndex(KEY_HEIGHT_SIZE_GUIDE))));
+            brandSizeGuideMeasuresRow.setHips(convertToDouble(c.getString(c.getColumnIndex(KEY_HIPS_SIZE_GUIDE))));
+            brandSizeGuideMeasuresRow.setInseam(convertToDouble(c.getString(c.getColumnIndex(KEY_INSEAM_SIZE_GUIDE))));
+            brandSizeGuideMeasuresRow.setSleeve(convertToDouble(c.getString(c.getColumnIndex(KEY_SLEEVE_SIZE_GUIDE))));
+            brandSizeGuideMeasuresRow.setThigh(convertToDouble(c.getString(c.getColumnIndex(KEY_THIGH_SIZE_GUIDE))));
+            brandSizeGuideMeasuresRow.setWaist(convertToDouble(c.getString(c.getColumnIndex(KEY_WAIST_SIZE_GUIDE))));
+            brandSizeGuideMeasuresRow.setWeight(convertToDouble(c.getString(c.getColumnIndex(KEY_WEIGHT_SIZE_GUIDE))));
+            brandSizeGuideMeasuresRow.setOther(convertToDouble(c.getString(c.getColumnIndex(KEY_OTHER_SIZE_GUIDE))));
+
+            brandSizeGuideMeasuresRow.setSizeFR(c.getString(c.getColumnIndex(KEY_SIZE_FR_SIZE_GUIDE)));
+            brandSizeGuideMeasuresRow.setSizeUE(c.getString(c.getColumnIndex(KEY_SIZE_UE_SIZE_GUIDE)));
+            brandSizeGuideMeasuresRow.setSizeUK(c.getString(c.getColumnIndex(KEY_SIZE_UK_SIZE_GUIDE)));
+            brandSizeGuideMeasuresRow.setSizeUS(c.getString(c.getColumnIndex(KEY_SIZE_US_SIZE_GUIDE)));
+            brandSizeGuideMeasuresRow.setSizeSMXL(c.getString(c.getColumnIndex(KEY_SIZE_SMXL_SIZE_GUIDE)));
+            brandSizeGuideMeasuresRow.setSizeSuite(c.getString(c.getColumnIndex(KEY_SIZE_SUIT_SIZE_GUIDE)));
+
+            brandSizeGuideMeasuresRows.add(brandSizeGuideMeasuresRow);
+
+            eof = c.moveToNext();
+        }
+
+        c.close();
+        close();
+
+        return brandSizeGuideMeasuresRows;
+
+    }
 
 } // class BrandSizeGuideDBManager

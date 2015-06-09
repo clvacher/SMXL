@@ -21,7 +21,7 @@ import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.UtilityMethodsv2;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
-import com.aerolitec.SMXL.ui.activity.QuickSizeActivityv2;
+import com.aerolitec.SMXL.ui.activity.QuickSizeActivity;
 import com.aerolitec.SMXL.ui.adapter.FavoriteBrandAdapter;
 import com.aerolitec.SMXL.ui.customLayout.ProfilePictureRoundedImageView;
 
@@ -114,7 +114,7 @@ public class ProfilesDetailFragment extends Fragment{
         quicksizeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), QuickSizeActivityv2.class);
+                Intent intent = new Intent(getActivity(), QuickSizeActivity.class);
                 startActivity(intent);
             }
         });

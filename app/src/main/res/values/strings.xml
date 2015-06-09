@@ -156,7 +156,7 @@
     <string name="BLOUSON">Jacket</string>
     <string name="CHAUSSURE">Shoes</string>
     <string name="CHEMISE">Shirt</string>
-    <string name="CHEMISIER">Chemisier</string>
+    <string name="CHEMISIER">Blouse</string>
     <string name="COSTUME">Suit</string>
     <string name="JEANS">Jeans</string>
     <string name="MANTEAU">Coat</string>
@@ -170,6 +170,8 @@
     <string name="JUPE">Skirt</string>
     <string name="ROBE">Dress</string>
     <string name="SOUTIEN_GORGE">Bra</string>
-    <string name="MAILLOTS_DE_BAIN">Maillot de Bains</string>
+    <string name="MAILLOTS_DE_BAIN">swimwear</string>
+
+    <string name="nc">N/C</string>
 
 </resources>

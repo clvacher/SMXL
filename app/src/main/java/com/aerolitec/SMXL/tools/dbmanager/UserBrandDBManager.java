@@ -3,14 +3,10 @@ package com.aerolitec.SMXL.tools.dbmanager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
-import android.util.Log;
 
 import com.aerolitec.SMXL.model.Brand;
+import com.aerolitec.SMXL.model.GarmentType;
 import com.aerolitec.SMXL.model.User;
-import com.aerolitec.SMXL.tools.Constants;
-import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
 
 import java.util.ArrayList;
@@ -155,6 +151,44 @@ public class UserBrandDBManager extends DBManager {
         Collections.sort(brands);
         return brands;
     }
-} // class UserBrandDBManager
+
+//    public Brand getUserBrandById(int brandId,User user){
+//
+//        open();
+//        Brand brand = null;
+//
+//        Cursor c = db.rawQuery("SELECT " + KEY_ID_BRAND + " FROM " + TABLE_NAME + " WHERE " + KEY_ID_USER + " = '" + user.getId_user() + "' AND " + KEY_ID_BRAND + " = " + brandId, null);
+//        if(c.moveToFirst()){
+//            brand = SMXL.getBrandDBManager().getBrand(c.getInt(c.getColumnIndex(KEY_ID_BRAND)));
+//        }
+//
+//        c.close();
+//        close();
+//
+//        Log.d("UserBrand getById", brandId + "");
+//        return brand;
+//    }
+
+    public ArrayList<Brand> getUserBrandByGarment(User user,GarmentType garmentType){
+        open();
+        ArrayList<Brand> brands = new ArrayList();
+
+        Cursor c = db.rawQuery("SELECT "+KEY_ID_BRAND+" FROM "+TABLE_NAME+" WHERE "+KEY_ID_USER+" = "+user.getId_user(),null);
+        boolean eof = c.moveToFirst();
+        while(eof){
+            Brand brand = SMXL.getBrandSizeGuideDBManager().getBrandByIdAndGarment(garmentType, c.getInt(c.getColumnIndex(KEY_ID_BRAND)));
+            if(brand != null)
+                brands.add(brand);
+
+            eof = c.moveToNext();
+        }
+        c.close();
+        close();
+
+        return brands;
+    }
+
+
+}
 
 

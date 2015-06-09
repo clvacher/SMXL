@@ -3,7 +3,6 @@ package com.aerolitec.SMXL.ui.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +11,8 @@ import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.Brand;
-import com.aerolitec.SMXL.model.CategoryGarment;
 import com.aerolitec.SMXL.model.GarmentType;
 import com.aerolitec.SMXL.model.User;
-import com.aerolitec.SMXL.model.UserClothes;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.activity.AddGarmentActivity;
 
@@ -34,9 +31,6 @@ public class QuickSizeFragment extends Fragment {
 
     private GarmentType selectedGarmentType;
     private Brand selectedBrand;
-
-    private int selectedIdUserClothes=-1;
-    private UserClothes userClothes;
 
     private TextView tvBrand, tvGarment;
     private ImageView ivGarment;
@@ -85,6 +79,6 @@ public class QuickSizeFragment extends Fragment {
         tvGarment = (TextView) view.findViewById(R.id.garmentType);
         tvBrand = (TextView) view.findViewById(R.id.garmentBrand);
 
-        getChildFragmentManager().beginTransaction().add(R.id.containerQuickSizeFragment, new QuickSizeSelectGarmentFragmentv2()).commit();
+        getChildFragmentManager().beginTransaction().add(R.id.containerQuickSizeFragment, new QuickSizeSelectGarmentFragment()).commit();
     }
 }

@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.aerolitec.SMXL.ui.fragment.QuickSizeSelectGarmentFragmentv2"
+    tools:context="com.aerolitec.SMXL.ui.fragment.QuickSizeSelectGarmentFragment"
     android:padding="26dp"
     android:background="@color/DefaultBackgroundColor">
 

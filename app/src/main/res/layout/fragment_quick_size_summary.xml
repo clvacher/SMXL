@@ -18,7 +18,7 @@
             <TextView android:id="@+id/valueSMXL"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:text="N/C"
+                android:hint="@string/nc"
                 />
         </TableRow>
         <TableRow>
@@ -29,7 +29,7 @@
             <TextView android:id="@+id/valueUE"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:text="N/C"/>
+                android:hint="@string/nc"/>
         </TableRow>
         <TableRow
             android:background="@android:color/white">
@@ -40,7 +40,7 @@
             <TextView android:id="@+id/valueUS"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:text="N/C"/>
+                android:hint="@string/nc"/>
         </TableRow>
         <TableRow>
             <TextView android:text="UK : "
@@ -50,7 +50,7 @@
             <TextView android:id="@+id/valueUK"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:text="N/C"/>
+                android:hint="@string/nc"/>
         </TableRow>
         <TableRow
             android:background="@android:color/white">
@@ -61,7 +61,7 @@
             <TextView android:id="@+id/valueFR"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:text="N/C"/>
+                android:hint="@string/nc"/>
         </TableRow>
     </TableLayout>
 </RelativeLayout>
