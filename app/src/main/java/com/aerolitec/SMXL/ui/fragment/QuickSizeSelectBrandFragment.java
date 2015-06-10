@@ -16,7 +16,7 @@ import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.Brand;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.activity.AddGarmentActivity;
-import com.aerolitec.SMXL.ui.activity.QuickSizeActivityv2;
+import com.aerolitec.SMXL.ui.activity.QuickSizeActivity;
 import com.aerolitec.SMXL.ui.adapter.FavoriteCheckableBrandAdapter;
 
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ import java.util.ArrayList;
  * A simple {@link Fragment} subclass.
  */
 public class QuickSizeSelectBrandFragment extends Fragment {
-    private QuickSizeActivityv2 activity;
+    private QuickSizeActivity activity;
 
     private GridView gvBrands;
     private Spinner spinnerBrandsCategory;
@@ -47,7 +47,7 @@ public class QuickSizeSelectBrandFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        activity=(QuickSizeActivityv2)getActivity();
+        activity=(QuickSizeActivity)getActivity();
 
         gvBrands = (GridView) view.findViewById(R.id.gridViewBrands);
         spinnerBrandsCategory = (Spinner) view.findViewById(R.id.spinnerBrandCategory);
@@ -136,15 +136,22 @@ public class QuickSizeSelectBrandFragment extends Fragment {
     }
 
     private void fillSpinner(Spinner s,ArrayList<String> categories){
-        s.setAdapter(new ArrayAdapter<String>(getActivity(),R.layout.item_spinner_brand_category,getSpinnerCategories()));
+        s.setAdapter(new ArrayAdapter<String>(getActivity(), R.layout.item_spinner_brand_category, getSpinnerCategories()));
     }
 
     private ArrayList<Brand> getFavoriteBrands(){
-        return SMXL.getUserBrandDBManager().getAllUserBrands(activity.getUser());
+        return SMXL.getUserBrandDBManager().getUserBrandByGarment(activity.getUser(), activity.getQuickSizeFragment().getSelectedGarmentType());
     }
 
     private ArrayList<Brand> getAllbrands(){
-        return SMXL.getBrandDBManager().getAllBrands();
+        return SMXL.getBrandSizeGuideDBManager().getAllBrandsByGarment(activity.getQuickSizeFragment().getSelectedGarmentType());
+    }
+
+    private ArrayList<Brand> getAllBrandsByCategory(int position){
+        ArrayList<Brand> brands = SMXL.getBrandDBManager().getBrandsByBrandCategory(SMXL.getBrandDBManager().getAllBrandCategory().get(position - 1));//-1 car on a rajouté l'item d'en tete
+        ArrayList<Brand> allBrands = getAllbrands();
+        brands.retainAll(allBrands);
+        return brands;
     }
 
     private ArrayList<String> getSpinnerCategories(){

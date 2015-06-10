@@ -46,10 +46,9 @@
                     android:layout_alignParentEnd="true"/>
                 <ImageView
                     android:layout_width="45dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:padding="5dp"
                     android:src="@drawable/cintre_inverse_hd"
-                    android:layout_alignParentBottom="true"
                     android:layout_alignRight="@+id/textView1"
                     android:layout_alignEnd="@+id/textView1"
                     android:layout_below="@+id/textView1"/>
@@ -74,7 +73,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView2"
-                android:text="Wish-list"
+                android:text="Wishlist"
                 android:textStyle="bold"
                 android:textColor="@android:color/white"
                 android:layout_marginLeft="10dp"
@@ -84,12 +83,11 @@
                 android:layout_alignParentStart="true"/>
             <ImageView
                 android:layout_width="40dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:src="@drawable/heart"
                 android:layout_below="@+id/textView2"
                 android:layout_alignLeft="@+id/textView2"
                 android:layout_alignStart="@+id/textView2"
-                android:layout_alignParentBottom="true"
                 />
         </RelativeLayout>
             <ImageView
