@@ -3,7 +3,6 @@ package com.aerolitec.SMXL.ui.fragment;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -81,7 +80,7 @@ public class CreateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
         layoutImageProfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectProfilPicture();
+                openImageIntent();
             }
         });
 
@@ -165,11 +164,6 @@ public class CreateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
         }
     }
 
-    private void selectProfilPicture() {
-        Intent i = new Intent(Intent.ACTION_PICK);
-        i.setType("image/*");
-        startActivityForResult(i, 77);
-    }
 
 
 }

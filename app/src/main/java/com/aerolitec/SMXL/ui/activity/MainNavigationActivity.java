@@ -29,7 +29,6 @@ import com.aerolitec.SMXL.ui.fragment.ListBrandsFragment;
 import com.aerolitec.SMXL.ui.fragment.MeasureDetailFragment;
 import com.aerolitec.SMXL.ui.fragment.ProfilesDetailFragment;
 import com.aerolitec.SMXL.ui.fragment.ProfilesFragment;
-import com.aerolitec.SMXL.ui.fragment.SettingsFragment;
 import com.aerolitec.SMXL.ui.fragment.SizeGuideFragment;
 import com.aerolitec.SMXL.ui.fragment.WardrobeDetailFragment;
 import com.facebook.FacebookSdk;
@@ -194,8 +193,8 @@ public class MainNavigationActivity extends SuperNavigationActivity implements O
         MaterialSection section7 = this.newSection("Partager mon profil", this.getResources().getDrawable(R.drawable.ic_action_share), new EnChantierFragment(), false, menu);
         section7.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
 
-        MaterialSection section6 = this.newSection(getResources().getString(R.string.settings), this.getResources().getDrawable(R.drawable.ic_action_settings), new SettingsFragment(), false, menu);
-        section6.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
+        //MaterialSection section6 = this.newSection(getResources().getString(R.string.settings), this.getResources().getDrawable(R.drawable.ic_action_settings), new SettingsFragment(), false, menu);
+        //section6.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
 
 
 
