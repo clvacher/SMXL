@@ -17,7 +17,7 @@ import java.io.OutputStream;
 public class SQLiteSMXL extends SQLiteOpenHelper{
 
     public static final String DATABASE_NAME = "SMXL_DATABASE.sqlite";
-    public static final int DATABASE_VERSION = 15;
+    public static final int DATABASE_VERSION = 17;
     private File DATABASE_FILE;
     private String DATABASE_DIR;
     private static final String FILE_CHARSET = "UTF-8";
