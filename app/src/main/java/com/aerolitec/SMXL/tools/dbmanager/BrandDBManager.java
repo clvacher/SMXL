@@ -79,12 +79,11 @@ public class BrandDBManager extends DBManager{
     }
 
     public Brand getBrand(int id) {
-        // Retourne l'animal dont l'id est passé en paramètre
-
+        // Retourne la marque dont l'id est passé en paramètre
         open();
         Brand b=new Brand();
-
-        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + KEY_ID_BRAND + "=" + id, null);
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_NAME +
+                                " WHERE " + KEY_ID_BRAND + "=" + id, null);
         if (c.moveToFirst()) {
             b.setId_brand(c.getInt(c.getColumnIndex(KEY_ID_BRAND)));
             b.setBrand_name(c.getString(c.getColumnIndex(KEY_NOM_BRAND)));
@@ -102,9 +101,11 @@ public class BrandDBManager extends DBManager{
     }*/
 
     public ArrayList<Brand> getAllBrands(){
+        //Retourne la liste de toutes les marques dans l'ordre alphabétique
         open();
         ArrayList<Brand> brands = new ArrayList<>();
-        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_NAME + " ORDER BY " + KEY_NOM_BRAND, null);
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_NAME +
+                                " ORDER BY " + KEY_NOM_BRAND, null);
         boolean eof = c.moveToFirst();
         while (eof) {
             Brand b = new Brand();

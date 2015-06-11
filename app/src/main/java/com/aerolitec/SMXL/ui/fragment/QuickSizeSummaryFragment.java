@@ -3,7 +3,6 @@ package com.aerolitec.SMXL.ui.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +10,8 @@ import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.BrandSizeGuideMeasuresRow;
-import com.aerolitec.SMXL.model.TabSizes;
+import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
-import com.aerolitec.SMXL.ui.activity.QuickSizeActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,7 +20,8 @@ import java.util.HashMap;
  * A simple {@link Fragment} subclass.
  */
 public class QuickSizeSummaryFragment extends Fragment {
-    private QuickSizeActivity activity;
+    //private QuickSizeActivity activity;
+    private QuickSizeFragment quickSizeFragment;
 
 
     public QuickSizeSummaryFragment() {
@@ -40,7 +39,8 @@ public class QuickSizeSummaryFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
-        activity=(QuickSizeActivity)getActivity();
+        //activity=(QuickSizeActivity)getActivity();
+        quickSizeFragment = (QuickSizeFragment)getParentFragment();
 
         TextView tvSMXL =(TextView) view.findViewById(R.id.valueSMXL);
         TextView tvFR =(TextView) view.findViewById(R.id.valueFR);
@@ -63,9 +63,9 @@ public class QuickSizeSummaryFragment extends Fragment {
     private HashMap<String,String> computeMeasures(){
         ArrayList<BrandSizeGuideMeasuresRow> brandSizeGuideMeasuresRows;
 
-        brandSizeGuideMeasuresRows = SMXL.getBrandSizeGuideDBManager().getBrandSizeGuideMeasureRowsByBrandAndGarmentType(activity.getQuickSizeFragment().getSelectedBrand(),activity.getQuickSizeFragment().getSelectedGarmentType());
+        brandSizeGuideMeasuresRows = SMXL.getBrandSizeGuideDBManager().getBrandSizeGuideMeasureRowsByBrandAndGarmentType(quickSizeFragment.getSelectedBrand(), quickSizeFragment.getSelectedGarmentType());
 
-        BrandSizeGuideMeasuresRow brandSizeGuideMeasuresRow = BrandSizeGuideMeasuresRow.getClosestRowToMeasures(brandSizeGuideMeasuresRows, activity.getUser());
+        BrandSizeGuideMeasuresRow brandSizeGuideMeasuresRow = BrandSizeGuideMeasuresRow.getClosestRowToMeasures(brandSizeGuideMeasuresRows, UserManager.get().getUser());
 
         return brandSizeGuideMeasuresRow.getCorrespondingSizes();
     }

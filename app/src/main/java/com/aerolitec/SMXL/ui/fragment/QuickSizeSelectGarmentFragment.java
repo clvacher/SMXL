@@ -15,14 +15,14 @@ import com.aerolitec.SMXL.model.GarmentType;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
-import com.aerolitec.SMXL.ui.activity.QuickSizeActivity;
 import com.aerolitec.SMXL.ui.adapter.TypeGarmentAdapter;
 
 import java.util.ArrayList;
 
 public class QuickSizeSelectGarmentFragment extends Fragment {
 
-    private QuickSizeActivity activity;
+    //private QuickSizeActivity activity;
+    private QuickSizeFragment quickSizeFragment;
 
     private ListView lvGarmentTypes;
     private User user;
@@ -35,7 +35,8 @@ public class QuickSizeSelectGarmentFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         user = UserManager.get().getUser();
-        activity = (QuickSizeActivity) getActivity();
+        quickSizeFragment = (QuickSizeFragment)getParentFragment();
+        //activity = (QuickSizeActivity) getActivity();
     }
 
     @Override
@@ -64,8 +65,8 @@ public class QuickSizeSelectGarmentFragment extends Fragment {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                activity.getQuickSizeFragment().setSelectedGarmentType((GarmentType) parent.getItemAtPosition(position));
-                activity.getQuickSizeFragment().getChildFragmentManager().beginTransaction()
+                quickSizeFragment.setSelectedGarmentType((GarmentType) parent.getItemAtPosition(position));
+                quickSizeFragment.getChildFragmentManager().beginTransaction()
                         .addToBackStack(null)
                         .replace(R.id.containerQuickSizeFragment, new QuickSizeSelectBrandFragment(), "brand")
                         .commit();

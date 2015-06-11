@@ -12,22 +12,11 @@ import android.widget.TextView;
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.Brand;
 import com.aerolitec.SMXL.model.GarmentType;
-import com.aerolitec.SMXL.model.User;
-import com.aerolitec.SMXL.tools.manager.UserManager;
-import com.aerolitec.SMXL.ui.activity.AddGarmentActivity;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class QuickSizeFragment extends Fragment {
-    AddGarmentActivity activity;
-
-    private User user;
-
-    public User getUser() {
-        return user;
-    }
-
 
     private GarmentType selectedGarmentType;
     private Brand selectedBrand;
@@ -38,6 +27,7 @@ public class QuickSizeFragment extends Fragment {
     public GarmentType getSelectedGarmentType() {
         return selectedGarmentType;
     }
+
     public void setSelectedGarmentType(GarmentType selectedGarmentType) {
         this.selectedGarmentType = selectedGarmentType;
         tvGarment.setText(getResources().getIdentifier(selectedGarmentType.getType(),"string",getActivity().getPackageName()));
@@ -61,7 +51,6 @@ public class QuickSizeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        user = UserManager.get().getUser();
     }
 
     @Override
@@ -79,6 +68,6 @@ public class QuickSizeFragment extends Fragment {
         tvGarment = (TextView) view.findViewById(R.id.garmentType);
         tvBrand = (TextView) view.findViewById(R.id.garmentBrand);
 
-        getChildFragmentManager().beginTransaction().add(R.id.containerQuickSizeFragment, new QuickSizeSelectGarmentFragment()).commit();
+        getChildFragmentManager().beginTransaction().addToBackStack(null).add(R.id.containerQuickSizeFragment, new QuickSizeSelectGarmentFragment()).commit();
     }
 }

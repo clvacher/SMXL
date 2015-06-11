@@ -5,21 +5,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.aerolitec.SMXL.R;
-import com.aerolitec.SMXL.model.User;
-import com.aerolitec.SMXL.ui.fragment.QuickSizeFragment;
 
 public class QuickSizeActivity extends NoDrawerActivity {
 
-    private QuickSizeFragment quickSizeFragment;
+    //private QuickSizeFragment quickSizeFragment;
 
 
-    public User getUser() {return quickSizeFragment.getUser();}
+    /*public User getUser() {return quickSizeFragment.getUser();}*/
 
     @Override
     public void init(Bundle bundle) {
         super.init(bundle);
-        quickSizeFragment = new QuickSizeFragment();
-        this.newSection("QuickSize", quickSizeFragment, false, menu);
+        //quickSizeFragment = new QuickSizeFragment();
+        //this.newSection("QuickSize", quickSizeFragment, false, menu);
     }
 
     @Override
@@ -46,7 +44,7 @@ public class QuickSizeActivity extends NoDrawerActivity {
         super.onResume();
     }
 
-    public QuickSizeFragment getQuickSizeFragment(){
+    /*public QuickSizeFragment getQuickSizeFragment(){
         return quickSizeFragment;
-    }
+    }*/
 }

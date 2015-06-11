@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Created by Clément on 6/9/2015.
+ * Created by Clement on 6/9/2015.
  */
 public class BrandSizeGuideMeasuresRow {
 

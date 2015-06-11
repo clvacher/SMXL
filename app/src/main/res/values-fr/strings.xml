@@ -176,5 +176,9 @@
     <string name="ROBE">Robe</string>
     <string name="SOUTIEN_GORGE">Soutien-Gorge</string>
     <string name="MAILLOTS_DE_BAIN">Maillot de Bains</string>
+    <string name="libFeet">Pied</string>
+    <string name="nc">N/C</string>
+    <string name="wrong_email">Email inexistant!</string>
+    <string name="title_activity_quicksize">QuickSize ACtivity</string>
 
 </resources>

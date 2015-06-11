@@ -173,5 +173,11 @@
     <string name="MAILLOTS_DE_BAIN">swimwear</string>
 
     <string name="nc">N/C</string>
+    <string name="Coat">Coat</string>
+    <string name="addColor">Add Color</string>
+    <string name="favoriteColor">Favorite Color</string>
+    <string name="hello_blank_fragment">Hello</string>
+    <string name="libFoot">Foot</string>
+    <string name="wrong_username">Wrong Email!</string>
 
 </resources>

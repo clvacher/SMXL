@@ -53,7 +53,9 @@ public class ConnexionDefaultFragment extends Fragment implements LoginCreateAcc
         public void onSuccess(LoginResult loginResult) {
             Log.d("SUCCESS", "TEST");
 
-            GraphRequest request = GraphRequest.newMeRequest(AccessToken.getCurrentAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
+            GraphRequest request = GraphRequest.newMeRequest(
+                    AccessToken.getCurrentAccessToken(),
+                    new GraphRequest.GraphJSONObjectCallback() {
                 @Override
                 public void onCompleted(JSONObject userJson, GraphResponse response) {
                     if (userJson != null) {
@@ -64,7 +66,26 @@ public class ConnexionDefaultFragment extends Fragment implements LoginCreateAcc
                 }
             });
             request.executeAsync();
+
+
+            GraphRequest graphRequest = GraphRequest.newMeRequest(
+                    AccessToken.getCurrentAccessToken(),
+                    new GraphRequest.GraphJSONObjectCallback() {
+                        @Override
+                        public void onCompleted(JSONObject userJson, GraphResponse response) {
+                            if (userJson != null) {
+                                String first_name = userJson.optString("first_name");
+                                String last_name = userJson.optString("last_name");
+                            }
+                        }
+                    });
+            graphRequest.executeAsync();
+
+
+
+
         }
+
 
         @Override
         public void onCancel() {
@@ -192,7 +213,6 @@ public class ConnexionDefaultFragment extends Fragment implements LoginCreateAcc
                     //Log.d("email", (userJson.optString("email")).toString());
 
                     getActivity().finish();
-                    Log.d("queryTosetBlabla", "Connexion");
                     Intent intent = new Intent(getActivity().getApplicationContext(), MainNavigationActivity.class);
                     startActivity(intent);
                 }
