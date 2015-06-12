@@ -6,8 +6,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.Brand;
@@ -21,8 +19,8 @@ public class QuickSizeFragment extends Fragment {
     private GarmentType selectedGarmentType;
     private Brand selectedBrand;
 
-    private TextView tvBrand, tvGarment;
-    private ImageView ivGarment;
+    /*private TextView tvBrand, tvGarment;
+    private ImageView ivGarment;*/
 
     public GarmentType getSelectedGarmentType() {
         return selectedGarmentType;
@@ -30,8 +28,8 @@ public class QuickSizeFragment extends Fragment {
 
     public void setSelectedGarmentType(GarmentType selectedGarmentType) {
         this.selectedGarmentType = selectedGarmentType;
-        tvGarment.setText(getResources().getIdentifier(selectedGarmentType.getType(),"string",getActivity().getPackageName()));
-        ivGarment.setImageResource(selectedGarmentType.getCategoryGarment().getIcon());
+        //tvGarment.setText(getResources().getIdentifier(selectedGarmentType.getType(),"string",getActivity().getPackageName()));
+        //ivGarment.setImageResource(selectedGarmentType.getCategoryGarment().getIcon());
     }
 
     public Brand getSelectedBrand() {
@@ -39,7 +37,7 @@ public class QuickSizeFragment extends Fragment {
     }
     public void setSelectedBrand(Brand selectedBrand) {
         this.selectedBrand = selectedBrand;
-        tvBrand.setText(selectedBrand.getBrand_name());
+        //tvBrand.setText(selectedBrand.getBrand_name());
     }
 
 
@@ -64,9 +62,9 @@ public class QuickSizeFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ivGarment = (ImageView) view.findViewById(R.id.garmentIcon);
+        /*ivGarment = (ImageView) view.findViewById(R.id.garmentIcon);
         tvGarment = (TextView) view.findViewById(R.id.garmentType);
-        tvBrand = (TextView) view.findViewById(R.id.garmentBrand);
+        tvBrand = (TextView) view.findViewById(R.id.garmentBrand);*/
 
         getChildFragmentManager().beginTransaction().addToBackStack(null).add(R.id.containerQuickSizeFragment, new QuickSizeSelectGarmentFragment()).commit();
     }

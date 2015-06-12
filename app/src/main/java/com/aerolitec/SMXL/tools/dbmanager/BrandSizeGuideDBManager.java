@@ -9,8 +9,6 @@ import com.aerolitec.SMXL.model.Brand;
 import com.aerolitec.SMXL.model.BrandSizeGuideMeasuresRow;
 import com.aerolitec.SMXL.model.BrandsSizeGuide;
 import com.aerolitec.SMXL.model.GarmentType;
-import com.aerolitec.SMXL.model.TabSizes;
-import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.ui.SMXL;
 
 import java.util.ArrayList;
@@ -307,6 +305,9 @@ public class BrandSizeGuideDBManager extends DBManager{
         ArrayList<BrandSizeGuideMeasuresRow> brandSizeGuideMeasuresRows= new ArrayList<>();
         BrandSizeGuideMeasuresRow brandSizeGuideMeasuresRow;
         Cursor c;
+        Log.d("bsgDBManager", garmentType.toString());
+        Log.d("bsgDBManager", brand.toString());
+
         c= db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+KEY_ID_MARQUE_BRAND_SIZE_GUIDE+" = "+brand.getId_brand()+" AND "+KEY_ID_GARMENT_TYPE_SIZE_GUIDE+" = "+garmentType.getId_garment_type(),null);
         boolean eof = c.moveToFirst();
         while(eof){

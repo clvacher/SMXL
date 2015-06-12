@@ -99,16 +99,6 @@
     <string name="favorite_brands">Favorite brands</string>
     <string name="all_Brands">All brands</string>
 
-    <string name="dress_skirt">Dresses/Skirts</string>
-    <string name="tshirt_sweater">T-shirts</string>
-    <string name="Pant_short">Pants/Shorts</string>
-    <string name="Shirt_blouse">Shirts/Blouses</string>
-    <string name="Jacket">Jackets/Coats</string>
-    <string name="Vest">Vest</string>
-    <string name="Shoes">Shoes</string>
-    <string name="Sweater">Sweater/Hoodies</string>
-    <string name="Underwear">Underwear</string>
-    <string name="Suit">Suits</string>
     <string name="garment">Garment</string>
     <string name="brand">Brand</string>
 
@@ -179,5 +169,16 @@
     <string name="hello_blank_fragment">Hello</string>
     <string name="libFoot">Foot</string>
     <string name="wrong_username">Wrong Email!</string>
+
+    <string name="Dress_Skirt">Dresses/Skirts</string>
+    <string name="Tshirt">T-shirts</string>
+    <string name="Pants_Shorts">Pants/Shorts</string>
+    <string name="Blouse">Shirts/Blouses</string>
+    <string name="Jacket_Coat">Jackets/Coats</string>
+    <string name="Vest">Vest</string>
+    <string name="Shoes">Shoes</string>
+    <string name="Sweater_Hoodie">Sweater/Hoodies</string>
+    <string name="Underwear">Underwear</string>
+    <string name="Suit">Suits</string>
 
 </resources>

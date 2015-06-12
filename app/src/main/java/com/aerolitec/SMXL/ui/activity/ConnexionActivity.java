@@ -31,8 +31,9 @@ public class ConnexionActivity extends NoDrawerActivity{
 
         FacebookSdk.sdkInitialize(getApplicationContext());
 
-        this.newSection(getResources().getString(R.string.app_name), new ConnexionDefaultFragment(), false, menu);
+        this.newSection(" ", new ConnexionDefaultFragment(), false, menu);
 
+        getSupportActionBar().setIcon(R.drawable.logo);
 
         mProfileTracker = new ProfileTracker() {
             @Override

@@ -4,10 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
-import com.aerolitec.SMXL.R;
-import com.aerolitec.SMXL.model.Brand;
 import com.aerolitec.SMXL.model.CategoryGarment;
-import com.aerolitec.SMXL.ui.SMXL;
 
 import java.util.ArrayList;
 
@@ -28,7 +25,6 @@ public class CategoryGarmentDBManager extends DBManager {
     9-costume
     10-ss vetement
     11-autre
-
      */
 
     public static final String TABLE_NAME = "category_garment";
@@ -101,7 +97,6 @@ public class CategoryGarmentDBManager extends DBManager {
     public int deleteCategoryGarment(CategoryGarment cg) {
         // suppression d'un enregistrement
         // valeur de retour : (int) nombre de lignes affectées par la clause WHERE, 0 sinon
-
         open();
         String where = KEY_ID_CATEGORY_GARMENT+" = ?";
         String[] whereArgs = {cg.getId_category_garment()+""};

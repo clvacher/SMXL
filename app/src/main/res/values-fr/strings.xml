@@ -95,17 +95,6 @@
     <string name="favorite_brands">Marques favorites</string>
     <string name="all_Brands">Marques</string>
 
-    <string name="dress_skirt">Robes/Jupes</string>
-    <string name="tshirt_sweater">T-shirts</string>
-    <string name="Pant_short">Pantalons/Shorts</string>
-    <string name="Shirt_blouse">Chemises/Blouses</string>
-    <string name="jacket">Blousons</string>
-    <string name="Vest">Veste</string>
-    <string name="Coat">Manteaux</string>
-    <string name="Shoes">Chaussures</string>
-    <string name="Sweater">Pulls/Sweats</string>
-    <string name="Underwear">Sous-Vêtements</string>
-    <string name="Suit">Costumes</string>
     <string name="garment">Vêtement</string>
     <string name="brand">Marque</string>
 
@@ -180,5 +169,18 @@
     <string name="nc">N/C</string>
     <string name="wrong_email">Email inexistant!</string>
     <string name="title_activity_quicksize">QuickSize ACtivity</string>
+
+
+    <string name="Dress_Skirt">Robes/Jupes</string>
+    <string name="Tshirt">T-shirts</string>
+    <string name="Pants_Shorts">Pantalons/Shorts</string>
+    <string name="Blouse">Chemises</string>
+    <string name="Jacket_Coat">Blousons</string>
+    <string name="Vest">Vestes</string>
+    <string name="Shoes">Chaussures</string>
+    <string name="Sweater_Hoodie">Pulls/Sweats</string>
+    <string name="Underwear">Sous-Vêtements</string>
+    <string name="Suit">Costumes</string>
+
 
 </resources>

@@ -1,6 +1,5 @@
 package com.aerolitec.SMXL.tools.dbmanager;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
@@ -37,7 +36,7 @@ public class GarmentTypeDBManager extends DBManager {
         super(context);
     }
 
-
+/*
     public long addGarmentType(GarmentType gt){
         // Ajout d'un enregistrement dans la table
 
@@ -84,7 +83,7 @@ public class GarmentTypeDBManager extends DBManager {
         close();
         return i;
     }
-
+*/
     public GarmentType getGarmentType(int id) {
         // Retourne l'animal dont l'id est passé en paramètre
 

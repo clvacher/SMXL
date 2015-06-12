@@ -21,6 +21,18 @@ public class WardrobeDetailFragment extends Fragment {
 
     LinearLayout linearLayout;
 
+    private static final int TSHIRT = 1;
+    private static final int ROBE = 2;
+    private static final int PANTALON = 3;
+    private static final int CHEMISE = 4;
+    private static final int BLOUSON = 5;
+    private static final int CHAUSSURE = 6;
+    private static final int PULL = 7;
+    private static final int VESTE = 8;
+    private static final int COSTUME = 9;
+    private static final int SOUSVET= 10;
+
+
     public WardrobeDetailFragment() {
         // Required empty public constructor
     }
@@ -52,18 +64,18 @@ public class WardrobeDetailFragment extends Fragment {
 
     private void initLinearLayout(){
         linearLayout.removeAllViews();
-        linearLayout.addView(new CustomGlobalGarmentWardrobeLayout(getActivity().getApplicationContext(), SMXL.getCategoryGarmentDBManager().getCategoryGarment(1)));
+        linearLayout.addView(new CustomGlobalGarmentWardrobeLayout(getActivity().getApplicationContext(), SMXL.getCategoryGarmentDBManager().getCategoryGarment(TSHIRT)));
+        linearLayout.addView(new CustomGlobalGarmentWardrobeLayout(getActivity().getApplicationContext(), SMXL.getCategoryGarmentDBManager().getCategoryGarment(CHEMISE)));
+        linearLayout.addView(new CustomGlobalGarmentWardrobeLayout(getActivity().getApplicationContext(), SMXL.getCategoryGarmentDBManager().getCategoryGarment(PULL)));
+        linearLayout.addView(new CustomGlobalGarmentWardrobeLayout(getActivity().getApplicationContext(), SMXL.getCategoryGarmentDBManager().getCategoryGarment(BLOUSON)));
+        linearLayout.addView(new CustomGlobalGarmentWardrobeLayout(getActivity().getApplicationContext(), SMXL.getCategoryGarmentDBManager().getCategoryGarment(VESTE)));
+        linearLayout.addView(new CustomGlobalGarmentWardrobeLayout(getActivity().getApplicationContext(), SMXL.getCategoryGarmentDBManager().getCategoryGarment(PANTALON)));
         if(user.getSexe()==2){
-            linearLayout.addView(new CustomGlobalGarmentWardrobeLayout(getActivity().getApplicationContext(), SMXL.getCategoryGarmentDBManager().getCategoryGarment(2)));
+            linearLayout.addView(new CustomGlobalGarmentWardrobeLayout(getActivity().getApplicationContext(), SMXL.getCategoryGarmentDBManager().getCategoryGarment(ROBE)));
         }
-        linearLayout.addView(new CustomGlobalGarmentWardrobeLayout(getActivity().getApplicationContext(), SMXL.getCategoryGarmentDBManager().getCategoryGarment(3)));
-        linearLayout.addView(new CustomGlobalGarmentWardrobeLayout(getActivity().getApplicationContext(), SMXL.getCategoryGarmentDBManager().getCategoryGarment(4)));
-        linearLayout.addView(new CustomGlobalGarmentWardrobeLayout(getActivity().getApplicationContext(), SMXL.getCategoryGarmentDBManager().getCategoryGarment(5)));
-        linearLayout.addView(new CustomGlobalGarmentWardrobeLayout(getActivity().getApplicationContext(), SMXL.getCategoryGarmentDBManager().getCategoryGarment(6)));
-        linearLayout.addView(new CustomGlobalGarmentWardrobeLayout(getActivity().getApplicationContext(), SMXL.getCategoryGarmentDBManager().getCategoryGarment(7)));
-        linearLayout.addView(new CustomGlobalGarmentWardrobeLayout(getActivity().getApplicationContext(), SMXL.getCategoryGarmentDBManager().getCategoryGarment(8)));
-        linearLayout.addView(new CustomGlobalGarmentWardrobeLayout(getActivity().getApplicationContext(), SMXL.getCategoryGarmentDBManager().getCategoryGarment(9)));
-        linearLayout.addView(new CustomGlobalGarmentWardrobeLayout(getActivity().getApplicationContext(), SMXL.getCategoryGarmentDBManager().getCategoryGarment(10)));
+        linearLayout.addView(new CustomGlobalGarmentWardrobeLayout(getActivity().getApplicationContext(), SMXL.getCategoryGarmentDBManager().getCategoryGarment(CHAUSSURE)));
+        linearLayout.addView(new CustomGlobalGarmentWardrobeLayout(getActivity().getApplicationContext(), SMXL.getCategoryGarmentDBManager().getCategoryGarment(COSTUME)));
+        linearLayout.addView(new CustomGlobalGarmentWardrobeLayout(getActivity().getApplicationContext(), SMXL.getCategoryGarmentDBManager().getCategoryGarment(SOUSVET)));
     }
 
     @Override

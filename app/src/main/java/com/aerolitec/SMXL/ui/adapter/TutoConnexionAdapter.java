@@ -42,17 +42,6 @@ public class TutoConnexionAdapter extends FragmentPagerAdapter {
         return NUM_PAGES;
     }
 
-    /*@Override
-    public CharSequence getPageTitle(int position) {
-        if(al_pagetuto.get(position)!=null){
-            /*if(al_garments.get(position).getSex().contains("F") || al_garments.get(position).getSex().contains("H")) {
-                return context.getResources().getString(context.getResources().getIdentifier(al_garments.get(position).getType(), "string", context.getPackageName())) + " - " + al_garments.get(position).getSex();//TODO getResources.getIdentifier
-            }
-            return context.getResources().getString(context.getResources().getIdentifier(al_garments.get(position).getType(), "string", context.getPackageName()));*/
-/*            return "test";
-        }
-        return null;
-    }*/
 
 }
 

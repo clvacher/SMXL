@@ -1,7 +1,5 @@
 package com.aerolitec.SMXL.model;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -312,19 +310,15 @@ public class BrandSizeGuideMeasuresRow {
     public static BrandSizeGuideMeasuresRow getClosestRowToMeasures(ArrayList<BrandSizeGuideMeasuresRow> brandSizeGuideMeasuresRows,User user){
         BrandSizeGuideMeasuresRow resultRow = null;
         Double bestOffset = null;
-        Log.d("Arraylist getClosest",brandSizeGuideMeasuresRows+"");
         for(BrandSizeGuideMeasuresRow brandSizeGuideMeasuresRow : brandSizeGuideMeasuresRows){
             Double offset = brandSizeGuideMeasuresRow.getOffsetWithMeasures(user);
-            Log.d("toto1",offset+"");
 
             if(bestOffset == null || bestOffset>offset){
                 bestOffset = offset;
-                Log.d("toto2",bestOffset+"");
                 resultRow = brandSizeGuideMeasuresRow;
             }
 
         }
-        Log.d("result GetClosest",resultRow+"");
         return resultRow;
     }
 

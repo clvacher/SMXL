@@ -1,7 +1,6 @@
 package com.aerolitec.SMXL.ui.fragment;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
@@ -45,8 +43,6 @@ public class MeasureDetailFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         user = UserManager.get().getUser();
-        if (user == null)
-            Log.d("MeasureDetailFragment", "user null");
     }
 
     @Override
@@ -189,16 +185,11 @@ public class MeasureDetailFragment extends Fragment {
         final AlertDialog dialog = builder.create();
         dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         dialog.show();
-
-        Log.d("toto","keyboard");
-
     }
 
     private void placeMeasureItems() {
         test2 = (RelativeLayout) view.findViewById(R.id.sizesImageLayout);
         int totalHeight = test2.getHeight(), totalWidth = test2.getWidth();
-        Log.d("getHeight", totalHeight + "");
-        Log.d("getWidth", totalWidth + "");
 
         tvNeck.setY(totalHeight * 13.1f / 100);
 
