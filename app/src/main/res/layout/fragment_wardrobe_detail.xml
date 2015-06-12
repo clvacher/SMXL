@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     tools:context="com.aerolitec.SMXL.ui.fragment.WardrobeDetailFragment"
     android:background="@color/DefaultBackgroundColor"
-    android:padding="10dp"
     android:orientation="vertical"
     android:scrollbars="none">
 

@@ -9,6 +9,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +30,7 @@ import com.aerolitec.SMXL.tools.serverConnexion.PostMainUserFacebookHttpAsyncTas
 import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.activity.MainNavigationActivity;
 import com.aerolitec.SMXL.ui.activity.SuperNavigationActivity;
+import com.aerolitec.SMXL.ui.adapter.TutoConnexionAdapter;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -44,10 +47,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 
+import me.relex.circleindicator.CircleIndicator;
+
 public class ConnexionDefaultFragment extends Fragment implements LoginCreateAccountInterface{
 
     private Fragment fragment = this;
     private CallbackManager mCallbackManager;
+
     private FacebookCallback<LoginResult> mFacebookCallBack = new FacebookCallback<LoginResult>() {
         @Override
         public void onSuccess(LoginResult loginResult) {
@@ -103,6 +109,11 @@ public class ConnexionDefaultFragment extends Fragment implements LoginCreateAcc
         // Required empty public constructor
     }
 
+    private ViewPager mPager;
+    private PagerAdapter mPagerAdapter;
+    private CircleIndicator circleIndicator;
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -135,6 +146,18 @@ public class ConnexionDefaultFragment extends Fragment implements LoginCreateAcc
         loginButton.setReadPermissions("email");
         loginButton.setFragment(this);
         loginButton.registerCallback(mCallbackManager, mFacebookCallBack);
+
+
+
+        // Instantiate a ViewPager and a PagerAdapter.
+        mPager = (ViewPager) view.findViewById(R.id.viewPagerConnexion);
+        mPagerAdapter = new TutoConnexionAdapter(getChildFragmentManager(),getActivity());
+        mPager.setAdapter(mPagerAdapter);
+        circleIndicator = (CircleIndicator) view.findViewById(R.id.circleIndicator);
+        circleIndicator.setViewPager(mPager);
+        //circleIndicator.setBackgroundColor(getResources().getColor(R.color.SectionTitle));
+
+//        mPager.setPageTransformer(true, new ZoomOutPageTransformer());
         return view;
     }
 
@@ -205,7 +228,6 @@ public class ConnexionDefaultFragment extends Fragment implements LoginCreateAcc
 
                     generateAndSetMainUserWithUserJSON(userJson);
 
-                    //FIXME
                     //new HttpAsyncTask().execute("http://api.smxl-app.com/users.json");
                     new PostMainUserFacebookHttpAsyncTask(getActivity()).execute();
 

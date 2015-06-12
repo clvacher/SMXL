@@ -210,7 +210,6 @@ public class ProfilesDetailFragment extends Fragment{
                 @Override
                 public void onClick(View view) {
                     if (brandListView.getVisibility() == View.GONE) {
-                        Log.d("userBrand", userBrands.toString());
                         adapter.notifyDataSetChanged();
                         brandListView.setVisibility(View.VISIBLE);
                         collapseBrands.setImageResource(R.drawable.navigation_collapse);

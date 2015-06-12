@@ -23,7 +23,6 @@ import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.tools.services.OnProfileSelected;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.adapter.ProfileItem;
-import com.aerolitec.SMXL.ui.fragment.EnChantierFragment;
 import com.aerolitec.SMXL.ui.fragment.ListBlogsFragment;
 import com.aerolitec.SMXL.ui.fragment.ListBrandsFragment;
 import com.aerolitec.SMXL.ui.fragment.MeasureDetailFragment;
@@ -31,7 +30,7 @@ import com.aerolitec.SMXL.ui.fragment.ProfilesDetailFragment;
 import com.aerolitec.SMXL.ui.fragment.ProfilesFragment;
 import com.aerolitec.SMXL.ui.fragment.SettingsFragment;
 import com.aerolitec.SMXL.ui.fragment.SizeGuideFragment;
-import com.aerolitec.SMXL.ui.fragment.TabsFragment2;
+import com.aerolitec.SMXL.ui.fragment.TabsFragmentHomeDressingQuicksize;
 import com.aerolitec.SMXL.ui.fragment.WardrobeDetailFragment;
 import com.facebook.FacebookSdk;
 import com.facebook.Profile;
@@ -156,7 +155,7 @@ public class MainNavigationActivity extends SuperNavigationActivity implements O
         // first section is loaded
 
 
-        MaterialSection sectionTest = this.newSection(getResources().getString(R.string.app_name), this.getResources().getDrawable(R.drawable.ic_action_settings), new TabsFragment2(), false, menu);
+        MaterialSection sectionTest = this.newSection("Accueil", this.getResources().getDrawable(R.drawable.ic_action_settings), new TabsFragmentHomeDressingQuicksize(), false, menu);
 
         MaterialSection sectionMesProfils = this.newSection(getResources().getString(R.string.my_profiles), this.getResources().getDrawable(R.drawable.ic_perm_group_social_info), new ProfilesFragment(), false, menu);
 
@@ -180,7 +179,7 @@ public class MainNavigationActivity extends SuperNavigationActivity implements O
         //MaterialSection sectionMagasins = this.newSection("Magasins à proximité", this.getResources().getDrawable(android.R.drawable.ic_dialog_map), new EnChantierFragment(), false, menu);
         //sectionMagasins.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
 
-        MaterialSection sectionWishlist = this.newSection("Liste d'envies", this.getResources().getDrawable(R.drawable.heart), new EnChantierFragment(), false, menu);
+        //MaterialSection sectionWishlist = this.newSection("Liste d'envies", this.getResources().getDrawable(R.drawable.heart), new EnChantierFragment(), false, menu);
 
 
         this.newDevisor(menu);
@@ -195,8 +194,8 @@ public class MainNavigationActivity extends SuperNavigationActivity implements O
 
         //this.newLabel("Paramètres", false, menu);
 
-        MaterialSection section7 = this.newSection("Partager mon profil", this.getResources().getDrawable(R.drawable.ic_action_share), new EnChantierFragment(), false, menu);
-        section7.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
+        //MaterialSection section7 = this.newSection("Partager mon profil", this.getResources().getDrawable(R.drawable.ic_action_share), new EnChantierFragment(), false, menu);
+        //section7.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
 
         MaterialSection section6 = this.newSection(getResources().getString(R.string.settings), this.getResources().getDrawable(R.drawable.ic_action_settings), new SettingsFragment(), false, menu);
         section6.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);

@@ -18,12 +18,12 @@ import com.aerolitec.SMXL.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TabsFragment2 extends Fragment {
+public class TabsFragmentHomeDressingQuicksize extends Fragment {
 
 
     private FragmentTabHost fragmentTabHost;
 
-    public TabsFragment2() {
+    public TabsFragmentHomeDressingQuicksize() {
         // Required empty public constructor
     }
 
@@ -34,10 +34,11 @@ public class TabsFragment2 extends Fragment {
         fragmentTabHost = new FragmentTabHost(getActivity());
         fragmentTabHost.setup(getActivity(), getChildFragmentManager(), R.id.frame_container);
 
-        fragmentTabHost.addTab(fragmentTabHost.newTabSpec("quicksize").setIndicator("QuickSize"),
-                QuickSizeFragment.class, null);
+
         fragmentTabHost.addTab(fragmentTabHost.newTabSpec("dressing").setIndicator("Dressing"),
                 WardrobeDetailFragment.class, null);
+        fragmentTabHost.addTab(fragmentTabHost.newTabSpec("quicksize").setIndicator("QuickSize"),
+                QuickSizeFragment.class, null);
 
         fragmentTabHost.setBackgroundColor(getResources().getColor(R.color.SectionTitle));
 

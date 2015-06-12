@@ -20,11 +20,6 @@ public class SizeGuideFragment extends Fragment {
     private ViewPager mPager;
     private PagerAdapter mPagerAdapter;
 
-    public static SizeGuideFragment newInstance(String param1, String param2) {
-        SizeGuideFragment fragment = new SizeGuideFragment();
-        return fragment;
-    }
-
     public SizeGuideFragment() {
         // Required empty public constructor
     }
@@ -49,13 +44,6 @@ public class SizeGuideFragment extends Fragment {
 
         return view;
     }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
-
-
 
 
 }

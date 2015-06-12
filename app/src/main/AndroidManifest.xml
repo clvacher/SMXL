@@ -92,7 +92,7 @@
         <activity
             android:name=".ui.activity.ConnexionActivity"
             android:label="@string/title_activity_connexion"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".ui.activity.CreateUpdateProfileActivity"

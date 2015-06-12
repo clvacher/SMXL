@@ -90,12 +90,25 @@ public class CustomGlobalGarmentWardrobeLayout extends LinearLayout {
         mainRelativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listView.setVisibility(View.GONE);
-                collapse.setImageResource(R.drawable.navigation_expand);
-                Intent intent = new Intent(getContext(), AddGarmentActivity.class);
-                intent.putExtra("category", categoryGarment);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                getContext().startActivity(intent);
+                if(userClothesArrayList.size()==0){
+                    listView.setVisibility(View.GONE);
+                    collapse.setImageResource(R.drawable.navigation_expand);
+                    Intent intent = new Intent(getContext(), AddGarmentActivity.class);
+                    intent.putExtra("category", categoryGarment);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    getContext().startActivity(intent);
+                }
+                else{
+                    if (listView.getVisibility() == View.GONE) {
+                        fillListView(listView, userClothesArrayList);
+                        listView.setVisibility(View.VISIBLE);
+                        collapse.setImageResource(R.drawable.navigation_collapse);
+                    } else {
+                        listView.setVisibility(View.GONE);
+                        collapse.setImageResource(R.drawable.navigation_expand);
+                    }
+                }
+
             }
         });
 

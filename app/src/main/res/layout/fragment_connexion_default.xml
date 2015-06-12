@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/DefaultBackgroundColor"
+    android:background="@drawable/dameblur2"
     android:id="@+id/containerConnexionFragment">
 
 
-    <RelativeLayout
+    <!--RelativeLayout
         android:layout_width="match_parent"
         android:layout_weight="4"
         android:layout_height="0dp"
@@ -19,14 +21,34 @@
             android:src="@drawable/nouvelle_capture_opti_carre500x500"
             android:layout_centerInParent="true"
             android:layout_margin="5dp"/>
+    </RelativeLayout-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:layout_margin="5dp"
+        android:id="@+id/relativeLayoutViewPagerConnexion"
+        >
+
+        <android.support.v4.view.ViewPager
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/viewPagerConnexion">
+        </android.support.v4.view.ViewPager>
+
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_weight="1"
         android:layout_height="0dp"
+        android:layout_weight="1"
         android:id="@+id/relative_layout_bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/relativeLayoutViewPagerConnexion"
         >
+
+
 
         <LinearLayout
             android:orientation="vertical"
@@ -34,23 +56,29 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right">
 
+            <me.relex.circleindicator.CircleIndicator
+                android:id="@+id/circleIndicator"
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                app:ci_drawable="@drawable/dots"
+                app:ci_drawable_unselected="@drawable/dots"/>
+
+
             <com.facebook.login.widget.LoginButton
                 android:id="@+id/login_button"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="30dp"
                 android:layout_gravity="bottom"
-                android:layout_centerHorizontal="true"
-                android:layout_above="@+id/linearLayoutConnexion"
-                android:layout_margin="5dp"/>
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                />
+
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/linearLayoutConnexion"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
                 android:layout_marginBottom="10dp">
 
                 <Button
@@ -74,6 +102,7 @@
                     android:textColor="@android:color/white"
                     />
             </LinearLayout>
+
         </LinearLayout>
     </RelativeLayout>
 

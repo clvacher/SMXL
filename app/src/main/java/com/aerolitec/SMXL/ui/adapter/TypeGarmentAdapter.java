@@ -2,7 +2,6 @@ package com.aerolitec.SMXL.ui.adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,7 +43,6 @@ public class TypeGarmentAdapter extends ArrayAdapter<GarmentType> {
         }
 
         GarmentType item = getItem(position);
-        Log.d("garmentTYPEDB",item.getType());
         int tmp=context.getResources().getIdentifier(item.getType(), "string", context.getPackageName());
         holder.tvTypeGarment.setText(tmp);
         //holder.tvSex.setText(item.getSex());
