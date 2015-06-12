@@ -1,15 +1,12 @@
 package com.aerolitec.SMXL.ui.activity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.ui.fragment.AddGarmentFragment;
-
-import de.madcyph3r.materialnavigationdrawer.menu.item.MaterialSection;
 
 /**
  * Created by Clement on 5/4/2015.
@@ -42,7 +39,6 @@ public class AddGarmentActivity extends NoDrawerActivity {
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu){
-        Log.d("PREPARE","PREPARE");
         (menu.findItem(R.id.validate)).setVisible(validation);
         (menu.findItem(R.id.update)).setVisible(update);
         return true;
@@ -50,7 +46,6 @@ public class AddGarmentActivity extends NoDrawerActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        Log.d("CREATE","CREATE");
         getMenuInflater().inflate(R.menu.add_garment, menu);
         this.menuBar=menu;
         return super.onCreateOptionsMenu(menu);

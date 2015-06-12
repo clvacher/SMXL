@@ -7,7 +7,8 @@
     android:padding="16dp">
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:id="@+id/tableLayoutSummaryQuickSize">
         <TableRow android:layout_width="match_parent"
             android:background="@android:color/white">
             <TextView android:text="SMXL : "
@@ -64,4 +65,12 @@
                 android:hint="@string/nc"/>
         </TableRow>
     </TableLayout>
+    <Button
+        android:id="@+id/buttonShopQuickSizeSummary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SHOP"
+        android:background="@drawable/button_orange_border"
+        android:layout_alignParentBottom="true"
+        android:textColor="@android:color/white"/>
 </RelativeLayout>

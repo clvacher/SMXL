@@ -1,7 +1,8 @@
 package com.aerolitec.SMXL.ui.fragment;
 
-import android.support.v4.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.ui.activity.AddGarmentActivity;
+import com.aerolitec.SMXL.ui.activity.BrowserActivity;
 
 /**
  * Created by Clement on 5/6/2015.
@@ -21,7 +23,7 @@ public class SelectGarmentSummaryFragment extends Fragment {
     private AddGarmentActivity activity;
     private TextView tvWarning; //TODO warn in case of non-existing size
     private EditText etComment;
-    private Button addToWardrobe;
+    private Button shopButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,15 +41,27 @@ public class SelectGarmentSummaryFragment extends Fragment {
 
         EditText etSize=(EditText) view.findViewById(R.id.editText2);
         etComment=(EditText) view.findViewById(R.id.editText);
-        addToWardrobe=(Button) view.findViewById(R.id.button3);
-        addToWardrobe.setText(getResources().getString(R.string.validate));
-
+        shopButton=(Button) view.findViewById(R.id.buttonShopGarmentSummary);
 
         if(activity.getAddGarmentFragment().getSelectedIdUserClothes() != -1){
             etSize.setText(activity.getAddGarmentFragment().getSelectedSize());
             etComment.setText(activity.getAddGarmentFragment().getComment());
-            addToWardrobe.setVisibility(View.VISIBLE);
-
+            shopButton.setVisibility(View.VISIBLE);
+            shopButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String urlBrand = activity.getAddGarmentFragment().getSelectedBrand().getBrandWebsite();
+                    if (urlBrand != null) {
+                        if (!urlBrand.startsWith("http://") && !urlBrand.startsWith("https://")) {
+                            urlBrand = "http://" + urlBrand;
+                        }
+                        Intent browserIntent = new Intent(getActivity(), BrowserActivity.class);
+                        browserIntent.putExtra("URL", urlBrand);
+                        browserIntent.putExtra("TITLE", activity.getAddGarmentFragment().getSelectedBrand().getBrand_name());
+                        startActivity(browserIntent);
+                    }
+                }
+            });
             etSize.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence charSequence, int start, int count, int after) {
@@ -63,20 +77,8 @@ public class SelectGarmentSummaryFragment extends Fragment {
                 public void afterTextChanged(Editable editable) {
                     activity.getAddGarmentFragment().setSelectedSize(editable.toString());
                     Boolean b = editable.toString().length() > 0;
-                    if (b) {
-                        addToWardrobe.setVisibility(View.VISIBLE);
-                    } else {
-                        addToWardrobe.setVisibility(View.GONE);
-                    }
                     activity.setUpdate(b);
                     activity.getAddGarmentFragment().setSelectedSize(editable.toString());
-                }
-            });
-            addToWardrobe.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    activity.getAddGarmentFragment().updateGarment();
-                    activity.finish();
                 }
             });
         }
@@ -93,24 +95,12 @@ public class SelectGarmentSummaryFragment extends Fragment {
                 @Override
                 public void afterTextChanged(Editable editable) {
                     Boolean b = editable.toString().length() > 0;
-                    if (b) {
-                        addToWardrobe.setVisibility(View.VISIBLE);
-                    } else {
-                        addToWardrobe.setVisibility(View.GONE);
-                    }
                     activity.setValidation(b);
                     activity.getAddGarmentFragment().setSelectedSize(editable.toString());
                 }
             });
 
-            addToWardrobe.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    activity.getAddGarmentFragment().setComment((etComment.getText()).toString());
-                    activity.getAddGarmentFragment().saveGarment();
-                    activity.finish();
-                }
-            });
+            shopButton.setVisibility(View.GONE);
         }
 
         etComment.addTextChangedListener(new TextWatcher() {
