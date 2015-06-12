@@ -24,7 +24,6 @@ import java.util.ArrayList;
  * A simple {@link Fragment} subclass.
  */
 public class QuickSizeSelectBrandFragment extends Fragment {
-    //private QuickSizeActivity activity;
     private QuickSizeFragment quickSizeFragment;
 
     private GridView gvBrands;
@@ -47,7 +46,6 @@ public class QuickSizeSelectBrandFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        //activity=(QuickSizeActivity)getActivity();
         quickSizeFragment = (QuickSizeFragment)getParentFragment();
 
         gvBrands = (GridView) view.findViewById(R.id.gridViewBrands);

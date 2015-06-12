@@ -20,7 +20,6 @@ import java.util.HashMap;
  * A simple {@link Fragment} subclass.
  */
 public class QuickSizeSummaryFragment extends Fragment {
-    //private QuickSizeActivity activity;
     private QuickSizeFragment quickSizeFragment;
 
 
@@ -39,7 +38,6 @@ public class QuickSizeSummaryFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
-        //activity=(QuickSizeActivity)getActivity();
         quickSizeFragment = (QuickSizeFragment)getParentFragment();
 
         TextView tvSMXL =(TextView) view.findViewById(R.id.valueSMXL);

@@ -28,7 +28,8 @@ import java.util.ArrayList;
 public class CustomGlobalGarmentWardrobeLayout extends LinearLayout {
 
     CategoryGarment categoryGarment;
-    RelativeLayout mainRelativeLayout, relativeLayoutArrow;
+    RelativeLayout relativeLayoutArrow, addGarment;
+    LinearLayout mainLinearLayout;
     ImageView imageView, collapse;
     TextView textViewGarmentName, textViewNbGarment;
     ListView listView;
@@ -55,13 +56,15 @@ public class CustomGlobalGarmentWardrobeLayout extends LinearLayout {
     protected void init() {
         inflate(getContext(), R.layout.custom_global_garment_wardrobe, this);
         userClothesArrayList = SMXL.getUserClothesDBManager().getUserGarmentsByGarment(UserManager.get().getUser(), categoryGarment);
-        this.mainRelativeLayout = (RelativeLayout)findViewById(R.id.mainRelativeLayoutCustomGlobalGarment);
+        this.mainLinearLayout = (LinearLayout)findViewById(R.id.mainLinearLayoutCustomGlobalGarment);
         this.relativeLayoutArrow = (RelativeLayout)findViewById(R.id.relativeLayoutArrowCustomGlobalGarment);
         this.imageView = (ImageView)findViewById(R.id.imageViewCustomGlobalGarment);
         this.collapse = (ImageView)findViewById(R.id.collapseCustomGlobalGarment);
         this.textViewGarmentName = (TextView)findViewById(R.id.textViewGarmentNameCustomGlobalGarment);
         this.textViewNbGarment = (TextView)findViewById(R.id.textViewNbGarmentCustomGlobalGarment);
         this.listView = (ListView) findViewById(R.id.listViewCustomGlobalGarment);
+        this.addGarment = (RelativeLayout) findViewById(R.id.AddCustomGlobalGarment);
+
         initView();
         initListener();
     }
@@ -87,18 +90,17 @@ public class CustomGlobalGarmentWardrobeLayout extends LinearLayout {
             }
         });
 
-        mainRelativeLayout.setOnClickListener(new View.OnClickListener() {
+        mainLinearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(userClothesArrayList.size()==0){
+                if (userClothesArrayList.size() == 0) {
                     listView.setVisibility(View.GONE);
                     collapse.setImageResource(R.drawable.navigation_expand);
                     Intent intent = new Intent(getContext(), AddGarmentActivity.class);
                     intent.putExtra("category", categoryGarment);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     getContext().startActivity(intent);
-                }
-                else{
+                } else {
                     if (listView.getVisibility() == View.GONE) {
                         fillListView(listView, userClothesArrayList);
                         listView.setVisibility(View.VISIBLE);
@@ -127,6 +129,17 @@ public class CustomGlobalGarmentWardrobeLayout extends LinearLayout {
             }
         });
 
+        addGarment.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listView.setVisibility(View.GONE);
+                collapse.setImageResource(R.drawable.navigation_expand);
+                Intent intent = new Intent(getContext(), AddGarmentActivity.class);
+                intent.putExtra("category", categoryGarment);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                getContext().startActivity(intent);
+            }
+        });
     }
 
     private void fillListView(ListView v,ArrayList<UserClothes> userClothesList){

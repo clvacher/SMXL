@@ -104,14 +104,6 @@
             android:label="@string/title_activity_browser"
             android:screenOrientation="portrait" >
         </activity>
-        <activity
-            android:name=".ui.activity.QuickSizeActivity"
-            android:label="@string/title_activity_quicksize"
-            android:parentActivityName=".ui.activity.NoDrawerActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.aerolitec.SMXL.ui.activity.NoDrawerActivity" />
-        </activity>
     </application>
 
 </manifest>

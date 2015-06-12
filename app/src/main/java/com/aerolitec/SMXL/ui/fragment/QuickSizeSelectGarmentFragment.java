@@ -21,7 +21,6 @@ import java.util.ArrayList;
 
 public class QuickSizeSelectGarmentFragment extends Fragment {
 
-    //private QuickSizeActivity activity;
     private QuickSizeFragment quickSizeFragment;
 
     private ListView lvGarmentTypes;
@@ -36,7 +35,6 @@ public class QuickSizeSelectGarmentFragment extends Fragment {
         super.onCreate(savedInstanceState);
         user = UserManager.get().getUser();
         quickSizeFragment = (QuickSizeFragment)getParentFragment();
-        //activity = (QuickSizeActivity) getActivity();
     }
 
     @Override

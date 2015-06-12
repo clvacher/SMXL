@@ -1,6 +1,5 @@
 package com.aerolitec.SMXL.ui.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -21,7 +20,6 @@ import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.UtilityMethodsv2;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
-import com.aerolitec.SMXL.ui.activity.QuickSizeActivity;
 import com.aerolitec.SMXL.ui.adapter.FavoriteBrandAdapter;
 import com.aerolitec.SMXL.ui.customLayout.ProfilePictureRoundedImageView;
 
@@ -111,14 +109,6 @@ public class ProfilesDetailFragment extends Fragment{
         ImageView noClickZone=(ImageView) view.findViewById(R.id.noClickZone);
         RelativeLayout quicksizeLayout=(RelativeLayout) view.findViewById(R.id.quicksize);
 
-        quicksizeLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), QuickSizeActivity.class);
-                startActivity(intent);
-            }
-        });
-
         noClickZone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -155,7 +145,6 @@ public class ProfilesDetailFragment extends Fragment{
         user=UserManager.get().getUser();
 
         userBrands=SMXL.getUserBrandDBManager().getAllUserBrands(user);
-        Log.d("USERBRANDS", userBrands.toString());
 
         updateProfile();
 
