@@ -2,13 +2,6 @@
 <items version="2" >
 
     <item
-        jar="/Users/Jerome/GitHub/SMXL/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/classes.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="c95ba8152923e4872e86a82cfcba9a51c0214328">
-        <dex dex="/Users/Jerome/GitHub/SMXL/app/build/intermediates/pre-dexed/debug/classes-26ba3ab3a294d9f461296917e493c9810daed2b9.jar" />
-    </item>
-    <item
         jar="/Users/Jerome/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.2.4/a60a5e993c98c864010053cb901b7eab25306568/gson-2.2.4.jar"
         jumboMode="false"
         revision="19.1.0"
@@ -30,11 +23,11 @@
         <dex dex="/Users/Jerome/GitHub/SMXL/app/build/intermediates/pre-dexed/debug/crashlytics-1.1.13-1783d1e69f1e5c7453f1fadc1e3f8752f2b6eb7e.jar" />
     </item>
     <item
-        jar="/Users/Jerome/Documents/android-sdk-macosx/extras/android/m2repository/com/android/support/support-annotations/22.1.1/support-annotations-22.1.1.jar"
+        jar="/Users/Jerome/Documents/android-sdk-macosx/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar"
         jumboMode="false"
         revision="19.1.0"
-        sha1="01d051a6bfb1218b1db2d3a5af0480ac2c25c42a">
-        <dex dex="/Users/Jerome/GitHub/SMXL/app/build/intermediates/pre-dexed/debug/support-annotations-22.1.1-791324b0bfc4f790ff661514f06be861da1a1f5c.jar" />
+        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
+        <dex dex="/Users/Jerome/GitHub/SMXL/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.0-4b8b074694f8ba84bfd57a6e65c0f43ca6310f68.jar" />
     </item>
     <item
         jar="/Users/Jerome/.gradle/caches/modules-2/files-2.1/joda-time/joda-time/2.3/56498efd17752898cfcc3868c1b6211a07b12b8f/joda-time-2.3.jar"
@@ -51,13 +44,6 @@
         <dex dex="/Users/Jerome/GitHub/SMXL/app/build/intermediates/pre-dexed/debug/opencsv-2.3-ed413234bc69952dc5a06e32ab6a16b4140f7b32.jar" />
     </item>
     <item
-        jar="/Users/Jerome/GitHub/SMXL/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/libs/internal_impl-22.1.1.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="9e070ad32b2700b0343e8e0cccc437733d91ba3a">
-        <dex dex="/Users/Jerome/GitHub/SMXL/app/build/intermediates/pre-dexed/debug/internal_impl-22.1.1-e4a9da5b2010fc2b1b13ad30b1f0bfd20441104e.jar" />
-    </item>
-    <item
         jar="/Users/Jerome/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
         jumboMode="false"
         revision="19.1.0"
@@ -65,11 +51,25 @@
         <dex dex="/Users/Jerome/GitHub/SMXL/app/build/intermediates/pre-dexed/debug/library-2.4.0-3531a585dee7852b73c647f83fcc02a2f972ff72.jar" />
     </item>
     <item
-        jar="/Users/Jerome/GitHub/SMXL/app/build/intermediates/exploded-aar/com.android.support/support-v13/22.1.1/libs/internal_impl-22.1.1.jar"
+        jar="/Users/Jerome/GitHub/SMXL/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/libs/internal_impl-22.2.0.jar"
         jumboMode="false"
         revision="19.1.0"
-        sha1="50fd8c7c5556b3516f569f71ed189d61441d59cf">
-        <dex dex="/Users/Jerome/GitHub/SMXL/app/build/intermediates/pre-dexed/debug/internal_impl-22.1.1-94b17e90099c204b55be7b60f825a347b20500dc.jar" />
+        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
+        <dex dex="/Users/Jerome/GitHub/SMXL/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.0-46eed1171cc4c2b55e49ec05645b0443097b5eec.jar" />
+    </item>
+    <item
+        jar="/Users/Jerome/GitHub/SMXL/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/classes.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
+        <dex dex="/Users/Jerome/GitHub/SMXL/app/build/intermediates/pre-dexed/debug/classes-96cad2c2dd47578feb753c08c5b4038a21e4087c.jar" />
+    </item>
+    <item
+        jar="/Users/Jerome/GitHub/SMXL/app/build/intermediates/exploded-aar/me.relex/circleindicator/1.1.4/classes.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="e022c9513463c4d44651582f3d93e41c22adc8b7">
+        <dex dex="/Users/Jerome/GitHub/SMXL/app/build/intermediates/pre-dexed/debug/classes-b99149458720bfb3f598d1b1bbb27ae26bfc5f9e.jar" />
     </item>
     <item
         jar="/Users/Jerome/GitHub/SMXL/app/build/intermediates/exploded-aar/com.github.madcyph3r/AdvancedMaterialDrawer/1.1.1/classes.jar"
@@ -77,6 +77,20 @@
         revision="19.1.0"
         sha1="47a3a69876fdfc8c782087e3adf11ef8d01527ce">
         <dex dex="/Users/Jerome/GitHub/SMXL/app/build/intermediates/pre-dexed/debug/classes-b41636629c9e7cbd1a6dea5cfdde710a51dd1313.jar" />
+    </item>
+    <item
+        jar="/Users/Jerome/GitHub/SMXL/app/build/intermediates/exploded-aar/com.android.support/support-v13/22.2.0/classes.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="9aa93835393824b436f366120c9ba8a0260ce75d">
+        <dex dex="/Users/Jerome/GitHub/SMXL/app/build/intermediates/pre-dexed/debug/classes-8449acd9c910730065ad76420e1f40dbec0f94b6.jar" />
+    </item>
+    <item
+        jar="/Users/Jerome/GitHub/SMXL/app/build/intermediates/exploded-aar/com.android.support/support-v13/22.2.0/libs/internal_impl-22.2.0.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="79a5b6d9fbab3b5fb4c6f86a1ed7a17722fd937b">
+        <dex dex="/Users/Jerome/GitHub/SMXL/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.0-7071401c6189a9fdb94b6c12fd0464e541d88a15.jar" />
     </item>
     <item
         jar="/Users/Jerome/GitHub/SMXL/app/build/intermediates/exploded-aar/com.wunderlist/sliding-layer/1.1.1/classes.jar"
@@ -119,13 +133,6 @@
         revision="19.1.0"
         sha1="6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd">
         <dex dex="/Users/Jerome/GitHub/SMXL/app/build/intermediates/pre-dexed/debug/bolts-android-1.2.0-1f220d46266852edc482a78c53c1a008f86327ec.jar" />
-    </item>
-    <item
-        jar="/Users/Jerome/GitHub/SMXL/app/build/intermediates/exploded-aar/com.android.support/support-v13/22.1.1/classes.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="fcf32027f88ac0be1b54b16167a30bde06ab6cd1">
-        <dex dex="/Users/Jerome/GitHub/SMXL/app/build/intermediates/pre-dexed/debug/classes-4eccd74d8e5bb7bedc6c1c1e10278d66c4ee7a22.jar" />
     </item>
 
 </items>
