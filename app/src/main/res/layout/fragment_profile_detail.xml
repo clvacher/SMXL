@@ -155,7 +155,7 @@
                     android:id="@+id/tvAgeSexe"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="13 ans / Homme"
+                    android:text="12 ans / Homme"
                     android:textColor="@color/MainText"
                     android:textSize="@dimen/textSizeIdentity" />
 
