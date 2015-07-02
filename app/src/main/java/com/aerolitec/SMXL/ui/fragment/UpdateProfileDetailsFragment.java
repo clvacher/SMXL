@@ -19,6 +19,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.aerolitec.SMXL.R;
+import com.aerolitec.SMXL.model.MainUser;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
@@ -56,6 +57,7 @@ public class UpdateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_create_update_profile_details, container, false);
 
 
@@ -111,7 +113,6 @@ public class UpdateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
                 openImageIntent();
             }
         });
-
         return view;
     }
 
@@ -168,15 +169,16 @@ public class UpdateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
 
             if(MainUserManager.get().getMainUser().getMainProfile().getId_user() == user.getId_user()){
                 MainUserManager.get().getMainUser().setFirstname(etFirstName.getText().toString());
-                MainUserManager.get().getMainUser().setLastname(etLastName.getText().toString().substring(0,1).toUpperCase()+etLastName.getText().toString().substring(1));
+                MainUserManager.get().getMainUser().setLastname(etLastName.getText().toString().substring(0, 1).toUpperCase() + etLastName.getText().toString().substring(1));
                 MainUserManager.get().getMainUser().setAvatar(picturePath);
                 MainUserManager.get().getMainUser().setSex(sexe);
-
                 try {
                     FileOutputStream fos = null;
                     fos = getActivity().openFileOutput(Constants.MAIN_USER_FILE, Context.MODE_PRIVATE);
                     fos.flush();
                     fos.write(MainUserManager.get().getMainUser().getBytes());
+                    // Apply the changes to the User in UserManager in order to update the ProfilesDetailFragment
+                    UserManager.get().setUser(user);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -188,7 +190,7 @@ public class UpdateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
                 Log.d(Constants.TAG, "Profile updated");
             }
             catch (Exception e) {
-                Log.d(Constants.TAG,"Update user with error : " + e.getMessage());
+                Log.e(Constants.TAG,"Update user with error : " + e.getMessage());
             }
             getActivity().onBackPressed();
         }
@@ -200,4 +202,6 @@ public class UpdateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
         inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         super.onPause();
     }
+
 }
+

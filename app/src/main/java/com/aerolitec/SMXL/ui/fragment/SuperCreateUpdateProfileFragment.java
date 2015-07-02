@@ -8,15 +8,17 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.hardware.Camera;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Environment;
 import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.Surface;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -28,11 +30,13 @@ import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.customLayout.ProfilePictureRoundedImageView;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by Jerome on 20/04/2015.
@@ -142,9 +146,8 @@ public abstract class SuperCreateUpdateProfileFragment extends Fragment {
         String root = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
         File myDir = new File(root, "SMXL");
         myDir.mkdirs();
-        Random rand = new Random();
-        int rndInt = rand.nextInt(13) + 1;
-        final String fname = UserManager.get().getUser().getFirstname()+"_"+UserManager.get().getUser().getLastname()+"_"+rndInt+".png";
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        final String fname = UserManager.get().getUser().getFirstname()+"_"+UserManager.get().getUser().getLastname()+"_"+timeStamp+".png";
         final File sdImageMainDirectory = new File(myDir, fname);
         outputFileUri = Uri.fromFile(sdImageMainDirectory);
 
@@ -196,18 +199,17 @@ public abstract class SuperCreateUpdateProfileFragment extends Fragment {
                 //Uri selectedImageUri;
                 if (isCamera) {
                     //selectedImageUri = outputFileUri;
-
                     picturePath = outputFileUri.getPath();
-
 
                     try {
                         File file = new File(picturePath);
                         if (file.exists()) {
                             Uri uri = Uri.fromFile(file);
+                            rotateImage(file);
                             performCropImage(uri);
                         }
                     } catch (Exception e) {
-                        Log.e(Constants.TAG, "Error converting Picture in File : " + e.getMessage());
+                        Log.e(Constants.TAG, "Error converting Picture in File While trying to take a picture and rotate it: " + e.getMessage());
                     }
                 } else {
                     //Récupéré de l'ancien --> si selection gallery
@@ -228,56 +230,99 @@ public abstract class SuperCreateUpdateProfileFragment extends Fragment {
                             performCropImage(uri);
                         }
                     } catch (Exception e) {
-                        Log.e(Constants.TAG, "Error converting Picture in File : " + e.getMessage());
+                        Log.e(Constants.TAG, "Error converting Picture in File while trying to get a image from the gallery" + e.getMessage());
                     }
                     //selectedImageUri = data == null ? null : data.getData();
                 }
             }
 
             if(requestCode == CROP_IMAGE) {
-                int width = imgProfil.getLayoutParams().width;
                 try {
+
                     File file = new File(cropImagePath.getPath());
                     if (file.exists()) {
-                        final BitmapFactory.Options options = new BitmapFactory.Options();
-                        options.inJustDecodeBounds = true;
-
-                        String picturePath = file.getAbsolutePath();
-
+                        final String picturePath = file.getAbsolutePath();
                         imgProfil.setImage(picturePath);
                     }
                 } catch (Exception e) {
-                    Log.e(Constants.TAG, "Error converting Picture to File : " + e.getMessage());
+                    Log.e(Constants.TAG, "Error converting Picture to File While trying to crop : " + e.getMessage());
                 }
             }
         }
     }
 
+    private Bitmap rotate(Bitmap src, float degree) {
+        // create new matrix
+        Matrix matrix = new Matrix();
+        // setup rotation degree
+        matrix.postRotate(degree);
+        // return new bitmap rotated using matrix
+        return Bitmap.createBitmap(src, 0, 0, src.getWidth(), src.getHeight(), matrix, true);
+    }
+    private void rotateImage(File file) {
+        try {
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inSampleSize =calculateInSampleSize(file.getAbsolutePath(),640,360);
+            Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath(),options);
+            ExifInterface exifReader = new ExifInterface(file.getAbsolutePath());
 
-    public static void setCameraDisplayOrientation(Activity activity,
-                                                   int cameraId, android.hardware.Camera camera) {
-        android.hardware.Camera.CameraInfo info =
-                new android.hardware.Camera.CameraInfo();
-        android.hardware.Camera.getCameraInfo(cameraId, info);
-        int rotation = activity.getWindowManager().getDefaultDisplay()
-                .getRotation();
-        int degrees = 0;
-        switch (rotation) {
-            case Surface.ROTATION_0: degrees = 0; break;
-            case Surface.ROTATION_90: degrees = 90; break;
-            case Surface.ROTATION_180: degrees = 180; break;
-            case Surface.ROTATION_270: degrees = 270; break;
+            int orientation = exifReader.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+            switch(orientation) {
+                case ExifInterface.ORIENTATION_ROTATE_90:
+                    bitmap =  rotate(bitmap, 90);
+                    break;
+                case ExifInterface.ORIENTATION_ROTATE_180:
+                    bitmap = rotate(bitmap, 180);break;
+                case ExifInterface.ORIENTATION_ROTATE_270:
+                    bitmap = rotate(bitmap, 270);
+                    break;
+            }
+            FileOutputStream fOut = new FileOutputStream(file);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100	, fOut);
+            fOut.flush();
+            fOut.close();
+        }catch (IOException e ){
+            Log.e(Constants.TAG, "Error while trying to open file");
+            e.printStackTrace();
+        }
+    }
+    // source http://developer.android.com/training/displaying-bitmaps/load-bitmap.html#load-bitmap
+    public static int calculateInSampleSize(String filePath, int reqWidth, int reqHeight) {
+
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(filePath,options);
+        // Raw height and width of image
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
+
+        if (height > reqHeight || width > reqWidth) {
+
+            final int halfHeight = height / 2;
+            final int halfWidth = width / 2;
+
+            // Calculate the largest inSampleSize value that is a power of 2 and keeps both
+            // height and width larger than the requested height and width.
+            while ((halfHeight / inSampleSize) > reqHeight
+                    && (halfWidth / inSampleSize) > reqWidth) {
+                inSampleSize *= 2;
+            }
         }
 
-        int result;
-        if (info.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
-            result = (info.orientation + degrees) % 360;
-            result = (360 - result) % 360;  // compensate the mirror
-        } else {  // back-facing
-            result = (info.orientation - degrees + 360) % 360;
+        return inSampleSize;
+    }
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if(savedInstanceState != null){
+            outputFileUri = savedInstanceState.getParcelable("file");
         }
-        camera.setDisplayOrientation(result);
     }
 
-
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable("file", outputFileUri);
+    }
 }
