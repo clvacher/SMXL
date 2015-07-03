@@ -2,6 +2,7 @@ package com.aerolitec.SMXL.ui.fragment;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
@@ -21,6 +22,7 @@ import android.widget.Spinner;
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.Brand;
 import com.aerolitec.SMXL.ui.SMXL;
+import com.aerolitec.SMXL.ui.activity.BrowserActivity;
 import com.aerolitec.SMXL.ui.adapter.FavoriteCheckableBrandAdapter;
 import com.github.leonardoxh.fakesearchview.FakeSearchView;
 
@@ -103,6 +105,22 @@ public class ListBrandsFragment extends Fragment implements FakeSearchView.OnSea
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
+            }
+        });
+
+        gridViewBrands.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String urlBrand = brands.get(position).getBrandWebsite();
+                if (urlBrand != null) {
+                    if (!urlBrand.startsWith("http://") && !urlBrand.startsWith("https://")) {
+                        urlBrand = "http://" + urlBrand;
+                    }
+                    Intent browserIntent = new Intent(getActivity(), BrowserActivity.class);
+                    browserIntent.putExtra("URL", urlBrand);
+                    browserIntent.putExtra("TITLE", brands.get(position).getBrand_name());
+                    startActivity(browserIntent);
+                }
             }
         });
 
