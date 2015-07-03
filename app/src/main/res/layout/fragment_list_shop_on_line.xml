@@ -1,0 +1,29 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_select_brands"
+    android:padding="5dp"
+    tools:context="com.aerolitec.SMXL.ui.fragment.ListShopOnLineFragment"
+    android:background="@color/DefaultBackgroundColor"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <GridView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/gridViewShops"
+        android:numColumns="1"
+        android:gravity="center"
+        android:padding="10dp"
+        android:background="@color/DefaultBackgroundColor"
+        android:stretchMode="columnWidth"
+        android:layout_gravity="center_horizontal"
+        android:verticalSpacing="10dp"
+        android:horizontalSpacing="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="1dp"
+        />
+
+</RelativeLayout>
+

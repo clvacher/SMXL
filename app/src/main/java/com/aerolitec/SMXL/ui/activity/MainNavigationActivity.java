@@ -25,6 +25,7 @@ import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.adapter.ProfileItem;
 import com.aerolitec.SMXL.ui.fragment.ListBlogsFragment;
 import com.aerolitec.SMXL.ui.fragment.ListBrandsFragment;
+import com.aerolitec.SMXL.ui.fragment.ListShopOnLineFragment;
 import com.aerolitec.SMXL.ui.fragment.MeasureDetailFragment;
 import com.aerolitec.SMXL.ui.fragment.ProfilesDetailFragment;
 import com.aerolitec.SMXL.ui.fragment.ProfilesFragment;
@@ -189,6 +190,8 @@ public class MainNavigationActivity extends SuperNavigationActivity implements O
 
         MaterialSection sectionBlogs = this.newSection("Blogs", this.getResources().getDrawable(R.drawable.blog) ,new ListBlogsFragment(), false, menu);
         //MaterialSection sectionMagazines = this.newSection("Magazines", new EnChantierFragment(), false, menu);
+
+        MaterialSection sectionShops = this.newSection("Shop On Line", this.getResources().getDrawable(R.drawable.shopping_bag) ,new ListShopOnLineFragment(), false, menu);
 
         this.newDevisor(menu);
 
