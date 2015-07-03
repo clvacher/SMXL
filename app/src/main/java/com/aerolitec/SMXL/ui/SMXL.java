@@ -8,6 +8,7 @@ import com.aerolitec.SMXL.tools.dbmanager.BrandDBManager;
 import com.aerolitec.SMXL.tools.dbmanager.BrandSizeGuideDBManager;
 import com.aerolitec.SMXL.tools.dbmanager.CategoryGarmentDBManager;
 import com.aerolitec.SMXL.tools.dbmanager.GarmentTypeDBManager;
+import com.aerolitec.SMXL.tools.dbmanager.ShopOnLineDBManager;
 import com.aerolitec.SMXL.tools.dbmanager.SizeConvertDBManager;
 import com.aerolitec.SMXL.tools.dbmanager.UserBrandDBManager;
 import com.aerolitec.SMXL.tools.dbmanager.UserClothesDBManager;
@@ -29,6 +30,7 @@ public class SMXL extends Application{
     private static UserClothesDBManager userClothesDBManager;
     private static UserDBManager userDBManager;
     private static BlogDBManager blogDBManager;
+    private static ShopOnLineDBManager shopOnLineDBManager;
 
     private Picasso picasso;
     //private static DisplayMetrics metrics;
@@ -46,6 +48,7 @@ public class SMXL extends Application{
         userClothesDBManager = new UserClothesDBManager(getApplicationContext());
         userDBManager = new UserDBManager(getApplicationContext());
         blogDBManager = new BlogDBManager(getApplicationContext());
+        shopOnLineDBManager = new ShopOnLineDBManager(getApplicationContext());
         //metrics = getResources().getDisplayMetrics();
 
         categoryGarmentDBManager.updateCategoryGarment(1, R.drawable.tshirt_lowpx);
@@ -110,4 +113,9 @@ public class SMXL extends Application{
     public static BlogDBManager getBlogDBManager() {
         return blogDBManager;
     }
+
+    public static ShopOnLineDBManager getShopOnLineDBManager() {
+        return shopOnLineDBManager;
+    }
+
 }
