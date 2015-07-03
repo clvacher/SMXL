@@ -180,5 +180,7 @@
     <string name="Sweater_Hoodie">Sweater/Hoodies</string>
     <string name="Underwear">Underwear</string>
     <string name="Suit">Suits</string>
+    <string name="addBrandToFavorite">Add to favorite brands</string>
+    <string name="goToWebsite">Go to website</string>
 
 </resources>

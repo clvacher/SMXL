@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v7.internal.widget.AdapterViewCompat;
+import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,6 +24,10 @@ import android.widget.Spinner;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.Brand;
+import com.aerolitec.SMXL.model.MainUser;
+import com.aerolitec.SMXL.model.User;
+import com.aerolitec.SMXL.tools.Constants;
+import com.aerolitec.SMXL.tools.manager.MainUserManager;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.activity.BrowserActivity;
 import com.aerolitec.SMXL.ui.adapter.FavoriteCheckableBrandAdapter;
@@ -34,7 +41,6 @@ import java.util.ArrayList;
  */
 public class ListBrandsFragment extends Fragment implements FakeSearchView.OnSearchListener {
 
-
     public ListBrandsFragment() {
         // Required empty public constructor
     }
@@ -47,6 +53,7 @@ public class ListBrandsFragment extends Fragment implements FakeSearchView.OnSea
         return inflater.inflate(R.layout.fragment_list_brands, container, false);
     }
 
+    private User user;
 
     private ArrayList<Brand> brands;
     private ArrayList<String> brandsCategory;
@@ -66,6 +73,8 @@ public class ListBrandsFragment extends Fragment implements FakeSearchView.OnSea
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        user = MainUserManager.get().getMainUser().getMainProfile();
+
         brands=new ArrayList<>();
 
         brandsCategory=(SMXL.getBrandDBManager().getAllBrandCategory());
@@ -73,7 +82,9 @@ public class ListBrandsFragment extends Fragment implements FakeSearchView.OnSea
 
         gridViewBrands = (GridView) view.findViewById(R.id.gridViewBrands);
         spinnerBrandsCategory = (Spinner) view.findViewById(R.id.spinnerBrandsCategory);
+
         brands = SMXL.getBrandDBManager().getAllBrands();
+        brands.removeAll(user.getBrands());
 
         final ArrayAdapter<String> adapterSpinner = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.item_spinner_brand_category, brandsCategory);
         spinnerBrandsCategory.setAdapter(adapterSpinner);
@@ -92,6 +103,7 @@ public class ListBrandsFragment extends Fragment implements FakeSearchView.OnSea
                     brands = SMXL.getBrandDBManager().getBrandsByBrandCategory(SMXL.getBrandDBManager().getAllBrandCategory().get(position - 1));//-1 car on a rajoute l'item d'en tete
                 } else {
                     brands = SMXL.getBrandDBManager().getAllBrands();
+                    brands.removeAll(user.getBrands());
                 }
 
                 gridViewBrandsAdapter.getBrands().clear();
@@ -111,19 +123,11 @@ public class ListBrandsFragment extends Fragment implements FakeSearchView.OnSea
         gridViewBrands.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String urlBrand = brands.get(position).getBrandWebsite();
-                if (urlBrand != null) {
-                    if (!urlBrand.startsWith("http://") && !urlBrand.startsWith("https://")) {
-                        urlBrand = "http://" + urlBrand;
-                    }
-                    Intent browserIntent = new Intent(getActivity(), BrowserActivity.class);
-                    browserIntent.putExtra("URL", urlBrand);
-                    browserIntent.putExtra("TITLE", brands.get(position).getBrand_name());
-                    startActivity(browserIntent);
-                }
+                getActivity().openContextMenu(view);
             }
         });
 
+        registerForContextMenu(gridViewBrands);
     }
 
     @Override
@@ -137,8 +141,6 @@ public class ListBrandsFragment extends Fragment implements FakeSearchView.OnSea
         }
 
     }
-
-
 
     @Override
     public void onCreateOptionsMenu(Menu menu,MenuInflater inflater) {
@@ -188,5 +190,41 @@ public class ListBrandsFragment extends Fragment implements FakeSearchView.OnSea
         inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        getActivity().getMenuInflater().inflate(R.menu.brand_context_menu,menu);
+    }
 
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        switch(item.getItemId()){
+            case R.id.cnt_menu_addFav:
+                Brand selectedBrand = gridViewBrandsAdapter.getItem(info.position);
+                user.getBrands().add(selectedBrand);
+                brands.remove(selectedBrand);
+                gridViewBrandsAdapter.getBrands().remove(selectedBrand);
+                gridViewBrandsAdapter.notifyDataSetChanged();
+                SMXL.getUserBrandDBManager().addUserBrand(user, selectedBrand);
+
+                gridViewBrands.clearChoices();
+                return true;
+            case R.id.cnt_menu_website:
+                String urlBrand = brands.get(info.position).getBrandWebsite();
+                if (urlBrand != null) {
+                    if (!urlBrand.startsWith("http://") && !urlBrand.startsWith("https://")) {
+                        urlBrand = "http://" + urlBrand;
+                    }
+                    Intent browserIntent = new Intent(getActivity(), BrowserActivity.class);
+                    browserIntent.putExtra("URL", urlBrand);
+                    browserIntent.putExtra("TITLE", brands.get(info.position).getBrand_name());
+                    startActivity(browserIntent);
+                }
+                gridViewBrands.clearChoices();
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
+    }
 }

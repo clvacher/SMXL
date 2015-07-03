@@ -168,7 +168,7 @@
     <string name="libFeet">Pied</string>
     <string name="nc">N/C</string>
     <string name="wrong_email">Email inexistant!</string>
-    <string name="title_activity_quicksize">QuickSize ACtivity</string>
+    <string name="title_activity_quicksize">QuickSize Activity</string>
 
 
     <string name="Dress_Skirt">Robes/Jupes</string>
@@ -181,6 +181,8 @@
     <string name="Sweater_Hoodie">Pulls/Sweats</string>
     <string name="Underwear">Underwear</string>
     <string name="Suit">Costumes</string>
+    <string name="addBrandToFavorite">Ajouter aux Marques Favorites</string>
+    <string name="goToWebsite">Accéder au Site</string>
 
 
 </resources>
