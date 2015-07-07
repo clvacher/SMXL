@@ -40,7 +40,7 @@ public class SelectGarmentTypeFragment extends Fragment {
 
         ListView listViewGarments = (ListView) view.findViewById(R.id.listViewGarments);
 
-        ArrayList<GarmentType> garmentItems = getGarmentsFromCategory(activity.getAddGarmentFragment().getSelectedCategory());//C'est pas fou, changer dans le intent?
+        ArrayList<GarmentType> garmentItems = getGarmentsFromCategory(activity.getAddGarmentFragment().getSelectedGarmentType().getCategoryGarment());//C'est pas fou, changer dans le intent?
 
         if(garmentItems.size()==1){
             activity.getAddGarmentFragment().setSelectedGarmentType(garmentItems.get(0));
