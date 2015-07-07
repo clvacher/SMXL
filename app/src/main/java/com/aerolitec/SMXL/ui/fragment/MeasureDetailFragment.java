@@ -179,7 +179,7 @@ public class MeasureDetailFragment extends Fragment {
         final Button btnFeet = (Button) measureDialog.findViewById(R.id.buttonFeet);
 
         //Oui c'est de la merde. Mais flegme de reflechir a mieux.
-        if(measureItem.getTypeMeasure().equals("Feet")){
+        if(measureItem.getTypeMeasure().equals(getResources().getString(R.string.libFeet))){
             btnFeet.setVisibility(View.VISIBLE);
             btnFeet.setOnClickListener(new View.OnClickListener() {
                 @Override
