@@ -179,7 +179,7 @@ public class MeasureDetailFragment extends Fragment {
         final Button btnFeet = (Button) measureDialog.findViewById(R.id.buttonFeet);
 
         //Oui c'est de la merde. Mais flegme de reflechir a mieux.
-        if(measureItem.getTypeMeasure().equals("Feet")){
+        if(measureItem.getTypeMeasure().equals(getResources().getString(R.string.libFeet))){
             btnFeet.setVisibility(View.VISIBLE);
             btnFeet.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -207,7 +207,7 @@ public class MeasureDetailFragment extends Fragment {
                     value = Double.valueOf(userInput.getText().toString());
                 }
 
-                if(measureItem.getTypeMeasure().equals("Feet") && btnFeet.getText().equals(getString(R.string.shoe_size))) {
+                if(measureItem.getTypeMeasure().equals(getResources().getString(R.string.libFeet)) && btnFeet.getText().equals(getString(R.string.shoe_size))) {
                     NumberFormat format = new DecimalFormat("#0.0");
                     value = Double.parseDouble(format.format(((2f/3f) * value) -1f));
                 }
