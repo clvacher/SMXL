@@ -77,7 +77,7 @@ public class CSVCreationActivity extends Activity {
         } catch (SQLException ex) {
             ex.printStackTrace();
         } catch (Exception ex) {
-            Log.e("Error in MainActivity", ex.toString());
+            Log.e("Error in Main Activity", ex.toString());
         }
 
     }

@@ -183,4 +183,8 @@
     <string name="addBrandToFavorite">Add to favorite brands</string>
     <string name="goToWebsite">Go to website</string>
 
+    <string name="cm">cm</string>
+    <string name="shoe_size">size</string>
+
+
 </resources>
