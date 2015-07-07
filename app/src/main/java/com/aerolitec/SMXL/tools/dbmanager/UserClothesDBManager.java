@@ -3,20 +3,12 @@ package com.aerolitec.SMXL.tools.dbmanager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
-import android.util.Log;
 
-import com.aerolitec.SMXL.model.Brand;
-import com.aerolitec.SMXL.model.CategoryGarment;
 import com.aerolitec.SMXL.model.GarmentType;
-import com.aerolitec.SMXL.model.TabSizes;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.model.UserClothes;
-import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 
@@ -185,14 +177,14 @@ public class UserClothesDBManager extends DBManager {
         return garments;
     }
 
-    public ArrayList<UserClothes> getUserGarmentsByGarment(User user, CategoryGarment categoryGarment){
+    public ArrayList<UserClothes> getUserGarmentsByGarment(User user, GarmentType garmentType){
         open();
         ArrayList<UserClothes> garments = new ArrayList<>();
 
         Cursor c;
         c = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+KEY_ID_USER_USER_CLOTHES+" = "+user.getId_user()+" AND "+KEY_ID_GARMENT_TYPE_USER_CLOTHES+
                 " IN (SELECT "+ GarmentTypeDBManager.KEY_ID_GARMENT_TYPE+" FROM "+GarmentTypeDBManager.TABLE_NAME+
-                " WHERE "+GarmentTypeDBManager.KEY_ID_CATEGORY_GARMENT_GARMENT_TYPE+" = "+categoryGarment.getId_category_garment()+")", null);
+                " WHERE "+GarmentTypeDBManager.KEY_ID_GARMENT_TYPE+" = "+garmentType.getId_garment_type()+")", null);
 
         boolean eof = c.moveToFirst();
         while (eof) {

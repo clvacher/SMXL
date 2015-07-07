@@ -12,7 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
-import com.aerolitec.SMXL.model.CategoryGarment;
+import com.aerolitec.SMXL.model.GarmentType;
 import com.aerolitec.SMXL.model.UserClothes;
 import com.aerolitec.SMXL.tools.UtilityMethodsv2;
 import com.aerolitec.SMXL.tools.manager.UserManager;
@@ -27,7 +27,7 @@ import java.util.ArrayList;
  */
 public class CustomGlobalGarmentWardrobeLayout extends LinearLayout {
 
-    CategoryGarment categoryGarment;
+    GarmentType garmentType;
     RelativeLayout addGarment;
     LinearLayout mainLinearLayout;
     ImageView imageView;
@@ -37,9 +37,9 @@ public class CustomGlobalGarmentWardrobeLayout extends LinearLayout {
 
 
 
-    public CustomGlobalGarmentWardrobeLayout(Context context, CategoryGarment categoryGarment) {
+    public CustomGlobalGarmentWardrobeLayout(Context context, GarmentType garmentType) {
         super(context);
-        this.categoryGarment = categoryGarment;
+        this.garmentType = garmentType;
         init();
     }
 
@@ -55,7 +55,7 @@ public class CustomGlobalGarmentWardrobeLayout extends LinearLayout {
 
     protected void init() {
         inflate(getContext(), R.layout.custom_global_garment_wardrobe, this);
-        userClothesArrayList = SMXL.getUserClothesDBManager().getUserGarmentsByGarment(UserManager.get().getUser(), categoryGarment);
+        userClothesArrayList = SMXL.getUserClothesDBManager().getUserGarmentsByGarment(UserManager.get().getUser(), garmentType);
         this.mainLinearLayout = (LinearLayout)findViewById(R.id.mainLinearLayoutCustomGlobalGarment);
         this.imageView = (ImageView)findViewById(R.id.imageViewCustomGlobalGarment);
         this.textViewGarmentName = (TextView)findViewById(R.id.textViewGarmentNameCustomGlobalGarment);
@@ -68,8 +68,8 @@ public class CustomGlobalGarmentWardrobeLayout extends LinearLayout {
     }
 
     private void initView(){
-        imageView.setImageResource(categoryGarment.getIcon());
-        textViewGarmentName.setText(getResources().getIdentifier(categoryGarment.getCategory_garment_name(), "string", getContext().getPackageName()));
+        imageView.setImageResource(garmentType.getCategoryGarment().getIcon());
+        textViewGarmentName.setText(getResources().getIdentifier(garmentType.getType(), "string", getContext().getPackageName()));
         updateCounter();
     }
 
@@ -94,7 +94,7 @@ public class CustomGlobalGarmentWardrobeLayout extends LinearLayout {
                 if (userClothesArrayList.size() == 0) {
                     listView.setVisibility(View.GONE);
                     Intent intent = new Intent(getContext(), AddGarmentActivity.class);
-                    intent.putExtra("category", categoryGarment);
+                    intent.putExtra("garment", garmentType);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     getContext().startActivity(intent);
                 } else {
@@ -114,9 +114,8 @@ public class CustomGlobalGarmentWardrobeLayout extends LinearLayout {
             @Override
             public void onClick(View v) {
                 listView.setVisibility(View.GONE);
-                //collapse.setImageResource(R.drawable.navigation_expand);
                 Intent intent = new Intent(getContext(), AddGarmentActivity.class);
-                intent.putExtra("category", categoryGarment);
+                intent.putExtra("garment", garmentType);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 getContext().startActivity(intent);
             }

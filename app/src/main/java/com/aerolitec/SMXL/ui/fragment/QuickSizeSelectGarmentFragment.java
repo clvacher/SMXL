@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.ListView;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.GarmentType;
@@ -23,7 +22,7 @@ public class QuickSizeSelectGarmentFragment extends Fragment {
 
     private QuickSizeFragment quickSizeFragment;
 
-    private ListView lvGarmentTypes;
+    private GridView gvGarmentTypes;
     private User user;
 
     public QuickSizeSelectGarmentFragment() {
@@ -47,18 +46,18 @@ public class QuickSizeSelectGarmentFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        lvGarmentTypes = (ListView) view.findViewById(R.id.listViewGarmentTypes);
+        gvGarmentTypes = (GridView) view.findViewById(R.id.gridViewGarmentTypes);
     }
 
     @Override
     public void onResume() {
-        fillGridView(lvGarmentTypes,getAllGarmentTypes());
+        fillGridView(gvGarmentTypes,getAllGarmentTypes());
         super.onResume();
     }
 
 
-    private void fillGridView(ListView lv, ArrayList<GarmentType> garmentItems){
-        lv.setAdapter(new TypeGarmentAdapter(getActivity(), R.layout.item_favorite_brand, garmentItems));
+    private void fillGridView(GridView lv, ArrayList<GarmentType> garmentItems){
+        lv.setAdapter(new TypeGarmentAdapter(getActivity(), R.layout.item_garment_with_icon, garmentItems));
         lv.setChoiceMode(GridView.CHOICE_MODE_SINGLE);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

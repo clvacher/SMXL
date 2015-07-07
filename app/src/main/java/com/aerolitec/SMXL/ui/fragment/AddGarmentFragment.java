@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.Brand;
-import com.aerolitec.SMXL.model.CategoryGarment;
 import com.aerolitec.SMXL.model.GarmentType;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.model.UserClothes;
@@ -28,7 +27,6 @@ public class AddGarmentFragment extends Fragment {
     private GarmentType selectedGarmentType;
     private Brand selectedBrand;
     private String selectedSize;
-    private CategoryGarment selectedCategory;
     private int selectedIdUserClothes=-1;
     private UserClothes userClothes;
 
@@ -76,13 +74,19 @@ public class AddGarmentFragment extends Fragment {
 
         Bundle extras=activity.getIntent().getExtras();
         if(extras != null) {
-            if((selectedCategory = (CategoryGarment) extras.get("category")) == null){
+            if((selectedGarmentType = (GarmentType) extras.get("garment")) == null){
                 existingGarment(extras);
             }
             else{
-                Fragment fragment = new SelectGarmentTypeFragment();
+                // Fragment fragment = new SelectGarmentTypeFragment();
+                /*Fragment fragment = new SelectGarmentBrandFragment()
                 getChildFragmentManager().beginTransaction()
                         .add(R.id.containerAddGarmentFragment, fragment, "type")
+                        .commit();*/
+
+                activity.getAddGarmentFragment().setSelectedGarmentType(selectedGarmentType);
+                activity.getAddGarmentFragment().getChildFragmentManager().beginTransaction()
+                        .replace(R.id.containerAddGarmentFragment, new SelectGarmentBrandFragment(), "brand")
                         .commit();
 
                 //getActionBar().setTitle(getResources().getString(R.string.add_garment));
@@ -92,7 +96,7 @@ public class AddGarmentFragment extends Fragment {
             activity.finish();
         }
 
-        ((ImageView)view.findViewById(R.id.garmentIcon)).setImageResource(selectedCategory.getIcon());
+        ((ImageView)view.findViewById(R.id.garmentIcon)).setImageResource(selectedGarmentType.getCategoryGarment().getIcon());
 
     }
 
@@ -102,7 +106,6 @@ public class AddGarmentFragment extends Fragment {
         selectedBrand = userClothes.getBrand();
         selectedSize = userClothes.getSize();
         selectedIdUserClothes = userClothes.getId_user_clothes();
-        selectedCategory = userClothes.getGarmentType().getCategoryGarment();
         comment = userClothes.getComment();
 
         tvBrand.setText(userClothes.getBrand().getBrand_name());
@@ -176,9 +179,9 @@ public class AddGarmentFragment extends Fragment {
         return user;
     }
 
-    public CategoryGarment getSelectedCategory() {return selectedCategory;}
+   /* public CategoryGarment getSelectedCategory() {return selectedCategory;}
     public void setSelectedCategory(CategoryGarment selectedCategory) {this.selectedCategory = selectedCategory;}
-
+*/
 
     public int getSelectedIdUserClothes() {return selectedIdUserClothes;}
     public void setSelectedIdUserClothes(int selectedIdUserClothes) {this.selectedIdUserClothes = selectedIdUserClothes;}

@@ -6,11 +6,13 @@
     android:background="@color/DefaultBackgroundColor">
 
 
-    <ListView
+    <GridView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/listViewGarmentTypes"
-        android:numColumns="3"
+        android:id="@+id/gridViewGarmentTypes"
+        android:numColumns="2"
+        android:horizontalSpacing="15dp"
+        android:verticalSpacing="15dp"
         android:gravity="center"
         android:scrollbarStyle="outsideOverlay"
         android:clipToPadding="false"

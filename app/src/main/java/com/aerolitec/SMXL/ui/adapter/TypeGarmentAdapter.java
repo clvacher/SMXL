@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
@@ -32,10 +33,11 @@ public class TypeGarmentAdapter extends ArrayAdapter<GarmentType> {
         if (convertView == null){
             LayoutInflater mInflater = (LayoutInflater)
                     context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-            convertView = mInflater.inflate(R.layout.type_garment_item, null);
+            convertView = mInflater.inflate(R.layout.item_garment_with_icon, null);
             holder = new ViewHolder();
             convertView.setTag(holder);
-            holder.tvTypeGarment = (TextView) convertView.findViewById(R.id.tvTypeGarment);
+            holder.tvTypeGarment = (TextView) convertView.findViewById(R.id.textViewGarmentItemIcon);
+            holder.ivIconGarment = (ImageView) convertView.findViewById(R.id.imageViewGarmentItemIcon);
             //holder.tvSex = (TextView) convertView.findViewById(R.id.tvSex);
         }
         else {
@@ -45,12 +47,14 @@ public class TypeGarmentAdapter extends ArrayAdapter<GarmentType> {
         GarmentType item = getItem(position);
         int tmp=context.getResources().getIdentifier(item.getType(), "string", context.getPackageName());
         holder.tvTypeGarment.setText(tmp);
+        holder.ivIconGarment.setImageDrawable(context.getResources().getDrawable(item.getCategoryGarment().getIcon()));
         //holder.tvSex.setText(item.getSex());
 
         return convertView;
     }
 
     public static class ViewHolder {
+        ImageView ivIconGarment;
         TextView tvTypeGarment;
         //TextView tvSex;
     }
