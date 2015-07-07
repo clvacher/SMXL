@@ -207,7 +207,7 @@ public class MeasureDetailFragment extends Fragment {
                     value = Double.valueOf(userInput.getText().toString());
                 }
 
-                if(measureItem.getTypeMeasure().equals("Feet") && btnFeet.getText().equals(getString(R.string.shoe_size))) {
+                if(measureItem.getTypeMeasure().equals(getResources().getString(R.string.libFeet)) && btnFeet.getText().equals(getString(R.string.shoe_size))) {
                     NumberFormat format = new DecimalFormat("#0.0");
                     value = Double.parseDouble(format.format(((2f/3f) * value) -1f));
                 }
