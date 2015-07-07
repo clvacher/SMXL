@@ -185,6 +185,7 @@ public class SelectBrandsFragment extends Fragment implements FakeSearchView.OnS
         if(inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS)){
             getActivity().onBackPressed();
         }
+        /*
         if(superNavigationActivity instanceof CreateUpdateProfileActivity) {
             superNavigationActivity.finish();
         }
@@ -193,6 +194,8 @@ public class SelectBrandsFragment extends Fragment implements FakeSearchView.OnS
         }
 
         superNavigationActivity.restoreDefaultTitleCurrentSection();
+        */
+        getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.frame_container, new QuickMeasureFragment()).commit();
     }
 
 

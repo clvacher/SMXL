@@ -17,24 +17,24 @@
             android:id="@+id/garmentIcon"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@android:drawable/ic_menu_help"/>
+            />
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
-            android:layout_toRightOf="@+id/garmentIcon"
-            android:layout_toEndOf="@+id/garmentIcon"
-            android:layout_alignBottom="@+id/garmentIcon"
+            android:id="@+id/linearLayout"
             android:layout_alignTop="@+id/garmentIcon"
-            android:id="@+id/linearLayout">
+            android:layout_centerHorizontal="true">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:hint="@string/garment"
+                android:textColor="@color/SectionTitle"
                 android:id="@+id/garmentType"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:layout_gravity="center_horizontal" />
 
             <TextView
                 android:layout_marginTop="10dp"
@@ -42,6 +42,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:hint="@string/brand"
+                android:textColor="@color/SectionTitle"
                 android:gravity="center"
                 android:id="@+id/garmentBrand" />
         </LinearLayout>

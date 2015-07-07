@@ -4,6 +4,8 @@ package com.aerolitec.SMXL.ui.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,10 +15,12 @@ import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.BrandSizeGuideMeasuresRow;
+import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.activity.BrowserActivity;
 import com.aerolitec.SMXL.ui.activity.MainNavigationActivity;
+import com.aerolitec.SMXL.ui.activity.SuperNavigationActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -78,7 +82,7 @@ public class QuickSizeSummaryFragment extends Fragment implements MainNavigation
                 }
             }
         });
-        //((SuperNavigationActivity) getActivity()).setOnBackPressedListener(this);
+        ((SuperNavigationActivity) getActivity()).setOnBackPressedListener(this);
         super.onViewCreated(view, savedInstanceState);
     }
 
@@ -96,6 +100,24 @@ public class QuickSizeSummaryFragment extends Fragment implements MainNavigation
     @Override
     public void backPressed() {
         //TODO Recuperer le fragment quicksize et le remplacer par lui meme pour ne pas quitter l'application
-        //FragmentManager fragmentManager2 = getFragmentManager();
+        Log.d(Constants.TAG,"backPressed");
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        Fragment fragment = fragmentManager.findFragmentById(R.id.frame_container);
+        Fragment currentFragment = fragment.getChildFragmentManager().findFragmentByTag("quicksize");
+        FragmentManager currentFragmentManager = currentFragment.getFragmentManager();
+
+        FragmentTransaction fragmentTransaction = currentFragmentManager.beginTransaction();
+        fragmentTransaction.remove(currentFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.replace(R.id.frame_container, new QuickSizeFragment());
+        fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onDestroyView() {
+        Log.d(Constants.TAG,"onDestroyView");
+        ((SuperNavigationActivity) getActivity()).setOnBackPressedListener(null);
+        ((SuperNavigationActivity) getActivity()).updateHamburger();
+        super.onDestroyView();
     }
 }
