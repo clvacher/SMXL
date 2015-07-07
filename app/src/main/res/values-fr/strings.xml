@@ -90,7 +90,7 @@
     <string name="buttonNextStep">Etape Suivante</string>
     <string name="size_guide">Guides des tailles</string>
     <string name="title_activity_size_guide">SizeGuideActivity</string>
-    <string name="title_activity_select_brands">Marques Favorites</string>
+    <string name="title_activity_select_brands">Sélection de 2 à 5 Marques Favorites</string>
     <string name="manage_favorite_brands">Gérez vos marques favorites</string>
     <string name="favorite_brands">Marques favorites</string>
     <string name="all_Brands">Marques</string>

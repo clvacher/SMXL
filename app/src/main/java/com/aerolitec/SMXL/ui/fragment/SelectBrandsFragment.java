@@ -70,7 +70,7 @@ public class SelectBrandsFragment extends Fragment implements FakeSearchView.OnS
         super.onViewCreated(view, savedInstanceState);
 
         buttonValidate = (Button) view.findViewById(R.id.buttonValidationBrands);
-
+        buttonValidate.setEnabled(false);
         brands=new ArrayList<>();
         //brandsSelected=new ArrayList<>();
 
@@ -98,6 +98,7 @@ public class SelectBrandsFragment extends Fragment implements FakeSearchView.OnS
         gridViewBrands.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long mylng) {
+
                 Brand selectedBrand = gridViewBrandsAdapter.getItem(position);
                 //brandsSelected.add(selectedBrand);
 
@@ -116,7 +117,12 @@ public class SelectBrandsFragment extends Fragment implements FakeSearchView.OnS
                 SMXL.getUserBrandDBManager().addUserBrand(user, selectedBrand);
                 gridViewBrands.clearChoices();
                 //}
-
+                if(user.getBrands().size() == 2){
+                    buttonValidate.setEnabled(true);
+                }
+                if(user.getBrands().size() == 5){
+                    save();
+                }
             }
         });
 
@@ -147,7 +153,7 @@ public class SelectBrandsFragment extends Fragment implements FakeSearchView.OnS
         });
 
 
-        (view.findViewById(R.id.buttonValidationBrands)).setOnClickListener(new View.OnClickListener() {
+        buttonValidate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 save();
@@ -174,7 +180,7 @@ public class SelectBrandsFragment extends Fragment implements FakeSearchView.OnS
 
 
     public void save(){
-
+        //TODO Au lieu de quitter l'activity repasser sur un nouveau fragment
         InputMethodManager inputManager = ( InputMethodManager ) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         if(inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS)){
             getActivity().onBackPressed();
@@ -242,4 +248,5 @@ public class SelectBrandsFragment extends Fragment implements FakeSearchView.OnS
         InputMethodManager inputManager = ( InputMethodManager ) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
+
 }

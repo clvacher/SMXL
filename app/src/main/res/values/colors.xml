@@ -16,4 +16,6 @@
     <color name="separator">#d7d2ce</color>
     <color name="text_green">#48A288</color>
     <color name="measure_item_color">#aaee511a</color>
+    <color name="ButtonEnabled">#E84E1B</color>
+    <color name="ButtonDisabled">#c2c2c2</color>
 </resources>

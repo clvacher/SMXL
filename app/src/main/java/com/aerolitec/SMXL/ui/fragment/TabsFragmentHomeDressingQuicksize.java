@@ -34,11 +34,11 @@ public class TabsFragmentHomeDressingQuicksize extends Fragment {
         fragmentTabHost = new FragmentTabHost(getActivity());
         fragmentTabHost.setup(getActivity(), getChildFragmentManager(), R.id.frame_container);
 
-
-        fragmentTabHost.addTab(fragmentTabHost.newTabSpec("dressing").setIndicator("Dressing"),
-                WardrobeDetailFragment.class, null);
         fragmentTabHost.addTab(fragmentTabHost.newTabSpec("quicksize").setIndicator("QuickSize"),
                 QuickSizeFragment.class, null);
+        fragmentTabHost.addTab(fragmentTabHost.newTabSpec("dressing").setIndicator("Dressing"),
+                WardrobeDetailFragment.class, null);
+
 
         fragmentTabHost.setBackgroundColor(getResources().getColor(R.color.SectionTitle));
 

@@ -29,6 +29,8 @@ import com.aerolitec.SMXL.ui.fragment.ListShopOnLineFragment;
 import com.aerolitec.SMXL.ui.fragment.MeasureDetailFragment;
 import com.aerolitec.SMXL.ui.fragment.ProfilesDetailFragment;
 import com.aerolitec.SMXL.ui.fragment.ProfilesFragment;
+import com.aerolitec.SMXL.ui.fragment.QuickSizeFragment;
+import com.aerolitec.SMXL.ui.fragment.QuickSizeSummaryFragment;
 import com.aerolitec.SMXL.ui.fragment.SettingsFragment;
 import com.aerolitec.SMXL.ui.fragment.SizeGuideFragment;
 import com.aerolitec.SMXL.ui.fragment.TabsFragmentHomeDressingQuicksize;
@@ -70,6 +72,9 @@ public class MainNavigationActivity extends SuperNavigationActivity implements O
         if(drawerOpen){
             drawer.closeDrawer();
         }
+        /*else if(onBackPressedListener !=null){
+            onBackPressedListener.backPressed();
+        }*/
         else{
             super.onBackPressed();
         }
