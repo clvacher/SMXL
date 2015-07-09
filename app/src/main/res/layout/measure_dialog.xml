@@ -14,20 +14,30 @@
         android:layout_gravity="center_horizontal"
         android:text="@string/changeMeasure"
         android:textAppearance="?android:attr/textAppearanceSmallPopupMenu" />
-
-    <EditText
-        android:id="@+id/etDialogUserInput"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:minWidth="100dp"
-        android:inputType="numberDecimal"
-        android:gravity="center"
-        android:layout_gravity="center_horizontal"
-        android:maxLength="5"
-        >
+        android:layout_gravity="center_horizontal">
+        <EditText
+            android:id="@+id/etDialogUserInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:minWidth="100dp"
+            android:inputType="numberDecimal"
+            android:gravity="center"
+            android:maxLength="5"
+            >
 
-        <requestFocus />
+            <requestFocus />
 
-    </EditText>
+        </EditText>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="@string/cm"
+            android:id="@+id/buttonFeet"/>
+    </LinearLayout>
 
 </LinearLayout>
