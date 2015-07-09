@@ -65,7 +65,7 @@ public class WardrobeDetailFragment extends Fragment {
 
     private void initLinearLayout(){
         linearLayout.removeAllViews();
-        for(GarmentType gt : SMXL.getGarmentTypeDBManager().getAllGarmentTypesBySex(user.getSexe())){
+        for(GarmentType gt : SMXL.getGarmentTypeDBManager().getAllGarmentTypesBySexOrderByPosition(user.getSexe())){
             linearLayout.addView(new CustomGlobalGarmentWardrobeLayout(getActivity().getApplicationContext(), gt));
         }
         /*
