@@ -72,7 +72,7 @@ public class QuickSizeSelectGarmentFragment extends Fragment {
     }
 
     private ArrayList<GarmentType> getAllGarmentTypes(){
-        return SMXL.getGarmentTypeDBManager().getAllGarmentTypesBySex(user.getSexe());
+        return SMXL.getGarmentTypeDBManager().getAllGarmentTypesBySexOrderByPosition(user.getSexe());
     }
 
 }
