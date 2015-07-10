@@ -180,7 +180,6 @@ public class MeasureDetailFragment extends Fragment {
         final Button btnFeet = (Button) measureDialog.findViewById(R.id.buttonFeet);
 
         //Oui c'est de la merde. Mais flegme de reflechir a mieux.
-        Log.d("typeMeasure",measureItem.getTypeMeasure());
 
         if(measureItem.getTypeMeasure().equals(getResources().getString(R.string.libFeet))){
             btnFeet.setVisibility(View.VISIBLE);
@@ -208,19 +207,24 @@ public class MeasureDetailFragment extends Fragment {
 
                 if (userInput.getText().toString().length() > 0) {
                     value = Double.valueOf(userInput.getText().toString());
-
-
-                    if(measureItem.getTypeMeasure().equals(getResources().getString(R.string.libFeet)) && btnFeet.getText().equals(getString(R.string.shoe_size))) {
-                        Locale.setDefault(Locale.US);
-                        NumberFormat format = new DecimalFormat("#0.0");
-
-
-                        value = Double.parseDouble(format.format(((2f/3f) * value) -1f));
-                    }
-
-                    measureItem.setValueMeasure(value);
-                    ((TextView) v).setText(value + "");
                 }
+
+                Log.d("beforeiftype",  measureItem.getTypeMeasure().equals(getResources().getString(R.string.libFeet))+"");
+
+                Log.d("beforeifshoe", btnFeet.getText().equals(getString(R.string.shoe_size))+" "+(btnFeet.getText().toString().substring(0,1).toUpperCase()+btnFeet.getText().toString().substring(1))+" = "+getString(R.string.ShoeSize));
+
+                if (measureItem.getTypeMeasure().equals(getResources().getString(R.string.libFeet)) && btnFeet.getText().toString().equals(getString(R.string.ShoeSize))) {
+                    Locale.setDefault(Locale.US);
+                    NumberFormat format = new DecimalFormat("#0.0");
+
+
+                    value = Double.parseDouble(format.format(((2f / 3f) * value) - 1f));
+                    Log.d("valueFeet",value+"");
+                }
+
+                measureItem.setValueMeasure(value);
+                ((TextView) v).setText(value + "");
+
             }
         });
         final AlertDialog dialog = builder.create();
