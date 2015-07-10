@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -39,7 +40,7 @@ public class GarmentAdapter extends ArrayAdapter<UserClothes> {
             //holder.tvTypeGarment = (TextView) convertView.findViewById(R.id.tvNameGarment);
             holder.tvBrand = (TextView) convertView.findViewById(R.id.tvBrandGarment);
             holder.tvSize = (TextView) convertView.findViewById(R.id.tvSize);
-            holder.shop = (ImageView) convertView.findViewById(R.id.shopGarment);
+            holder.shop = (Button) convertView.findViewById(R.id.buttonShopItemGarment);
             holder.deleteGarment=(ImageView) convertView.findViewById(R.id.deleteGarmentIcon);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -85,7 +86,7 @@ public class GarmentAdapter extends ArrayAdapter<UserClothes> {
         TextView tvTypeGarment;
         TextView tvBrand;
         TextView tvSize;
-        ImageView shop;
+        Button shop;
         ImageView deleteGarment;
     }
 }
