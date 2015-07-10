@@ -26,6 +26,7 @@ import com.aerolitec.SMXL.ui.adapter.MeasureItem;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.HashMap;
+import java.util.Locale;
 
 
 public class MeasureDetailFragment extends Fragment {
@@ -179,6 +180,8 @@ public class MeasureDetailFragment extends Fragment {
         final Button btnFeet = (Button) measureDialog.findViewById(R.id.buttonFeet);
 
         //Oui c'est de la merde. Mais flegme de reflechir a mieux.
+        Log.d("typeMeasure",measureItem.getTypeMeasure());
+
         if(measureItem.getTypeMeasure().equals(getResources().getString(R.string.libFeet))){
             btnFeet.setVisibility(View.VISIBLE);
             btnFeet.setOnClickListener(new View.OnClickListener() {
@@ -205,15 +208,19 @@ public class MeasureDetailFragment extends Fragment {
 
                 if (userInput.getText().toString().length() > 0) {
                     value = Double.valueOf(userInput.getText().toString());
-                }
 
-                if(measureItem.getTypeMeasure().equals(getResources().getString(R.string.libFeet)) && btnFeet.getText().equals(getString(R.string.shoe_size))) {
-                    NumberFormat format = new DecimalFormat("#0.0");
-                    value = Double.parseDouble(format.format(((2f/3f) * value) -1f));
-                }
 
-                measureItem.setValueMeasure(value);
-                ((TextView) v).setText(value + "");
+                    if(measureItem.getTypeMeasure().equals(getResources().getString(R.string.libFeet)) && btnFeet.getText().equals(getString(R.string.shoe_size))) {
+                        Locale.setDefault(Locale.US);
+                        NumberFormat format = new DecimalFormat("#0.0");
+
+
+                        value = Double.parseDouble(format.format(((2f/3f) * value) -1f));
+                    }
+
+                    measureItem.setValueMeasure(value);
+                    ((TextView) v).setText(value + "");
+                }
             }
         });
         final AlertDialog dialog = builder.create();

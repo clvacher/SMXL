@@ -23,6 +23,7 @@ import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.manager.UserManager;
+import com.aerolitec.SMXL.tools.serverConnexion.PostProfileHttpAsyncTask;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.activity.SuperNavigationActivity;
 import com.aerolitec.SMXL.ui.customLayout.ProfilePictureRoundedImageView;
@@ -141,6 +142,7 @@ public class CreateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
             if (user != null) {
                 getActivity().setResult(Activity.RESULT_OK);
                 UserManager.get().setUser(user);
+                new PostProfileHttpAsyncTask().execute(user);
             }
             else {
                 getActivity().setResult(Activity.RESULT_CANCELED);

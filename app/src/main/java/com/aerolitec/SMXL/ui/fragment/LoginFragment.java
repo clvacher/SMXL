@@ -15,6 +15,7 @@ import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.UtilityMethodsv2;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
 import com.aerolitec.SMXL.tools.manager.UserManager;
+import com.aerolitec.SMXL.tools.serverConnexion.GetCorrespondingProfilesHttpAsyncTask;
 import com.aerolitec.SMXL.tools.serverConnexion.GetMainUserHttpAsyncTask;
 import com.aerolitec.SMXL.tools.serverConnexion.LoginCreateAccountInterface;
 import com.aerolitec.SMXL.tools.serverConnexion.PostMainUserHttpAsyncTask;
@@ -80,7 +81,9 @@ public class LoginFragment extends SuperLoginCreateAccountFragment implements Lo
 
     @Override
     public void accountRetrieved(MainUser mainUser) {
-        //SMXL.getUserDBManager().addUser(UserManager.get().getUser());
+
+        new GetCorrespondingProfilesHttpAsyncTask().execute(mainUser.getServerId());
+
         User tmpUser = UserManager.get().getUser();
         User realUser = SMXL.getUserDBManager().createUser(tmpUser.getFirstname(), tmpUser.getLastname(), tmpUser.getBirthday(), tmpUser.getSexe(), null, null );
         mainUser.setMainProfile(realUser);

@@ -8,11 +8,13 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Created by Jerome on 11/05/2015.
  */
 public class MainUser implements Serializable{
+    private int serverId;
     private String email;
     private String password;
     private String firstname;
@@ -24,6 +26,7 @@ public class MainUser implements Serializable{
     private int accountType;
     private String facebookId;
 
+    private ArrayList<Integer> profiles = new ArrayList<>();
 
     /*
      * 0 connexion classique
@@ -31,6 +34,9 @@ public class MainUser implements Serializable{
      * 2 ...
 
      */
+
+    public int getServerId() {return serverId;}
+    public void setServerId(int serverId) {this.serverId = serverId;}
 
     public String getFirstname() {return firstname;}
     public void setFirstname(String firstname) {this.firstname = firstname;}
@@ -81,6 +87,8 @@ public class MainUser implements Serializable{
         this.facebookId = facebookId;
     }
 
+    public ArrayList<Integer> getProfiles() {return profiles;}
+    public void addProfile(Integer profile) {this.profiles.add(profile);}
 
     public MainUser(){super();}
 
@@ -103,6 +111,7 @@ public class MainUser implements Serializable{
                 ", sex='" + sex + '\'' +
                 ", avatar='" + avatar + '\'' +
                 ", idMainProfile=" + idMainProfile +
+                ", serverProfiles=" + profiles +
                 '}';
     }
 
