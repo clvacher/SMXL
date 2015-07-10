@@ -20,6 +20,8 @@ public class GarmentTypeDBManager extends DBManager {
     public static final String KEY_ID_CATEGORY_GARMENT_GARMENT_TYPE="id_category_garment";
     public static final String KEY_NAME_GARMENT_TYPE="garment_name";
     public static final String KEY_SEX_GARMENT_TYPE="sex";
+    public static final String KEY_TOPMIDDLEBOTTOM_GARMENT_TYPE="top_middle_bottom";
+
 
     public static final String CREATE_TABLE_CLOTHES_TYPE = "CREATE TABLE "+TABLE_NAME+
             " (" +
@@ -117,6 +119,36 @@ public class GarmentTypeDBManager extends DBManager {
         open();
         ArrayList<GarmentType> garments = new ArrayList<>();
         Cursor c = db.rawQuery("SELECT * FROM "+TABLE_NAME, null);
+        boolean eof = c.moveToFirst();
+        while (eof) {
+            GarmentType gt = new GarmentType();
+            gt.setId_garment_type(c.getInt(c.getColumnIndex(KEY_ID_GARMENT_TYPE)));
+
+            SMXL.getCategoryGarmentDBManager().open();
+            gt.setCategoryGarment(SMXL.getCategoryGarmentDBManager().getCategoryGarment(c.getInt(c.getColumnIndex(KEY_ID_CATEGORY_GARMENT_GARMENT_TYPE))));
+            SMXL.getCategoryGarmentDBManager().close();
+
+            gt.setType(c.getString(c.getColumnIndex(KEY_NAME_GARMENT_TYPE)));
+            gt.setSex(c.getString(c.getColumnIndex(KEY_SEX_GARMENT_TYPE)));
+
+            garments.add(gt);
+            eof = c.moveToNext();
+        }
+        c.close();
+        close();
+        return garments;
+    }
+
+    public ArrayList<GarmentType> getAllGarmentTypesBySexOrderByPosition(int sex) {
+        open();
+        ArrayList<GarmentType> garments = new ArrayList<>();
+
+        String sexString = "F";
+        if(sex==1){
+            sexString="H";
+        }
+
+        Cursor c = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+KEY_SEX_GARMENT_TYPE+ " = '"+sexString+"'"+" ORDER BY "+KEY_TOPMIDDLEBOTTOM_GARMENT_TYPE+","+KEY_NAME_GARMENT_TYPE, null);
         boolean eof = c.moveToFirst();
         while (eof) {
             GarmentType gt = new GarmentType();
