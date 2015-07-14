@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.aerolitec.SMXL.model.MainUser;
+import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.UtilityMethodsv2;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
@@ -70,6 +71,27 @@ public class PostMainUserHttpAsyncTask extends AsyncTask<Void, Void, String> {
                 FileOutputStream fos = activity.openFileOutput(Constants.MAIN_USER_FILE, Context.MODE_PRIVATE);
                 fos.flush();
                 fos.write(MainUserManager.get().getMainUser().getBytes());
+
+
+
+                JSONObject jsonMainUser;
+                User user = null;
+
+                try {
+                    jsonMainUser = new JSONObject(result);
+
+                    //ajout de l'Id server associé
+                    Integer id = Integer.parseInt(jsonMainUser.optString("id"));
+                    Log.d("idMainUserPost",id+"");
+                    MainUserManager.get().getMainUser().setServerId(id);
+
+
+                }
+                catch(Exception e){
+                    e.printStackTrace();
+                }
+
+
                 activity.setResult(Activity.RESULT_OK);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -129,7 +151,7 @@ public class PostMainUserHttpAsyncTask extends AsyncTask<Void, Void, String> {
         }
 
         // 11. return result
-        Log.d("Result POST", result);
+        Log.d("Result POSTMainUser", result);
         return result;
     }
 }

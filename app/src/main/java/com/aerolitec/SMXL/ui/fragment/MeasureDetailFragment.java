@@ -26,6 +26,7 @@ import com.aerolitec.SMXL.ui.adapter.MeasureItem;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.HashMap;
+import java.util.Locale;
 
 
 public class MeasureDetailFragment extends Fragment {
@@ -179,6 +180,7 @@ public class MeasureDetailFragment extends Fragment {
         final Button btnFeet = (Button) measureDialog.findViewById(R.id.buttonFeet);
 
         //Oui c'est de la merde. Mais flegme de reflechir a mieux.
+
         if(measureItem.getTypeMeasure().equals(getResources().getString(R.string.libFeet))){
             btnFeet.setVisibility(View.VISIBLE);
             btnFeet.setOnClickListener(new View.OnClickListener() {
@@ -207,13 +209,22 @@ public class MeasureDetailFragment extends Fragment {
                     value = Double.valueOf(userInput.getText().toString());
                 }
 
-                if(measureItem.getTypeMeasure().equals(getResources().getString(R.string.libFeet)) && btnFeet.getText().equals(getString(R.string.shoe_size))) {
+                Log.d("beforeiftype",  measureItem.getTypeMeasure().equals(getResources().getString(R.string.libFeet))+"");
+
+                Log.d("beforeifshoe", btnFeet.getText().equals(getString(R.string.shoe_size))+" "+(btnFeet.getText().toString().substring(0,1).toUpperCase()+btnFeet.getText().toString().substring(1))+" = "+getString(R.string.ShoeSize));
+
+                if (measureItem.getTypeMeasure().equals(getResources().getString(R.string.libFeet)) && btnFeet.getText().toString().equals(getString(R.string.ShoeSize))) {
+                    Locale.setDefault(Locale.US);
                     NumberFormat format = new DecimalFormat("#0.0");
-                    value = Double.parseDouble(format.format(((2f/3f) * value) -1f));
+
+
+                    value = Double.parseDouble(format.format(((2f / 3f) * value) - 1f));
+                    Log.d("valueFeet",value+"");
                 }
 
                 measureItem.setValueMeasure(value);
                 ((TextView) v).setText(value + "");
+
             }
         });
         final AlertDialog dialog = builder.create();

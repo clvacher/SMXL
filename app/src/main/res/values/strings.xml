@@ -45,7 +45,7 @@
     <string name="libImc">BMI</string>
     <string name="unimplemented">Developing&#8230;</string>
     <string name="addNote">Shipping address</string><!--Add a description, a comment&#8230;-->
-    <string name="ShoeSize">Shoe height</string>
+    <string name="ShoeSize">Size</string>
     <string name="title_activity_profil">ProfilActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_profil_detail">ProfilDetailActivity</string>

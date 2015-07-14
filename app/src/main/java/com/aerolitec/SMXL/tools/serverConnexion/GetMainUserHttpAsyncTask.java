@@ -135,6 +135,7 @@ public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
                             (int) jsonMainUser.get("social"),
                             UserManager.get().getUser()
                             );
+                    mainUser.setServerId(jsonMainUser.optInt("id"));
 
                     Log.d("GetUser AsyncTask",mainUser.toString());
 
