@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import com.aerolitec.SMXL.ui.fragment.QuickMeasureFragment;
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.MainUser;
 import com.aerolitec.SMXL.model.User;
@@ -30,7 +31,6 @@ import com.aerolitec.SMXL.ui.fragment.MeasureDetailFragment;
 import com.aerolitec.SMXL.ui.fragment.ProfilesDetailFragment;
 import com.aerolitec.SMXL.ui.fragment.ProfilesFragment;
 import com.aerolitec.SMXL.ui.fragment.QuickSizeFragment;
-import com.aerolitec.SMXL.ui.fragment.QuickSizeSummaryFragment;
 import com.aerolitec.SMXL.ui.fragment.SettingsFragment;
 import com.aerolitec.SMXL.ui.fragment.SizeGuideFragment;
 import com.aerolitec.SMXL.ui.fragment.TabsFragmentHomeDressingQuicksize;
@@ -172,6 +172,7 @@ public class MainNavigationActivity extends SuperNavigationActivity implements O
 
         sectionMyProfile = this.newSection(getResources().getString(R.string.my_profile), this.getResources().getDrawable(R.drawable.avatar), new ProfilesDetailFragment(), false, menu);
 
+        MaterialSection sectionQuicksize = this.newSection(getResources().getString(R.string.quicksize), this.getResources().getDrawable(R.drawable.ic_launcher), new QuickSizeFragment(), false, menu);
         MaterialSection sectionMonDressing = this.newSection(getResources().getString(R.string.my_wardrobe), this.getResources().getDrawable(R.drawable.robe_lowpx), new WardrobeDetailFragment(), false, menu);
         MaterialSection sectionMesMesures = this.newSection(getResources().getString(R.string.measurements), this.getResources().getDrawable(R.drawable.tape_measure), new MeasureDetailFragment(), false, menu);
 
@@ -208,7 +209,7 @@ public class MainNavigationActivity extends SuperNavigationActivity implements O
         MaterialSection section6 = this.newSection(getResources().getString(R.string.settings), this.getResources().getDrawable(R.drawable.ic_action_settings), new SettingsFragment(), false, menu);
         section6.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
 
-
+        MaterialSection testSection = this.newSection("Test",this.getResources().getDrawable(R.drawable.ic_launcher), new QuickMeasureFragment(),false,menu);
 
 
 

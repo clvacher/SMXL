@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.BrandSizeGuideMeasuresRow;
-import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.activity.BrowserActivity;
@@ -99,25 +98,29 @@ public class QuickSizeSummaryFragment extends Fragment implements MainNavigation
 
     @Override
     public void backPressed() {
-        //TODO Recuperer le fragment quicksize et le remplacer par lui meme pour ne pas quitter l'application
-        Log.d(Constants.TAG,"backPressed");
+        //TODO De la merde a changer
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentManager currentFragmentManager;
         Fragment fragment = fragmentManager.findFragmentById(R.id.frame_container);
-        Fragment currentFragment = fragment.getChildFragmentManager().findFragmentByTag("quicksize");
-        FragmentManager currentFragmentManager = currentFragment.getFragmentManager();
 
+        // Pour le quicksize dans l'acceuil
+        if( fragment instanceof TabsFragmentHomeDressingQuicksize) {
+            Fragment currentFragment = fragment.getChildFragmentManager().findFragmentByTag("quicksize");
+            currentFragmentManager = currentFragment.getFragmentManager();
+        }
+        // Pour le quicksize dans l'onglet
+        else {
+            currentFragmentManager = getActivity().getSupportFragmentManager();
+        }
         FragmentTransaction fragmentTransaction = currentFragmentManager.beginTransaction();
-        fragmentTransaction.remove(currentFragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.replace(R.id.frame_container, new QuickSizeFragment());
+
+        fragmentTransaction.replace(R.id.frame_container, new QuickSizeFragment(),"quicksize");
         fragmentTransaction.commit();
     }
 
     @Override
     public void onDestroyView() {
-        Log.d(Constants.TAG,"onDestroyView");
         ((SuperNavigationActivity) getActivity()).setOnBackPressedListener(null);
-        ((SuperNavigationActivity) getActivity()).updateHamburger();
         super.onDestroyView();
     }
 }

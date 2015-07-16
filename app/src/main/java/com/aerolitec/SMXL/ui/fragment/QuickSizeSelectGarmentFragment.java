@@ -1,6 +1,7 @@
 package com.aerolitec.SMXL.ui.fragment;
 
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -62,11 +63,19 @@ public class QuickSizeSelectGarmentFragment extends Fragment {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                quickSizeFragment.setSelectedGarmentType((GarmentType) parent.getItemAtPosition(position));
-                quickSizeFragment.getChildFragmentManager().beginTransaction()
-                        .addToBackStack(null)
-                        .replace(R.id.containerQuickSizeFragment, new QuickSizeSelectBrandFragment(), "brand")
-                        .commit();
+                if (checkValidMeasure()) {
+                    quickSizeFragment.setSelectedGarmentType((GarmentType) parent.getItemAtPosition(position));
+                    quickSizeFragment.getChildFragmentManager().beginTransaction()
+                            .addToBackStack(null)
+                            .replace(R.id.containerQuickSizeFragment, new QuickSizeSelectBrandFragment(), "brand")
+                            .commit();
+                } else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage("Impossible d'effectuer une quicksize sans que les tailles suivantes soit remplie(s).")
+                            .setTitle("Mesures manquantes");
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
             }
         });
     }
@@ -74,5 +83,14 @@ public class QuickSizeSelectGarmentFragment extends Fragment {
     private ArrayList<GarmentType> getAllGarmentTypes(){
         return SMXL.getGarmentTypeDBManager().getAllGarmentTypesBySexOrderByPosition(user.getSexe());
     }
+
+    private boolean checkValidMeasure(){
+        User user = UserManager.get().getUser();
+        if(user.getIndexMeasureNotNull().size() == 0) {
+            return false;
+        }
+        return true;
+    }
+
 
 }

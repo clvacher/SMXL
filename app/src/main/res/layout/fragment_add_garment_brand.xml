@@ -66,7 +66,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="All brands"
+            android:text="@string/all_Brands"
             android:padding="5dp"
             android:textStyle="bold"
             android:textSize="20sp"

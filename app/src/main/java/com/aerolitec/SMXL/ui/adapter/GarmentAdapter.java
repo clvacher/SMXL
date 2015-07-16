@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.UserClothes;
@@ -70,14 +71,24 @@ public class GarmentAdapter extends ArrayAdapter<UserClothes> {
             }
         });
 
-        holder.deleteGarment.setOnClickListener(new View.OnClickListener() {
+        holder.deleteGarment.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
-            public void onClick(View view) {
+            public boolean onLongClick(View v) {
                 SMXL.getUserClothesDBManager().deleteUserClothes(clothes);
                 remove(clothes);
                 notifyDataSetChanged();
+                return true;
             }
         });
+
+        holder.deleteGarment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getContext(), "Cliquer longuement pour supprimer .", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
 
         return convertView;
     }

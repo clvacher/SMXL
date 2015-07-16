@@ -186,6 +186,6 @@
 
     <string name="cm">cm</string>
     <string name="shoe_size">size</string>
-
+    <string name="quicksize">Quicksize</string>
 
 </resources>

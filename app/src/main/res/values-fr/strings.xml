@@ -60,7 +60,7 @@
     <string name="title_activity_import_profil">SMXL - Importer Profile</string>
     <string name="title_activity_login">Se connecter</string>
     <string name="title_activity_create_account">Créer Son Compte</string>
-    <string name="importProfile">Importer Profile</string>
+    <string name="importProfile">Importer Profil</string>
     <string name="remove">Supprimer</string>
     <string name="message_delete_garment">Voulez vous supprimer ce vêtement ?</string>
     <string name="incompleteProfile">Vous devez indiquer prénom et nom</string>
@@ -70,7 +70,7 @@
     <string name="addMeasure">Ajouter une mesure</string>
     <string name="addGarment">Ajouter un vêtement</string>
     <string name="removeGarment">Voulez vous supprimer ce profil ?</string>
-    <string name="favoriteColor">Favorite color</string>
+    <string name="favoriteColor">Couleur Favorite</string>
 
     <string name="title_choose_category">Choisissez une catégorie de vêtement</string>
     <string name="title_choose_garment">Choisissez un type de vêtement</string>
@@ -187,5 +187,5 @@
 
     <string name="cm">cm</string>
     <string name="shoe_size">pointure</string>
-
+    <string name="quicksize">Quicksize</string>
 </resources>

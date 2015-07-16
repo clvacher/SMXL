@@ -84,7 +84,7 @@ public class ListBrandsFragment extends Fragment implements FakeSearchView.OnSea
         spinnerBrandsCategory = (Spinner) view.findViewById(R.id.spinnerBrandsCategory);
 
         brands = SMXL.getBrandDBManager().getAllBrands();
-        brands.removeAll(user.getBrands());
+
 
         final ArrayAdapter<String> adapterSpinner = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.item_spinner_brand_category, brandsCategory);
         spinnerBrandsCategory.setAdapter(adapterSpinner);
@@ -92,9 +92,9 @@ public class ListBrandsFragment extends Fragment implements FakeSearchView.OnSea
         gridViewBrandsAdapter = new FavoriteCheckableBrandAdapter(getActivity(), R.layout.item_favorite_brand, brands);
         gridViewBrands.setAdapter(gridViewBrandsAdapter);
 
-        //gridViewBrands.setChoiceMode(GridView.CHOICE_MODE_MULTIPLE);
+        gridViewBrands.setChoiceMode(GridView.CHOICE_MODE_MULTIPLE);
 
-        gridViewBrands.setChoiceMode(GridView.CHOICE_MODE_SINGLE);
+        //gridViewBrands.setChoiceMode(GridView.CHOICE_MODE_SINGLE);
 
         spinnerBrandsCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -124,6 +124,7 @@ public class ListBrandsFragment extends Fragment implements FakeSearchView.OnSea
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 getActivity().openContextMenu(view);
+
             }
         });
 
@@ -203,14 +204,10 @@ public class ListBrandsFragment extends Fragment implements FakeSearchView.OnSea
             case R.id.cnt_menu_addFav:
                 Brand selectedBrand = gridViewBrandsAdapter.getItem(info.position);
                 user.getBrands().add(selectedBrand);
-                brands.remove(selectedBrand);
-                gridViewBrandsAdapter.getBrands().remove(selectedBrand);
-                gridViewBrandsAdapter.notifyDataSetChanged();
                 SMXL.getUserBrandDBManager().addUserBrand(user, selectedBrand);
-
-                gridViewBrands.clearChoices();
                 return true;
             case R.id.cnt_menu_website:
+                gridViewBrands.clearChoices();
                 String urlBrand = brands.get(info.position).getBrandWebsite();
                 if (urlBrand != null) {
                     if (!urlBrand.startsWith("http://") && !urlBrand.startsWith("https://")) {
@@ -221,7 +218,7 @@ public class ListBrandsFragment extends Fragment implements FakeSearchView.OnSea
                     browserIntent.putExtra("TITLE", brands.get(info.position).getBrand_name());
                     startActivity(browserIntent);
                 }
-                gridViewBrands.clearChoices();
+
                 return true;
             default:
                 return super.onContextItemSelected(item);
