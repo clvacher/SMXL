@@ -124,39 +124,12 @@ public class QuickMeasureCategoryFragment extends Fragment {
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     if (position > 0) {
                         setSpinnerEnabled(spinnerSize, true);
-                        Brand selectedItem = (Brand) spinnerBrand.getSelectedItem();
-                        ArrayList<BrandSizeGuideMeasuresRow> brandSizeGuideMeasuresRows = SMXL.getBrandSizeGuideDBManager().getBrandSizeGuideMeasureRowsByBrandAndGarmentType(selectedItem, allGarmentType.get(0));
+                        Brand selectedBrand = (Brand) spinnerBrand.getSelectedItem();
+                        String selectedCountry = (String) spinnerCountry.getSelectedItem();
+
                         spinnerSizeChoices.clear();
                         spinnerSizeChoices.add("Select Size");
-                        Log.d(Constants.TAG, parent.getSelectedItem().toString());
-                        switch (parent.getSelectedItem().toString().toUpperCase()) {
-                            case "UE":
-                                for (BrandSizeGuideMeasuresRow row : brandSizeGuideMeasuresRows) {
-                                    spinnerSizeChoices.add(row.getSizeUE());
-                                }
-                                break;
-                            case "UK":
-                                for (BrandSizeGuideMeasuresRow row : brandSizeGuideMeasuresRows) {
-                                    spinnerSizeChoices.add(row.getSizeUK());
-                                }
-                                break;
-                            case "SMXL":
-                                for (BrandSizeGuideMeasuresRow row : brandSizeGuideMeasuresRows) {
-                                    if (!spinnerCountryChoices.contains(row.getSizeSMXL()))
-                                        spinnerSizeChoices.add(row.getSizeSMXL());
-                                }
-                                break;
-                            case "US":
-                                for (BrandSizeGuideMeasuresRow row : brandSizeGuideMeasuresRows) {
-                                    spinnerSizeChoices.add(row.getSizeUS());
-                                }
-                                break;
-                            case "FR":
-                                for (BrandSizeGuideMeasuresRow row : brandSizeGuideMeasuresRows) {
-                                    spinnerSizeChoices.add(row.getSizeFR());
-                                }
-                                break;
-                        }
+                        spinnerSizeChoices.addAll(SMXL.getBrandSizeGuideDBManager().getSizeListByBrandAndGarmentTypeAndCountry(selectedBrand, allGarmentType.get(0),selectedCountry));
 
                     } else {
                         setSpinnerEnabled(spinnerSize, false);

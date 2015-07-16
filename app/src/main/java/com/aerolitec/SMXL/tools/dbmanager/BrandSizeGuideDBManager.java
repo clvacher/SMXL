@@ -384,4 +384,21 @@ public class BrandSizeGuideDBManager extends DBManager{
         return brandSizeGuideMeasuresRow;
 
     }
+
+    public ArrayList<String> getSizeListByBrandAndGarmentTypeAndCountry(Brand brand , GarmentType garmentType , String country){
+        open();
+        ArrayList<String> sizeList = new ArrayList<>();
+        String countrySize = "size_"+ country;
+        Cursor c;
+        c = db.rawQuery("SELECT DISTINCT "+countrySize +
+                " FROM "+TABLE_NAME+
+                " WHERE "+KEY_ID_GARMENT_TYPE_SIZE_GUIDE+" = "+ garmentType.getId_garment_type()+" AND "+KEY_ID_MARQUE_BRAND_SIZE_GUIDE+" = "+brand.getId_brand(), null);
+        boolean eof = c.moveToFirst();
+        while(eof) {
+            sizeList.add(c.getString(c.getColumnIndex(countrySize)));
+            eof = c.moveToNext();
+        }
+        close();
+        return sizeList;
+    }
 } // class BrandSizeGuideDBManager
