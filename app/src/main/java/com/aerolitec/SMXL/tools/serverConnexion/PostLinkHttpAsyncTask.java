@@ -3,7 +3,6 @@ package com.aerolitec.SMXL.tools.serverConnexion;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.UtilityMethodsv2;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
 
@@ -17,7 +16,7 @@ import org.json.JSONObject;
 import java.io.InputStream;
 
 /**
- * Created by Clément on 7/10/2015.
+ * Created by Clement on 7/10/2015.
  */
 public class PostLinkHttpAsyncTask extends AsyncTask<Integer, Void, String> {
 //TODO CAS DU PREMIER PROFIL!

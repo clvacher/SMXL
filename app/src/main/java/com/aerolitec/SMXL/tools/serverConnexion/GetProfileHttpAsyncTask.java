@@ -3,18 +3,14 @@ package com.aerolitec.SMXL.tools.serverConnexion;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.aerolitec.SMXL.model.MainUser;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.UtilityMethodsv2;
-import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONObject;
 
@@ -23,7 +19,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Created by Clément on 7/10/2015.
+ * Created by Clement on 7/10/2015.
  */
 public class GetProfileHttpAsyncTask extends AsyncTask<Integer,Void,String> {
 
