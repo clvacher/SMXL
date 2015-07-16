@@ -68,20 +68,7 @@ public class WardrobeDetailFragment extends Fragment {
         for(GarmentType gt : SMXL.getGarmentTypeDBManager().getAllGarmentTypesBySexOrderByPosition(user.getSexe())){
             linearLayout.addView(new CustomGlobalGarmentWardrobeLayout(getActivity().getApplicationContext(), gt));
         }
-        /*
-        linearLayout.addView(new CustomGlobalGarmentWardrobeLayout(getActivity().getApplicationContext(), SMXL.getCategoryGarmentDBManager().getCategoryGarment(TSHIRT)));
-        linearLayout.addView(new CustomGlobalGarmentWardrobeLayout(getActivity().getApplicationContext(), SMXL.getCategoryGarmentDBManager().getCategoryGarment(CHEMISE)));
-        linearLayout.addView(new CustomGlobalGarmentWardrobeLayout(getActivity().getApplicationContext(), SMXL.getCategoryGarmentDBManager().getCategoryGarment(PULL)));
-        linearLayout.addView(new CustomGlobalGarmentWardrobeLayout(getActivity().getApplicationContext(), SMXL.getCategoryGarmentDBManager().getCategoryGarment(BLOUSON)));
-        linearLayout.addView(new CustomGlobalGarmentWardrobeLayout(getActivity().getApplicationContext(), SMXL.getCategoryGarmentDBManager().getCategoryGarment(VESTE)));
-        linearLayout.addView(new CustomGlobalGarmentWardrobeLayout(getActivity().getApplicationContext(), SMXL.getCategoryGarmentDBManager().getCategoryGarment(PANTALON)));
-        if(user.getSexe()==2){
-            linearLayout.addView(new CustomGlobalGarmentWardrobeLayout(getActivity().getApplicationContext(), SMXL.getCategoryGarmentDBManager().getCategoryGarment(ROBE)));
-        }
-        linearLayout.addView(new CustomGlobalGarmentWardrobeLayout(getActivity().getApplicationContext(), SMXL.getCategoryGarmentDBManager().getCategoryGarment(CHAUSSURE)));
-        linearLayout.addView(new CustomGlobalGarmentWardrobeLayout(getActivity().getApplicationContext(), SMXL.getCategoryGarmentDBManager().getCategoryGarment(COSTUME)));
-        linearLayout.addView(new CustomGlobalGarmentWardrobeLayout(getActivity().getApplicationContext(), SMXL.getCategoryGarmentDBManager().getCategoryGarment(SOUSVET)));
-        */
+
     }
 
     @Override
