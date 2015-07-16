@@ -25,6 +25,7 @@ import com.aerolitec.SMXL.ui.activity.SuperNavigationActivity;
 import com.aerolitec.SMXL.ui.adapter.BrandAdapter;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -85,10 +86,15 @@ public class QuickMeasureCategoryFragment extends Fragment {
 
         if(!categoryGarment.getCategory_garment_name().equals("Shoes")) {
             List<Brand> brands = new ArrayList<>(user.getBrands());
-            brands.add(0, new Brand(0, "Brand"));
-
             List<Brand> allBrands = SMXL.getBrandSizeGuideDBManager().getAllBrandsByGarment(allGarmentType.get(0));
 
+            for (Iterator<Brand> brandIterator = brands.iterator(); brandIterator.hasNext();){
+                Brand brand = brandIterator.next();
+                if(!allBrands.contains(brand)){
+                    brandIterator.remove();
+                }
+            }
+            brands.add(0, new Brand(0, "Brand"));
             spinnerBrand.setAdapter(new BrandAdapter(getActivity(), R.layout.item_spinner_brand_category, brands));
             spinnerBrand.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
