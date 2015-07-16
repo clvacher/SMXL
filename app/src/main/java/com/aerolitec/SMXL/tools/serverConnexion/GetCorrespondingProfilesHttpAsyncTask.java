@@ -10,13 +10,12 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.io.InputStream;
 import java.util.ArrayList;
 
 /**
- * Created by Clément on 7/10/2015.
+ * Created by Clement on 7/10/2015.
  */
 public class GetCorrespondingProfilesHttpAsyncTask extends AsyncTask<Integer,Void,String> {
 
@@ -39,7 +38,7 @@ public class GetCorrespondingProfilesHttpAsyncTask extends AsyncTask<Integer,Voi
             default:
                 //code de l'interface pour reussite?
 
-                //obtention de tous les profils associés
+                //obtention de tous les profils associï¿½s
                 ArrayList<Integer> profileIds = getArrayListFromJsonString(result);
                 for(Integer i :profileIds){
                     new GetProfileHttpAsyncTask().execute(i);
