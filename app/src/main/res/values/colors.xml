@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="DefaultBackgroundColor">#EFE9D9</color>
+    <color name="DefaultBackgroundColor">#EFEFEF</color><!--EFE9D9-->
     <color name="SectionTitle">#FFEE511A</color>
     <color name="SectionSeparator">#FFA1A29E</color>
     <color name="MainText">#000000</color>
@@ -16,4 +16,6 @@
     <color name="separator">#d7d2ce</color>
     <color name="text_green">#48A288</color>
     <color name="measure_item_color">#aaee511a</color>
+    <color name="ButtonEnabled">#E84E1B</color>
+    <color name="ButtonDisabled">#c2c2c2</color>
 </resources>

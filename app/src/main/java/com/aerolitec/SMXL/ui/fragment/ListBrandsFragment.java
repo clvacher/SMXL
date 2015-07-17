@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
-import android.support.v7.internal.widget.AdapterViewCompat;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -24,13 +22,13 @@ import android.widget.Spinner;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.Brand;
-import com.aerolitec.SMXL.model.MainUser;
 import com.aerolitec.SMXL.model.User;
-import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
+import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.activity.BrowserActivity;
 import com.aerolitec.SMXL.ui.adapter.FavoriteCheckableBrandAdapter;
+import com.aerolitec.SMXL.ui.customLayout.CheckableBrandLayout;
 import com.github.leonardoxh.fakesearchview.FakeSearchView;
 
 import java.util.ArrayList;
@@ -84,7 +82,7 @@ public class ListBrandsFragment extends Fragment implements FakeSearchView.OnSea
         spinnerBrandsCategory = (Spinner) view.findViewById(R.id.spinnerBrandsCategory);
 
         brands = SMXL.getBrandDBManager().getAllBrands();
-        brands.removeAll(user.getBrands());
+
 
         final ArrayAdapter<String> adapterSpinner = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.item_spinner_brand_category, brandsCategory);
         spinnerBrandsCategory.setAdapter(adapterSpinner);
@@ -103,7 +101,6 @@ public class ListBrandsFragment extends Fragment implements FakeSearchView.OnSea
                     brands = SMXL.getBrandDBManager().getBrandsByBrandCategory(SMXL.getBrandDBManager().getAllBrandCategory().get(position - 1));//-1 car on a rajoute l'item d'en tete
                 } else {
                     brands = SMXL.getBrandDBManager().getAllBrands();
-                    brands.removeAll(user.getBrands());
                 }
 
                 gridViewBrandsAdapter.getBrands().clear();
@@ -124,6 +121,7 @@ public class ListBrandsFragment extends Fragment implements FakeSearchView.OnSea
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 getActivity().openContextMenu(view);
+
             }
         });
 
@@ -193,38 +191,42 @@ public class ListBrandsFragment extends Fragment implements FakeSearchView.OnSea
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
-        getActivity().getMenuInflater().inflate(R.menu.brand_context_menu,menu);
+        Brand selectedBrand = ((CheckableBrandLayout)((AdapterView.AdapterContextMenuInfo)menuInfo).targetView).getBrand();
+        if(!SMXL.getUserBrandDBManager().alreadyExistUserBrand(user,selectedBrand)){
+            getActivity().getMenuInflater().inflate(R.menu.brand_add_context_menu, menu);
+        }
+        else {
+            getActivity().getMenuInflater().inflate(R.menu.brand_remove_context_menu, menu);
+        }
     }
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        Brand selectedBrand = gridViewBrandsAdapter.getItem(info.position);
         switch(item.getItemId()){
             case R.id.cnt_menu_addFav:
-                Brand selectedBrand = gridViewBrandsAdapter.getItem(info.position);
-                user.getBrands().add(selectedBrand);
-                brands.remove(selectedBrand);
-                gridViewBrandsAdapter.getBrands().remove(selectedBrand);
-                gridViewBrandsAdapter.notifyDataSetChanged();
                 SMXL.getUserBrandDBManager().addUserBrand(user, selectedBrand);
-
-                gridViewBrands.clearChoices();
-                return true;
+                break;
             case R.id.cnt_menu_website:
-                String urlBrand = brands.get(info.position).getBrandWebsite();
+                String urlBrand =selectedBrand.getBrandWebsite();
                 if (urlBrand != null) {
                     if (!urlBrand.startsWith("http://") && !urlBrand.startsWith("https://")) {
                         urlBrand = "http://" + urlBrand;
                     }
                     Intent browserIntent = new Intent(getActivity(), BrowserActivity.class);
                     browserIntent.putExtra("URL", urlBrand);
-                    browserIntent.putExtra("TITLE", brands.get(info.position).getBrand_name());
+                    browserIntent.putExtra("TITLE", selectedBrand.getBrand_name());
                     startActivity(browserIntent);
                 }
-                gridViewBrands.clearChoices();
-                return true;
+                break;
+            case R.id.cnt_menu_removeFav:
+                SMXL.getUserBrandDBManager().deleteUserBrand(user, selectedBrand);
+                break;
             default:
                 return super.onContextItemSelected(item);
         }
+        gridViewBrands.clearChoices();
+        return true;
     }
 }

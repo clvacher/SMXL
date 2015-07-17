@@ -38,4 +38,13 @@ public abstract class SuperNavigationActivity extends MaterialNavigationDrawer {
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
     }
 
+    protected OnBackPressedListener onBackPressedListener;
+
+    public void setOnBackPressedListener(OnBackPressedListener onBackPressedListener) {
+        this.onBackPressedListener = onBackPressedListener;
+    }
+
+    public interface OnBackPressedListener {
+        void backPressed();
+    }
 }

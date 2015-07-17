@@ -5,11 +5,9 @@ import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 
-import com.aerolitec.SMXL.model.MainUser;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.UtilityMethodsv2;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
-import com.aerolitec.SMXL.tools.manager.UserManager;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -19,8 +17,6 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONObject;
 
 import java.io.InputStream;
-import java.util.Calendar;
-import java.util.Date;
 
 /**
  * Created by Clement on 5/18/2015.
@@ -76,7 +72,7 @@ public class PostProfileHttpAsyncTask extends AsyncTask<User, Void, String> {
                 jsonObject.accumulate("birthday", UtilityMethodsv2.reverseBirthdayOrder(birthday));
             }
             jsonObject.accumulate("sexe", user.getSexe());
-            jsonObject.accumulate("avatar", user.getAvatar());//TODO à changer avec l'adresse obtenue sur le serveur
+            jsonObject.accumulate("avatar", user.getAvatar());//TODO a changer avec l'adresse obtenue sur le serveur
             jsonObject.accumulate("description", user.getDescription());
             jsonObject.accumulate("height", user.getHeight());
             jsonObject.accumulate("weight", user.getWeight());

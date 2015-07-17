@@ -3,6 +3,8 @@ package com.aerolitec.SMXL.ui.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,7 @@ import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.Brand;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
+import com.aerolitec.SMXL.ui.activity.SuperNavigationActivity;
 import com.aerolitec.SMXL.ui.adapter.FavoriteCheckableBrandAdapter;
 
 import java.util.ArrayList;
@@ -23,7 +26,7 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class QuickSizeSelectBrandFragment extends Fragment {
+public class QuickSizeSelectBrandFragment extends Fragment implements SuperNavigationActivity.OnBackPressedListener{
     private QuickSizeFragment quickSizeFragment;
 
     private GridView gvBrands;
@@ -39,6 +42,7 @@ public class QuickSizeSelectBrandFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        ((SuperNavigationActivity) getActivity()).setOnBackPressedListener(this);
         return inflater.inflate(R.layout.fragment_add_garment_brand, container, false);
     }
 
@@ -158,5 +162,31 @@ public class QuickSizeSelectBrandFragment extends Fragment {
         brandsCategory.add(0,getResources().getString(R.string.select_category));
         return brandsCategory;
     }
+    @Override
+    public void backPressed() {
+        //TODO De la merde a changer
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentManager currentFragmentManager;
+        Fragment fragment = fragmentManager.findFragmentById(R.id.frame_container);
 
+        // Pour le quicksize dans l'acceuil
+        if( fragment instanceof TabsFragmentHomeDressingQuicksize) {
+            Fragment currentFragment = fragment.getChildFragmentManager().findFragmentByTag("quicksize");
+            currentFragmentManager = currentFragment.getFragmentManager();
+        }
+        // Pour le quicksize dans l'onglet
+        else {
+            currentFragmentManager = getActivity().getSupportFragmentManager();
+        }
+        FragmentTransaction fragmentTransaction = currentFragmentManager.beginTransaction();
+
+        fragmentTransaction.replace(R.id.frame_container, new QuickSizeFragment(),"quicksize");
+        fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onDestroyView() {
+        ((SuperNavigationActivity) getActivity()).setOnBackPressedListener(null);
+        super.onDestroyView();
+    }
 }

@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import com.aerolitec.SMXL.ui.fragment.QuickMeasureFragment;
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.MainUser;
 import com.aerolitec.SMXL.model.User;
@@ -29,6 +30,7 @@ import com.aerolitec.SMXL.ui.fragment.ListShopOnLineFragment;
 import com.aerolitec.SMXL.ui.fragment.MeasureDetailFragment;
 import com.aerolitec.SMXL.ui.fragment.ProfilesDetailFragment;
 import com.aerolitec.SMXL.ui.fragment.ProfilesFragment;
+import com.aerolitec.SMXL.ui.fragment.QuickSizeFragment;
 import com.aerolitec.SMXL.ui.fragment.SettingsFragment;
 import com.aerolitec.SMXL.ui.fragment.ShareProfileFragment;
 import com.aerolitec.SMXL.ui.fragment.SizeGuideFragment;
@@ -70,9 +72,11 @@ public class MainNavigationActivity extends SuperNavigationActivity implements O
     public void onBackPressed() {
         if(drawerOpen){
             drawer.closeDrawer();
-
         }
-        else {
+        else if(onBackPressedListener !=null){
+            onBackPressedListener.backPressed();
+        }
+        else{
             super.onBackPressed();
 
         }
@@ -159,7 +163,8 @@ public class MainNavigationActivity extends SuperNavigationActivity implements O
         // first section is loaded
 
 
-        MaterialSection sectionTest = this.newSection("Accueil", this.getResources().getDrawable(R.drawable.ic_action_settings), new TabsFragmentHomeDressingQuicksize(), false, menu);
+        MaterialSection sectionTest = this.newSection("Accueil", getResources().getDrawable(R.drawable.ic_menu_home), new TabsFragmentHomeDressingQuicksize(), false, menu);
+        //sectionTest.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
 
         MaterialSection sectionMesProfils = this.newSection(getResources().getString(R.string.my_profiles), this.getResources().getDrawable(R.drawable.ic_perm_group_social_info), new ProfilesFragment(), false, menu);
 
@@ -170,6 +175,7 @@ public class MainNavigationActivity extends SuperNavigationActivity implements O
 
         sectionMyProfile = this.newSection(getResources().getString(R.string.my_profile), this.getResources().getDrawable(R.drawable.avatar), new ProfilesDetailFragment(), false, menu);
 
+        MaterialSection sectionQuicksize = this.newSection(getResources().getString(R.string.quicksize), this.getResources().getDrawable(R.drawable.ic_launcher), new QuickSizeFragment(), false, menu);
         MaterialSection sectionMonDressing = this.newSection(getResources().getString(R.string.my_wardrobe), this.getResources().getDrawable(R.drawable.robe_lowpx), new WardrobeDetailFragment(), false, menu);
         MaterialSection sectionMesMesures = this.newSection(getResources().getString(R.string.measurements), this.getResources().getDrawable(R.drawable.tape_measure), new MeasureDetailFragment(), false, menu);
 
@@ -208,8 +214,6 @@ public class MainNavigationActivity extends SuperNavigationActivity implements O
 
         MaterialSection section6 = this.newSection(getResources().getString(R.string.settings), this.getResources().getDrawable(R.drawable.ic_action_settings), new SettingsFragment(), false, menu);
         section6.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
-
-
 
 
 

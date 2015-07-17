@@ -4,6 +4,9 @@ package com.aerolitec.SMXL.ui.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +19,8 @@ import com.aerolitec.SMXL.model.BrandSizeGuideMeasuresRow;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.activity.BrowserActivity;
+import com.aerolitec.SMXL.ui.activity.MainNavigationActivity;
+import com.aerolitec.SMXL.ui.activity.SuperNavigationActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,7 +28,7 @@ import java.util.HashMap;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class QuickSizeSummaryFragment extends Fragment {
+public class QuickSizeSummaryFragment extends Fragment implements MainNavigationActivity.OnBackPressedListener{
     private QuickSizeFragment quickSizeFragment;
 
     Button shopButton;
@@ -79,7 +84,7 @@ public class QuickSizeSummaryFragment extends Fragment {
                 }
             }
         });
-
+        ((SuperNavigationActivity) getActivity()).setOnBackPressedListener(this);
         super.onViewCreated(view, savedInstanceState);
     }
 
@@ -100,5 +105,33 @@ public class QuickSizeSummaryFragment extends Fragment {
                 ((TableRow)tv.getParent()).setVisibility(View.GONE);
             }
         }
+    }
+
+    @Override
+    public void backPressed() {
+        //TODO De la merde a changer
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentManager currentFragmentManager;
+        Fragment fragment = fragmentManager.findFragmentById(R.id.frame_container);
+
+        // Pour le quicksize dans l'acceuil
+        if( fragment instanceof TabsFragmentHomeDressingQuicksize) {
+            Fragment currentFragment = fragment.getChildFragmentManager().findFragmentByTag("quicksize");
+            currentFragmentManager = currentFragment.getFragmentManager();
+        }
+        // Pour le quicksize dans l'onglet
+        else {
+            currentFragmentManager = getActivity().getSupportFragmentManager();
+        }
+        FragmentTransaction fragmentTransaction = currentFragmentManager.beginTransaction();
+
+        fragmentTransaction.replace(R.id.frame_container, new QuickSizeFragment(),"quicksize");
+        fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onDestroyView() {
+        ((SuperNavigationActivity) getActivity()).setOnBackPressedListener(null);
+        super.onDestroyView();
     }
 }
