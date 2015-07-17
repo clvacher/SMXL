@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/cnt_menu_addFav"
+        android:title="@string/addBrandToFavorite"
+        />
+
+    <item
+        android:id="@+id/cnt_menu_website"
+        android:title="@string/goToWebsite"
+        />
+</menu>

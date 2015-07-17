@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:background="@color/DefaultBackgroundColor"
+    android:padding="10dp"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/libPointure"
+        android:id="@+id/tv_pointure" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="5"
+        android:gravity="right"
+        android:id="@+id/editSize" />
+
+    <ImageView
+        android:maxHeight="70dp"
+        android:maxWidth="70dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@id/imageGarment"
+        android:src="@drawable/pantalon_lowpx"
+        android:adjustViewBounds="true"
+        android:layout_gravity="right" />
+
+</LinearLayout>

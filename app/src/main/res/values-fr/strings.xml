@@ -187,5 +187,6 @@
 
     <string name="cm">cm</string>
     <string name="shoe_size">pointure</string>
-    <string name="quicksize">Quicksize</string>
+    <string name="quicksize">QuickSize</string>
+    <string name="removeBrand">Retirer des Marques Favorites</string>
 </resources>

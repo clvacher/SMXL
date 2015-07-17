@@ -70,13 +70,13 @@ public class MainNavigationActivity extends SuperNavigationActivity implements O
     @Override
     public void onBackPressed() {
         if(drawerOpen){
-            super.onBackPressed();
+            drawer.closeDrawer();
         }
         else if(onBackPressedListener !=null){
             onBackPressedListener.backPressed();
         }
         else{
-            drawer.openDrawer();
+            super.onBackPressed();
 
         }
         updateHamburger();
@@ -209,8 +209,6 @@ public class MainNavigationActivity extends SuperNavigationActivity implements O
 
         MaterialSection section6 = this.newSection(getResources().getString(R.string.settings), this.getResources().getDrawable(R.drawable.ic_action_settings), new SettingsFragment(), false, menu);
         section6.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
-
-        MaterialSection testSection = this.newSection("Test",this.getResources().getDrawable(R.drawable.ic_launcher), new QuickMeasureFragment(),false,menu);
 
 
 

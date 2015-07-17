@@ -180,7 +180,8 @@ public class SelectBrandsFragment extends Fragment implements FakeSearchView.OnS
             getActivity().onBackPressed();
         }
         if(superNavigationActivity instanceof CreateUpdateProfileActivity) {
-            superNavigationActivity.finish();
+            getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).add(R.id.frame_container, new QuickMeasureFragment()).commit();
+            //superNavigationActivity.finish();
         }
         else{
             getActivity().onBackPressed();

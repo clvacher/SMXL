@@ -36,7 +36,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView1"
-                    android:text="Quicksize"
+                    android:text="@string/quicksize"
                     android:textStyle="bold"
                     android:textColor="@android:color/white"
                     android:layout_marginRight="10dp"
