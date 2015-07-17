@@ -63,19 +63,19 @@ public class QuickSizeSelectGarmentFragment extends Fragment {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (checkValidMeasure()) {
+                //if (checkValidMeasure()) {
                     quickSizeFragment.setSelectedGarmentType((GarmentType) parent.getItemAtPosition(position));
                     quickSizeFragment.getChildFragmentManager().beginTransaction()
                             .addToBackStack(null)
                             .replace(R.id.containerQuickSizeFragment, new QuickSizeSelectBrandFragment(), "brand")
                             .commit();
-                } else {
+                /*} else {
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                     builder.setMessage("Impossible d'effectuer une quicksize sans que les tailles suivantes soit remplie(s).")
                             .setTitle("Mesures manquantes");
                     AlertDialog dialog = builder.create();
                     dialog.show();
-                }
+                }*/
             }
         });
     }
