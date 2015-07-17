@@ -162,7 +162,8 @@ public class MainNavigationActivity extends SuperNavigationActivity implements O
         // first section is loaded
 
 
-        MaterialSection sectionTest = this.newSection("Accueil", this.getResources().getDrawable(R.drawable.ic_action_settings), new TabsFragmentHomeDressingQuicksize(), false, menu);
+        MaterialSection sectionTest = this.newSection("Accueil", getResources().getDrawable(R.drawable.ic_menu_home), new TabsFragmentHomeDressingQuicksize(), false, menu);
+        //sectionTest.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
 
         MaterialSection sectionMesProfils = this.newSection(getResources().getString(R.string.my_profiles), this.getResources().getDrawable(R.drawable.ic_perm_group_social_info), new ProfilesFragment(), false, menu);
 
