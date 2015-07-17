@@ -70,9 +70,11 @@ public class MainNavigationActivity extends SuperNavigationActivity implements O
     public void onBackPressed() {
         if(drawerOpen){
             drawer.closeDrawer();
+
         }
-        else{
+        else {
             super.onBackPressed();
+
         }
         updateHamburger();
     }
