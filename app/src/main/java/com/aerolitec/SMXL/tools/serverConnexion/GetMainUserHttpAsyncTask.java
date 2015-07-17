@@ -66,7 +66,7 @@ public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
             if (fragment instanceof LoginCreateAccountInterface)
                 loginCreateAccountInterface = (LoginCreateAccountInterface) fragment;
             else
-                throw new Exception("Activity using GetMainUserHttpAsyncTask must implement LoginCreateAccountInterface");
+                throw new Exception("Fragment using GetMainUserHttpAsyncTask must implement LoginCreateAccountInterface");
         }
         catch (Exception e){
             e.printStackTrace();
@@ -123,6 +123,8 @@ public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
 
                     String birthdayString = String.format("%02d", cal.get(Calendar.DAY_OF_MONTH))+"-"+String.format("%02d", cal.get(Calendar.MONTH) + 1)+"-"+cal.get(Calendar.YEAR);
 
+
+                    //TODO a changer par le vrai profil!
                     UserManager.get().setUser(new User(
                             jsonMainUser.optString("firstname"),
                             jsonMainUser.optString("name"),

@@ -30,6 +30,7 @@ import com.aerolitec.SMXL.ui.fragment.MeasureDetailFragment;
 import com.aerolitec.SMXL.ui.fragment.ProfilesDetailFragment;
 import com.aerolitec.SMXL.ui.fragment.ProfilesFragment;
 import com.aerolitec.SMXL.ui.fragment.SettingsFragment;
+import com.aerolitec.SMXL.ui.fragment.ShareProfileFragment;
 import com.aerolitec.SMXL.ui.fragment.SizeGuideFragment;
 import com.aerolitec.SMXL.ui.fragment.TabsFragmentHomeDressingQuicksize;
 import com.aerolitec.SMXL.ui.fragment.WardrobeDetailFragment;
@@ -192,6 +193,9 @@ public class MainNavigationActivity extends SuperNavigationActivity implements O
         //MaterialSection sectionMagazines = this.newSection("Magazines", new EnChantierFragment(), false, menu);
 
         MaterialSection sectionShops = this.newSection("Shop On Line", this.getResources().getDrawable(R.drawable.shopping_bag) ,new ListShopOnLineFragment(), false, menu);
+
+        MaterialSection section7 = this.newSection(getResources().getString(R.string.share), this.getResources().getDrawable(android.R.drawable.ic_menu_share), new ShareProfileFragment(), false, menu);
+        section7.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
 
         this.newDevisor(menu);
 

@@ -3,19 +3,14 @@ package com.aerolitec.SMXL.tools.serverConnexion;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.aerolitec.SMXL.model.MainUser;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.UtilityMethodsv2;
-import com.aerolitec.SMXL.tools.manager.MainUserManager;
-import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONObject;
 
@@ -24,32 +19,33 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Created by Clément on 7/10/2015.
+ * Created by Clément on 7/17/2015.
  */
-public class GetProfileHttpAsyncTask extends AsyncTask<Integer,Void,String> {
+public class GetSharedProfileHttpAsyncTask extends AsyncTask<Integer, Void, String> {
 
-    public static final String SERVER_ADDRESS_GET_PROFILE_PART1 = "http://api.smxl-app.com/profiles/";
-    public static final String SERVER_ADDRESS_GET_PROFILE_PART2 = "/id.html";
-
+    public static final String SERVER_ADDRESS_GET_SHARED_PROFILE_PART_1 = "api.smxl-app.com/profiles/";
+    public static final String SERVER_ADDRESS_GET_SHARED_PROFILE_PART_2 = "/obtain.json";
 
     @Override
     protected String doInBackground(Integer... params) {
-        int profileId = params[0];
-        String url = SERVER_ADDRESS_GET_PROFILE_PART1+profileId+SERVER_ADDRESS_GET_PROFILE_PART2;
+        int sharedCode = params[0];
+
+        String url = SERVER_ADDRESS_GET_SHARED_PROFILE_PART_1+sharedCode+SERVER_ADDRESS_GET_SHARED_PROFILE_PART_2;
+
         return GET(url);
     }
 
     @Override
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
-        switch (result){
+        switch(result){
             case "null":
-            case "Did not work!":
-                //error message with interface
+            case "Did not work":
                 break;
-            default :
+            default:
+
                 JSONObject jsonUser;
-                try {
+                try{
                     Log.d("resultValue",result);
                     jsonUser = new JSONObject(result);
                     Log.d("GetUser AsyncTask",jsonUser.toString());
@@ -70,8 +66,6 @@ public class GetProfileHttpAsyncTask extends AsyncTask<Integer,Void,String> {
                         user = SMXL.getUserDBManager().createUser(jsonUser.optString("firstname"),
                                 jsonUser.optString("lastname"), birthdayString, jsonUser.optInt("sexe"), jsonUser.optString("avatar"), jsonUser.optString("description"));
                         Log.d(Constants.TAG, "New profile created : " + user.toString());
-
-                        MainUserManager.get().getMainUser().addProfile(Integer.parseInt(jsonUser.optString("id")));
                     } catch (Exception e) {
                         Log.d(Constants.TAG, "Create user with error : " + e.getMessage());
                     }

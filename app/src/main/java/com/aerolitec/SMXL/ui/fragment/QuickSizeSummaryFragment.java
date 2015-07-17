@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
@@ -26,6 +27,7 @@ public class QuickSizeSummaryFragment extends Fragment {
     private QuickSizeFragment quickSizeFragment;
 
     Button shopButton;
+    TextView tvSMXL,tvFR,tvUE,tvUS,tvUK;
 
     public QuickSizeSummaryFragment() {
         // Required empty public constructor
@@ -46,11 +48,11 @@ public class QuickSizeSummaryFragment extends Fragment {
 
         shopButton = (Button)view.findViewById(R.id.buttonShopQuickSizeSummary);
 
-        TextView tvSMXL =(TextView) view.findViewById(R.id.valueSMXL);
-        TextView tvFR =(TextView) view.findViewById(R.id.valueFR);
-        TextView tvUE =(TextView) view.findViewById(R.id.valueUE);
-        TextView tvUS =(TextView) view.findViewById(R.id.valueUS);
-        TextView tvUK =(TextView) view.findViewById(R.id.valueUK);
+        tvSMXL =(TextView) view.findViewById(R.id.valueSMXL);
+        tvFR =(TextView) view.findViewById(R.id.valueFR);
+        tvUE =(TextView) view.findViewById(R.id.valueUE);
+        tvUS =(TextView) view.findViewById(R.id.valueUS);
+        tvUK =(TextView) view.findViewById(R.id.valueUK);
 
 
         HashMap<String,String> results = computeMeasures();
@@ -60,6 +62,7 @@ public class QuickSizeSummaryFragment extends Fragment {
         tvUS.setText(results.get("US"));
         tvUK.setText(results.get("UK"));
 
+        hideEmptyRows(new ArrayList<TextView>(){{add(tvSMXL);add(tvFR);add(tvUE);add(tvUS);add(tvUK);}});
 
         shopButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,5 +92,13 @@ public class QuickSizeSummaryFragment extends Fragment {
         BrandSizeGuideMeasuresRow brandSizeGuideMeasuresRow = BrandSizeGuideMeasuresRow.getClosestRowToMeasures(brandSizeGuideMeasuresRows, UserManager.get().getUser());
 
         return brandSizeGuideMeasuresRow.getCorrespondingSizes();
+    }
+
+    private void hideEmptyRows(ArrayList<TextView> alTv){
+        for(TextView tv : alTv){
+            if(tv.getText().equals("")){
+                ((TableRow)tv.getParent()).setVisibility(View.GONE);
+            }
+        }
     }
 }

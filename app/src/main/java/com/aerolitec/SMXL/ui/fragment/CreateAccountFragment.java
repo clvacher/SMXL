@@ -16,11 +16,13 @@ import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.tools.serverConnexion.GetMainUserHttpAsyncTask;
 import com.aerolitec.SMXL.tools.serverConnexion.LoginCreateAccountInterface;
 import com.aerolitec.SMXL.tools.serverConnexion.PostMainUserHttpAsyncTask;
+import com.aerolitec.SMXL.tools.serverConnexion.PostProfileHttpAsyncTask;
+import com.aerolitec.SMXL.tools.serverConnexion.PostProfileInterface;
 import com.aerolitec.SMXL.ui.activity.CreateUpdateProfileActivity;
 import com.aerolitec.SMXL.ui.activity.MainNavigationActivity;
 
 
-public class CreateAccountFragment extends SuperLoginCreateAccountFragment implements LoginCreateAccountInterface{
+public class CreateAccountFragment extends SuperLoginCreateAccountFragment implements LoginCreateAccountInterface,PostProfileInterface{
 
     private static final int CREATE_ACCOUNT=1;
 
@@ -76,11 +78,10 @@ public class CreateAccountFragment extends SuperLoginCreateAccountFragment imple
         switch(requestCode){
             case CREATE_ACCOUNT:
                 if(resultCode== Activity.RESULT_OK) {
+                    //sets up the id of the main profile (local only)
                     MainUserManager.get().getMainUser().setMainProfile(UserManager.get().getUser());
-                    new PostMainUserHttpAsyncTask(getActivity()).execute();
-                    getActivity().finish();
-                    Intent intent = new Intent(getActivity().getApplicationContext(), MainNavigationActivity.class);
-                    startActivity(intent);
+
+                    new PostProfileHttpAsyncTask(this).execute(UserManager.get().getUser());
                 }
                 break;
         }
@@ -106,5 +107,21 @@ public class CreateAccountFragment extends SuperLoginCreateAccountFragment imple
     @Override
     public void wrongPassword() {
         accountRetrieved(null);
+    }
+
+    @Override
+    public void onProfilePosted(Integer ProfileId) {
+
+        new PostMainUserHttpAsyncTask(getActivity()).execute();
+
+        //starts next activity
+        getActivity().finish();
+        Intent intent = new Intent(getActivity().getApplicationContext(), MainNavigationActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onPostProfileFailure(String errorMsg) {
+        //TODO display errorMsg with Toast
     }
 }

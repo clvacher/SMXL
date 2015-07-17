@@ -187,4 +187,10 @@
     <string name="shoe_size">size</string>
 
 
+    <string name="shareProfile">Share your main profile!</string>
+    <string name="code">Code : </string>
+    <string name="obtainProfile">Obtain a friend\'s profile by entering his code here :</string>
+    <string name="getProfile">Get!</string>
+    <string name="share">Share</string>
+
 </resources>

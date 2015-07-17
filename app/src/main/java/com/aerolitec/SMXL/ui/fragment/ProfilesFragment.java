@@ -11,9 +11,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.User;
+import com.aerolitec.SMXL.tools.manager.UserManager;
+import com.aerolitec.SMXL.tools.serverConnexion.PostLinkHttpAsyncTask;
+import com.aerolitec.SMXL.tools.serverConnexion.PostProfileHttpAsyncTask;
+import com.aerolitec.SMXL.tools.serverConnexion.PostProfileInterface;
 import com.aerolitec.SMXL.tools.services.OnProfileSelected;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.activity.CreateUpdateProfileActivity;
@@ -23,9 +28,10 @@ import com.aerolitec.SMXL.ui.fragment.dialog.ConfirmDialogFragment;
 
 import java.util.ArrayList;
 
-public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.ConfirmDialogListener{
+public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.ConfirmDialogListener,PostProfileInterface{
 
     private final static int DELETE_PROFILE = 1;
+    private final static int CREATE_NEW_PROFILE = 2;
 
     private Fragment fragment = this;
     private View view;
@@ -126,11 +132,22 @@ public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.
             }
             else{
                 Intent intent = new Intent(getActivity().getApplicationContext(), CreateUpdateProfileActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent,CREATE_NEW_PROFILE);
+
 
             }
         }
     };
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        //registers the user on the server if the creation was successful
+        if(requestCode == CREATE_NEW_PROFILE && resultCode==Activity.RESULT_OK){
+            new PostProfileHttpAsyncTask(this).execute(UserManager.get().getUser());
+        }
+    }
 
     private OnProfileSelected itemProfileListener;
 
@@ -154,4 +171,13 @@ public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.
     }
 
 
+    @Override
+    public void onProfilePosted(Integer profileId) {
+        new PostLinkHttpAsyncTask().execute(profileId);
+    }
+
+    @Override
+    public void onPostProfileFailure(String errorMsg) {
+        //TODO toast message
+    }
 }
