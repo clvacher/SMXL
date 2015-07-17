@@ -72,6 +72,7 @@ public class GetSharingCodeHttpAsyncTask extends AsyncTask<Integer, Void, String
             jsonObject.accumulate("user",userid);
 
             json = jsonObject.toString();
+            Log.d("jsonObject getsharing",json);
         }
         catch (Exception e){
             e.printStackTrace();
@@ -90,6 +91,10 @@ public class GetSharingCodeHttpAsyncTask extends AsyncTask<Integer, Void, String
                 getSharingCodeInterface.onServerError("An error occured while trying to get the sharing code");
                 break;
             default:
+                if(result.startsWith("{\"error\"")){
+                    Log.d("error","something happened");
+                    break;
+                }
                 int sharingCode = Integer.parseInt(result.substring(1,result.length()-1));
                 Log.d("sharing code :",sharingCode+"");
 

@@ -111,6 +111,11 @@ public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
                 try {
                     Log.d("resultValue",result);
                     jsonMainUser = new JSONObject(result);
+
+                    int idMainProfile = jsonMainUser.optInt("mainprofile");
+
+                    jsonMainUser = new JSONObject(jsonMainUser.optString("0"));
+
                     Log.d("GetUser AsyncTask",jsonMainUser.toString());
 
                     /* Obtainment of the user's birthday */
@@ -138,6 +143,7 @@ public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
                             UserManager.get().getUser()
                             );
                     mainUser.setServerId(jsonMainUser.optInt("id"));
+                    mainUser.addProfile(idMainProfile);
 
                     Log.d("GetUser AsyncTask",mainUser.toString());
 
@@ -170,8 +176,8 @@ public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
                 result = UtilityMethodsv2.convertInputStreamToString(inputStream);
 
                 //converts the result to a JSON-convertible String
-                if(!result.equals("wrong email") && !result.equals("wrong password") && !result.equals("null"))
-                    result = result.substring(1,result.length()-1);
+//                if(!result.equals("wrong email") && !result.equals("wrong password") && !result.equals("null"))
+//                    result = result.substring(1,result.length()-1);
             }
 
             else{

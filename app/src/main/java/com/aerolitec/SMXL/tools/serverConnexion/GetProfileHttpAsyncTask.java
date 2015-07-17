@@ -46,6 +46,10 @@ public class GetProfileHttpAsyncTask extends AsyncTask<Integer,Void,String> {
                 //error message with interface
                 break;
             default :
+                if(result.startsWith("{\"error\":{")) {
+                    break;
+                }
+
                 JSONObject jsonUser;
                 try {
                     Log.d("resultValue",result);
@@ -69,7 +73,7 @@ public class GetProfileHttpAsyncTask extends AsyncTask<Integer,Void,String> {
                                 jsonUser.optString("lastname"), birthdayString, jsonUser.optInt("sexe"), jsonUser.optString("avatar"), jsonUser.optString("description"));
                         Log.d(Constants.TAG, "New profile created : " + user.toString());
 
-                        MainUserManager.get().getMainUser().addProfile(Integer.parseInt(jsonUser.optString("id")));
+                        MainUserManager.get().getMainUser().addProfile(jsonUser.optInt("id"));
                     } catch (Exception e) {
                         Log.d(Constants.TAG, "Create user with error : " + e.getMessage());
                     }

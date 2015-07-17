@@ -23,7 +23,7 @@ import java.util.Date;
  */
 public class GetSharedProfileHttpAsyncTask extends AsyncTask<Integer, Void, String> {
 
-    public static final String SERVER_ADDRESS_GET_SHARED_PROFILE_PART_1 = "api.smxl-app.com/profiles/";
+    public static final String SERVER_ADDRESS_GET_SHARED_PROFILE_PART_1 = "http://api.smxl-app.com/profiles/";
     public static final String SERVER_ADDRESS_GET_SHARED_PROFILE_PART_2 = "/obtain.json";
 
     @Override
