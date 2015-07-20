@@ -41,6 +41,8 @@ public class ProfilesDetailFragment extends Fragment{
 
     private ArrayList<Brand> userBrands;
 
+    RelativeLayout quickSizeLayout;
+
     public ProfilesDetailFragment() {
         // Required empty public constructor
     }
@@ -107,7 +109,13 @@ public class ProfilesDetailFragment extends Fragment{
         });
 
         ImageView noClickZone=(ImageView) view.findViewById(R.id.noClickZone);
-        RelativeLayout quicksizeLayout=(RelativeLayout) view.findViewById(R.id.quicksize);
+        quickSizeLayout=(RelativeLayout) view.findViewById(R.id.quicksize);
+        quickSizeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.frame_container,new QuickSizeFragment()).commit();
+            }
+        });
 
         noClickZone.setOnClickListener(new View.OnClickListener() {
             @Override

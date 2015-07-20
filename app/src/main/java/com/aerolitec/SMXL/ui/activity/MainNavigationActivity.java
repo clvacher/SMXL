@@ -80,7 +80,7 @@ public class MainNavigationActivity extends SuperNavigationActivity implements O
             super.onBackPressed();
 
         }
-        updateHamburger();
+        //updateHamburger();
     }
 
     @Override
