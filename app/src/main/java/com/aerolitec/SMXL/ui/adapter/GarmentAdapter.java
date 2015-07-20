@@ -3,6 +3,7 @@ package com.aerolitec.SMXL.ui.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.UserClothes;
 import com.aerolitec.SMXL.ui.SMXL;
+import com.aerolitec.SMXL.ui.activity.AddGarmentActivity;
 import com.aerolitec.SMXL.ui.activity.BrowserActivity;
 
 import java.util.ArrayList;
@@ -30,7 +32,7 @@ public class GarmentAdapter extends ArrayAdapter<UserClothes> {
     }
 
     @Override
-    public View getView(int position, View convertView, final ViewGroup parent) {
+    public View getView(final int position, View convertView, final ViewGroup parent) {
         ViewHolder holder;
         if (convertView == null){
             LayoutInflater mInflater = (LayoutInflater)
@@ -38,7 +40,6 @@ public class GarmentAdapter extends ArrayAdapter<UserClothes> {
             convertView = mInflater.inflate(R.layout.garment_item, null);
             holder = new ViewHolder();
             convertView.setTag(holder);
-            //holder.tvTypeGarment = (TextView) convertView.findViewById(R.id.tvNameGarment);
             holder.tvBrand = (TextView) convertView.findViewById(R.id.tvBrandGarment);
             holder.tvSize = (TextView) convertView.findViewById(R.id.tvSize);
             holder.shop = (Button) convertView.findViewById(R.id.buttonShopItemGarment);
@@ -50,9 +51,24 @@ public class GarmentAdapter extends ArrayAdapter<UserClothes> {
         final UserClothes clothes = getItem(position);
 
 
-        //holder.tvTypeGarment.setText(context.getResources().getIdentifier(clothes.getGarmentType().getType(),"string",context.getPackageName()));
         holder.tvBrand.setText(clothes.getBrand().getBrand_name());
         holder.tvSize.setText(clothes.getSize());
+
+        View.OnClickListener onClickListenerEditGarment = (new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("userClothes", "CLICK");
+
+                Intent intent = new Intent(getContext(), AddGarmentActivity.class);
+                intent.putExtra("userClothes", (UserClothes) getItem(position));
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                getContext().startActivity(intent);
+            }
+
+        });
+
+        holder.tvBrand.setOnClickListener(onClickListenerEditGarment);
+        holder.tvSize.setOnClickListener(onClickListenerEditGarment);
 
         holder.shop.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,7 +110,6 @@ public class GarmentAdapter extends ArrayAdapter<UserClothes> {
     }
 
     public static class ViewHolder {
-        TextView tvTypeGarment;
         TextView tvBrand;
         TextView tvSize;
         Button shop;
