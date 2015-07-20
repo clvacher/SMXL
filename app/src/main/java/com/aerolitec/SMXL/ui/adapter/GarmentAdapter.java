@@ -70,6 +70,8 @@ public class GarmentAdapter extends ArrayAdapter<UserClothes> {
         holder.tvBrand.setOnClickListener(onClickListenerEditGarment);
         holder.tvSize.setOnClickListener(onClickListenerEditGarment);
 
+        //
+
         holder.shop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
