@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
@@ -23,6 +24,7 @@ public class QuickSizeFragment extends Fragment {
 
     private TextView tvBrand, tvGarment;
     private ImageView ivGarment;
+    private RelativeLayout summary;
 
     public GarmentType getSelectedGarmentType() {
         return selectedGarmentType;
@@ -32,6 +34,7 @@ public class QuickSizeFragment extends Fragment {
         this.selectedGarmentType = selectedGarmentType;
         tvGarment.setText(getResources().getIdentifier(selectedGarmentType.getType(),"string",getActivity().getPackageName()));
         ivGarment.setImageResource(selectedGarmentType.getCategoryGarment().getIcon());
+        summary.setVisibility(View.VISIBLE);
     }
 
     public Brand getSelectedBrand() {
@@ -63,7 +66,8 @@ public class QuickSizeFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        summary = (RelativeLayout)view.findViewById(R.id.layoutSummary);
+        summary.setVisibility(View.GONE);
         ivGarment = (ImageView) view.findViewById(R.id.garmentIcon);
         tvGarment = (TextView) view.findViewById(R.id.garmentType);
         tvBrand = (TextView) view.findViewById(R.id.garmentBrand);

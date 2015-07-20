@@ -200,5 +200,6 @@
     <string name="max_brands_selected">You already have 5 Favorites Brands .</string>
     <string name="not_enough_brands_selected">Please choose more Brands .</string>
     <string name="ok">OK !</string>
+    <string name="select_brand_popup_message">Please choose from 2 to 5 Favorites Brands</string>
 
 </resources>

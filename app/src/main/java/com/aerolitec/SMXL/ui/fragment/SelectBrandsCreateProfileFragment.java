@@ -18,7 +18,7 @@ public class SelectBrandsCreateProfileFragment extends SelectBrandsFragment{
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
         gridViewBrands.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long mylng) {
@@ -51,8 +51,9 @@ public class SelectBrandsCreateProfileFragment extends SelectBrandsFragment{
             }
         });
 
-        builder.setTitle(R.string.step + "1/2")
-                .setMessage(R.string.title_activity_select_brands)
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle(getResources().getString(R.string.step) + " 1/2")
+                .setMessage(R.string.select_brand_popup_message)
                 .setIcon(R.drawable.ic_launcher)
                 .setNeutralButton(R.string.ok, new DialogInterface.OnClickListener() {
                     @Override

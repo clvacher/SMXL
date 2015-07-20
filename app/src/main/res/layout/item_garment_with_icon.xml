@@ -5,11 +5,12 @@
     android:layout_gravity="center">
 
     <ImageView
-        android:layout_width="80dp"
+        android:layout_width="50dp"
         android:layout_gravity="center"
-        android:layout_height="80dp"
+        android:layout_height="50dp"
         android:layout_weight="2"
-        android:id="@+id/imageViewGarmentItemIcon"/>
+        android:id="@+id/imageViewGarmentItemIcon"
+        android:src="@drawable/chemise_gris" />
 
     <TextView
         android:layout_gravity="center"

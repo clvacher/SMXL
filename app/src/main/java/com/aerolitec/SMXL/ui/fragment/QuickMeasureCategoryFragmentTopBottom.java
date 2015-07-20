@@ -184,56 +184,58 @@ public class QuickMeasureCategoryFragmentTopBottom extends Fragment {
     public HashMap<String,Double> onMeasureSelected(){
 
         HashMap<String,Double> result= new HashMap<>();
-        String selectedCountry = (String) spinnerCountry.getSelectedItem();
-        String selectedSize = (String) spinnerSize.getSelectedItem();
-        List<BrandSizeGuideMeasuresRow> brandSizeGuideMeasuresRowList = SMXL.getBrandSizeGuideDBManager().getBrandSizeGuideMeasureRowsByBrandAndGarmentTypeAndCountryAndSize(selectedBrand,garmentType,selectedCountry,selectedSize);
+        if(spinnerCountry.getSelectedItemPosition()!=0 && spinnerSize.getSelectedItemPosition()!=0) {
+            String selectedCountry = (String) spinnerCountry.getSelectedItem();
+            String selectedSize = (String) spinnerSize.getSelectedItem();
+            List<BrandSizeGuideMeasuresRow> brandSizeGuideMeasuresRowList = SMXL.getBrandSizeGuideDBManager().getBrandSizeGuideMeasureRowsByBrandAndGarmentTypeAndCountryAndSize(selectedBrand, garmentType, selectedCountry, selectedSize);
 
-        Log.d(Constants.TAG,"Size of brandSizeGuideMeasure : " + brandSizeGuideMeasuresRowList.size());
-        switch(garmentType.getCategoryGarment().getCategory_garment_name()){
-            case "Tshirt":
-                double totalChest = 0.0;
-                int nb_measureChest = 0;
-                for(BrandSizeGuideMeasuresRow row : brandSizeGuideMeasuresRowList){
-                    if(row.getChest() !=0) {
-                        totalChest += row.getChest();
-                        nb_measureChest++;
+            Log.d(Constants.TAG, "Size of brandSizeGuideMeasure : " + brandSizeGuideMeasuresRowList.size());
+            switch (garmentType.getCategoryGarment().getCategory_garment_name()) {
+                case "Tshirt":
+                    double totalChest = 0.0;
+                    int nb_measureChest = 0;
+                    for (BrandSizeGuideMeasuresRow row : brandSizeGuideMeasuresRowList) {
+                        if (row.getChest() != 0) {
+                            totalChest += row.getChest();
+                            nb_measureChest++;
+                        }
                     }
-                }
-                if(nb_measureChest!=0) {
-                    totalChest /= nb_measureChest;
-                }
-                result.put("chest",totalChest);
-                Log.d(Constants.TAG, "Chest : " + totalChest);
-                break;
-            case "Pants_Shorts":
-                double totalHips = 0.0;
-                double totalWaist = 0.0;
-                int nb_measureHips = 0;
-                int nb_measureWaist = 0;
-                for(BrandSizeGuideMeasuresRow row : brandSizeGuideMeasuresRowList){
-                    if(row.getHips() != 0.0){
-                        totalHips += row.getHips();
-                        nb_measureHips++;
+                    if (nb_measureChest != 0) {
+                        totalChest /= nb_measureChest;
                     }
-                    if(row.getWaist()!=0.0) {
-                        totalWaist += row.getWaist();
-                        nb_measureWaist++;
+                    result.put("chest", totalChest);
+                    Log.d(Constants.TAG, "Chest : " + totalChest);
+                    break;
+                case "Pants_Shorts":
+                    double totalHips = 0.0;
+                    double totalWaist = 0.0;
+                    int nb_measureHips = 0;
+                    int nb_measureWaist = 0;
+                    for (BrandSizeGuideMeasuresRow row : brandSizeGuideMeasuresRowList) {
+                        if (row.getHips() != 0.0) {
+                            totalHips += row.getHips();
+                            nb_measureHips++;
+                        }
+                        if (row.getWaist() != 0.0) {
+                            totalWaist += row.getWaist();
+                            nb_measureWaist++;
+                        }
                     }
-                }
-                if(nb_measureHips!=0) {
-                    totalHips /= nb_measureHips;
-                }
-                if(nb_measureWaist!=0) {
-                    totalWaist /= nb_measureWaist;
-                }
-                result.put("hips",totalHips);
-                result.put("waist", totalWaist);
+                    if (nb_measureHips != 0) {
+                        totalHips /= nb_measureHips;
+                    }
+                    if (nb_measureWaist != 0) {
+                        totalWaist /= nb_measureWaist;
+                    }
+                    result.put("hips", totalHips);
+                    result.put("waist", totalWaist);
 
-                Log.d(Constants.TAG, "Hips : " + totalHips);
-                Log.d(Constants.TAG, "Waist: " + totalWaist);
-                break;
-            default:
-                break;
+                    Log.d(Constants.TAG, "Hips : " + totalHips);
+                    Log.d(Constants.TAG, "Waist: " + totalWaist);
+                    break;
+                default:
+                    break;
+            }
         }
         return result;
     }

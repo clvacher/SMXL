@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     tools:ignore="MergeRootFrame"
     android:background="@color/DefaultBackgroundColor">
+
     <RelativeLayout
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
@@ -55,6 +56,7 @@
             android:layout_below="@+id/linearLayout"
             android:layout_centerHorizontal="true" />
     </RelativeLayout>
+
     <FrameLayout
         android:id="@+id/containerQuickSizeFragment"
         android:layout_height="match_parent"

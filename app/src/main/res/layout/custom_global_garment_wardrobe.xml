@@ -103,7 +103,7 @@
                 android:text="+"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                android:textColor="@color/SectionTitle"
+                android:textColor="#7f8c8d"
                 android:layout_centerInParent="true"/>
 
         </RelativeLayout>

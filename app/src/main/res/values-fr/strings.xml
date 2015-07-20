@@ -90,7 +90,6 @@
     <string name="buttonNextStep">Etape Suivante</string>
     <string name="size_guide">Guides des tailles</string>
     <string name="title_activity_size_guide">SizeGuideActivity</string>
-    <string name="title_activity_select_brands">Entre de 2 à 5 Marques Favorites</string>
     <string name="manage_favorite_brands">Gérez vos marques favorites</string>
     <string name="favorite_brands">Marques favorites</string>
     <string name="all_Brands">Marques</string>
@@ -200,6 +199,8 @@
     <string name="brand_already_selected">Cette marque à déjà été selectionnée .</string>
     <string name="max_brands_selected">Nombre maximum de marques favorites atteint.</string>
     <string name="not_enough_brands_selected">Sélectionne plus de marques favorites .</string>
-    <string name="ok">Compris !</string>
+    <string name="ok">OK !</string>
+    <string name="title_activity_select_brands">Choisis tes Marques Favorites</string>
+    <string name="select_brand_popup_message">Choisis de 2 à 5 Marques Favorites</string>
 
 </resources>
