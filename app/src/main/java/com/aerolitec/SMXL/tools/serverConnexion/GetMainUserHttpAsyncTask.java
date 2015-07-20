@@ -66,7 +66,7 @@ public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
             if (fragment instanceof LoginCreateAccountInterface)
                 loginCreateAccountInterface = (LoginCreateAccountInterface) fragment;
             else
-                throw new Exception("Activity using GetMainUserHttpAsyncTask must implement LoginCreateAccountInterface");
+                throw new Exception("Fragment using GetMainUserHttpAsyncTask must implement LoginCreateAccountInterface");
         }
         catch (Exception e){
             e.printStackTrace();
@@ -111,6 +111,11 @@ public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
                 try {
                     Log.d("resultValue",result);
                     jsonMainUser = new JSONObject(result);
+
+                    int idMainProfile = jsonMainUser.optInt("mainprofile");
+
+                    jsonMainUser = new JSONObject(jsonMainUser.optString("0"));
+
                     Log.d("GetUser AsyncTask",jsonMainUser.toString());
 
                     /* Obtainment of the user's birthday */
@@ -123,6 +128,8 @@ public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
 
                     String birthdayString = String.format("%02d", cal.get(Calendar.DAY_OF_MONTH))+"-"+String.format("%02d", cal.get(Calendar.MONTH) + 1)+"-"+cal.get(Calendar.YEAR);
 
+
+                    //TODO a changer par le vrai profil!
                     UserManager.get().setUser(new User(
                             jsonMainUser.optString("firstname"),
                             jsonMainUser.optString("name"),
@@ -136,6 +143,7 @@ public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
                             UserManager.get().getUser()
                             );
                     mainUser.setServerId(jsonMainUser.optInt("id"));
+                    mainUser.addProfile(idMainProfile);
 
                     Log.d("GetUser AsyncTask",mainUser.toString());
 
@@ -168,8 +176,8 @@ public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
                 result = UtilityMethodsv2.convertInputStreamToString(inputStream);
 
                 //converts the result to a JSON-convertible String
-                if(!result.equals("wrong email") && !result.equals("wrong password") && !result.equals("null"))
-                    result = result.substring(1,result.length()-1);
+//                if(!result.equals("wrong email") && !result.equals("wrong password") && !result.equals("null"))
+//                    result = result.substring(1,result.length()-1);
             }
 
             else{

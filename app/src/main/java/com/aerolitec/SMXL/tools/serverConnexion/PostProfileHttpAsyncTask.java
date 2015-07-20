@@ -1,6 +1,8 @@
 package com.aerolitec.SMXL.tools.serverConnexion;
 
+import android.app.Activity;
 import android.os.AsyncTask;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 
 import com.aerolitec.SMXL.model.User;
@@ -25,6 +27,37 @@ public class PostProfileHttpAsyncTask extends AsyncTask<User, Void, String> {
 
     public static final String SERVER_ADDRESS_CREATE_PROFILE = "http://api.smxl-app.com/profiles.json";
 
+    private PostProfileInterface postProfileInterface;
+
+    public PostProfileHttpAsyncTask(Activity activity) {
+        //Casting of the calling activity to the correct interface. Raises exception if it fails
+        try {
+            if (activity instanceof PostProfileInterface)
+                postProfileInterface = (PostProfileInterface) activity;
+            else
+                throw new Exception("Activity using PostProfileHttpAsyncTask must implement PostProfileInterface");
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            cancel(true);
+        }
+    }
+
+    public PostProfileHttpAsyncTask(Fragment fragment) {
+        //Casting of the calling fragment to the correct interface. Raises exception if it fails
+        try {
+            if (fragment instanceof PostProfileInterface)
+                postProfileInterface = (PostProfileInterface) fragment;
+            else
+                throw new Exception("Fragment using PostProfileHttpAsyncTask must implement PostProfileInterface");
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            cancel(true);
+        }
+    }
+
+
     @Override
     protected String doInBackground(User... params) {
         User user = params[0];
@@ -41,7 +74,7 @@ public class PostProfileHttpAsyncTask extends AsyncTask<User, Void, String> {
             jsonObject.accumulate("sexe", user.getSexe());
             jsonObject.accumulate("avatar", user.getAvatar());//TODO a changer avec l'adresse obtenue sur le serveur
             jsonObject.accumulate("description", user.getDescription());
-            jsonObject.accumulate("size", user.getHeight()); // TODO a changer sur le serveur
+            jsonObject.accumulate("height", user.getHeight());
             jsonObject.accumulate("weight", user.getWeight());
             jsonObject.accumulate("chest", user.getChest());
             jsonObject.accumulate("collar", user.getCollar());
@@ -49,8 +82,8 @@ public class PostProfileHttpAsyncTask extends AsyncTask<User, Void, String> {
             jsonObject.accumulate("waist", user.getWaist());
             jsonObject.accumulate("hips", user.getHips());
             jsonObject.accumulate("sleeve", user.getSleeve());
-            jsonObject.accumulate("inseam", user.getInseam());//TODO ne marche pas sur le serveur
-            jsonObject.accumulate("feat", user.getFeet());//TODO a chnager sur le serveur
+            jsonObject.accumulate("inseam", user.getInseam());
+            jsonObject.accumulate("feet", user.getFeet());
             jsonObject.accumulate("unitL", user.getUnitLength());
             jsonObject.accumulate("unitW", user.getUnitWeight());
             jsonObject.accumulate("pointure", user.getPointure());
@@ -71,7 +104,8 @@ public class PostProfileHttpAsyncTask extends AsyncTask<User, Void, String> {
         super.onPostExecute(result);
         switch(result){
             case "Did not work!":
-                //error message with interface?
+                //error message with interface
+                postProfileInterface.onPostProfileFailure("An error occured while saving the profile online");
                 break;
             default:
                 //recuperation de l'id
@@ -83,15 +117,17 @@ public class PostProfileHttpAsyncTask extends AsyncTask<User, Void, String> {
                     Log.d("PostProfile AsyncTask", jsonUser.toString());
 
                     //ajout au MainUser pour pouvoir les recuperer par la suite
-                    Integer userId = Integer.parseInt(jsonUser.optString("id"));
-                    MainUserManager.get().getMainUser().addProfile(userId);
+                    Integer profileId = Integer.parseInt(jsonUser.optString("id"));
+                    MainUserManager.get().getMainUser().addProfile(profileId);
 
-                    new PostLinkHttpAsyncTask().execute(userId);
+                    //calls interface for linking to the account on the server
+                    postProfileInterface.onProfilePosted(profileId);
 
                 }
                 catch(Exception e){
                     e.printStackTrace();
                 }
+
         }
     }
 

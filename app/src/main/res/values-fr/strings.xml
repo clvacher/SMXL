@@ -189,4 +189,12 @@
     <string name="shoe_size">pointure</string>
     <string name="quicksize">QuickSize</string>
     <string name="removeBrand">Retirer des Marques Favorites</string>
+
+
+    <string name="shareProfile">Partage ton profil principal!</string>
+    <string name="code">Code : </string>
+    <string name="obtainProfile">Obtient le profil d\'un ami en entrant son code ici :</string>
+    <string name="getProfile">Obtenir!</string>
+    <string name="share">Partager</string>
+
 </resources>

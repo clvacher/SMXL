@@ -142,7 +142,6 @@ public class CreateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
             if (user != null) {
                 getActivity().setResult(Activity.RESULT_OK);
                 UserManager.get().setUser(user);
-                new PostProfileHttpAsyncTask().execute(user);
             }
             else {
                 getActivity().setResult(Activity.RESULT_CANCELED);
@@ -160,8 +159,6 @@ public class CreateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
 
             superNavigationActivity.updateHamburger();
             superNavigationActivity.restoreDefaultTitleCurrentSection();
-
-            getActivity().setResult(Activity.RESULT_OK);
 
         }
     }

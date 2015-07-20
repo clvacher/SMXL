@@ -88,7 +88,9 @@ public class MainUser implements Serializable{
     }
 
     public ArrayList<Integer> getProfiles() {return profiles;}
-    public void addProfile(Integer profile) {this.profiles.add(profile);}
+    public void addProfile(Integer profile) {
+        Log.d("profileAdded",profile+"");
+        this.profiles.add(profile);}
 
     public MainUser(){super();}
 

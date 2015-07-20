@@ -1,0 +1,83 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/DefaultBackgroundColor"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.aerolitec.SMXL.ui.fragment.ShareProfileFragment">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:id="@+id/layoutShareProfile"
+        android:layout_marginTop="51dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="20dp"
+        android:layout_margin="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/SectionTitle"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textAllCaps="false"
+            android:text="@string/shareProfile"
+            android:id="@+id/buttonShareProfile"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/textViewShareProfile"
+        android:layout_alignBottom="@+id/textViewShareProfile"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:text="@string/code"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:id="@+id/textViewShareProfile"
+            android:layout_below="@+id/buttonShareProfile"
+            android:layout_centerHorizontal="true" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/layoutShareProfile">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewObtainSharedProfile"
+            android:textColor="@color/SectionTitle"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:padding="15dp"
+            android:gravity="center"
+            android:text="@string/obtainProfile"
+            android:layout_centerHorizontal="true" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/etObtainProfile"
+            android:hint="####"
+            android:layout_below="@id/textViewObtainSharedProfile"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonGetProfile"
+            android:text="@string/getProfile"
+            android:layout_toRightOf="@+id/etObtainProfile"
+            android:layout_alignBottom="@+id/etObtainProfile"/>
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -85,6 +85,7 @@ public class PostMainUserHttpAsyncTask extends AsyncTask<Void, Void, String> {
                     Log.d("idMainUserPost",id+"");
                     MainUserManager.get().getMainUser().setServerId(id);
 
+                    new PostMainProfileHttpAsyncTask().execute(id,MainUserManager.get().getMainUser().getProfiles().get(0));
 
                 }
                 catch(Exception e){
