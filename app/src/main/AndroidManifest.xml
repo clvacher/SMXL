@@ -51,7 +51,7 @@
         <activity
             android:name=".ui.activity.ProfilDetailActivity"
             android:label="@string/title_activity_profil_detail"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.CSVCreationActivity"
             android:label="@string/title_activity_csvcreation"
@@ -91,7 +91,7 @@
         <activity
             android:name=".ui.activity.ConnexionActivity"
             android:label="@string/title_activity_connexion"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".ui.activity.CreateUpdateProfileActivity"
@@ -102,6 +102,10 @@
             android:name=".ui.activity.BrowserActivity"
             android:label="@string/title_activity_browser"
             android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".ui.activity.CreateFacebookProfile"
+            android:label="@string/title_activity_create_facebook_profile" >
         </activity>
     </application>
 

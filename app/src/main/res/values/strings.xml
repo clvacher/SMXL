@@ -182,8 +182,8 @@
     <string name="Suit">Suits</string>
     <string name="addBrandToFavorite">Add to favorite brands</string>
     <string name="goToWebsite">Go to website</string>
-    <string name="title_quickmeasurefragment">Titre à changer</string>
-
+    <string name="title_quickmeasurefragment">Set your size</string>
+    <string name="libGO">GO !</string>
     <string name="cm">cm</string>
     <string name="shoe_size">size</string>
     <string name="quicksize">QuickSize</string>
@@ -194,5 +194,11 @@
     <string name="obtainProfile">Obtain a friend\'s profile by entering his code here :</string>
     <string name="getProfile">Get!</string>
     <string name="share">Share</string>
+    <string name="title_activity_create_facebook_profile">CreateFacebookProfile</string>
+    <string name="step">Step</string>
+    <string name="brand_already_selected">Brand has already been selected .</string>
+    <string name="max_brands_selected">You already have 5 Favorites Brands .</string>
+    <string name="not_enough_brands_selected">Please choose more Brands .</string>
+    <string name="ok">OK !</string>
 
 </resources>

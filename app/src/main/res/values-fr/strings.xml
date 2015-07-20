@@ -90,7 +90,7 @@
     <string name="buttonNextStep">Etape Suivante</string>
     <string name="size_guide">Guides des tailles</string>
     <string name="title_activity_size_guide">SizeGuideActivity</string>
-    <string name="title_activity_select_brands">Sélection de 2 à 5 Marques Favorites</string>
+    <string name="title_activity_select_brands">Entre de 2 à 5 Marques Favorites</string>
     <string name="manage_favorite_brands">Gérez vos marques favorites</string>
     <string name="favorite_brands">Marques favorites</string>
     <string name="all_Brands">Marques</string>
@@ -183,8 +183,8 @@
     <string name="Suit">Costumes</string>
     <string name="addBrandToFavorite">Ajouter aux Marques Favorites</string>
     <string name="goToWebsite">Accéder au Site</string>
-    <string name="title_quickmeasurefragment">Titre à changer</string>
-
+    <string name="title_quickmeasurefragment">Renseigner vos tailles</string>
+    <string name="libGO">GO !</string>
     <string name="cm">cm</string>
     <string name="shoe_size">pointure</string>
     <string name="quicksize">QuickSize</string>
@@ -196,5 +196,10 @@
     <string name="obtainProfile">Obtient le profil d\'un ami en entrant son code ici :</string>
     <string name="getProfile">Obtenir!</string>
     <string name="share">Partager</string>
+    <string name="step">Etape</string>
+    <string name="brand_already_selected">Cette marque à déjà été selectionnée .</string>
+    <string name="max_brands_selected">Nombre maximum de marques favorites atteint.</string>
+    <string name="not_enough_brands_selected">Sélectionne plus de marques favorites .</string>
+    <string name="ok">Compris !</string>
 
 </resources>

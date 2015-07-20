@@ -35,15 +35,15 @@ import java.util.ArrayList;
 public class SelectBrandsFragment extends Fragment implements FakeSearchView.OnSearchListener{
 
     SuperNavigationActivity superNavigationActivity;
-    private static User user;
-    private ArrayList<Brand> brands;
+    protected static User user;
+    protected ArrayList<Brand> brands;
     //private ArrayList<Brand> brandsSelected;
     private ArrayList<String> brandsCategory;
 
-    private GridView gridViewBrands;
+    protected GridView gridViewBrands;
     private Spinner spinnerBrandsCategory;
-    private FavoriteCheckableBrandAdapter gridViewBrandsAdapter;
-    private Button buttonValidate;
+    protected FavoriteCheckableBrandAdapter gridViewBrandsAdapter;
+    protected Button buttonValidate;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

@@ -28,7 +28,7 @@
         android:id="@+id/buttonValidationQuickMeasure"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/validate"
+        android:text="@string/libGO"
         android:background="@drawable/button_orange_border"
         android:layout_alignParentBottom="true"
         android:textColor="@android:color/white"/>
