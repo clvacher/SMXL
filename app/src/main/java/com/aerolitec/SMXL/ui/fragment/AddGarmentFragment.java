@@ -75,7 +75,11 @@ public class AddGarmentFragment extends Fragment {
 
 
         Bundle extras=activity.getIntent().getExtras();
+        Log.d("userClothes", "1");
+
         if(extras != null) {
+            Log.d("userClothes", "2");
+
             if((selectedGarmentType = (GarmentType) extras.get("garment")) == null){
                 existingGarment(extras);
             }
@@ -104,6 +108,7 @@ public class AddGarmentFragment extends Fragment {
 
     private void existingGarment(Bundle extras){
         userClothes = (UserClothes) extras.get("userClothes");
+        Log.d("userClothes", "TESTTES");
         selectedGarmentType = userClothes.getGarmentType();
         selectedBrand = userClothes.getBrand();
         selectedSize = userClothes.getSize();

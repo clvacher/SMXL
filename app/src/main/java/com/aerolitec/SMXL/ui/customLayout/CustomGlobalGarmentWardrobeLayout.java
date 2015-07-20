@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -125,15 +124,6 @@ public class CustomGlobalGarmentWardrobeLayout extends LinearLayout {
     private void fillListView(ListView v,ArrayList<UserClothes> userClothesList){
         GarmentAdapter adapter = new GarmentAdapter(getContext(),R.layout.garment_item,userClothesList);
         v.setAdapter(adapter);
-        v.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(getContext(), AddGarmentActivity.class);
-                intent.putExtra("userClothes", (UserClothes) adapterView.getItemAtPosition(i));
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                getContext().startActivity(intent);
-            }
-        });
         UtilityMethodsv2.setListViewHeightBasedOnChildren(v);
         adapter.notifyDataSetChanged();
     }
