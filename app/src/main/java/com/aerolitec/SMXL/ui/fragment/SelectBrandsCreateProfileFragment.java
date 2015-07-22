@@ -50,17 +50,18 @@ public class SelectBrandsCreateProfileFragment extends SelectBrandsFragment{
                 }
             }
         });
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle(getResources().getString(R.string.step) + " 1/2")
-                .setMessage(R.string.select_brand_popup_message)
-                .setIcon(R.drawable.ic_launcher)
-                .setNeutralButton(R.string.ok, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-        builder.show();
+        if(((SMXL) getActivity().getApplication()).getFirstLaunch()) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setTitle(getResources().getString(R.string.step) + " 1/2")
+                    .setMessage(R.string.select_brand_popup_message)
+                    .setIcon(R.drawable.ic_launcher)
+                    .setNeutralButton(R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            builder.show();
+        }
     }
 }

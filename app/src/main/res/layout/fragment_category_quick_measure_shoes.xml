@@ -1,33 +1,70 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/DefaultBackgroundColor"
-    android:padding="10dp"
-    android:layout_height="match_parent">
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingTop="10dp"
+    android:paddingRight="10dp">
 
-    <TextView
-        android:layout_width="wrap_content"
+
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/libPointure"
-        android:id="@+id/tv_pointure" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="5"
-        android:gravity="right"
-        android:id="@+id/editSize" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentBottom="false">
 
-    <ImageView
-        android:maxHeight="70dp"
-        android:maxWidth="70dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@id/imageGarment"
-        android:src="@drawable/pantalon_lowpx"
-        android:adjustViewBounds="true"
-        android:layout_gravity="right" />
+            <ListView
+                android:id="@+id/listViewPointure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1" />
 
-</LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="-10dp">
+
+
+                <ImageView
+                    android:maxHeight="60dp"
+                    android:maxWidth="60dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageGarment"
+                    android:src="@drawable/chaussure_gris"
+                    android:adjustViewBounds="true"
+                    android:layout_gravity="center_horizontal" />
+
+                <EditText
+                    android:background="@android:color/transparent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:maxLength="5"
+                    android:ems="5"
+                    android:textColor="@color/SectionTitle"
+                    android:gravity="center_horizontal"
+                    android:id="@+id/editSize"
+                    android:layout_gravity="center_horizontal" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

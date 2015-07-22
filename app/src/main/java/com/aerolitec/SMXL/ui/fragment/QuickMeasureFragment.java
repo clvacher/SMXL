@@ -92,17 +92,20 @@ public class QuickMeasureFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle(getResources().getString(R.string.step) + " 2/2")
-                .setMessage("Entre tes tailles pour activer la QuickSize .")
-                .setIcon(R.drawable.ic_launcher)
-                .setNeutralButton(R.string.ok, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-        builder.show();
+        if(((SMXL) getActivity().getApplication()).getFirstLaunch()) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setTitle(getResources().getString(R.string.step) + " 2/2")
+                    .setMessage(R.string.quickmeasure_popup_message)
+                    .setIcon(R.drawable.ic_logo_quicksize)
+                    .setNeutralButton(R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            builder.show();
+            ((SMXL) getActivity().getApplication()).setFirstLaunch();
+        }
     }
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {

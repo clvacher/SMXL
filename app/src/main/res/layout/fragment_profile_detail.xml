@@ -38,20 +38,21 @@
                     android:id="@+id/textView1"
                     android:text="@string/quicksize"
                     android:textStyle="bold"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/SectionTitle"
                     android:layout_marginRight="10dp"
                     android:layout_marginEnd="15dp"
                     android:layout_marginBottom="5dp"
                     android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true"/>
+                    android:layout_alignParentEnd="true"
+                    android:visibility="gone" />
                 <ImageView
-                    android:layout_width="45dp"
-                    android:layout_height="40dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:padding="5dp"
-                    android:src="@drawable/cintre_inverse_hd"
-                    android:layout_alignRight="@+id/textView1"
-                    android:layout_alignEnd="@+id/textView1"
-                    android:layout_below="@+id/textView1"/>
+                    android:src="@drawable/ic_logo_quicksize"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:adjustViewBounds="false" />
             </RelativeLayout>
             <View
                 android:layout_width="0dp"
@@ -319,6 +320,18 @@
                     android:layout_centerHorizontal="true" />
             </RelativeLayout>
         </LinearLayout>
+
+        <Button
+            android:padding="10dp"
+            android:id="@+id/buttonQuickMeasure"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mesure Rapide"
+            android:layout_below="@id/layoutBrand"
+            android:background="@drawable/button_orange_border"
+            android:layout_alignParentBottom="true"
+            android:textColor="@android:color/white"/>
+
     </RelativeLayout>
 
 </ScrollView>

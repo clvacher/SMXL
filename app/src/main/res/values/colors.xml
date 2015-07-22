@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="DefaultBackgroundColor">#EFEFEF</color><!--EFE9D9-->
-    <color name="SectionTitle">#FFEE511A</color>
+    <!--<color name="SectionTitle">#FFEE511A</color>-->
+    <color name="SectionTitle">#FF6B25</color>
     <color name="SectionSeparator">#FFA1A29E</color>
     <color name="MainText">#000000</color>
     <color name="SubTitleText">#555555</color>
@@ -18,4 +19,5 @@
     <color name="measure_item_color">#aaee511a</color>
     <color name="ButtonEnabled">#E84E1B</color>
     <color name="ButtonDisabled">#c2c2c2</color>
+    <color name="White">#FFFFFF</color>
 </resources>

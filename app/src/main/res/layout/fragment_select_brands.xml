@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:text="@string/validate"
         android:id="@+id/buttonValidationBrands"
-        android:background="@drawable/button_grayable"
+        android:background="@drawable/button_orange_border"
         android:padding="10dp"
         android:textColor="#FFF"
         android:layout_alignParentBottom="true"

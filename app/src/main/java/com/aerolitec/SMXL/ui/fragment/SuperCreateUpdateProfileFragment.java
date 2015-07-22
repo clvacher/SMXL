@@ -147,7 +147,7 @@ public abstract class SuperCreateUpdateProfileFragment extends Fragment {
         File myDir = new File(root, "SMXL");
         myDir.mkdirs();
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        final String fname = UserManager.get().getUser().getFirstname()+"_"+UserManager.get().getUser().getLastname()+"_"+timeStamp+".png";
+        final String fname = etFirstName.getText().toString()+"_"+etLastName.getText().toString()+"_"+timeStamp+".png";
         final File sdImageMainDirectory = new File(myDir, fname);
         outputFileUri = Uri.fromFile(sdImageMainDirectory);
 

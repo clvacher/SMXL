@@ -200,7 +200,7 @@
         android:text="@string/buttonNextStep"
         android:id="@+id/buttonValidation"
         android:layout_gravity="center_horizontal"
-        android:background="#E84E1B"
+        android:background="@drawable/button_orange_border"
         android:padding="10dp"
         android:textColor="#FFF"
         android:layout_margin="20dp" />

@@ -1,8 +1,11 @@
 package com.aerolitec.SMXL.ui;
 
 import android.app.Application;
+import android.content.Context;
+import android.content.SharedPreferences;
 
 import com.aerolitec.SMXL.R;
+import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.dbmanager.BlogDBManager;
 import com.aerolitec.SMXL.tools.dbmanager.BrandDBManager;
 import com.aerolitec.SMXL.tools.dbmanager.BrandSizeGuideDBManager;
@@ -32,6 +35,8 @@ public class SMXL extends Application{
     private static BlogDBManager blogDBManager;
     private static ShopOnLineDBManager shopOnLineDBManager;
 
+    private SharedPreferences sharedPreferences;
+
     private Picasso picasso;
     //private static DisplayMetrics metrics;
 
@@ -51,21 +56,22 @@ public class SMXL extends Application{
         shopOnLineDBManager = new ShopOnLineDBManager(getApplicationContext());
         //metrics = getResources().getDisplayMetrics();
 
-        categoryGarmentDBManager.updateCategoryGarment(1, R.drawable.tshirt_grisfonce);
-        categoryGarmentDBManager.updateCategoryGarment(2, R.drawable.skirt_grisfonce);
-        categoryGarmentDBManager.updateCategoryGarment(3, R.drawable.pantalon_grisfonce);
-        categoryGarmentDBManager.updateCategoryGarment(4, R.drawable.chemise_grisfonce);
-        categoryGarmentDBManager.updateCategoryGarment(5, R.drawable.blouson_grisfonce);
-        categoryGarmentDBManager.updateCategoryGarment(6, R.drawable.chaussure_grisfonce);
-        categoryGarmentDBManager.updateCategoryGarment(7, R.drawable.pull_grisfonce);
-        categoryGarmentDBManager.updateCategoryGarment(8, R.drawable.veste_grisfonce);
-        categoryGarmentDBManager.updateCategoryGarment(9, R.drawable.costume_grisfonce);
-        categoryGarmentDBManager.updateCategoryGarment(10, R.drawable.sousvet_grisfonce);
+        categoryGarmentDBManager.updateCategoryGarment(1, R.drawable.tshirt_gris);
+        categoryGarmentDBManager.updateCategoryGarment(2, R.drawable.skirt_gris);
+        categoryGarmentDBManager.updateCategoryGarment(3, R.drawable.pantalon_gris);
+        categoryGarmentDBManager.updateCategoryGarment(4, R.drawable.chemise_gris);
+        categoryGarmentDBManager.updateCategoryGarment(5, R.drawable.blouson_gris);
+        categoryGarmentDBManager.updateCategoryGarment(6, R.drawable.chaussure_gris);
+        categoryGarmentDBManager.updateCategoryGarment(7, R.drawable.pull_gris);
+        categoryGarmentDBManager.updateCategoryGarment(8, R.drawable.veste_gris);
+        categoryGarmentDBManager.updateCategoryGarment(9, R.drawable.costume_gris);
+        categoryGarmentDBManager.updateCategoryGarment(10, R.drawable.sousvet_gris);
 
         picasso = new Picasso.Builder(getApplicationContext())
                 .debugging(false)
                 .build();
 
+        sharedPreferences = getApplicationContext().getSharedPreferences(Constants.SHARED_PREF, Context.MODE_PRIVATE);
     }
 
     public Picasso getPicasso() {
@@ -118,4 +124,13 @@ public class SMXL extends Application{
         return shopOnLineDBManager;
     }
 
+    public boolean getFirstLaunch() {
+        return sharedPreferences.getBoolean(Constants.FIRST_LAUNCH, true);
+    }
+
+    public void setFirstLaunch() {
+        SharedPreferences.Editor edit = sharedPreferences.edit();
+        edit.putBoolean(Constants.FIRST_LAUNCH, false);
+        edit.commit();
+    }
 }

@@ -42,7 +42,7 @@ public class FavoriteBrandAdapter extends ArrayAdapter<Brand> {
             convertView.setTag(holder);
             holder.tvBrandName = (TextView) convertView.findViewById(R.id.tvBrandName);
             holder.deleteBrand = (ImageView) convertView.findViewById(R.id.deleteBrandIcon);
-            holder.browser = (ImageView) convertView.findViewById(R.id.browserIcon);
+            //holder.browser = (ImageView) convertView.findViewById(R.id.browserIcon);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
@@ -78,7 +78,7 @@ public class FavoriteBrandAdapter extends ArrayAdapter<Brand> {
             }
         });
 
-        holder.browser.setOnClickListener(onClickListenerBrowser);
+        //holder.browser.setOnClickListener(onClickListenerBrowser);
 
         holder.tvBrandName.setOnClickListener(onClickListenerBrowser);
 
@@ -89,6 +89,6 @@ public class FavoriteBrandAdapter extends ArrayAdapter<Brand> {
     public static class ViewHolder {
         TextView tvBrandName;
         ImageView deleteBrand;
-        ImageView browser;
+        //ImageView browser;
     }
 }

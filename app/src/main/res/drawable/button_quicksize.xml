@@ -7,6 +7,6 @@
         android:drawable="@android:color/holo_blue_light"
         />
     <item
-        android:drawable="@color/SectionTitle"
+        android:drawable="@color/White"
         />
 </selector>
