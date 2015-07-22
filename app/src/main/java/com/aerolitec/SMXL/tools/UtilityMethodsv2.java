@@ -15,7 +15,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * Created by Jerome on 28/05/2015.
@@ -68,5 +71,14 @@ public class UtilityMethodsv2 {
         ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(Activity.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         return (networkInfo != null && networkInfo.isConnected());
+    }
+
+    public static double convertFeetSizeToCm(double size){
+        Locale defaultLocale = Locale.getDefault();
+        Locale.setDefault(Locale.US);
+        NumberFormat format = new DecimalFormat("#0.0");
+        double feet = Double.parseDouble(format.format(((2f / 3f) * size) - 1f));
+        Locale.setDefault(defaultLocale);
+        return feet;
     }
 }

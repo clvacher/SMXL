@@ -40,12 +40,16 @@ public class QuickSizeFragment extends Fragment {
     public Brand getSelectedBrand() {
         return selectedBrand;
     }
+
     public void setSelectedBrand(Brand selectedBrand) {
         this.selectedBrand = selectedBrand;
         tvBrand.setText(selectedBrand.getBrand_name());
     }
 
-
+    public void clearSelectedBrand(){
+        this.selectedBrand = null;
+        tvBrand.setText(null);
+    }
 
     public QuickSizeFragment() {
         // Required empty public constructor

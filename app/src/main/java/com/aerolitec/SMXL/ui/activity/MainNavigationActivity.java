@@ -72,15 +72,16 @@ public class MainNavigationActivity extends SuperNavigationActivity implements O
     public void onBackPressed() {
         if(drawerOpen){
             drawer.closeDrawer();
+            updateHamburger();
         }
         else if(onBackPressedListener !=null){
             onBackPressedListener.backPressed();
         }
         else{
+            updateHamburger();
             super.onBackPressed();
-
         }
-        //updateHamburger();
+
     }
 
     @Override
@@ -163,8 +164,8 @@ public class MainNavigationActivity extends SuperNavigationActivity implements O
         // first section is loaded
 
 
-        MaterialSection sectionTest = this.newSection("Accueil", getResources().getDrawable(R.drawable.ic_menu_home), new TabsFragmentHomeDressingQuicksize(), false, menu);
-        //sectionTest.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
+        MaterialSection sectionAcceuil = this.newSection("Accueil", getResources().getDrawable(R.drawable.ic_menu_home), new TabsFragmentHomeDressingQuicksize(), false, menu);
+        //sectionAcceuil.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
 
         MaterialSection sectionMesProfils = this.newSection(getResources().getString(R.string.my_profiles), this.getResources().getDrawable(R.drawable.ic_perm_group_social_info), new ProfilesFragment(), false, menu);
 
@@ -175,7 +176,7 @@ public class MainNavigationActivity extends SuperNavigationActivity implements O
 
         sectionMyProfile = this.newSection(getResources().getString(R.string.my_profile), this.getResources().getDrawable(R.drawable.avatar), new ProfilesDetailFragment(), false, menu);
 
-        MaterialSection sectionQuicksize = this.newSection(getResources().getString(R.string.quicksize), this.getResources().getDrawable(R.drawable.ic_launcher), new QuickSizeFragment(), false, menu);
+        MaterialSection sectionQuicksize = this.newSection(getResources().getString(R.string.quicksize), this.getResources().getDrawable(R.drawable.ic_logo_quicksize), new QuickSizeFragment(), false, menu);
         MaterialSection sectionMonDressing = this.newSection(getResources().getString(R.string.my_wardrobe), this.getResources().getDrawable(R.drawable.robe_lowpx), new WardrobeDetailFragment(), false, menu);
         MaterialSection sectionMesMesures = this.newSection(getResources().getString(R.string.measurements), this.getResources().getDrawable(R.drawable.tape_measure), new MeasureDetailFragment(), false, menu);
 

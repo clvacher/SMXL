@@ -109,24 +109,11 @@ public class QuickSizeSummaryFragment extends Fragment implements MainNavigation
 
     @Override
     public void backPressed() {
-        //TODO De la merde a changer
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        FragmentManager currentFragmentManager;
-        Fragment fragment = fragmentManager.findFragmentById(R.id.frame_container);
-
-        // Pour le quicksize dans l'acceuil
-        if( fragment instanceof TabsFragmentHomeDressingQuicksize) {
-            Fragment currentFragment = fragment.getChildFragmentManager().findFragmentByTag("quicksize");
-            currentFragmentManager = currentFragment.getFragmentManager();
-        }
-        // Pour le quicksize dans l'onglet
-        else {
-            currentFragmentManager = getActivity().getSupportFragmentManager();
-        }
-        FragmentTransaction fragmentTransaction = currentFragmentManager.beginTransaction();
-
-        fragmentTransaction.replace(R.id.frame_container, new QuickSizeFragment(),"quicksize");
+        FragmentManager manager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = manager.beginTransaction();
+        fragmentTransaction.replace(R.id.containerQuickSizeFragment,new QuickSizeSelectBrandFragment());
         fragmentTransaction.commit();
+        quickSizeFragment.clearSelectedBrand();
     }
 
     @Override

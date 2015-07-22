@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.User;
+import com.aerolitec.SMXL.tools.UtilityMethodsv2;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.adapter.MeasureItem;
@@ -214,11 +215,8 @@ public class MeasureDetailFragment extends Fragment {
                 Log.d("beforeifshoe", btnFeet.getText().equals(getString(R.string.shoe_size))+" "+(btnFeet.getText().toString().substring(0,1).toUpperCase()+btnFeet.getText().toString().substring(1))+" = "+getString(R.string.ShoeSize));
 
                 if (measureItem.getTypeMeasure().equals(getResources().getString(R.string.libFeet)) && btnFeet.getText().toString().equals(getString(R.string.ShoeSize))) {
-                    Locale.setDefault(Locale.US);
-                    NumberFormat format = new DecimalFormat("#0.0");
 
-
-                    value = Double.parseDouble(format.format(((2f / 3f) * value) - 1f));
+                    value = UtilityMethodsv2.convertFeetSizeToCm(value);
                     Log.d("valueFeet",value+"");
                 }
 

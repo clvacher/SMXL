@@ -18,6 +18,7 @@ import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.Brand;
 import com.aerolitec.SMXL.model.GarmentType;
 import com.aerolitec.SMXL.tools.Constants;
+import com.aerolitec.SMXL.tools.UtilityMethodsv2;
 import com.aerolitec.SMXL.ui.adapter.FavoriteCheckableBrandAdapter;
 
 import java.text.DecimalFormat;
@@ -91,12 +92,7 @@ public class QuickMeasureCategoryShoes extends Fragment {
         double feet=0.0,size=0.0;
         if (!et_Pointure.getText().toString().isEmpty()){
             size = Double.valueOf(et_Pointure.getText().toString());
-            Locale defaultLocale = Locale.getDefault();
-            Locale.setDefault(Locale.US);
-            NumberFormat format = new DecimalFormat("#0.0");
-            feet = Double.parseDouble(format.format(((2f / 3f) * size) - 1f));
-            Locale.setDefault(defaultLocale);
-            Log.d(Constants.TAG,"Feet (cm) : "+ feet);
+            feet = UtilityMethodsv2.convertFeetSizeToCm(size);
         }
         return feet;
     }

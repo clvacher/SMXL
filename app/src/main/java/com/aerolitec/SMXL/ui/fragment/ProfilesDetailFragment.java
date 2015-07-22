@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -34,6 +35,7 @@ public class ProfilesDetailFragment extends Fragment{
     private ImageView imgQuicksize, collapseBrands;
     private RelativeLayout layoutHeaderBrands;
     private LinearLayout layoutBrands;
+    private Button quickMeasure;
 
     FavoriteBrandAdapter adapter;
 
@@ -124,6 +126,13 @@ public class ProfilesDetailFragment extends Fragment{
             }
         });
 
+        quickMeasure = (Button)view.findViewById(R.id.buttonQuickMeasure);
+        quickMeasure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.frame_container,new QuickMeasureFragment()).commit();
+            }
+        });
 
         return view;
     }
