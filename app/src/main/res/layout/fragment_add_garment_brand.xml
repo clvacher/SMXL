@@ -35,7 +35,8 @@
             android:src="@drawable/ic_action_next_item"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/textView11"
-            android:layout_toStartOf="@+id/textView11"/>
+            android:layout_toStartOf="@+id/textView11"
+            android:visibility="gone" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -44,7 +45,8 @@
             android:src="@drawable/ic_previous_item"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/textView11"
-            android:layout_toEndOf="@+id/textView11"/>
+            android:layout_toEndOf="@+id/textView11"
+            android:visibility="gone" />
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -77,7 +79,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
+            android:visibility="visible"
             android:id="@+id/selectedAllLeftArrow"
             android:src="@drawable/ic_action_next_item"
             android:layout_centerVertical="true"
@@ -87,7 +89,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
+            android:visibility="visible"
             android:id="@+id/selectedAllRightArrow"
             android:src="@drawable/ic_previous_item"
             android:layout_centerVertical="true"
@@ -110,7 +112,7 @@
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"
+        android:visibility="visible"
         android:gravity="center"
         android:id="@+id/spinnerBrandCategory"
         android:layout_below="@+id/allBrandsLayout"

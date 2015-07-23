@@ -174,7 +174,7 @@ public class QuickMeasureCategoryFragmentTopBottom extends Fragment {
     public HashMap<String,Double> onMeasureSelected(){
 
         HashMap<String,Double> result= new HashMap<>();
-        if(spinnerCountry.getSelectedItemPosition()!=0 && spinnerSize.getSelectedItemPosition()!=0) {
+        if(spinnerCountry.isEnabled() && spinnerSize.isEnabled()) {
             String selectedCountry = (String) spinnerCountry.getSelectedItem();
             String selectedSize = (String) spinnerSize.getSelectedItem();
             List<BrandSizeGuideMeasuresRow> brandSizeGuideMeasuresRowList = SMXL.getBrandSizeGuideDBManager().getBrandSizeGuideMeasureRowsByBrandAndGarmentTypeAndCountryAndSize(selectedBrand, garmentType, selectedCountry, selectedSize);

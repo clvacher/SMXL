@@ -84,7 +84,10 @@ public class QuickMeasureFragment extends Fragment {
                 if(bottomMeasures.containsKey("waist")) {
                     user.setWaist(bottomMeasures.get("waist"));
                 }
-                user.setFeet(quickMeasureCategoryFragmentShoes.calculateFeetUsingSize());
+                double feet = quickMeasureCategoryFragmentShoes.calculateFeetUsingSize();
+                if(feet != 0.0){
+                    user.setFeet(feet);
+                }
                 SMXL.getUserDBManager().updateUser(user);
                 if (getActivity() instanceof MainNavigationActivity){
                     getActivity().getSupportFragmentManager().popBackStack();

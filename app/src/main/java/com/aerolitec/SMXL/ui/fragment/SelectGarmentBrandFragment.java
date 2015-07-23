@@ -121,7 +121,7 @@ public class SelectGarmentBrandFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        fillGridView(gvBrands, getFavoriteBrands());
+        fillGridView(gvBrands, getAllbrands());
         fillSpinner(spinnerBrandsCategory, getSpinnerCategories());
     }
 
