@@ -177,7 +177,7 @@ public class MainNavigationActivity extends SuperNavigationActivity implements O
         sectionMyProfile = this.newSection(getResources().getString(R.string.my_profile), this.getResources().getDrawable(R.drawable.avatar), new ProfilesDetailFragment(), false, menu);
 
         MaterialSection sectionQuicksize = this.newSection(getResources().getString(R.string.quicksize), this.getResources().getDrawable(R.drawable.ic_logo_quicksize), new QuickSizeFragment(), false, menu);
-        MaterialSection sectionMonDressing = this.newSection(getResources().getString(R.string.my_wardrobe), this.getResources().getDrawable(R.drawable.robe_lowpx), new WardrobeDetailFragment(), false, menu);
+        MaterialSection sectionMonDressing = this.newSection(getResources().getString(R.string.my_wardrobe), this.getResources().getDrawable(R.drawable.robe_gris), new WardrobeDetailFragment(), false, menu);
         MaterialSection sectionMesMesures = this.newSection(getResources().getString(R.string.measurements), this.getResources().getDrawable(R.drawable.tape_measure), new MeasureDetailFragment(), false, menu);
 
         MaterialSection sectionShare = this.newSection(getResources().getString(R.string.share), this.getResources().getDrawable(android.R.drawable.ic_menu_share), new ShareProfileFragment(), false, menu);

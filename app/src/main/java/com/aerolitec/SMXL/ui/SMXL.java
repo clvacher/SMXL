@@ -57,7 +57,7 @@ public class SMXL extends Application{
         //metrics = getResources().getDisplayMetrics();
 
         categoryGarmentDBManager.updateCategoryGarment(1, R.drawable.tshirt_gris);
-        categoryGarmentDBManager.updateCategoryGarment(2, R.drawable.skirt_gris);
+        categoryGarmentDBManager.updateCategoryGarment(2, R.drawable.robe_gris);
         categoryGarmentDBManager.updateCategoryGarment(3, R.drawable.pantalon_gris);
         categoryGarmentDBManager.updateCategoryGarment(4, R.drawable.chemise_gris);
         categoryGarmentDBManager.updateCategoryGarment(5, R.drawable.blouson_gris);

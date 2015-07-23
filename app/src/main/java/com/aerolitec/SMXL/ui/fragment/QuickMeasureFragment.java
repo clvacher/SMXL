@@ -1,6 +1,7 @@
 package com.aerolitec.SMXL.ui.fragment;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
@@ -17,7 +18,9 @@ import com.aerolitec.SMXL.model.GarmentType;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
+import com.aerolitec.SMXL.ui.activity.MainNavigationActivity;
 import com.aerolitec.SMXL.ui.activity.SuperNavigationActivity;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -83,7 +86,12 @@ public class QuickMeasureFragment extends Fragment {
                 }
                 user.setFeet(quickMeasureCategoryFragmentShoes.calculateFeetUsingSize());
                 SMXL.getUserDBManager().updateUser(user);
-                superNavigationActivity.finish();
+                if (getActivity() instanceof MainNavigationActivity){
+                    getActivity().getSupportFragmentManager().popBackStack();
+                }
+                else{
+                    superNavigationActivity.finish();
+                }
             }
         });
         return view;
@@ -112,4 +120,5 @@ public class QuickMeasureFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
         menu.clear();
     }
+
 }

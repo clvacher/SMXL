@@ -13,7 +13,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.Brand;
@@ -21,10 +20,8 @@ import com.aerolitec.SMXL.model.BrandSizeGuideMeasuresRow;
 import com.aerolitec.SMXL.model.GarmentType;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.Constants;
-import com.aerolitec.SMXL.tools.UtilityMethodsv2;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
-import com.aerolitec.SMXL.ui.activity.SuperNavigationActivity;
 import com.aerolitec.SMXL.ui.adapter.FavoriteCheckableBrandAdapter;
 
 import java.util.ArrayList;
@@ -35,15 +32,19 @@ import java.util.List;
 
 public class QuickMeasureCategoryFragmentTopBottom extends Fragment {
 
-    private SuperNavigationActivity superNavigationActivity;
     private User user;
     private GarmentType garmentType;
 
     //Spinner spinnerBrand;
     private Spinner spinnerCountry;
     private Spinner spinnerSize ;
+
     private List<String> spinnerCountryChoices;
     private List<String> spinnerSizeChoices;
+
+    private ArrayAdapter spinnerCountryAdapter;
+    private ArrayAdapter spinnerSizeAdapter;
+
     private ListView listView;
     private Brand selectedBrand;
 
@@ -66,9 +67,9 @@ public class QuickMeasureCategoryFragmentTopBottom extends Fragment {
 
         user = UserManager.get().getUser();
         spinnerCountryChoices = new ArrayList<>();
-        spinnerCountryChoices.add("Country");
+        spinnerCountryChoices.add("TYPE");
         spinnerSizeChoices = new ArrayList<>();
-        spinnerSizeChoices.add("Select Size");
+        spinnerSizeChoices.add("SIZE");
         Bundle args = getArguments();
         if(args !=null) {
             garmentType = (GarmentType) args.getSerializable("garmentType");
@@ -83,8 +84,6 @@ public class QuickMeasureCategoryFragmentTopBottom extends Fragment {
         View view ;
         view = inflater.inflate(R.layout.fragment_category_quick_measure, container, false);
 
-        spinnerCountry = (Spinner) view.findViewById(R.id.countrySpinner);
-        spinnerSize = (Spinner) view.findViewById(R.id.sizeSpinner);
         ArrayList<Brand> brands = new ArrayList<>(user.getBrands());
         List<Brand> allBrands = SMXL.getBrandSizeGuideDBManager().getAllBrandsByGarment(garmentType);
 
@@ -95,43 +94,25 @@ public class QuickMeasureCategoryFragmentTopBottom extends Fragment {
             }
         }
         spinnerCountry = (Spinner) view.findViewById(R.id.countrySpinner);
-        spinnerCountry.setAdapter(new ArrayAdapter<>(getActivity().getApplicationContext(), R.layout.item_spinner_brand_category, spinnerCountryChoices));
+        spinnerCountryAdapter = new ArrayAdapter<>(getActivity().getApplicationContext(), R.layout.item_spinner_brand_category, spinnerCountryChoices);
+        spinnerCountry.setAdapter(spinnerCountryAdapter);
         spinnerCountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    if (position > 0) {
-                        setSpinnerEnabled(spinnerSize, true);
-                        String selectedCountry = (String) spinnerCountry.getSelectedItem();
-
-                        spinnerSizeChoices.clear();
-                        spinnerSizeChoices.add("Select Size");
-                        spinnerSizeChoices.addAll(SMXL.getBrandSizeGuideDBManager().getSizeListByBrandAndGarmentTypeAndCountry(selectedBrand, garmentType, selectedCountry));
-
-                    } else {
-                        setSpinnerEnabled(spinnerSize, false);
-                    }
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-
-                }
-            });
-
-        spinnerSize = (Spinner) view.findViewById(R.id.sizeSpinner);
-        spinnerSize.setAdapter(new ArrayAdapter<>(getActivity().getApplicationContext(), R.layout.item_spinner_brand_category, spinnerSizeChoices));
-       /* spinnerSize.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position > 0) {
-                    onMeasureSelected();
-                }
+                    if (selectedBrand != null) {
+                        fillSpinnerSize();
+                    }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+
             }
-        });*/
+        });
+
+        spinnerSize = (Spinner) view.findViewById(R.id.sizeSpinner);
+        spinnerSizeAdapter = new ArrayAdapter<>(getActivity().getApplicationContext(), R.layout.item_spinner_brand_category, spinnerSizeChoices);
+        spinnerSize.setAdapter(spinnerSizeAdapter);
         setSpinnerEnabled(spinnerCountry, false);
         setSpinnerEnabled(spinnerSize, false);
 
@@ -143,17 +124,26 @@ public class QuickMeasureCategoryFragmentTopBottom extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selectedBrand = (Brand) parent.getItemAtPosition(position);
-                setSpinnerEnabled(spinnerCountry, true);
                 BrandSizeGuideMeasuresRow brandSizeGuideMeasuresRow = SMXL.getBrandSizeGuideDBManager().getBrandSizeGuideMeasureRowByBrandAndGarmentType(selectedBrand, garmentType);
                 checkValidCountries(brandSizeGuideMeasuresRow);
+                setSpinnerEnabled(spinnerCountry, true);
+                fillSpinnerSize();
             }
         });
-        //UtilityMethodsv2.setListViewHeightBasedOnChildren(listView);
         ImageView imageView = (ImageView)view.findViewById(R.id.imageGarment);
         imageView.setImageDrawable(getResources().getDrawable(garmentType.getCategoryGarment().getIcon()));
 
         return view;
     }
+
+    private void fillSpinnerSize() {
+        String selectedCountry = (String) spinnerCountry.getSelectedItem();
+        spinnerSizeAdapter.clear();
+        spinnerSizeAdapter.addAll(SMXL.getBrandSizeGuideDBManager().getSizeListByBrandAndGarmentTypeAndCountry(selectedBrand, garmentType, selectedCountry));
+        spinnerSizeAdapter.notifyDataSetChanged();
+        setSpinnerEnabled(spinnerSize, true);
+    }
+
     private void setSpinnerEnabled(Spinner spinner, boolean enabled) {
         spinner.setEnabled(enabled);
         spinner.setAlpha(enabled ? 1.0f : 0.4f);
@@ -161,24 +151,24 @@ public class QuickMeasureCategoryFragmentTopBottom extends Fragment {
     }
 
     private void checkValidCountries(BrandSizeGuideMeasuresRow brandSizeGuideMeasuresRow){
-        spinnerCountryChoices.clear();
-        spinnerCountryChoices.add("Country");
+        spinnerCountryAdapter.clear();
 
         if(!brandSizeGuideMeasuresRow.getSizeSMXL().isEmpty()){
-            spinnerCountryChoices.add("SMXL");
+            spinnerCountryAdapter.add("SMXL");
         }
         if(!brandSizeGuideMeasuresRow.getSizeFR().isEmpty()){
-            spinnerCountryChoices.add("fr");
+            spinnerCountryAdapter.add("fr");
         }
         if(!brandSizeGuideMeasuresRow.getSizeUE().isEmpty()){
-            spinnerCountryChoices.add("ue");
+            spinnerCountryAdapter.add("ue");
         }
         if(!brandSizeGuideMeasuresRow.getSizeUK().isEmpty()){
-            spinnerCountryChoices.add("uk");
+            spinnerCountryAdapter.add("uk");
         }
         if(!brandSizeGuideMeasuresRow.getSizeUS().isEmpty()){
-            spinnerCountryChoices.add("fr");
+            spinnerCountryAdapter.add("us");
         }
+        spinnerCountryAdapter.notifyDataSetChanged();
     }
 
     public HashMap<String,Double> onMeasureSelected(){
