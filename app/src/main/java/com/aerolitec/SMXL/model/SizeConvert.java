@@ -1,6 +1,8 @@
 package com.aerolitec.SMXL.model;
 
 
+import java.util.HashMap;
+
 public class SizeConvert extends BaseObjects{
 
     int id_size_convert;
@@ -14,12 +16,13 @@ public class SizeConvert extends BaseObjects{
     String valueJAP;
     String valueSMXL;
     String valueRUS;
+    String valueBRA;
     String valueCH;
 
     public SizeConvert() {}
 
     public SizeConvert(int id_size_convert, String garment, String sex, String valueUS, String valueUK, String valueUE,String valueFR,
-                       String valueITA, String valueJAP, String valueSMXL){
+                       String valueITA, String valueJAP, String valueSMXL,String valueBRA,String valueRUS){
         this.id_size_convert = id_size_convert;
         this.garment = garment;
         this.sex = sex;
@@ -30,6 +33,8 @@ public class SizeConvert extends BaseObjects{
         this.valueITA = valueITA;
         this.valueJAP = valueJAP;
         this.valueSMXL = valueSMXL;
+        this.valueBRA = valueBRA;
+        this.valueRUS = valueRUS;
     }
 
     public int getId_size_convert() {
@@ -127,6 +132,27 @@ public class SizeConvert extends BaseObjects{
     public void setValueCH(String valueCH) {
         this.valueCH = valueCH;
     }
+    public String getValueBRA() {
+        return valueBRA;
+    }
+
+    public void setValueBRA(String valueBRA) {
+        this.valueBRA = valueBRA;
+    }
+
+    public HashMap<String,String> getCorrespondingSizes(){
+        HashMap<String,String> result = new HashMap<>();
+        result.put("FR",valueFR);
+        result.put("UE", valueUE);
+        result.put("UK", valueUK);
+        result.put("US", valueUS);
+        result.put("BRA", valueBRA);
+        result.put("JAP", valueJAP);
+        result.put("RUS", valueRUS);
+        result.put("SMXL", valueSMXL);
+        return result;
+    }
+
 
     @Override
     public String toString() {

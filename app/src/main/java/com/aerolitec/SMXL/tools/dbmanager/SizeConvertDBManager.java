@@ -27,8 +27,12 @@ public class SizeConvertDBManager extends DBManager {
     public static final String KEY_UE_SIZE_CONVERT="valueUE";
     public static final String KEY_FR_SIZE_CONVERT="valueFR";
     public static final String KEY_ITA_SIZE_CONVERT="valueITA";
+    public static final String KEY_RUS_SIZE_CONVERT="valueRUS";
+    public static final String KEY_BRA_SIZE_CONVERT="valueBRA";
     public static final String KEY_JAP_SIZE_CONVERT="valueJAP";
     public static final String KEY_SMXL_SIZE_CONVERT="valueSMXL";
+    //TODO Attention ajouté que pour la requête qui utilise l'id_garment
+    public static final String KEY_ID_GARMENT="id_garment";
 
 
     public static final String CREATE_TABLE_SIZE_CONVERT = "CREATE TABLE "+TABLE_NAME+
@@ -42,6 +46,8 @@ public class SizeConvertDBManager extends DBManager {
             " "+KEY_FR_SIZE_CONVERT+" TEXT" +
             " "+KEY_ITA_SIZE_CONVERT+" TEXT" +
             " "+KEY_JAP_SIZE_CONVERT+" TEXT" +
+            " "+KEY_RUS_SIZE_CONVERT+" TEXT" +
+            " "+KEY_BRA_SIZE_CONVERT+" TEXT" +
             " "+KEY_SMXL_SIZE_CONVERT+" TEXT" +
             ");";
 
@@ -65,6 +71,8 @@ public class SizeConvertDBManager extends DBManager {
         values.put(KEY_FR_SIZE_CONVERT, sc.getValueFR());
         values.put(KEY_ITA_SIZE_CONVERT, sc.getValueITA());
         values.put(KEY_JAP_SIZE_CONVERT, sc.getValueJAP());
+        values.put(KEY_RUS_SIZE_CONVERT, sc.getValueRUS());
+        values.put(KEY_BRA_SIZE_CONVERT, sc.getValueBRA());
         values.put(KEY_SMXL_SIZE_CONVERT, sc.getValueSMXL());
 
         long i = db.insert(TABLE_NAME,null,values);
@@ -87,6 +95,8 @@ public class SizeConvertDBManager extends DBManager {
         values.put(KEY_FR_SIZE_CONVERT, sc.getValueFR());
         values.put(KEY_ITA_SIZE_CONVERT, sc.getValueITA());
         values.put(KEY_JAP_SIZE_CONVERT, sc.getValueJAP());
+        values.put(KEY_RUS_SIZE_CONVERT, sc.getValueRUS());
+        values.put(KEY_BRA_SIZE_CONVERT, sc.getValueBRA());
         values.put(KEY_SMXL_SIZE_CONVERT, sc.getValueSMXL());
 
         String where = KEY_ID_SIZE_CONVERT+" = ?";
@@ -125,6 +135,8 @@ public class SizeConvertDBManager extends DBManager {
             sc.setValueFR(c.getString(c.getColumnIndex(KEY_FR_SIZE_CONVERT)));
             sc.setValueITA(c.getString(c.getColumnIndex(KEY_ITA_SIZE_CONVERT)));
             sc.setValueJAP(c.getString(c.getColumnIndex(KEY_JAP_SIZE_CONVERT)));
+            sc.setValueBRA(c.getString(c.getColumnIndex(KEY_BRA_SIZE_CONVERT)));
+            sc.setValueRUS(c.getString(c.getColumnIndex(KEY_RUS_SIZE_CONVERT)));
             sc.setValueSMXL(c.getString(c.getColumnIndex(KEY_SMXL_SIZE_CONVERT)));
 
             c.close();
@@ -179,6 +191,8 @@ public class SizeConvertDBManager extends DBManager {
             sc.setValueFR(c.getString(c.getColumnIndex(KEY_FR_SIZE_CONVERT)));
             sc.setValueITA(c.getString(c.getColumnIndex(KEY_ITA_SIZE_CONVERT)));
             sc.setValueJAP(c.getString(c.getColumnIndex(KEY_JAP_SIZE_CONVERT)));
+            sc.setValueBRA(c.getString(c.getColumnIndex(KEY_BRA_SIZE_CONVERT)));
+            sc.setValueRUS(c.getString(c.getColumnIndex(KEY_RUS_SIZE_CONVERT)));
             sc.setValueSMXL(c.getString(c.getColumnIndex(KEY_SMXL_SIZE_CONVERT)));
             sizes.add(sc);
             eof = c.moveToNext();
@@ -209,6 +223,8 @@ public class SizeConvertDBManager extends DBManager {
             sc.setValueFR(c.getString(c.getColumnIndex(KEY_FR_SIZE_CONVERT)));
             sc.setValueITA(c.getString(c.getColumnIndex(KEY_ITA_SIZE_CONVERT)));
             sc.setValueJAP(c.getString(c.getColumnIndex(KEY_JAP_SIZE_CONVERT)));
+            sc.setValueBRA(c.getString(c.getColumnIndex(KEY_BRA_SIZE_CONVERT)));
+            sc.setValueRUS(c.getString(c.getColumnIndex(KEY_RUS_SIZE_CONVERT)));
             sc.setValueSMXL(c.getString(c.getColumnIndex(KEY_SMXL_SIZE_CONVERT)));
             sizes.add(sc);
 
@@ -221,6 +237,39 @@ public class SizeConvertDBManager extends DBManager {
 
     }
 
+    public ArrayList<SizeConvert> getConvertSizesByGarmentTypeAndSize(GarmentType garment,String type,String size)
+    {
+        open();
+        ArrayList sizes = new ArrayList();
+        Cursor c;
+        c = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+KEY_ID_GARMENT+"= "+garment.getId_garment_type()+" AND value"+type+" ='"+size+"'", null);
+
+        boolean eof = c.moveToFirst();
+        while(eof)
+        {
+            SizeConvert sc = new SizeConvert();
+            sc.setId_size_convert(c.getInt(c.getColumnIndex(KEY_ID_SIZE_CONVERT)));
+            sc.setGarment(c.getString(c.getColumnIndex(KEY_GARMENT_SIZE_CONVERT)));
+            sc.setSex(c.getString(c.getColumnIndex(KEY_SEX_SIZE_CONVERT)));
+            sc.setValueUS(c.getString(c.getColumnIndex(KEY_US_SIZE_CONVERT)));
+            sc.setValueUK(c.getString(c.getColumnIndex(KEY_UK_SIZE_CONVERT)));
+            sc.setValueUE(c.getString(c.getColumnIndex(KEY_UE_SIZE_CONVERT)));
+            sc.setValueFR(c.getString(c.getColumnIndex(KEY_FR_SIZE_CONVERT)));
+            sc.setValueITA(c.getString(c.getColumnIndex(KEY_ITA_SIZE_CONVERT)));
+            sc.setValueJAP(c.getString(c.getColumnIndex(KEY_JAP_SIZE_CONVERT)));
+            sc.setValueBRA(c.getString(c.getColumnIndex(KEY_BRA_SIZE_CONVERT)));
+            sc.setValueRUS(c.getString(c.getColumnIndex(KEY_RUS_SIZE_CONVERT)));
+            sc.setValueSMXL(c.getString(c.getColumnIndex(KEY_SMXL_SIZE_CONVERT)));
+            sizes.add(sc);
+
+            eof = c.moveToNext();
+        }
+        c.close();
+
+        close();
+        return sizes;
+
+    }
 
 } // class BrandDBManager
 

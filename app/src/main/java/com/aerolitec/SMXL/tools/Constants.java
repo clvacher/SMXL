@@ -26,6 +26,8 @@ public class Constants {
     public static int POUNDS = 2;
     public static int KG = 3;
 
+    public static String MALE = "H";
+    public static String FEMALE = "F";
 
     public static class ColorUtils{
 

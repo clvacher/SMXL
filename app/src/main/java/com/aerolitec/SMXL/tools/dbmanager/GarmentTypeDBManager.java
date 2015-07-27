@@ -225,5 +225,26 @@ public class GarmentTypeDBManager extends DBManager {
         return garments;
     }
 
+    public GarmentType getGarmentTypeByNameAndSex(String garmentName ,String sexe) {
+        open();
+        GarmentType gt=new GarmentType();
+
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + KEY_SEX_GARMENT_TYPE + "='" + sexe +"' AND "+KEY_NAME_GARMENT_TYPE +"='"+ garmentName+"'", null);
+        if (c.moveToFirst()) {
+            gt.setId_garment_type(c.getInt(c.getColumnIndex(KEY_ID_GARMENT_TYPE)));
+
+            SMXL.getCategoryGarmentDBManager().open();
+            gt.setCategoryGarment(SMXL.getCategoryGarmentDBManager().getCategoryGarment(c.getInt(c.getColumnIndex(KEY_ID_CATEGORY_GARMENT_GARMENT_TYPE))));
+            SMXL.getCategoryGarmentDBManager().close();
+
+            gt.setType(c.getString(c.getColumnIndex(KEY_NAME_GARMENT_TYPE)));
+            gt.setSex(c.getString(c.getColumnIndex(KEY_SEX_GARMENT_TYPE)));
+            c.close();
+        }
+
+        close();
+        return gt;
+    }
+
 } // class GarmentTypeDBManager
 

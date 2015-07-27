@@ -164,7 +164,7 @@ public class MainNavigationActivity extends SuperNavigationActivity implements O
         // first section is loaded
 
 
-        MaterialSection sectionAcceuil = this.newSection("Accueil", getResources().getDrawable(R.drawable.ic_menu_home), new TabsFragmentHomeDressingQuicksize(), false, menu);
+        MaterialSection sectionAcceuil = this.newSection("Accueil", getResources().getDrawable(R.drawable.ic_launcher), new TabsFragmentHomeDressingQuicksize(), false, menu);
         //sectionAcceuil.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
 
         MaterialSection sectionMesProfils = this.newSection(getResources().getString(R.string.my_profiles), this.getResources().getDrawable(R.drawable.ic_perm_group_social_info), new ProfilesFragment(), false, menu);
@@ -228,14 +228,14 @@ public class MainNavigationActivity extends SuperNavigationActivity implements O
 
             final Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.avatar);
             final RoundedCornersDrawable drawableAppIcon = new RoundedCornersDrawable(getResources(), bitmap);
-            mainUserHeadItem = new MaterialHeadItem(this, "Nom", "Prénom", drawableAppIcon, R.drawable.blur_geom, menu);
+            mainUserHeadItem = new MaterialHeadItem(this, "Nom", "Prénom", drawableAppIcon, R.drawable.profil_header, menu);
 
         }
         else{
             final Bitmap bitmap = getBitmapMainUser(mainUser.getAvatar());
             RoundedTransformation roundedTransformation = new RoundedTransformation();
             RoundedBitmapDrawable drawableFactory = RoundedBitmapDrawableFactory.create(getResources(), roundedTransformation.transform(bitmap));
-            mainUserHeadItem = new MaterialHeadItem(this, mainUser.getFirstname()+" "+mainUser.getLastname(), mainUser.getEmail(), drawableFactory, R.drawable.blur_geom, menu);
+            mainUserHeadItem = new MaterialHeadItem(this, mainUser.getFirstname()+" "+mainUser.getLastname(), mainUser.getEmail(), drawableFactory, R.drawable.profil_header, menu);
             sectionMyProfile.setIcon(drawableFactory);
         }
 

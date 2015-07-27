@@ -64,19 +64,6 @@ public class QuickSizeSelectBrandFragment extends Fragment implements SuperNavig
         allLeft=view.findViewById(R.id.selectedAllLeftArrow);
         allRight=view.findViewById(R.id.selectedAllRightArrow);
 
-        rlBrands.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                favoriteRight.setVisibility(View.GONE);
-                favoriteLeft.setVisibility(View.GONE);
-                allLeft.setVisibility(View.VISIBLE);
-                allRight.setVisibility(View.VISIBLE);
-                fillGridView(gvBrands, getAllbrands());
-                fillSpinner(spinnerBrandsCategory, getSpinnerCategories());
-                spinnerBrandsCategory.setVisibility(View.VISIBLE);
-            }
-        });
-
         rlFavoriteBrands.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,6 +75,21 @@ public class QuickSizeSelectBrandFragment extends Fragment implements SuperNavig
                 fillGridView(gvBrands, getFavoriteBrands());
             }
         });
+
+        rlBrands.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                favoriteRight.setVisibility(View.GONE);
+                favoriteLeft.setVisibility(View.GONE);
+                allLeft.setVisibility(View.VISIBLE);
+                allRight.setVisibility(View.VISIBLE);
+                fillGridView(gvBrands, getAllBrands());
+                fillSpinner(spinnerBrandsCategory, getSpinnerCategories());
+                spinnerBrandsCategory.setVisibility(View.VISIBLE);
+            }
+        });
+
+
 
         gvBrands.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -107,7 +109,7 @@ public class QuickSizeSelectBrandFragment extends Fragment implements SuperNavig
                 if (position > 0) {
                     brands = getAllBrandsByCategory(position);
                 } else {
-                    brands = getAllbrands();
+                    brands = getAllBrands();
                 }
                 fillGridView(gvBrands, brands);
                 gvBrands.clearChoices();
@@ -146,13 +148,13 @@ public class QuickSizeSelectBrandFragment extends Fragment implements SuperNavig
         return SMXL.getUserBrandDBManager().getUserBrandByGarment(UserManager.get().getUser(), quickSizeFragment.getSelectedGarmentType());
     }
 
-    private ArrayList<Brand> getAllbrands(){
+    private ArrayList<Brand> getAllBrands(){
         return SMXL.getBrandSizeGuideDBManager().getAllBrandsByGarment(quickSizeFragment.getSelectedGarmentType());
     }
 
     private ArrayList<Brand> getAllBrandsByCategory(int position){
         ArrayList<Brand> brands = SMXL.getBrandDBManager().getBrandsByBrandCategory(SMXL.getBrandDBManager().getAllBrandCategory().get(position - 1));//-1 car on a rajoute l'item d'en tete
-        ArrayList<Brand> allBrands = getAllbrands();
+        ArrayList<Brand> allBrands = getAllBrands();
         brands.retainAll(allBrands);
         return brands;
     }

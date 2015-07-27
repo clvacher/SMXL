@@ -5,10 +5,29 @@
     android:padding="26dp"
     android:background="@color/DefaultBackgroundColor">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:src="@drawable/quicksize"
+        android:layout_centerHorizontal="true"
+        android:maxWidth="100dp"
+        android:maxHeight="100dp"
+        android:adjustViewBounds="true"
+        android:padding="10dp" />
+    <View
+        android:id="@id/separator"
+        android:layout_below="@id/imageView2"
+        android:layout_width="fill_parent"
+        android:layout_height="2px"
+        android:layout_alignLeft="@id/imageView2"
+        android:layout_alignRight="@id/imageView2"
+        android:background="@color/separator" />
 
     <GridView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/separator"
         android:id="@+id/gridViewGarmentTypes"
         android:numColumns="2"
         android:horizontalSpacing="15dp"
