@@ -9,7 +9,11 @@ import android.view.ViewGroup;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import com.aerolitec.SMXL.model.Brand;
 import com.aerolitec.SMXL.model.GarmentType;
+import com.aerolitec.SMXL.model.User;
+import com.aerolitec.SMXL.tools.manager.UserManager;
+import com.aerolitec.SMXL.ui.SMXL;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,6 +22,8 @@ import java.io.InputStreamReader;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -80,5 +86,37 @@ public class UtilityMethodsv2 {
         double feet = Double.parseDouble(format.format(((2f / 3f) * size) - 1f));
         Locale.setDefault(defaultLocale);
         return feet;
+    }
+
+
+    public static boolean hasTopBottomFavoriteBrand(){
+        User user = UserManager.get().getUser();
+        int sex = user.getSexe();
+
+        GarmentType garmentTypeTop=null,garmentTypeBottom=null;
+        garmentTypeTop = SMXL.getGarmentTypeDBManager().getAllGarmentTypeByCategory(SMXL.getCategoryGarmentDBManager().getCategoryGarment(Constants.TSHIRT_CATEGORYGARMENT), sex).get(0);
+        garmentTypeBottom = SMXL.getGarmentTypeDBManager().getAllGarmentTypeByCategory(SMXL.getCategoryGarmentDBManager().getCategoryGarment(Constants.PANTS_SHORTS_CATEGORYGARMENT), sex).get(1);
+
+        ArrayList<Brand> brandsTop = new ArrayList<>(user.getBrands());
+        ArrayList<Brand> brandsBottom = new ArrayList<>(user.getBrands());
+        List<Brand> allBrands = SMXL.getBrandSizeGuideDBManager().getAllBrandsByGarment(garmentTypeTop);
+
+        for (Iterator<Brand> brandIterator = brandsTop.iterator(); brandIterator.hasNext(); ) {
+            Brand brand = brandIterator.next();
+            if (!allBrands.contains(brand)) {
+                brandIterator.remove();
+            }
+        }
+        allBrands = SMXL.getBrandSizeGuideDBManager().getAllBrandsByGarment(garmentTypeBottom);
+        for (Iterator<Brand> brandIterator = brandsBottom.iterator(); brandIterator.hasNext(); ) {
+            Brand brand = brandIterator.next();
+            if (!allBrands.contains(brand)) {
+                brandIterator.remove();
+            }
+        }
+        if(brandsBottom.isEmpty() || brandsTop.isEmpty()){
+            return false;
+        }
+        return true;
     }
 }

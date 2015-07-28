@@ -126,7 +126,14 @@ public class QuickMeasureCategoryFragmentTopBottom extends Fragment {
                 selectedBrand = (Brand) parent.getItemAtPosition(position);
                 BrandSizeGuideMeasuresRow brandSizeGuideMeasuresRow = SMXL.getBrandSizeGuideDBManager().getBrandSizeGuideMeasureRowByBrandAndGarmentType(selectedBrand, garmentType);
                 checkValidCountries(brandSizeGuideMeasuresRow);
-                setSpinnerEnabled(spinnerCountry, true);
+                if(spinnerCountryAdapter.getCount() > 1)
+                {
+                    setSpinnerEnabled(spinnerCountry, true);
+                }
+                else
+                {
+                    setSpinnerEnabled(spinnerCountry, false);
+                }
                 fillSpinnerSize();
             }
         });
@@ -174,7 +181,7 @@ public class QuickMeasureCategoryFragmentTopBottom extends Fragment {
     public HashMap<String,Double> onMeasureSelected(){
 
         HashMap<String,Double> result= new HashMap<>();
-        if(spinnerCountry.isEnabled() && spinnerSize.isEnabled()) {
+        if(spinnerSize.isEnabled()) {
             String selectedCountry = (String) spinnerCountry.getSelectedItem();
             String selectedSize = (String) spinnerSize.getSelectedItem();
             List<BrandSizeGuideMeasuresRow> brandSizeGuideMeasuresRowList = SMXL.getBrandSizeGuideDBManager().getBrandSizeGuideMeasureRowsByBrandAndGarmentTypeAndCountryAndSize(selectedBrand, garmentType, selectedCountry, selectedSize);

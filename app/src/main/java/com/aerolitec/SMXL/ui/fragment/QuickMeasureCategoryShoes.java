@@ -31,29 +31,14 @@ import java.util.Locale;
 public class QuickMeasureCategoryShoes extends Fragment {
 
     private EditText et_Pointure;
-    private GarmentType garmentType;
 
-    public static QuickMeasureCategoryShoes newInstance(GarmentType garmentType) {
+    public static QuickMeasureCategoryShoes newInstance() {
         QuickMeasureCategoryShoes fragment = new QuickMeasureCategoryShoes();
-        Bundle args = new Bundle();
-        args.putSerializable("garmentType",garmentType);
-        fragment.setArguments(args);
         return fragment;
     }
 
     public QuickMeasureCategoryShoes() {
         // Required empty public constructor
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Bundle args = getArguments();
-        if(args !=null) {
-            garmentType = (GarmentType) args.getSerializable("garmentType");
-        }else {
-            Log.d(Constants.TAG, "CategoryGarment Vide");
-        }
     }
 
     @Override

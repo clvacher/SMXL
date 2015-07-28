@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.Brand;
@@ -43,7 +44,7 @@ public class ProfilesDetailFragment extends Fragment{
 
     private ArrayList<Brand> userBrands;
 
-    RelativeLayout quickSizeLayout;
+    RelativeLayout quickSizeLayout,wishListLayout;
 
     public ProfilesDetailFragment() {
         // Required empty public constructor
@@ -119,6 +120,14 @@ public class ProfilesDetailFragment extends Fragment{
             }
         });
 
+        wishListLayout =(RelativeLayout) view.findViewById(R.id.wishList);
+        wishListLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "Prochainement , partager vos envies !", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         noClickZone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -130,7 +139,12 @@ public class ProfilesDetailFragment extends Fragment{
         quickMeasure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.frame_container,new QuickMeasureFragment()).commit();
+                if(UtilityMethodsv2.hasTopBottomFavoriteBrand()) {
+                    getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.frame_container, new QuickMeasureFragment()).commit();
+                }
+                else{
+                    Toast.makeText(getActivity(), "Veuillez ajouter plus de marques favorites .", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

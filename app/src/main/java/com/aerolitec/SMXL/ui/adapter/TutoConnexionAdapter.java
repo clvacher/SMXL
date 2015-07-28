@@ -18,10 +18,10 @@ public class TutoConnexionAdapter extends FragmentPagerAdapter {
 
     private static ArrayList<PageTuto> al_pagetuto = new ArrayList<PageTuto>(){{
         //add(new PageTuto(R.drawable.icone_hd, "Avec SMXL, vive le shopping !", "3 petits tours ... Et tout est à ma taille !"));
-        add(new PageTuto(R.drawable.cart, "Fini les retours !", "Je commande sur le net vêtements et chaussures toujours à ma taille !"));
-        add(new PageTuto(R.drawable.clock, "Gagnez du temps à l'essayage !", "Je n'hésite plus entre deux tailles, je n'en essaye plus qu'une et tout me va !"));
-        add(new PageTuto(R.drawable.friends, "Une tribu bien habillée !", "Non seulement j'ai toujours les mesures de ma famille, mais aussi leurs marques préférées !"));
-        add(new PageTuto(R.drawable.present, "Des cadeaux bien trouvés !", "Mes amis partagent leur profil avec moi, et SMXL me prévient le jour de leur anniversaire, facile de faire plaisir !"));
+        add(new PageTuto(R.drawable.desktop, "Fini les retours !", "Je commande sur le net vêtements et chaussures toujours à ma taille !"));
+        add(new PageTuto(R.drawable.watch, "Gagnez du temps à l'essayage !", "Je n'hésite plus entre deux tailles, je n'en essaye plus qu'une et tout me va !"));
+        add(new PageTuto(R.drawable.family, "Une tribu bien habillée !", "Non seulement j'ai toujours les mesures de ma famille, mais aussi leurs marques préférées !"));
+        add(new PageTuto(R.drawable.present_pic, "Des cadeaux bien trouvés !", "Mes amis partagent leur profil avec moi, et SMXL me prévient le jour de leur anniversaire, facile de faire plaisir !"));
     }};
 
     private static final int NUM_PAGES = al_pagetuto.size();

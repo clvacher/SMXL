@@ -50,8 +50,7 @@ public class SelectBrandsFragment extends Fragment implements FakeSearchView.OnS
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
         superNavigationActivity = (SuperNavigationActivity) getActivity();
-        superNavigationActivity.setBarAsNextFragment();
-        superNavigationActivity.updateHamburger();
+        updateTopMenu();
         superNavigationActivity.updateTitle(R.string.title_activity_select_brands);
         user = UserManager.get().getUser();
 
@@ -59,6 +58,11 @@ public class SelectBrandsFragment extends Fragment implements FakeSearchView.OnS
             getActivity().finish();
             Log.d("Warning","user null");
         }
+    }
+
+    protected void updateTopMenu() {
+        superNavigationActivity.setBarAsNextFragment();
+        superNavigationActivity.updateHamburger();
     }
 
     @Override

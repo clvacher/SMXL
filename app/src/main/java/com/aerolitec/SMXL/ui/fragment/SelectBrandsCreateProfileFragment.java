@@ -64,4 +64,8 @@ public class SelectBrandsCreateProfileFragment extends SelectBrandsFragment{
             builder.show();
         }
     }
+
+    @Override
+    protected void updateTopMenu() {
+    }
 }

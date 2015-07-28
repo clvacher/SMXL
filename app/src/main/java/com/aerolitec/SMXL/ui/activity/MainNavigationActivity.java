@@ -228,14 +228,14 @@ public class MainNavigationActivity extends SuperNavigationActivity implements O
 
             final Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.avatar);
             final RoundedCornersDrawable drawableAppIcon = new RoundedCornersDrawable(getResources(), bitmap);
-            mainUserHeadItem = new MaterialHeadItem(this, "Nom", "Prénom", drawableAppIcon, R.drawable.profil_header, menu);
+            mainUserHeadItem = new MaterialHeadItem(this, "Nom", "Prénom", drawableAppIcon, R.drawable.blur_geom, menu);
 
         }
         else{
             final Bitmap bitmap = getBitmapMainUser(mainUser.getAvatar());
             RoundedTransformation roundedTransformation = new RoundedTransformation();
             RoundedBitmapDrawable drawableFactory = RoundedBitmapDrawableFactory.create(getResources(), roundedTransformation.transform(bitmap));
-            mainUserHeadItem = new MaterialHeadItem(this, mainUser.getFirstname()+" "+mainUser.getLastname(), mainUser.getEmail(), drawableFactory, R.drawable.profil_header, menu);
+            mainUserHeadItem = new MaterialHeadItem(this, mainUser.getFirstname()+" "+mainUser.getLastname(), mainUser.getEmail(), drawableFactory, R.drawable.blur_geom, menu);
             sectionMyProfile.setIcon(drawableFactory);
         }
 

@@ -3,13 +3,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.aerolitec.SMXL.ui.fragment.ConnexionPageTutoFragment"
-    android:gravity="center"
-    android:padding="20dp"
-    >
+    android:padding="10dp">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="120dp"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
         android:id="@+id/imageViewLogoPageTuto"
         android:layout_margin="10dp"/>
 
@@ -19,7 +17,7 @@
         android:textColor="@color/SectionTitle"
         android:textSize="25sp"
         android:gravity="center"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="5dp"
         android:textStyle="bold"
         android:id="@+id/mainTitlePageTuto"/>
 
@@ -28,7 +26,7 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:textColor="@android:color/black"
         android:id="@+id/subtitlePageTuto"/>
 

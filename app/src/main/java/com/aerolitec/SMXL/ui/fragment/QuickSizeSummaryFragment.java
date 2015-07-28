@@ -108,7 +108,7 @@ public class QuickSizeSummaryFragment extends Fragment implements MainNavigation
                 else {
                     currentTableLayout.addView(new CustomSizeGuideTableRow(getActivity(), entry.getKey(), entry.getValue()));
                 }
-                // Permet d'avoir 2 tableaux les plus équilibré possible en taille
+                // Permet d'avoir 2 tableaux les plus equilibre possible en hauteur
                 int nbEntry = sizeConvertResult.size();
                 if(currentTableLayout.getChildCount()>=Math.ceil(nbEntry / 2.0)){
                     currentTableLayout = tableLayoutRight;
@@ -149,7 +149,7 @@ public class QuickSizeSummaryFragment extends Fragment implements MainNavigation
                     return entry.getKey();
                 }
             }
-            //Ne devrait jamais passer par là
+            //Ne devrait jamais passer par la
             return null;
         }
     }

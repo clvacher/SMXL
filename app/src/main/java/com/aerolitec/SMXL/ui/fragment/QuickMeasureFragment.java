@@ -16,6 +16,7 @@ import android.widget.Button;
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.GarmentType;
 import com.aerolitec.SMXL.model.User;
+import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.activity.MainNavigationActivity;
@@ -29,9 +30,7 @@ import java.util.HashMap;
 public class QuickMeasureFragment extends Fragment {
 
     private SuperNavigationActivity superNavigationActivity;
-    private static final int TSHIRT_CATEGORYGARMENT = 1;
-    private static final int PANTS_SHORTS_CATEGORYGARMENT = 3;
-    private static final int SHOES_CATEGORYGARMENT = 6;
+
 
     QuickMeasureCategoryFragmentTopBottom quickMeasureCategoryFragmentTop;
     QuickMeasureCategoryFragmentTopBottom quickMeasureCategoryFragmentBottom;
@@ -56,16 +55,15 @@ public class QuickMeasureFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_quick_measure, container, false);
         int sex = UserManager.get().getUser().getSexe();
 
-        ArrayList<GarmentType> allGarmentTypeByCategory = SMXL.getGarmentTypeDBManager().getAllGarmentTypeByCategory(SMXL.getCategoryGarmentDBManager().getCategoryGarment(TSHIRT_CATEGORYGARMENT), sex);
+        ArrayList<GarmentType> allGarmentTypeByCategory = SMXL.getGarmentTypeDBManager().getAllGarmentTypeByCategory(SMXL.getCategoryGarmentDBManager().getCategoryGarment(Constants.TSHIRT_CATEGORYGARMENT), sex);
         quickMeasureCategoryFragmentTop = QuickMeasureCategoryFragmentTopBottom.newInstance(allGarmentTypeByCategory.get(0));
         getChildFragmentManager().beginTransaction().addToBackStack(null).add(R.id.containerQuickMeasureTop,quickMeasureCategoryFragmentTop ).commit();
 
-        allGarmentTypeByCategory = SMXL.getGarmentTypeDBManager().getAllGarmentTypeByCategory(SMXL.getCategoryGarmentDBManager().getCategoryGarment(PANTS_SHORTS_CATEGORYGARMENT), sex);
+        allGarmentTypeByCategory = SMXL.getGarmentTypeDBManager().getAllGarmentTypeByCategory(SMXL.getCategoryGarmentDBManager().getCategoryGarment(Constants.PANTS_SHORTS_CATEGORYGARMENT), sex);
         quickMeasureCategoryFragmentBottom = QuickMeasureCategoryFragmentTopBottom.newInstance(allGarmentTypeByCategory.get(1));
         getChildFragmentManager().beginTransaction().addToBackStack(null).add(R.id.containerQuickMeasureBottom, quickMeasureCategoryFragmentBottom).commit();
 
-        allGarmentTypeByCategory = SMXL.getGarmentTypeDBManager().getAllGarmentTypeByCategory(SMXL.getCategoryGarmentDBManager().getCategoryGarment(SHOES_CATEGORYGARMENT), sex);
-        quickMeasureCategoryFragmentShoes = QuickMeasureCategoryShoes.newInstance(allGarmentTypeByCategory.get(0));
+        quickMeasureCategoryFragmentShoes = QuickMeasureCategoryShoes.newInstance();
         getChildFragmentManager().beginTransaction().addToBackStack(null).add(R.id.containerQuickMeasureShoes, quickMeasureCategoryFragmentShoes).commit();
 
         Button buttonContinue = (Button)view.findViewById(R.id.buttonValidationQuickMeasure);

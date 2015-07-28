@@ -29,6 +29,9 @@ public class Constants {
     public static String MALE = "H";
     public static String FEMALE = "F";
 
+    public static final int TSHIRT_CATEGORYGARMENT = 1;
+    public  static final int PANTS_SHORTS_CATEGORYGARMENT = 3;
+
     public static class ColorUtils{
 
         /**
