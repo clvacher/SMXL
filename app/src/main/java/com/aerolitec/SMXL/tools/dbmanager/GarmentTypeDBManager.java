@@ -246,5 +246,16 @@ public class GarmentTypeDBManager extends DBManager {
         return gt;
     }
 
+    public int getOrderByCategoryGarment(GarmentType garmentType) {
+        open();
+        int result = -1;
+        Cursor c = db.rawQuery("SELECT "+KEY_TOPMIDDLEBOTTOM_GARMENT_TYPE+" FROM "+TABLE_NAME+" WHERE "+KEY_ID_GARMENT_TYPE+ " = "+garmentType.getId_garment_type(), null);
+        if (c.moveToFirst()) {
+           result = c.getInt(c.getColumnIndex(KEY_TOPMIDDLEBOTTOM_GARMENT_TYPE));
+        }
+        c.close();
+        close();
+        return result;
+    }
 } // class GarmentTypeDBManager
 

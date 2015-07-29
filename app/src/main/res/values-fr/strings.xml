@@ -203,5 +203,6 @@
     <string name="title_activity_select_brands">Rechercher</string>
     <string name="select_brand_popup_message">Choisis de 2 à 5 Marques Favorites</string>
     <string name="quickmeasure_popup_message">Choisis qu\'une marque par catégorie et entre ta taille pour débloquer la QuickSize .</string>
+    <string name="Share">Share</string>
 
 </resources>

@@ -46,9 +46,10 @@ public class ConnexionActivity extends NoDrawerActivity{
 
         //Skips connexion if the mainUser exists
         if((MainUserManager.get().getMainUser())!=null){
-            finish();
+
             Intent intent = new Intent(getApplicationContext(), MainNavigationActivity.class);
             startActivity(intent);
+            finish();
         }
 
     }

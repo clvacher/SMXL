@@ -21,8 +21,8 @@ public class Constants {
     public static final Float pounds = 2.2046F;
     public static final Float cm = 0.3937F;
 
-    public static int INCH = 1;
     public static int CM = 0;
+    public static int INCH = 1;
     public static int POUNDS = 2;
     public static int KG = 3;
 

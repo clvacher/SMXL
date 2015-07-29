@@ -65,15 +65,15 @@ public class ConnexionDefaultFragment extends Fragment implements LoginCreateAcc
                 @Override
                 public void onCompleted(JSONObject userJson, GraphResponse response) {
                     if (userJson != null) {
-
-                        MainUserManager.get().setMainUser(new MainUser(userJson.optString("email"),"facebook",1,null));
+                        MainUser tmpMainuser = new MainUser(userJson.optString("email"),"facebook",1,null);
+                        MainUserManager.get().setMainUser(tmpMainuser);
                         new GetMainUserFacebookHttpAsyncTask(fragment).execute();
                     }
                 }
             });
             request.executeAsync();
 
-
+            /*
             GraphRequest graphRequest = GraphRequest.newMeRequest(
                     AccessToken.getCurrentAccessToken(),
                     new GraphRequest.GraphJSONObjectCallback() {
@@ -86,7 +86,7 @@ public class ConnexionDefaultFragment extends Fragment implements LoginCreateAcc
                         }
                     });
             graphRequest.executeAsync();
-
+            */
 
 
 
@@ -234,9 +234,9 @@ public class ConnexionDefaultFragment extends Fragment implements LoginCreateAcc
                     //Log.d("birthday", (userJson.optString("birthday")).toString());
                     //Log.d("email", (userJson.optString("email")).toString());
 
-                    getActivity().finish();
                     Intent intent = new Intent(getActivity().getApplicationContext(), MainNavigationActivity.class);
                     startActivity(intent);
+                    getActivity().finish();
                 }
             }
         });

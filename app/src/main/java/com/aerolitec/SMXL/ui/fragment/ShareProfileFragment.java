@@ -9,8 +9,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aerolitec.SMXL.R;
+import com.aerolitec.SMXL.model.MainUser;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
 import com.aerolitec.SMXL.tools.serverConnexion.GetSharedProfileHttpAsyncTask;
 import com.aerolitec.SMXL.tools.serverConnexion.GetSharingCodeHttpAsyncTask;
@@ -40,7 +42,7 @@ public class ShareProfileFragment extends Fragment implements GetSharingCodeInte
         etObtainProfile = (EditText) view.findViewById(R.id.etObtainProfile);
         Button getProfile = (Button) view.findViewById(R.id.buttonGetProfile);
 
-
+        MainUser temp = MainUserManager.get().getMainUser();
         new GetSharingCodeHttpAsyncTask(this).execute(MainUserManager.get().getMainUser().getServerId(),MainUserManager.get().getMainUser().getProfiles().get(0));
 
         tvShareProfile.setText("Obtaining...");
@@ -49,8 +51,10 @@ public class ShareProfileFragment extends Fragment implements GetSharingCodeInte
         getProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new GetSharedProfileHttpAsyncTask().execute(Integer.parseInt(etObtainProfile.getText().toString()));
-            }
+                if(!etObtainProfile.getText().toString().trim().isEmpty()) {
+                    new GetSharedProfileHttpAsyncTask(getActivity()).execute(Integer.parseInt(etObtainProfile.getText().toString()));
+                }
+                }
         });
 
 

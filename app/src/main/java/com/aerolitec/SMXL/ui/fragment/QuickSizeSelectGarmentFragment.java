@@ -13,6 +13,7 @@ import android.widget.GridView;
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.GarmentType;
 import com.aerolitec.SMXL.model.User;
+import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.adapter.TypeGarmentAdapter;
@@ -52,7 +53,7 @@ public class QuickSizeSelectGarmentFragment extends Fragment {
 
     @Override
     public void onResume() {
-        fillGridView(gvGarmentTypes,getAllGarmentTypes());
+        fillGridView(gvGarmentTypes, getAllGarmentTypes());
         super.onResume();
     }
 
@@ -63,31 +64,59 @@ public class QuickSizeSelectGarmentFragment extends Fragment {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //if (checkValidMeasure()) {
-                    quickSizeFragment.setSelectedGarmentType((GarmentType) parent.getItemAtPosition(position));
+                GarmentType selectedGarmentType = (GarmentType) parent.getItemAtPosition(position);
+                if (checkValidMeasure(selectedGarmentType)) {
+                    quickSizeFragment.setSelectedGarmentType(selectedGarmentType);
                     quickSizeFragment.getChildFragmentManager().beginTransaction()
                             .addToBackStack(null)
                             .replace(R.id.containerQuickSizeFragment, new QuickSizeSelectBrandFragment(), "brand")
                             .commit();
-                /*} else {
+                } else {
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage("Impossible d'effectuer une quicksize sans que les tailles suivantes soit remplie(s).")
-                            .setTitle("Mesures manquantes");
+                    builder.setMessage("Entrez vos Mesures QuickSize dans votre profil ou directement dans l'onglet Mesure.")
+                            .setTitle("Mesures manquantes").setNeutralButton(R.string.ok,null);
                     AlertDialog dialog = builder.create();
                     dialog.show();
-                }*/
+                }
             }
         });
     }
 
     private ArrayList<GarmentType> getAllGarmentTypes(){
-        return SMXL.getGarmentTypeDBManager().getAllGarmentTypesBySexOrderByPosition(user.getSexe());
+        ArrayList<GarmentType> result = SMXL.getGarmentTypeDBManager().getAllGarmentTypesBySexOrderByPosition(user.getSexe());
+        //TODO A changer
+        switch (user.getSexe()){
+            case 1 :
+                result.remove(12);
+                break;
+            default:
+                result.remove(14);
+                break;
+        }
+        return result;
     }
 
-    private boolean checkValidMeasure(){
+    private boolean checkValidMeasure(GarmentType garmentType){
+        int topBottomShoe = SMXL.getGarmentTypeDBManager().getOrderByCategoryGarment(garmentType);
         User user = UserManager.get().getUser();
-        if(user.getIndexMeasureNotNull().size() == 0) {
-            return false;
+        switch (topBottomShoe){
+            case 1 :
+                if(user.getChest()==0.0) {
+                    return false;
+                }
+                break;
+            case 2 :
+                if (user.getHips()==0.0 || user.getWaist()==0.0) {
+                    return false;
+                }
+                break;
+            case 3 :
+                if(user.getFeet() <= 0.0 ) {
+                    return false;
+                }
+                break;
+            default:
+                break;
         }
         return true;
     }

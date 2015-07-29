@@ -2,17 +2,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.aerolitec.SMXL.ui.activity.ProfilDetailActivity" >
-    <!--item
-        android:id="@+id/share"
-        android:icon="@drawable/ic_action_share"
-        android:title=""
-        android:showAsAction="always"
-        /-->
-
+    <!--
     <item
         android:id="@+id/setting"
         android:icon="@drawable/ic_action_settings"
         android:title="@string/settings"
         app:showAsAction="always"
+     />
+     -->
+    <item
+        android:id="@+id/share"
+        android:icon="@drawable/ic_action_share"
+        android:title="@string/share"
+        android:showAsAction="ifRoom"
         />
 </menu>

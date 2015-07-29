@@ -202,5 +202,6 @@
     <string name="ok">OK</string>
     <string name="select_brand_popup_message">Please choose from 2 to 5 Favorites Brands</string>
     <string name="quickmeasure_popup_message">Choose a Brand per garment and enter your size to unlock the QuickSize .</string>
+    <string name="Share">Share</string>
 
 </resources>
