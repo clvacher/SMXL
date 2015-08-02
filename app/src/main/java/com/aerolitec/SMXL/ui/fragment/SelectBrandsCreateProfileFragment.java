@@ -9,7 +9,9 @@ import android.widget.Toast;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.Brand;
+import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.ui.SMXL;
+import com.aerolitec.SMXL.ui.activity.CreateUpdateProfileActivity;
 
 /**
  * Created by Nelson on 20/07/2015.
@@ -55,7 +57,7 @@ public class SelectBrandsCreateProfileFragment extends SelectBrandsFragment{
             builder.setTitle(getResources().getString(R.string.step) + " 1/2")
                     .setMessage(R.string.select_brand_popup_message)
                     .setIcon(R.drawable.ic_launcher)
-                    .setNeutralButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
@@ -67,5 +69,11 @@ public class SelectBrandsCreateProfileFragment extends SelectBrandsFragment{
 
     @Override
     protected void updateTopMenu() {
+    }
+
+    @Override
+    protected void save() {
+        hideKeyboardIfNeeded();
+        getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).add(R.id.frame_container, new QuickMeasureFragment()).commit();
     }
 }

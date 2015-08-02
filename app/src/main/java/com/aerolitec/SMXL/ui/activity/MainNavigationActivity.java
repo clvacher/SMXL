@@ -93,7 +93,6 @@ public class MainNavigationActivity extends SuperNavigationActivity implements O
             UserManager.get().setUser(MainUserManager.get().getMainUser().getMainProfile());
         }
     }
-
     private void setValueMainUserHeadItem() {
         final Bitmap bitmap = getBitmapMainUser(mainUser.getAvatar());
         RoundedTransformation roundedTransformation = new RoundedTransformation();
@@ -138,6 +137,7 @@ public class MainNavigationActivity extends SuperNavigationActivity implements O
         });
 
         mainUser = MainUserManager.get().getMainUser();
+        user = mainUser.getMainProfile();
 
         mProfileTracker = new ProfileTracker() {
             @Override
@@ -223,7 +223,6 @@ public class MainNavigationActivity extends SuperNavigationActivity implements O
         //section2.setSectionColor(getResources().getColor(R.color.DefaultBackgroundColor));
 
 
-        MainUser mainUser = MainUserManager.get().getMainUser();
         if(mainUser==null){
 
             final Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.avatar);

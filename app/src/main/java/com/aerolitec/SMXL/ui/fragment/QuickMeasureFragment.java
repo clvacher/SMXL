@@ -1,5 +1,6 @@
 package com.aerolitec.SMXL.ui.fragment;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -91,6 +92,7 @@ public class QuickMeasureFragment extends Fragment {
                     getActivity().getSupportFragmentManager().popBackStack();
                 }
                 else{
+                    superNavigationActivity.setResult(Activity.RESULT_OK);
                     superNavigationActivity.finish();
                 }
             }
@@ -106,20 +108,24 @@ public class QuickMeasureFragment extends Fragment {
             builder.setTitle(getResources().getString(R.string.step) + " 2/2")
                     .setMessage(R.string.quickmeasure_popup_message)
                     .setIcon(R.drawable.ic_logo_quicksize)
-                    .setNeutralButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
                         }
-                    });
+                    })
+            .setNeutralButton(R.string.dont_show, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    ((SMXL) getActivity().getApplication()).setFirstLaunch();
+                    dialog.dismiss();
+                }
+            });
             builder.show();
-            ((SMXL) getActivity().getApplication()).setFirstLaunch();
         }
     }
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        menu.clear();
     }
 
 }

@@ -6,9 +6,12 @@ import com.aerolitec.SMXL.tools.dbmanager.UserDBManager;
 
 import org.joda.time.LocalDate;
 import org.joda.time.Years;
+import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 
 public class User extends BaseObjects implements Serializable {
@@ -36,6 +39,9 @@ public class User extends BaseObjects implements Serializable {
     private int unitWeight;
     private double pointure;
     private double thigh;
+
+
+    private int server_id;
 
     private ArrayList<Brand> brands = new ArrayList<>();
 
@@ -67,11 +73,12 @@ public class User extends BaseObjects implements Serializable {
      * @param feet                (cm)
      * @param pointure            (taille)
      * @param thigh               (cm)
+     * @param id_user
      */
     public User(int id_user, String nickname, String firstname, String lastname, String birthday, int sexe,
                 String avatar, String description, double Height, double weight, double bust,
                 double chest, double collar, double waist, double hips, double sleeve, double inseam,
-                double feet, int unitL, int unitW, double pointure, double thigh) {
+                double feet, int unitL, int unitW, double pointure, double thigh,int server_id) {
 
         this.id_user = id_user;
         this.nickname = nickname;
@@ -95,12 +102,13 @@ public class User extends BaseObjects implements Serializable {
         this.unitWeight = unitW;
         this.pointure = pointure;
         this.thigh = thigh;
+        this.server_id = server_id;
     }
 
     public User(String id_user, String nickname, String firstname, String lastname, String birthday, String sexe,
                 String avatar, String description, String Height, String weight, String bust,
                 String chest, String collar, String waist, String hips, String sleeve, String inseam,
-                String feet, String unitL, String unitW, String pointure, String thigh) {
+                String feet, String unitL, String unitW, String pointure, String thigh,String server_id) {
 
 
         this.id_user = convertToInt(id_user);
@@ -125,6 +133,7 @@ public class User extends BaseObjects implements Serializable {
         this.unitWeight = convertToInt(unitW);
         this.pointure = convertToDouble(pointure);
         this.thigh = convertToDouble(thigh);
+        this.server_id = convertToInt(server_id);
     }
 
     public User(String firstname, String lastname, String birthday, int sexe) {
@@ -150,6 +159,31 @@ public class User extends BaseObjects implements Serializable {
         this.pointure = 0;
         this.thigh = 0;
         Log.d("new User",this.toString());
+    }
+
+    public User(JSONObject jsonObject,String birthdayString){
+        this.id_user = 0;
+        this.lastname = jsonObject.optString("lastname");
+        this.firstname = jsonObject.optString("firstname");
+        this.nickname = jsonObject.optString("nickname");
+        this.birthday = birthdayString;
+        this.sexe = jsonObject.optInt("sexe");
+        this.avatar = jsonObject.optString("avatar");
+        this.description = jsonObject.optString("description");
+        this.server_id = jsonObject.optInt("id");
+        this.Height= jsonObject.optDouble("height");
+        this.weight = jsonObject.optDouble("weight");
+        this.chest = jsonObject.optDouble("chest");
+        this.collar = jsonObject.optDouble("collar");
+        this.bust = jsonObject.optDouble("bust");
+        this.waist = jsonObject.optDouble("waist");
+        this.hips = jsonObject.optDouble("hips");
+        this.sleeve = jsonObject.optDouble("sleeve");
+        this.inseam = jsonObject.optDouble("inseam");
+        this.feet = jsonObject.optDouble("feet");
+        //TODO A changer car ca n'etait pas sur le serveur
+        this.thigh =0;
+        //this.thigh = jsonObject.optDouble("thigh");
     }
 
     private int convertToInt(String arg) {
@@ -367,10 +401,19 @@ public class User extends BaseObjects implements Serializable {
         this.thigh = thigh;
     }
 
+    public int getServer_id() {
+        return server_id;
+    }
+
+    public void setServer_id(int server_id) {
+        this.server_id = server_id;
+    }
+
     @Override
     public String toString() {
         return
                 "'" + id_user + "'" +
+                        ",'" + server_id + '\'' +
                         ",'" + nickname + '\'' +
                         ", '" + firstname + '\'' +
                         ", '" + lastname + '\'' +

@@ -1,18 +1,23 @@
 package com.aerolitec.SMXL.ui.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
+import com.aerolitec.SMXL.tools.manager.UserManager;
+import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.fragment.ConnexionDefaultFragment;
 import com.aerolitec.SMXL.ui.fragment.CreateAccountFragment;
 import com.aerolitec.SMXL.ui.fragment.CreateProfileDetailsFragment;
 import com.aerolitec.SMXL.ui.fragment.LoginFragment;
+import com.aerolitec.SMXL.ui.fragment.SelectBrandsCreateProfileFragment;
 import com.facebook.FacebookSdk;
 import com.facebook.Profile;
 import com.facebook.ProfileTracker;
@@ -56,7 +61,13 @@ public class CreateUpdateProfileActivity extends NoDrawerActivity {
     @Override
     public void onBackPressed() {
         if (confirmExit) {
+            Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.frame_container);
+            if(fragment instanceof SelectBrandsCreateProfileFragment){
+                SMXL.getUserDBManager().deleteUser(UserManager.get().getUser());
+            }
+            setResult(Activity.RESULT_CANCELED);
             super.onBackPressed();
+
         } else {
             confirmExit = true;
             Toast toast = Toast.makeText(this, getResources().getText(R.string.returnCreate), Toast.LENGTH_SHORT);

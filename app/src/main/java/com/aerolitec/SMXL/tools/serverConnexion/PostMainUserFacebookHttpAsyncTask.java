@@ -2,11 +2,13 @@ package com.aerolitec.SMXL.tools.serverConnexion;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 
 import com.aerolitec.SMXL.model.MainUser;
 import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.UtilityMethodsv2;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
+import com.aerolitec.SMXL.ui.activity.MainNavigationActivity;
 
 import org.json.JSONObject;
 
@@ -51,7 +53,7 @@ public class PostMainUserFacebookHttpAsyncTask extends PostMainUserHttpAsyncTask
 
     @Override
     protected void onPostExecute(String result) {
-        //Toast.makeText(activity, "Data Sent!", Toast.LENGTH_LONG).show();
+       /* //Toast.makeText(activity, "Data Sent!", Toast.LENGTH_LONG).show();
         if(!result.equals("Did not work!")) {
             try {
                 FileOutputStream fos = activity.openFileOutput(Constants.MAIN_USER_FILE, Context.MODE_PRIVATE);
@@ -60,6 +62,8 @@ public class PostMainUserFacebookHttpAsyncTask extends PostMainUserHttpAsyncTask
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
+        }*/
+        super.onPostExecute(result);
     }
+
 }

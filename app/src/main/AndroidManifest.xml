@@ -104,8 +104,12 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".ui.activity.CreateFacebookProfile"
+            android:name=".ui.activity.CreateFacebookProfileActivity"
             android:label="@string/title_activity_create_facebook_profile" >
+        </activity>
+        <activity
+            android:name=".ui.activity.SharingActivity"
+            android:label="@string/title_sharing_activity" >
         </activity>
     </application>
 

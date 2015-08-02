@@ -110,7 +110,6 @@ public class PostProfileHttpAsyncTask extends AsyncTask<User, Void, String> {
             default:
                 //recuperation de l'id
                 JSONObject jsonUser;
-                User user = null;
                 try {
                     Log.d("resultValue", result);
                     jsonUser = new JSONObject(result);
@@ -118,7 +117,7 @@ public class PostProfileHttpAsyncTask extends AsyncTask<User, Void, String> {
 
                     //ajout au MainUser pour pouvoir les recuperer par la suite
                     Integer profileId = Integer.parseInt(jsonUser.optString("id"));
-                    MainUserManager.get().getMainUser().addProfile(profileId);
+                    addToUser(profileId);
 
                     //calls interface for linking to the account on the server
                     postProfileInterface.onProfilePosted(profileId);
@@ -127,10 +126,11 @@ public class PostProfileHttpAsyncTask extends AsyncTask<User, Void, String> {
                 catch(Exception e){
                     e.printStackTrace();
                 }
-
         }
     }
-
+    protected void addToUser(Integer profileId){
+        MainUserManager.get().getMainUser().addProfile(profileId);
+    }
 
     protected String POST(String url, String json){
         InputStream inputStream = null;

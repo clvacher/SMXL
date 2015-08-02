@@ -98,7 +98,6 @@ public class QuickSizeSelectGarmentFragment extends Fragment {
 
     private boolean checkValidMeasure(GarmentType garmentType){
         int topBottomShoe = SMXL.getGarmentTypeDBManager().getOrderByCategoryGarment(garmentType);
-        User user = UserManager.get().getUser();
         switch (topBottomShoe){
             case 1 :
                 if(user.getChest()==0.0) {
@@ -106,7 +105,7 @@ public class QuickSizeSelectGarmentFragment extends Fragment {
                 }
                 break;
             case 2 :
-                if (user.getHips()==0.0 || user.getWaist()==0.0) {
+                if (user.getHips()==0.0 && user.getWaist()==0.0) {
                     return false;
                 }
                 break;

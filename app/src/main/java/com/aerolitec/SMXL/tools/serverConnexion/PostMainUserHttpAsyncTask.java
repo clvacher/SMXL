@@ -2,14 +2,16 @@ package com.aerolitec.SMXL.tools.serverConnexion;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 
 import com.aerolitec.SMXL.model.MainUser;
-import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.UtilityMethodsv2;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
+import com.aerolitec.SMXL.tools.manager.UserManager;
+import com.aerolitec.SMXL.ui.activity.MainNavigationActivity;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -75,17 +77,21 @@ public class PostMainUserHttpAsyncTask extends AsyncTask<Void, Void, String> {
 
 
                 JSONObject jsonMainUser;
-                User user = null;
+
 
                 try {
                     jsonMainUser = new JSONObject(result);
 
-                    //ajout de l'Id server associé
+                    //ajout de l'Id server associe
                     Integer id = Integer.parseInt(jsonMainUser.optString("id"));
                     Log.d("idMainUserPost",id+"");
                     MainUserManager.get().getMainUser().setServerId(id);
+                    int mainProfileServerId = UserManager.get().getUser().getServer_id();
+                    new PostLinkIdMainProfileToUserHttpAsyncTask().execute(id, mainProfileServerId);
 
-                    new PostMainProfileHttpAsyncTask().execute(id,MainUserManager.get().getMainUser().getProfiles().get(0));
+                    Intent intent = new Intent(activity.getApplicationContext(), MainNavigationActivity.class);
+                    activity.startActivity(intent);
+                    activity.finish();
 
                 }
                 catch(Exception e){

@@ -17,6 +17,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.InputStream;
@@ -72,7 +73,6 @@ public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
             e.printStackTrace();
             cancel(true);
         }
-
     }
 
     @Override
@@ -110,11 +110,14 @@ public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
                 MainUser mainUser = null;
                 try {
                     Log.d("resultValue",result);
-                    jsonMainUser = new JSONObject(result);
 
-                    int idMainProfile = jsonMainUser.optInt("mainprofile");
+                    //jsonMainUser = new JSONObject(result);
 
-                    jsonMainUser = new JSONObject(jsonMainUser.optString("0"));
+                    JSONObject jsonResult = new JSONObject(result);
+                    jsonMainUser = jsonResult.getJSONObject("0");
+                    int idMainProfile = jsonResult.optInt("mainprofile");
+
+                    // jsonMainUser = new JSONObject(jsonMainUser.optString("0"));
 
                     Log.d("GetUser AsyncTask",jsonMainUser.toString());
 
@@ -128,7 +131,7 @@ public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
 
                     String birthdayString = String.format("%02d", cal.get(Calendar.DAY_OF_MONTH))+"-"+String.format("%02d", cal.get(Calendar.MONTH) + 1)+"-"+cal.get(Calendar.YEAR);
 
-
+                    /*
                     //TODO a changer par le vrai profil!
                     UserManager.get().setUser(new User(
                             jsonMainUser.optString("firstname"),
@@ -136,17 +139,20 @@ public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
                             birthdayString,
                             jsonMainUser.optInt("sex")
                     ));
-
+                    */
                     mainUser = new MainUser(jsonMainUser.optString("email"),
                             jsonMainUser.optString("password"),
-                            (int) jsonMainUser.get("social"),
-                            UserManager.get().getUser()
+                            (int) jsonMainUser.optInt("social"),
+                            null //UserManager.get().getUser()
                             );
+                    mainUser.setIdMainProfile(idMainProfile);
+                    mainUser.setAvatar(jsonMainUser.optString("avatar"));
+                    mainUser.setFirstname(jsonMainUser.optString("firstname"));
+                    mainUser.setLastname(jsonMainUser.optString("name"));
+                    mainUser.setFacebookId(jsonMainUser.optString("idFacebook"));
                     mainUser.setServerId(jsonMainUser.optInt("id"));
-                    mainUser.addProfile(idMainProfile);
-
+                    mainUser.setSex(jsonMainUser.optInt("sex"));
                     Log.d("GetUser AsyncTask",mainUser.toString());
-
                 }
                 catch(Exception e){
                     e.printStackTrace();

@@ -22,6 +22,7 @@ public class MainUser implements Serializable{
     private int sex; //1 Homme 2 Femme
     private String avatar;
 
+    //idMainProfile est l'id du profil en local
     private int idMainProfile;
     private int accountType;
     private String facebookId;
@@ -90,7 +91,12 @@ public class MainUser implements Serializable{
     public ArrayList<Integer> getProfiles() {return profiles;}
     public void addProfile(Integer profile) {
         Log.d("profileAdded",profile+"");
-        this.profiles.add(profile);}
+        this.profiles.add(profile);
+    }
+
+    public int getIdMainProfile() { return idMainProfile; }
+
+    public void setIdMainProfile(int idMainProfile) { this.idMainProfile = idMainProfile; }
 
     public MainUser(){super();}
 

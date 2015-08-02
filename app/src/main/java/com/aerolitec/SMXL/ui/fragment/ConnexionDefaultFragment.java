@@ -24,14 +24,23 @@ import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
 import com.aerolitec.SMXL.tools.manager.UserManager;
+import com.aerolitec.SMXL.tools.serverConnexion.GetCorrespondingProfilesHttpAsyncTask;
+import com.aerolitec.SMXL.tools.serverConnexion.GetMainProfileHttpAsyncTask;
 import com.aerolitec.SMXL.tools.serverConnexion.GetMainUserFacebookHttpAsyncTask;
+import com.aerolitec.SMXL.tools.serverConnexion.GetProfileHttpAsyncTask;
 import com.aerolitec.SMXL.tools.serverConnexion.LoginCreateAccountInterface;
+import com.aerolitec.SMXL.tools.serverConnexion.PostMainProfileHttpAsyncTask;
 import com.aerolitec.SMXL.tools.serverConnexion.PostMainUserFacebookHttpAsyncTask;
+import com.aerolitec.SMXL.tools.serverConnexion.PostMainUserHttpAsyncTask;
+import com.aerolitec.SMXL.tools.serverConnexion.PostProfileHttpAsyncTask;
+import com.aerolitec.SMXL.tools.serverConnexion.PostProfileInterface;
 import com.aerolitec.SMXL.ui.SMXL;
+import com.aerolitec.SMXL.ui.activity.CreateFacebookProfileActivity;
 import com.aerolitec.SMXL.ui.activity.MainNavigationActivity;
 import com.aerolitec.SMXL.ui.activity.SuperNavigationActivity;
 import com.aerolitec.SMXL.ui.adapter.TutoConnexionAdapter;
 import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -45,14 +54,17 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.URL;
+import java.util.ArrayList;
 
 import me.relex.circleindicator.CircleIndicator;
 
-public class ConnexionDefaultFragment extends Fragment implements LoginCreateAccountInterface{
+public class ConnexionDefaultFragment extends Fragment implements LoginCreateAccountInterface,PostProfileInterface {
 
     private Fragment fragment = this;
     private CallbackManager mCallbackManager;
+    private JSONObject resultGraphRequest;
 
     private FacebookCallback<LoginResult> mFacebookCallBack = new FacebookCallback<LoginResult>() {
         @Override
@@ -65,6 +77,7 @@ public class ConnexionDefaultFragment extends Fragment implements LoginCreateAcc
                 @Override
                 public void onCompleted(JSONObject userJson, GraphResponse response) {
                     if (userJson != null) {
+                        resultGraphRequest = userJson;
                         MainUser tmpMainuser = new MainUser(userJson.optString("email"),"facebook",1,null);
                         MainUserManager.get().setMainUser(tmpMainuser);
                         new GetMainUserFacebookHttpAsyncTask(fragment).execute();
@@ -72,24 +85,6 @@ public class ConnexionDefaultFragment extends Fragment implements LoginCreateAcc
                 }
             });
             request.executeAsync();
-
-            /*
-            GraphRequest graphRequest = GraphRequest.newMeRequest(
-                    AccessToken.getCurrentAccessToken(),
-                    new GraphRequest.GraphJSONObjectCallback() {
-                        @Override
-                        public void onCompleted(JSONObject userJson, GraphResponse response) {
-                            if (userJson != null) {
-                                String first_name = userJson.optString("first_name");
-                                String last_name = userJson.optString("last_name");
-                            }
-                        }
-                    });
-            graphRequest.executeAsync();
-            */
-
-
-
         }
 
 
@@ -103,6 +98,7 @@ public class ConnexionDefaultFragment extends Fragment implements LoginCreateAcc
             Log.d("ERROR", "ERROR");
 
         }
+
     };
 
     public ConnexionDefaultFragment() {
@@ -112,12 +108,23 @@ public class ConnexionDefaultFragment extends Fragment implements LoginCreateAcc
     private ViewPager mPager;
     private PagerAdapter mPagerAdapter;
     private CircleIndicator circleIndicator;
-
+    private static final int CREATE_ACCOUNT_FACEBOOK = 420;
+    private AccessTokenTracker accessTokenTracker;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mCallbackManager = CallbackManager.Factory.create();
+        accessTokenTracker = new AccessTokenTracker() {
+            @Override
+            protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken,
+                                                       AccessToken currentAccessToken) {
+                if(currentAccessToken==null){
+                    disconnect();
+                }
+
+            }
+        };
     }
 
     @Override
@@ -170,9 +177,19 @@ public class ConnexionDefaultFragment extends Fragment implements LoginCreateAcc
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        mCallbackManager.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CREATE_ACCOUNT_FACEBOOK) {
+            if(resultCode == Activity.RESULT_OK) {
+                User user = UserManager.get().getUser();
+                new PostMainProfileHttpAsyncTask(this).execute(user);
+            }
+            else if(resultCode == Activity.RESULT_CANCELED)
+            {
+                SMXL.getUserDBManager().deleteAllUsers();
+            }
+        } else {
+            mCallbackManager.onActivityResult(requestCode, resultCode, data);
+        }
     }
-
     @Override
     public void onResume() {
         super.onResume();
@@ -182,7 +199,8 @@ public class ConnexionDefaultFragment extends Fragment implements LoginCreateAcc
     @Override
     public void nonExistingAccount() {
         Log.d("nonExistingAccount", "Connexion");
-        queryToSetMainUserWithFacebookToken();
+        //queryToSetMainUserWithFacebookToken();
+        createProfileNotSavedYet();
     }
 
     @Override
@@ -197,12 +215,16 @@ public class ConnexionDefaultFragment extends Fragment implements LoginCreateAcc
 
     @Override
     public void accountRetrieved(MainUser mainUser) {
-        User tmpUser = UserManager.get().getUser();
-        User realUser = SMXL.getUserDBManager().createUser(tmpUser.getFirstname(), tmpUser.getLastname(), tmpUser.getBirthday(), tmpUser.getSexe(), null, null );
-        mainUser.setMainProfile(realUser);
+        new GetMainProfileHttpAsyncTask(this).execute(mainUser.getIdMainProfile());
         MainUserManager.get().setMainUser(mainUser);
-        UserManager.get().setUser(mainUser.getMainProfile());
+    }
 
+    @Override
+    public void accountRetrieved(User user) {
+        MainUser mainUser = MainUserManager.get().getMainUser();
+        mainUser.setMainProfile(user);
+        MainUserManager.get().setMainUser(mainUser);
+        UserManager.get().setUser(user);
 
         try {
             FileOutputStream fos = getActivity().openFileOutput(Constants.MAIN_USER_FILE, Context.MODE_PRIVATE);
@@ -212,15 +234,15 @@ public class ConnexionDefaultFragment extends Fragment implements LoginCreateAcc
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         Intent intent = new Intent(getActivity().getApplicationContext(), MainNavigationActivity.class);
         startActivity(intent);
+        new GetCorrespondingProfilesHttpAsyncTask().execute(mainUser.getServerId());
         getActivity().finish();
     }
 
 
-
     private void queryToSetMainUserWithFacebookToken() {
+        /*
         GraphRequest request = GraphRequest.newMeRequest(AccessToken.getCurrentAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
             @Override
             public void onCompleted(JSONObject userJson, GraphResponse response) {
@@ -241,6 +263,16 @@ public class ConnexionDefaultFragment extends Fragment implements LoginCreateAcc
             }
         });
         request.executeAsync();
+        */
+        if (resultGraphRequest!= null) {
+
+            generateAndSetMainUserWithUserJSON(resultGraphRequest);
+            new PostMainUserFacebookHttpAsyncTask(getActivity()).execute();
+
+            Intent intent = new Intent(getActivity().getApplicationContext(), CreateFacebookProfileActivity.class);
+            startActivity(intent);
+            getActivity().finish();
+        }
     }
 
     private void generateAndSetMainUserWithUserJSON(JSONObject userJson) {
@@ -251,18 +283,21 @@ public class ConnexionDefaultFragment extends Fragment implements LoginCreateAcc
         } else {
             sex = 2;
         }
+        User user = SMXL.getUserDBManager().createUser(
+                userJson.optString("first_name"),
+                userJson.optString("last_name"),
+                null, // birthday
+                sex,
+                "https://graph.facebook.com/" + userJson.optString("id") + "/picture?type=large",
+                null // description
+
+        );
+        UserManager.get().setUser(user);
         MainUser mainUser = new MainUser(
                 userJson.optString("email"),
                 "facebook",
                 1,
-                SMXL.getUserDBManager().createUser(
-                        userJson.optString("first_name"),
-                        userJson.optString("last_name"),
-                        null, // birthday
-                        sex,
-                        "https://graph.facebook.com/" + userJson.optString("id") + "/picture?type=large",
-                        null // description
-                )
+                user
         );
         mainUser.setFacebookId(userJson.optString("id"));
 
@@ -306,9 +341,10 @@ public class ConnexionDefaultFragment extends Fragment implements LoginCreateAcc
                     out.close();
                     MainUserManager.get().getMainUser().setAvatar(file.getAbsolutePath());
 
-                    User user = MainUserManager.get().getMainUser().getMainProfile();
+                    User user = UserManager.get().getUser();
+                    //MainUserManager.get().getMainUser().getMainProfile();
                     user.setAvatar(file.getAbsolutePath());
-                    SMXL.getUserDBManager().updateUser(user);
+                    //SMXL.getUserDBManager().updateUser(user);
 
                     //Log.d("Main user avatar", MainUserManager.get().getMainUser().getAvatar().toString());
                     //Log.d("Mainuser profile avatar", MainUserManager.get().getMainUser().getMainProfile().getAvatar().toString());
@@ -330,5 +366,44 @@ public class ConnexionDefaultFragment extends Fragment implements LoginCreateAcc
 
     }
 
+    private void createProfileNotSavedYet() {
+        if (resultGraphRequest != null) {
+            Intent intent = new Intent(getActivity().getApplicationContext(), CreateFacebookProfileActivity.class);
+            generateAndSetMainUserWithUserJSON(resultGraphRequest);
+            startActivityForResult(intent, CREATE_ACCOUNT_FACEBOOK);
+        }
+    }
 
+    @Override
+    public void onProfilePosted(Integer ProfileId) {
+        User user = UserManager.get().getUser();
+        user.setServer_id(ProfileId);
+        SMXL.getUserDBManager().updateUser(user);
+        new PostMainUserFacebookHttpAsyncTask(getActivity()).execute();
+        /*Intent intent = new Intent(getActivity().getApplicationContext(), MainNavigationActivity.class);
+        startActivity(intent);
+        getActivity().finish();*/
+    }
+
+    @Override
+    public void onPostProfileFailure(String errorMsg) {
+        Toast.makeText(getActivity(), errorMsg, Toast.LENGTH_SHORT);
+    }
+
+    private void disconnect() {
+        Toast.makeText(getActivity(), getResources().getString(R.string.disconnected), Toast.LENGTH_SHORT).show();
+        MainUserManager.get().setMainUser(null);
+
+        File file = new File(getActivity().getFilesDir(), Constants.MAIN_USER_FILE);
+        file.delete();
+
+        SMXL.getUserDBManager().deleteAllUsers();
+
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        accessTokenTracker.stopTracking();
+    }
 }

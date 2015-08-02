@@ -3,6 +3,7 @@ package com.aerolitec.SMXL.ui.fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.MenuItemCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -177,21 +178,15 @@ public class SelectBrandsFragment extends Fragment implements FakeSearchView.OnS
         }*/
     }
 
-
-    public void save(){
-
+    protected void hideKeyboardIfNeeded(){
         InputMethodManager inputManager = ( InputMethodManager ) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         if(inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS)){
             getActivity().onBackPressed();
         }
-        if(superNavigationActivity instanceof CreateUpdateProfileActivity) {
-            getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).add(R.id.frame_container, new QuickMeasureFragment()).commit();
-            //superNavigationActivity.finish();
-        }
-        else{
-            getActivity().onBackPressed();
-        }
-
+    }
+    protected void save(){
+        hideKeyboardIfNeeded();
+        getActivity().getSupportFragmentManager().popBackStack();
         superNavigationActivity.restoreDefaultTitleCurrentSection();
     }
 

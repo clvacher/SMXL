@@ -16,6 +16,7 @@ import com.aerolitec.SMXL.tools.UtilityMethodsv2;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.tools.serverConnexion.GetCorrespondingProfilesHttpAsyncTask;
+import com.aerolitec.SMXL.tools.serverConnexion.GetMainProfileHttpAsyncTask;
 import com.aerolitec.SMXL.tools.serverConnexion.GetMainUserHttpAsyncTask;
 import com.aerolitec.SMXL.tools.serverConnexion.LoginCreateAccountInterface;
 import com.aerolitec.SMXL.tools.serverConnexion.PostMainUserHttpAsyncTask;
@@ -24,6 +25,7 @@ import com.aerolitec.SMXL.ui.activity.MainNavigationActivity;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class LoginFragment extends SuperLoginCreateAccountFragment implements LoginCreateAccountInterface{
 
@@ -81,11 +83,11 @@ public class LoginFragment extends SuperLoginCreateAccountFragment implements Lo
 
     @Override
     public void accountRetrieved(MainUser mainUser) {
-
+        /*
         new GetCorrespondingProfilesHttpAsyncTask().execute(mainUser.getServerId());
 
         User tmpUser = UserManager.get().getUser();
-        User realUser = SMXL.getUserDBManager().createUser(tmpUser.getFirstname(), tmpUser.getLastname(), tmpUser.getBirthday(), tmpUser.getSexe(), null, null );
+        User realUser = SMXL.getUserDBManager().createUser(tmpUser.getFirstname(), tmpUser.getLastname(), tmpUser.getBirthday(), tmpUser.getSexe(), null, null ,tmpUser.getServer_id());
         mainUser.setMainProfile(realUser);
         MainUserManager.get().setMainUser(mainUser);
         UserManager.get().setUser(mainUser.getMainProfile());
@@ -102,6 +104,30 @@ public class LoginFragment extends SuperLoginCreateAccountFragment implements Lo
         getActivity().finish();
         Intent intent = new Intent(getActivity().getApplicationContext(), MainNavigationActivity.class);
         startActivity(intent);
+        */
+        new GetMainProfileHttpAsyncTask(this).execute(mainUser.getIdMainProfile());
+        MainUserManager.get().setMainUser(mainUser);
+    }
+
+    @Override
+    public void accountRetrieved(User user) {
+        MainUser mainUser = MainUserManager.get().getMainUser();
+        new GetCorrespondingProfilesHttpAsyncTask().execute(mainUser.getServerId());
+        mainUser.setMainProfile(user);
+        MainUserManager.get().setMainUser(mainUser);
+        UserManager.get().setUser(user);
+
+        try {
+            FileOutputStream fos = getActivity().openFileOutput(Constants.MAIN_USER_FILE, Context.MODE_PRIVATE);
+            fos.flush();
+            fos.write(MainUserManager.get().getMainUser().getBytes());
+            getActivity().setResult(Activity.RESULT_OK);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Intent intent = new Intent(getActivity().getApplicationContext(), MainNavigationActivity.class);
+        startActivity(intent);
+        getActivity().finish();
     }
 
     @Override

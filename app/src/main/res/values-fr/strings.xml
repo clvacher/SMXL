@@ -204,5 +204,14 @@
     <string name="select_brand_popup_message">Choisis de 2 à 5 Marques Favorites</string>
     <string name="quickmeasure_popup_message">Choisis qu\'une marque par catégorie et entre ta taille pour débloquer la QuickSize .</string>
     <string name="Share">Share</string>
+    <string name="dont_show">Ne plus afficher </string>
+    <string name="title_sharing_activity">SharingActivity</string>
+    <string name="profile_import_success">Le profil a ete recupere .</string>
+    <string name="profile_import_already_exist">Ce profil existe déjà .</string>
+    <string name="profile_import_not_exist">Ce code ne correspond pas à un profil .</string>
+    <string name="tuto_mobile_title">Fini les surprises de tailles !</string>
+    <string name="title_activity_create_facebook_profile">CreateFacebookProfile</string>
+    <string name="Coat">Manteau</string>
+    <string name="jacket">Veste</string>
 
 </resources>

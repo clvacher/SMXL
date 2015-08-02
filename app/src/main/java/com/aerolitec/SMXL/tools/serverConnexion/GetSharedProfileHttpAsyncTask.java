@@ -1,12 +1,17 @@
 package com.aerolitec.SMXL.tools.serverConnexion;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.UtilityMethodsv2;
 import com.aerolitec.SMXL.ui.SMXL;
+import com.aerolitec.SMXL.ui.activity.MainNavigationActivity;
+import com.aerolitec.SMXL.ui.activity.SuperNavigationActivity;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -19,12 +24,19 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Created by Clément on 7/17/2015.
+ * Created by Clement on 7/17/2015.
  */
 public class GetSharedProfileHttpAsyncTask extends AsyncTask<Integer, Void, String> {
 
     public static final String SERVER_ADDRESS_GET_SHARED_PROFILE_PART_1 = "http://api.smxl-app.com/profiles/";
     public static final String SERVER_ADDRESS_GET_SHARED_PROFILE_PART_2 = "/obtain.json";
+    private Context context ;
+    public GetSharedProfileHttpAsyncTask(){
+
+    }
+    public GetSharedProfileHttpAsyncTask(Context context){
+        this.context = context;
+    }
 
     @Override
     protected String doInBackground(Integer... params) {
@@ -40,7 +52,11 @@ public class GetSharedProfileHttpAsyncTask extends AsyncTask<Integer, Void, Stri
         super.onPostExecute(result);
         switch(result){
             case "null":
+                Log.d("resultValue", result);
+                Toast.makeText(context,R.string.profile_import_not_exist,Toast.LENGTH_SHORT).show();
+                break;
             case "Did not work":
+                Log.d("resultValue",result);
                 break;
             default:
 
@@ -50,24 +66,32 @@ public class GetSharedProfileHttpAsyncTask extends AsyncTask<Integer, Void, Stri
                     jsonUser = new JSONObject(result);
                     Log.d("GetUser AsyncTask",jsonUser.toString());
 
-                    /* Obtainment of the user's birthday */
+                    if(SMXL.getUserDBManager().getUser(jsonUser.getLong("id")) == null) {
+                        /* Obtainment of the user's birthday */
 
-                    //creation of a Date corresponding to the JSON object timestamp
-                    Date birthDate=new Date(jsonUser.getJSONObject("birthday").getLong("timestamp")*1000);
-                    //conversion to String (birthDate.getMonth() is deprecated)
-                    Calendar cal=Calendar.getInstance();
-                    cal.setTime(birthDate);
-                    String birthdayString = String.format("%02d", cal.get(Calendar.DAY_OF_MONTH))+"-"+String.format("%02d", cal.get(Calendar.MONTH) + 1)+"-"+cal.get(Calendar.YEAR);
+                        //creation of a Date corresponding to the JSON object timestamp
+                        Date birthDate = new Date(jsonUser.getJSONObject("birthday").getLong("timestamp") * 1000);
+                        //conversion to String (birthDate.getMonth() is deprecated)
+                        Calendar cal = Calendar.getInstance();
+                        cal.setTime(birthDate);
+                        String birthdayString = String.format("%02d", cal.get(Calendar.DAY_OF_MONTH)) + "-" + String.format("%02d", cal.get(Calendar.MONTH) + 1) + "-" + cal.get(Calendar.YEAR);
 
-                    //jsonMainUser.optString("name");
+                        //jsonMainUser.optString("name");
 
-                    User user = null;
-                    try {
-                        user = SMXL.getUserDBManager().createUser(jsonUser.optString("firstname"),
-                                jsonUser.optString("lastname"), birthdayString, jsonUser.optInt("sexe"), jsonUser.optString("avatar"), jsonUser.optString("description"));
-                        Log.d(Constants.TAG, "New profile created : " + user.toString());
-                    } catch (Exception e) {
-                        Log.d(Constants.TAG, "Create user with error : " + e.getMessage());
+                        User user = null;
+                        try {
+                            user = new User(jsonUser,birthdayString);
+                            SMXL.getUserDBManager().createUser(user);
+                            //user = SMXL.getUserDBManager().createUser(jsonUser.optString("firstname"),
+                            //        jsonUser.optString("lastname"), birthdayString, jsonUser.optInt("sexe"), jsonUser.optString("avatar"), jsonUser.optString("description"), jsonUser.optInt("id"));
+                            Log.d(Constants.TAG, "New profile created : " + user.toString());
+                            Toast.makeText(context, R.string.profile_import_success, Toast.LENGTH_SHORT).show();
+                        } catch (Exception e) {
+                            Log.d(Constants.TAG, "Create user with error : " + e.getMessage());
+                        }
+                    }
+                    else {
+                        Toast.makeText(context, R.string.profile_import_already_exist, Toast.LENGTH_SHORT).show();
                     }
                 }
                 catch(Exception e){

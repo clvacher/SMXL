@@ -38,6 +38,7 @@ public class UserDBManager extends DBManager{
     public static final String KEY_UNITWEIGHT_USER="unitW";
     public static final String KEY_POINTURE_USER="pointure";
     public static final String KEY_THIGH_USER="thigh";
+    public static final String KEY_SERVER_ID="server_id";
 
 
 
@@ -65,6 +66,7 @@ public class UserDBManager extends DBManager{
             " "+KEY_UNITWEIGHT_USER+" TEXT" +
             " "+KEY_POINTURE_USER+" TEXT" +
             " "+KEY_THIGH_USER+" TEXT" +
+            " "+KEY_SERVER_ID+" INTEGER NOT NULL UNIQUE" +
             ");";
 
     // Constructeur
@@ -133,10 +135,9 @@ public class UserDBManager extends DBManager{
         values.put(KEY_UNITWEIGHT_USER, 0);
         values.put(KEY_POINTURE_USER, 0);
         values.put(KEY_THIGH_USER, 0);
+        long rowid_user = db.insert(TABLE_NAME, null, values);
 
-        db.insert(TABLE_NAME, null, values);
-
-        user = getUserByNickname(nickname);
+        user = getUser(rowid_user);
         userNum++;
 
         close();
@@ -176,6 +177,7 @@ public class UserDBManager extends DBManager{
             u.setPointure(convertToDouble(c.getString(c.getColumnIndex(KEY_POINTURE_USER))));
             u.setThigh(convertToDouble(c.getString(c.getColumnIndex(KEY_THIGH_USER))));
 
+            u.setServer_id(c.getInt(c.getColumnIndex(KEY_SERVER_ID)));
             c.close();
         }
 
@@ -210,7 +212,9 @@ public class UserDBManager extends DBManager{
         values.put(KEY_UNITWEIGHT_USER, user.getUnitWeight());
         values.put(KEY_POINTURE_USER, user.getPointure());
         values.put(KEY_THIGH_USER, user.getThigh());
-
+        if(user.getServer_id() != 0) {
+            values.put(KEY_SERVER_ID, user.getServer_id());
+        }
         String where = KEY_ID_USER+" = ?";
         String[] whereArgs = {user.getId_user()+""};
 
@@ -232,14 +236,15 @@ public class UserDBManager extends DBManager{
         return i;
     }
 
-    public User getUser(int id) {
+    public User getUser(long id) {
         // Retourne l'animal dont l'id est passé en paramètre
 
         open();
-        User u = new User();
+        User u = null;
 
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + KEY_ID_USER + "=" + id, null);
         if (c.moveToFirst()) {
+            u = new User();
             u.setId_user(c.getInt(c.getColumnIndex(KEY_ID_USER)));
             u.setNickname(c.getString(c.getColumnIndex(KEY_NICKNAME_USER)));
             u.setFirstname(c.getString(c.getColumnIndex(KEY_FIRSTNAME_USER)));
@@ -266,6 +271,7 @@ public class UserDBManager extends DBManager{
             u.setPointure(convertToDouble(c.getString(c.getColumnIndex(KEY_POINTURE_USER))));
             u.setThigh(convertToDouble(c.getString(c.getColumnIndex(KEY_THIGH_USER))));
 
+            u.setServer_id(c.getInt(c.getColumnIndex(KEY_SERVER_ID)));
             u.setBrands(SMXL.getUserBrandDBManager().getAllUserBrands(u));
             c.close();
         }
@@ -312,6 +318,7 @@ public class UserDBManager extends DBManager{
 
             u.setPointure(convertToDouble(c.getString(c.getColumnIndex(KEY_POINTURE_USER))));
             u.setThigh(convertToDouble(c.getString(c.getColumnIndex(KEY_THIGH_USER))));
+            u.setServer_id(c.getInt(c.getColumnIndex(KEY_SERVER_ID)));
 
             users.add(u);
             eof=c.moveToNext();
@@ -328,5 +335,92 @@ public class UserDBManager extends DBManager{
         close();
 
     }
+
+    public long createUser(User user) {
+        open();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_NICKNAME_USER, user.getNickname());
+        values.put(KEY_FIRSTNAME_USER, user.getFirstname());
+        values.put(KEY_LASTNAME_USER, user.getLastname());
+        values.put(KEY_BIRTHDAY_USER, user.getBirthday());
+        values.put(KEY_SEX_USER, user.getSexe());
+        values.put(KEY_AVATAR_USER, user.getAvatar());
+        values.put(KEY_DESCRIPTION_USER, user.getDescription());
+        values.put(KEY_SIZE_USER, user.getHeight());
+        values.put(KEY_WEIGHT_USER, user.getWeight());
+        values.put(KEY_CHEST_USER, user.getChest());
+        values.put(KEY_COLLAR_USER, user.getCollar());
+        values.put(KEY_BUST_USER, user.getBust());
+        values.put(KEY_WAIST_USER, user.getWaist());
+        values.put(KEY_HIPS_USER, user.getHips());
+        values.put(KEY_SLEEVE_USER, user.getSleeve());
+        values.put(KEY_INSEAM_USER, user.getInseam());
+        values.put(KEY_FEET_USER, user.getFeet());
+        values.put(KEY_UNITLENGTH_USER, user.getUnitLength());
+        values.put(KEY_UNITWEIGHT_USER, user.getUnitWeight());
+        values.put(KEY_POINTURE_USER, user.getPointure());
+        values.put(KEY_THIGH_USER, user.getThigh());
+        values.put(KEY_SERVER_ID, user.getServer_id());
+
+        long rowid_user = db.insert(TABLE_NAME, null, values);
+        close();
+        return rowid_user;
+    }
+
+    public User getUserByServerId(int serverId) {
+        open();
+        User u = null;
+
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + KEY_SERVER_ID + "=" + serverId, null);
+        if (c.moveToFirst()) {
+            u = new User();
+            u.setId_user(c.getInt(c.getColumnIndex(KEY_ID_USER)));
+            u.setNickname(c.getString(c.getColumnIndex(KEY_NICKNAME_USER)));
+            u.setFirstname(c.getString(c.getColumnIndex(KEY_FIRSTNAME_USER)));
+            u.setLastname(c.getString(c.getColumnIndex(KEY_LASTNAME_USER)));
+            u.setBirthday(c.getString(c.getColumnIndex(KEY_BIRTHDAY_USER)));
+            u.setSexe(c.getInt(c.getColumnIndex(KEY_SEX_USER)));
+            u.setAvatar(c.getString(c.getColumnIndex(KEY_AVATAR_USER)));
+            u.setDescription(c.getString(c.getColumnIndex(KEY_DESCRIPTION_USER)));
+
+            u.setHeight(convertToDouble(c.getString(c.getColumnIndex(KEY_SIZE_USER))));
+            u.setWeight(convertToDouble(c.getString(c.getColumnIndex(KEY_WEIGHT_USER))));
+            u.setChest(convertToDouble(c.getString(c.getColumnIndex(KEY_CHEST_USER))));
+            u.setCollar(convertToDouble(c.getString(c.getColumnIndex(KEY_COLLAR_USER))));
+            u.setBust(convertToDouble(c.getString(c.getColumnIndex(KEY_BUST_USER))));
+            u.setWaist(convertToDouble(c.getString(c.getColumnIndex(KEY_WAIST_USER))));
+            u.setHips(convertToDouble(c.getString(c.getColumnIndex(KEY_HIPS_USER))));
+            u.setSleeve(convertToDouble(c.getString(c.getColumnIndex(KEY_SLEEVE_USER))));
+            u.setInseam(convertToDouble(c.getString(c.getColumnIndex(KEY_INSEAM_USER))));
+            u.setFeet(convertToDouble(c.getString(c.getColumnIndex(KEY_FEET_USER))));
+
+            u.setUnitLength(convertToInt(c.getString(c.getColumnIndex(KEY_UNITLENGTH_USER))));
+            u.setUnitWeight(convertToInt(c.getString(c.getColumnIndex(KEY_UNITWEIGHT_USER))));
+
+            u.setPointure(convertToDouble(c.getString(c.getColumnIndex(KEY_POINTURE_USER))));
+            u.setThigh(convertToDouble(c.getString(c.getColumnIndex(KEY_THIGH_USER))));
+
+            u.setServer_id(c.getInt(c.getColumnIndex(KEY_SERVER_ID)));
+            u.setBrands(SMXL.getUserBrandDBManager().getAllUserBrands(u));
+            c.close();
+        }
+
+        close();
+        return u;
+    }
+
+    public long getLastUserId(){
+        open();
+        long result = -1;
+        Cursor c = db.rawQuery("SELECT * from SQLITE_SEQUENCE WHERE name = '" + TABLE_NAME + "'" , null);
+        if (c.moveToFirst()) {
+            result = c.getLong(c.getColumnIndex("seq"));
+        }
+        c.close();
+        close();
+        return result;
+    }
+
 } // class UserDBManager
 

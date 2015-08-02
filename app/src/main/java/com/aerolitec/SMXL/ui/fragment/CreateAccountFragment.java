@@ -10,14 +10,17 @@ import android.view.ViewGroup;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.MainUser;
+import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.UtilityMethodsv2;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.tools.serverConnexion.GetMainUserHttpAsyncTask;
 import com.aerolitec.SMXL.tools.serverConnexion.LoginCreateAccountInterface;
+import com.aerolitec.SMXL.tools.serverConnexion.PostMainProfileHttpAsyncTask;
 import com.aerolitec.SMXL.tools.serverConnexion.PostMainUserHttpAsyncTask;
 import com.aerolitec.SMXL.tools.serverConnexion.PostProfileHttpAsyncTask;
 import com.aerolitec.SMXL.tools.serverConnexion.PostProfileInterface;
+import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.activity.CreateUpdateProfileActivity;
 import com.aerolitec.SMXL.ui.activity.MainNavigationActivity;
 
@@ -79,9 +82,13 @@ public class CreateAccountFragment extends SuperLoginCreateAccountFragment imple
             case CREATE_ACCOUNT:
                 if(resultCode== Activity.RESULT_OK) {
                     //sets up the id of the main profile (local only)
-                    MainUserManager.get().getMainUser().setMainProfile(UserManager.get().getUser());
-
-                    new PostProfileHttpAsyncTask(this).execute(UserManager.get().getUser());
+                    MainUser mainUser= MainUserManager.get().getMainUser();
+                    User user = UserManager.get().getUser();
+                    mainUser.setMainProfile(user);
+                    new PostMainProfileHttpAsyncTask(this).execute(user);
+                }
+                else if(resultCode == Activity.RESULT_CANCELED){
+                    SMXL.getUserDBManager().deleteUser(UserManager.get().getUser());
                 }
                 break;
         }
@@ -96,6 +103,11 @@ public class CreateAccountFragment extends SuperLoginCreateAccountFragment imple
     }
 
     @Override
+    public void accountRetrieved(User user) {
+
+    }
+
+    @Override
     public void nonExistingAccount(){
         Intent intent=new Intent(getActivity().getApplicationContext(), CreateUpdateProfileActivity.class);
         startActivityForResult(intent, CREATE_ACCOUNT);
@@ -106,18 +118,22 @@ public class CreateAccountFragment extends SuperLoginCreateAccountFragment imple
 
     @Override
     public void wrongPassword() {
-        accountRetrieved(null);
+        accountRetrieved((MainUser)null);
     }
 
     @Override
     public void onProfilePosted(Integer ProfileId) {
-
+        User user = UserManager.get().getUser();
+        user.setServer_id(ProfileId);
+        MainUser mainUser = MainUserManager.get().getMainUser();
+        SMXL.getUserDBManager().updateUser(user);
         new PostMainUserHttpAsyncTask(getActivity()).execute();
-
+/*
         //starts next activity
-        getActivity().finish();
         Intent intent = new Intent(getActivity().getApplicationContext(), MainNavigationActivity.class);
         startActivity(intent);
+        getActivity().finish();
+*/
     }
 
     @Override

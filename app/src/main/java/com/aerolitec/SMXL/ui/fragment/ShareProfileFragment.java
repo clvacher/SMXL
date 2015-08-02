@@ -13,7 +13,9 @@ import android.widget.Toast;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.MainUser;
+import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
+import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.tools.serverConnexion.GetSharedProfileHttpAsyncTask;
 import com.aerolitec.SMXL.tools.serverConnexion.GetSharingCodeHttpAsyncTask;
 import com.aerolitec.SMXL.tools.serverConnexion.GetSharingCodeInterface;
@@ -42,8 +44,14 @@ public class ShareProfileFragment extends Fragment implements GetSharingCodeInte
         etObtainProfile = (EditText) view.findViewById(R.id.etObtainProfile);
         Button getProfile = (Button) view.findViewById(R.id.buttonGetProfile);
 
-        MainUser temp = MainUserManager.get().getMainUser();
-        new GetSharingCodeHttpAsyncTask(this).execute(MainUserManager.get().getMainUser().getServerId(),MainUserManager.get().getMainUser().getProfiles().get(0));
+        MainUser mainUser = MainUserManager.get().getMainUser();
+        User user = UserManager.get().getUser();
+
+        int userServerId = MainUserManager.get().getMainUser().getServerId();
+        int profileId = UserManager.get().getUser().getServer_id();
+
+        new GetSharingCodeHttpAsyncTask(this).execute(userServerId,profileId);
+        //new GetSharingCodeHttpAsyncTask(this).execute(MainUserManager.get().getMainUser().getServerId(),MainUserManager.get().getMainUser().getProfiles().get(0));
 
         tvShareProfile.setText("Obtaining...");
 
@@ -64,7 +72,7 @@ public class ShareProfileFragment extends Fragment implements GetSharingCodeInte
 
     @Override
     public void onServerError(String ErrorMsg) {
-        tvShareProfile.setText("error");
+        tvShareProfile.setText("Error");
     }
 
     @Override

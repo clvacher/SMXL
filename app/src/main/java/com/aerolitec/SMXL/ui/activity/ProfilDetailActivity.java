@@ -1,6 +1,7 @@
 package com.aerolitec.SMXL.ui.activity;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.view.Menu;
@@ -9,6 +10,7 @@ import android.view.MenuItem;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.tools.manager.UserManager;
+import com.aerolitec.SMXL.ui.fragment.ShareProfileFragment;
 import com.aerolitec.SMXL.ui.fragment.TabsProfileDetailFragment;
 
 import de.madcyph3r.materialnavigationdrawer.menu.item.MaterialSection;
@@ -63,15 +65,15 @@ public class ProfilDetailActivity extends NoDrawerActivity{
                 } else {
                     finish();
                 }
-                return true;/*
+                return true;
             case R.id.share :
-                Intent share = new Intent(getApplicationContext(), CSVCreationActivity.class);
-                startActivity(share);
-                return true;*/
-            case R.id.setting :
+                Intent intent = new Intent(getApplicationContext(), SharingActivity.class);
+                startActivity(intent);
+                return true;
+            /*case R.id.setting :
                 showEditDialog();
 
-                /*
+
                 Intent intent = new Intent(getApplicationContext(), UserSettings.class);
                 intent.putExtra("USER", user);
                 startActivity(intent);

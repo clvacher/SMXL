@@ -133,14 +133,21 @@ public class CreateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
 
             User user = null;
             try {
-                user = SMXL.getUserDBManager().createUser(etFirstName.getText().toString(),
-                        etLastName.getText().toString().substring(0,1).toUpperCase()+etLastName.getText().toString().substring(1), birthday, sexe, picturePath, etNotes.getText().toString());
+               user = SMXL.getUserDBManager().createUser(
+                       etFirstName.getText().toString(),
+                        etLastName.getText().toString().substring(0,1).toUpperCase()+etLastName.getText().toString().substring(1),
+                       birthday,
+                       sexe,
+                       picturePath,
+                       etNotes.getText().toString()
+               );
                 Log.d(Constants.TAG, "New profile created : " + user.toString());
             } catch (Exception e) {
                 Log.d(Constants.TAG, "Create user with error : " + e.getMessage());
             }
             if (user != null) {
-                getActivity().setResult(Activity.RESULT_OK);
+                user.setAvatar(picturePath);
+                user.setDescription(etNotes.getText().toString());
                 UserManager.get().setUser(user);
             }
             else {
@@ -157,7 +164,7 @@ public class CreateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
 
             getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).add(R.id.frame_container,new SelectBrandsCreateProfileFragment()).commit();
 
-            superNavigationActivity.updateHamburger();
+            //superNavigationActivity.updateHamburger();
             superNavigationActivity.restoreDefaultTitleCurrentSection();
 
         }

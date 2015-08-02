@@ -22,7 +22,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Created by Clément on 7/10/2015.
+ * Created by Clement on 7/10/2015.
  */
 public class GetProfileHttpAsyncTask extends AsyncTask<Integer,Void,String> {
 
@@ -49,38 +49,7 @@ public class GetProfileHttpAsyncTask extends AsyncTask<Integer,Void,String> {
                 if(result.startsWith("{\"error\":{")) {
                     break;
                 }
-
-                JSONObject jsonUser;
-                try {
-                    Log.d("resultValue",result);
-                    jsonUser = new JSONObject(result);
-                    Log.d("GetUser AsyncTask",jsonUser.toString());
-
-                    /* Obtainment of the user's birthday */
-
-                    //creation of a Date corresponding to the JSON object timestamp
-                    Date birthDate=new Date(jsonUser.getJSONObject("birthday").getLong("timestamp")*1000);
-                    //conversion to String (birthDate.getMonth() is deprecated)
-                    Calendar cal=Calendar.getInstance();
-                    cal.setTime(birthDate);
-                    String birthdayString = String.format("%02d", cal.get(Calendar.DAY_OF_MONTH))+"-"+String.format("%02d", cal.get(Calendar.MONTH) + 1)+"-"+cal.get(Calendar.YEAR);
-
-                    //jsonMainUser.optString("name");
-
-                    User user = null;
-                    try {
-                        user = SMXL.getUserDBManager().createUser(jsonUser.optString("firstname"),
-                                jsonUser.optString("lastname"), birthdayString, jsonUser.optInt("sexe"), jsonUser.optString("avatar"), jsonUser.optString("description"));
-                        Log.d(Constants.TAG, "New profile created : " + user.toString());
-
-                        MainUserManager.get().getMainUser().addProfile(jsonUser.optInt("id"));
-                    } catch (Exception e) {
-                        Log.d(Constants.TAG, "Create user with error : " + e.getMessage());
-                    }
-                }
-                catch(Exception e){
-                    e.printStackTrace();
-                }
+                createUserLocally(result);
         }
     }
 
@@ -116,5 +85,51 @@ public class GetProfileHttpAsyncTask extends AsyncTask<Integer,Void,String> {
         Log.d("Result GET", result);
 
         return result;
+    }
+
+    protected User createUserLocally(String result){
+        JSONObject jsonUser;
+        try {
+            Log.d("resultValue",result);
+            jsonUser = new JSONObject(result);
+            Log.d("GetUser AsyncTask",jsonUser.toString());
+
+                    /* Obtainment of the user's birthday */
+
+            //creation of a Date corresponding to the JSON object timestamp
+            Date birthDate=new Date(jsonUser.getJSONObject("birthday").getLong("timestamp")*1000);
+            //conversion to String (birthDate.getMonth() is deprecated)
+            Calendar cal=Calendar.getInstance();
+            cal.setTime(birthDate);
+            String birthdayString = String.format("%02d", cal.get(Calendar.DAY_OF_MONTH))+"-"+String.format("%02d", cal.get(Calendar.MONTH) + 1)+"-"+cal.get(Calendar.YEAR);
+
+            //jsonMainUser.optString("name");
+
+            User user = null;
+            try {
+                //user = SMXL.getUserDBManager().createUser(jsonUser.optString("firstname"),
+                //        jsonUser.optString("lastname"), birthdayString, jsonUser.optInt("sexe"), jsonUser.optString("avatar"), jsonUser.optString("description"),jsonUser.optInt("id"));
+                user = new User(jsonUser,birthdayString);
+
+                long createdUser = SMXL.getUserDBManager().createUser(user);
+                if(createdUser==-1){
+                    Log.d(Constants.TAG, "Couldn't update user locally)");
+                    return null;
+                }
+                user.setId_user((int)createdUser);
+                profileToUser(user);
+                return user;
+            } catch (Exception e) {
+                Log.d(Constants.TAG, "Create user with error : " + e.getMessage());
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    protected void profileToUser(User user) {
+        MainUserManager.get().getMainUser().addProfile(user.getServer_id());
     }
 }

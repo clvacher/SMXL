@@ -14,7 +14,9 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 import com.aerolitec.SMXL.R;
+import com.aerolitec.SMXL.model.MainUser;
 import com.aerolitec.SMXL.model.User;
+import com.aerolitec.SMXL.tools.manager.MainUserManager;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.tools.serverConnexion.PostLinkHttpAsyncTask;
 import com.aerolitec.SMXL.tools.serverConnexion.PostProfileHttpAsyncTask;
@@ -38,6 +40,7 @@ public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.
     private ArrayList<ProfileItem> profileItem;
     private ProfilesAdapter profilesAdapter;
     private GridView gridViewProfiles;
+    private User user;
 
     public ProfilesFragment() {
         // Required empty public constructor
@@ -103,6 +106,7 @@ public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.
         if (confirmed) {
             //deleteCurrentProfile(positionItem);
             SMXL.getUserDBManager().deleteUser(SMXL.getUserDBManager().getUser(profileItem.get(positionItem).getId()));
+            //TODO Delete from server
             profileItem.remove(positionItem);
             profilesAdapter.notifyDataSetChanged();
         }
@@ -145,7 +149,10 @@ public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.
 
         //registers the user on the server if the creation was successful
         if(requestCode == CREATE_NEW_PROFILE && resultCode==Activity.RESULT_OK){
-            new PostProfileHttpAsyncTask(this).execute(UserManager.get().getUser());
+            user = UserManager.get().getUser();
+
+            loadProfiles();
+            new PostProfileHttpAsyncTask(this).execute(user);
         }
     }
 
@@ -173,11 +180,13 @@ public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.
 
     @Override
     public void onProfilePosted(Integer profileId) {
+        user.setServer_id(profileId);
+        SMXL.getUserDBManager().updateUser(user);
         new PostLinkHttpAsyncTask().execute(profileId);
     }
 
     @Override
     public void onPostProfileFailure(String errorMsg) {
-        //TODO toast message
+        Toast.makeText(getActivity(),"Erreur lors de la creation du profil sur le serveur",Toast.LENGTH_SHORT).show();
     }
 }

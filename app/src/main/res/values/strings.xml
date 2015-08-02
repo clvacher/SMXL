@@ -203,5 +203,12 @@
     <string name="select_brand_popup_message">Please choose from 2 to 5 Favorites Brands</string>
     <string name="quickmeasure_popup_message">Choose a Brand per garment and enter your size to unlock the QuickSize .</string>
     <string name="Share">Share</string>
+    <string name="dont_show">Don\'t show again</string>
+    <string name="title_sharing_activity">SharingActivity</string>
+    <string name="profile_import_success">Profile was imported succesfully .</string>
+    <string name="profile_import_already_exist">You already have this profile</string>
+    <string name="profile_import_not_exist">Couldn\'t find a profile with this code.</string>
+    <string name="tuto_mobile_title">No more surprises !</string>
+    <string name="Jacket">Jacket</string>
 
 </resources>

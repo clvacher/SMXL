@@ -3,6 +3,7 @@ package com.aerolitec.SMXL.tools.serverConnexion;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.UtilityMethodsv2;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
 

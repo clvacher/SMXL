@@ -13,6 +13,7 @@ import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.MainUser;
@@ -20,6 +21,7 @@ import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.tools.serverConnexion.PostMainUserHttpAsyncTask;
+import com.aerolitec.SMXL.ui.SMXL;
 
 import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
@@ -80,7 +82,6 @@ public class IntroActivity extends Activity {
         trans.setDuration(5000);
         trans.setInterpolator(new AccelerateInterpolator(1.0f));
         rlIntro.startAnimation(trans);*/
-
         offsetHandler = new Handler();
         r = new Runnable() {
             @Override

@@ -93,6 +93,7 @@ public class GetSharingCodeHttpAsyncTask extends AsyncTask<Integer, Void, String
             default:
                 if(result.startsWith("{\"error\"")){
                     Log.d("error","something happened");
+                    getSharingCodeInterface.onServerError("");
                     break;
                 }
                 int sharingCode = Integer.parseInt(result.substring(1,result.length()-1));
