@@ -25,8 +25,8 @@ import java.io.InputStream;
 //TODO link avec le USER
 public class PostProfileHttpAsyncTask extends AsyncTask<User, Void, String> {
 
+    public static final String SERVER_ADDRESS_CREATE_PROFILE_DEV = "http://smxl-api-dev-mhubsvde5h.elasticbeanstalk.com/profiles.json";
     public static final String SERVER_ADDRESS_CREATE_PROFILE = "http://api.smxl-app.com/profiles.json";
-
     private PostProfileInterface postProfileInterface;
 
     public PostProfileHttpAsyncTask(Activity activity) {
@@ -96,7 +96,7 @@ public class PostProfileHttpAsyncTask extends AsyncTask<User, Void, String> {
             e.printStackTrace();
         }
 
-        return POST(SERVER_ADDRESS_CREATE_PROFILE,json);
+        return POST(SERVER_ADDRESS_CREATE_PROFILE_DEV,json);
     }
 
     @Override

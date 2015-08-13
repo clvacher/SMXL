@@ -7,17 +7,14 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 
 import com.aerolitec.SMXL.model.MainUser;
-import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.UtilityMethodsv2;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
-import com.aerolitec.SMXL.tools.manager.UserManager;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.InputStream;
@@ -34,6 +31,9 @@ public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
 
     public static final String SERVER_ADDRESS_GET_MAIN_USER = "http://api.smxl-app.com/users/logs.json";
     public static final String SERVER_ADDRESS_GET_MAIN_USER_FACEBOOK = "http://api.smxl-app.com/users/facebooks.json";
+
+    public static final String SERVER_ADDRESS_GET_MAIN_USER_DEV = "http://smxl-api-dev-mhubsvde5h.elasticbeanstalk.com/users/logs.json";
+    public static final String SERVER_ADDRESS_GET_MAIN_USER_FACEBOOK_DEV = "http://smxl-api-dev-mhubsvde5h.elasticbeanstalk.com/users/facebooks.json";
     //used for the ability of displaying toasts
     private Context context;
 
@@ -88,7 +88,7 @@ public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
             e.printStackTrace();
         }
 
-        return GET(SERVER_ADDRESS_GET_MAIN_USER,json);
+        return GET(SERVER_ADDRESS_GET_MAIN_USER_DEV,json);
     }
 
     @Override

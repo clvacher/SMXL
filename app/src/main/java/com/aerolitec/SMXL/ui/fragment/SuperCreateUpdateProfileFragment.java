@@ -26,6 +26,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.aerolitec.SMXL.tools.Constants;
+import com.aerolitec.SMXL.tools.UtilityMethodsv2;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.customLayout.ProfilePictureRoundedImageView;
 
@@ -262,7 +263,7 @@ public abstract class SuperCreateUpdateProfileFragment extends Fragment {
     private void rotateImage(File file) {
         try {
             BitmapFactory.Options options = new BitmapFactory.Options();
-            options.inSampleSize =calculateInSampleSize(file.getAbsolutePath(),640,360);
+            options.inSampleSize = UtilityMethodsv2.calculateInSampleSize(file.getAbsolutePath(),640,360);
             Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath(),options);
             ExifInterface exifReader = new ExifInterface(file.getAbsolutePath());
 
@@ -286,32 +287,7 @@ public abstract class SuperCreateUpdateProfileFragment extends Fragment {
             e.printStackTrace();
         }
     }
-    // source http://developer.android.com/training/displaying-bitmaps/load-bitmap.html#load-bitmap
-    public static int calculateInSampleSize(String filePath, int reqWidth, int reqHeight) {
 
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inJustDecodeBounds = true;
-        BitmapFactory.decodeFile(filePath,options);
-        // Raw height and width of image
-        final int height = options.outHeight;
-        final int width = options.outWidth;
-        int inSampleSize = 1;
-
-        if (height > reqHeight || width > reqWidth) {
-
-            final int halfHeight = height / 2;
-            final int halfWidth = width / 2;
-
-            // Calculate the largest inSampleSize value that is a power of 2 and keeps both
-            // height and width larger than the requested height and width.
-            while ((halfHeight / inSampleSize) > reqHeight
-                    && (halfWidth / inSampleSize) > reqWidth) {
-                inSampleSize *= 2;
-            }
-        }
-
-        return inSampleSize;
-    }
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);

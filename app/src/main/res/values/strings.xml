@@ -210,5 +210,7 @@
     <string name="profile_import_not_exist">Couldn\'t find a profile with this code.</string>
     <string name="tuto_mobile_title">No more surprises !</string>
     <string name="Jacket">Jacket</string>
+    <string name="title_activity_wishlist">AddWishListActivity</string>
+    <string name="title_activity_image_viewer">ImageViewerActivity</string>
 
 </resources>

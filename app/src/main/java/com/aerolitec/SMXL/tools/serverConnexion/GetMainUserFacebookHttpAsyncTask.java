@@ -33,6 +33,6 @@ public class GetMainUserFacebookHttpAsyncTask extends GetMainUserHttpAsyncTask{
             e.printStackTrace();
         }
 
-        return GET(SERVER_ADDRESS_GET_MAIN_USER_FACEBOOK, json);
+        return GET(SERVER_ADDRESS_GET_MAIN_USER_FACEBOOK_DEV, json);
     }
 }

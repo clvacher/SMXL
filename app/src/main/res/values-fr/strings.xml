@@ -213,5 +213,6 @@
     <string name="title_activity_create_facebook_profile">CreateFacebookProfile</string>
     <string name="Coat">Manteau</string>
     <string name="jacket">Veste</string>
+    <string name="title_activity_wishlist">AddWishListActivity</string>
 
 </resources>

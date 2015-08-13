@@ -10,8 +10,6 @@ import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.UtilityMethodsv2;
 import com.aerolitec.SMXL.ui.SMXL;
-import com.aerolitec.SMXL.ui.activity.MainNavigationActivity;
-import com.aerolitec.SMXL.ui.activity.SuperNavigationActivity;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -29,6 +27,7 @@ import java.util.Date;
 public class GetSharedProfileHttpAsyncTask extends AsyncTask<Integer, Void, String> {
 
     public static final String SERVER_ADDRESS_GET_SHARED_PROFILE_PART_1 = "http://api.smxl-app.com/profiles/";
+    public static final String SERVER_ADDRESS_GET_SHARED_PROFILE_PART_1_DEV = "http://smxl-api-dev-mhubsvde5h.elasticbeanstalk.com/profiles/";
     public static final String SERVER_ADDRESS_GET_SHARED_PROFILE_PART_2 = "/obtain.json";
     private Context context ;
     public GetSharedProfileHttpAsyncTask(){
@@ -42,7 +41,7 @@ public class GetSharedProfileHttpAsyncTask extends AsyncTask<Integer, Void, Stri
     protected String doInBackground(Integer... params) {
         int sharedCode = params[0];
 
-        String url = SERVER_ADDRESS_GET_SHARED_PROFILE_PART_1+sharedCode+SERVER_ADDRESS_GET_SHARED_PROFILE_PART_2;
+        String url = SERVER_ADDRESS_GET_SHARED_PROFILE_PART_1_DEV +sharedCode+SERVER_ADDRESS_GET_SHARED_PROFILE_PART_2;
 
         return GET(url);
     }

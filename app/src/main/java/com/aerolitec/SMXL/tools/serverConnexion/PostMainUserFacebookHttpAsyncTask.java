@@ -1,19 +1,12 @@
 package com.aerolitec.SMXL.tools.serverConnexion;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 
 import com.aerolitec.SMXL.model.MainUser;
-import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.UtilityMethodsv2;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
-import com.aerolitec.SMXL.ui.activity.MainNavigationActivity;
 
 import org.json.JSONObject;
-
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 /**
  * Created by Clement on 5/19/2015.
@@ -48,7 +41,7 @@ public class PostMainUserFacebookHttpAsyncTask extends PostMainUserHttpAsyncTask
         catch (Exception e){
             e.printStackTrace();
         }
-        return POST(SERVER_ADDRESS_CREATE_MAIN_USER, json);
+        return POST(SERVER_ADDRESS_CREATE_MAIN_USER_DEV, json);
     }
 
     @Override

@@ -20,6 +20,8 @@ import java.io.InputStream;
 public class PostLinkIdMainProfileToUserHttpAsyncTask extends AsyncTask<Integer,Void,String>{
 
 
+    public static final String SERVER_ADDRESS_POST_MAIN_PROFILE_DEV = "http://smxl-api-dev-mhubsvde5h.elasticbeanstalk.com/users/mains/profiles.json";
+
     public static final String SERVER_ADDRESS_POST_MAIN_PROFILE = "http://api.smxl-app.com/users/mains/profiles.json";
 
     @Override
@@ -41,7 +43,7 @@ public class PostLinkIdMainProfileToUserHttpAsyncTask extends AsyncTask<Integer,
         }
 
 
-        return POST(SERVER_ADDRESS_POST_MAIN_PROFILE,json);
+        return POST(SERVER_ADDRESS_POST_MAIN_PROFILE_DEV,json);
     }
 
 

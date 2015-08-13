@@ -111,6 +111,15 @@
             android:name=".ui.activity.SharingActivity"
             android:label="@string/title_sharing_activity" >
         </activity>
+        <activity
+            android:name=".ui.activity.AddWishListActivity"
+            android:label="@string/title_activity_wishlist"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".ui.activity.ImageViewerActivity"
+            android:label="@string/title_activity_image_viewer" >
+        </activity>
     </application>
 
 </manifest>

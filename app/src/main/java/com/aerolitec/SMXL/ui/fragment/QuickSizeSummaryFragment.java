@@ -22,6 +22,8 @@ import com.aerolitec.SMXL.model.SizeConvert;
 import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
+import com.aerolitec.SMXL.ui.activity.AddGarmentActivity;
+import com.aerolitec.SMXL.ui.activity.AddWishListActivity;
 import com.aerolitec.SMXL.ui.activity.BrowserActivity;
 import com.aerolitec.SMXL.ui.activity.MainNavigationActivity;
 import com.aerolitec.SMXL.ui.activity.SuperNavigationActivity;
@@ -37,7 +39,7 @@ import java.util.Map;
 public class QuickSizeSummaryFragment extends Fragment implements MainNavigationActivity.OnBackPressedListener{
     private QuickSizeFragment quickSizeFragment;
 
-    Button shopButton;
+    Button shopButton,addToWishList;
     TextView tvSizeType,tvSizeValue;
     TableLayout tableLayoutLeft,tableLayoutRight;
     HashMap<String,String> resultQuickSize ;
@@ -87,96 +89,104 @@ public class QuickSizeSummaryFragment extends Fragment implements MainNavigation
         tvSizeValue = (TextView)view.findViewById(R.id.labelTagValue);
         fillLabelTag();
 
-        super.onViewCreated(view, savedInstanceState);
-    }
-
-    private void fillLabelTag() {
-        String sizeType = findSizeType();
-        tvSizeType.setText(sizeType);
-        tvSizeValue.setText(resultQuickSize.get(sizeType));
-    }
-
-    private void fillSizeConvertTable() {
-        HashMap<String,String> sizeConvertResult = getSizeConvert();
-        TableLayout currentTableLayout = tableLayoutLeft;
-        if(sizeConvertResult.size()!=0) {
-           //Remplis les 2 Table Layout
-            for (Map.Entry<String, String> entry : sizeConvertResult.entrySet()) {
-                if (resultQuickSize.get(entry.getKey()) != null && !resultQuickSize.get(entry.getKey()).isEmpty()){
-                    currentTableLayout.addView(new CustomSizeGuideTableRow(getActivity(), entry.getKey(), resultQuickSize.get(entry.getKey())));
-                }
-                else {
-                    currentTableLayout.addView(new CustomSizeGuideTableRow(getActivity(), entry.getKey(), entry.getValue()));
-                }
-                // Permet d'avoir 2 tableaux les plus equilibre possible en hauteur
-                int nbEntry = sizeConvertResult.size();
-                if(currentTableLayout.getChildCount()>=Math.ceil(nbEntry / 2.0)){
-                    currentTableLayout = tableLayoutRight;
-                }
+        addToWishList = (Button)view.findViewById(R.id.buttonAddToWishList);
+        addToWishList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent wishListIntent = new Intent(getActivity(), AddWishListActivity.class);
+                wishListIntent.putExtra("garmentType", quickSizeFragment.getSelectedGarmentType() );
+                wishListIntent.putExtra("brand", quickSizeFragment.getSelectedBrand());
+                wishListIntent.putExtra("size", resultQuickSize );
+                startActivity(wishListIntent);
             }
         }
-        else {
-            // Hide the TableLayout
-            tableLayoutLeft.setVisibility(View.GONE);
-        }
-    }
+        );
+                 super.onViewCreated(view, savedInstanceState);
+             }
 
-    private HashMap<String, String> getSizeConvert() {
-        HashMap<String, String> sizeConvertRow = new HashMap<>();
-        ArrayList<SizeConvert> list ;
-        String sizeType = findSizeType();
-        list = SMXL.getSizeConvertDBManager().getConvertSizesByGarmentTypeAndSize(quickSizeFragment.getSelectedGarmentType(), sizeType, resultQuickSize.get(sizeType));
-        if(list.size()== 0){
-            GarmentType maleGarmentType = SMXL.getGarmentTypeDBManager().getGarmentTypeByNameAndSex(quickSizeFragment.getSelectedGarmentType().getType(), Constants.MALE);
-            list = SMXL.getSizeConvertDBManager().getConvertSizesByGarmentTypeAndSize(maleGarmentType, sizeType, resultQuickSize.get(sizeType));
-        }
-        if (list.size()!=0){
-            sizeConvertRow =  list.get(0).getCorrespondingSizes();
-        }
-        return sizeConvertRow;
-    }
+             private void fillLabelTag() {
+                 String sizeType = findSizeType();
+                 tvSizeType.setText(sizeType);
+                 tvSizeValue.setText(resultQuickSize.get(sizeType));
+             }
 
-    private String findSizeType() {
-        if (resultQuickSize.get("SMXL") != null && !resultQuickSize.get("SMXL").equals("")){
-            return "SMXL";
-        }
-        else if (resultQuickSize.get("UE") != null && !resultQuickSize.get("UE").equals("")){
-            return "UE";
-        }
-        else {
-            for (Map.Entry<String, String> entry : resultQuickSize.entrySet()) {
-                if (resultQuickSize.get(entry.getKey()) != null && !resultQuickSize.get(entry.getKey()).equals("")) {
-                    return entry.getKey();
-                }
-            }
-            //Ne devrait jamais passer par la
-            return null;
-        }
-    }
+             private void fillSizeConvertTable() {
+                 HashMap<String, String> sizeConvertResult = getSizeConvert();
+                 TableLayout currentTableLayout = tableLayoutLeft;
+                 if (sizeConvertResult.size() != 0) {
+                     //Remplis les 2 Table Layout
+                     for (Map.Entry<String, String> entry : sizeConvertResult.entrySet()) {
+                         if (resultQuickSize.get(entry.getKey()) != null && !resultQuickSize.get(entry.getKey()).isEmpty()) {
+                             currentTableLayout.addView(new CustomSizeGuideTableRow(getActivity(), entry.getKey(), resultQuickSize.get(entry.getKey())));
+                         } else {
+                             currentTableLayout.addView(new CustomSizeGuideTableRow(getActivity(), entry.getKey(), entry.getValue()));
+                         }
+                         // Permet d'avoir 2 tableaux les plus equilibre possible en hauteur
+                         int nbEntry = sizeConvertResult.size();
+                         if (currentTableLayout.getChildCount() >= Math.ceil(nbEntry / 2.0)) {
+                             currentTableLayout = tableLayoutRight;
+                         }
+                     }
+                 } else {
+                     // Hide the TableLayout
+                     tableLayoutLeft.setVisibility(View.GONE);
+                 }
+             }
+
+             private HashMap<String, String> getSizeConvert() {
+                 HashMap<String, String> sizeConvertRow = new HashMap<>();
+                 ArrayList<SizeConvert> list;
+                 String sizeType = findSizeType();
+                 list = SMXL.getSizeConvertDBManager().getConvertSizesByGarmentTypeAndSize(quickSizeFragment.getSelectedGarmentType(), sizeType, resultQuickSize.get(sizeType));
+                 if (list.size() == 0) {
+                     GarmentType maleGarmentType = SMXL.getGarmentTypeDBManager().getGarmentTypeByNameAndSex(quickSizeFragment.getSelectedGarmentType().getType(), Constants.MALE);
+                     list = SMXL.getSizeConvertDBManager().getConvertSizesByGarmentTypeAndSize(maleGarmentType, sizeType, resultQuickSize.get(sizeType));
+                 }
+                 if (list.size() != 0) {
+                     sizeConvertRow = list.get(0).getCorrespondingSizes();
+                 }
+                 return sizeConvertRow;
+             }
+
+             private String findSizeType() {
+                 if (resultQuickSize.get("SMXL") != null && !resultQuickSize.get("SMXL").equals("")) {
+                     return "SMXL";
+                 } else if (resultQuickSize.get("UE") != null && !resultQuickSize.get("UE").equals("")) {
+                     return "UE";
+                 } else {
+                     for (Map.Entry<String, String> entry : resultQuickSize.entrySet()) {
+                         if (resultQuickSize.get(entry.getKey()) != null && !resultQuickSize.get(entry.getKey()).equals("")) {
+                             return entry.getKey();
+                         }
+                     }
+                     //Ne devrait jamais passer par la
+                     return null;
+                 }
+             }
 
 
-    private HashMap<String,String> computeMeasures(){
-        ArrayList<BrandSizeGuideMeasuresRow> brandSizeGuideMeasuresRows;
+             private HashMap<String, String> computeMeasures() {
+                 ArrayList<BrandSizeGuideMeasuresRow> brandSizeGuideMeasuresRows;
 
-        brandSizeGuideMeasuresRows = SMXL.getBrandSizeGuideDBManager().getBrandSizeGuideMeasureRowsByBrandAndGarmentType(quickSizeFragment.getSelectedBrand(), quickSizeFragment.getSelectedGarmentType());
+                 brandSizeGuideMeasuresRows = SMXL.getBrandSizeGuideDBManager().getBrandSizeGuideMeasureRowsByBrandAndGarmentType(quickSizeFragment.getSelectedBrand(), quickSizeFragment.getSelectedGarmentType());
 
-        BrandSizeGuideMeasuresRow brandSizeGuideMeasuresRow = BrandSizeGuideMeasuresRow.getClosestRowToMeasures(brandSizeGuideMeasuresRows, UserManager.get().getUser());
+                 BrandSizeGuideMeasuresRow brandSizeGuideMeasuresRow = BrandSizeGuideMeasuresRow.getClosestRowToMeasures(brandSizeGuideMeasuresRows, UserManager.get().getUser());
 
-        return brandSizeGuideMeasuresRow.getCorrespondingSizes();
-    }
+                 return brandSizeGuideMeasuresRow.getCorrespondingSizes();
+             }
 
-    @Override
-    public void backPressed() {
-        FragmentManager manager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = manager.beginTransaction();
-        fragmentTransaction.replace(R.id.containerQuickSizeFragment,new QuickSizeSelectBrandFragment());
-        fragmentTransaction.commit();
-        quickSizeFragment.clearSelectedBrand();
-    }
+             @Override
+             public void backPressed() {
+                 FragmentManager manager = getFragmentManager();
+                 FragmentTransaction fragmentTransaction = manager.beginTransaction();
+                 fragmentTransaction.replace(R.id.containerQuickSizeFragment, new QuickSizeSelectBrandFragment());
+                 fragmentTransaction.commit();
+                 quickSizeFragment.clearSelectedBrand();
+             }
 
-    @Override
-    public void onDestroyView() {
-        ((SuperNavigationActivity) getActivity()).setOnBackPressedListener(null);
-        super.onDestroyView();
-    }
-}
+             @Override
+             public void onDestroyView() {
+                 ((SuperNavigationActivity) getActivity()).setOnBackPressedListener(null);
+                 super.onDestroyView();
+             }
+         }

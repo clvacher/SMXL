@@ -3,12 +3,10 @@ package com.aerolitec.SMXL.tools.serverConnexion;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.aerolitec.SMXL.model.MainUser;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.UtilityMethodsv2;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
-import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
 
 import org.apache.http.HttpResponse;
@@ -27,13 +25,14 @@ import java.util.Date;
 public class GetProfileHttpAsyncTask extends AsyncTask<Integer,Void,String> {
 
     public static final String SERVER_ADDRESS_GET_PROFILE_PART1 = "http://api.smxl-app.com/profiles/";
+    public static final String SERVER_ADDRESS_GET_PROFILE_PART1_DEV = "http://smxl-api-dev-mhubsvde5h.elasticbeanstalk.com/profiles/";
     public static final String SERVER_ADDRESS_GET_PROFILE_PART2 = "/id.html";
 
 
     @Override
     protected String doInBackground(Integer... params) {
         int profileId = params[0];
-        String url = SERVER_ADDRESS_GET_PROFILE_PART1+profileId+SERVER_ADDRESS_GET_PROFILE_PART2;
+        String url = SERVER_ADDRESS_GET_PROFILE_PART1_DEV +profileId+SERVER_ADDRESS_GET_PROFILE_PART2;
         return GET(url);
     }
 

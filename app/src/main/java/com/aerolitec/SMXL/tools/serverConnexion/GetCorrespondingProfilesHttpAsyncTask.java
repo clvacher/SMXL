@@ -22,10 +22,12 @@ public class GetCorrespondingProfilesHttpAsyncTask extends AsyncTask<Integer,Voi
     public static final String SERVER_ADDRESS_GET_CORRESPONDING_LINK_PART_1 = "http://api.smxl-app.com/users/";
     public static final String SERVER_ADDRESS_GET_CORRESPONDING_LINK_PART_2 = "/profile.json";
 
+    public static final String SERVER_ADDRESS_GET_CORRESPONDING_LINK_PART_1_DEV = "http://smxl-api-dev-mhubsvde5h.elasticbeanstalk.com/users/";
+
     @Override
     protected String doInBackground(Integer... params) {
         Integer mainUserId = params[0];
-        return GET(SERVER_ADDRESS_GET_CORRESPONDING_LINK_PART_1+mainUserId+SERVER_ADDRESS_GET_CORRESPONDING_LINK_PART_2);
+        return GET(SERVER_ADDRESS_GET_CORRESPONDING_LINK_PART_1_DEV+mainUserId+SERVER_ADDRESS_GET_CORRESPONDING_LINK_PART_2);
     }
 
     @Override

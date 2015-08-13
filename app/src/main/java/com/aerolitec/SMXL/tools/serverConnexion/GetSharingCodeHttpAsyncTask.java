@@ -5,7 +5,6 @@ import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 
-import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.UtilityMethodsv2;
 
 import org.apache.http.HttpResponse;
@@ -25,8 +24,8 @@ import java.io.InputStream;
  */
 public class GetSharingCodeHttpAsyncTask extends AsyncTask<Integer, Void, String> {
 
-
     public static final String SERVER_ADDRESS_GET_SHARING_CODE = "http://api.smxl-app.com/shares/profiles.json";
+    public static final String SERVER_ADDRESS_GET_SHARING_CODE_DEV = "http://smxl-api-dev-mhubsvde5h.elasticbeanstalk.com/shares/profiles.json";
 
     private GetSharingCodeInterface getSharingCodeInterface;
 
@@ -79,7 +78,7 @@ public class GetSharingCodeHttpAsyncTask extends AsyncTask<Integer, Void, String
         }
 
 
-        return POST(SERVER_ADDRESS_GET_SHARING_CODE,json);
+        return POST(SERVER_ADDRESS_GET_SHARING_CODE_DEV,json);
     }
 
     @Override

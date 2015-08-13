@@ -16,6 +16,7 @@ import com.aerolitec.SMXL.tools.manager.MainUserManager;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.tools.serverConnexion.GetMainUserHttpAsyncTask;
 import com.aerolitec.SMXL.tools.serverConnexion.LoginCreateAccountInterface;
+import com.aerolitec.SMXL.tools.serverConnexion.PostAvatarProfileHttpAsyncTask;
 import com.aerolitec.SMXL.tools.serverConnexion.PostMainProfileHttpAsyncTask;
 import com.aerolitec.SMXL.tools.serverConnexion.PostMainUserHttpAsyncTask;
 import com.aerolitec.SMXL.tools.serverConnexion.PostProfileHttpAsyncTask;
@@ -123,7 +124,9 @@ public class CreateAccountFragment extends SuperLoginCreateAccountFragment imple
 
     @Override
     public void onProfilePosted(Integer ProfileId) {
+
         User user = UserManager.get().getUser();
+        //new PostAvatarProfileHttpAsyncTask(user.getAvatar()).execute(user.getServer_id());
         user.setServer_id(ProfileId);
         MainUser mainUser = MainUserManager.get().getMainUser();
         SMXL.getUserDBManager().updateUser(user);

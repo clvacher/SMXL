@@ -3,7 +3,6 @@ package com.aerolitec.SMXL.tools.serverConnexion;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.UtilityMethodsv2;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
 
@@ -22,6 +21,7 @@ import java.io.InputStream;
 public class PostLinkHttpAsyncTask extends AsyncTask<Integer, Void, String> {
 //TODO CAS DU PREMIER PROFIL!
 
+    public static final String SERVER_ADDRESS_LINK_TO_USER_DEV = "http://smxl-api-dev-mhubsvde5h.elasticbeanstalk.com/users/profiles.json";
     public static final String SERVER_ADDRESS_LINK_TO_USER = "http://api.smxl-app.com/users/profiles.json";
 
     @Override
@@ -46,7 +46,7 @@ public class PostLinkHttpAsyncTask extends AsyncTask<Integer, Void, String> {
             e.printStackTrace();
         }
 
-        return POST(SERVER_ADDRESS_LINK_TO_USER, jsonObjectString);
+        return POST(SERVER_ADDRESS_LINK_TO_USER_DEV, jsonObjectString);
     }
 
     @Override

@@ -29,6 +29,7 @@ import java.io.InputStream;
  */
 public class PostMainUserHttpAsyncTask extends AsyncTask<Void, Void, String> {
 
+    public static final String SERVER_ADDRESS_CREATE_MAIN_USER_DEV = "http://smxl-api-dev-mhubsvde5h.elasticbeanstalk.com/users.json";
     public static final String SERVER_ADDRESS_CREATE_MAIN_USER = "http://api.smxl-app.com/users.json";
 
     protected Activity activity;
@@ -61,7 +62,7 @@ public class PostMainUserHttpAsyncTask extends AsyncTask<Void, Void, String> {
         catch (Exception e){
             e.printStackTrace();
         }
-        return POST(SERVER_ADDRESS_CREATE_MAIN_USER, json);
+        return POST(SERVER_ADDRESS_CREATE_MAIN_USER_DEV, json);
     }
 
     // onPostExecute displays the results of the AsyncTask.
