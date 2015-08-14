@@ -64,7 +64,6 @@ public class AddGarmentWishListFragment extends Fragment
     private User user;
     private GarmentType selectedGarmentType;
     private Brand selectedBrand;
-    private HashMap<String,String> selectedSize;
     private BrandSizeGuideMeasuresRow selectedRow;
 
     private ImageView imgWishList,addImage;
@@ -116,7 +115,7 @@ public class AddGarmentWishListFragment extends Fragment
         if(extras!=null){
             selectedGarmentType = (GarmentType) extras.get(ARG_GARMENT);
             selectedBrand = (Brand) extras.get(ARG_BRAND);
-            selectedSize = (HashMap<String,String>) extras.get(ARG_SIZE);
+            selectedRow = (BrandSizeGuideMeasuresRow) extras.get(ARG_SIZE);
 
             tvCategoryGarment.setText(selectedGarmentType.getType());
             tvBrand.setText(selectedBrand.getBrand_name());
@@ -155,7 +154,7 @@ public class AddGarmentWishListFragment extends Fragment
             });
 
 
-            Fragment fragment = SelectSizeFragment.newInstance(selectedGarmentType,selectedBrand,selectedSize);
+            Fragment fragment = SelectSizeFragment.newInstance(selectedGarmentType,selectedBrand,selectedRow);
             getChildFragmentManager().beginTransaction()
                     .add(R.id.containerSize, fragment)
                     .commit();
@@ -185,12 +184,12 @@ public class AddGarmentWishListFragment extends Fragment
 
         // Determine Uri of camera image to save.
         String root = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
-       // File myDir = new File(root, "SMXL");
-      //  myDir.mkdirs();
+        File myDir = new File(root, "SMXL");
+        myDir.mkdirs();
        // try {
             //File tmpFile = File.createTempFile("smxl_wishlist_item",".png");
-            //File tmpFile = new File(myDir,"test.png");
-            File tmpFile = new File(getActivity().getFilesDir(), "wishlist_tmp.png");
+            File tmpFile = new File(myDir,"test.png");
+           // File tmpFile = new File(getActivity().getFilesDir(), "wishlist_tmp.png");
 
             outputFileUri = Uri.fromFile(tmpFile);
         //} catch (IOException e) {
@@ -285,6 +284,7 @@ public class AddGarmentWishListFragment extends Fragment
     }
 
     private String findSizeType() {
+        HashMap<String,String> selectedSize = selectedRow.getCorrespondingSizes();
         if (selectedSize.containsKey("SMXL")  && !selectedSize.get("SMXL").equals("")) {
             return "SMXL";
         } else if (selectedSize.containsKey("UE") && !selectedSize.get("UE").equals("")) {

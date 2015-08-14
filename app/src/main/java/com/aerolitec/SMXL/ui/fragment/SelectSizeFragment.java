@@ -9,12 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
-import com.aerolitec.SMXL.dummy.DummyContent;
 import com.aerolitec.SMXL.model.Brand;
 import com.aerolitec.SMXL.model.BrandSizeGuideMeasuresRow;
 import com.aerolitec.SMXL.model.GarmentType;
@@ -24,6 +22,7 @@ import com.aerolitec.SMXL.ui.adapter.BrandSizeGuideMeasureRowAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 
@@ -34,7 +33,7 @@ public class SelectSizeFragment extends Fragment implements AbsListView.OnItemCl
     private static final String ARG_BRAND = "brand";
     private static final String ARG_SIZE = "size";
 
-    private HashMap<String,String> size;
+    private BrandSizeGuideMeasuresRow sizeGuideMeasureRow;
 
     private OnFragmentInteractionListener mListener;
     /**
@@ -44,12 +43,12 @@ public class SelectSizeFragment extends Fragment implements AbsListView.OnItemCl
     private String selectedColumn;
     private ListAdapter mAdapter;
 
-    public static SelectSizeFragment newInstance(GarmentType garmentType,Brand brand,HashMap<String,String> size) {
+    public static SelectSizeFragment newInstance(GarmentType garmentType,Brand brand,BrandSizeGuideMeasuresRow sizeRow) {
         SelectSizeFragment fragment = new SelectSizeFragment();
         Bundle args = new Bundle();
         args.putSerializable(ARG_GARMENT, garmentType);
         args.putSerializable(ARG_BRAND, brand);
-        args.putSerializable(ARG_SIZE, size);
+        args.putSerializable(ARG_SIZE, sizeRow);
         fragment.setArguments(args);
         return fragment;
     }
@@ -66,19 +65,19 @@ public class SelectSizeFragment extends Fragment implements AbsListView.OnItemCl
         super.onCreate(savedInstanceState);
         Bundle extras = getArguments();
         if (extras!= null) {
-            size = (HashMap<String,String>) extras.getSerializable(ARG_SIZE);
+            sizeGuideMeasureRow = (BrandSizeGuideMeasuresRow) extras.getSerializable(ARG_SIZE);
             Brand brand = (Brand) extras.getSerializable(ARG_BRAND);
             GarmentType garmentType = (GarmentType) extras.getSerializable(ARG_GARMENT);
             ArrayList<BrandSizeGuideMeasuresRow> brandSizeGuideMeasuresRows = SMXL.getBrandSizeGuideDBManager().getBrandSizeGuideMeasureRowsByBrandAndGarmentType(brand, garmentType);
-            selectedColumn =findSizeType();
+            selectedColumn = findSizeType();
+            mListener.onFragmentInteraction(sizeGuideMeasureRow,selectedColumn);
             mAdapter = new BrandSizeGuideMeasureRowAdapter(getActivity(),
-                             android.R.layout.simple_list_item_1, android.R.id.text1, brandSizeGuideMeasuresRows,selectedColumn);
+                             android.R.layout.simple_list_item_1, android.R.id.text1, filterArray(brandSizeGuideMeasuresRows),selectedColumn);
+            mListener.onFragmentInteraction(sizeGuideMeasureRow, selectedColumn);
         }
         else {
             Log.d(Constants.TAG,"extras should not be null in SelectSizeFragment");
         }
-        //mAdapter = new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
-        //                 android.R.layout.simple_list_item_1, android.R.id.text1, DummyContent.ITEMS);
 
     }
 
@@ -89,7 +88,7 @@ public class SelectSizeFragment extends Fragment implements AbsListView.OnItemCl
         mListView = (AbsListView) view.findViewById(android.R.id.list);
         mListView.setAdapter(mAdapter);
         mListView.setOnItemClickListener(this);
-
+        mListView.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
         return view;
     }
 
@@ -131,6 +130,7 @@ public class SelectSizeFragment extends Fragment implements AbsListView.OnItemCl
     }
 
     private String findSizeType() {
+        HashMap<String,String> size = this.sizeGuideMeasureRow.getCorrespondingSizes();
         if (size.containsKey("SMXL")  && !size.get("SMXL").equals("")) {
             return "SMXL";
         } else if (size.containsKey("UE") && !size.get("UE").equals("")) {
@@ -144,6 +144,24 @@ public class SelectSizeFragment extends Fragment implements AbsListView.OnItemCl
             //Ne devrait jamais passer par la
             return null;
         }
+    }
+
+
+    private ArrayList<BrandSizeGuideMeasuresRow> filterArray(ArrayList<BrandSizeGuideMeasuresRow> arrayToFilter){
+        Iterator<BrandSizeGuideMeasuresRow> iterator = arrayToFilter.iterator();
+        ArrayList<String> containedSize = new ArrayList<>();
+        String sizeCountry = findSizeType();
+        while(iterator.hasNext()){
+            HashMap<String,String> rowMeasures = iterator.next().getCorrespondingSizes();
+            String size = rowMeasures.get(sizeCountry);
+            if(containedSize.contains(size)){
+                iterator.remove();
+            }
+            else {
+                containedSize.add(size);
+            }
+        }
+        return arrayToFilter;
     }
 
     public interface OnFragmentInteractionListener {

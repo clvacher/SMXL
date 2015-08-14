@@ -1,12 +1,13 @@
 package com.aerolitec.SMXL.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
  * Created by Clement on 6/9/2015.
  */
-public class BrandSizeGuideMeasuresRow {
+public class BrandSizeGuideMeasuresRow implements Serializable {
 
     Double bust;
     int fBust=1;

@@ -14,10 +14,9 @@ import com.aerolitec.SMXL.ui.fragment.SelectSizeFragment;
 import com.aerolitec.SMXL.ui.fragment.SelectSizeFragment.OnFragmentInteractionListener;
 
 import java.io.File;
-import java.util.HashMap;
 
 /**
- * Created by NelsonGay on 10/08/2015.
+ * Created by Nelson on 10/08/2015.
  */
 public class AddWishListActivity extends NoDrawerActivity implements OnFragmentInteractionListener {
 
@@ -59,19 +58,12 @@ public class AddWishListActivity extends NoDrawerActivity implements OnFragmentI
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
-        File tmpFile = new File(getFilesDir(), "wishlist_tmp.png");
-        if(tmpFile.exists()){
-            tmpFile.delete();
-        }
         switch (item.getItemId()) {
             case R.id.validate:
                 wishListFragment.saveToWishList();
-                finish();
                 break;
             case R.id.update:
                 wishListFragment.updateWishList();
-                finish();
                 break;
             case android.R.id.home:
                 finish();

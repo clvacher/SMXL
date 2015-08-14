@@ -96,7 +96,7 @@ public class QuickSizeSummaryFragment extends Fragment implements MainNavigation
                 Intent wishListIntent = new Intent(getActivity(), AddWishListActivity.class);
                 wishListIntent.putExtra("garmentType", quickSizeFragment.getSelectedGarmentType() );
                 wishListIntent.putExtra("brand", quickSizeFragment.getSelectedBrand());
-                wishListIntent.putExtra("size", resultQuickSize );
+                wishListIntent.putExtra("size", getClosestRow() );
                 startActivity(wishListIntent);
             }
         }
@@ -166,14 +166,16 @@ public class QuickSizeSummaryFragment extends Fragment implements MainNavigation
 
 
              private HashMap<String, String> computeMeasures() {
-                 ArrayList<BrandSizeGuideMeasuresRow> brandSizeGuideMeasuresRows;
-
-                 brandSizeGuideMeasuresRows = SMXL.getBrandSizeGuideDBManager().getBrandSizeGuideMeasureRowsByBrandAndGarmentType(quickSizeFragment.getSelectedBrand(), quickSizeFragment.getSelectedGarmentType());
-
-                 BrandSizeGuideMeasuresRow brandSizeGuideMeasuresRow = BrandSizeGuideMeasuresRow.getClosestRowToMeasures(brandSizeGuideMeasuresRows, UserManager.get().getUser());
-
-                 return brandSizeGuideMeasuresRow.getCorrespondingSizes();
+                 return getClosestRow().getCorrespondingSizes();
              }
+
+            private BrandSizeGuideMeasuresRow getClosestRow(){
+                ArrayList<BrandSizeGuideMeasuresRow> brandSizeGuideMeasuresRows;
+                brandSizeGuideMeasuresRows = SMXL.getBrandSizeGuideDBManager().getBrandSizeGuideMeasureRowsByBrandAndGarmentType(quickSizeFragment.getSelectedBrand(), quickSizeFragment.getSelectedGarmentType());
+                BrandSizeGuideMeasuresRow brandSizeGuideMeasuresRow = BrandSizeGuideMeasuresRow.getClosestRowToMeasures(brandSizeGuideMeasuresRows, UserManager.get().getUser());
+                return brandSizeGuideMeasuresRow;
+
+            }
 
              @Override
              public void backPressed() {

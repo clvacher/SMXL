@@ -124,7 +124,7 @@ public class ProfilesDetailFragment extends Fragment{
         wishListLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Prochainement , partager vos envies !", Toast.LENGTH_SHORT).show();
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.frame_container,new UserWishListFragment()).commit();
             }
         });
 

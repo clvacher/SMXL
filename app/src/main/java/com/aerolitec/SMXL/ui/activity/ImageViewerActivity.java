@@ -55,7 +55,7 @@ public class ImageViewerActivity extends NoDrawerActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        if(id == R.id.home){
+        if(id == android.R.id.home){
             onBackPressed();
             return true;
         }
