@@ -114,12 +114,16 @@ public class CreateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
     }
 
     public void createProfile(){
-
         /// Add Profile in DataBase ///
         if (etFirstName.getText().toString().length() < 2 ||
-                etLastName.getText().toString().length() < 2) {
-            Toast.makeText(getActivity(), getResources().getString(R.string.incompleteProfile), Toast.LENGTH_LONG).show();
-        } else {
+                etLastName.getText().toString().length() < 2 ) {
+            Toast.makeText(getActivity(), getResources().getString(R.string.incompleteProfile) , Toast.LENGTH_LONG).show();
+        }
+        else if(birthday == null){
+            Toast.makeText(getActivity(), getResources().getString(R.string.inclompleteBirthDate) , Toast.LENGTH_LONG).show();
+        }
+        else
+         {
             int sexe = 2;
             int idRadioButton = radioSexe.getCheckedRadioButtonId();
             if (idRadioButton == -1) {

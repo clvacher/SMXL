@@ -67,16 +67,16 @@ public class GetSharedProfileHttpAsyncTask extends AsyncTask<Integer, Void, Stri
 
                     if(SMXL.getUserDBManager().getUser(jsonUser.getLong("id")) == null) {
                         /* Obtainment of the user's birthday */
-
+                        /*
                         //creation of a Date corresponding to the JSON object timestamp
                         Date birthDate = new Date(jsonUser.getJSONObject("birthday").getLong("timestamp") * 1000);
                         //conversion to String (birthDate.getMonth() is deprecated)
                         Calendar cal = Calendar.getInstance();
                         cal.setTime(birthDate);
                         String birthdayString = String.format("%02d", cal.get(Calendar.DAY_OF_MONTH)) + "-" + String.format("%02d", cal.get(Calendar.MONTH) + 1) + "-" + cal.get(Calendar.YEAR);
-
+                        */
                         //jsonMainUser.optString("name");
-
+                        String birthdayString = jsonUser.optString("birthday");
                         User user = null;
                         try {
                             user = new User(jsonUser,birthdayString);

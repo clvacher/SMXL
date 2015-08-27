@@ -1,6 +1,7 @@
 package com.aerolitec.SMXL.ui.activity;
 
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -18,7 +19,7 @@ import java.io.File;
 /**
  * Created by Nelson on 10/08/2015.
  */
-public class AddWishListActivity extends NoDrawerActivity implements OnFragmentInteractionListener {
+public class AddWishListActivity extends NoDrawerActivity {
 
     private AddGarmentWishListFragment wishListFragment;
 
@@ -61,9 +62,11 @@ public class AddWishListActivity extends NoDrawerActivity implements OnFragmentI
         switch (item.getItemId()) {
             case R.id.validate:
                 wishListFragment.saveToWishList();
+                finish();
                 break;
             case R.id.update:
                 wishListFragment.updateWishList();
+                finish();
                 break;
             case android.R.id.home:
                 finish();
@@ -83,14 +86,22 @@ public class AddWishListActivity extends NoDrawerActivity implements OnFragmentI
         onPrepareOptionsMenu(menuBar);
     }
 
+    @Override
+    protected void onDestroy() {
+        String root = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
+        File myDir = new File(root, "SMXL");
+        myDir.mkdirs();
+        File tmpFile = new File(myDir,"temp.png");
+        if(tmpFile.exists()){
+            tmpFile.delete();
+        }
+        super.onDestroy();
+    }
+
     public void setValueUpdate(Boolean b) {
         update = b;
     }
     public void setValueValidation(Boolean b) {
         validation = b;
-    }
-    @Override
-    public void onFragmentInteraction(BrandSizeGuideMeasuresRow selectedRow,String selectedColumn) {
-        wishListFragment.setSize(selectedRow,selectedColumn);
     }
 }

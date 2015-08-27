@@ -126,7 +126,7 @@ public class CreateAccountFragment extends SuperLoginCreateAccountFragment imple
     public void onProfilePosted(Integer ProfileId) {
 
         User user = UserManager.get().getUser();
-        //new PostAvatarProfileHttpAsyncTask(user.getAvatar()).execute(user.getServer_id());
+        new PostAvatarProfileHttpAsyncTask(user.getAvatar()).execute(user.getServer_id());
         user.setServer_id(ProfileId);
         MainUser mainUser = MainUserManager.get().getMainUser();
         SMXL.getUserDBManager().updateUser(user);

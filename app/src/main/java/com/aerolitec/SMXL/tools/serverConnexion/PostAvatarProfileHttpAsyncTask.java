@@ -59,13 +59,11 @@ public class PostAvatarProfileHttpAsyncTask extends AsyncTask<Integer, Void, Str
 
             MultipartEntityBuilder builder = MultipartEntityBuilder.create();
             builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
-            FileBody fileBody = new FileBody(new File(filePath)); //image should be a String
+            FileBody fileBody = new FileBody(new File(filePath));
             builder.addPart("avatar", fileBody);
 
             httpPost.setEntity(builder.build());
 
-            httpPost.setHeader("Accept", "application/json");
-            httpPost.setHeader("Content-type", "application/json");
             HttpResponse httpResponse = httpclient.execute(httpPost);
             inputStream = httpResponse.getEntity().getContent();
             if(inputStream != null){

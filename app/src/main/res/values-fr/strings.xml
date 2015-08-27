@@ -214,5 +214,7 @@
     <string name="Coat">Manteau</string>
     <string name="jacket">Veste</string>
     <string name="title_activity_wishlist">AddWishListActivity</string>
+    <string name="inclompleteBirthDate">La date de naissance n\'a pas été entrée .</string>
+    <string name="empty_wishlist">La liste d\'envie est vide .</string>
 
 </resources>

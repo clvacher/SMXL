@@ -16,6 +16,7 @@ import com.aerolitec.SMXL.tools.dbmanager.SizeConvertDBManager;
 import com.aerolitec.SMXL.tools.dbmanager.UserBrandDBManager;
 import com.aerolitec.SMXL.tools.dbmanager.UserClothesDBManager;
 import com.aerolitec.SMXL.tools.dbmanager.UserDBManager;
+import com.aerolitec.SMXL.tools.dbmanager.UserWishListDBManager;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -34,6 +35,7 @@ public class SMXL extends Application{
     private static UserDBManager userDBManager;
     private static BlogDBManager blogDBManager;
     private static ShopOnLineDBManager shopOnLineDBManager;
+    private static UserWishListDBManager userWishListDBManager;
 
     private SharedPreferences sharedPreferences;
 
@@ -54,6 +56,7 @@ public class SMXL extends Application{
         userDBManager = new UserDBManager(getApplicationContext());
         blogDBManager = new BlogDBManager(getApplicationContext());
         shopOnLineDBManager = new ShopOnLineDBManager(getApplicationContext());
+        userWishListDBManager = new UserWishListDBManager(getApplicationContext());
         //metrics = getResources().getDisplayMetrics();
 
         categoryGarmentDBManager.updateCategoryGarment(1, R.drawable.tshirt_gris);
@@ -132,5 +135,9 @@ public class SMXL extends Application{
         SharedPreferences.Editor edit = sharedPreferences.edit();
         edit.putBoolean(Constants.FIRST_LAUNCH, false);
         edit.commit();
+    }
+
+    public static UserWishListDBManager getUserWishListDBManager() {
+        return userWishListDBManager;
     }
 }

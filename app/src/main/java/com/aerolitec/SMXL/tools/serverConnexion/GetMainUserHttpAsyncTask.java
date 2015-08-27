@@ -122,7 +122,7 @@ public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
                     Log.d("GetUser AsyncTask",jsonMainUser.toString());
 
                     /* Obtainment of the user's birthday */
-
+                    /*
                     //creation of a Date corresponding to the JSON object timestamp
                     Date birthDate=new Date(jsonMainUser.getJSONObject("birthdate").getLong("timestamp")*1000);
                     //conversion to String (birthDate.getMonth() is deprecated)
@@ -130,15 +130,6 @@ public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
                     cal.setTime(birthDate);
 
                     String birthdayString = String.format("%02d", cal.get(Calendar.DAY_OF_MONTH))+"-"+String.format("%02d", cal.get(Calendar.MONTH) + 1)+"-"+cal.get(Calendar.YEAR);
-
-                    /*
-                    //TODO a changer par le vrai profil!
-                    UserManager.get().setUser(new User(
-                            jsonMainUser.optString("firstname"),
-                            jsonMainUser.optString("name"),
-                            birthdayString,
-                            jsonMainUser.optInt("sex")
-                    ));
                     */
                     mainUser = new MainUser(jsonMainUser.optString("email"),
                             jsonMainUser.optString("password"),
@@ -152,12 +143,12 @@ public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
                     mainUser.setFacebookId(jsonMainUser.optString("idFacebook"));
                     mainUser.setServerId(jsonMainUser.optInt("id"));
                     mainUser.setSex(jsonMainUser.optInt("sex"));
-                    Log.d("GetUser AsyncTask",mainUser.toString());
+                    Log.d("GetUser AsyncTask", mainUser.toString());
+                    loginCreateAccountInterface.accountRetrieved(mainUser);
                 }
                 catch(Exception e){
                     e.printStackTrace();
                 }
-                loginCreateAccountInterface.accountRetrieved(mainUser);
         }
     }
 

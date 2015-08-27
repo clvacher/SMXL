@@ -22,7 +22,6 @@ import java.io.InputStream;
  * Created by Clement on 5/18/2015.
  */
 
-//TODO link avec le USER
 public class PostProfileHttpAsyncTask extends AsyncTask<User, Void, String> {
 
     public static final String SERVER_ADDRESS_CREATE_PROFILE_DEV = "http://smxl-api-dev-mhubsvde5h.elasticbeanstalk.com/profiles.json";

@@ -18,7 +18,7 @@ import com.aerolitec.SMXL.tools.UtilityMethodsv2;
 import java.util.ArrayList;
 
 /**
- * Created by NelsonGay on 13/08/2015.
+ * Created by Nelson on 13/08/2015.
  */
 public class UserWishListAdapter extends ArrayAdapter<UserWishList> {
 
@@ -44,13 +44,7 @@ public class UserWishListAdapter extends ArrayAdapter<UserWishList> {
 
         UserWishList userWishList = getItem(position);
         String filePath = userWishList.getPicture();
-        /*
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inSampleSize = UtilityMethodsv2.calculateInSampleSize(filePath, holder.iv_thumbnail.getWidth(), holder.iv_thumbnail.getHeight());
-        Bitmap bitmap = BitmapFactory.decodeFile(filePath, options);
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        holder.iv_thumbnail.setImageBitmap(bitmap);*/
-        holder.iv_thumbnail.setImageResource(R.drawable.tshirt_lowpx);
+        holder.iv_thumbnail.setImageResource(userWishList.getGarmentType().getCategoryGarment().getIcon());
         holder.tv_brand.setText(userWishList.getBrand().getBrand_name());
         holder.tv_size.setText(userWishList.getSize());
 

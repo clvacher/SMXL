@@ -212,5 +212,7 @@
     <string name="Jacket">Jacket</string>
     <string name="title_activity_wishlist">AddWishListActivity</string>
     <string name="title_activity_image_viewer">ImageViewerActivity</string>
+    <string name="inclompleteBirthDate">You must enter your birthdate</string>
+    <string name="empty_wishlist">The wishlist is empty .</string>
 
 </resources>

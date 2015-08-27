@@ -70,40 +70,34 @@ public class PostMainUserHttpAsyncTask extends AsyncTask<Void, Void, String> {
     protected void onPostExecute(String result) {
         //Toast.makeText(activity, "Data Sent!", Toast.LENGTH_LONG).show();
         if(!result.equals("Did not work!")) {
+            JSONObject jsonMainUser;
+
             try {
+                jsonMainUser = new JSONObject(result);
+
+                //ajout de l'Id server associe
+                Integer id = Integer.parseInt(jsonMainUser.optString("id"));
+                Log.d("idMainUserPost",id+"");
+                MainUserManager.get().getMainUser().setServerId(id);
+
                 FileOutputStream fos = activity.openFileOutput(Constants.MAIN_USER_FILE, Context.MODE_PRIVATE);
                 fos.flush();
                 fos.write(MainUserManager.get().getMainUser().getBytes());
 
+                int mainProfileServerId = UserManager.get().getUser().getServer_id();
+                new PostLinkIdMainProfileToUserHttpAsyncTask().execute(id, mainProfileServerId);
 
-
-                JSONObject jsonMainUser;
-
-
-                try {
-                    jsonMainUser = new JSONObject(result);
-
-                    //ajout de l'Id server associe
-                    Integer id = Integer.parseInt(jsonMainUser.optString("id"));
-                    Log.d("idMainUserPost",id+"");
-                    MainUserManager.get().getMainUser().setServerId(id);
-                    int mainProfileServerId = UserManager.get().getUser().getServer_id();
-                    new PostLinkIdMainProfileToUserHttpAsyncTask().execute(id, mainProfileServerId);
-
-                    Intent intent = new Intent(activity.getApplicationContext(), MainNavigationActivity.class);
-                    activity.startActivity(intent);
-                    activity.finish();
+                Intent intent = new Intent(activity.getApplicationContext(), MainNavigationActivity.class);
+                activity.startActivity(intent);
+                activity.finish();
 
                 }
                 catch(Exception e){
                     e.printStackTrace();
                 }
 
-
                 activity.setResult(Activity.RESULT_OK);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+
         }
         else{
             activity.setResult(Activity.RESULT_CANCELED);

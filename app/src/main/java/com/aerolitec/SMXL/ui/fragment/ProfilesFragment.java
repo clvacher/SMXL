@@ -18,6 +18,7 @@ import com.aerolitec.SMXL.model.MainUser;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
 import com.aerolitec.SMXL.tools.manager.UserManager;
+import com.aerolitec.SMXL.tools.serverConnexion.PostAvatarProfileHttpAsyncTask;
 import com.aerolitec.SMXL.tools.serverConnexion.PostLinkHttpAsyncTask;
 import com.aerolitec.SMXL.tools.serverConnexion.PostProfileHttpAsyncTask;
 import com.aerolitec.SMXL.tools.serverConnexion.PostProfileInterface;
@@ -153,6 +154,7 @@ public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.
 
             loadProfiles();
             new PostProfileHttpAsyncTask(this).execute(user);
+
         }
     }
 
@@ -183,6 +185,9 @@ public class ProfilesFragment extends Fragment implements ConfirmDialogFragment.
         user.setServer_id(profileId);
         SMXL.getUserDBManager().updateUser(user);
         new PostLinkHttpAsyncTask().execute(profileId);
+        if(user.getAvatar()!= null || !user.getAvatar().isEmpty()){
+            new PostAvatarProfileHttpAsyncTask(user.getAvatar()).execute(profileId);
+        }
     }
 
     @Override

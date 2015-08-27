@@ -1,86 +1,78 @@
 package com.aerolitec.SMXL.ui.fragment;
 
-import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.view.ContextMenu;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
-import com.aerolitec.SMXL.model.Brand;
-import com.aerolitec.SMXL.model.GarmentType;
 import com.aerolitec.SMXL.model.UserWishList;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
+import com.aerolitec.SMXL.ui.activity.AddWishListActivity;
 import com.aerolitec.SMXL.ui.adapter.UserWishListAdapter;
+import com.aerolitec.SMXL.ui.fragment.dialog.ConfirmDialogFragment;
 
+import java.io.File;
 import java.util.ArrayList;
 
 
 public class UserWishListFragment extends ListFragment {
 
-
-
-    //private OnFragmentInteractionListener mListener;
-
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
+    private ArrayList<UserWishList> arrayList;
+    private UserWishListAdapter adapter;
     public UserWishListFragment() {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-/*
-        // TODO: Change Adapter to display your content
-        setListAdapter(new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
-                android.R.layout.simple_list_item_1, android.R.id.text1, DummyContent.ITEMS));
-   */
-        ArrayList<UserWishList> arrayList = new ArrayList<>();
-        GarmentType garmentType = SMXL.getGarmentTypeDBManager().getGarmentType(72);
-        Brand brand = SMXL.getBrandDBManager().getBrand(23);
-        arrayList.add(new UserWishList(1, UserManager.get().getUser(),"SMXL","XXS","test",garmentType,brand));
-        arrayList.add(new UserWishList(2, UserManager.get().getUser(),"SMXL","XXS","test",garmentType,brand));
-        arrayList.add(new UserWishList(3, UserManager.get().getUser(),"SMXL","XXS","test",garmentType,brand));
-        arrayList.add(new UserWishList(4, UserManager.get().getUser(),"SMXL","XXS","test",garmentType,brand));
-        setListAdapter(new UserWishListAdapter(getActivity(), R.layout.item_wishlist, arrayList));
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-    }
-
-/*
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        try {
-            mListener = (OnFragmentInteractionListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentInteractionListener");
+        arrayList = SMXL.getUserWishListDBManager().getAllUserWishList(UserManager.get().getUser());
+        adapter = new UserWishListAdapter(getActivity(), R.layout.item_wishlist, arrayList);
+        setListAdapter(adapter);
+        registerForContextMenu(getListView());
+        if(arrayList.size() == 0){
+            setEmptyText(getResources().getString(R.string.empty_wishlist));
         }
-    }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
+
     }
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
 
-        if (null != mListener) {
-            // Notify the active callbacks interface (the activity, if the
-            // fragment is attached to one) that an item has been selected.
-            mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
-        }
+        UserWishList userWishList = (UserWishList)l.getAdapter().getItem(position);
+        Intent wishListIntent = new Intent(getActivity(), AddWishListActivity.class);
+        wishListIntent.putExtra("wishlist", userWishList);
+        startActivity(wishListIntent);
     }
 
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        public void onFragmentInteraction(String id);
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.add(0, v.getId(), 0, "Supprimer");
     }
-*/
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        int position = info.position;
+        if (item.getTitle().equals("Supprimer")) {
+            SMXL.getUserWishListDBManager().deleteUserWishList(arrayList.get(position));
+            arrayList.remove(position);
+            adapter.notifyDataSetChanged();
+        }
+        return super.onContextItemSelected(item);
+    }
 }

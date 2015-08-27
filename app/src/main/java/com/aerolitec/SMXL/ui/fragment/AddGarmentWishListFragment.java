@@ -12,8 +12,10 @@ import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -25,6 +27,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -33,17 +36,23 @@ import com.aerolitec.SMXL.model.Brand;
 import com.aerolitec.SMXL.model.BrandSizeGuideMeasuresRow;
 import com.aerolitec.SMXL.model.GarmentType;
 import com.aerolitec.SMXL.model.User;
+import com.aerolitec.SMXL.model.UserWishList;
 import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.UtilityMethodsv2;
 import com.aerolitec.SMXL.tools.manager.UserManager;
+import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.activity.AddWishListActivity;
 import com.aerolitec.SMXL.ui.activity.ImageViewerActivity;
 
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -56,20 +65,27 @@ public class AddGarmentWishListFragment extends Fragment
     private static final String ARG_GARMENT = "garmentType";
     private static final String ARG_BRAND = "brand";
     private static final String ARG_SIZE = "size";
-    private static final String ARG_UPDATE = "update";
-    private static final String ARG_IMAGE_URI = "image_URI";
+    private static final String ARG_IMAGE_URI = "picture";
+    private static final String ARG_WISHLIST = "wishlist";
 
     protected static final int CHOOSE_CAMERA_GALLERY = 5;
 
+    private UserWishList userWishlist;
     private User user;
-    private GarmentType selectedGarmentType;
-    private Brand selectedBrand;
+    //private GarmentType selectedGarmentType;
+    //private Brand selectedBrand;
     private BrandSizeGuideMeasuresRow selectedRow;
+    //private String selectedCountry;
+    private ArrayList<BrandSizeGuideMeasuresRow> arrayList;
+    private int selectedIndex;
 
-    private ImageView imgWishList,addImage;
+    private ImageView addImage,imgExtended;
     private TextView tvCategoryGarment,tvBrand,tvSize;
+    private Button higherSize,lowerSize;
 
     private Uri outputFileUri;
+    private boolean validation=false;
+
     public static AddGarmentWishListFragment newInstance(GarmentType garmentType,Brand brand,HashMap<String,String> size) {
         AddGarmentWishListFragment f = new AddGarmentWishListFragment();
 
@@ -96,14 +112,14 @@ public class AddGarmentWishListFragment extends Fragment
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View view = inflater.inflate(R.layout.fragment_add_wishlist, container, false);
-
-        imgWishList = (ImageView) view.findViewById(R.id.imgWishList);
+        View view = inflater.inflate(R.layout.fragment_add_wishlist_new, container, false);
         addImage = (ImageView) view.findViewById(R.id.addImage);
         tvCategoryGarment = (TextView) view.findViewById(R.id.tv_category_garment);
         tvBrand = (TextView) view.findViewById(R.id.tv_brand);
         tvSize = (TextView) view.findViewById(R.id.tv_size);
-
+        imgExtended = (ImageView) view.findViewById(R.id.iv_extended);
+        higherSize = (Button) view.findViewById(R.id.buttonHigherSize);
+        lowerSize = (Button) view.findViewById(R.id.buttonLowerSize);
 
         user = UserManager.get().getUser();
         if(user == null) {
@@ -113,30 +129,37 @@ public class AddGarmentWishListFragment extends Fragment
 
         Bundle extras =  getArguments();
         if(extras!=null){
-            selectedGarmentType = (GarmentType) extras.get(ARG_GARMENT);
-            selectedBrand = (Brand) extras.get(ARG_BRAND);
-            selectedRow = (BrandSizeGuideMeasuresRow) extras.get(ARG_SIZE);
+            if(extras.containsKey(ARG_WISHLIST)){
+                userWishlist = (UserWishList) extras.get(ARG_WISHLIST);
 
-            tvCategoryGarment.setText(selectedGarmentType.getType());
-            tvBrand.setText(selectedBrand.getBrand_name());
+                selectedRow = SMXL.getBrandSizeGuideDBManager()
+                        .getBrandSizeGuideMeasureRowsByBrandAndGarmentTypeAndCountryAndSize(userWishlist.getBrand(),userWishlist.getGarmentType(),userWishlist.getCountrySelected(),userWishlist.getSize()).get(0);
 
-
-            if(extras.containsKey(ARG_UPDATE)){
-                existWishListItem();
+                ((AddWishListActivity) getActivity()).setValueUpdate(true);
+                showImage(Uri.parse(userWishlist.getPicture()));
             }
             else
             {
-                ((AddWishListActivity)getActivity()).setValueValidation(true);
-            }
 
-            /*(view.findViewById(R.id.layoutImageProfil)).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    openImageIntent();
-                }
-            });
-*/
-            imgWishList.setOnClickListener(new View.OnClickListener() {
+                selectedRow = (BrandSizeGuideMeasuresRow) extras.get(ARG_SIZE);
+
+                userWishlist = new UserWishList();
+                userWishlist.setBrand((Brand) extras.get(ARG_BRAND));
+                userWishlist.setGarmentType((GarmentType) extras.get(ARG_GARMENT));
+                userWishlist.setCountrySelected(findSizeType());
+
+                validation = true;
+            }
+            userWishlist.setUser(user);
+            tvCategoryGarment.setText(userWishlist.getGarmentType().getType());
+            tvBrand.setText(userWishlist.getBrand().getBrand_name());
+
+            arrayList = filterArray(SMXL.getBrandSizeGuideDBManager().getBrandSizeGuideMeasureRowsByBrandAndGarmentType(userWishlist.getBrand(), userWishlist.getGarmentType()));
+            selectedIndex = findSelectedIndex();
+            setSize(selectedIndex);
+
+            /*
+            imgExtended.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (outputFileUri != null) {
@@ -145,7 +168,7 @@ public class AddGarmentWishListFragment extends Fragment
                         startActivity(intent);
                     }
                 }
-            });
+            });*/
             addImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -153,31 +176,88 @@ public class AddGarmentWishListFragment extends Fragment
                 }
             });
 
-
-            Fragment fragment = SelectSizeFragment.newInstance(selectedGarmentType,selectedBrand,selectedRow);
-            getChildFragmentManager().beginTransaction()
-                    .add(R.id.containerSize, fragment)
-                    .commit();
+            higherSize.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(selectedIndex < arrayList.size()-1){
+                        selectedIndex++;
+                        setSize(selectedIndex);
+                    }
+                }
+            });
+            lowerSize.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(selectedIndex > 0) {
+                        selectedIndex--;
+                        setSize(selectedIndex);
+                    }
+                }
+            });
         }
         return view;
     }
 
-    public void saveToWishList() {
+    private int findSelectedIndex() {
+        String selectedCountry = userWishlist.getCountrySelected();
+        String compare = selectedRow.getCorrespondingSizes().get(selectedCountry);
+        for(int i=0;i<arrayList.size();i++){
+            HashMap<String,String> map = arrayList.get(i).getCorrespondingSizes();
+            if(map.get(selectedCountry).equals(compare)){
+                return i;
+            }
+        }
+        return 0;
+    }
 
+    public void saveToWishList() {
+        Log.d(Constants.TAG, "Save");
+        if(userWishlist.getPicture() != null){
+            File source = new File(userWishlist.getPicture());
+            if(source.exists()){
+                String root = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
+                File myDir = new File(root, "SMXL");
+                myDir.mkdirs();
+                long lastId = SMXL.getUserWishListDBManager().getLastId();
+                File destination = new File(myDir,"item_"+ lastId +".png");
+                try {
+                    Log.d(Constants.TAG, "Copying File ... ");
+                    copyFile(source,destination);
+                    source.delete();
+                    userWishlist.setPicture(destination.getPath());
+                } catch (IOException e) {
+                    Log.d(Constants.TAG,"File couldn't be copied");
+                }
+            }
+        }
+        SMXL.getUserWishListDBManager().addUserWishList(userWishlist);
+
+        Log.d(Constants.TAG, "Save Finished");
     }
 
     public void updateWishList() {
-
+        Log.d(Constants.TAG,"Update");
+        String root = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
+        File myDir = new File(root, "SMXL");
+        myDir.mkdirs();
+        File tmpFile = new File(myDir,"temp.png");
+        if(tmpFile.exists()){
+            try {
+                File destination = new File(myDir, "item_" + userWishlist.getId_user_wishlist() + ".png");
+                copyFile(tmpFile, destination);
+                userWishlist.setPicture(destination.getPath());
+            }catch (IOException e) {
+                Log.d(Constants.TAG,"File couldn't be copied");
+            }
+        }
+        SMXL.getUserWishListDBManager().updateUserWishList(userWishlist);
     }
 
-    private void existWishListItem(){
-        ((AddWishListActivity)getActivity()).setValueUpdate(true);
-    }
-
-    public void setSize(BrandSizeGuideMeasuresRow measuresRow,String selectedColumn) {
-        selectedRow = measuresRow;
+    public void setSize(int index) {
+        selectedRow = arrayList.get(index);
         HashMap<String,String > map = selectedRow.getCorrespondingSizes();
-        tvSize.setText(map.get(selectedColumn));
+        tvSize.setText(map.get(userWishlist.getCountrySelected()));
+        userWishlist.setSize(map.get(userWishlist.getCountrySelected()));
     }
 
     protected void openImageIntent() {
@@ -186,15 +266,9 @@ public class AddGarmentWishListFragment extends Fragment
         String root = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
         File myDir = new File(root, "SMXL");
         myDir.mkdirs();
-       // try {
-            //File tmpFile = File.createTempFile("smxl_wishlist_item",".png");
-            File tmpFile = new File(myDir,"test.png");
-           // File tmpFile = new File(getActivity().getFilesDir(), "wishlist_tmp.png");
+        File tmpFile = new File(myDir,"temp.png");
+        outputFileUri = Uri.fromFile(tmpFile);
 
-            outputFileUri = Uri.fromFile(tmpFile);
-        //} catch (IOException e) {
-        //    Log.d(Constants.TAG,"Couldn't create temporary file");
-        //}
 
 
         // Camera.
@@ -245,7 +319,6 @@ public class AddGarmentWishListFragment extends Fragment
                         File file = new File(outputFileUri.getPath());
                         if (file.exists()) {
                             showImage(outputFileUri);
-
                         }
                     } catch (Exception e) {
                         Log.e(Constants.TAG, "Error converting Picture in File " + e.getMessage());
@@ -266,7 +339,7 @@ public class AddGarmentWishListFragment extends Fragment
                         File file = new File(picturePath);
                         if (file.exists()) {
                             Uri uri = Uri.fromFile(file);
-                           showImage(uri);
+                            showImage(uri);
                         }
                     } catch (Exception e) {
                         Log.e(Constants.TAG, "Error converting Picture in File while trying to get a image from the gallery" + e.getMessage());
@@ -276,11 +349,21 @@ public class AddGarmentWishListFragment extends Fragment
         }
     }
 
-    private void showImage(Uri fileUri) {
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inSampleSize = UtilityMethodsv2.calculateInSampleSize(fileUri.getPath(), imgWishList.getWidth(), imgWishList.getHeight());
-        Bitmap bitmap = BitmapFactory.decodeFile(fileUri.getPath(),options);
-        imgWishList.setImageBitmap(bitmap);
+    private void copyFile(File source, File dest) throws IOException {
+        FileChannel inputChannel = null;
+        FileChannel outputChannel = null;
+        FileInputStream fileInputStreamSource = null;
+        FileOutputStream fileOutputStreamDest = null;
+        try {
+            fileInputStreamSource = new FileInputStream(source);
+            fileOutputStreamDest =  new FileOutputStream(dest);
+            inputChannel = fileInputStreamSource.getChannel();
+            outputChannel = fileOutputStreamDest.getChannel();
+            outputChannel.transferFrom(inputChannel, 0, inputChannel.size());
+        } finally {
+            inputChannel.close();
+            outputChannel.close();
+        }
     }
 
     private String findSizeType() {
@@ -297,6 +380,52 @@ public class AddGarmentWishListFragment extends Fragment
             }
             //Ne devrait jamais passer par la
             return null;
+        }
+    }
+
+    private ArrayList<BrandSizeGuideMeasuresRow> filterArray(ArrayList<BrandSizeGuideMeasuresRow> arrayToFilter){
+        Iterator<BrandSizeGuideMeasuresRow> iterator = arrayToFilter.iterator();
+        ArrayList<String> containedSize = new ArrayList<>();
+        String sizeCountry = findSizeType();
+        while(iterator.hasNext()){
+            HashMap<String,String> rowMeasures = iterator.next().getCorrespondingSizes();
+            String size = rowMeasures.get(sizeCountry);
+            if(containedSize.contains(size)){
+                iterator.remove();
+            }
+            else {
+                containedSize.add(size);
+            }
+        }
+        return arrayToFilter;
+    }
+
+    private Bitmap rotate(Bitmap src, float degree) {
+        // create new matrix
+        Matrix matrix = new Matrix();
+        // setup rotation degree
+        matrix.postRotate(degree);
+        // return new bitmap rotated using matrix
+        return Bitmap.createBitmap(src, 0, 0, src.getWidth(), src.getHeight(), matrix, true);
+    }
+
+    private void showImage(Uri fileUri) {
+        userWishlist.setPicture(fileUri.getPath());
+        // Get Image Width and Height
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(fileUri.getPath(), options);
+        // Get the bitmap
+        Bitmap bitmap = BitmapFactory.decodeFile(fileUri.getPath());
+        //rotate if needed
+        if(bitmap.getWidth() > bitmap.getHeight()){
+            bitmap = rotate(bitmap,90);
+        }
+        imgExtended.setImageBitmap(bitmap);
+        // show bitmap
+        imgExtended.setVisibility(View.VISIBLE);
+        if(validation) {
+            ((AddWishListActivity) getActivity()).setValidation(validation);
         }
     }
 }

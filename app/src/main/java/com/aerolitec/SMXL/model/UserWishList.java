@@ -2,12 +2,13 @@ package com.aerolitec.SMXL.model;
 
 import com.aerolitec.SMXL.ui.SMXL;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by Nelson on 13/08/2015.
  */
-public class UserWishList {
+public class UserWishList implements Serializable {
     int id_user_wishlist;
     User user;
     String countrySelected;
@@ -15,6 +16,8 @@ public class UserWishList {
     String picture;
     GarmentType garmentType;
     Brand brand;
+
+    public UserWishList(){}
 
     public UserWishList(int id_user_wishlist, User user, String countrySelected,String size ,String picture, GarmentType garmentType, Brand brand) {
         this.id_user_wishlist = id_user_wishlist;
