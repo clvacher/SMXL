@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.MainUser;
@@ -58,12 +59,7 @@ public class LoginFragment extends SuperLoginCreateAccountFragment implements Lo
                 if (UtilityMethodsv2.isConnected(getActivity())) {
 
                     if(inputFormatIsValid()) {
-                        MainUser mainUser = new MainUser();
-                        mainUser.setEmail(email.getText().toString());
-                        mainUser.setPassword(password.getText().toString());
-                        MainUserManager.get().setMainUser(mainUser);
-
-                        new GetMainUserHttpAsyncTask(fragment).execute();//todo email.getText().toString(),password.getText().toString() dans execute
+                        new GetMainUserHttpAsyncTask(fragment).execute(email.getText().toString(),password.getText().toString());
                     }
                     else{
                         progressBar.setVisibility(View.GONE);
@@ -83,28 +79,6 @@ public class LoginFragment extends SuperLoginCreateAccountFragment implements Lo
 
     @Override
     public void accountRetrieved(MainUser mainUser) {
-        /*
-        new GetCorrespondingProfilesHttpAsyncTask().execute(mainUser.getServerId());
-
-        User tmpUser = UserManager.get().getUser();
-        User realUser = SMXL.getUserDBManager().createUser(tmpUser.getFirstname(), tmpUser.getLastname(), tmpUser.getBirthday(), tmpUser.getSexe(), null, null ,tmpUser.getServer_id());
-        mainUser.setMainProfile(realUser);
-        MainUserManager.get().setMainUser(mainUser);
-        UserManager.get().setUser(mainUser.getMainProfile());
-
-        try {
-            FileOutputStream fos = getActivity().openFileOutput(Constants.MAIN_USER_FILE, Context.MODE_PRIVATE);
-            fos.flush();
-            fos.write(MainUserManager.get().getMainUser().getBytes());
-            getActivity().setResult(Activity.RESULT_OK);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        getActivity().finish();
-        Intent intent = new Intent(getActivity().getApplicationContext(), MainNavigationActivity.class);
-        startActivity(intent);
-        */
         new GetMainProfileHttpAsyncTask(this).execute(mainUser.getIdMainProfile());
         MainUserManager.get().setMainUser(mainUser);
     }
@@ -144,5 +118,9 @@ public class LoginFragment extends SuperLoginCreateAccountFragment implements Lo
         signIn.setVisibility(View.VISIBLE);
         getActivity().setResult(Activity.RESULT_CANCELED);
         progressBar.setVisibility(View.GONE);
+    }
+    @Override
+    public void localError(String errorMsg) {
+        Toast.makeText(getActivity(), R.string.couldnt_create_user_local, Toast.LENGTH_SHORT).show();
     }
 }

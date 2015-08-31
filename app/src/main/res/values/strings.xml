@@ -205,7 +205,7 @@
     <string name="Share">Share</string>
     <string name="dont_show">Don\'t show again</string>
     <string name="title_sharing_activity">SharingActivity</string>
-    <string name="profile_import_success">Profile was imported succesfully .</string>
+    <string name="profile_import_success">Profile was imported successfully .</string>
     <string name="profile_import_already_exist">You already have this profile</string>
     <string name="profile_import_not_exist">Couldn\'t find a profile with this code.</string>
     <string name="tuto_mobile_title">No more surprises !</string>
@@ -214,5 +214,12 @@
     <string name="title_activity_image_viewer">ImageViewerActivity</string>
     <string name="inclompleteBirthDate">You must enter your birthdate</string>
     <string name="empty_wishlist">The wishlist is empty .</string>
+    <string name="missingMeasures">Missing Measures</string>
+    <string name="message_enter_measures">Enter your Quicksize measurements in your profile or directly using the Measurement tab :</string>
+    <string name="couldnt_create_user_local">Error : User couldn\'t be created locally .</string>
+    <string name="logout">Log Out</string>
+    <string name="home">Home</string>
+    <string name="blogs">Blogs</string>
+    <string name="shopOnLine">Shop On Line</string>
 
 </resources>

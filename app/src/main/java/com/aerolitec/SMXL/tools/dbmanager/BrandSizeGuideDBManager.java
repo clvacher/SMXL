@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * Created by Jerome on 28/04/2015.
  */
 public class BrandSizeGuideDBManager extends DBManager{
-    private static final String TABLE_NAME = "brand_size_guide";
+    public static final String TABLE_NAME = "brand_size_guide";
     public static final String KEY_ID_BRAND_SIZE_GUIDE="id_brand_size_guide";
     public static final String KEY_ID_MARQUE_BRAND_SIZE_GUIDE ="id_brand";
     public static final String KEY_ID_GARMENT_TYPE_SIZE_GUIDE ="id_garment";

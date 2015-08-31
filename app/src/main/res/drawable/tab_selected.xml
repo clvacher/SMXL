@@ -2,14 +2,14 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape android:shape="rectangle" >
-            <solid android:color="@android:color/white" />
+            <solid android:color="@color/SectionTitle" />
 
             <padding android:bottom="5dp" />
         </shape>
     </item>
     <item>
         <shape android:shape="rectangle" >
-            <solid android:color="@color/SectionTitle" />
+            <solid android:color="@color/DefaultBackgroundColor" />
         </shape>
     </item>
 </layer-list>

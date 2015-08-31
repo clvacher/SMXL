@@ -2,6 +2,7 @@ package com.aerolitec.SMXL.ui.fragment;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.User;
+import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.UtilityMethodsv2;
 import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.SMXL;
@@ -68,10 +70,9 @@ public class MeasureDetailFragment extends Fragment {
 
             @Override
             public void onGlobalLayout() {
-                if (user.getSexe()==1) {
+                if (user.getSexe() == 1) {
                     placeMeasureItemsForMan();
-                }
-                else{
+                } else {
                     placeMeasureItemsForWoman();
                 }
 
@@ -96,8 +97,26 @@ public class MeasureDetailFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
+        if(SMXL.get().getSharedPreferences().getBoolean(Constants.SHOULD_SHOW_MEASURE_POPUP, true)) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setMessage("Vous avez la possibilite de completer vos mesures.")
+                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    })
+                    .setNeutralButton(R.string.dont_show, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            SharedPreferences.Editor edit = SMXL.get().getSharedPreferences().edit();
+                            edit.putBoolean(Constants.SHOULD_SHOW_MEASURE_POPUP, false);
+                            edit.commit();
+                            dialog.dismiss();
+                        }
+                    });
+            builder.show();
+        }
     }
 
     private void loadMeasureItems(){

@@ -53,6 +53,10 @@ public class QuickSizeSelectGarmentFragment extends Fragment {
 
     @Override
     public void onResume() {
+        if(user == null)
+        {
+            user = UserManager.get().getUser();
+        }
         fillGridView(gvGarmentTypes, getAllGarmentTypes());
         super.onResume();
     }
@@ -65,7 +69,10 @@ public class QuickSizeSelectGarmentFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 GarmentType selectedGarmentType = (GarmentType) parent.getItemAtPosition(position);
-                if (checkValidMeasure(selectedGarmentType)) {
+                String missingMeasure = checkValidMeasure(selectedGarmentType);
+                //TODO Temporaire pour tester
+                missingMeasure="";
+                if (missingMeasure.isEmpty()) {
                     quickSizeFragment.setSelectedGarmentType(selectedGarmentType);
                     quickSizeFragment.getChildFragmentManager().beginTransaction()
                             .addToBackStack(null)
@@ -73,8 +80,9 @@ public class QuickSizeSelectGarmentFragment extends Fragment {
                             .commit();
                 } else {
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage("Entrez vos Mesures QuickSize dans votre profil ou directement dans l'onglet Mesure.")
-                            .setTitle("Mesures manquantes").setNeutralButton(R.string.ok,null);
+                    builder.setMessage(getString(R.string.message_enter_measures) +"\n" +missingMeasure)
+                            .setTitle(R.string.missingMeasures).setNeutralButton(R.string.ok, null);
+
                     AlertDialog dialog = builder.create();
                     dialog.show();
                 }
@@ -96,28 +104,39 @@ public class QuickSizeSelectGarmentFragment extends Fragment {
         return result;
     }
 
-    private boolean checkValidMeasure(GarmentType garmentType){
+    private String checkValidMeasure(GarmentType garmentType){
         int topBottomShoe = SMXL.getGarmentTypeDBManager().getOrderByCategoryGarment(garmentType);
         switch (topBottomShoe){
             case 1 :
                 if(user.getChest()==0.0) {
-                    return false;
+                    return getString(R.string.libChest);
                 }
                 break;
             case 2 :
-                if (user.getHips()==0.0 && user.getWaist()==0.0) {
-                    return false;
+                if(user.getHips() == 0.0 || user.getWaist() == 0.0) {
+                    if (user.getHips() == 0.0 && user.getWaist() == 0.0) {
+                        return getString(R.string.libHips) + "\n" + getString(R.string.libWaist);
+                    } else if (user.getHips() == 0.0){
+                        return getString(R.string.libHips);
+                    } else {
+                        return getString(R.string.libWaist);
+                    }
                 }
                 break;
             case 3 :
                 if(user.getFeet() <= 0.0 ) {
-                    return false;
+                    return getString(R.string.libFeet);
                 }
                 break;
             default:
                 break;
         }
-        return true;
+        if(garmentType.getType().equalsIgnoreCase("CHEMISE")){
+            if(user.getCollar()==0.0) {
+                return getString(R.string.libCollar);
+            }
+        }
+        return "";
     }
 
 

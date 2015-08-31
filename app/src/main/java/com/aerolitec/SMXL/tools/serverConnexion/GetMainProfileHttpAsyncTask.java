@@ -58,7 +58,7 @@ public class GetMainProfileHttpAsyncTask extends GetProfileHttpAsyncTask{
         switch (result){
             case "null":
             case "Did not work!":
-                //error message with interface
+                loginCreateAccountInterface.serverError("Error retrieving Account");
                 break;
             default :
                 if(result.startsWith("{\"error\":{")) {
@@ -69,7 +69,7 @@ public class GetMainProfileHttpAsyncTask extends GetProfileHttpAsyncTask{
                     loginCreateAccountInterface.accountRetrieved(user);
                 }
                 else{
-                    Toast.makeText(context,"User couldn't be created locally",Toast.LENGTH_SHORT);
+                    loginCreateAccountInterface.localError(result);
                 }
         }
     }

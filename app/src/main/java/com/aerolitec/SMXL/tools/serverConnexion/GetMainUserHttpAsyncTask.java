@@ -74,28 +74,12 @@ public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
             cancel(true);
         }
     }
-
-    @Override
-    protected String doInBackground(String... params) {
-        String json = "";
-        JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject.accumulate("email", MainUserManager.get().getMainUser().getEmail());
-            jsonObject.accumulate("password", MainUserManager.get().getMainUser().getPassword());
-            json = jsonObject.toString();
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-
-        return GET(SERVER_ADDRESS_GET_MAIN_USER_DEV,json);
-    }
-
     @Override
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
         switch (result){
             case "wrong email":
+                loginCreateAccountInterface. nonExistingAccount();
             case "null":
                 loginCreateAccountInterface.nonExistingAccount();
                 break;
@@ -107,7 +91,7 @@ public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
                 break;
             default:
                 JSONObject jsonMainUser;
-                MainUser mainUser = null;
+                MainUser mainUser;
                 try {
                     Log.d("resultValue",result);
 
@@ -189,5 +173,23 @@ public class GetMainUserHttpAsyncTask extends AsyncTask<String,Void,String>{
         Log.d("Result GET", result);
 
         return result;
+    }
+
+    // params[0] : email
+    // params[1] : password
+    @Override
+    protected String doInBackground(String... params) {
+        String json = "";
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.accumulate("email", params[0]);
+            jsonObject.accumulate("password", params[1]);
+            json = jsonObject.toString();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return GET(SERVER_ADDRESS_GET_MAIN_USER_DEV,json);
     }
 }

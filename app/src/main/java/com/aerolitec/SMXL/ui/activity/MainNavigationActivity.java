@@ -59,7 +59,6 @@ public class MainNavigationActivity extends SuperNavigationActivity implements O
     MaterialSection sectionMyProfile = null;
 
     ProfileTracker mProfileTracker;
-    int i=1;
 
     @Override
     public int headerType() {
@@ -143,7 +142,7 @@ public class MainNavigationActivity extends SuperNavigationActivity implements O
             @Override
             protected void onCurrentProfileChanged(Profile oldProfile, Profile newProfile) {
                 if(newProfile == null) {
-                    Toast.makeText(getApplicationContext(), "Déconnexion", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.logout, Toast.LENGTH_SHORT).show();
                     MainUserManager.get().setMainUser(null);
 
                     File file = new File(getFilesDir(),Constants.MAIN_USER_FILE);
@@ -164,28 +163,28 @@ public class MainNavigationActivity extends SuperNavigationActivity implements O
         // first section is loaded
 
 
-        MaterialSection sectionAcceuil = this.newSection("Accueil", getResources().getDrawable(R.drawable.ic_launcher), new TabsFragmentHomeDressingQuicksize(), false, menu);
+        MaterialSection sectionAcceuil = this.newSection(getString(R.string.home), getResources().getDrawable(R.drawable.ic_launcher), new TabsFragmentHomeDressingQuicksize(), false, menu);
         //sectionAcceuil.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
 
-        MaterialSection sectionMesProfils = this.newSection(getResources().getString(R.string.my_profiles), this.getResources().getDrawable(R.drawable.ic_perm_group_social_info), new ProfilesFragment(), false, menu);
+        MaterialSection sectionMesProfils = this.newSection(getString(R.string.my_profiles), getResources().getDrawable(R.drawable.ic_perm_group_social_info), new ProfilesFragment(), false, menu);
 
         this.newDevisor(menu);
 
 
         //sectionMesProfils.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
 
-        sectionMyProfile = this.newSection(getResources().getString(R.string.my_profile), this.getResources().getDrawable(R.drawable.avatar), new ProfilesDetailFragment(), false, menu);
+        sectionMyProfile = this.newSection(getString(R.string.my_profile), this.getResources().getDrawable(R.drawable.avatar), new ProfilesDetailFragment(), false, menu);
 
-        MaterialSection sectionQuicksize = this.newSection(getResources().getString(R.string.quicksize), this.getResources().getDrawable(R.drawable.ic_logo_quicksize), new QuickSizeFragment(), false, menu);
-        MaterialSection sectionMonDressing = this.newSection(getResources().getString(R.string.my_wardrobe), this.getResources().getDrawable(R.drawable.robe_gris), new WardrobeDetailFragment(), false, menu);
-        MaterialSection sectionMesMesures = this.newSection(getResources().getString(R.string.measurements), this.getResources().getDrawable(R.drawable.tape_measure), new MeasureDetailFragment(), false, menu);
+        MaterialSection sectionQuicksize = this.newSection(getString(R.string.quicksize), this.getResources().getDrawable(R.drawable.ic_logo_quicksize), new QuickSizeFragment(), false, menu);
+        MaterialSection sectionMonDressing = this.newSection(getString(R.string.my_wardrobe), this.getResources().getDrawable(R.drawable.robe_gris), new WardrobeDetailFragment(), false, menu);
+        MaterialSection sectionMesMesures = this.newSection(getString(R.string.measurements), this.getResources().getDrawable(R.drawable.tape_measure), new MeasureDetailFragment(), false, menu);
 
-        MaterialSection sectionShare = this.newSection(getResources().getString(R.string.share), this.getResources().getDrawable(android.R.drawable.ic_menu_share), new ShareProfileFragment(), false, menu);
+        MaterialSection sectionShare = this.newSection(getString(R.string.share), this.getResources().getDrawable(android.R.drawable.ic_menu_share), new ShareProfileFragment(), false, menu);
         sectionShare.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
         this.newDevisor(menu);
 
         //this.newLabel("Pratiques", false, menu);
-        MaterialSection sectionSizeGuide = this.newSection(getResources().getString(R.string.size_guide), this.getResources().getDrawable(R.drawable.tshirt), new SizeGuideFragment(), false, menu);
+        MaterialSection sectionSizeGuide = this.newSection(getString(R.string.size_guide), this.getResources().getDrawable(R.drawable.tshirt), new SizeGuideFragment(), false, menu);
         sectionSizeGuide.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
 
         //MaterialSection sectionMagasins = this.newSection("Magasins à proximité", this.getResources().getDrawable(android.R.drawable.ic_dialog_map), new EnChantierFragment(), false, menu);
@@ -196,13 +195,13 @@ public class MainNavigationActivity extends SuperNavigationActivity implements O
 
         this.newDevisor(menu);
 
-        MaterialSection sectionBrands = this.newSection(getResources().getString(R.string.all_Brands), this.getResources().getDrawable(R.drawable.ic_action_labels) ,new ListBrandsFragment(), false, menu);
+        MaterialSection sectionBrands = this.newSection(getString(R.string.all_Brands), getResources().getDrawable(R.drawable.ic_action_labels) ,new ListBrandsFragment(), false, menu);
         sectionBrands.getIcon().setColorFilter(getResources().getColor(R.color.SectionTitle), PorterDuff.Mode.MULTIPLY);
 
-        MaterialSection sectionBlogs = this.newSection("Blogs", this.getResources().getDrawable(R.drawable.blog) ,new ListBlogsFragment(), false, menu);
+        MaterialSection sectionBlogs = this.newSection(getString(R.string.blogs), getResources().getDrawable(R.drawable.blog) ,new ListBlogsFragment(), false, menu);
         //MaterialSection sectionMagazines = this.newSection("Magazines", new EnChantierFragment(), false, menu);
 
-        MaterialSection sectionShops = this.newSection("Shop On Line", this.getResources().getDrawable(R.drawable.shopping_bag) ,new ListShopOnLineFragment(), false, menu);
+        MaterialSection sectionShops = this.newSection(getString(R.string.shopOnLine), getResources().getDrawable(R.drawable.shopping_bag) ,new ListShopOnLineFragment(), false, menu);
 
         this.newDevisor(menu);
 

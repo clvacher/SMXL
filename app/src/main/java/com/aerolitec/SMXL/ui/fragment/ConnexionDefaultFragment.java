@@ -44,6 +44,7 @@ import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
@@ -78,9 +79,7 @@ public class ConnexionDefaultFragment extends Fragment implements LoginCreateAcc
                 public void onCompleted(JSONObject userJson, GraphResponse response) {
                     if (userJson != null) {
                         resultGraphRequest = userJson;
-                        MainUser tmpMainuser = new MainUser(userJson.optString("email"),"facebook",1,null);
-                        MainUserManager.get().setMainUser(tmpMainuser);
-                        new GetMainUserFacebookHttpAsyncTask(fragment).execute();
+                        new GetMainUserFacebookHttpAsyncTask(fragment).execute(userJson.optString("email"),"facebook");
                     }
                 }
             });
@@ -114,6 +113,10 @@ public class ConnexionDefaultFragment extends Fragment implements LoginCreateAcc
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(!FacebookSdk.isInitialized())
+        {
+            FacebookSdk.sdkInitialize(getActivity().getApplicationContext());
+        }
         mCallbackManager = CallbackManager.Factory.create();
         accessTokenTracker = new AccessTokenTracker() {
             @Override
@@ -205,7 +208,7 @@ public class ConnexionDefaultFragment extends Fragment implements LoginCreateAcc
 
     @Override
     public void wrongPassword() {
-        //euhhhhh... ca devrait pas passer la normalement... D=
+        Toast.makeText(getActivity(),R.string.wrong_password,Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -217,6 +220,11 @@ public class ConnexionDefaultFragment extends Fragment implements LoginCreateAcc
     public void accountRetrieved(MainUser mainUser) {
         new GetMainProfileHttpAsyncTask(this).execute(mainUser.getIdMainProfile());
         MainUserManager.get().setMainUser(mainUser);
+    }
+
+    @Override
+    public void localError(String errorMsg) {
+        Toast.makeText(getActivity(), R.string.couldnt_create_user_local, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -242,28 +250,6 @@ public class ConnexionDefaultFragment extends Fragment implements LoginCreateAcc
 
 
     private void queryToSetMainUserWithFacebookToken() {
-        /*
-        GraphRequest request = GraphRequest.newMeRequest(AccessToken.getCurrentAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
-            @Override
-            public void onCompleted(JSONObject userJson, GraphResponse response) {
-                if (userJson != null) {
-
-                    generateAndSetMainUserWithUserJSON(userJson);
-
-                    //new HttpAsyncTask().execute("http://api.smxl-app.com/users.json");
-                    new PostMainUserFacebookHttpAsyncTask(getActivity()).execute();
-
-                    //Log.d("birthday", (userJson.optString("birthday")).toString());
-                    //Log.d("email", (userJson.optString("email")).toString());
-
-                    Intent intent = new Intent(getActivity().getApplicationContext(), MainNavigationActivity.class);
-                    startActivity(intent);
-                    getActivity().finish();
-                }
-            }
-        });
-        request.executeAsync();
-        */
         if (resultGraphRequest!= null) {
 
             generateAndSetMainUserWithUserJSON(resultGraphRequest);

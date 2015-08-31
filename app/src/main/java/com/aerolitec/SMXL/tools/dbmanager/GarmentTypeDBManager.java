@@ -3,8 +3,10 @@ package com.aerolitec.SMXL.tools.dbmanager;
 import android.content.Context;
 import android.database.Cursor;
 
+import com.aerolitec.SMXL.model.Brand;
 import com.aerolitec.SMXL.model.CategoryGarment;
 import com.aerolitec.SMXL.model.GarmentType;
+import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.ui.SMXL;
 
 import java.util.ArrayList;
@@ -257,5 +259,26 @@ public class GarmentTypeDBManager extends DBManager {
         close();
         return result;
     }
+
+    public ArrayList<Integer> getTop_Middle_BottomFromBrandAndUser(Brand brand , User user){
+        open();
+        ArrayList<Integer> integers = new ArrayList<>();
+        String sexString = "F";
+        if(user.getSexe()==1){
+            sexString="H";
+        }
+        Cursor c = db.rawQuery("SELECT DISTINCT "+ KEY_TOPMIDDLEBOTTOM_GARMENT_TYPE  + " FROM "+TABLE_NAME
+                +" WHERE " +KEY_SEX_GARMENT_TYPE+" = '"+sexString+"' AND " +KEY_ID_GARMENT_TYPE+
+                " IN (SELECT DISTINCT "+KEY_ID_GARMENT_TYPE + " FROM "+BrandSizeGuideDBManager.TABLE_NAME +" WHERE "+BrandDBManager.KEY_ID_BRAND +"=" + brand.getId_brand() +")", null);
+        boolean eof = c.moveToFirst();
+        while (eof) {
+           integers.add(c.getInt(c.getColumnIndex(KEY_TOPMIDDLEBOTTOM_GARMENT_TYPE)));
+            eof = c.moveToNext();
+        }
+        c.close();
+        close();
+        return integers;
+    }
+
 } // class GarmentTypeDBManager
 

@@ -116,7 +116,7 @@
                     android:layout_alignParentEnd="true" />
 
             </RelativeLayout>
-
+<!--
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -132,7 +132,7 @@
                     android:paddingRight="20dp"
                     android:gravity="center"
                     android:hint="@string/dateOfBirth"
-                    android:background="@drawable/button_white_grey_shadow"
+                    android:background="@drawable/button_white_border"
                     android:textColor="@color/SectionTitle"
                     android:textSize="@dimen/textCreateProfile" />
 
@@ -140,7 +140,35 @@
 
 
             </RelativeLayout>
+-->
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
+                <TextView
+                    android:id="@+id/tvBirthday"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:hint="@string/dateOfBirth"
+                    android:background="@android:color/transparent"
+                    android:maxLines="1"
+                    android:paddingLeft="10dp"
+                    android:textColor="@color/SectionTitle"
+                    android:textSize="@dimen/textCreateProfile" />
+
+                <ImageView
+                    android:id="@+id/ivBirthday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_action_edit"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+
+            </RelativeLayout>
 
         </LinearLayout>
 

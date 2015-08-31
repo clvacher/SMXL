@@ -19,14 +19,15 @@ public class GetMainUserFacebookHttpAsyncTask extends GetMainUserHttpAsyncTask{
     public GetMainUserFacebookHttpAsyncTask(Fragment fragment) {
         super(fragment);
     }
-
+    // params[0] : email
+    // params[1] : password
     @Override
     protected String doInBackground(String... params) {
         String json = "";
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.accumulate("email", MainUserManager.get().getMainUser().getEmail());
-            jsonObject.accumulate("password", MainUserManager.get().getMainUser().getPassword());
+            jsonObject.accumulate("email", params[0]);
+            jsonObject.accumulate("password",params[1]);
             json = jsonObject.toString();
         }
         catch(Exception e){

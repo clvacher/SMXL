@@ -34,14 +34,13 @@ public class TabsFragmentHomeDressingQuicksize extends Fragment {
         fragmentTabHost = new FragmentTabHost(getActivity());
         fragmentTabHost.setup(getActivity(), getChildFragmentManager(), R.id.frame_container);
 
-        fragmentTabHost.addTab(fragmentTabHost.newTabSpec("quicksize").setIndicator("QuickSize"),
+        fragmentTabHost.addTab(fragmentTabHost.newTabSpec("quicksize").setIndicator("", getResources().getDrawable(R.drawable.ic_logo_quicksize)),
                 QuickSizeFragment.class, null);
         fragmentTabHost.addTab(fragmentTabHost.newTabSpec("dressing").setIndicator("Dressing"),
                 WardrobeDetailFragment.class, null);
 
 
-        fragmentTabHost.setBackgroundColor(getResources().getColor(R.color.SectionTitle));
-
+        fragmentTabHost.setBackgroundColor(getResources().getColor(R.color.DefaultBackgroundColor));
         fragmentTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override
             public void onTabChanged(String tabId) {
@@ -53,7 +52,7 @@ public class TabsFragmentHomeDressingQuicksize extends Fragment {
 
         for (int i = 0; i < fragmentTabHost.getTabWidget().getChildCount(); i++) {
             TextView tv = (TextView) fragmentTabHost.getTabWidget().getChildAt(i).findViewById(android.R.id.title);
-            tv.setTextColor(Color.WHITE);
+            tv.setTextColor(Color.DKGRAY);
             fragmentTabHost.getTabWidget().getChildAt(i).setBackgroundResource(R.drawable.selector_tabs_state);
         }
 

@@ -22,12 +22,13 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.UtilityMethodsv2;
-import com.aerolitec.SMXL.tools.manager.UserManager;
 import com.aerolitec.SMXL.ui.customLayout.ProfilePictureRoundedImageView;
 
 import java.io.File;
@@ -49,9 +50,11 @@ public abstract class SuperCreateUpdateProfileFragment extends Fragment {
 
 
     protected EditText etFirstName, etLastName, etNotes;
+    protected TextView tvBirthday;
+    protected ImageView ivBirthday;
     protected RadioGroup radioSexe;
     protected ProfilePictureRoundedImageView imgProfil;
-    protected Button datePickerButton,validationButton;
+    protected Button validationButton;
     protected String picturePath;
     protected String birthday;
     protected Uri cropImagePath;
@@ -129,7 +132,7 @@ public abstract class SuperCreateUpdateProfileFragment extends Fragment {
                         sb.append("" + String.valueOf((100 + birthdayDay)).substring(1, 3)).append("-")
                                 .append((String.valueOf(100 + (birthdayMonth+1))).substring(1, 3)).append("-").append(birthdayYear);
                         birthday = sb.toString();
-                        datePickerButton.setText(birthday);
+                        tvBirthday.setText(birthday);
                     }
                 }, birthdayYear, birthdayMonth, birthdayDay
         );

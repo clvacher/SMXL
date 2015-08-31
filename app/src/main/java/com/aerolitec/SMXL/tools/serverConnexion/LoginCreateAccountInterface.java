@@ -12,4 +12,5 @@ public interface LoginCreateAccountInterface {
     void nonExistingAccount();
     void wrongPassword();
     void serverError(String errorMsg);
+    void localError(String errorMsg);
 }

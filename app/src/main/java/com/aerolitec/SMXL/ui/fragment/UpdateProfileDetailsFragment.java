@@ -14,17 +14,17 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aerolitec.SMXL.R;
-import com.aerolitec.SMXL.model.MainUser;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.manager.MainUserManager;
 import com.aerolitec.SMXL.tools.manager.UserManager;
-import com.aerolitec.SMXL.tools.serverConnexion.PostAvatarProfileHttpAsyncTask;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.customLayout.ProfilePictureRoundedImageView;
 
@@ -65,14 +65,15 @@ public class UpdateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
         etFirstName = (EditText) view.findViewById(R.id.etFirstName);
         etLastName = (EditText) view.findViewById(R.id.etLastName);
         etNotes = (EditText) view.findViewById(R.id.etNotesProfil);
-        datePickerButton = (Button) view.findViewById(R.id.buttonBirthday);
+        tvBirthday = (TextView) view.findViewById(R.id.tvBirthday);
+        ivBirthday = (ImageView) view.findViewById(R.id.ivBirthday);
         radioSexe = (RadioGroup) view.findViewById(R.id.radioSexe);
         RadioButton radioH = (RadioButton) view.findViewById(R.id.radioMale);
         RadioButton radioF = (RadioButton) view.findViewById(R.id.radioFemale);
         imgProfil = (ProfilePictureRoundedImageView) view.findViewById(R.id.imgProfil);
 
         birthday = user.getBirthday();
-        datePickerButton.setText(birthday);
+        tvBirthday.setText(birthday);
         etNotes.setText(user.getDescription());
         etFirstName.setText(user.getFirstname());
         etLastName.setText(user.getLastname());
@@ -89,7 +90,7 @@ public class UpdateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
         imgProfil.setImage(picturePath);
 
 
-        datePickerButton.setOnClickListener(new View.OnClickListener() {
+        ivBirthday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openDatePickerDialog();

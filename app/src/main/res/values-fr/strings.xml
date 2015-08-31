@@ -178,7 +178,7 @@
     <string name="Vest">Vestes</string>
     <string name="Shoes">Chaussures</string>
     <string name="Sweater_Hoodie">Pulls/Sweats</string>
-    <string name="Underwear">Underwear</string>
+    <string name="Underwear">Sous-vêtements</string>
     <string name="Suit">Costumes</string>
     <string name="addBrandToFavorite">Ajouter aux Marques Favorites</string>
     <string name="goToWebsite">Accéder au Site</string>
@@ -216,5 +216,12 @@
     <string name="title_activity_wishlist">AddWishListActivity</string>
     <string name="inclompleteBirthDate">La date de naissance n\'a pas été entrée .</string>
     <string name="empty_wishlist">La liste d\'envie est vide .</string>
+    <string name="missingMeasures">Mesures manquantes</string>
+    <string name="message_enter_measures">Entrez vos Mesures QuickSize dans votre profil ou directement dans l\'onglet Mesure :</string>
+    <string name="couldnt_create_user_local">Erreur : Le compte n\'a pas pu être crée localement.</string>
+    <string name="logout">Déconnexion</string>
+    <string name="home">Acceuil</string>
+    <string name="blogs">Blogs</string>
+    <string name="shopOnLine">Shop On Line</string>
 
 </resources>

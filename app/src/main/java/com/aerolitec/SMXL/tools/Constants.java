@@ -16,6 +16,7 @@ public class Constants {
 
     public static final String SHARED_PREF = "appSharedPreferences";
     public static final String FIRST_LAUNCH = "firstLaunch";
+    public static final String SHOULD_SHOW_MEASURE_POPUP = "shouldShowmeasurePopUp";
 
     public static final Float inch = 2.54F;
     public static final Float pounds = 2.2046F;
@@ -31,6 +32,10 @@ public class Constants {
 
     public static final int TSHIRT_CATEGORYGARMENT = 1;
     public  static final int PANTS_SHORTS_CATEGORYGARMENT = 3;
+
+
+    public static final int TOP_GARMENT_TYPE = 1;
+    public  static final int BOTTOM_GARMENT_TYPE = 2;
 
     public static class ColorUtils{
 

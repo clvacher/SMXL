@@ -12,18 +12,20 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aerolitec.SMXL.R;
 import com.aerolitec.SMXL.model.User;
 import com.aerolitec.SMXL.tools.Constants;
 import com.aerolitec.SMXL.tools.manager.UserManager;
-import com.aerolitec.SMXL.tools.serverConnexion.PostProfileHttpAsyncTask;
 import com.aerolitec.SMXL.ui.SMXL;
 import com.aerolitec.SMXL.ui.activity.SuperNavigationActivity;
 import com.aerolitec.SMXL.ui.customLayout.ProfilePictureRoundedImageView;
@@ -58,9 +60,9 @@ public class CreateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
         etFirstName = (EditText) view.findViewById(R.id.etFirstName);
         etLastName = (EditText) view.findViewById(R.id.etLastName);
         etNotes = (EditText) view.findViewById(R.id.etNotesProfil);
-        datePickerButton = (Button) view.findViewById(R.id.buttonBirthday);
-
-        datePickerButton.setOnClickListener(new View.OnClickListener() {
+        tvBirthday = (TextView) view.findViewById(R.id.tvBirthday);
+        ivBirthday = (ImageView) view.findViewById(R.id.ivBirthday);
+        ivBirthday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openDatePickerDialog();
@@ -118,6 +120,7 @@ public class CreateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
         if (etFirstName.getText().toString().length() < 2 ||
                 etLastName.getText().toString().length() < 2 ) {
             Toast.makeText(getActivity(), getResources().getString(R.string.incompleteProfile) , Toast.LENGTH_LONG).show();
+            animateButton();
         }
         else if(birthday == null){
             Toast.makeText(getActivity(), getResources().getString(R.string.inclompleteBirthDate) , Toast.LENGTH_LONG).show();
@@ -174,6 +177,11 @@ public class CreateProfileDetailsFragment extends SuperCreateUpdateProfileFragme
         }
     }
 
+    private void animateButton() {
+        validationButton.startAnimation(
+                AnimationUtils.loadAnimation(getActivity(),
+                        R.anim.horizontal));
+    }
 
 
 }

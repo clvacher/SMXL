@@ -55,12 +55,7 @@ public class CreateAccountFragment extends SuperLoginCreateAccountFragment imple
                 requestStatus.setText(getResources().getString(R.string.checkingAvailability));
                 if (UtilityMethodsv2.isConnected(getActivity())) {
                     if(inputFormatIsValid()) {
-                        MainUser mainUser = new MainUser();
-                        mainUser.setEmail(email.getText().toString());
-                        mainUser.setPassword(password.getText().toString());
-                        MainUserManager.get().setMainUser(mainUser);
-
-                        new GetMainUserHttpAsyncTask(fragment).execute();
+                        new GetMainUserHttpAsyncTask(fragment).execute(email.getText().toString(),password.getText().toString());
                     }
                     else{
                         progressBar.setVisibility(View.GONE);
@@ -105,6 +100,11 @@ public class CreateAccountFragment extends SuperLoginCreateAccountFragment imple
 
     @Override
     public void accountRetrieved(User user) {
+
+    }
+
+    @Override
+    public void localError(String errorMsg) {
 
     }
 

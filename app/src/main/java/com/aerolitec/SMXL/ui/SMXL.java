@@ -137,6 +137,9 @@ public class SMXL extends Application{
         edit.commit();
     }
 
+    public SharedPreferences getSharedPreferences(){
+        return  sharedPreferences;
+    }
     public static UserWishListDBManager getUserWishListDBManager() {
         return userWishListDBManager;
     }

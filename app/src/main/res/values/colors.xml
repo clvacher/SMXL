@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="DefaultBackgroundColor">#EFEFEF</color><!--EFE9D9-->
+    <color name="DefaultBackgroundColor">#FFFFFF</color><!--<color name="DefaultBackgroundColor">#EFEFEF</color>--><!--EFE9D9-->
     <!--<color name="SectionTitle">#FFEE511A</color>-->
     <color name="SectionTitle">#FF6B25</color>
     <color name="SectionSeparator">#FFA1A29E</color>
